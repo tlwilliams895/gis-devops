@@ -1,16 +1,7 @@
-LaunchCode Curriculum Docs
-==========================
+GIS DevOps
+==========
 
-This repository is a template for LaunchCode curriculum module sites to be hosted via GitHub Pages, either under `@LaunchCodeEducation`_ or `@LaunchCoderGirl`_.
-
-To set up a new curriculum module, see the `curriculum docs`_.
+.. note:: This is the new home of the GIS DevOps curriculum, and is in-progress. The old curriculum site is still available, under the new URL `education.launchcode.org/gis-devops-OLD/ <https://education.launchcode.org/gis-devops-OLD/>`_.
 
 .. toctree::
    :maxdepth: 2
-
-   tests/styles
-
-
-.. _@LaunchCodeEducation: https://github.com/launchcodeeducation
-.. _@LaunchCoderGirl: https://github.com/LaunchCoderGirlSTL
-.. _curriculum docs: https://education.launchcode.org/curriculum-docs/
