@@ -5,3 +5,5 @@ GIS DevOps
 
 .. toctree::
    :maxdepth: 2
+
+   week01/day1/index
