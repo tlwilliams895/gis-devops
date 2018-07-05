@@ -1,0 +1,22 @@
+==============
+Week 1 - Day 3
+==============
+
+Learning objectives for this module :ref:`week01-day3-objectives`
+
+Lesson Content
+--------------
+
+* `Dependency Injection` https://education.launchcode.org/codecamp-slides/unit4/di.html#1
+* `Integration Testing Slides` https://education.launchcode.org/gis-devops-slides/week1/integration-testing.html#1
+
+Walkthrough
+-----------
+
+* `Dependency Injection Example Project` https://github.com/LaunchCodeEducation/soundsystem
+* Spring Integration Testing :ref:`SIT-walkthrough`
+
+Studio
+------
+
+* LaunchCart Studio Part 1 :ref:`launchcart-part-1-studio`

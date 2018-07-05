@@ -1,3 +1,5 @@
+.. _day1:
+
 =====================
 Week 1 - Day 1
 =====================
@@ -15,45 +17,45 @@ Prerequisites
 -------------
 
 * **Familiar with:** Java, git
-- [Java SDK 8 installed](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-- IntelliJ IDEA Community Edition installed
-- git installed locally
+* `Java SDK 8 installed` http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+* IntelliJ IDEA Community Edition installed
+* git installed locally
 
 Slides
 ------
 
-- [Class Introduction](https://education.launchcode.org/gis-devops-slides/week1/class-intro.html#1)
-- [Git, Gitlab, Intellij, Refactoring, Unit Tests](https://education.launchcode.org/gis-devops-slides/week1/day1.html#1)
+* `Class Introduction` https://education.launchcode.org/gis-devops-slides/week1/class-intro.html#1
+* `Git, Gitlab, Intellij, Refactoring, Unit Tests` https://education.launchcode.org/gis-devops-slides/week1/day1.html#1
 
 Walkthrough
 -----------
 
-- [Git and Gitlab](../../walkthroughs/gitlab)
-- [Unit Tests](../../walkthroughs/unit-tests)
+* Git and Gitlab :ref:`walkthrough-gitLab`
+* Unit tests :ref:`walkthrough-unitTest`
 
 Exercises
 ---------
 
-- Where do your Java test files go?
-- How does Unit testing help with refactoring or updating code?
-- If you needed the same type of variable for each of your test methods, which should you use @Before or @BeforeClass?
-- Should you test getters and setters in unit tests?
-- Should you aim to one or multiple asserts in single test method?
+* Where do your Java test files go?
+* How does Unit testing help with refactoring or updating code?
+* If you needed the same type of variable for each of your test methods, which should you use @Before or @BeforeClass?
+* Should you test getters and setters in unit tests?
+* Should you aim to one or multiple asserts in single test method?
 
 Studio
 ------
 
-- [Studio Repository](https://gitlab.com/LaunchCodeTraining/junit-studio)
-- Turn in instructions
-  - Fork then clone repository
-  - Create a feature branch for your work
-  - Follow readme instructions
-  - Push changes up to your repository
-  - Inform instructor you are done
+* `Studio Repository` https://gitlab.com/LaunchCodeTraining/junit-studio
+* Turn in instructions
+  * Fork then clone repository
+  * Create a feature branch for your work
+  * Follow readme instructions
+  * Push changes up to your repository
+  * Inform instructor you are done
 
 Resources
 ---------
 
-- [JUnit 4 Docs](http://junit.org/junit4/)
-- [JUnit 4 Assertion Examples](https://github.com/junit-team/junit4/wiki/Assertions)
-- [Video Example of Git Merge Conflicts](https://www.youtube.com/watch?v=zz7NuSCH6II)
+* `JUnit 4 Docs` http://junit.org/junit4/
+* `JUnit 4 Assertion Examples` https://github.com/junit-team/junit4/wiki/Assertions
+* `Video Example of Git Merge Conflicts` https://www.youtube.com/watch?v=zz7NuSCH6II
