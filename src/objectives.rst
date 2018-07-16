@@ -72,6 +72,8 @@ Day 5
 - Create map and layer objects in OpenLayers
 - Make AJAX HTTP requests using jQuery
 
+.. _week02-objectives:
+
 Week 2
 ======
 

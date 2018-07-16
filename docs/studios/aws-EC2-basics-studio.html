@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Studio: AWS Devops Basics &#8212; LaunchCode Curriculum Docs  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/launchcode.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/lc-logo.svg"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day1/index.html">Week 1 - Day 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#slides">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day2/index.html">Week 1 - Day 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day3/index.html">Week 1 - Day 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day4/index.html">Week 1 - Day 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day5/index.html">Week 1 - Day 5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/project/index.html">Week 2 - Project Week</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#project-hints">Project Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#setup-project">Setup Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day1/index.html">Week 3 - Day 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day2/index.html">Week 3 - Day 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day3/index.html">Week 3 - Day 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day4/index.html">Week 3 - Day 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#studios">Studios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day5/index.html">Week 3 - Day 5</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/project/index.html">Week 4 - Project Week</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#what-s-new-in-the-code">What’s new in the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#database-setup">Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day1/index.html">Week 5 - Day 1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#studio">Studio</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Studio: AWS Devops Basics</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#set-up-project">Set Up Project</a></li>
+<li><a class="reference internal" href="#start-an-instance-on-aws">Start an Instance on AWS</a></li>
+<li><a class="reference internal" href="#starting-an-aws-instance">Starting an AWS Instance</a><ul>
+<li><a class="reference internal" href="#instace-details">Instace Details</a></li>
+<li><a class="reference internal" href="#storage">Storage</a></li>
+<li><a class="reference internal" href="#add-tags">Add Tags</a></li>
+<li><a class="reference internal" href="#security-groups">Security Groups</a></li>
+<li><a class="reference internal" href="#review-screen">Review Screen</a></li>
+<li><a class="reference internal" href="#setting-up-a-keypair">Setting up a KeyPair</a></li>
+<li><a class="reference internal" href="#your-instance-details">Your Instance Details</a></li>
+<li><a class="reference internal" href="#set-up-ssh">Set up SSH</a></li>
+<li><a class="reference internal" href="#running-your-application-in-the-cloud">Running Your Application In the Cloud</a></li>
+<li><a class="reference internal" href="#create-application-user">Create Application User</a></li>
+<li><a class="reference internal" href="#secure-copy-files-to-server">Secure Copy Files to Server</a></li>
+<li><a class="reference internal" href="#install-postgis-extentions">Install Postgis Extentions</a></li>
+<li><a class="reference internal" href="#setup-service-for-app">Setup Service for App</a></li>
+<li><a class="reference internal" href="#configure-security-group">Configure Security Group</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="studio-aws-devops-basics">
+<span id="aws-ec2-basics-studio"></span><h1>Studio: AWS Devops Basics<a class="headerlink" href="#studio-aws-devops-basics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Your goal is to deploy a Spring Boot project to a remote server and verify its execution. This will establish the basics for working in a cloud environment.</p>
+</div>
+<div class="section" id="set-up-project">
+<h2>Set Up Project<a class="headerlink" href="#set-up-project" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Build your latest branch of Airwaze Studio project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">https://gitlab.com/LaunchCodeTraining/airwaze-studio</a> or check out and build the <code class="docutils literal notranslate"><span class="pre">elasticsearch-starter</span></code> branch.</li>
+<li>Change <code class="docutils literal notranslate"><span class="pre">src/main/resources/import.sql</span></code> to:</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">COPY</span> <span class="pre">route(src,</span> <span class="pre">src_id,</span> <span class="pre">dst,</span> <span class="pre">dst_id,</span> <span class="pre">airline,</span> <span class="pre">route_geom)</span> <span class="pre">from</span> <span class="pre">'/home/airwaze/routes.csv'</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER;</span>
+<span class="pre">COPY</span> <span class="pre">airport(airport_id,</span> <span class="pre">name,</span> <span class="pre">city,</span> <span class="pre">country,</span> <span class="pre">faa_code,</span> <span class="pre">icao,</span> <span class="pre">altitude,</span> <span class="pre">time_zone,</span> <span class="pre">airport_lat_long)</span> <span class="pre">from</span> <span class="pre">'/home/airwaze/Airports.csv'</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER;</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li>Go into IntelliJ’s Gradle tool window, and click on <code class="docutils literal notranslate"><span class="pre">Tasks</span> <span class="pre">&gt;</span> <span class="pre">build</span> <span class="pre">&gt;</span> <span class="pre">bootRepackage</span></code>.</li>
+<li>Verify the jar appears in <code class="docutils literal notranslate"><span class="pre">build/libs</span></code></li>
+</ul>
+</div>
+<div class="section" id="start-an-instance-on-aws">
+<h2>Start an Instance on AWS<a class="headerlink" href="#start-an-instance-on-aws" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><dl class="first docutils">
+<dt>Go to the EC2 Dashboard:</dt>
+<dd><ul class="first last">
+<li>Click on <code class="docutils literal notranslate"><span class="pre">Services</span></code> in the page header.</li>
+<li>Locate and click on <code class="docutils literal notranslate"><span class="pre">EC2</span></code> under <strong>Compute</strong>.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p>![Screen shot of AWS console with a red arrow pointing to the EC2 link in the Services dropdown](../../materials/week05/ec2-in-services.png)</p>
+<ol class="arabic simple" start="2">
+<li><dl class="first docutils">
+<dt>On the EC2 Dashboard</dt>
+<dd><ul class="first last">
+<li>Locate and click the <code class="docutils literal notranslate"><span class="pre">Instances</span></code> link in the sidebar</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p>![Screen shot of AWS console with a red arrow pointing to the Instances link in the sidebar](../../materials/week05/instances-in-sidebar.png)</p>
+<ol class="arabic simple" start="3">
+<li><dl class="first docutils">
+<dt>On the Instances screen</dt>
+<dd><ul class="first last">
+<li>Locate and click the <code class="docutils literal notranslate"><span class="pre">Launch</span> <span class="pre">Instance</span></code> button at the top of the page</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+<p>![Screen shot of AWS console with a red circle around the Launch Instance button](../../materials/week05/launch-instance-button.png)</p>
+</div>
+<div class="section" id="starting-an-aws-instance">
+<h2>Starting an AWS Instance<a class="headerlink" href="#starting-an-aws-instance" title="Permalink to this headline">¶</a></h2>
+<p>When creating a new instance, Amazon provides multiple free <strong>Amazon Machine Images</strong> (AMIs) to choose from. This is a pre-configured operating system installation with multiple tools ready for use. For this exercise, we want to use the <strong>Ubuntu Server 16.04 LTS</strong> AMI. Locate it in the list of “Quick Start” images and click its <code class="docutils literal notranslate"><span class="pre">Select</span></code> button.</p>
+<p>![Screen shot showing Ubuntu Server selection in AMI screen](../../materials/week05/ubuntu-server-ami.png)</p>
+<div class="section" id="instace-details">
+<h3>Instace Details<a class="headerlink" href="#instace-details" title="Permalink to this headline">¶</a></h3>
+<p>Next, the console will ask which type of instance to set up. Your choice here defines the amount of virtual CPU cores, RAM, and network perforance you want. This also directly affects the cost of the running instance. Select the <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> service, then click <strong>Configure Instance Details</strong>.</p>
+<p>![Screen show with t2.micro selected and red circle highlighting the selection](../../materials/week05/t2-micro-instance.png)</p>
+<p>The following screen allows for configuration of instance. We do not need to customize this image beyond the defaults, so you can continue to <strong>Add Storage</strong>.</p>
+</div>
+<div class="section" id="storage">
+<h3>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h3>
+<p>On this screen, you can choose what storage is available to your instance. AWS will provision a virtual volume in Elastic Block Store to serve as the volume(s) mounted in your instance. By default, it will create an 8 GiB volume to serve as the instance’s root volume. The default 8 GiB volume is sufficient for this application. Click on “Add Tags” to progress to the next step.</p>
+<p>![Screen shot showing pre-filled 8 GiB storage selection](../../materials/week05/storage-options.png)</p>
+</div>
+<div class="section" id="add-tags">
+<h3>Add Tags<a class="headerlink" href="#add-tags" title="Permalink to this headline">¶</a></h3>
+<p>The <strong>Add Tags</strong> screen is helpful to “name” our ec2 instance. Since lots of us are going to be creating instances, please click <strong>Add Tag</strong> add a <code class="docutils literal notranslate"><span class="pre">Name</span></code> tag with a value of something unique and relevant to you, example <code class="docutils literal notranslate"><span class="pre">blakes-ec2-walkthrough</span></code>. Then click <strong>Configure Security Group</strong>.</p>
+<p>![Screen shot demonstrating an empty Add Tags screen and the Add Tag button](../../materials/week05/add-tags-screen-v3.png)</p>
+</div>
+<div class="section" id="security-groups">
+<h3>Security Groups<a class="headerlink" href="#security-groups" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Configuring the security groups for your server is critical for protecting your instance from unauthorized remote access. You are liable for the work and costs generated by your instance, well in this case LaunchCode is ;). An openly-accessible instance can risk your infrastructure security and accumulate great costs to your organization if it were to be compromised.</dt>
+<dd><ul class="first last">
+<li><p class="first">Create a new security group for your instance with a unique name</p>
+</li>
+<li><p class="first">Add a useful description for the security group so you know its purpose in the future</p>
+</li>
+<li><p class="first">Change the existing rule’s source to “My IP”</p>
+<ul class="simple">
+<li>This allows remote SSH access to your instance, but only from the IP you’re currently using to access AWS</li>
+<li>NOTE: This is your IP at the time of configuration. Later on if your IP changes for some reason you will NOT be able to login until you adjust the</li>
+</ul>
+<p>security group to look for your new IP.</p>
+</li>
+<li><p class="first">Continue to <strong>Review and Launch</strong></p>
+</li>
+</ul>
+</dd>
+</dl>
+<p>![Screen shot showing Create Security Group page with My IP circled in red to highlight the selection](../../materials/week05/security-group-setup.png)</p>
+</div>
+<div class="section" id="review-screen">
+<h3>Review Screen<a class="headerlink" href="#review-screen" title="Permalink to this headline">¶</a></h3>
+<p>This screen gives you a final chance to review and change the settings you chose for this instance. Open the dropdowns on the screen and when you’re ready, click <strong>Launch</strong>.</p>
+</div>
+<div class="section" id="setting-up-a-keypair">
+<h3>Setting up a KeyPair<a class="headerlink" href="#setting-up-a-keypair" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>This will open a popup on the screen that allows you to configure a key pair for the instance. This will generate the key necessary to SSH into the instance and without this you will not be able to access your instance. In an enterprise environment, there will likely already be multiple key pairs set up that you would use here. For the purpose of this project, create a new key pair:</dt>
+<dd><ul class="first last simple">
+<li>Select “Create a new key pair” in the first select box</li>
+<li>Give your key pair a good name, possibly the same name you gave your security group</li>
+<li>Click “Download Key Pair”</li>
+<li>Store this <code class="docutils literal notranslate"><span class="pre">*.pem</span></code> file in a good location and do not lose it</li>
+<li>Click <strong>Launch Instances</strong></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="your-instance-details">
+<h3>Your Instance Details<a class="headerlink" href="#your-instance-details" title="Permalink to this headline">¶</a></h3>
+<p>AWS will now begin launching your instance. After Launching your instance will be availabe in the list of EC2 Instances. You can click the identifier for your instance to monitor it as it starts up. This will take you back to the Instances dashboard. In the <strong>Description</strong> tab of your instance you can see important properties such as <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">DNS</span></code>, <code class="docutils literal notranslate"><span class="pre">IP</span></code>, <code class="docutils literal notranslate"><span class="pre">running</span> <span class="pre">state</span></code>, <code class="docutils literal notranslate"><span class="pre">instance</span> <span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">links</span> <span class="pre">to</span> <span class="pre">security</span> <span class="pre">group(s)</span></code>, <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">pair</span></code>, etc.</p>
+<p>![Screen shot showing Instances dashboard and a running instance. A red circle is around the Public DNS entry.](../../materials/week05/instances-dashboard-launching.png)</p>
+</div>
+<div class="section" id="set-up-ssh">
+<h3>Set up SSH<a class="headerlink" href="#set-up-ssh" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Open the terminal.</li>
+<li>Navigate to your user’s ssh configuration folder:</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">$</span> <span class="pre">cd</span> <span class="pre">~/.ssh</span>
+<span class="pre">`</span></code>
+* Copy your instance’s *.pem file to your .ssh folder:
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">$</span> <span class="pre">cp</span> <span class="pre">/path/to/*.pem</span> <span class="pre">.</span>
+<span class="pre">`</span></code>
+* Change the permissions for this file to read-only by your user:
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">$</span> <span class="pre">chmod</span> <span class="pre">400</span> <span class="pre">name-of-pem.pem</span>
+<span class="pre">`</span></code>
+* Using the Public DNS you noted before and your *.pem file, access your AWS instance:
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">$</span> <span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">~/.ssh/name-of-pem.pem</span> <span class="pre">ubuntu&#64;insert-public-DNS-here</span>
+<span class="pre">`</span></code></p>
+<dl class="docutils">
+<dt>&lt;aside class=”aside-note” markdown=”1”&gt;</dt>
+<dd>Note the <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> part of the above command is the user/role you are attempting to connect with on the remote computer.</dd>
+</dl>
+<p>&lt;/aside&gt;</p>
+<ul class="simple">
+<li>The ssh program will likely warn that the authenticity of your host can’t be established since it’s not seen it before. Respond “yes” to continue connecting. It will add it to the list of known hosts and continue the connection process.</li>
+<li>The remote terminal will appear</li>
+</ul>
+<p>![Screen shot of terminal showing successful SSH connection to AWS instance](../../materials/week05/ssh-to-instance.png)</p>
+<p>Congratulations! You have successfully created and connected to an instance running in the cloud.</p>
+</div>
+<div class="section" id="running-your-application-in-the-cloud">
+<h3>Running Your Application In the Cloud<a class="headerlink" href="#running-your-application-in-the-cloud" title="Permalink to this headline">¶</a></h3>
+<p>Now that you have a server running in the cloud, you need to use it to do some work. Let’s prepare the server to run our application.</p>
+</div>
+<div class="section" id="create-application-user">
+<h3>Create Application User<a class="headerlink" href="#create-application-user" title="Permalink to this headline">¶</a></h3>
+<p>First, you don’t want the application running under your system account, so we need to create a new user with a password:
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">adduser</span> <span class="pre">airwaze</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="secure-copy-files-to-server">
+<h3>Secure Copy Files to Server<a class="headerlink" href="#secure-copy-files-to-server" title="Permalink to this headline">¶</a></h3>
+<p>Next, go to a terminal prompt for <strong>your local machine</strong>, upload the Airwaze Studio jar to the server. We’ll use scp to securely transmit the file to our server. We will copy the jar file and the csv files.
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">local</span> <span class="pre">computer)</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/name-of-pem.pem</span> <span class="pre">/path/to/local/app.jar</span> <span class="pre">ubuntu&#64;ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/app.jar</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/name-of-pem.pem</span> <span class="pre">/path/to/local/routes.csv</span> <span class="pre">ubuntu&#64;ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/name-of-pem.pem</span> <span class="pre">/path/to/local/Airports.csv</span> <span class="pre">ubuntu&#64;ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/Airports.csv</span>
+<span class="pre">`</span></code>
+Now log in to the server (if you don’t still have an open connection):
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">local</span> <span class="pre">computer)</span>
+<span class="pre">$</span> <span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">~/.ssh/name-of-pem.pem</span> <span class="pre">ubuntu&#64;ec2-public-dns.us-east-2.compute.amazonaws.com</span>
+<span class="pre">`</span></code>
+Install JDK on Server
+———————</p>
+<p>The remotes servers will not come with everything we need already isntalled.  We need Java to be to run our app.
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">openjdk-8-jdk</span>
+<span class="pre">$</span> <span class="pre">java</span> <span class="pre">-version</span>
+<span class="pre">`</span></code>
+Copy Files to App User Folder
+—————————–</p>
+<p>Now, on the server, move the file to the airwaze home directory, and make it owned and executable by that user. Notice the changes in <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> after the owner and permissions calls are made.
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">mv</span> <span class="pre">~/app.jar</span> <span class="pre">/home/airwaze/app.jar</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">mv</span> <span class="pre">~/*.csv</span> <span class="pre">/home/airwaze</span>
+<span class="pre">$</span> <span class="pre">cd</span> <span class="pre">/home/airwaze</span>
+<span class="pre">$</span> <span class="pre">ls</span> <span class="pre">-l</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">chown</span> <span class="pre">-R</span> <span class="pre">airwaze:airwaze</span> <span class="pre">/home/airwaze</span>
+<span class="pre">$</span> <span class="pre">ls</span> <span class="pre">-l</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">chmod</span> <span class="pre">500</span> <span class="pre">/home/airwaze/app.jar</span>
+<span class="pre">$</span> <span class="pre">ls</span> <span class="pre">-l</span>
+<span class="pre">`</span></code>
+Now the airwaze user can execute app.jar.
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">-rw-r--r--</span> <span class="pre">1</span> <span class="pre">airwaze</span> <span class="pre">airwaze</span>&#160;&#160; <span class="pre">881432</span> <span class="pre">May</span> <span class="pre">20</span> <span class="pre">01:23</span> <span class="pre">Airports.csv</span>
+<span class="pre">-r-x------</span> <span class="pre">1</span> <span class="pre">airwaze</span> <span class="pre">airwaze</span> <span class="pre">46309179</span> <span class="pre">May</span> <span class="pre">20</span> <span class="pre">01:22</span> <span class="pre">app.jar</span>
+<span class="pre">-rw-r--r--</span> <span class="pre">1</span> <span class="pre">airwaze</span> <span class="pre">airwaze</span>&#160; <span class="pre">6464492</span> <span class="pre">May</span> <span class="pre">20</span> <span class="pre">01:23</span> <span class="pre">routes.csv</span>
+<span class="pre">`</span></code>
+Install Postgis
+—————</p>
+<p>Before trying to start the application, we’ll install <code class="docutils literal notranslate"><span class="pre">postgres</span></code> locally so we can start Airwaze Studio. <strong>This is something you would *never* do in a real cloud instance</strong>, but we’ll do it just for this demonstration so our app will start.
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">postgresql</span> <span class="pre">postgresql-contrib</span> <span class="pre">postgis</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">-u</span> <span class="pre">postgres</span> <span class="pre">createuser</span> <span class="pre">--pwprompt</span> <span class="pre">airwaze_app_user</span> <span class="pre">#</span> <span class="pre">give</span> <span class="pre">password</span> <span class="pre">``somethingsensible</span></code>
+$ sudo -u postgres createdb -O airwaze_app_user airwaze
+$ sudo vim /etc/postgresql/9.5/main/pg_hba.conf
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">When</span> <span class="pre">the</span> <span class="pre">configuration</span> <span class="pre">file</span> <span class="pre">comes</span> <span class="pre">up,</span> <span class="pre">you'll</span> <span class="pre">see</span> <span class="pre">that</span> <span class="pre">almost</span> <span class="pre">all</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">lines</span> <span class="pre">are</span> <span class="pre">commented</span> <span class="pre">out.</span>&#160; <span class="pre">Towards</span> <span class="pre">the</span> <span class="pre">bottom</span> <span class="pre">you</span> <span class="pre">find</span> <span class="pre">lines</span> <span class="pre">that</span> <span class="pre">are</span> <span class="pre">not</span> <span class="pre">commented</span> <span class="pre">out.</span>&#160; <span class="pre">Press</span> <span class="pre">``i</span></code> to get into Insert mode, and change the line with <code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">all</span> <span class="pre">all</span> <span class="pre">peer</span></code> to <code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">all</span> <span class="pre">all</span> <span class="pre">md5</span></code>.  When you’re done, press <code class="docutils literal notranslate"><span class="pre">escape</span></code> to get out of insert mode.  Press <code class="docutils literal notranslate"><span class="pre">:</span></code> to bring up a prompt, then press <code class="docutils literal notranslate"><span class="pre">w</span></code> (for ‘write’) and <code class="docutils literal notranslate"><span class="pre">q</span></code> (for ‘quit’), followed by <code class="docutils literal notranslate"><span class="pre">return</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">#</span> <span class="pre">&quot;local&quot;</span> <span class="pre">is</span> <span class="pre">for</span> <span class="pre">Unix</span> <span class="pre">domain</span> <span class="pre">socket</span> <span class="pre">connections</span> <span class="pre">only</span>
+<span class="pre">local</span>&#160;&#160; <span class="pre">all</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">all</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">md5</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="install-postgis-extentions">
+<h3>Install Postgis Extentions<a class="headerlink" href="#install-postgis-extentions" title="Permalink to this headline">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">/etc/init.d/postgresql</span> <span class="pre">restart</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">-u</span> <span class="pre">postgres</span> <span class="pre">psql</span> <span class="pre">airwaze</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis;</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_topology;</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">fuzzystrmatch;</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_tiger_geocoder;</span>
+<span class="pre">ALTER</span> <span class="pre">USER</span> <span class="pre">airwaze_app_user</span> <span class="pre">SUPERUSER;</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="setup-service-for-app">
+<h3>Setup Service for App<a class="headerlink" href="#setup-service-for-app" title="Permalink to this headline">¶</a></h3>
+<p>Now that the app is on the cloud server and the database is ready, we can set up <code class="docutils literal notranslate"><span class="pre">systemd</span></code> to run this app as a service.</p>
+<p>In order to use <code class="docutils literal notranslate"><span class="pre">systemd</span></code>, we have to make a script in <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system</span></code> to tell the service how to run our app.
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">vim</span> <span class="pre">/etc/systemd/system/airwaze.service</span>
+<span class="pre">`</span></code>
+Press <code class="docutils literal notranslate"><span class="pre">i</span></code> to start inserting text into the file and paste the following:
+<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>nohighlight
+[Unit]
+Description=Airwaze Studio
+After=syslog.target</p>
+<p>[Service]
+User=airwaze
+ExecStart=/usr/bin/java -jar /home/airwaze/app.jar SuccessExitStatus=143
+Restart=always</p>
+<p>[Install]
+WantedBy=multi-user.target
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Once</span> <span class="pre">this</span> <span class="pre">service</span> <span class="pre">definition</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">place,</span> <span class="pre">set</span> <span class="pre">the</span> <span class="pre">service</span> <span class="pre">to</span> <span class="pre">start</span> <span class="pre">automatically</span> <span class="pre">on</span> <span class="pre">boot</span> <span class="pre">with</span> <span class="pre">systemd</span> <span class="pre">using</span> <span class="pre">the</span> <span class="pre">``systemctl</span></code> utility and also start now:
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enable</span> <span class="pre">airwaze</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">airwaze</span>
+<span class="pre">`</span></code>
+And you can view the logs for the service with <code class="docutils literal notranslate"><span class="pre">journalctl</span></code>.
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">(On</span> <span class="pre">remote</span> <span class="pre">server)</span>
+<span class="pre">$</span> <span class="pre">journalctl</span> <span class="pre">-f</span> <span class="pre">-u</span> <span class="pre">airwaze.service</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="configure-security-group">
+<h3>Configure Security Group<a class="headerlink" href="#configure-security-group" title="Permalink to this headline">¶</a></h3>
+<p>Now that your application is running, open up a new port in our Security Group from before to allow for web communications.
+* Return to the AWS web console
+* Click <code class="docutils literal notranslate"><span class="pre">Security</span> <span class="pre">Groups</span></code> in the sidebar</p>
+<p>![Screen shot of the AWS sidebar with a red circle around Security Groups](../../materials/week05/security-groups-list.png)
+* Select the security group with the name you used before</p>
+<p>![Screen shot of the security group list with the demonstration security group selected](../../materials/week05/select-your-security-group.png)
+* Click the <code class="docutils literal notranslate"><span class="pre">Inbound</span></code> tab and <code class="docutils literal notranslate"><span class="pre">Edit</span></code> the inbound traffic list</p>
+<p>![Screen shot of the security group settings with a red circle around the selected Inbound tab](../../materials/week05/security-group-inbound-tab.png)
+* Add a new <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">TCP</span></code> rule for port 8080 and select <code class="docutils literal notranslate"><span class="pre">My</span> <span class="pre">IP</span></code> for the source</p>
+<p>![Screen shot of Edit inbound rules display with a new rule of 8080 to “My IP” added with red circles around the 8080 port and “My IP”](../../materials/week05/add-web-to-security-group.png)
+* Click <code class="docutils literal notranslate"><span class="pre">Save</span></code>
+This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.
+* Open your browser
+* Go to your server on port 8080:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="http://ec2-public-dns.us-east-2.compute.amazonaws.com:8080">http://ec2-public-dns.us-east-2.compute.amazonaws.com:8080</a></li>
+</ul>
+</div></blockquote>
+<p>If you kept <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> running from before, you should see the logs progress as your browser communicates with the app.</p>
+<p>Congratulations! You now have your own application in the cloud!</p>
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>Your map is currently showing up on the screen; however, the map is not showing any airports.  Troubleshoot the application and figure out why the airports are not showing up.  Be sure to use your browser’s developer tools.</p>
+<p>When you have found the problem, build a new copy of your jar and deploy it on your server.</p>
+</div>
+<div class="section" id="bonus-mission">
+<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use Environment Variables to dynamically change the port that your application is served on.</li>
+<li>Using the instructions above, deploy another one of your SpringBoot application to AWS.  Consider using the LaunchCart Project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/tree/rest-studio">https://gitlab.com/LaunchCodeTraining/launchcart/tree/rest-studio</a>.</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, LaunchCode.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

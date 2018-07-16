@@ -12,3 +12,11 @@ GIS DevOps
    week01/day3/index
    week01/day4/index
    week01/day5/index
+   week02/project/index
+   week03/day1/index
+   week03/day2/index
+   week03/day3/index
+   week03/day4/index
+   week03/day5/index
+   week04/project/index
+   week05/day1/index
