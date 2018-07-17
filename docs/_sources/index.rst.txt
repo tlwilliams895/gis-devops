@@ -20,3 +20,4 @@ GIS DevOps
    week03/day5/index
    week04/project/index
    week05/day1/index
+   week05/day2/index

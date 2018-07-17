@@ -9,6 +9,7 @@ site_theme_options = {
     'navbar_title': 'GIS DevOps',
     'navbar_site_name': "Pages",
     'bootswatch_theme': 'launchcode',
+    'jrandom': 'whatever',
 }
 
 project = 'LaunchCode Curriculum Docs'
@@ -83,6 +84,7 @@ default_theme_options = {
     # Tab name for entire site. (Default: "Site")
     'navbar_site_name': "Pages",
 
+
     # A list of tuples containing pages or urls to link to.
     # Valid tuples should be in the following forms:
     #    (name, page)                 # a link to a page
@@ -90,8 +92,9 @@ default_theme_options = {
     #    (name, "http://example.com", True) # arbitrary absolute url
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
-    'navbar_links': [
-    ],
+    #'navbar_links': [ ('classes', 'www.google.com')
+    #],
+    'navbar_links': [],
 
     # Render the next and previous page links in navbar. (Default: true)
     'navbar_sidebarrel': False,

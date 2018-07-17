@@ -155,6 +155,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#studio">Studio</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day2/index.html">Week 5 - Day 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
 </ul>
 </ul>
 </li>
@@ -249,7 +256,10 @@
 </dl>
 </li>
 </ol>
-<p>![Screen shot of AWS console with a red arrow pointing to the EC2 link in the Services dropdown](../../materials/week05/ec2-in-services.png)</p>
+<p>Screen shot of AWS console with a red arrow pointing to the EC2 link in the Services dropdown</p>
+<blockquote>
+<div><img alt="../_images/ec2-in-services.png" src="../_images/ec2-in-services.png" />
+</div></blockquote>
 <ol class="arabic simple" start="2">
 <li><dl class="first docutils">
 <dt>On the EC2 Dashboard</dt>
@@ -260,7 +270,10 @@
 </dl>
 </li>
 </ol>
-<p>![Screen shot of AWS console with a red arrow pointing to the Instances link in the sidebar](../../materials/week05/instances-in-sidebar.png)</p>
+<p>Screen shot of AWS console with a red arrow pointing to the Instances link in the sidebar</p>
+<blockquote>
+<div><img alt="../_images/instances-in-sidebar.png" src="../_images/instances-in-sidebar.png" />
+</div></blockquote>
 <ol class="arabic simple" start="3">
 <li><dl class="first docutils">
 <dt>On the Instances screen</dt>
@@ -271,27 +284,42 @@
 </dl>
 </li>
 </ol>
-<p>![Screen shot of AWS console with a red circle around the Launch Instance button](../../materials/week05/launch-instance-button.png)</p>
+<p>Screen shot of AWS console with a red circle around the Launch Instance button</p>
+<blockquote>
+<div><img alt="../_images/launch-instance-button.png" src="../_images/launch-instance-button.png" />
+</div></blockquote>
 </div>
 <div class="section" id="starting-an-aws-instance">
 <h2>Starting an AWS Instance<a class="headerlink" href="#starting-an-aws-instance" title="Permalink to this headline">¶</a></h2>
 <p>When creating a new instance, Amazon provides multiple free <strong>Amazon Machine Images</strong> (AMIs) to choose from. This is a pre-configured operating system installation with multiple tools ready for use. For this exercise, we want to use the <strong>Ubuntu Server 16.04 LTS</strong> AMI. Locate it in the list of “Quick Start” images and click its <code class="docutils literal notranslate"><span class="pre">Select</span></code> button.</p>
-<p>![Screen shot showing Ubuntu Server selection in AMI screen](../../materials/week05/ubuntu-server-ami.png)</p>
+<p>Screen shot showing Ubuntu Server selection in AMI screen</p>
+<blockquote>
+<div><img alt="../_images/ubuntu-server-ami.png" src="../_images/ubuntu-server-ami.png" />
+</div></blockquote>
 <div class="section" id="instace-details">
 <h3>Instace Details<a class="headerlink" href="#instace-details" title="Permalink to this headline">¶</a></h3>
 <p>Next, the console will ask which type of instance to set up. Your choice here defines the amount of virtual CPU cores, RAM, and network perforance you want. This also directly affects the cost of the running instance. Select the <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> service, then click <strong>Configure Instance Details</strong>.</p>
-<p>![Screen show with t2.micro selected and red circle highlighting the selection](../../materials/week05/t2-micro-instance.png)</p>
+<p>Screen show with t2.micro selected and red circle highlighting the selection</p>
+<blockquote>
+<div><img alt="../_images/t2-micro-instance.png" src="../_images/t2-micro-instance.png" />
+</div></blockquote>
 <p>The following screen allows for configuration of instance. We do not need to customize this image beyond the defaults, so you can continue to <strong>Add Storage</strong>.</p>
 </div>
 <div class="section" id="storage">
 <h3>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h3>
 <p>On this screen, you can choose what storage is available to your instance. AWS will provision a virtual volume in Elastic Block Store to serve as the volume(s) mounted in your instance. By default, it will create an 8 GiB volume to serve as the instance’s root volume. The default 8 GiB volume is sufficient for this application. Click on “Add Tags” to progress to the next step.</p>
-<p>![Screen shot showing pre-filled 8 GiB storage selection](../../materials/week05/storage-options.png)</p>
+<p>Screen shot showing pre-filled 8 GiB storage selection</p>
+<blockquote>
+<div><img alt="../_images/storage-options.png" src="../_images/storage-options.png" />
+</div></blockquote>
 </div>
 <div class="section" id="add-tags">
 <h3>Add Tags<a class="headerlink" href="#add-tags" title="Permalink to this headline">¶</a></h3>
 <p>The <strong>Add Tags</strong> screen is helpful to “name” our ec2 instance. Since lots of us are going to be creating instances, please click <strong>Add Tag</strong> add a <code class="docutils literal notranslate"><span class="pre">Name</span></code> tag with a value of something unique and relevant to you, example <code class="docutils literal notranslate"><span class="pre">blakes-ec2-walkthrough</span></code>. Then click <strong>Configure Security Group</strong>.</p>
-<p>![Screen shot demonstrating an empty Add Tags screen and the Add Tag button](../../materials/week05/add-tags-screen-v3.png)</p>
+<p>Screen shot demonstrating an empty Add Tags screen and the Add Tag button</p>
+<blockquote>
+<div><img alt="../_images/add-tags-screen-v3.png" src="../_images/add-tags-screen-v3.png" />
+</div></blockquote>
 </div>
 <div class="section" id="security-groups">
 <h3>Security Groups<a class="headerlink" href="#security-groups" title="Permalink to this headline">¶</a></h3>

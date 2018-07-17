@@ -30,31 +30,41 @@ Start an Instance on AWS
     * Click on ``Services`` in the page header.
     * Locate and click on ``EC2`` under **Compute**.
 
-![Screen shot of AWS console with a red arrow pointing to the EC2 link in the Services dropdown](../../materials/week05/ec2-in-services.png)
+Screen shot of AWS console with a red arrow pointing to the EC2 link in the Services dropdown
+
+  .. image:: /_static/images/ec2-in-services.png
 
 2. On the EC2 Dashboard
     * Locate and click the ``Instances`` link in the sidebar
 
-![Screen shot of AWS console with a red arrow pointing to the Instances link in the sidebar](../../materials/week05/instances-in-sidebar.png)
+Screen shot of AWS console with a red arrow pointing to the Instances link in the sidebar
+
+  .. image:: /_static/images/instances-in-sidebar.png
 
 3. On the Instances screen
     - Locate and click the ``Launch Instance`` button at the top of the page
 
-![Screen shot of AWS console with a red circle around the Launch Instance button](../../materials/week05/launch-instance-button.png)
+Screen shot of AWS console with a red circle around the Launch Instance button
+
+  .. image:: /_static/images/launch-instance-button.png
 
 Starting an AWS Instance
 ========================
 
 When creating a new instance, Amazon provides multiple free **Amazon Machine Images** (AMIs) to choose from. This is a pre-configured operating system installation with multiple tools ready for use. For this exercise, we want to use the **Ubuntu Server 16.04 LTS** AMI. Locate it in the list of "Quick Start" images and click its ``Select`` button.
 
-![Screen shot showing Ubuntu Server selection in AMI screen](../../materials/week05/ubuntu-server-ami.png)
+Screen shot showing Ubuntu Server selection in AMI screen
+
+  .. image:: /_static/images/ubuntu-server-ami.png
 
 Instace Details
 ---------------
 
 Next, the console will ask which type of instance to set up. Your choice here defines the amount of virtual CPU cores, RAM, and network perforance you want. This also directly affects the cost of the running instance. Select the ``t2.micro`` service, then click **Configure Instance Details**.
 
-![Screen show with t2.micro selected and red circle highlighting the selection](../../materials/week05/t2-micro-instance.png)
+Screen show with t2.micro selected and red circle highlighting the selection
+
+  .. image:: /_static/images/t2-micro-instance.png
 
 The following screen allows for configuration of instance. We do not need to customize this image beyond the defaults, so you can continue to **Add Storage**.
 
@@ -63,14 +73,18 @@ Storage
 
 On this screen, you can choose what storage is available to your instance. AWS will provision a virtual volume in Elastic Block Store to serve as the volume(s) mounted in your instance. By default, it will create an 8 GiB volume to serve as the instance's root volume. The default 8 GiB volume is sufficient for this application. Click on "Add Tags" to progress to the next step.
 
-![Screen shot showing pre-filled 8 GiB storage selection](../../materials/week05/storage-options.png)
+Screen shot showing pre-filled 8 GiB storage selection
+
+  .. image:: /_static/images/storage-options.png
 
 Add Tags
 --------
 
 The **Add Tags** screen is helpful to "name" our ec2 instance. Since lots of us are going to be creating instances, please click **Add Tag** add a ``Name`` tag with a value of something unique and relevant to you, example ``blakes-ec2-walkthrough``. Then click **Configure Security Group**.
 
-![Screen shot demonstrating an empty Add Tags screen and the Add Tag button](../../materials/week05/add-tags-screen-v3.png)
+Screen shot demonstrating an empty Add Tags screen and the Add Tag button
+
+  .. image:: /_static/images/add-tags-screen-v3.png
 
 Security Groups
 ---------------

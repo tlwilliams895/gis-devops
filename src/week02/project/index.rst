@@ -7,7 +7,8 @@ Learning objectives for this week :ref:`week02-objectives`
 Project
 =======
 
-* Mission Briefing 1 ../../materials/week02/Zika_Mission_Briefing--Mission1.pdf
+* Mission Briefing 1 : `pdf </_static/images/Zika_Mission_Briefing--Mission1.pdf>`_
+
 
 Overview
 ========
@@ -24,7 +25,9 @@ Requirements
 ============
 
 Here is a mockup of the application you will be building.
-![alt text](../../materials/week02/cdc_zika_dashboard.png "Zika CDC Dashboard")
+
+  .. image:: /_static/images/cdc_zika_dashboard.png
+
  * The database should be populated with Zika report data from Brazil, Mexico, Panama, and Haiti.
  * The app should show a red circle for each location that has provided a Zika report.
  * Upon clicking on a red dot, the location's name and any reported data show up below the status bar. Remember, each location may report multiple statistics and every country does not report the same statistics.
