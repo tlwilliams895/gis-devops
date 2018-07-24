@@ -47,3 +47,5 @@ Week 5:
    week05/day1/index
    week05/day2/index
    week05/day3/index
+   week05/day4/index
+   week05/day5/index
