@@ -56,3 +56,10 @@ Week 6:
   :maxdepth: 1
 
   week06/project/index
+
+Week 8:
+
+.. toctree::
+  :maxdepth: 1
+
+  week08/project/index
