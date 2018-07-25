@@ -49,3 +49,10 @@ Week 5:
    week05/day3/index
    week05/day4/index
    week05/day5/index
+
+Week 6:
+
+.. toctree::
+  :maxdepth: 1
+
+  week06/project/index
