@@ -1,5 +1,5 @@
 ==============
-Week 1 - Day 5
+Week 1 - Day 5: AJAX, Open Layers
 ==============
 
 Learning objectives for this module :ref:`week01-day5-objectives`

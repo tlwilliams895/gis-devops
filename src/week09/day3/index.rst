@@ -1,5 +1,5 @@
 ==============
-Week 9 - Day 3
+Week 9 - Day 3: Intro to Docker
 ==============
 
 Learning objectives for this module :ref:`week09-day3-objectives`

@@ -4,7 +4,7 @@
 Walkthrough SwaggerUI
 =====================
 
-In this walkthrough, the instructor will guide through adding API documentation using SwaggerUI https://swagger.io/swagger-ui/.
+In this walkthrough, the instructor will guide through adding API documentation using `SwaggerUI <https://swagger.io/swagger-ui/>`_.
 
 Getting Started
 ===============
@@ -102,12 +102,12 @@ paths:
 definitions:
 ```
 
-Let's start with the `/api/carts` path.
+Let's start with the ``/api/carts`` path.
 
-Add an entry to the `tags` section, to add a header for all of the endpoints for the `/api/carts` path.
+Add an entry to the ``tags`` section, to add a header for all of the endpoints for the ``/api/carts`` path.
 
 <aside class="aside-warning" markdown="1">
-  YAML is white-spaced based. Be VERY careful with tabs and spaces. [YAML Reference](http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)
+  YAML is white-spaced based. Be VERY careful with tabs and spaces. `YAML Reference <http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html>`_
 </aside>
 
 ```yaml
@@ -115,7 +115,7 @@ Add an entry to the `tags` section, to add a header for all of the endpoints for
   description: Cart provides access to all of the items you are about to buy.
 ```
 
-Also, let's add the `GET` endpoint for `/api/carts` in the `paths` section.
+Also, let's add the ``GET`` endpoint for ``/api/carts`` in the ``paths`` section.
 
 ```yaml
 paths:

@@ -1,11 +1,13 @@
 =====================
-Week 4 - Project Week
+Week 4 - Project Week - Zika Mission Control Part 2
 =====================
 
 Project
 =======
 
-Mission Briefing 2 ../../materials/week04/zika_mission_briefing-mission_2.pdf
+Mission Briefing 2 : `pdf </_static/images/zika_mission_briefing-mission_2.pdf>`_
+
+
 
 Overview
 ========
@@ -109,7 +111,7 @@ Adding Boundary Geometries
 
 The data that the scientists want to ingest is summarized in the CDC Zika Repository https://github.com/cdcepi/zika. If you open up the data for Argentina https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv, you'll notice that the data looks pretty similiar to last mission, except that there is no latitude or longitude to GeoCode each row; however, each row does have a location field. We should be able to indentify those locations to actual data points on a map.
 
-You Google for "political boundaries geojson" and you find gadm.org http://www.gadm.org/. gadm.org http://www.gadm.org/country serves up geospatial data about administrative boundaries for each state. Go to the GADM Downloads Page http://www.gadm.org/country to check out the data.
+You Google for "political boundaries geojson" and you find gadm.org http://www.gadm.org/. country serves up geospatial data about administrative boundaries for each state. Go to the GADM Downloads Page http://www.gadm.org/country to check out the data.
 
 <img src="../../materials/week04/GADM_download_page.png"></img>
 

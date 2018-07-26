@@ -1,7 +1,7 @@
 .. _day1:
 
 =====================
-Week 1 - Day 1
+Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing
 =====================
 
 Objectives for :ref:`week01-day1-objectives`
@@ -17,21 +17,21 @@ Prerequisites
 -------------
 
 * **Familiar with:** Java, git
-* `Java SDK 8 installed` http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+* `Java SDK 8 installed <http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>`_
 * IntelliJ IDEA Community Edition installed
 * git installed locally
 
 Slides
 ------
 
-* `Class Introduction` https://education.launchcode.org/gis-devops-slides/week1/class-intro.html#1
-* `Git, Gitlab, Intellij, Refactoring, Unit Tests` https://education.launchcode.org/gis-devops-slides/week1/day1.html#1
+* `Class Introduction <https://education.launchcode.org/gis-devops-slides/week1/class-intro.html#1>`_
+* `Git, Gitlab, Intellij, Refactoring, Unit Tests <https://education.launchcode.org/gis-devops-slides/week1/day1.html#1>`_
 
 Walkthrough
 -----------
 
-* Git and Gitlab :ref:`walkthrough-gitLab`
-* Unit tests :ref:`walkthrough-unitTest`
+* :ref:`walkthrough-gitLab`
+* :ref:`walkthrough-unitTest`
 
 Exercises
 ---------
@@ -45,7 +45,7 @@ Exercises
 Studio
 ------
 
-* `Studio Repository` https://gitlab.com/LaunchCodeTraining/junit-studio
+* `Studio Repository <https://gitlab.com/LaunchCodeTraining/junit-studio>`_
 * Turn in instructions
   * Fork then clone repository
   * Create a feature branch for your work
@@ -56,6 +56,6 @@ Studio
 Resources
 ---------
 
-* `JUnit 4 Docs` http://junit.org/junit4/
-* `JUnit 4 Assertion Examples` https://github.com/junit-team/junit4/wiki/Assertions
-* `Video Example of Git Merge Conflicts` https://www.youtube.com/watch?v=zz7NuSCH6II
+* `JUnit 4 Docs <http://junit.org/junit4/>`_
+* `JUnit 4 Assertion Examples <https://github.com/junit-team/junit4/wiki/Assertions>`_
+* `Video Example of Git Merge Conflicts <https://www.youtube.com/watch?v=zz7NuSCH6II>`_

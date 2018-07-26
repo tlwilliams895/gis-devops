@@ -9,7 +9,7 @@ Follow along with the instructor as we work with PostgreSQL
 Install
 -------
 
-- Go here https://postgresapp.com/
+- Go `here <https://postgresapp.com/>`_
 - Download and open the file
 - Note: this is specifcally for Mac OS
 

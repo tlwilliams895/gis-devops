@@ -100,7 +100,9 @@ Configuring the security groups for your server is critical for protecting your 
 
   * Continue to **Review and Launch**
 
-![Screen shot showing Create Security Group page with My IP circled in red to highlight the selection](../../materials/week05/security-group-setup.png)
+Screen shot showing Create Security Group page with My IP circled in red to highlight the selection
+
+  .. image:: /_static/images/security-group-setup.png
 
 Review Screen
 -------------
@@ -122,7 +124,9 @@ Your Instance Details
 
 AWS will now begin launching your instance. After Launching your instance will be availabe in the list of EC2 Instances. You can click the identifier for your instance to monitor it as it starts up. This will take you back to the Instances dashboard. In the **Description** tab of your instance you can see important properties such as ``public DNS``, ``IP``, ``running state``, ``instance type``, ``links to security group(s)``, ``key pair``, etc.
 
-![Screen shot showing Instances dashboard and a running instance. A red circle is around the Public DNS entry.](../../materials/week05/instances-dashboard-launching.png)
+Screen shot showing Instances dashboard and a running instance. A red circle is around the Public DNS entry.
+
+  .. image:: /_static/images/instances-dashboard-launching.png
 
 Set up SSH
 ----------
@@ -152,7 +156,9 @@ $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@insert-public-DNS-here
 * The ssh program will likely warn that the authenticity of your host can't be established since it's not seen it before. Respond "yes" to continue connecting. It will add it to the list of known hosts and continue the connection process.
 * The remote terminal will appear
 
-![Screen shot of terminal showing successful SSH connection to AWS instance](../../materials/week05/ssh-to-instance.png)
+Screen shot of terminal showing successful SSH connection to AWS instance
+
+  .. image:: /_staic/images/ssh-to-instance.png
 
 Congratulations! You have successfully created and connected to an instance running in the cloud.
 
@@ -292,16 +298,28 @@ Now that your application is running, open up a new port in our Security Group f
 * Return to the AWS web console
 * Click ``Security Groups`` in the sidebar
 
-![Screen shot of the AWS sidebar with a red circle around Security Groups](../../materials/week05/security-groups-list.png)
+Screen shot of the AWS sidebar with a red circle around Security Groups
+
+  .. image:: /_static/images/security-groups-list.png
+
 * Select the security group with the name you used before
 
-![Screen shot of the security group list with the demonstration security group selected](../../materials/week05/select-your-security-group.png)
+Screen shot of the security group list with the demonstration security group selected
+
+  .. image:: /_static/images/select-your-security-group.png
+
 * Click the ``Inbound`` tab and ``Edit`` the inbound traffic list
 
-![Screen shot of the security group settings with a red circle around the selected Inbound tab](../../materials/week05/security-group-inbound-tab.png)
+Screen shot of the security group settings with a red circle around the selected Inbound tab
+
+  .. image:: /_static/images/security-group-inbound-tab.png
+
 * Add a new ``Custom TCP`` rule for port 8080 and select ``My IP`` for the source
 
-![Screen shot of Edit inbound rules display with a new rule of 8080 to "My IP" added with red circles around the 8080 port and "My IP"](../../materials/week05/add-web-to-security-group.png)
+Screen shot of Edit inbound rules display with a new rule of 8080 to "My IP" added with red circles around the 8080 port and "My IP"
+
+  .. image:: /_static/images/add-web-to-security-group.png
+
 * Click ``Save``
 This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.
 * Open your browser
