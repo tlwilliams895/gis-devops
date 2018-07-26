@@ -274,7 +274,7 @@
 <p>We’ll walk through several steps needed to use Elasticsearch within Spring.</p>
 <p>&lt;aside class=”aside-note” markdown=”1”&gt;</p>
 <p>The code that we’ll look at is in the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">LaunchCodeTraining/launchcart</span></code> repository.</p>
-<p>To view the specific changes, look at this commit <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956">https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956</a>.</p>
+<p>To view the specific changes, look at this <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956">commit</a>.</p>
 <p>&lt;/aside&gt;</p>
 <ol class="arabic">
 <li><dl class="first docutils">
@@ -296,7 +296,7 @@ compile(‘org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.1
 1. Create <code class="docutils literal notranslate"><span class="pre">EsController</span></code> and <code class="docutils literal notranslate"><span class="pre">EsUtils</span></code> to enable admin-oriented interactions with the ES instance</p>
 <p>&lt;aside class=”aside-warning” markdown=”1”&gt;</p>
 <p>This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the _same major <a href="#id7"><span class="problematic" id="id8">versions_</span></a>. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.</p>
-<p>Read more about the state of the official Elasticsearch Java clients <a class="reference external" href="https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients">https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients</a>.</p>
+<p>Read more about the state of the official <a class="reference external" href="https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients">Elasticsearch Java clients</a>.</p>
 <p>&lt;/aside&gt;</p>
 </div>
 <div class="section" id="your-tasks">
@@ -309,18 +309,18 @@ compile(‘org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.1
 <ul class="simple">
 <li>Push a new document to ES when adding an item via the web view.</li>
 <li>Update a document in ES when updating via the API or web view.</li>
-<li>Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to <cite>ItemDocumentRepository.search</cite>, or by creating a new controller method that passes fuzzy search results into a template.</li>
+<li>Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository.search</span></code>, or by creating a new controller method that passes fuzzy search results into a template.</li>
 </ul>
 </div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Spring Data Elasticsearch tutoria <a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-tutorial">http://www.baeldung.com/spring-data-elasticsearch-tutorial</a></li>
-<li>ElasticSearchRepository <a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html">https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html</a></li>
-<li>TransportClient <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html">https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html</a></li>
-<li>QueryBuilders <a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html">https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html</a></li>
-<li>Spring Data Elasticsearch Queries <a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries">http://www.baeldung.com/spring-data-elasticsearch-queries</a></li>
-<li>The &#64;Value annotation <a class="reference external" href="http://www.baeldung.com/spring-value-annotation">http://www.baeldung.com/spring-value-annotation</a></li>
+<li><a class="reference external" href="tutoriahttp://www.baeldung.com/spring-data-elasticsearch-tutorial">Spring Data Elasticsearch</a></li>
+<li><a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html">ElasticSearchRepository</a></li>
+<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html">TransportClient</a></li>
+<li><a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html">QueryBuilders</a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries">Spring Data Elasticsearch Queries</a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-value-annotation">The &#64;Value annotation</a></li>
 </ul>
 </div>
 </div>

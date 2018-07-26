@@ -1,8 +1,8 @@
 .. _day1:
 
-=====================
+==============
 Week 1 - Day 1
-=====================
+==============
 
 Objectives for :ref:`week01-day1-objectives`
 
@@ -47,6 +47,7 @@ Studio
 
 * `Studio Repository <https://gitlab.com/LaunchCodeTraining/junit-studio>`_
 * Turn in instructions
+
   * Fork then clone repository
   * Create a feature branch for your work
   * Follow readme instructions

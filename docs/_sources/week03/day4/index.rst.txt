@@ -12,7 +12,7 @@ Today we'll learn about filtering in Elasticsearch, along with some other featur
 Lesson Content
 ==============
 
-Slides https://education.launchcode.org/gis-devops-slides/week3/elasticsearch2.html
+`Slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch2.html>`_
 
 Studios
 =======
@@ -29,8 +29,8 @@ Elasticsearch in Spring :ref:`elasticsearch-spring-walkthrough`
 Resources
 =========
 
-* Elasticsearch docs https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
-* Default Mapping https://www.elastic.co/guide/en/elasticsearch/guide/current/default-mapping.html
-* Introduction to Elasticsearch Mappings https://www.elastic.co/blog/found-elasticsearch-mapping-introduction
-* boost parameter https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-boost.html
-* Geo Queries https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-queries.html
+* `Elasticsearch docs <https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html>`_
+* `Default Mapping <https://www.elastic.co/guide/en/elasticsearch/guide/current/default-mapping.html>`_
+* `Introduction to Elasticsearch Mappings <https://www.elastic.co/blog/found-elasticsearch-mapping-introduction>`_
+* `boost parameter <https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-boost.html>`_
+* `Geo Queries <https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-queries.html>`_

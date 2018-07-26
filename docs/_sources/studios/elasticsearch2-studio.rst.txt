@@ -29,13 +29,13 @@ Take a second to look at each of the pages below. They may be beneficial during 
 4. Dashboard http://localhost:5601/app/kibana#/dashboard - Combine graphs to give you a comprehensive picture of your data.
 
 <aside class="aside-note" markdown="1">
-If your indices are listed in the Discover pane, you're likely missing a default index pattern. Add the `twitter` index as a default pattern. This can be changed later in the Management pane.
+If your indices are listed in the Discover pane, you're likely missing a default index pattern. Add the ``twitter`` index as a default pattern. This can be changed later in the Management pane.
 </aside>
 
 Using Kibana
 ============
 
-Open the Dev Tools http://localhost:5601/app/kibana#/dev_tools. Let's run a few queries.
+Open the `Dev Tools <http://localhost:5601/app/kibana#/dev_tools>`_. Let's run a few queries.
 
 Instead of using cURL. Queries can be put into Dev Tools by specifing the HTTP verb and the query text.
 
@@ -52,9 +52,9 @@ GET _search
 
 Also, notice that the left panel provides error messages with the line number of the error. In this case we have some errand quote marks in our query. Remove them and run the query again.
 
-Next, open the Discover Page http://localhost:5601/app/kibana#/discover. This page provides a paginated list of all of the documents in your cluster. The search bar provides a quick way to search by attribute name.
+Next, open the `Discover Page <http://localhost:5601/app/kibana#/discover>`_. This page provides a paginated list of all of the documents in your cluster. The search bar provides a quick way to search by attribute name.
 
-Next, click on the Visualize Page http://localhost:5601/app/kibana#/visualize. This page allows you to create detailed graphs of your data.
+Next, click on the `Visualize Page <http://localhost:5601/app/kibana#/visualize>`_. This page allows you to create detailed graphs of your data.
 
 Loading Data
 ============
@@ -72,7 +72,7 @@ $ touch load_data_geo.sh
 $ chmod +x load_data_geo.sh
 ```
 
-Then copy/paste the contents of this gist https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4. Save and run the script:
+Then copy/paste the contents of this `gist <https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4>`_. Save and run the script:
 
 ```
 $ ./load_data_geo.sh

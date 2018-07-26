@@ -270,11 +270,11 @@
       
   <div class="section" id="studio-test-driven-development">
 <span id="tdd-studio"></span><h1>Studio: Test-Driven Development<a class="headerlink" href="#studio-test-driven-development" title="Permalink to this headline">¶</a></h1>
-<p>For this studio, you will create a class to represent <cite>URLs</cite> <a class="reference external" href="https://en.wikipedia.org/wiki/URL">https://en.wikipedia.org/wiki/URL</a> as Java objects. You will do this using a test-driven approach.</p>
+<p>For this studio, you will create a class to represent <a class="reference external" href="https://en.wikipedia.org/wiki/URL">URLs</a> as Java objects. You will do this using a test-driven approach.</p>
 <div class="section" id="getting-ready">
 <h2>Getting Ready<a class="headerlink" href="#getting-ready" title="Permalink to this headline">¶</a></h2>
 <p>Create a new Java project in IntelliJ named <cite>tdd</cite>. Use the Gradle project template. Initialize the project as a Git repository, then create a corresponding remote repository in your GitLab account. Connect your local to the remote, commit, and push.</p>
-<p>Review terminology for the following URL components at <cite>Wikipedia</cite> <a class="reference external" href="https://en.wikipedia.org/wiki/URL">https://en.wikipedia.org/wiki/URL</a> : protocol, domain, path.</p>
+<p>Review terminology for the following URL components at <a class="reference external" href="https://en.wikipedia.org/wiki/URL">Wikipedia</a> : protocol, domain, path.</p>
 </div>
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
@@ -294,20 +294,20 @@
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">There should be only one <cite>Url</cite> constructor, and it should take a string (e.g. <cite>“https://launchcode.org/learn”</cite>) and set <cite>domain</cite>, <cite>protocol</cite>, and <cite>path</cite> fields. Note that protocol and domain will not contain any <cite>/</cite> characters, but the path may.</p>
+<li><p class="first">There should be only one <code class="docutils literal notranslate"><span class="pre">Url</span></code> constructor, and it should take a string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;https://launchcode.org/learn&quot;</span></code>) and set <code class="docutils literal notranslate"><span class="pre">domain</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol</span></code>, and <code class="docutils literal notranslate"><span class="pre">path</span></code> fields. Note that protocol and domain will not contain any <code class="docutils literal notranslate"><span class="pre">/</span></code> characters, but the path may.</p>
 </li>
-<li><p class="first">The three should be immutable. In other words, they should be <cite>final</cite> and have getters but not setters.</p>
+<li><p class="first">The three should be immutable. In other words, they should be <code class="docutils literal notranslate"><span class="pre">final</span></code> and have getters but not setters.</p>
 </li>
-<li><p class="first">The constructor should take mixed-case strings, but set fields as lowercase strings. For example, if passed <cite>“HTTPS://LAUNCHCODE.ORG”</cite> then calling <cite>getDomain()</cite> should return <cite>“launchcode.org”</cite>.</p>
+<li><p class="first">The constructor should take mixed-case strings, but set fields as lowercase strings. For example, if passed <code class="docutils literal notranslate"><span class="pre">&quot;HTTPS://LAUNCHCODE.ORG&quot;</span></code> then calling <code class="docutils literal notranslate"><span class="pre">getDomain()</span></code> should return <code class="docutils literal notranslate"><span class="pre">&quot;launchcode.org&quot;</span></code>.</p>
 </li>
-<li><p class="first"><cite>Url</cite> should override <cite>toString()</cite>, which should return a properly-formatted version of the URL (e.g. <cite>“https://launchcode.org/learn”</cite>)</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">Url</span></code> should override <code class="docutils literal notranslate"><span class="pre">toString()</span></code>, which should return a properly-formatted version of the URL (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;https://launchcode.org/learn&quot;</span></code>)</p>
 </li>
-<li><p class="first">The string passed to the constructor should satisfy each of the following. If it doesn’t, then the constructor should throw an <cite>IllegalArgumentException</cite> with an appropriate message.</p>
+<li><p class="first">The string passed to the constructor should satisfy each of the following. If it doesn’t, then the constructor should throw an <code class="docutils literal notranslate"><span class="pre">IllegalArgumentException</span></code> with an appropriate message.</p>
 <blockquote>
 <div><ul class="simple">
 <li>The protocol is one of: ftp, http, https, and file</li>
 <li>The path may be empty, but domain and protocol must both be non-empty</li>
-<li>The domain may only contain letters, numbers, <cite>.</cite>, <cite>-</cite>, or <cite>_</cite></li>
+<li>The domain may only contain letters, numbers, <code class="docutils literal notranslate"><span class="pre">.</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, or <code class="docutils literal notranslate"><span class="pre">_</span></code></li>
 </ul>
 </div></blockquote>
 </li>
@@ -335,7 +335,7 @@ These requirements are not comprehensive of how a URL may be structured, but the
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><cite>Java Regex Docs</cite> <a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html</a></li>
+<li><a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">Java Regex Docs</a></li>
 </ul>
 <p>&lt;aside class=”aside-note” markdown=”1”&gt;
 The “intentions menu”, Alt + Enter, in Intellij has a “Check Regex” option that brings up a Regular Expression tester.

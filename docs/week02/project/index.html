@@ -312,7 +312,7 @@
 <li>Postgres allows you to import CSV files directly into the database if the columns on your CSV match the columns of in your target database table. Make sure that you have the full path to the file in the copy command.</li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">`COPY</span> <span class="pre">report(field1,</span> <span class="pre">field2,</span> <span class="pre">field3,</span> <span class="pre">field4)</span> <span class="pre">from</span> <span class="pre">'/this/is/the/full/path/to/the/file'</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER;`</span></code>
-* Every time Spring Boot starts up, it will run an <cite>import.sql</cite> file located in <cite>src/main/resources</cite>. If you are importing data directly into the database via CSV, this is a convenient way to populate your database.
+* Every time Spring Boot starts up, it will run an <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file located in <code class="docutils literal notranslate"><span class="pre">src/main/resources</span></code>. If you are importing data directly into the database via CSV, this is a convenient way to populate your database.
 * Remember, Spring Boot is set to recreate your database every time it starts up.</p>
 </div>
 <div class="section" id="setup-project">
@@ -362,10 +362,10 @@ Then execute:</p>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>CSS Selectors <a class="reference external" href="https://www.w3schools.com/cssref/css_selectors.asp">https://www.w3schools.com/cssref/css_selectors.asp</a></li>
-<li>JSON Lint <a class="reference external" href="https://jsonlint.com/">https://jsonlint.com/</a></li>
-<li>geojson.io <a class="reference external" href="http://geojson.io/#map=2/20.0/0.0">http://geojson.io/#map=2/20.0/0.0</a></li>
-<li>Spring Data JPA DataRepostiry query documentation <a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html">https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html</a></li>
+<li><a class="reference external" href="https://www.w3schools.com/cssref/css_selectors.asp">CSS Selectors</a></li>
+<li><a class="reference external" href="https://jsonlint.com/">JSON Lint</a></li>
+<li><a class="reference external" href="http://geojson.io/#map=2/20.0/0.0">geojson.io</a></li>
+<li><a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html">Spring Data JPA DataRepostiry query documentation</a></li>
 </ul>
 <p>&lt;aside class=”aside-note” markdown=”1”&gt;
 Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.

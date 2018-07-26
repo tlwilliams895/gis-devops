@@ -12,7 +12,7 @@ Setup
 -----
 
 * You will need a Gitlab account (don't worry it's free)
-* Go to `gitlab.com` http://gitlab.com and login
+* Go to `gitlab.com <http://gitlab.com and login>`_
 
 Follow Along as we...
 ---------------------

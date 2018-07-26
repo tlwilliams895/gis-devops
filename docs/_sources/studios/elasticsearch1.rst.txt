@@ -70,7 +70,7 @@ $ touch load_data.sh
 $ chmod +x load_data.sh
 ```
 
-Open it in an editor and copy/paste the contents of this gist https://gist.github.com/chrisbay/415a961d3524fc7c91dbbf88513308d8.
+Open it in an editor and copy/paste the contents of this `gist <https://gist.github.com/chrisbay/415a961d3524fc7c91dbbf88513308d8>`_.
 
 Run the script to create some documents:
 

@@ -9,7 +9,7 @@ Setup
 -----
 
 * You need a Gitlab account
-* Fork this repo `https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter` https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter
+* Fork this `repo https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter>`_
 
 Follow Along as we...
 ---------------------
@@ -18,7 +18,7 @@ Follow Along as we...
 2. Create a branch::
 
   $ git checkout -b my-solution
-  
+
 2. Open Intellij
 3. Choose "open folder" and navigate to and chose folder car-unit-tests-starter
 4. Instructor will walk everyone through setting up the project
@@ -27,5 +27,5 @@ Follow Along as we...
 
 Resources
 ---------
-* `JUnit 4 Site` http://junit.org/junit4/
-* `Examples of Assertions` https://github.com/junit-team/junit4/wiki/Assertions
+* `JUnit 4 Site <http://junit.org/junit4/>`_
+* `Examples of Assertions <ttps://github.com/junit-team/junit4/wiki/Assertions>`_

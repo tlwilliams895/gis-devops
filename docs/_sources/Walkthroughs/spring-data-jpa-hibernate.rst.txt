@@ -4,7 +4,7 @@
 Walkthrough: Cars Demo - Spring Data, JPA, Hibernate
 ====================================================
 
-In this walkthrough, we revisit the [Car Integration Tests](https://gitlab.com/LaunchCodeTraining/car-integration-test-starter) that we worked on in [yesterday's walkthrough](../walkthroughs/spring-integration-tests/). We'll refactor the app to use Postgres and Hiberante.
+In this walkthrough, we revisit the `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter>`_ that we worked on in yesterday's walkthrough :ref:`SIT-walkthrough`. We'll refactor the app to use Postgres and Hiberante.
 
 Setup
 -----

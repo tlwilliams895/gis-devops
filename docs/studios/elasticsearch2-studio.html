@@ -291,12 +291,12 @@
 <li>Dashboard <a class="reference external" href="http://localhost:5601/app/kibana#/dashboard">http://localhost:5601/app/kibana#/dashboard</a> - Combine graphs to give you a comprehensive picture of your data.</li>
 </ol>
 <p>&lt;aside class=”aside-note” markdown=”1”&gt;
-If your indices are listed in the Discover pane, you’re likely missing a default index pattern. Add the <cite>twitter</cite> index as a default pattern. This can be changed later in the Management pane.
+If your indices are listed in the Discover pane, you’re likely missing a default index pattern. Add the <code class="docutils literal notranslate"><span class="pre">twitter</span></code> index as a default pattern. This can be changed later in the Management pane.
 &lt;/aside&gt;</p>
 </div>
 <div class="section" id="using-kibana">
 <h2>Using Kibana<a class="headerlink" href="#using-kibana" title="Permalink to this headline">¶</a></h2>
-<p>Open the Dev Tools <a class="reference external" href="http://localhost:5601/app/kibana#/dev_tools">http://localhost:5601/app/kibana#/dev_tools</a>. Let’s run a few queries.</p>
+<p>Open the <a class="reference external" href="http://localhost:5601/app/kibana#/dev_tools">Dev Tools</a>. Let’s run a few queries.</p>
 <p>Instead of using cURL. Queries can be put into Dev Tools by specifing the HTTP verb and the query text.</p>
 <p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>json
 GET _search
@@ -316,8 +316,8 @@ GET _search
 <div class="section" id="id5">
 <h3>}<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Also, notice that the left panel provides error messages with the line number of the error. In this case we have some errand quote marks in our query. Remove them and run the query again.</p>
-<p>Next, open the Discover Page <a class="reference external" href="http://localhost:5601/app/kibana#/discover">http://localhost:5601/app/kibana#/discover</a>. This page provides a paginated list of all of the documents in your cluster. The search bar provides a quick way to search by attribute name.</p>
-<p>Next, click on the Visualize Page <a class="reference external" href="http://localhost:5601/app/kibana#/visualize">http://localhost:5601/app/kibana#/visualize</a>. This page allows you to create detailed graphs of your data.</p>
+<p>Next, open the <a class="reference external" href="http://localhost:5601/app/kibana#/discover">Discover Page</a>. This page provides a paginated list of all of the documents in your cluster. The search bar provides a quick way to search by attribute name.</p>
+<p>Next, click on the <a class="reference external" href="http://localhost:5601/app/kibana#/visualize">Visualize Page</a>. This page allows you to create detailed graphs of your data.</p>
 </div>
 </div>
 <div class="section" id="loading-data">
@@ -331,7 +331,7 @@ GET _search
 <span class="pre">$</span> <span class="pre">touch</span> <span class="pre">load_data_geo.sh</span>
 <span class="pre">$</span> <span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">load_data_geo.sh</span>
 <span class="pre">`</span></code></p>
-<p>Then copy/paste the contents of this gist <a class="reference external" href="https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4">https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4</a>. Save and run the script:</p>
+<p>Then copy/paste the contents of this <a class="reference external" href="https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4">gist</a>. Save and run the script:</p>
 <p><code class="docutils literal notranslate"><span class="pre">`</span>
 <span class="pre">$</span> <span class="pre">./load_data_geo.sh</span>
 <span class="pre">`</span></code></p>

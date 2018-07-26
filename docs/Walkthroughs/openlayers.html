@@ -312,7 +312,7 @@
 </dl>
 <p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
 </div></blockquote>
-<p>Next add a link for JQuery. You can find the current version at code.jquery.com <a class="reference external" href="https://code.jquery.com">https://code.jquery.com</a>. The minified version is fine. We’ll use jQuery to make things like AJAX calls and DOM manipulation a bit easier.</p>
+<p>Next add a link for JQuery. You can find the current version at <a class="reference external" href="https://code.jquery.com">code.jquery.com</a>. The minified version is fine. We’ll use jQuery to make things like AJAX calls and DOM manipulation a bit easier.</p>
 <dl class="docutils">
 <dt>Put the placeholder for the map on the page, within the <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code>. This <code class="docutils literal notranslate"><span class="pre">div</span></code> will be replaced with the contents of the rendered map.</dt>
 <dd><a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>html</dd>
@@ -354,14 +354,14 @@ If Python version returned above is 2.X:
 </dl>
 </li>
 </ol>
-<p>In a browser go to <cite>http://localhost:7070/index.html</cite>. You should see a map that includes Germany.</p>
+<p>In a browser go to <code class="docutils literal notranslate"><span class="pre">http://localhost:7070/index.html</span></code>. You should see a map that includes Germany.</p>
 <p>Show list of airports</p>
 <p>Add the following HTML to <code class="docutils literal notranslate"><span class="pre">index.html</span></code>
 <code class="docutils literal notranslate"><span class="pre">`html</span>
 <span class="pre">&lt;button</span> <span class="pre">id=&quot;list-all-airports&quot;&gt;list</span> <span class="pre">airports&lt;/button&gt;</span>
 <span class="pre">&lt;ul</span> <span class="pre">id=&quot;all-airports&quot;&gt;&lt;/ul&gt;</span>
 <span class="pre">`</span></code></p>
-<p>We need to GET the data by making an AJAX request to <cite>http://localhost:7070/json/german_airports.geojson</cite>. For this we will use jQuery. Add
+<p>We need to GET the data by making an AJAX request to <code class="docutils literal notranslate"><span class="pre">http://localhost:7070/json/german_airports.geojson</span></code>. For this we will use jQuery. Add
 the below code to <code class="docutils literal notranslate"><span class="pre">script.js</span></code>. Then click the button and see what was logged in the console.
 <a href="#id25"><span class="problematic" id="id26">``</span></a><a href="#id27"><span class="problematic" id="id28">`</span></a>js
 $(‘#list-all-airports’).on(‘click’, function() {</p>
@@ -465,7 +465,7 @@ map.on(‘click’, function(event) {</p>
 </div></blockquote>
 <p>&lt;/ul&gt;
 <a href="#id57"><span class="problematic" id="id58">``</span></a><a href="#id59"><span class="problematic" id="id60">`</span></a></p>
-<p>For the next feature we will need to use Javascript Template Literals <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals</a>. Template literals example below.
+<p>For the next feature we will need to use <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">Javascript Template Literals</a>. Template literals example below.
 <code class="docutils literal notranslate"><span class="pre">`javascript</span>
 <span class="pre">const</span> <span class="pre">name</span> <span class="pre">=</span> <span class="pre">'Jasmine';</span>
 <span class="pre">const</span> <span class="pre">=</span> <span class="pre">`Template</span> <span class="pre">literals</span> <span class="pre">start</span> <span class="pre">and</span> <span class="pre">end</span> <span class="pre">with</span> <span class="pre">ticks</span> <span class="pre">and</span> <span class="pre">you</span> <span class="pre">can</span> <span class="pre">includes</span> <span class="pre">variables</span> <span class="pre">like</span> <span class="pre">so.</span> <span class="pre">Hello</span> <span class="pre">${name}.</span>
@@ -517,8 +517,8 @@ map.forEachFeatureAtPixel(event.pixel, function(feature,layer) {</p>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>OpenLayers Docs <a class="reference external" href="https://openlayers.org/en/latest/apidoc/">https://openlayers.org/en/latest/apidoc/</a></li>
-<li>OpenLayers Examples <a class="reference external" href="https://openlayers.org/en/latest/examples/">https://openlayers.org/en/latest/examples/</a></li>
+<li><a class="reference external" href="https://openlayers.org/en/latest/apidoc/">OpenLayers Docs</a></li>
+<li><a class="reference external" href="https://openlayers.org/en/latest/examples/">OpenLayers Examples</a></li>
 </ul>
 </div>
 </div>

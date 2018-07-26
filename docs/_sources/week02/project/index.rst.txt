@@ -37,7 +37,7 @@ Project Hints
 
 * Postgres allows you to import CSV files directly into the database if the columns on your CSV match the columns of in your target database table. Make sure that you have the full path to the file in the copy command.
 ```COPY report(field1, field2, field3, field4) from '/this/is/the/full/path/to/the/file' DELIMITER ',' CSV HEADER;```
-* Every time Spring Boot starts up, it will run an `import.sql` file located in `src/main/resources`. If you are importing data directly into the database via CSV, this is a convenient way to populate your database.
+* Every time Spring Boot starts up, it will run an ``import.sql`` file located in ``src/main/resources``. If you are importing data directly into the database via CSV, this is a convenient way to populate your database.
 * Remember, Spring Boot is set to recreate your database every time it starts up.
 
 Setup Project
@@ -93,10 +93,10 @@ If you complete the assignment with time to spare, improve your app by providing
 Resources
 =========
 
-* CSS Selectors https://www.w3schools.com/cssref/css_selectors.asp
-* JSON Lint https://jsonlint.com/
-* geojson.io http://geojson.io/#map=2/20.0/0.0
-* Spring Data JPA DataRepostiry query documentation https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html
+* `CSS Selectors <https://www.w3schools.com/cssref/css_selectors.asp>`_
+* `JSON Lint <https://jsonlint.com/>`_
+* `geojson.io <http://geojson.io/#map=2/20.0/0.0>`_
+* `Spring Data JPA DataRepostiry query documentation <https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html>`_
 
 <aside class="aside-note" markdown="1">
 Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.
