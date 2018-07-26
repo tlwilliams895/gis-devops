@@ -15,7 +15,7 @@ We'll walk through several steps needed to use Elasticsearch within Spring.
 
 The code that we'll look at is in the ``elasticsearch`` branch of the ``LaunchCodeTraining/launchcart`` repository.
 
-To view the specific changes, look at this commit https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956.
+To view the specific changes, look at this `commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956>`_.
 
 </aside>
 
@@ -34,7 +34,7 @@ To view the specific changes, look at this commit https://gitlab.com/LaunchCodeT
 
 This approach uses the ``TransportClient`` class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the ``TransportClient`` have the _same major versions_. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.
 
-Read more about the state of the official Elasticsearch Java clients https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients.
+Read more about the state of the official `Elasticsearch Java clients <https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients>`_.
 
 </aside>
 
@@ -50,14 +50,14 @@ We looked at how to push a new item to Elasticsearch when creating it via the RE
 
 * Push a new document to ES when adding an item via the web view.
 * Update a document in ES when updating via the API or web view.
-* Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to `ItemDocumentRepository.search`, or by creating a new controller method that passes fuzzy search results into a template.
+* Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to ``ItemDocumentRepository.search``, or by creating a new controller method that passes fuzzy search results into a template.
 
 Resources
 =========
 
-* Spring Data Elasticsearch tutoria http://www.baeldung.com/spring-data-elasticsearch-tutorial
-* ElasticSearchRepository https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html
-* TransportClient https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html
-* QueryBuilders https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html
-* Spring Data Elasticsearch Queries http://www.baeldung.com/spring-data-elasticsearch-queries
-* The @Value annotation http://www.baeldung.com/spring-value-annotation
+* `Spring Data Elasticsearch <tutoria http://www.baeldung.com/spring-data-elasticsearch-tutorial>`_
+* `ElasticSearchRepository <https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html>`_
+* `TransportClient <https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html>`_
+* `QueryBuilders <https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html>`_
+* `Spring Data Elasticsearch Queries <http://www.baeldung.com/spring-data-elasticsearch-queries>`_
+* `The @Value annotation <http://www.baeldung.com/spring-value-annotation>`_

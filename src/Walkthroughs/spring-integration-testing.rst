@@ -7,7 +7,7 @@ Walkthrough: Spring Integration Tests
 Setup
 -----
 
-1. Fork this repo: ``Car Integration Tests`` https://gitlab.com/LaunchCodeTraining/car-integration-test-starter
+1. Fork this repo: ```Car Integration Tests`` <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter>`_
 2. Open project in Intellij by opening gradle.build file as a project
 
 What we will do
@@ -39,15 +39,15 @@ Executing and Verifying Results
 
 Method | Info
 |----|-----|
-``MockMvc.perform(RequestBuilder requestBuilder)`` | Perform a request and return a type that allows chaining further actions, such as asserting expectations, on the result. `More info` https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html
+``MockMvc.perform(RequestBuilder requestBuilder)`` | Perform a request and return a type that allows chaining further actions, such as asserting expectations, on the result. `More info <https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html>`_
 
-``MockMvcRequestBuilders.get(String uri)`` | static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained. `More info` https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/request/MockMvcRequestBuilders.html
+``MockMvcRequestBuilders.get(String uri)`` | static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained. `More info <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/request/MockMvcRequestBuilders.html>`_
 
-``MockMvcRequestBuilders.post()`` | static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained.  `More info` https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html
+``MockMvcRequestBuilders.post()`` | static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained.  `More info <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html>`_
 
-``MockMvcRequestMatchers - content(), jsonPath(), status()`` | The type of result to expect: HTML, JSON, status...  [More info]()
+``MockMvcRequestMatchers - content(), jsonPath(), status()`` | The type of result to expect: HTML, JSON, status...  More info
 
-``ResultActions - andExpect()`` | What to look for in the result: status code, a string, JSON value...  More info` https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/ResultActions.html
+``ResultActions - andExpect()`` | What to look for in the result: status code, a string, JSON value...  `More info <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/ResultActions.html>`_
 
 Example::
 
@@ -61,4 +61,4 @@ Example::
 
 Resources
 ---------
- * https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#integration-testing
+ * `Spring freamwork <https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#integration-testing>`_

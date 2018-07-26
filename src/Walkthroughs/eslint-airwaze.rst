@@ -71,4 +71,4 @@ Bonus Mission
 
 Resources
 =========
-* ESLint Rules https://eslint.org/docs/rules/
+* `ESLint Rules <https://eslint.org/docs/rules/>`_

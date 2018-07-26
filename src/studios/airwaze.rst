@@ -8,7 +8,7 @@ Your goal is to add an additional layer that shows flight routes and display it 
 
 Set Up Project
 ==============
-* Fork and clone this Gitlab project https://gitlab.com/LaunchCodeTraining/airwaze-studio.
+* Fork and clone this `Gitlab project <https://gitlab.com/LaunchCodeTraining/airwaze-studio>`_.
 * Then open the project in IntelliJ
 * Create a feature branch ``$ git checkout -b day5-solution``
 
@@ -21,7 +21,7 @@ $ brew install postgis
 ```
 This is going to take a while.
 
-Make sure your Postgresql server is running. Remember we used https://postgresapp.com/ https://postgresapp.com/ to install Postgresql, which automatically created a service that we can start and stop via its UI in the menu bar.
+Make sure your Postgresql server is running. Remember we used https://postgresapp.com/ to install Postgresql, which automatically created a service that we can start and stop via its UI in the menu bar.
 
 Run ``psql`` CLI by double clicking on the ``postgres`` database in the Postgresql app.
 
@@ -111,7 +111,7 @@ Tasks
 
 Bonus Missions
 ==============
-* Get this to work without jQuery. Hints: ``fetch`` info here https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch and ``document.findElementById``
+* Get this to work without jQuery. Hints: ``fetch`` info `here <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch>`_ and ``document.findElementById``
 * Change the style of the dots: color, size, fill in
 * Sort airports by alpha order when they are displayed below the map
 * Check what kind of feature was clicked when map.onclick runs
@@ -119,9 +119,9 @@ Bonus Missions
 
 Resources
 =========
-* Read about constructing GeoJSON https://macwright.org/2015/03/23/geojson-second-bite
-* OpenLayers Examples https://openlayers.org/en/latest/examples/
-* Adding and Removing Layers with OpenLayers http://www.acuriousanimal.com/thebookofopenlayers3/chapter02_01_adding_removing_layers.html
-* Validate your GeoJSON! http://geojson.io
-* OpenLayers Drawing Examples http://openlayers.org/en/latest/examples/geojson.html
-* JSONPath http://goessner.net/articles/JsonPath/
+* Read about constructing `GeoJSON <https://macwright.org/2015/03/23/geojson-second-bite>`_
+* OpenLayers `Examples <https://openlayers.org/en/latest/examples/>`_
+* Adding and Removing Layers with `OpenLayers <http://www.acuriousanimal.com/thebookofopenlayers3/chapter02_01_adding_removing_layers.html>`_
+* Validate your `GeoJSON! <http://geojson.io>`_
+* OpenLayers Drawing `Examples <http://openlayers.org/en/latest/examples/geojson.html>`_
+* `JSONPath <http://goessner.net/articles/JsonPath/>`_

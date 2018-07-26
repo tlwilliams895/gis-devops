@@ -70,3 +70,5 @@ Week 9:
   :maxdepth: 1
 
   week09/day3/index
+  week09/day4/index
+  week09/day5/index

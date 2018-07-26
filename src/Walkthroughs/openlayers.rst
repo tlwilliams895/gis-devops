@@ -33,7 +33,7 @@ Next, add OpenLayers to your project by including the JavaScript source in the h
          type="text/javascript"></script>
  ```
 
-Next add a link for JQuery. You can find the current version at code.jquery.com https://code.jquery.com. The minified version is fine. We'll use jQuery to make things like AJAX calls and DOM manipulation a bit easier.
+Next add a link for JQuery. You can find the current version at `code.jquery.com <https://code.jquery.com>`_. The minified version is fine. We'll use jQuery to make things like AJAX calls and DOM manipulation a bit easier.
 
 Put the placeholder for the map on the page, within the ``<body>``. This ``div`` will be replaced with the contents of the rendered map.
  ```html
@@ -67,7 +67,7 @@ Start a web server using ``python`` using one of the below commands.
     $ python -m SimpleHTTPServer 7070
     ```
 
-In a browser go to `http://localhost:7070/index.html`. You should see a map that includes Germany.
+In a browser go to ``http://localhost:7070/index.html``. You should see a map that includes Germany.
 
 Show list of airports
 
@@ -77,7 +77,7 @@ Add the following HTML to ``index.html``
 <ul id="all-airports"></ul>
 ```
 
-We need to GET the data by making an AJAX request to `http://localhost:7070/json/german_airports.geojson`. For this we will use jQuery. Add
+We need to GET the data by making an AJAX request to ``http://localhost:7070/json/german_airports.geojson``. For this we will use jQuery. Add
 the below code to ``script.js``. Then click the button and see what was logged in the console.
 ```js
 $('#list-all-airports').on('click', function() {
@@ -163,7 +163,7 @@ We want to add data about this report to our map dashboard. Here is an example o
 </ul>
 ```
 
-For the next feature we will need to use Javascript Template Literals https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals. Template literals example below.
+For the next feature we will need to use `Javascript Template Literals <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>`_. Template literals example below.
 ```javascript
 const name = 'Jasmine';
 const = `Template literals start and end with ticks and you can includes variables like so. Hello ${name}.
@@ -207,5 +207,5 @@ If you get the message ``The content of elements must consist of well-formed cha
 
 Resources
 =========
-* OpenLayers Docs https://openlayers.org/en/latest/apidoc/
-* OpenLayers Examples https://openlayers.org/en/latest/examples/
+* `OpenLayers Docs <https://openlayers.org/en/latest/apidoc/>`_
+* `OpenLayers Examples <https://openlayers.org/en/latest/examples/>`_
