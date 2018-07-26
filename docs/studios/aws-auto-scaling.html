@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Scaling horizontally AutoScaling Group &#8212; LaunchCode Curriculum Docs  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/launchcode.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/lc-logo.svg"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day1/index.html">Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#slides">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day2/index.html">Week 1 - Day 2: Agile/Scrum ceremonies, Test-driven development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day3/index.html">Week 1 - Day 3: Integration testing, dependency injection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day4/index.html">Week 1 - Day 4: Postgres, Spring Data, JPA, Hibernate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day5/index.html">Week 1 - Day 5: AJAX, Open Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week02/project/index.html">Week 2 - Project Week - Zika Mission Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#project-hints">Project Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#setup-project">Setup Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day1/index.html">Week 3 - Day 1: RESTful web services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day2/index.html">Week 3 - Day 2 Swagger REST framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day3/index.html">Week 3 - Day 3: Intro to Elasticsearch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#studios">Studios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day5/index.html">Week 3 - Day 5: ES2015, ESLint, OpenLayers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week04/project/index.html">Week 4 - Project Week - Zika Mission Control Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#what-s-new-in-the-code">What’s new in the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#database-setup">Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day1/index.html">Week 5 - Day 1: Intro to DevOps/AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day2/index.html">Week 5 - Day 2: More with AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day3/index.html">Week 5 - Day 3: 12 Factor Apps and Auto Scaling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day4/index.html">Week 5 - Day 4: Gradle, Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day5/index.html">Week 5 - Day 5: Sonarqube</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day5/index.html#walkthrough">Walkthrough</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week06/project/index.html">Week 6 - Project Week - Zika Mission Control Part 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week08/project/index.html">Week 8 - Project Week - Zika Mission Control Part 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week09/day3/index.html">Week 9 - Day 3: Intro to Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/day4/index.html">Week 9 - Day 4: OAuth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day4/index.html#lesson">Lesson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/day5/index.html">Week 9 - Day 5: Certificates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Scaling horizontally AutoScaling Group</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a><ul>
+<li><a class="reference internal" href="#aws-cli">AWS CLI</a></li>
+<li><a class="reference internal" href="#create-a-keypair-for-the-region">Create a KeyPair for the Region</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configure-your-vpc-via-cloudformation">Configure your VPC via CloudFormation</a><ul>
+<li><a class="reference internal" href="#review-the-cloudformation-script">Review the CloudFormation Script</a></li>
+<li><a class="reference internal" href="#using-the-cloudformation-script">Using the CloudFormation Script</a></li>
+<li><a class="reference internal" href="#configure-buckets">Configure Buckets</a></li>
+<li><a class="reference internal" href="#configure-the-database">Configure the database</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-the-launch-configuration">Create the Launch Configuration</a></li>
+<li><a class="reference internal" href="#create-the-auto-scale-group">Create the Auto Scale Group</a></li>
+<li><a class="reference internal" href="#placing-load-on-your-app">Placing Load on your App</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="scaling-horizontally-autoscaling-group">
+<span id="studio-aws-auto-scaling"></span><h1>Scaling horizontally AutoScaling Group<a class="headerlink" href="#scaling-horizontally-autoscaling-group" title="Permalink to this headline">¶</a></h1>
+<p>The ability to scale horizontally is very important in building Cloud Native applications.  In this studio, you will be extending your <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">Airwaze App</a> to scale horizontally as traffic on the server increases.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>&lt;aside class=”aside-note”&gt;</dt>
+<dd>Note!  You will be working in the “Northern Virginia region.</dd>
+</dl>
+<p>&lt;/aside&gt;</p>
+<div class="section" id="aws-cli">
+<h3>AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h3>
+<p>We will be using the <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">AWS CLI tool</a> for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.</p>
+<p>To install the AWS CLI tool run the following commands:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">brew</span> <span class="pre">install</span> <span class="pre">awscli</span>
+<span class="pre">$</span> <span class="pre">echo</span> <span class="pre">'complete</span> <span class="pre">-C</span> <span class="pre">aws_completer</span> <span class="pre">aws'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.bashrc</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">--version</span>
+<span class="pre">`</span></code></p>
+<p>Next configure the AWS CLI tool with your credentials.  These credentials can be found in IAM &gt; Users &gt; You. Click “Create Access Key”.
+Screenshot of IAM credentails</p>
+<blockquote>
+<div><img alt="../_images/iam_get_credentials.png" src="../_images/iam_get_credentials.png" />
+</div></blockquote>
+<dl class="docutils">
+<dt>&lt;aside class=”aside-note”&gt;</dt>
+<dd>It is very important that you keep the <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span></code> private.  Access to that key allows anyone to programmatically spin up infrastructure on the AWS account.</dd>
+</dl>
+<p>&lt;/aside&gt;</p>
+<p>Next configure your the AWS CLI tool.  Use the “Default region name” or <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">configure</span>
+<span class="pre">AWS</span> <span class="pre">Access</span> <span class="pre">Key</span> <span class="pre">ID</span> <span class="pre">[None]:</span> <span class="pre">AK-------------------</span>
+<span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span> <span class="pre">[None]:</span> <span class="pre">r4------------------</span>
+<span class="pre">Default</span> <span class="pre">region</span> <span class="pre">name</span> <span class="pre">[None]:</span> <span class="pre">us-east-1</span>
+<span class="pre">Default</span> <span class="pre">output</span> <span class="pre">format</span> <span class="pre">[None]:</span>
+<span class="pre">`</span></code></p>
+<p>You should now be able to run commands against AWS.  For example, you should now be able to list all of the buckets in S3:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span>
+<span class="pre">`</span></code></p>
+<p>Take a look around by looking at the help pages for a couple of commands:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">help</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">help</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">help</span>
+<span class="pre">`</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">help</span></code> command is a quick alternative to looking up information about the tool on line.</p>
+</div>
+<div class="section" id="create-a-keypair-for-the-region">
+<h3>Create a KeyPair for the Region<a class="headerlink" href="#create-a-keypair-for-the-region" title="Permalink to this headline">¶</a></h3>
+<p>Since you are in a new Region, you will need to create a new KeyPair.
+1. Make sure you are in region <code class="docutils literal notranslate"><span class="pre">U.S.</span> <span class="pre">East</span> <span class="pre">(N.Virginia)</span></code>
+2. Go to EC2 in the services menu
+3. Click <strong>Key Pairs</strong> in the left menu in the <strong>NETWORK &amp; SECURITY</strong> section
+4. Enter a name like <code class="docutils literal notranslate"><span class="pre">yourname-useast-key</span></code>
+5. Download key
+6. Copy the key to your <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder
+7. Make it so that only the owner can read and write to the file <code class="docutils literal notranslate"><span class="pre">$chmod</span> <span class="pre">400</span> <span class="pre">yourname-useast-key.pem</span></code></p>
+</div>
+</div>
+<div class="section" id="configure-your-vpc-via-cloudformation">
+<h2>Configure your VPC via CloudFormation<a class="headerlink" href="#configure-your-vpc-via-cloudformation" title="Permalink to this headline">¶</a></h2>
+<p>You are going to use <a class="reference external" href="https://aws.amazon.com/cloudformation/">Amazon CloudFormation</a> to spin up your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.</p>
+<p>You’ll be using a CloudFormation template that adds 4 Subnets, 3 Security Groups, and 1 RDS.  AWS CloudFormation will pull the template from S3.</p>
+<div class="section" id="review-the-cloudformation-script">
+<h3>Review the CloudFormation Script<a class="headerlink" href="#review-the-cloudformation-script" title="Permalink to this headline">¶</a></h3>
+<p>Take a look at the template by downloading it with the <code class="docutils literal notranslate"><span class="pre">aws-cli</span></code> tool. Then open <code class="docutils literal notranslate"><span class="pre">airwaze_cloudformation.json</span></code> in your favorite editor. You should recognize the names and properties listed from previous studios, the only new thing is seeing them in this format.
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">mkdir</span> <span class="pre">~/s3-sync</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">s3://launchcode-gisdevops-cloudformation</span> <span class="pre">~/s3-sync</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="using-the-cloudformation-script">
+<h3>Using the CloudFormation Script<a class="headerlink" href="#using-the-cloudformation-script" title="Permalink to this headline">¶</a></h3>
+<p>To run CloudFormation, navigate to the CloudFormation page via the search bar.  Click “Create Stack”.</p>
+<p>Now we tell CloudFormation what JSON template to use when building the infrastructure.  We’re going to give it the URL of the JSON template that we looked at with the <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">...</span></code> command.</p>
+<ul class="simple">
+<li>Choose “Specify an Amazon S3 template URL” and paste in <a class="reference external" href="https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json">https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json</a>.</li>
+<li>Click “Next” when you are done.</li>
+</ul>
+<p>Screenshot of CF Screen 1</p>
+<blockquote>
+<div><img alt="../_images/stack_screen_1.png" src="../_images/stack_screen_1.png" />
+</div></blockquote>
+<p>Next we need to give your stack a name and pass along a few parameters to customize the VPC.</p>
+<ul class="simple">
+<li>Fill in Stack Name with “airwaze-{your name}”.</li>
+<li>Fill in DatabasePassword with “verysecurepassword”.</li>
+<li>Fill in KeyName with with the name of your access key for this region. (use the one you created above)</li>
+</ul>
+<p>Screenshot of Stack parameters</p>
+<blockquote>
+<div><img alt="../_images/stack-parameters2.png" src="../_images/stack-parameters2.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Click Next on the “Options Screen”</li>
+<li>Click Create on the “Review Screen”</li>
+</ul>
+<p>It will take CloudFormations about 15 minutes to spin up your VPC.  The “Events” tab will give you continuous updates on the progress of the job.</p>
+</div>
+<div class="section" id="configure-buckets">
+<h3>Configure Buckets<a class="headerlink" href="#configure-buckets" title="Permalink to this headline">¶</a></h3>
+<p>Since you will be scaling machines horizontally, you won’t be able to <code class="docutils literal notranslate"><span class="pre">scp</span></code> a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they spin up.  The servers will download a copy of the application from S3.</p>
+<p>First create a new bucket in S3.  Remember <strong>EVERY</strong> bucket in S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">mb</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span>
+<span class="pre">`</span></code></p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span></code> to make sure that the bucket was created properly.</p>
+<p>Go ahead and build a new executable jar file using the Gradle <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code> command.  When it is finished building rename the file to <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> and upload the jar to S3 using the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">cp</span> <span class="pre">build/libs/app.jar</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span> <span class="pre">#</span> <span class="pre">check</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">it</span> <span class="pre">uploaded</span>
+<span class="pre">`</span></code></p>
+<p>When we run our initialization script later, the script will pull down the <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> file with this command:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span> <span class="pre">/opt/airwaze</span>
+<span class="pre">`</span></code></p>
+<p>You should also check out S3 in the console:
+<a class="reference external" href="https://s3.console.aws.amazon.com/s3/home?region=us-east-1">https://s3.console.aws.amazon.com/s3/home?region=us-east-1</a></p>
+</div>
+<div class="section" id="configure-the-database">
+<h3>Configure the database<a class="headerlink" href="#configure-the-database" title="Permalink to this headline">¶</a></h3>
+<p>You’ll also need to do some initial database setup.</p>
+<ul class="simple">
+<li>Create an EC2 instance in the <code class="docutils literal notranslate"><span class="pre">SubnetWebAppPublic</span></code> subnet.</li>
+<li>Once it is up, SSH into the server and run the following commands:</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">postgresql</span>
+<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com</span> <span class="pre">-p</span> <span class="pre">5432</span> <span class="pre">-U</span> <span class="pre">masterUser</span> <span class="pre">airwaze</span>
+<span class="pre">CREATE</span> <span class="pre">USER</span> <span class="pre">airwaze_user</span> <span class="pre">WITH</span> <span class="pre">PASSWORD</span> <span class="pre">'verysecurepassword';</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis;</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_topology;</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">fuzzystrmatch;</span>
+<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_tiger_geocoder;</span>
+<span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">airport</span>
+<span class="pre">(</span>
+<span class="pre">id</span> <span class="pre">serial</span> <span class="pre">primary</span> <span class="pre">key,</span>
+<span class="pre">airport_id</span> <span class="pre">integer,</span>
+<span class="pre">airport_lat_long</span> <span class="pre">geometry,</span>
+<span class="pre">altitude</span> <span class="pre">integer,</span>
+<span class="pre">city</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">country</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">faa_code</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">icao</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">name</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">time_zone</span> <span class="pre">character</span> <span class="pre">varying(255)</span>
+<span class="pre">);</span>
+<span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">route</span>
+<span class="pre">(</span>
+<span class="pre">id</span> <span class="pre">serial</span> <span class="pre">primary</span> <span class="pre">key,</span>
+<span class="pre">airline</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">airline_id</span> <span class="pre">integer,</span>
+<span class="pre">dst</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">dst_id</span> <span class="pre">integer,</span>
+<span class="pre">route_geom</span> <span class="pre">geometry,</span>
+<span class="pre">src</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
+<span class="pre">src_id</span> <span class="pre">integer</span>
+<span class="pre">);</span>
+<span class="pre">ALTER</span> <span class="pre">TABLE</span> <span class="pre">airport</span> <span class="pre">OWNER</span> <span class="pre">to</span> <span class="pre">airwaze_user;</span>
+<span class="pre">ALTER</span> <span class="pre">TABLE</span> <span class="pre">route</span> <span class="pre">OWNER</span> <span class="pre">to</span> <span class="pre">airwaze_user;</span>
+<span class="pre">`</span></code></p>
+<p>Also, send up the <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> file and the <code class="docutils literal notranslate"><span class="pre">Airports.csv</span></code> file and get those in the database.
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/mikes-keys.pem</span> <span class="pre">routes.csv</span>&#160; <span class="pre">ubuntu&#64;35.170.78.180:/home/ubuntu</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/mikes-keys.pem</span> <span class="pre">Airports.csv</span>&#160; <span class="pre">ubuntu&#64;35.170.78.180:/home/ubuntu</span>
+<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com</span> <span class="pre">-d</span> <span class="pre">airwaze</span> <span class="pre">-U</span> <span class="pre">airwaze_user</span> <span class="pre">-c</span> <span class="pre">&quot;\copy</span> <span class="pre">route(src,</span> <span class="pre">src_id,</span> <span class="pre">dst,</span> <span class="pre">dst_id,</span> <span class="pre">airline,</span> <span class="pre">route_geom)</span> <span class="pre">from</span> <span class="pre">STDIN</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER&quot;</span> <span class="pre">&lt;</span> <span class="pre">/home/ubuntu/routes.csv</span>
+<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com</span> <span class="pre">-d</span> <span class="pre">airwaze</span> <span class="pre">-U</span> <span class="pre">airwaze_user</span> <span class="pre">-c</span> <span class="pre">&quot;\copy</span> <span class="pre">airport(airport_id,</span> <span class="pre">name,</span> <span class="pre">city,</span> <span class="pre">country,</span> <span class="pre">faa_code,</span> <span class="pre">icao,</span> <span class="pre">altitude,</span> <span class="pre">time_zone,</span> <span class="pre">airport_lat_long)</span> <span class="pre">from</span> <span class="pre">STDIN</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER&quot;</span> <span class="pre">&lt;</span> <span class="pre">/home/ubuntu/Airports.csv</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+<div class="section" id="create-the-launch-configuration">
+<h2>Create the Launch Configuration<a class="headerlink" href="#create-the-launch-configuration" title="Permalink to this headline">¶</a></h2>
+<p>You now have all of the pieces set up to begin Auto Scaling EC2 machines.</p>
+<p>Navigate to <a class="reference external" href="https://console.aws.amazon.com/ec2/autoscaling/home">AutoScaling Page</a> on the sidebar of EC2.  Click “Create Auto Scaling Group”.</p>
+<p>Screenshot of AutoScale Start</p>
+<blockquote>
+<div><img alt="../_images/create_auto_scaling_group.png" src="../_images/create_auto_scaling_group.png" />
+</div></blockquote>
+<p>A LaunchConfiguration is essentially creating a template for all of the EC2 instances that will be spun up automatically via Auto Scale.</p>
+<ul class="simple">
+<li>You are going to create a new Launch Configuration.</li>
+</ul>
+<p>Screenshot of AutoScale Step 1</p>
+<blockquote>
+<div><img alt="../_images/auto_scale_step_1.png" src="../_images/auto_scale_step_1.png" />
+</div></blockquote>
+<p>The Launch Configuration is going to be very similar to setting up a normal EC2 instance.</p>
+<ul class="simple">
+<li>Choose the Ubuntu distribution on the AMI screen.</li>
+</ul>
+<p>Screenshot of Auto Scale AMI</p>
+<blockquote>
+<div><img alt="../_images/auto_scale_ami.png" src="../_images/auto_scale_ami.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Choose the micro instance.</li>
+</ul>
+<p>Screenshot of Auto Scale instance size</p>
+<blockquote>
+<div><img alt="../_images/auto_scale_instance_size.png" src="../_images/auto_scale_instance_size.png" />
+</div></blockquote>
+<p>There are several important configurations that have to be made on the “Configure Details” screen.</p>
+<p>The moist important is the User data.  The “User data” is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.</p>
+<p>There are two pieces of data to change in the “User data” script:</p>
+<ol class="arabic simple">
+<li>Set <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> to the endpoint of your RDS database.</li>
+<li>Change the <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">c</span> <span class="pre">s3://launchcode-gisdevops-c1-yourbucket/app.jar</span> <span class="pre">/opt/airwaze/app.jar</span></code> command to point to the bucket that you created earlier in the studio.</li>
+</ol>
+<ul class="simple">
+<li>Paste your updated script in the “User data” field.</li>
+<li>Set “IAM role” to “EC2_to_S3_readonly”. When the machine is spinning up, the startup script will need to reach out to S3.  The “IAM role” gives the startup script the proper credentials to be authenticated to access S3.</li>
+<li>Set the name of the configuration to <code class="docutils literal notranslate"><span class="pre">airwaze-{your</span> <span class="pre">name}-config</span></code>.</li>
+<li>Change the “IP Address Type” to be <code class="docutils literal notranslate"><span class="pre">Assign</span> <span class="pre">a</span> <span class="pre">public</span> <span class="pre">IP</span> <span class="pre">address</span> <span class="pre">to</span> <span class="pre">every</span> <span class="pre">instance</span></code>.</li>
+</ul>
+<p>Screenshot of Auto Scale configuration</p>
+<blockquote>
+<div><img alt="../_images/auto_scale_config.png" src="../_images/auto_scale_config.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Click “Next: Configure Security Group”</li>
+<li>On the Security Group screen, choose the <code class="docutils literal notranslate"><span class="pre">WebAppSecurityGroup</span></code> from your VPC.  The key is that you want to have ports 22 and 80 open on the machines that you are running.</li>
+<li>Click “Review”</li>
+<li>Click “Create Launch configuration”</li>
+</ul>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
+#!/bin/bash
+# Install Java
+apt-get update -y &amp;&amp; apt-get install -y openjdk-8-jdk awscli</p>
+<p># Create airwaze user
+useradd -M airwaze
+mkdir /opt/airwaze
+mkdir /etc/opt/airwaze
+aws s3 cp s3://launchcode-gisdevops-c1-traineemike/app.jar /opt/airwaze/app.jar
+chown -R airwaze:airwaze /opt/airwaze /etc/opt/airwaze
+chmod 777 /opt/airwaze</p>
+<p># Write Airwaze config file
+cat &lt;&lt; EOF &gt; /etc/opt/airwaze/airwaze.config
+APP_DB_HOST=airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com
+APP_DB_PORT=5432
+APP_DB_NAME=airwaze
+APP_DB_USER=airwaze_user
+APP_DB_PASS=verysecurepassword
+EOF</p>
+<p># Write systemd unit file
+cat &lt;&lt; EOF &gt; /etc/systemd/system/airwaze.service
+[Unit]
+Description=Airwaze Studio
+After=syslog.target</p>
+<p>[Service]
+User=airwaze
+EnvironmentFile=/etc/opt/airwaze/airwaze.config
+ExecStart=/usr/bin/java -jar /opt/airwaze/app.jar SuccessExitStatus=143
+Restart=always</p>
+<p>[Install]
+WantedBy=multi-user.target
+EOF</p>
+<p>systemctl enable airwaze.service
+systemctl start airwaze.service
+<a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+<p>Screenshot of Auto Scale security groups</p>
+<blockquote>
+<div><img alt="../_images/auto_scale_security_groups.png" src="../_images/auto_scale_security_groups.png" />
+</div></blockquote>
+</div>
+<div class="section" id="create-the-auto-scale-group">
+<h2>Create the Auto Scale Group<a class="headerlink" href="#create-the-auto-scale-group" title="Permalink to this headline">¶</a></h2>
+<p>The Auto Scale Group is the piece of configuration responsible for how and when new machines are spun up (and spun down).</p>
+<p>The first step is configuring where the machines will be spun up.</p>
+<ul class="simple">
+<li>For “Group name”, provide a name similiar to <code class="docutils literal notranslate"><span class="pre">airwaze-{your</span> <span class="pre">name}</span></code> (replace {your name} of course…)</li>
+<li>For “Network”, choose your VPC.</li>
+<li>For “Subnet”, choose the <code class="docutils literal notranslate"><span class="pre">SubnetWebAppPublic</span></code>.</li>
+<li>Click “Next: Configure Scaling Policy”</li>
+</ul>
+<p>Screenshot of Auto Scale configuration</p>
+<blockquote>
+<div><img alt="../_images/auto_scale_group_1.png" src="../_images/auto_scale_group_1.png" />
+</div></blockquote>
+<p>The next screen configures how an app scales up.</p>
+<ul class="simple">
+<li>Select <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">scaling</span> <span class="pre">policies</span> <span class="pre">to</span> <span class="pre">adjust</span> <span class="pre">the</span> <span class="pre">capacity</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">group</span></code>.</li>
+<li>Mark that the app can scale up to 5 machines.</li>
+<li>Change the name to <code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">Fast!</span></code>.</li>
+<li>Set the “Target value” to 5.  “Target value” is the percentage of CPU that triggers another machine to be provisioned.</li>
+<li>Set the “Instances need” to 40 seconds.  Since Spring Boot packages the web server in the jar, your application doesn’t need as much spin up time as other machines.</li>
+<li>Click “Next: Configure Notifications”</li>
+</ul>
+<p>Screenshot of Auto Scale configuration</p>
+<blockquote>
+<div><img alt="../_images/auto_scale_group_config.png" src="../_images/auto_scale_group_config.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Click “Next: Configure Tags”</li>
+<li>Click “Review”</li>
+<li>Click “Create Auto Scaling Group”</li>
+</ul>
+<p>This will create you Auto Scaling Group.  At first, the summary page will say 0 instances; it typically takes a couple of minutes to initialize.</p>
+<p>Screenshot of Auto Scaling Group Dash</p>
+<blockquote>
+<div><img alt="../_images/auto_scaling_group_dash.png" src="../_images/auto_scaling_group_dash.png" />
+</div></blockquote>
+<p>The “Instances” tab will show you how many machines you currently have running in your Auto Scaling Group.</p>
+<p>Screenshot of the Instances tab</p>
+<blockquote>
+<div><img alt="../_images/auto_scaling_instances_tab.png" src="../_images/auto_scaling_instances_tab.png" />
+</div></blockquote>
+<p>Next you need to hook a load balancer up to your Auto Scaling Group.  We’ll need to configure the Target Groups of the Elastic Load Balancer.</p>
+<ul class="simple">
+<li>Navigate to the <a class="reference external" href="https://console.aws.amazon.com/ec2/v2/home?&amp;region=us-east-1#TargetGroups:sort=targetGroupName">Target Groups Page</a> and select the Target Group in your VPC.</li>
+<li>Click “Edit”</li>
+</ul>
+<p>Screenshot of Target Groups Edit</p>
+<blockquote>
+<div><img alt="../_images/target_groups_click_edit.png" src="../_images/target_groups_click_edit.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Select <code class="docutils literal notranslate"><span class="pre">WebAppTargets</span></code> from the “Target Groups” drop down.</li>
+</ul>
+<p>Screenshot of Target Groups select target</p>
+<blockquote>
+<div><img alt="../_images/target_groups_set_target.png" src="../_images/target_groups_set_target.png" />
+</div></blockquote>
+</div>
+<div class="section" id="placing-load-on-your-app">
+<h2>Placing Load on your App<a class="headerlink" href="#placing-load-on-your-app" title="Permalink to this headline">¶</a></h2>
+<p>Next, you want to test that your autoscaling is working properly.</p>
+<p>You are going to be using a Node library called <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a>.
+Loadtest measures the average latency time of a concurrent requests to a server.</p>
+<dl class="docutils">
+<dt>&lt;aside class=”aside-note”&gt;</dt>
+<dd>Note: Tools like loadtest and Apache AB are like guns.  You don’t point them live things unless you want to kill it.  It’s fine to point a load test tool at your non production apps on AWS; in fact you need to make sure that it can handle load.  You would never want to point a load testing tool at a live site because:
+* It’s your live site (your staging environment should be similar enough to production to replicate the error).
+* Your production site will be sitting behind one or more layers like a CDN.  Your load test is going to look a lot like a denial of service attack. Services like your CDN are designed to recognize and block attacks at the fringe of your network.  Running a load test against a live site is a good way to get your IP address blocked.</dd>
+</dl>
+<p>&lt;/aside&gt;</p>
+<p>To install <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a> install the following npm package globally (<code class="docutils literal notranslate"><span class="pre">-g</span></code>)
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">loadtest</span>
+<span class="pre">`</span></code></p>
+<p>Next, you can run a command to put load on the server. The following command runs 200 requests per second sending 10 concurrent results to the server at a time.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">loadtest</span> <span class="pre">-c</span> <span class="pre">10</span> <span class="pre">--rps</span> <span class="pre">200</span> <span class="pre">http://internal-airwa-WebAp-1CT34V4AX36U0-774969334.us-east-1.elb.amazonaws.com</span>
+<span class="pre">`</span></code></p>
+<p>How many auto scaling servers does it take to accomodate a load of 200 requests per second?</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, LaunchCode.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

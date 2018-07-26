@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>An Introduction to Docker &#8212; LaunchCode Curriculum Docs  documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/launchcode.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><span><img src="../_static/lc-logo.svg"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day1/index.html">Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#slides">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day2/index.html">Week 1 - Day 2: Agile/Scrum ceremonies, Test-driven development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day3/index.html">Week 1 - Day 3: Integration testing, dependency injection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day4/index.html">Week 1 - Day 4: Postgres, Spring Data, JPA, Hibernate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day4/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week01/day5/index.html">Week 1 - Day 5: AJAX, Open Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week01/day5/index.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week02/project/index.html">Week 2 - Project Week - Zika Mission Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#project-hints">Project Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#setup-project">Setup Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week02/project/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day1/index.html">Week 3 - Day 1: RESTful web services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day2/index.html">Week 3 - Day 2 Swagger REST framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day3/index.html">Week 3 - Day 3: Intro to Elasticsearch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day3/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#studios">Studios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/day5/index.html">Week 3 - Day 5: ES2015, ESLint, OpenLayers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week03/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week04/project/index.html">Week 4 - Project Week - Zika Mission Control Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#what-s-new-in-the-code">What’s new in the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#database-setup">Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week04/project/index.html#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day1/index.html">Week 5 - Day 1: Intro to DevOps/AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day1/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day2/index.html">Week 5 - Day 2: More with AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day3/index.html">Week 5 - Day 3: 12 Factor Apps and Auto Scaling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day4/index.html">Week 5 - Day 4: Gradle, Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/day5/index.html">Week 5 - Day 5: Sonarqube</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week05/day5/index.html#walkthrough">Walkthrough</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week06/project/index.html">Week 6 - Project Week - Zika Mission Control Part 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week06/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week08/project/index.html">Week 8 - Project Week - Zika Mission Control Part 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week08/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../week09/day3/index.html">Week 9 - Day 3: Intro to Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/day4/index.html">Week 9 - Day 4: OAuth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day4/index.html#lesson">Lesson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/day5/index.html">Week 9 - Day 5: Certificates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../week09/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">An Introduction to Docker</a><ul>
+<li><a class="reference internal" href="#docker-commands">Docker Commands</a></li>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#a-simple-python-web-app">A simple Python web app</a><ul>
+<li><a class="reference internal" href="#id1">Setup</a></li>
+<li><a class="reference internal" href="#create-dockerfile">Create Dockerfile</a></li>
+<li><a class="reference internal" href="#a-more-complex-python-app">A more complex Python app</a></li>
+<li><a class="reference internal" href="#linking-containers">Linking Containers</a></li>
+<li><a class="reference internal" href="#create-counter-app-image">Create counter-app Image</a></li>
+<li><a class="reference internal" href="#docker-compose-file">Docker Compose File</a></li>
+<li><a class="reference internal" href="#docker-logs">Docker Logs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="an-introduction-to-docker">
+<span id="walkthrough-docker"></span><h1>An Introduction to Docker<a class="headerlink" href="#an-introduction-to-docker" title="Permalink to this headline">¶</a></h1>
+<p>Follow along with the instructor as you explore Docker and configure a basic Flask application.</p>
+<div class="section" id="docker-commands">
+<h2>Docker Commands<a class="headerlink" href="#docker-commands" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> see list of <strong>running</strong> containers</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code> see lisf of all containers, including ones that failed or were stopped</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">start</span> <span class="pre">&lt;container-name</span> <span class="pre">or</span> <span class="pre">id&gt;</span></code> starts the container</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">&lt;container-name</span> <span class="pre">or</span> <span class="pre">id&gt;</span></code> stops the container</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">restart</span> <span class="pre">&lt;container-name</span> <span class="pre">or</span> <span class="pre">id&gt;</span></code> restarts the container</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">rm</span> <span class="pre">&lt;container-name</span> <span class="pre">or</span> <span class="pre">id&gt;</span></code> removes the container</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">images</span></code> shows list of images that you have downloaded. containers are created from images</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">image</span> <span class="pre">rm</span> <span class="pre">&lt;image-name</span> <span class="pre">or</span> <span class="pre">id&gt;</span></code> removes an image</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">--tag</span> <span class="pre">super-happy-fun-os</span> <span class="pre">.</span></code> builds a new image that containers can be created from</li>
+<li><code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code> uses a docker-compose.yml file to configure and start containers</li>
+<li>For more info and more commands please see <a class="reference external" href="https://docs.docker.com/engine/reference/commandline/docker/">the Docker CLI docs</a></li>
+</ul>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>First, make sure that you have Docker installed.  You can check the Docker installation by running
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">--version</span>
+<span class="pre">`</span></code></p>
+<p>Also, make sure that you have Python and Redis installed. Mac OS X High Sierra should come with Python 2.7 installed right out of the box.  Double check by running:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">python</span> <span class="pre">--version</span>
+<span class="pre">`</span></code></p>
+<p>You will need to install <code class="docutils literal notranslate"><span class="pre">pip</span></code>.  <code class="docutils literal notranslate"><span class="pre">pip</span></code> is how Python installs libraries.
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">easy_install</span> <span class="pre">pip</span>
+<span class="pre">`</span></code></p>
+<p>Redis is a key value NoSQL database.  Install it with Homebrew.
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">brew</span> <span class="pre">install</span> <span class="pre">redis</span>
+<span class="pre">$</span> <span class="pre">brew</span> <span class="pre">services</span> <span class="pre">start</span> <span class="pre">redis</span>
+<span class="pre">`</span></code></p>
+<p>Double check that it is running on port <code class="docutils literal notranslate"><span class="pre">6379</span></code>.
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">telnet</span> <span class="pre">localhost</span> <span class="pre">6379</span>
+<span class="pre">`</span></code></p>
+</div>
+<div class="section" id="a-simple-python-web-app">
+<h2>A simple Python web app<a class="headerlink" href="#a-simple-python-web-app" title="Permalink to this headline">¶</a></h2>
+<p>In this walkthrough we are going to stand up a simple Python web app.  The app uses Python Flask as a web server.  Flask may be new to you, but see if you see any similarities to Spring Boot.</p>
+<div class="section" id="id1">
+<h3>Setup<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Clone this repo <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/docker-flask-walkthrough">docker-flask-walkthrough</a></p>
+<dl class="docutils">
+<dt>Install dependencies using pip by running:</dt>
+<dd><a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a></dd>
+</dl>
+<p>$ pip install –user -r requirements.txt
+<a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a></p>
+<p>Review file <code class="docutils literal notranslate"><span class="pre">simple_app.py</span></code>
+<a href="#id10"><span class="problematic" id="id11">``</span></a>`
+import time</p>
+<p>from flask import Flask</p>
+<p>app = Flask(__name__)</p>
+<p>&#64;app.route(‘/’)
+def hello():</p>
+<blockquote>
+<div>count = get_hit_count()
+return ‘Hello World!’</div></blockquote>
+<dl class="docutils">
+<dt>if __name__ == “__main__”:</dt>
+<dd>app.run(host=”0.0.0.0”, debug=True)</dd>
+</dl>
+<p><a href="#id12"><span class="problematic" id="id13">``</span></a><a href="#id14"><span class="problematic" id="id15">`</span></a></p>
+<p>Run the simple web app by running the below command
+<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">$</span> <span class="pre">python</span> <span class="pre">simple_app.py</span>
+<span class="pre">`</span></code></p>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000</span></code>, it should show our simple message.  Please <strong>stop</strong> this process as we will next get this running via a Docker container.</p>
+</div>
+<div class="section" id="create-dockerfile">
+<h3>Create Dockerfile<a class="headerlink" href="#create-dockerfile" title="Permalink to this headline">¶</a></h3>
+<p>We need to create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> for CentOS. Add the below content into <code class="docutils literal notranslate"><span class="pre">/docker-flask-walkthrough/Dockerfile</span></code>. Don’t just copy and paste it, review each line.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>
+<a href="#id16"><span class="problematic" id="id17">``</span></a>`
+# start with the centos 7 base image
+FROM centos:7</p>
+<p># ADD &lt;source&gt; &lt;destination&gt;, Adds the current directory to /code in the container
+ADD . /code</p>
+<p># install and upgrade software we need on the container
+RUN yum -y install epel-release
+RUN yum -y update
+RUN yum -y install python-pip
+RUN pip install –upgrade pip
+RUN pip install -r /code/requirements.txt</p>
+<p># Run the web app as the main process (there can only be one CMD per Dockerfile)
+CMD [“python”, “/code/simple_app.py”]
+<a href="#id18"><span class="problematic" id="id19">``</span></a><a href="#id20"><span class="problematic" id="id21">`</span></a></p>
+<p>We need to build a Docker image that will run our simple web app. Run the below commands in the root of <code class="docutils literal notranslate"><span class="pre">/docker-flask-walkthrough</span></code>
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">build</span> <span class="pre">--tag</span> <span class="pre">my-centos-simple</span> <span class="pre">.</span>
+<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">create</span> <span class="pre">-i</span> <span class="pre">-t</span> <span class="pre">-p</span> <span class="pre">5000:5000</span> <span class="pre">my-centos-simple</span>
+<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">start</span> <span class="pre">&lt;container_name/id&gt;</span>
+<span class="pre">`</span></code></p>
+<p>Check the browser to see if the “Hello World” message shows up. <code class="docutils literal notranslate"><span class="pre">http://localhost:5000</span></code></p>
+</div>
+<div class="section" id="a-more-complex-python-app">
+<h3>A more complex Python app<a class="headerlink" href="#a-more-complex-python-app" title="Permalink to this headline">¶</a></h3>
+<p>In the next section of the walkthrough, we are going to stand up a more complex Flask app.  In this app, we are going to integrate the key-value database Redis.  In order to integrate Redis into the Flask web app, we will need to leverage Docker’s network capabilities.</p>
+<p>Review <code class="docutils literal notranslate"><span class="pre">counter_app.py</span></code>:
+<a href="#id22"><span class="problematic" id="id23">``</span></a>`
+import time</p>
+<p>import redis
+from flask import Flask</p>
+<p>app = Flask(__name__)
+cache = redis.Redis(host=’redis’, port=6379)</p>
+<dl class="docutils">
+<dt>def get_hit_count():</dt>
+<dd><p class="first">retries = 5
+while True:</p>
+<blockquote class="last">
+<div><dl class="docutils">
+<dt>try:</dt>
+<dd>return cache.incr(‘hits’)</dd>
+<dt>except redis.exceptions.ConnectionError as exc:</dt>
+<dd><dl class="first docutils">
+<dt>if retries == 0:</dt>
+<dd>raise exc</dd>
+</dl>
+<p class="last">retries -= 1
+time.sleep(0.5)</p>
+</dd>
+</dl>
+</div></blockquote>
+</dd>
+</dl>
+<p>&#64;app.route(‘/counter’)
+def hello():</p>
+<blockquote>
+<div>count = get_hit_count()
+return ‘Hello World! I have been seen {} times.n’.format(count)</div></blockquote>
+<dl class="docutils">
+<dt>if __name__ == “__main__”:</dt>
+<dd>app.run(host=”0.0.0.0”, debug=True)</dd>
+</dl>
+<p><a href="#id24"><span class="problematic" id="id25">``</span></a><a href="#id26"><span class="problematic" id="id27">`</span></a></p>
+<p>The code uses a Redis database to keep track of the number of visits to a particular page. Let’s try and run to see the app in action:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">python</span> <span class="pre">counter_app.py</span>
+<span class="pre">`</span></code></p>
+<p>If you hit the web page <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/counter</span></code> you should see the following error message:
+<a href="#id28"><span class="problematic" id="id29">``</span></a>`
+Traceback (most recent call last`):</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1997, in __call__</dt>
+<dd>return self.wsgi_app(environ, start_response)</dd>
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1985, in wsgi_app</dt>
+<dd>response = self.handle_exception(e)</dd>
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1540, in handle_exception</dt>
+<dd>reraise(exc_type, exc_value, tb)</dd>
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1982, in wsgi_app</dt>
+<dd>response = self.full_dispatch_request()</dd>
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1614, in full_dispatch_request</dt>
+<dd>rv = self.handle_user_exception(e)</dd>
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1517, in handle_user_exception</dt>
+<dd>reraise(exc_type, exc_value, tb)</dd>
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1612, in full_dispatch_request</dt>
+<dd>rv = self.dispatch_request()</dd>
+<dt>File “/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py”, line 1598, in dispatch_request</dt>
+<dd>return self.view_functions[rule.endpoint](<a href="#id30"><span class="problematic" id="id31">**</span></a>req.view_args)</dd>
+<dt>File “/Users/mikemenne/Code/LaunchCode/Examples/GisDevops/docker-flask-walkthrough/app.py”, line 25, in hello</dt>
+<dd>count = get_hit_count()</dd>
+<dt>File “/Users/mikemenne/Code/LaunchCode/Examples/GisDevops/docker-flask-walkthrough/app.py”, line 18, in get_hit_count</dt>
+<dd>raise exc</dd>
+</dl>
+</div></blockquote>
+<p>ConnectionError: Error 61 connecting to redis:6379. Connection refused.
+<a href="#id32"><span class="problematic" id="id33">``</span></a><a href="#id34"><span class="problematic" id="id35">`</span></a></p>
+<p>It looks like the app is not able to connect to <code class="docutils literal notranslate"><span class="pre">redis:6379</span></code>.  Let’s do a <code class="docutils literal notranslate"><span class="pre">telnet</span></code> to check if the port is open and being listened to:
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">telnet</span> <span class="pre">redis</span> <span class="pre">6379</span>
+<span class="pre">redis:</span> <span class="pre">nodename</span> <span class="pre">nor</span> <span class="pre">servname</span> <span class="pre">provided,</span> <span class="pre">or</span> <span class="pre">not</span> <span class="pre">known</span>
+<span class="pre">`</span></code></p>
+<p><strong>OPE</strong>… The host <code class="docutils literal notranslate"><span class="pre">redis</span></code> doesn’t exist.  This can be fixed locally by changing <code class="docutils literal notranslate"><span class="pre">host='redis'</span></code> to <code class="docutils literal notranslate"><span class="pre">host='127.0.0.1'</span></code> in <code class="docutils literal notranslate"><span class="pre">counter_app.py</span></code>.</p>
+<p>Then run the app again <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">counter_app.py</span></code> and navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/counter</span></code> and see “Hello World!!! I have been seen 19 times.”</p>
+</div>
+<div class="section" id="linking-containers">
+<h3>Linking Containers<a class="headerlink" href="#linking-containers" title="Permalink to this headline">¶</a></h3>
+<p>We don’t want our users to have to install redis on their own. We need to create a container that runs redis. Then we can link the <code class="docutils literal notranslate"><span class="pre">redis</span></code> and <code class="docutils literal notranslate"><span class="pre">counter-app</span></code> containers using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>. Sounds fun right?</p>
+<p>How to Find the Redis Image</p>
+<p>Go to <a class="reference external" href="https://hub.docker.com/">Docker Hub</a> and search for <code class="docutils literal notranslate"><span class="pre">redis</span></code>. Click on the official <code class="docutils literal notranslate"><span class="pre">redis</span></code> result. Click the <strong>tags</strong> tab. We are going to reference the <code class="docutils literal notranslate"><span class="pre">redis:alpine</span></code> tag. That refers to a specfic version of redis, details are available on the docker site.</p>
+<p>Pull in a copy of the <code class="docutils literal notranslate"><span class="pre">redis:alpine</span></code> image to your computer by running <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">redis:alpine</span></code></p>
+</div>
+<div class="section" id="create-counter-app-image">
+<h3>Create counter-app Image<a class="headerlink" href="#create-counter-app-image" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Stop your local <code class="docutils literal notranslate"><span class="pre">redis</span></code> by running <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">stop</span> <span class="pre">redis</span></code></li>
+<li>Change the last line in the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> to run the <code class="docutils literal notranslate"><span class="pre">counter_app.py</span></code>. Change to this <code class="docutils literal notranslate"><span class="pre">CMD</span> <span class="pre">[&quot;python&quot;,</span> <span class="pre">&quot;/code/counter_app.py&quot;]</span></code></li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">host='redis'</span></code> in <code class="docutils literal notranslate"><span class="pre">counter_app.py</span></code></li>
+<li>Build the <code class="docutils literal notranslate"><span class="pre">centos-counter-app</span></code> image: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">build</span> <span class="pre">--tag</span> <span class="pre">centos-counter-app</span> <span class="pre">.</span></code></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>The above command takes a while to run. After it completes you will see the below message:</li>
+</ul>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">`noghighlight</span>
+<span class="pre">Successfully</span> <span class="pre">built</span> <span class="pre">8447bcee9c62</span>
+<span class="pre">Successfully</span> <span class="pre">tagged</span> <span class="pre">centos-counter-app:latest</span>
+<span class="pre">`</span></code>
+5. Verify it was built by viewing images <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">images</span></code></p>
+</div>
+<div class="section" id="docker-compose-file">
+<h3>Docker Compose File<a class="headerlink" href="#docker-compose-file" title="Permalink to this headline">¶</a></h3>
+<p>We are going to bring this all together by creating  a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, that will allow the Flask app to reference the Redis container.</p>
+<p><a href="#id36"><span class="problematic" id="id37">``</span></a>`
+version: ‘3’
+services:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>web:</dt>
+<dd><p class="first">image: “centos-counter-app”
+ports:</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>“5000:5000”</li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>redis:</dt>
+<dd>image: “redis:alpine”</dd>
+</dl>
+</div></blockquote>
+<p><a href="#id38"><span class="problematic" id="id39">``</span></a><a href="#id40"><span class="problematic" id="id41">`</span></a></p>
+<p>Use the following command2 to stand up and verify the two containers:
+1. Input the above YAML into <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>
+2. Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code>
+<a href="#id42"><span class="problematic" id="id43">``</span></a><a href="#id44"><span class="problematic" id="id45">`</span></a></p>
+<blockquote>
+<div>Creating docker-flask-walkthrough_redis_1 … done
+Creating docker-flask-walkthrough_web_1   … done</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">3.</span> <span class="pre">Verify</span> <span class="pre">that</span> <span class="pre">the</span> <span class="pre">containers</span> <span class="pre">are</span> <span class="pre">running</span> <span class="pre">``$</span> <span class="pre">docker</span> <span class="pre">ps</span></code>
+4. Naviage to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/counter</span></code></p>
+<p>Remember that your local Redis is no longer running. There is a web app conatiner running that has a connection to the redis container.</p>
+</div>
+<div class="section" id="docker-logs">
+<h3>Docker Logs<a class="headerlink" href="#docker-logs" title="Permalink to this headline">¶</a></h3>
+<p>Let’s look at these containers a bit more indepth.  <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">{container</span> <span class="pre">name}</span></code> will show all of the logs that have been written to STDOUT. (replace {container name} with the actual container name).</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">{container</span> <span class="pre">name/id}</span>
+<span class="pre">`</span></code></p>
+<p>Let’s also take the container details.  <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">{container</span> <span class="pre">name/id}</span></code> will show all of the details about the container including network information.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">{container</span> <span class="pre">name/id}</span>
+<span class="pre">`</span></code></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, LaunchCode.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
