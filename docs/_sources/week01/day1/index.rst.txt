@@ -47,6 +47,7 @@ Studio
 
 * `Studio Repository <https://gitlab.com/LaunchCodeTraining/junit-studio>`_
 * Turn in instructions
+
   * Fork then clone repository
   * Create a feature branch for your work
   * Follow readme instructions
