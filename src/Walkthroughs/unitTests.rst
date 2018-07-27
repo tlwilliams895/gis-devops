@@ -9,7 +9,7 @@ Setup
 -----
 
 * You need a Gitlab account
-* Fork this `repo https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter>`_
+* `Fork this repo <https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter>`_
 
 Follow Along as we...
 ---------------------

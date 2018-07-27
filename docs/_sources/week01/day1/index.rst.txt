@@ -1,8 +1,8 @@
 .. _day1:
 
-==============
-Week 1 - Day 1
-==============
+=====================
+Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing
+=====================
 
 Objectives for :ref:`week01-day1-objectives`
 
@@ -30,8 +30,8 @@ Slides
 Walkthrough
 -----------
 
-* Git and Gitlab :ref:`walkthrough-gitLab`
-* Unit tests :ref:`walkthrough-unitTest`
+* :ref:`walkthrough-gitLab`
+* :ref:`walkthrough-unitTest`
 
 Exercises
 ---------

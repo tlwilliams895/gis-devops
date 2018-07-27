@@ -1,5 +1,5 @@
 ==============
-Week 1 - Day 3
+Week 1 - Day 3: Integration testing, dependency injection
 ==============
 
 Learning objectives for this module :ref:`week01-day3-objectives`

@@ -1,5 +1,5 @@
 ==============
-Week 1 - Day 4
+Week 1 - Day 4: Postgres, Spring Data, JPA, Hibernate
 ==============
 
 Learning objectives for this module :ref:`week01-day4-objectives`

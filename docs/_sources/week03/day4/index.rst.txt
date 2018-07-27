@@ -1,5 +1,5 @@
 ==============
-Week 3 - Day 4
+Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring
 ==============
 
 Learning objectives for this module :ref:`week03-day4-objectives`
