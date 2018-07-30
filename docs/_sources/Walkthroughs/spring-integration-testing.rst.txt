@@ -7,7 +7,7 @@ Walkthrough: Spring Integration Tests
 Setup
 -----
 
-1. Fork this repo: ```Car Integration Tests`` <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter>`_
+1. Fork this repo: `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter/>`_
 2. Open project in Intellij by opening gradle.build file as a project
 
 What we will do
@@ -67,4 +67,4 @@ Example Usage
 
 Resources
 ---------
- * `Spring freamwork <https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#integration-testing>`_
+ * `Spring framework <https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#integration-testing>`_
