@@ -1,5 +1,5 @@
 ==============
-Week 1 - Day 2: Agile/Scrum ceremonies, Test-driven development
+Week 1 - Day 2: Security, Test-driven development
 ==============
 
 Learning objectives for this module :ref:`week01-day2-objectives`
@@ -7,8 +7,7 @@ Learning objectives for this module :ref:`week01-day2-objectives`
 Lesson Content
 --------------
 
-- `Agile slides <https://education.launchcode.org/gis-devops-slides/week1/agile.html#1>`_
-- `Agile Ceremonies article <https://education.launchcode.org/liftoff/articles/agile-ceremonies/>`_
+- `Security Slides <https://education.launchcode.org/gis-devops-slides/week1/security.html#1>`_
 - `TDD Slides <https://education.launchcode.org/gis-devops-slides/week1/day2.html#1>`_
 
 Walkthrough
@@ -19,7 +18,7 @@ Walkthrough
 Studio
 ------
 
-Complete the Test-Driven Development studio :ref:`tdd-studio`
+* Complete the Test-Driven Development studio :ref:`tdd-studio`
 
 Resources
 ---------
