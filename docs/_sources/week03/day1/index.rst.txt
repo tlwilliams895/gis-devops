@@ -7,17 +7,20 @@ Learning objectives for this module :ref:`week03-day1-objectives`
 Lesson Content
 ==============
 
-`REST lesson slides <https://education.launchcode.org/gis-devops-slides/week3/rest.html#1>`_
+* `SECURITY - Sensitive Data slides <https://education.launchcode.org/gis-devops-slides/week3/security-hashing-salting.html#1>`_
+* `REST lesson slides <https://education.launchcode.org/gis-devops-slides/week3/rest.html#1>`_
 
-Walkthrough
-===========
 
-LaunchCart REST walkthrough :ref:`walkthrough-launchcart-rest`
+Walkthroughs
+=============
+
+* Security - Hashing and Salting :ref:`walkthrough-hashing-salting`
+* LaunchCart REST :ref:`walkthrough-launchcart-rest`
 
 Studio
 ======
 
-Complete the LaunchCart REST studio :ref:`launchcart-rest-studio`
+* Complete the LaunchCart REST studio :ref:`launchcart-rest-studio`
 
 Resources
 =========
