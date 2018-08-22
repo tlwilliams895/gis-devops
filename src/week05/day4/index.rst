@@ -9,6 +9,8 @@ Lesson Content
 
 * `Gradle <https://education.launchcode.org/gis-devops-slides/week5/gradle.html>`_
 * `Continous Integration <https://education.launchcode.org/gis-devops-slides/week5/ci.html>`_
+* `SECURITY - Known Vulnerabilities <https://education.launchcode.org/gis-devops-slides/security/components-with-known-vulnerabilities.html#1>`_
+
 
 Walkthrough
 ===========

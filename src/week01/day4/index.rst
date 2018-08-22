@@ -9,7 +9,7 @@ Lesson Content
 
 * `PostgreSQL Slides <https://education.launchcode.org/gis-devops-slides/week1/postgresql.html#1>`_
 * `Spring Data, JPA, Hibernate <https://education.launchcode.org/gis-devops-slides/week1/spring-data-jpa-hibernate.html#1>`_
-* `Security - Injection Attack <https://education.launchcode.org/gis-devops-slides/week1/security-injection.html#1>`_
+* `Security - Injection Attack <https://education.launchcode.org/gis-devops-slides/security/injection.html#1>`_
 
 Walkthroughs
 ------------

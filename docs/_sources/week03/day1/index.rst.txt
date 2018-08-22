@@ -7,7 +7,7 @@ Learning objectives for this module :ref:`week03-day1-objectives`
 Lesson Content
 ==============
 
-* `SECURITY - Sensitive Data slides <https://education.launchcode.org/gis-devops-slides/week3/security-hashing-salting.html#1>`_
+* `SECURITY - Sensitive Data slides <https://education.launchcode.org/gis-devops-slides/security/hashing-salting.html#1>`_
 * `REST lesson slides <https://education.launchcode.org/gis-devops-slides/week3/rest.html#1>`_
 
 

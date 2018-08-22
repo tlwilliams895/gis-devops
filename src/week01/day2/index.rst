@@ -7,7 +7,7 @@ Learning objectives for this module :ref:`week01-day2-objectives`
 Lesson Content
 --------------
 
-- `Security Slides <https://education.launchcode.org/gis-devops-slides/week1/security.html#1>`_
+- `Security Slides <https://education.launchcode.org/gis-devops-slides/security/security.html#1>`_
 - `TDD Slides <https://education.launchcode.org/gis-devops-slides/week1/day2.html#1>`_
 
 Walkthrough

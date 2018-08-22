@@ -8,6 +8,8 @@ Lesson Content
 ==============
 
 * Intro to DevOps https://education.launchcode.org/gis-devops-slides/week5/intro-to-devops.html
+* `SECURITY - Misconfiguration <https://education.launchcode.org/gis-devops-slides/security/security-misconfiguration.html#1>`_
+
 
 Walkthrough
 ===========
