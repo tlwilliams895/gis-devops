@@ -26,6 +26,52 @@ Studio
 
 * Openlayers ES2015 Workshop :ref:`openlayers-es2015-studio`
 
+Retro
+=====
+
+Now that we have completed an instruction week, let's have a brief retro.
+
+Topics
+
+* REST
+* HTTP methods with REST
+* URL format for REST
+* HTTP status code usage in REST
+* Resource
+* Resource formats
+* Content negotiation
+* Idempotence in REST
+* Statelessness in REST
+* Swagger
+* YAML
+* Authentication
+* Authorization
+* HATEOAS
+* Four levels of the REST maturity model
+* ElasticSearch
+* NoSQL vs relational databases
+* ES indexes
+* ES clusters
+* ES nodes
+* ES fault-tolerance
+* Filter queries
+* Pagination
+* Fuzzy search
+* Parent/child relationships in ES
+* ES reindexing
+* ECMAScript specification
+* Transpiler
+* Linting
+* ESLint
+* ES2015 additions
+* Webpack
+
+You will be required to work with these next week in your project week. We don't expect you to know all of them now, but you should feel comfortable working with them next week.
+
+What went well this week? (Which topics did you enjoy, or feel comfortable with?)
+
+What do you need to focus on next week? (Which topics did you struggle with?)
+
 Resources
 =========
 * `ES2015 <https://babeljs.io/learn-es2015/>`_
