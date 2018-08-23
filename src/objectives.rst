@@ -28,6 +28,7 @@ Day 2
 -----
 
 - Importancne of Security Culture in your organization
+- Awareness of OWASP guidelines
 - Introduction to security vulnerabilities
 - Introduction to security tools
 - Use TDD to write Java methods
@@ -55,6 +56,7 @@ Day 4
 - Understand the benefits of using schemas
 - Use application.properties settings to configure a database connection in Spring Boot
 - Understand how Spring Data, JPA, and Hibernate relate to each other
+- Awareness of Injection attacks and how to prevent them
 
 .. _week01-day5-objectives:
 
@@ -101,6 +103,8 @@ Day 1
 - Explain idempotence in REST
 - Explain statelessness in REST
 - Use and design RESTful URLs, including nested resources and query/filtering parameters
+- Defintion of Sensitive Data Exposure vulnerability
+- Proper guidance on Hashing and Salting passwords
 
 .. _week03-day2-objectives:
 
@@ -175,6 +179,7 @@ Day 1
 - Manage Unix processes
 - Configure systemd daemon processes to run on startup
 - Use logs to troubleshoot applications
+- Awareness of Security Misconfigation vulnerability and how to prevent it
 
 .. _week05-day2-objectives:
 
@@ -224,6 +229,7 @@ Day 4
 - Use Git polling to trigger a Jenkins Project to run
 - Configure Jenkins to run and show results of tests
 - Create a Jenkins Project to deliver the build artifact (.jar file)
+- Awareness of Known Vulnerabilities security issue and how to prevent it
 
 .. _week05-day5-objectives:
 
