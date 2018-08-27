@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Studio: Load Balanced Cloud &#8212; LaunchCode Curriculum Docs  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#slides">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Security, Test-driven development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Integration testing, dependency injection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: Postgres, Spring Data, JPA, Hibernate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: AJAX, Open Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week - Zika Mission Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-hints">Project Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-project">Setup Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: RESTful web services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2 Swagger REST framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Intro to Elasticsearch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studios">Studios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: ES2015, ESLint, OpenLayers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week - Zika Mission Control Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#what-s-new-in-the-code">What’s new in the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#database-setup">Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day1/index.html">Week 5 - Day 1: Intro to DevOps/AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day2/index.html">Week 5 - Day 2: More with AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day3/index.html">Week 5 - Day 3: 12 Factor Apps and Auto Scaling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day4/index.html">Week 5 - Day 4: Gradle, Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day5/index.html">Week 5 - Day 5: Sonarqube</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week - Zika Mission Control Part 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week - Zika Mission Control Part 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day3/index.html">Week 9 - Day 3: Intro to Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day4/index.html">Week 9 - Day 4: OAuth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#lesson">Lesson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day5/index.html">Week 9 - Day 5: Certificates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Studio: Load Balanced Cloud</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prepare-the-code">Prepare the Code</a></li>
+<li><a class="reference internal" href="#provision-a-vpc">Provision a VPC</a></li>
+<li><a class="reference internal" href="#set-up-rds">Set Up RDS</a></li>
+<li><a class="reference internal" href="#make-a-custom-snapshot">Make a Custom Snapshot</a></li>
+<li><a class="reference internal" href="#configure-the-security-group">Configure the Security Group</a></li>
+<li><a class="reference internal" href="#take-a-snapshot">Take a Snapshot</a></li>
+<li><a class="reference internal" href="#set-up-load-balancing">Set Up Load Balancing</a></li>
+<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="studio-load-balanced-cloud">
+<span id="studio-aws-rds-vpc"></span><h1>Studio: Load Balanced Cloud<a class="headerlink" href="#studio-load-balanced-cloud" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>This studio will expand on what was learned in the AWS basics unit. Your goal is create a load-balanced cloud-based application using good AWS Dev Ops practices.</p>
+</div>
+<div class="section" id="prepare-the-code">
+<h2>Prepare the Code<a class="headerlink" href="#prepare-the-code" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Start with the corrected code you finished with in the last studio.</li>
+<li>Open the <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file. Find and change the following lines:</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">spring.datasource.url=jdbc:postgresql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}</span>
+<span class="pre">spring.datasource.username=${APP_DB_USER}</span>
+<span class="pre">spring.datasource.password=${APP_DB_PASS}</span>
+<span class="pre">spring.jpa.hibernate.ddl-auto</span> <span class="pre">=</span> <span class="pre">update</span>
+<span class="pre">`</span></code>
+* Go into IntelliJ’s Gradle tool window, and click on <strong>Tasks &gt; build &gt; bootRepackage</strong>.
+* Verify that the jar appears in <code class="docutils literal notranslate"><span class="pre">build/libs</span></code>.</p>
+</div>
+<div class="section" id="provision-a-vpc">
+<h2>Provision a VPC<a class="headerlink" href="#provision-a-vpc" title="Permalink to this headline">¶</a></h2>
+<p>In order to isolate your application instances from other instances in AWS, you need to create a Virtal Private Cloud (VPC). This gives you your own little private network in the cloud which can help when establishing access controls as well as keeping your instances private from the rest of AWS. Typically, you’ll have a few of these in an enterprise environment to keep strict boundaries between unrelated services.</p>
+<ul class="simple">
+<li>Click “Services” in the header and locate “VPC” under “Networking &amp; Content Delivery.”</li>
+</ul>
+<p>Screen shot with red arrow pointing to VPC in the Services list</p>
+<blockquote>
+<div><img alt="../../_images/1-vpc-in-header.png" src="../../_images/1-vpc-in-header.png" />
+</div></blockquote>
+<ul class="simple">
+<li>When you arrive on the VPC dashboard, click “Start VPC Wizard”</li>
+</ul>
+<p>Screen shot with red circle around the Start VPC Wizard button</p>
+<blockquote>
+<div><img alt="../../_images/2-start-vpc-wizard.png" src="../../_images/2-start-vpc-wizard.png" />
+</div></blockquote>
+<ul class="simple">
+<li>For this studio, select the simplest VPC configurationa single public subnet. This allows your instances to connect to the internet without an intermediary.
+* Some VPCs will have private subnets that require a Network Address Translator (NAT) instance to serve as a gateway for private services to connect to the internet and outside services.
+* Other configurations allow (or require) a VPN connection and can serve as an extension of a private data center.</li>
+</ul>
+<p>Screen shot with red circle around the VPC with a Single Public Subnet tab</p>
+<blockquote>
+<div><img alt="../../_images/3-vpc-public-subnet.png" src="../../_images/3-vpc-public-subnet.png" />
+</div></blockquote>
+<ul class="simple">
+<li>When creating the VPC, the defaults are sufficient for your needs. Provide a useful VPC name to help identify this VPC among the others.</li>
+<li>Note the IPv4 CIDR block. This defines the IP addresses that will be available in your VPC. (See <a class="reference external" href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocksA`x.x.x.x/16">Wikipedia’s CIDR table.)</a> block will include 65,536 addresses.</li>
+<li>The Public subnet’s IPv4 CIDR will be <code class="docutils literal notranslate"><span class="pre">x.x.x.x/24</span></code>, which includes 256 addresses. This is the subnet where you’ll put your public-facing instances (such as your Airwaze app).</li>
+</ul>
+<p>Screen shot of the “VPC with a Single Public Subnet” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/4-create-vpc.png" src="../../_images/4-create-vpc.png" />
+</div></blockquote>
+<ul class="simple">
+<li>After creating the VPC, make sure to note the <code class="docutils literal notranslate"><span class="pre">VPC</span> <span class="pre">ID</span></code> of your VPC as that name will appear everywhere you will select it later.</li>
+</ul>
+<blockquote>
+<div>Not every AWS web interface includes the descriptive name you gave before.</div></blockquote>
+<p>Screen shot of the VPC Dashboard with a red circle around the VPC ID</p>
+<blockquote>
+<div><img alt="../../_images/5-vpc-dashboard.png" src="../../_images/5-vpc-dashboard.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Next, you need to create two private subnets for your RDS instance. Select “Subnets” in the VPC Dashboard sidebar.</li>
+</ul>
+<p>Screen shot of the Virtual Private Cloud sidebar with a red arrow pointing to Subnets</p>
+<blockquote>
+<div><img alt="../../_images/5.1-subnets.png" src="../../_images/5.1-subnets.png" />
+</div></blockquote>
+<ul class="simple">
+<li>On the Subnet dashboard page, click the “Create Subnet” button.</li>
+</ul>
+<p>Screen shot with a red circle around the Create Subnet button</p>
+<blockquote>
+<div><img alt="../../_images/5.2-create-subnet.png" src="../../_images/5.2-create-subnet.png" />
+</div></blockquote>
+<ul class="simple">
+<li>To create the subnet, give it a descriptive name to help identify it later.</li>
+<li>Select your VPC from the VPC select list.</li>
+<li>Select one of the availablity zones for your region.</li>
+<li>Create a new CIDR block for this private subnet.</li>
+</ul>
+<blockquote>
+<div>Remember, if you use a <code class="docutils literal notranslate"><span class="pre">x.x.x.x/24</span></code> subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.</div></blockquote>
+<ul class="simple">
+<li>Do this twice, with a different availability zone and CIDR block for both subnets.</li>
+</ul>
+<p>Screen shot of the Create Subnet configuration window</p>
+<blockquote>
+<div><img alt="../../_images/5.3-creating-subnet.png" src="../../_images/5.3-creating-subnet.png" />
+</div></blockquote>
+</div>
+<div class="section" id="set-up-rds">
+<h2>Set Up RDS<a class="headerlink" href="#set-up-rds" title="Permalink to this headline">¶</a></h2>
+<p>Now that the VPC is set up and ready for use, you need to create your database server. In the last studio, you installed a PostgreSQL server on your instance. This time, you’ll use AWS’s Relational Database Service (RDS) to host and manage our DB instance.</p>
+<ul class="simple">
+<li>Click “Services” in the header and select “Relational Database Service.”</li>
+</ul>
+<p>Screen shot with red arrow pointing to Relational Database Serivce in the Services list</p>
+<blockquote>
+<div><img alt="../../_images/6-rds-in-header.png" src="../../_images/6-rds-in-header.png" />
+</div></blockquote>
+<p>Before creating any instances, you need to create a DB Subnet Group so AWS knows where to place your instance.</p>
+<ul class="simple">
+<li>Select “Subnet groups” in the RDS Dashboard sidebar</li>
+<li>Click the “Create DB Subnet Group” button</li>
+</ul>
+<p>Screen shot of the RDS sidebar with a red arrow pointing to “Subnet groups”</p>
+<blockquote>
+<div><img alt="../../_images/6.1-db-subnet-group.png" src="../../_images/6.1-db-subnet-group.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Enter a useful subnet group name and description</li>
+<li>Select your VPC</li>
+</ul>
+<p>Screen shot of the “Subnet group details” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/6.3-subnet-group-details.png" src="../../_images/6.3-subnet-group-details.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Select an availability zone you used above and select a subnet you created in that zone</li>
+<li>Click “Add subnet”</li>
+<li>Do this for both subnets you created above</li>
+<li>Click the “Create” button</li>
+</ul>
+<p>Screen shot of the “Add subnets” configuration window</p>
+<blockquote>
+<div><img alt="_static/images/lb-cloud/6.4-select-sebnets.png" src="_static/images/lb-cloud/6.4-select-sebnets.png" />
+</div></blockquote>
+<p>Now that you’ve created the database subnets, you need to create a database instance for your application to use.</p>
+<ul class="simple">
+<li>Return to the RDS Dashboard</li>
+<li>Scroll down and click the “Launch a DB instance” button</li>
+<li>For Airwaze, you will use a PostgreSQL database</li>
+</ul>
+<blockquote>
+<div>Select PostgreSQL
+Click “Next”</div></blockquote>
+<p>Screen shot of the “Engine options” window</p>
+<blockquote>
+<div><img alt="_static/images/lb-cloud/9-select-postgres.png" src="_static/images/lb-cloud/9-select-postgres.png" />
+</div></blockquote>
+<ul class="simple">
+<li>AWS will next ask you how you plan to use the database. Production-ready databases will have multiple availability zone redundancy and higher-speed storage options, but are also more expensive. Select “Dev/Test” to access the lower-powered options then click “Next.”</li>
+</ul>
+<p>Screen shot of the “Use case” window</p>
+<blockquote>
+<div><img alt="../../_images/9-select-dev-test.png" src="../../_images/9-select-dev-test.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Make sure the DB engine version matches the version of PostgreSQL you need to use.</li>
+<li>Select <code class="docutils literal notranslate"><span class="pre">db.t2.micro</span></code> instance class. This is the smallest, slowest, and least-expensive instance option for RDS.</li>
+<li>For this studio, select “No” for a Multi-AZ deployment. In a production environment, this is an important option to ensure the database is always accessible. For this studio, you do not need this.</li>
+<li>The studio database is very small. Use the smallest storage option.</li>
+</ul>
+<p>Screen shot of the instance class configuration window for RDS</p>
+<blockquote>
+<div><img alt="_static/images/ib-cloud/10-instance-class.png" src="_static/images/ib-cloud/10-instance-class.png" />
+</div></blockquote>
+<p>Next, you’ll set up the instance’s identifier and master user account. Do not set up the application user as the master user. That would introduce a security risk for your database and data if your application were to be compromised. You will set up a separate DB user account later.</p>
+<ul class="simple">
+<li>Give your DB instance a useful name in the <code class="docutils literal notranslate"><span class="pre">DB</span> <span class="pre">instance</span> <span class="pre">identifier</span></code> field.</li>
+<li>Make a master username that is difficult to guess, but easy for you to remember.</li>
+<li>Use a secure password for your master user.</li>
+<li>Click “Next.”</li>
+</ul>
+<p>Screen shot of the RDS instance “Settings” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/11-db-instance-settings.png" src="../../_images/11-db-instance-settings.png" />
+</div></blockquote>
+<p>Here you’ll indicate where RDS should place your instance and how to secure it.</p>
+<ul class="simple">
+<li>Select your VPC.</li>
+<li>Select the DB Subnet Group you made above.</li>
+<li>Do not make your DB publicly accessible. For security, you should limit the services that can be accessed from outside your VPC.</li>
+</ul>
+<p>Screen shot of the RDS instance “Network &amp; Security” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/12-db-instance-vpc.png" src="../../_images/12-db-instance-vpc.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Set up your desired database name and port.</li>
+<li>Keep the default DB parameter group.</li>
+<li>Click “Launch DB instance”.</li>
+</ul>
+<p>Screen shot of the RDS instance “Database options” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/13-db-options.png" src="../../_images/13-db-options.png" />
+</div></blockquote>
+<p>RDS will start creating a DB instance, security groups, and your master user and database. Return to the RDS Instances dashboard and select your instance. Scroll down to the “Connect” section. Your Endpoint will appear here when the instance is ready. Note this endpoint address.</p>
+<p>You’ll also see the security group inbound and outbound rules set up. If the inbound rule doesn’t match your VPC’s subnet CIDR, change that by clicking the gear icon to the right of <code class="docutils literal notranslate"><span class="pre">Security</span> <span class="pre">group</span> <span class="pre">rules</span></code>.</p>
+<p>Screen shot of the RDS Dashboard “Connect” sub-window with a red circle around the instance endpoint</p>
+<blockquote>
+<div><img alt="../../_images/15-db-instance-dns.png" src="../../_images/15-db-instance-dns.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Select the “Inbound” rules tab</li>
+<li>Click “Edit”</li>
+<li>Find the PostgreSQL port line</li>
+</ul>
+<blockquote>
+<div>Change its Source to your VPC subnet CIDR
+This will allow traffic from all instances in your VPC, but not from the outside world.</div></blockquote>
+<ul class="simple">
+<li>Click “Save”</li>
+</ul>
+<p>Screen shot of the PostgreSQL inbound rules with a red circle around the VPC’s subnet CIDR</p>
+<blockquote>
+<div><img alt="../../_images/allow-db-internal-only.png" src="../../_images/allow-db-internal-only.png" />
+</div></blockquote>
+</div>
+<div class="section" id="make-a-custom-snapshot">
+<h2>Make a Custom Snapshot<a class="headerlink" href="#make-a-custom-snapshot" title="Permalink to this headline">¶</a></h2>
+<p>Now that you have created your database, you need to create an instance to connect to it as our template. If you need review on creating an EC2 instance, please see the previous lesson and studio.</p>
+<p>You’ll follow the same steps as before, with a few changes that are described here.</p>
+<ul class="simple">
+<li>On the “Configure Instance Details” screen while creating your instance:</li>
+</ul>
+<blockquote>
+<div>Select your VPC in the “Network” selection.
+Select your Public subnet.
+Enable auto-assigning a Public IP.</div></blockquote>
+<p>Screen shot of the “Configure INstnace Details” screen</p>
+<blockquote>
+<div><img alt="_static/images/lb-cloud/16-select-your-vpc-and-public-seubnet.png" src="_static/images/lb-cloud/16-select-your-vpc-and-public-seubnet.png" />
+</div></blockquote>
+<ul class="simple">
+<li>At the bottom of the “Configure Instance Details” screen is a collapsed area called “Advanced Details.” Click the text “Advanced Details” to expand this.</li>
+<li>You will see a “User data” section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:</li>
+</ul>
+<blockquote>
+<div>Installs Java
+Creates the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> system user
+Creates the application and configuration directories
+Writes the airwaze configuration file, which includes the environment variables for the application
+Writes the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> service file
+Prepares the service for execution</div></blockquote>
+<ul class="simple">
+<li>This script is run as <code class="docutils literal notranslate"><span class="pre">root</span></code>, so <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is not needed for these commands. That also means you must be careful when crafting a script to run here.</li>
+<li>Copy this script in the “User data” section and adjust the <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> to your RDS instance’s endpoint.</li>
+</ul>
+<p>Screen shot of the “Advanced Details” section of the “Configure Instance Details” screen</p>
+<blockquote>
+<div><img alt="../../_images/add-user-data-script-to-instance.png" src="../../_images/add-user-data-script-to-instance.png" />
+</div></blockquote>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>nohighlight
+#!/bin/bash
+# Install Java
+apt-get update -y &amp;&amp; apt-get install -y openjdk-8-jdk</p>
+<p># Create airwaze user
+useradd -M airwaze
+mkdir /opt/airwaze
+mkdir /etc/opt/airwaze
+chown -R airwaze:airwaze /opt/airwaze /etc/opt/airwaze
+chmod 777 /opt/airwaze</p>
+<p># Write Airwaze config file
+cat &lt;&lt; EOF &gt; /etc/opt/airwaze/airwaze.config
+APP_DB_HOST=rds-instance.us-east-2.rds.amazonaws.com
+APP_DB_PORT=5432
+APP_DB_NAME=airwaze_db
+APP_DB_USER=airwaze_user
+APP_DB_PASS=verysecurepassword
+EOF</p>
+<p># Write systemd unit file
+cat &lt;&lt; EOF &gt; /etc/systemd/system/airwaze.service
+[Unit]
+Description=Airwaze Studio
+After=syslog.target</p>
+<p>[Service]
+User=airwaze
+EnvironmentFile=/etc/opt/airwaze/airwaze.config
+ExecStart=/usr/bin/java -jar /opt/airwaze/app.jar SuccessExitStatus=143
+Restart=always</p>
+<p>[Install]
+WantedBy=multi-user.target
+EOF</p>
+<p>systemctl enable airwaze.service
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">*</span> <span class="pre">Continue</span> <span class="pre">through</span> <span class="pre">the</span> <span class="pre">steps</span> <span class="pre">to</span> <span class="pre">create</span> <span class="pre">the</span> <span class="pre">instance</span> <span class="pre">that</span> <span class="pre">you</span> <span class="pre">learned</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">lesson</span> <span class="pre">and</span> <span class="pre">studio.</span>
+<span class="pre">*</span> <span class="pre">Once</span> <span class="pre">the</span> <span class="pre">instance</span> <span class="pre">is</span> <span class="pre">online,</span> <span class="pre">copy</span> <span class="pre">the</span> <span class="pre">Airwaze</span> <span class="pre">application</span> <span class="pre">jar</span> <span class="pre">and</span> <span class="pre">database</span> <span class="pre">initialization</span> <span class="pre">CSV</span> <span class="pre">files</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">server.</span>
+<span class="pre">*</span> <span class="pre">SSH</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">instance</span> <span class="pre">and</span> <span class="pre">set</span> <span class="pre">the</span> <span class="pre">appropriate</span> <span class="pre">permissions</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">jar.</span>
+<span class="pre">```nohighlight</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/aws-ssh-key.pem</span> <span class="pre">airwaze-application.jar</span> <span class="pre">ubuntu&#64;ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/aws-ssh-key.pem</span> <span class="pre">routes.csv</span> <span class="pre">ubuntu&#64;ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv</span>
+<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/aws-ssh-key.pem</span> <span class="pre">Airports.csv</span> <span class="pre">ubuntu&#64;ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/Airports.csv</span>
+<span class="pre">$</span> <span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">~/.ssh/aws-ssh-key.pem</span> <span class="pre">ubuntu&#64;ec2-instance.us-east-2.compute.amazonaws.com</span>
+<span class="pre">$</span> <span class="pre">chmod</span> <span class="pre">555</span> <span class="pre">/opt/airwaze/app.jar</span>
+<span class="pre">`</span></code></p>
+<p>Now that you have your instance set up and ready, you need to log into the server to prepare your database and start the service. During development of the Airwaze studio application, it was set to reload the database on every start of the service. This is not something you want happening in your cloud environment. Instead, you’ll create everything your application needs in your instance by hand.</p>
+<ul class="simple">
+<li>SSH to your instance, then install the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package.</li>
+<li>Connect to your RDS instance using the master account you created before.</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">postgresql</span>
+<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">rds-instance.us-east-2.rds.amazonaws.com</span> <span class="pre">-p</span> <span class="pre">5432</span> <span class="pre">-U</span> <span class="pre">rds_master_user</span> <span class="pre">airwaze_db</span>
+<span class="pre">`</span></code></p>
+<ul class="simple">
+<li>In the <code class="docutils literal notranslate"><span class="pre">psql</span></code> console, create:</li>
+</ul>
+<blockquote>
+<div>The application’s DB user
+The postgis extensions
+The data tables</div></blockquote>
+<ul class="simple">
+<li>Then set your tables to be owned by your application’s DB user.</li>
+</ul>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a>nohighlight
+CREATE USER airwaze_user WITH PASSWORD ‘verysecurepassword’;
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE airport
+(</p>
+<blockquote>
+<div>id serial primary key,
+airport_id integer,
+airport_lat_long geometry,
+altitude integer,
+city character varying(255),
+country character varying(255),
+faa_code character varying(255),
+icao character varying(255),
+name character varying(255),
+time_zone character varying(255)</div></blockquote>
+<p>);
+CREATE TABLE route
+(</p>
+<blockquote>
+<div>id serial primary key,
+airline character varying(255),
+airline_id integer,
+dst character varying(255),
+dst_id integer,
+route_geom geometry,
+src character varying(255),
+src_id integer</div></blockquote>
+<p>);
+ALTER TABLE airport OWNER to airwaze_user;
+ALTER TABLE route OWNER to airwaze_user;
+<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
+<p>Now that the tables are created, you need to fill them with data.</p>
+<ul class="simple">
+<li>Run the following commands to copy from your CSV files into the database. (You’ll find the password along with the user you just created above).</li>
+</ul>
+<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a>nohighlight
+$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/routes.csv</p>
+<p>$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/Airports.csv
+<a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a></p>
+<p>At this point, everything is ready to go on this instance. You no longer need (or want) to connect to the database directly so uninstall the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package. Then you may start the Airwaze service.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">remove</span> <span class="pre">postgresql</span>
+<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">start</span> <span class="pre">airwaze.service</span>
+<span class="pre">`</span></code></p>
+<p>You can run <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> as you learned in the previous studio to check the logs for your running service.</p>
+</div>
+<div class="section" id="configure-the-security-group">
+<h2>Configure the Security Group<a class="headerlink" href="#configure-the-security-group" title="Permalink to this headline">¶</a></h2>
+<p>Now that your instance and service are running, return to the EC2 Security Group dashboard. Here you need to enable web access and remove SSH access. This will make your application usable to the world and decrease the risk of unintended access.</p>
+<ul class="simple">
+<li>Find and select your instance’s security group</li>
+<li>Select the “Inbound” traffic tab</li>
+<li>Click “Edit”</li>
+<li>Change to “Custom TCP Rule”</li>
+<li>Enter port 8080</li>
+<li>Select “My IP” for Source</li>
+</ul>
+<blockquote>
+<div>This is where you would typically make the port accessible to the world, but only you need to access the studio instance for now.</div></blockquote>
+<ul class="simple">
+<li>Click “Save.”</li>
+</ul>
+<p>Screen shot of the inbound rules for the instance security group</p>
+<blockquote>
+<div><img alt="../../_images/swap-web-for-ssh.png" src="../../_images/swap-web-for-ssh.png" />
+</div></blockquote>
+<p>You may now try to access your application at <a class="reference external" href="http://ec2-instance.us-east-2.compute.amazonaws.com:8080">http://ec2-instance.us-east-2.compute.amazonaws.com:8080</a> in your browser.</p>
+</div>
+<div class="section" id="take-a-snapshot">
+<h2>Take a Snapshot<a class="headerlink" href="#take-a-snapshot" title="Permalink to this headline">¶</a></h2>
+<p>The benefit of the cloud is more than just having an application running on a single server in the cloud. You can make your application more resilient by having it run on multiple servers with a load balancer transferring traffic to the least-used server.</p>
+<p>To facilitate spinning up more instances, you can take an image of your current instance to start others.</p>
+<ul class="simple">
+<li>Return to the EC2 Instances Dashboard</li>
+<li>Select your instance</li>
+<li>Click “Actions”, then “Image”, then “Create Image”</li>
+</ul>
+<p>Screen shot of the EC2 Instances dashboard with the Actions menu open</p>
+<blockquote>
+<div><img alt="../../_images/create-image-menu.png" src="../../_images/create-image-menu.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Give your image a useful name so you can find it again later.</li>
+<li>Give your image a helpful description.</li>
+<li>Ensure “No reboot” is <strong>not</strong> selected.</li>
+</ul>
+<blockquote>
+<div>Taking an image of a running instance is risky as it may catch it in the middle of writing to a file. Just leave this as “No reboot” unless there’s a valid reason to not.</div></blockquote>
+<ul class="simple">
+<li>Click “Create Image.”</li>
+</ul>
+<p>Screen shot of the “Create Image” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/create-image-popup.png" src="../../_images/create-image-popup.png" />
+</div></blockquote>
+<p>AWS will then shut down your instance, take an image of it, then restart it. Click the link in the confirmation dialog to montior the process of the image creation.</p>
+<p>Screen shot of the Create Image success dialog with a red line below the pending image ami</p>
+<blockquote>
+<div><img alt="../../_images/create-image-pending.png" src="../../_images/create-image-pending.png" />
+</div></blockquote>
+<p>Once the image creation is complete, you can launch new instances with this image.</p>
+<ul class="simple">
+<li>Select your Amazon Machine Image (AMI)</li>
+<li>Click “Launch”</li>
+</ul>
+<p>Screen shot of the AMIs dashboard with a red circle around “Launch”</p>
+<blockquote>
+<div><img alt="../../_images/launch-instance-from-image.png" src="../../_images/launch-instance-from-image.png" />
+</div></blockquote>
+<p>This will start the familiar instance creation process, but with your image rather than the “standard” Ubuntu image you’ve been using. As before, on “Configure Instance Details”, select your VPC, public subnet, and assign a Public IP. This time, <strong>do not</strong> provide a User data script since this image already has the full configuration run.</p>
+<p>After creating the instance, return to the EC2 Instances dashboard. Select your new instance and you’ll see it was created from the image you created rather than the Ubuntu AMI used to create the previous one.</p>
+<p>Screen shot of the EC2 Instances dashboard with a red line under the AMI ID of the new instance</p>
+<blockquote>
+<div><img alt="../../_images/new-ami-id.png" src="../../_images/new-ami-id.png" />
+</div></blockquote>
+</div>
+<div class="section" id="set-up-load-balancing">
+<h2>Set Up Load Balancing<a class="headerlink" href="#set-up-load-balancing" title="Permalink to this headline">¶</a></h2>
+<p>In order to connect a load balancer (LB), you need to have two public subnets in different availability zones. Return to the VPC Subnet dashboard.</p>
+<ul class="simple">
+<li>Click “Create Subnet”</li>
+<li>Provide a useful name for the new subnet</li>
+<li>Select your VPC</li>
+<li>Pick a different availability zone than your other public subnet</li>
+<li>Pick a new CIDR block</li>
+<li>Click “Yes, Create”</li>
+</ul>
+<p>Screen shot of the “Create Subnet” window</p>
+<blockquote>
+<div><img alt="_static/images/lb-cloud/lb/lb/create-public-subnet.png" src="_static/images/lb-cloud/lb/lb/create-public-subnet.png" />
+</div></blockquote>
+<p>This new subnet is originally created as a private subnet, so you’ll have to change its route table to allow connections with the internet.</p>
+<ul class="simple">
+<li>Click the “Route Table” tab</li>
+<li>Click “Edit”</li>
+</ul>
+<p>Screen shot of the “Route Table” tab on the new subnet</p>
+<blockquote>
+<div><img alt="../../_images/public-subnet-route-table.png" src="../../_images/public-subnet-route-table.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Change the Route Table selection to one with a target that starts with <code class="docutils literal notranslate"><span class="pre">igw</span></code>. This is your VPC’s internet gateway.</li>
+</ul>
+<blockquote>
+<div>An Internet Gateway allows communication between instances in your VPC and the internet.</div></blockquote>
+<ul class="simple">
+<li>Click “Save”</li>
+</ul>
+<p>Screen shot showing a route table that includes an internet gateway</p>
+<blockquote>
+<div><img alt="../../_images/change-to-public-route-table.png" src="../../_images/change-to-public-route-table.png" />
+</div></blockquote>
+<p>With the new public subnet in place, you can now create your LB.</p>
+<ul class="simple">
+<li>Return to the EC2 Dashboard</li>
+<li>Select “Load Balancers” in the sidebar</li>
+<li>Click “Create Load Balancer”</li>
+</ul>
+<p>Screen shot of the EC2 Dashboard with a red arrow pointing to Load Balancers</p>
+<blockquote>
+<div><img alt="../../_images/load-balancers-sidebar.png" src="../../_images/load-balancers-sidebar.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Find the Application Load Balancer</li>
+<li>Click “Create”</li>
+</ul>
+<p>Screen shot of the “Select load balancer type” selection screen</p>
+<blockquote>
+<div><img alt="../../_images/application-load-balancer.png" src="../../_images/application-load-balancer.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Provide a useful name for your LB</li>
+<li>Select an internet-facing LB</li>
+<li>Set your LB protocol to <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> and port to <code class="docutils literal notranslate"><span class="pre">80</span></code></li>
+</ul>
+<p>Screen shot of the “Configure Load Balancer” window</p>
+<blockquote>
+<div><img alt="../../_images/basic-lb-configuration.png" src="../../_images/basic-lb-configuration.png" />
+</div></blockquote>
+<ul class="simple">
+<li>Under “Availability Zones” select your VPC</li>
+<li>Select the two public subnets you created</li>
+<li>Click “Next: Configure Security Settings”</li>
+</ul>
+<p>Screen shot of the Load Balancer “Availability Zones” window</p>
+<blockquote>
+<div><img alt="../../_images/lb-availability-zones.png" src="../../_images/lb-availability-zones.png" />
+</div></blockquote>
+<p>The “Configure Security Settings” screen will likely encourage you to improve the LB’s security. This is because you opted to only allow HTTP connections. This is sufficient for the studio, but you should enable HTTPS for every service that can support it in an enterprise environment. Click “Next: Configure Security Groups”.</p>
+<p>You will be presented with a screen similar to one you used when creating your instances. This will allow you to configure the firewall to manage access to your LB.</p>
+<ul class="simple">
+<li>Create a new security group</li>
+<li>Give the group a useful name and description</li>
+<li>Select type <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> and verify port 80 is selected</li>
+<li>Make a custom source for 0.0.0.0/0, ::/0</li>
+</ul>
+<blockquote>
+<div>This allows for all IPv4 and IPv6 sources to connect through this LB</div></blockquote>
+<ul class="simple">
+<li>Click “Next: Configure Routing”</li>
+</ul>
+<p>Screen shot of the Load Balancer “Configure Security Groups” window</p>
+<blockquote>
+<div><img alt="../../_images/new-lb-security-group.png" src="../../_images/new-lb-security-group.png" />
+</div></blockquote>
+<p>The next screen allows you to define a target group for the routing behavior of the LB. This will determine what protocol and internal port it uses to communicate with your application servers.</p>
+<ul class="simple">
+<li>Select “New target group”</li>
+<li>Give your new target group a useful name</li>
+<li>Select port <code class="docutils literal notranslate"><span class="pre">8080</span></code> since that is the port Airwaze set up for listening</li>
+<li>Select <code class="docutils literal notranslate"><span class="pre">instance</span></code> target type</li>
+<li>Click “Next: Register Targets”</li>
+</ul>
+<p>Screen shot of the Load Balancer “Target group” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/configure-lb-routing.png" src="../../_images/configure-lb-routing.png" />
+</div></blockquote>
+<p>Now, you need to register your application instances to your LB so it can route traffic correctly.</p>
+<ul class="simple">
+<li>Select your instances in the “Instances” section</li>
+<li>Verify they are set to register for port 8080</li>
+<li>Click “Add to registered” to add them to the LB</li>
+<li>Click “Save”</li>
+</ul>
+<p>Screen shot of the Load Balancer “Target Instances” configuration window</p>
+<blockquote>
+<div><img alt="../../_images/register-instances-to-lb.png" src="../../_images/register-instances-to-lb.png" />
+</div></blockquote>
+<p>At this point, AWS will begin configuring the LB. Find and note the DNS name they have assigned your LB.</p>
+<p>Screen shot of the Load Balancer Dashboard with a red circle around the new LB’s DNS name</p>
+<blockquote>
+<div><img alt="_static/images/week05/lb-cloud/lb/load-balancer-instance.png" src="_static/images/week05/lb-cloud/lb/load-balancer-instance.png" />
+</div></blockquote>
+<p>While the LB is starting up, you can configure your application instances to stop listening to the public internet and only to internal traffic.</p>
+<ul class="simple">
+<li>Return to the EC2 Security Groups Dashboard</li>
+<li>Find your instance security group</li>
+<li>Remove the SSH rule</li>
+<li>Change the Source for the 8080 rule to listen only to your internal subnet</li>
+<li>Click “Save”</li>
+</ul>
+<p>Screen shot of the inbound rules for the application instances</p>
+<blockquote>
+<div><img alt="../../_images/make-instance-sg-internal-only.png" src="../../_images/make-instance-sg-internal-only.png" />
+</div></blockquote>
+<p>Now it’s time to see the result of your hard work:</p>
+<p>Open <a class="reference external" href="http://demo-lb-instance.us-east-2.elb.amazonaws.com">http://demo-lb-instance.us-east-2.elb.amazonaws.com</a> in the browser and see the application running.</p>
+<p>The real power in a load balancer is it can route traffic away from unhealthy instances. Time to test that out.</p>
+<ul class="simple">
+<li>Return to the EC2 Instances Dashboard</li>
+<li>Locate your application instances</li>
+<li>Select one instance</li>
+</ul>
+<blockquote>
+<div>Click “Actions” -&gt; “Instance State” -&gt; “Stop”
+Wait for the instance state to switch to Stop
+Refresh the browser and see the application still works</div></blockquote>
+<ul class="simple">
+<li>Stop your other instance</li>
+</ul>
+<blockquote>
+<div>Refresh the browser and see the application no longer works</div></blockquote>
+<ul class="simple">
+<li>Click “Actions” -&gt; “Instance State” -&gt; “Start” to restart one of your instances</li>
+</ul>
+<blockquote>
+<div>Refresh the browser and see the application return to a working state
+This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic</div></blockquote>
+<p>Congratulations! You have successfully created a load-balanced application in the cloud.</p>
+</div>
+<div class="section" id="bonus-mission">
+<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
+<p>There’s no bonus mission today.  Use your time to work on your project or brush up on topics that you want to learn more about.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, LaunchCode.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

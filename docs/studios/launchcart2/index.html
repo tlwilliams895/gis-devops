@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Studio: LaunchCart Part 2 &#8212; LaunchCode Curriculum Docs  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#slides">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Security, Test-driven development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Integration testing, dependency injection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: Postgres, Spring Data, JPA, Hibernate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: AJAX, Open Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week - Zika Mission Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-hints">Project Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-project">Setup Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: RESTful web services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2 Swagger REST framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Intro to Elasticsearch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studios">Studios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: ES2015, ESLint, OpenLayers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week - Zika Mission Control Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#what-s-new-in-the-code">What’s new in the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#database-setup">Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day1/index.html">Week 5 - Day 1: Intro to DevOps/AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day2/index.html">Week 5 - Day 2: More with AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day3/index.html">Week 5 - Day 3: 12 Factor Apps and Auto Scaling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day4/index.html">Week 5 - Day 4: Gradle, Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day5/index.html">Week 5 - Day 5: Sonarqube</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week - Zika Mission Control Part 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week - Zika Mission Control Part 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#setup-locally">Setup Locally</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#setup-in-the-cloud">Setup in the Cloud</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day3/index.html">Week 9 - Day 3: Intro to Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day4/index.html">Week 9 - Day 4: OAuth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#lesson">Lesson</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day5/index.html">Week 9 - Day 5: Certificates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Studio: LaunchCart Part 2</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#your-tasks">Your Tasks</a><ul>
+<li><a class="reference internal" href="#refactor-to-use-hiberante-keep-existing-functionality">Refactor to Use Hiberante (Keep Existing Functionality)</a></li>
+<li><a class="reference internal" href="#add-newitem-to-item-model">Add newItem to Item Model</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
+<li><a class="reference internal" href="#turning-in-your-work">Turning In Your Work</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="studio-launchcart-part-2">
+<span id="launchcart-part2"></span><h1>Studio: LaunchCart Part 2<a class="headerlink" href="#studio-launchcart-part-2" title="Permalink to this headline">¶</a></h1>
+<p>In this studio, we revisit the LaunchCart application <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">https://gitlab.com/LaunchCodeTraining/launchcart</a> that we worked on in yesterday’s studio <a class="reference internal" href="../launchcart1/index.html#launchcart-part-1-studio"><span class="std std-ref">Studio: LaunchCart Part 1</span></a>. We’ll refactor the app to use Postgres, and add a couple of features.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>In the terminal go to project folder for <strong>Car Integration Tests</strong></li>
+<li>Checkout the branch that contains the solution for the Day 3 walkthrough. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code> or <code class="docutils literal notranslate"><span class="pre">$git</span> <span class="pre">checkout</span> <span class="pre">solution</span></code></li>
+<li>Create a new branch for today’s work: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">get</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">day4-add-hibernate</span></code></li>
+</ol>
+<p>&lt;aside class=”aside-pro-tip” markdown=”1”&gt;
+If you have any uncommitted changes, stash them using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code>. You can retrieve them later via <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span> <span class="pre">pop</span></code>.
+&lt;/aside&gt;</p>
+</div>
+<div class="section" id="your-tasks">
+<h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
+<p>Each section outlines one task or group of tasks you need to complete.</p>
+<div class="section" id="refactor-to-use-hiberante-keep-existing-functionality">
+<h3>Refactor to Use Hiberante (Keep Existing Functionality)<a class="headerlink" href="#refactor-to-use-hiberante-keep-existing-functionality" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Set Up A Postgres DB</li>
+<li>Configure the App To Use the Database (controllers, entities, repositories, tests)</li>
+<li>Get the tests to pass</li>
+<li>Commit your changes</li>
+</ol>
+</div>
+<div class="section" id="add-newitem-to-item-model">
+<h3>Add newItem to Item Model<a class="headerlink" href="#add-newitem-to-item-model" title="Permalink to this headline">¶</a></h3>
+<p>Let’s add a new boolean property to <code class="docutils literal notranslate"><span class="pre">Item</span></code> to keep track of whether or not an item is new.</p>
+<ul>
+<li><p class="first">Modify the <code class="docutils literal notranslate"><span class="pre">testNewItemFormCreatesItemAndRedirects</span></code> test within <code class="docutils literal notranslate"><span class="pre">ItemControllerTests</span></code> to post an additional parameter, <code class="docutils literal notranslate"><span class="pre">newItem</span></code>, with value <code class="docutils literal notranslate"><span class="pre">&quot;true&quot;</span></code>. (TDD FTW)</p>
+</li>
+<li><p class="first">Add a boolean field <code class="docutils literal notranslate"><span class="pre">newItem</span></code> to <code class="docutils literal notranslate"><span class="pre">Item</span></code>, along with a getter and setter. Add <code class="docutils literal notranslate"><span class="pre">&#64;NotNull</span></code> to the field.</p>
+</li>
+<li><p class="first">Run all of the tests to ensure that they pass</p>
+</li>
+<li><p class="first">Add a checkbox to <code class="docutils literal notranslate"><span class="pre">templates/item/new.html</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```html
+&lt;div class=&quot;form-group&quot;&gt;
+    &lt;input type=&quot;checkbox&quot; id=&quot;newItem&quot;
+           name=&quot;newItem&quot; value=&quot;true&quot; checked=&quot;checked&quot; /&gt;
+    &lt;label for=&quot;newItem&quot;&gt;New Item&lt;/label&gt;
+&lt;/div&gt;
+```
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run the app and ensure the New Item form submits, and that the chosen value is properly set in the database.</p>
+</li>
+<li><p class="first">Commit!</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="bonus-mission">
+<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
+<p>Another basic feature that is missing is the ability to add some quantity of items (greater than 1) to the cart. To do this, we need to introduce a new model class, <code class="docutils literal notranslate"><span class="pre">CartItem</span></code>.</p>
+<p>&lt;aside class=”aside-pro-tip” markdown=”1”&gt;
+Before embarking on this mission, create a feature branch to isolate your work. Aside from being a best-practice, this will also keep your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch nice and clean in the event you don’t finish the mission. This will be helpful since we’ll continue working on this app in a future studio.
+&lt;/aside&gt;</p>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> class with fields <code class="docutils literal notranslate"><span class="pre">item</span></code> and <code class="docutils literal notranslate"><span class="pre">quantity</span></code>, and refactor <code class="docutils literal notranslate"><span class="pre">Cart</span></code> to store a collection of <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects instead of <code class="docutils literal notranslate"><span class="pre">Item</span></code> objects. As <code class="docutils literal notranslate"><span class="pre">Cart</span></code> and <code class="docutils literal notranslate"><span class="pre">Item</span></code> have done, you should extend <code class="docutils literal notranslate"><span class="pre">AbstractEntity</span></code> to get the common identifier configuration contained in that base class.</p>
+<p>Start by refactoring the model:
+* Add the new model class
+* Re/write tests in <code class="docutils literal notranslate"><span class="pre">TestCart</span></code> as necessary
+* Refactor <cite>Cart</cite> to use <code class="docutils literal notranslate"><span class="pre">CartItem</span></code></p>
+<p>Once you have a working model that uses <code class="docutils literal notranslate"><span class="pre">CartItem</span></code>, run <strong>all</strong> of your tests, including the integration tests. You’ll have some work to do here, since changing the model will break parts of the controller and view.</p>
+<p>&lt;aside class=”aside-hint” markdown=”1”&gt;
+You may experience a situation where your integration tests fail because a new item that is seemingly added to the cart isn’t actually there when viewing <code class="docutils literal notranslate"><span class="pre">/cart</span></code>. If this is the case, it’s likely that Hibernate isn’t persisting your new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> instances. These objects are never handled directly by the controller, and thus never saved via a repository.</p>
+<p>You can force Hibernate to save new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects in all situations by adding a cascade property to the <code class="docutils literal notranslate"><span class="pre">&#64;OneToMany</span></code> collection storing <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```java
+</pre></div>
+</div>
+<p>&#64;OneToMany(cascade = { CascadeType.ALL })
+<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></p>
+<p>&lt;/aside&gt;</p>
+<p>After your model has been refactored, and all of your tests pass, you’ll need to refactor the controller and view layers heavily to get this to work. This will include adding functionality that allows the user to enter a quantity when adding an item to the cart.</p>
+<p>As always, write your tests first!</p>
+</div>
+<div class="section" id="turning-in-your-work">
+<h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
+<p>If you don’t complete each of the tasks, turn in as much as you have completed by the end of the day.</p>
+<ul class="simple">
+<li>Commit and push your work to GitLab</li>
+<li>Notify the instructor that you are done</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018, LaunchCode.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
