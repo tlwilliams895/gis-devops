@@ -298,10 +298,10 @@
 <li><p class="first">Search for a Spring Security implementation of BCrypt</p>
 </li>
 <li><p class="first">Add <strong>Spring Security</strong> dependency to <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="p">{</span>
-        <span class="nb">compile</span><span class="p">(</span><span class="s1">&#39;org.springframework.security:spring-security-crypto&#39;</span><span class="p">)</span>
-    <span class="o">//</span><span class="n">more</span> <span class="n">dependencies</span> <span class="n">will</span> <span class="n">be</span> <span class="n">listed</span> <span class="n">above</span> <span class="ow">or</span> <span class="n">below</span><span class="o">...</span>
-<span class="p">}</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dependencies {
+        compile(&#39;org.springframework.security:spring-security-crypto&#39;)
+    //more dependencies will be listed above or below...
+}
 </pre></div>
 </div>
 </li>
@@ -311,21 +311,21 @@
 <h3>Use the BCryptPasswordEncoder Class<a class="headerlink" href="#use-the-bcryptpasswordencoder-class" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic" start="5">
 <li><p class="first">Use <code class="docutils literal notranslate"><span class="pre">BCryptPasswordEncoder.encode</span></code> in the <code class="docutils literal notranslate"><span class="pre">User.java</span></code> contructor:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">User</span><span class="p">(</span><span class="n">String</span> <span class="n">username</span><span class="p">,</span> <span class="n">String</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">this</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span><span class="p">;</span>
-    <span class="n">this</span><span class="o">.</span><span class="n">pwHash</span> <span class="o">=</span> <span class="n">hashPassword</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>public User(String username, String password) {
+    this.username = username;
+    this.pwHash = hashPassword(password);
+}
 
-<span class="n">private</span> <span class="n">static</span> <span class="n">String</span> <span class="n">hashPassword</span><span class="p">(</span><span class="n">String</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">password</span><span class="p">);</span>
-<span class="p">}</span>
+private static String hashPassword(String password) {
+    return encoder.encode(password);
+}
 </pre></div>
 </div>
 </li>
 <li><p class="first">Update <code class="docutils literal notranslate"><span class="pre">isMatchingPassword(String</span> <span class="pre">password)</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">boolean</span> <span class="n">isMatchingPassword</span><span class="p">(</span><span class="n">String</span> <span class="n">password</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">encoder</span><span class="o">.</span><span class="n">matches</span><span class="p">(</span><span class="n">password</span><span class="p">,</span> <span class="n">this</span><span class="o">.</span><span class="n">pwHash</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>public boolean isMatchingPassword(String password) {
+    return encoder.matches(password, this.pwHash);
+}
 </pre></div>
 </div>
 </li>
@@ -370,10 +370,15 @@
     <p class="pull-right">
       <a href="#">Back to top</a>
       
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/walkthroughs/hashing-salting/index.rst.txt"
+     rel="nofollow">Page Source</a>
+</div>
+      
     </p>
     <p>
-        &copy; Copyright 2018, LaunchCode.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
     </p>
   </div>
 </footer>

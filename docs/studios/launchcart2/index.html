@@ -312,7 +312,7 @@ If you have any uncommitted changes, stash them using <code class="docutils lite
 <li><p class="first">Run all of the tests to ensure that they pass</p>
 </li>
 <li><p class="first">Add a checkbox to <code class="docutils literal notranslate"><span class="pre">templates/item/new.html</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```html
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```html
 &lt;div class=&quot;form-group&quot;&gt;
     &lt;input type=&quot;checkbox&quot; id=&quot;newItem&quot;
            name=&quot;newItem&quot; value=&quot;true&quot; checked=&quot;checked&quot; /&gt;
@@ -344,7 +344,7 @@ Before embarking on this mission, create a feature branch to isolate your work. 
 <p>&lt;aside class=”aside-hint” markdown=”1”&gt;
 You may experience a situation where your integration tests fail because a new item that is seemingly added to the cart isn’t actually there when viewing <code class="docutils literal notranslate"><span class="pre">/cart</span></code>. If this is the case, it’s likely that Hibernate isn’t persisting your new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> instances. These objects are never handled directly by the controller, and thus never saved via a repository.</p>
 <p>You can force Hibernate to save new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects in all situations by adding a cascade property to the <code class="docutils literal notranslate"><span class="pre">&#64;OneToMany</span></code> collection storing <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```java
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```java
 </pre></div>
 </div>
 <p>&#64;OneToMany(cascade = { CascadeType.ALL })
@@ -373,10 +373,15 @@ You may experience a situation where your integration tests fail because a new i
     <p class="pull-right">
       <a href="#">Back to top</a>
       
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/studios/launchcart2/index.rst.txt"
+     rel="nofollow">Page Source</a>
+</div>
+      
     </p>
     <p>
-        &copy; Copyright 2018, LaunchCode.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
     </p>
   </div>
 </footer>
