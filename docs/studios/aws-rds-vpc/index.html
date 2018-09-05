@@ -402,7 +402,7 @@
 </ul>
 <p>Screen shot of the “Add subnets” configuration window</p>
 <blockquote>
-<div><img alt="_static/images/lb-cloud/6.4-select-sebnets.png" src="_static/images/lb-cloud/6.4-select-sebnets.png" />
+<div><img alt="../../_images/6.4-select-subnets.png" src="../../_images/6.4-select-subnets.png" />
 </div></blockquote>
 <p>Now that you’ve created the database subnets, you need to create a database instance for your application to use.</p>
 <ul class="simple">
@@ -414,7 +414,7 @@
 </ul>
 <p>Screen shot of the “Engine options” window</p>
 <blockquote>
-<div><img alt="_static/images/lb-cloud/9-select-postgres.png" src="_static/images/lb-cloud/9-select-postgres.png" />
+<div><img alt="../../_images/8-select-postgres.png" src="../../_images/8-select-postgres.png" />
 </div></blockquote>
 <ul class="simple">
 <li>AWS will next ask you how you plan to use the database. Production-ready databases will have multiple availability zone redundancy and higher-speed storage options, but are also more expensive. Select “Dev/Test” to access the lower-powered options then click “Next.”</li>
@@ -431,7 +431,7 @@
 </ul>
 <p>Screen shot of the instance class configuration window for RDS</p>
 <blockquote>
-<div><img alt="_static/images/ib-cloud/10-instance-class.png" src="_static/images/ib-cloud/10-instance-class.png" />
+<div><img alt="../../_images/10-instance-class.png" src="../../_images/10-instance-class.png" />
 </div></blockquote>
 <p>Next, you’ll set up the instance’s identifier and master user account. Do not set up the application user as the master user. That would introduce a security risk for your database and data if your application were to be compromised. You will set up a separate DB user account later.</p>
 <ul class="simple">
@@ -494,7 +494,7 @@
 </ul>
 <p>Screen shot of the “Configure INstnace Details” screen</p>
 <blockquote>
-<div><img alt="_static/images/lb-cloud/16-select-your-vpc-and-public-seubnet.png" src="_static/images/lb-cloud/16-select-your-vpc-and-public-seubnet.png" />
+<div><img alt="../../_images/16-select-your-vpc-and-public-subnet.png" src="../../_images/16-select-your-vpc-and-public-subnet.png" />
 </div></blockquote>
 <ul class="simple">
 <li>At the bottom of the “Configure Instance Details” screen is a collapsed area called “Advanced Details.” Click the text “Advanced Details” to expand this.</li>
@@ -515,7 +515,9 @@
 <li>Copy this script in the “User data” section and adjust the <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> to your RDS instance’s endpoint.</li>
 </ul>
 <p>Screen shot of the “Advanced Details” section of the “Configure Instance Details” screen</p>
-<img alt="../../_images/add-user-data-script-to-instance.png" src="../../_images/add-user-data-script-to-instance.png" />
+<blockquote>
+<div><img alt="../../_images/add-user-data-script-to-instance.png" src="../../_images/add-user-data-script-to-instance.png" />
+</div></blockquote>
 <p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>nohighlight
 #!/bin/bash
 # Install Java
@@ -703,7 +705,7 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user
 </ul>
 <p>Screen shot of the “Create Subnet” window</p>
 <blockquote>
-<div><img alt="_static/images/lb-cloud/lb/lb/create-public-subnet.png" src="_static/images/lb-cloud/lb/lb/create-public-subnet.png" />
+<div><img alt="../../_images/lb-create-public-subnet.png" src="../../_images/lb-create-public-subnet.png" />
 </div></blockquote>
 <p>This new subnet is originally created as a private subnet, so you’ll have to change its route table to allow connections with the internet.</p>
 <ul class="simple">
@@ -799,7 +801,7 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user
 <p>At this point, AWS will begin configuring the LB. Find and note the DNS name they have assigned your LB.</p>
 <p>Screen shot of the Load Balancer Dashboard with a red circle around the new LB’s DNS name</p>
 <blockquote>
-<div><img alt="_static/images/week05/lb-cloud/lb/load-balancer-instance.png" src="_static/images/week05/lb-cloud/lb/load-balancer-instance.png" />
+<div><img alt="../../_images/load-balancer-instance.png" src="../../_images/load-balancer-instance.png" />
 </div></blockquote>
 <p>While the LB is starting up, you can configure your application instances to stop listening to the public internet and only to internal traffic.</p>
 <ul class="simple">

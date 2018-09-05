@@ -162,7 +162,7 @@ Note the ``ubuntu`` part of the above command is the user/role you are attemptin
 
 Screen shot of terminal showing successful SSH connection to AWS instance
 
-  .. image:: /_staic/images/ssh-to-instance.png
+  .. image:: /_static/images/ssh-to-instance.png
 
 Congratulations! You have successfully created and connected to an instance running in the cloud.
 

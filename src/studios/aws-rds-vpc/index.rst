@@ -124,7 +124,7 @@ Screen shot of the "Subnet group details" configuration window
 
 Screen shot of the "Add subnets" configuration window
 
-  .. image:: /_static/images/lb-cloud/6.4-select-sebnets.png
+  .. image:: /_static/images/lb-cloud/6.4-select-subnets.png
 
 Now that you've created the database subnets, you need to create a database instance for your application to use.
 
@@ -137,7 +137,7 @@ Now that you've created the database subnets, you need to create a database inst
 
 Screen shot of the "Engine options" window
 
-  .. image:: /_static/images/lb-cloud/9-select-postgres.png
+  .. image:: /_static/images/lb-cloud/8-select-postgres.png
 
 * AWS will next ask you how you plan to use the database. Production-ready databases will have multiple availability zone redundancy and higher-speed storage options, but are also more expensive. Select "Dev/Test" to access the lower-powered options then click "Next."
 
@@ -152,7 +152,7 @@ Screen shot of the "Use case" window
 
 Screen shot of the instance class configuration window for RDS
 
-  .. image:: /_static/images/ib-cloud/10-instance-class.png
+  .. image:: /_static/images/lb-cloud/10-instance-class.png
 
 Next, you'll set up the instance's identifier and master user account. Do not set up the application user as the master user. That would introduce a security risk for your database and data if your application were to be compromised. You will set up a separate DB user account later.
 
@@ -222,7 +222,7 @@ You'll follow the same steps as before, with a few changes that are described he
 
 Screen shot of the "Configure INstnace Details" screen
 
-  .. image:: /_static/images/lb-cloud/16-select-your-vpc-and-public-seubnet.png
+  .. image:: /_static/images/lb-cloud/16-select-your-vpc-and-public-subnet.png
 
 * At the bottom of the "Configure Instance Details" screen is a collapsed area called "Advanced Details." Click the text "Advanced Details" to expand this.
 * You will see a "User data" section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
@@ -443,7 +443,7 @@ In order to connect a load balancer (LB), you need to have two public subnets in
 
 Screen shot of the "Create Subnet" window
 
-  .. image:: /_static/images/lb-cloud/lb/lb/create-public-subnet.png
+  .. image:: /_static/images/lb-cloud/lb/lb-create-public-subnet.png
 
 This new subnet is originally created as a private subnet, so you'll have to change its route table to allow connections with the internet.
 
@@ -538,7 +538,7 @@ At this point, AWS will begin configuring the LB. Find and note the DNS name the
 
 Screen shot of the Load Balancer Dashboard with a red circle around the new LB's DNS name
 
-  .. image:: /_static/images/week05/lb-cloud/lb/load-balancer-instance.png
+  .. image:: /_static/images/lb-cloud/lb/load-balancer-instance.png
 
 While the LB is starting up, you can configure your application instances to stop listening to the public internet and only to internal traffic.
 
