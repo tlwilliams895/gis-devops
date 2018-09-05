@@ -334,9 +334,8 @@
 </div></blockquote>
 <ul class="simple">
 <li>After creating the VPC, make sure to note the <code class="docutils literal notranslate"><span class="pre">VPC</span> <span class="pre">ID</span></code> of your VPC as that name will appear everywhere you will select it later.</li>
+<li>Not every AWS web interface includes the descriptive name you gave before.</li>
 </ul>
-<blockquote>
-<div>Not every AWS web interface includes the descriptive name you gave before.</div></blockquote>
 <p>Screen shot of the VPC Dashboard with a red circle around the VPC ID</p>
 <blockquote>
 <div><img alt="../../_images/5-vpc-dashboard.png" src="../../_images/5-vpc-dashboard.png" />
@@ -359,11 +358,8 @@
 <li>To create the subnet, give it a descriptive name to help identify it later.</li>
 <li>Select your VPC from the VPC select list.</li>
 <li>Select one of the availablity zones for your region.</li>
-<li>Create a new CIDR block for this private subnet.</li>
-</ul>
-<blockquote>
-<div>Remember, if you use a <code class="docutils literal notranslate"><span class="pre">x.x.x.x/24</span></code> subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.</div></blockquote>
-<ul class="simple">
+<li>Create a new CIDR block for this private subnet.
+* Remember, if you use a <code class="docutils literal notranslate"><span class="pre">x.x.x.x/24</span></code> subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.</li>
 <li>Do this twice, with a different availability zone and CIDR block for both subnets.</li>
 </ul>
 <p>Screen shot of the Create Subnet configuration window</p>
@@ -413,10 +409,9 @@
 <li>Return to the RDS Dashboard</li>
 <li>Scroll down and click the “Launch a DB instance” button</li>
 <li>For Airwaze, you will use a PostgreSQL database</li>
+<li>Select PostgreSQL</li>
+<li>Click “Next”</li>
 </ul>
-<blockquote>
-<div>Select PostgreSQL
-Click “Next”</div></blockquote>
 <p>Screen shot of the “Engine options” window</p>
 <blockquote>
 <div><img alt="_static/images/lb-cloud/9-select-postgres.png" src="_static/images/lb-cloud/9-select-postgres.png" />
@@ -478,11 +473,8 @@ Click “Next”</div></blockquote>
 <li>Select the “Inbound” rules tab</li>
 <li>Click “Edit”</li>
 <li>Find the PostgreSQL port line</li>
-</ul>
-<blockquote>
-<div>Change its Source to your VPC subnet CIDR
-This will allow traffic from all instances in your VPC, but not from the outside world.</div></blockquote>
-<ul class="simple">
+<li>Change its Source to your VPC subnet CIDR</li>
+<li>This will allow traffic from all instances in your VPC, but not from the outside world.</li>
 <li>Click “Save”</li>
 </ul>
 <p>Screen shot of the PostgreSQL inbound rules with a red circle around the VPC’s subnet CIDR</p>
@@ -496,34 +488,34 @@ This will allow traffic from all instances in your VPC, but not from the outside
 <p>You’ll follow the same steps as before, with a few changes that are described here.</p>
 <ul class="simple">
 <li>On the “Configure Instance Details” screen while creating your instance:</li>
+<li>Select your VPC in the “Network” selection.</li>
+<li>Select your Public subnet.</li>
+<li>Enable auto-assigning a Public IP.</li>
 </ul>
-<blockquote>
-<div>Select your VPC in the “Network” selection.
-Select your Public subnet.
-Enable auto-assigning a Public IP.</div></blockquote>
 <p>Screen shot of the “Configure INstnace Details” screen</p>
 <blockquote>
 <div><img alt="_static/images/lb-cloud/16-select-your-vpc-and-public-seubnet.png" src="_static/images/lb-cloud/16-select-your-vpc-and-public-seubnet.png" />
 </div></blockquote>
 <ul class="simple">
 <li>At the bottom of the “Configure Instance Details” screen is a collapsed area called “Advanced Details.” Click the text “Advanced Details” to expand this.</li>
-<li>You will see a “User data” section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:</li>
+<li><dl class="first docutils">
+<dt>You will see a “User data” section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:</dt>
+<dd><ul class="first last">
+<li>Installs Java</li>
+<li>Creates the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> system user</li>
+<li>Creates the application and configuration directories</li>
+<li>Writes the airwaze configuration file, which includes the environment variables for the application</li>
+<li>Writes the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> service file</li>
+<li>Prepares the service for execution</li>
 </ul>
-<blockquote>
-<div>Installs Java
-Creates the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> system user
-Creates the application and configuration directories
-Writes the airwaze configuration file, which includes the environment variables for the application
-Writes the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> service file
-Prepares the service for execution</div></blockquote>
-<ul class="simple">
+</dd>
+</dl>
+</li>
 <li>This script is run as <code class="docutils literal notranslate"><span class="pre">root</span></code>, so <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is not needed for these commands. That also means you must be careful when crafting a script to run here.</li>
 <li>Copy this script in the “User data” section and adjust the <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> to your RDS instance’s endpoint.</li>
 </ul>
 <p>Screen shot of the “Advanced Details” section of the “Configure Instance Details” screen</p>
-<blockquote>
-<div><img alt="../../_images/add-user-data-script-to-instance.png" src="../../_images/add-user-data-script-to-instance.png" />
-</div></blockquote>
+<img alt="../../_images/add-user-data-script-to-instance.png" src="../../_images/add-user-data-script-to-instance.png" />
 <p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>nohighlight
 #!/bin/bash
 # Install Java
@@ -556,11 +548,11 @@ Restart=always</p>
 WantedBy=multi-user.target
 EOF</p>
 <p>systemctl enable airwaze.service
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">*</span> <span class="pre">Continue</span> <span class="pre">through</span> <span class="pre">the</span> <span class="pre">steps</span> <span class="pre">to</span> <span class="pre">create</span> <span class="pre">the</span> <span class="pre">instance</span> <span class="pre">that</span> <span class="pre">you</span> <span class="pre">learned</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">lesson</span> <span class="pre">and</span> <span class="pre">studio.</span>
-<span class="pre">*</span> <span class="pre">Once</span> <span class="pre">the</span> <span class="pre">instance</span> <span class="pre">is</span> <span class="pre">online,</span> <span class="pre">copy</span> <span class="pre">the</span> <span class="pre">Airwaze</span> <span class="pre">application</span> <span class="pre">jar</span> <span class="pre">and</span> <span class="pre">database</span> <span class="pre">initialization</span> <span class="pre">CSV</span> <span class="pre">files</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">server.</span>
-<span class="pre">*</span> <span class="pre">SSH</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">instance</span> <span class="pre">and</span> <span class="pre">set</span> <span class="pre">the</span> <span class="pre">appropriate</span> <span class="pre">permissions</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">jar.</span>
-<span class="pre">```nohighlight</span>
+<a href="#id5"><span class="problematic" id="id6">``</span></a>`
+* Continue through the steps to create the instance that you learned in the last lesson and studio.
+* Once the instance is online, copy the Airwaze application jar and database initialization CSV files to the server.
+* SSH to the instance and set the appropriate permissions on the jar.</p>
+<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
 <span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/aws-ssh-key.pem</span> <span class="pre">airwaze-application.jar</span> <span class="pre">ubuntu&#64;ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar</span>
 <span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/aws-ssh-key.pem</span> <span class="pre">routes.csv</span> <span class="pre">ubuntu&#64;ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv</span>
 <span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/aws-ssh-key.pem</span> <span class="pre">Airports.csv</span> <span class="pre">ubuntu&#64;ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/Airports.csv</span>
@@ -578,16 +570,13 @@ EOF</p>
 <span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">rds-instance.us-east-2.rds.amazonaws.com</span> <span class="pre">-p</span> <span class="pre">5432</span> <span class="pre">-U</span> <span class="pre">rds_master_user</span> <span class="pre">airwaze_db</span>
 <span class="pre">`</span></code></p>
 <ul class="simple">
-<li>In the <code class="docutils literal notranslate"><span class="pre">psql</span></code> console, create:</li>
-</ul>
-<blockquote>
-<div>The application’s DB user
-The postgis extensions
-The data tables</div></blockquote>
-<ul class="simple">
+<li>In the <code class="docutils literal notranslate"><span class="pre">psql</span></code> console, create:
+* The application’s DB user
+* The postgis extensions
+* The data tables</li>
 <li>Then set your tables to be owned by your application’s DB user.</li>
 </ul>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a>nohighlight
+<p><a href="#id7"><span class="problematic" id="id8">``</span></a><a href="#id9"><span class="problematic" id="id10">`</span></a>nohighlight
 CREATE USER airwaze_user WITH PASSWORD ‘verysecurepassword’;
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
@@ -621,15 +610,15 @@ src_id integer</div></blockquote>
 <p>);
 ALTER TABLE airport OWNER to airwaze_user;
 ALTER TABLE route OWNER to airwaze_user;
-<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a></p>
+<a href="#id11"><span class="problematic" id="id12">``</span></a><a href="#id13"><span class="problematic" id="id14">`</span></a></p>
 <p>Now that the tables are created, you need to fill them with data.</p>
 <ul class="simple">
 <li>Run the following commands to copy from your CSV files into the database. (You’ll find the password along with the user you just created above).</li>
 </ul>
-<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a>nohighlight
+<p><a href="#id15"><span class="problematic" id="id16">``</span></a><a href="#id17"><span class="problematic" id="id18">`</span></a>nohighlight
 $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/routes.csv</p>
 <p>$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/Airports.csv
-<a href="#id17"><span class="problematic" id="id18">``</span></a><a href="#id19"><span class="problematic" id="id20">`</span></a></p>
+<a href="#id19"><span class="problematic" id="id20">``</span></a><a href="#id21"><span class="problematic" id="id22">`</span></a></p>
 <p>At this point, everything is ready to go on this instance. You no longer need (or want) to connect to the database directly so uninstall the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package. Then you may start the Airwaze service.</p>
 <p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
 <span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">remove</span> <span class="pre">postgresql</span>
@@ -646,11 +635,8 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user
 <li>Click “Edit”</li>
 <li>Change to “Custom TCP Rule”</li>
 <li>Enter port 8080</li>
-<li>Select “My IP” for Source</li>
-</ul>
-<blockquote>
-<div>This is where you would typically make the port accessible to the world, but only you need to access the studio instance for now.</div></blockquote>
-<ul class="simple">
+<li>Select “My IP” for Source
+* This is where you would typically make the port accessible to the world, but only you need to access the studio instance for now.</li>
 <li>Click “Save.”</li>
 </ul>
 <p>Screen shot of the inbound rules for the instance security group</p>
@@ -675,11 +661,8 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user
 <ul class="simple">
 <li>Give your image a useful name so you can find it again later.</li>
 <li>Give your image a helpful description.</li>
-<li>Ensure “No reboot” is <strong>not</strong> selected.</li>
-</ul>
-<blockquote>
-<div>Taking an image of a running instance is risky as it may catch it in the middle of writing to a file. Just leave this as “No reboot” unless there’s a valid reason to not.</div></blockquote>
-<ul class="simple">
+<li>Ensure “No reboot” is <strong>not</strong> selected.
+* Taking an image of a running instance is risky as it may catch it in the middle of writing to a file. Just leave this as “No reboot” unless there’s a valid reason to not.</li>
 <li>Click “Create Image.”</li>
 </ul>
 <p>Screen shot of the “Create Image” configuration window</p>
@@ -732,11 +715,8 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user
 <div><img alt="../../_images/public-subnet-route-table.png" src="../../_images/public-subnet-route-table.png" />
 </div></blockquote>
 <ul class="simple">
-<li>Change the Route Table selection to one with a target that starts with <code class="docutils literal notranslate"><span class="pre">igw</span></code>. This is your VPC’s internet gateway.</li>
-</ul>
-<blockquote>
-<div>An Internet Gateway allows communication between instances in your VPC and the internet.</div></blockquote>
-<ul class="simple">
+<li>Change the Route Table selection to one with a target that starts with <code class="docutils literal notranslate"><span class="pre">igw</span></code>. This is your VPC’s internet gateway.
+* An Internet Gateway allows communication between instances in your VPC and the internet.</li>
 <li>Click “Save”</li>
 </ul>
 <p>Screen shot showing a route table that includes an internet gateway</p>
@@ -785,11 +765,8 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user
 <li>Create a new security group</li>
 <li>Give the group a useful name and description</li>
 <li>Select type <code class="docutils literal notranslate"><span class="pre">HTTP</span></code> and verify port 80 is selected</li>
-<li>Make a custom source for 0.0.0.0/0, ::/0</li>
-</ul>
-<blockquote>
-<div>This allows for all IPv4 and IPv6 sources to connect through this LB</div></blockquote>
-<ul class="simple">
+<li>Make a custom source for 0.0.0.0/0, ::/0
+* This allows for all IPv4 and IPv6 sources to connect through this LB</li>
 <li>Click “Next: Configure Routing”</li>
 </ul>
 <p>Screen shot of the Load Balancer “Configure Security Groups” window</p>
@@ -843,22 +820,15 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user
 <li>Return to the EC2 Instances Dashboard</li>
 <li>Locate your application instances</li>
 <li>Select one instance</li>
-</ul>
-<blockquote>
-<div>Click “Actions” -&gt; “Instance State” -&gt; “Stop”
-Wait for the instance state to switch to Stop
-Refresh the browser and see the application still works</div></blockquote>
-<ul class="simple">
+<li>Click “Actions” -&gt; “Instance State” -&gt; “Stop”</li>
+<li>Wait for the instance state to switch to Stop</li>
+<li>Refresh the browser and see the application still works</li>
 <li>Stop your other instance</li>
-</ul>
-<blockquote>
-<div>Refresh the browser and see the application no longer works</div></blockquote>
-<ul class="simple">
+<li>Refresh the browser and see the application no longer works</li>
 <li>Click “Actions” -&gt; “Instance State” -&gt; “Start” to restart one of your instances</li>
+<li>Refresh the browser and see the application return to a working state
+* This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic</li>
 </ul>
-<blockquote>
-<div>Refresh the browser and see the application return to a working state
-This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic</div></blockquote>
 <p>Congratulations! You have successfully created a load-balanced application in the cloud.</p>
 </div>
 <div class="section" id="bonus-mission">

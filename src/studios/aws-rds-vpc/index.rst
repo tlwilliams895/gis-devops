@@ -15,6 +15,7 @@ Prepare the Code
 
 * Start with the corrected code you finished with in the last studio.
 * Open the ``application.properties`` file. Find and change the following lines:
+
 ```nohighlight
 spring.datasource.url=jdbc:postgresql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}
 spring.datasource.username=${APP_DB_USER}
@@ -58,7 +59,7 @@ Screen shot of the "VPC with a Single Public Subnet" configuration window
   .. image:: /_static/images/lb-cloud/4-create-vpc.png
 
 * After creating the VPC, make sure to note the ``VPC ID`` of your VPC as that name will appear everywhere you will select it later.
- Not every AWS web interface includes the descriptive name you gave before.
+* Not every AWS web interface includes the descriptive name you gave before.
 
 Screen shot of the VPC Dashboard with a red circle around the VPC ID
 
@@ -80,7 +81,7 @@ Screen shot with a red circle around the Create Subnet button
 * Select your VPC from the VPC select list.
 * Select one of the availablity zones for your region.
 * Create a new CIDR block for this private subnet.
- Remember, if you use a ``x.x.x.x/24`` subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.
+  * Remember, if you use a ``x.x.x.x/24`` subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.
 * Do this twice, with a different availability zone and CIDR block for both subnets.
 
 Screen shot of the Create Subnet configuration window
@@ -131,8 +132,8 @@ Now that you've created the database subnets, you need to create a database inst
 * Return to the RDS Dashboard
 * Scroll down and click the "Launch a DB instance" button
 * For Airwaze, you will use a PostgreSQL database
- Select PostgreSQL
- Click "Next"
+* Select PostgreSQL
+* Click "Next"
 
 Screen shot of the "Engine options" window
 
@@ -197,9 +198,8 @@ Screen shot of the RDS Dashboard "Connect" sub-window with a red circle around t
 * Select the "Inbound" rules tab
 * Click "Edit"
 * Find the PostgreSQL port line
- Change its Source to your VPC subnet CIDR
- This will allow traffic from all instances in your VPC, but not from the outside world.
-
+* Change its Source to your VPC subnet CIDR
+* This will allow traffic from all instances in your VPC, but not from the outside world.
 * Click "Save"
 
 
@@ -216,9 +216,9 @@ Now that you have created your database, you need to create an instance to conne
 You'll follow the same steps as before, with a few changes that are described here.
 
 * On the "Configure Instance Details" screen while creating your instance:
- Select your VPC in the "Network" selection.
- Select your Public subnet.
- Enable auto-assigning a Public IP.
+* Select your VPC in the "Network" selection.
+* Select your Public subnet.
+* Enable auto-assigning a Public IP.
 
 Screen shot of the "Configure INstnace Details" screen
 
@@ -226,12 +226,12 @@ Screen shot of the "Configure INstnace Details" screen
 
 * At the bottom of the "Configure Instance Details" screen is a collapsed area called "Advanced Details." Click the text "Advanced Details" to expand this.
 * You will see a "User data" section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
- Installs Java
- Creates the ``airwaze`` system user
- Creates the application and configuration directories
- Writes the airwaze configuration file, which includes the environment variables for the application
- Writes the ``systemd`` service file
- Prepares the service for execution
+   - Installs Java
+   - Creates the ``airwaze`` system user
+   - Creates the application and configuration directories
+   - Writes the airwaze configuration file, which includes the environment variables for the application
+   - Writes the ``systemd`` service file
+   - Prepares the service for execution
 * This script is run as ``root``, so ``sudo`` is not needed for these commands. That also means you must be careful when crafting a script to run here.
 * Copy this script in the "User data" section and adjust the ``APP_DB_HOST`` to your RDS instance's endpoint.
 
@@ -281,6 +281,7 @@ systemctl enable airwaze.service
 * Continue through the steps to create the instance that you learned in the last lesson and studio.
 * Once the instance is online, copy the Airwaze application jar and database initialization CSV files to the server.
 * SSH to the instance and set the appropriate permissions on the jar.
+
 ```nohighlight
 $ scp -i ~/.ssh/aws-ssh-key.pem airwaze-application.jar ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar
 $ scp -i ~/.ssh/aws-ssh-key.pem routes.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
@@ -293,6 +294,7 @@ Now that you have your instance set up and ready, you need to log into the serve
 
 * SSH to your instance, then install the ``postgresql`` client package.
 * Connect to your RDS instance using the master account you created before.
+
 ```nohighlight
 $ sudo apt-get update
 $ sudo apt-get install postgresql
@@ -300,10 +302,11 @@ $ psql -h rds-instance.us-east-2.rds.amazonaws.com -p 5432 -U rds_master_user ai
 ```
 
 * In the ``psql`` console, create:
- The application's DB user
- The postgis extensions
- The data tables
+  * The application's DB user
+  * The postgis extensions
+  * The data tables
 * Then set your tables to be owned by your application's DB user.
+
 ```nohighlight
 CREATE USER airwaze_user WITH PASSWORD 'verysecurepassword';
 CREATE EXTENSION postgis;
@@ -368,7 +371,7 @@ Now that your instance and service are running, return to the EC2 Security Group
 * Change to "Custom TCP Rule"
 * Enter port 8080
 * Select "My IP" for Source
- This is where you would typically make the port accessible to the world, but only you need to access the studio instance for now.
+  * This is where you would typically make the port accessible to the world, but only you need to access the studio instance for now.
 * Click "Save."
 
 Screen shot of the inbound rules for the instance security group
@@ -396,7 +399,7 @@ Screen shot of the EC2 Instances dashboard with the Actions menu open
 * Give your image a useful name so you can find it again later.
 * Give your image a helpful description.
 * Ensure "No reboot" is **not** selected.
- Taking an image of a running instance is risky as it may catch it in the middle of writing to a file. Just leave this as "No reboot" unless there's a valid reason to not.
+  * Taking an image of a running instance is risky as it may catch it in the middle of writing to a file. Just leave this as "No reboot" unless there's a valid reason to not.
 * Click "Create Image."
 
 Screen shot of the "Create Image" configuration window
@@ -452,7 +455,7 @@ Screen shot of the "Route Table" tab on the new subnet
   .. image:: /_static/images/lb-cloud/lb/public-subnet-route-table.png
 
 * Change the Route Table selection to one with a target that starts with ``igw``. This is your VPC's internet gateway.
- An Internet Gateway allows communication between instances in your VPC and the internet.
+  * An Internet Gateway allows communication between instances in your VPC and the internet.
 * Click "Save"
 
 Screen shot showing a route table that includes an internet gateway
@@ -501,7 +504,7 @@ You will be presented with a screen similar to one you used when creating your i
 * Give the group a useful name and description
 * Select type ``HTTP`` and verify port 80 is selected
 * Make a custom source for 0.0.0.0/0, ::/0
- This allows for all IPv4 and IPv6 sources to connect through this LB
+  * This allows for all IPv4 and IPv6 sources to connect through this LB
 * Click "Next: Configure Routing"
 
 Screen shot of the Load Balancer "Configure Security Groups" window
@@ -558,14 +561,14 @@ The real power in a load balancer is it can route traffic away from unhealthy in
 * Return to the EC2 Instances Dashboard
 * Locate your application instances
 * Select one instance
- Click "Actions" -> "Instance State" -> "Stop"
- Wait for the instance state to switch to Stop
- Refresh the browser and see the application still works
+* Click "Actions" -> "Instance State" -> "Stop"
+* Wait for the instance state to switch to Stop
+* Refresh the browser and see the application still works
 * Stop your other instance
- Refresh the browser and see the application no longer works
+* Refresh the browser and see the application no longer works
 * Click "Actions" -> "Instance State" -> "Start" to restart one of your instances
- Refresh the browser and see the application return to a working state
- This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic
+* Refresh the browser and see the application return to a working state
+  * This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic
 
 Congratulations! You have successfully created a load-balanced application in the cloud.
 

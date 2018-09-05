@@ -15,6 +15,7 @@ Set Up Project
 
 * Build your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio or check out and build the ``elasticsearch-starter`` branch.
 * Change ``src/main/resources/import.sql`` to:
+
 ```nohighlight
 COPY route(src, src_id, dst, dst_id, airline, route_geom) from '/home/airwaze/routes.csv' DELIMITER ',' CSV HEADER;
 COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from '/home/airwaze/Airports.csv' DELIMITER ',' CSV HEADER;
@@ -95,8 +96,7 @@ Configuring the security groups for your server is critical for protecting your 
   * Change the existing rule's source to "My IP"
 
     * This allows remote SSH access to your instance, but only from the IP you're currently using to access AWS
-    * NOTE: This is your IP at the time of configuration. Later on if your IP changes for some reason you will NOT be able to login until you adjust the
-    security group to look for your new IP.
+    * NOTE: This is your IP at the time of configuration. Later on if your IP changes for some reason you will NOT be able to login until you adjust the security group to look for your new IP.
 
   * Continue to **Review and Launch**
 
@@ -133,24 +133,28 @@ Set up SSH
 
 * Open the terminal.
 * Navigate to your user's ssh configuration folder:
+
 ```nohighlight
 $ cd ~/.ssh
 ```
 * Copy your instance's \*.pem file to your .ssh folder:
+
 ```nohighlight
 $ cp /path/to/*.pem .
 ```
 * Change the permissions for this file to read-only by your user:
+
 ```nohighlight
 $ chmod 400 name-of-pem.pem
 ```
 * Using the Public DNS you noted before and your \*.pem file, access your AWS instance:
+
 ```nohighlight
 $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@insert-public-DNS-here
 ```
 
 <aside class="aside-note" markdown="1">
-  Note the ``ubuntu`` part of the above command is the user/role you are attempting to connect with on the remote computer.
+Note the ``ubuntu`` part of the above command is the user/role you are attempting to connect with on the remote computer.
 </aside>
 
 * The ssh program will likely warn that the authenticity of your host can't be established since it's not seen it before. Respond "yes" to continue connecting. It will add it to the list of known hosts and continue the connection process.
@@ -261,11 +265,13 @@ Setup Service for App
 Now that the app is on the cloud server and the database is ready, we can set up ``systemd`` to run this app as a service.
 
 In order to use ``systemd``, we have to make a script in ``/etc/systemd/system`` to tell the service how to run our app.
+
 ```nohighlight
 (On remote server)
 $ sudo vim /etc/systemd/system/airwaze.service
 ```
 Press ``i`` to start inserting text into the file and paste the following:
+
 ```nohighlight
 [Unit]
 Description=Airwaze Studio
