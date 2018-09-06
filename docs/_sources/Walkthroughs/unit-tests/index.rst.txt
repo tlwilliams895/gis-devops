@@ -15,16 +15,20 @@ Setup
 Follow Along as we...
 ---------------------
 
-1. Clone your forked version of the repo locally
-2. Create a branch::
+* Clone your forked version of the repo locally
+* Create a branch ``$ git checkout -b my-solution``
+* Open Intellij
+* Choose **open folder** and navigate to and chose folder **car-unit-tests-starter**
+* Instructor will walk everyone through setting up the project
+* ``CarTest.java`` add this import line ``import static org.junit.Assert.*;``
+* Start completing the ``TODO`` comments with the instructor
 
-  $ git checkout -b my-solution
+  a. Open the ``TODO`` window by
+  b. Going to the **View** menu
+  c. Then **Tool Windows**
+  d. Then click **TODO**
+  e. Intellij will show you all the files that contain the text ``TODO``
 
-2. Open Intellij
-3. Choose "open folder" and navigate to and chose folder car-unit-tests-starter
-4. Instructor will walk everyone through setting up the project
-5. In `CarTest.java` add this import line `import static org.junit.Assert.*;`
-6. Start completing the TODO comments with the instructor
 
 Resources
 ---------

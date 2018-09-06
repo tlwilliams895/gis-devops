@@ -38,7 +38,10 @@ Part 2
 1. The instructor will create a new branch that incluedes a roster.txt file
 2. That branch will be merge into master
 3. Everyone in the class should pull to get the commit containing that file
-  - NOTE: Instructor should do these next steps first
+
+  .. note::
+    Instructor should do these next steps first
+
 4. Create and switch to a new branch
 5. Add your name to the roster.txt file
 6. Stage, commit, and then push their changes
