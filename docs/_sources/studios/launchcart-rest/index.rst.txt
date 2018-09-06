@@ -1,3 +1,4 @@
+:orphan:
 .. _launchcart-rest-studio:
 
 =======================

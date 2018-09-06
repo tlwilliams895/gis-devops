@@ -1,3 +1,5 @@
+:orphan:
+
 ===================
 Learning Objectives
 ===================
@@ -166,10 +168,10 @@ Week 4
 
 - Use the REST, Elasticsearch, and JavaScript skills obtained in week 3 within a student-built application.
 
+.. _week05-day1-objectives:
+
 Week 5
 ======
-
-.. _week05-day1-objectives:
 
 Day 1
 -----

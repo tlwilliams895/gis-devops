@@ -1,3 +1,4 @@
+:orphan:
 .. _walkthrough-certificates:
 
 ============
@@ -123,7 +124,7 @@ Under Advanced Settings, you will find the link to the ``Privacy and security`` 
 
 Finally, you should find the ``Manage certificates`` link on the page to be able to configure the certificates your browser trusts.
 
-  .. image:: /_static/image/manage-caertificates.png
+  .. image:: /_static/image/manage-certificates.png
 
 By clicking on ``Certificates`` in the bottom left hand corner of the screen, you should be able to see all of the certificates your browser supports.  They may be spread across several keychains. Be sure that you do not have any certificates selected otherwise the "+" button will not be enabled.
 

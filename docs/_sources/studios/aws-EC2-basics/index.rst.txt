@@ -1,3 +1,5 @@
+:orphan:
+
 .. _aws-EC2-basics-studio:
 
 =========================

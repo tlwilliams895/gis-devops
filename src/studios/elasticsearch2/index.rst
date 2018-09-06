@@ -1,3 +1,4 @@
+:orphan:
 .. _elasticsearch2-studio:
 
 ==============================

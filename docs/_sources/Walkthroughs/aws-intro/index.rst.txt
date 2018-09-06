@@ -1,3 +1,4 @@
+:orphan:
 .. _aws-intro-walkthrough:
 
 =========================

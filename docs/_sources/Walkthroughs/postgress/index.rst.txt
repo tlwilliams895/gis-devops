@@ -1,3 +1,4 @@
+:orphan:
 .. _postgres-walkthrough:
 
 =======================

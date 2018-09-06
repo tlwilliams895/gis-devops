@@ -1,3 +1,4 @@
+:orphan:
 .. _walkthrough-gradle:
 
 ==================

@@ -1,3 +1,4 @@
+:orphan:
 .. _elasticsearch-spring-walkthrough:
 
 ====================================

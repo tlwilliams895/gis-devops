@@ -1,3 +1,4 @@
+:orphan:
 .. _spring-data-jpa-hibernate-walkthrough:
 
 ====================================================
