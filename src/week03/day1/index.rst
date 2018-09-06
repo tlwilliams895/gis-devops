@@ -1,6 +1,8 @@
-==============
+.. _week3_day1:
+
+====================================
 Week 3 - Day 1: RESTful web services
-==============
+====================================
 
 Learning objectives for this module :ref:`week03-day1-objectives`
 

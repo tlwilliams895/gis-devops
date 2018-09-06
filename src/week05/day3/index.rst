@@ -1,3 +1,5 @@
+.. _week5_day3:
+
 ==============
 Week 5 - Day 3: 12 Factor Apps and Auto Scaling
 ==============

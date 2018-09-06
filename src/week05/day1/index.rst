@@ -1,6 +1,8 @@
-==============
+.. _week5_day1:
+
+===================================
 Week 5 - Day 1: Intro to DevOps/AWS
-==============
+===================================
 
 Learning objectives for this module :ref:`week05-day1-objectives`
 

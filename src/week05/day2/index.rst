@@ -1,3 +1,5 @@
+.. _week5_day2:
+
 ==============
 Week 5 - Day 2: More with AWS
 ==============

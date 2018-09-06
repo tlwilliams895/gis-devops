@@ -1,3 +1,5 @@
+.. _week6_project:
+
 =====================
 Week 6 - Project Week - Zika Mission Control Part 3
 =====================

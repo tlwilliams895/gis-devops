@@ -1,3 +1,5 @@
+.. _week9_day5:
+
 ==============
 Week 9 - Day 5: Certificates
 ==============

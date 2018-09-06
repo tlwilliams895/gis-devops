@@ -1,6 +1,8 @@
-==============
+.. _week3_day3:
+
+======================================
 Week 3 - Day 3: Intro to Elasticsearch
-==============
+======================================
 
 Learning objectives for this module :ref:`week03-day3-objectives`
 

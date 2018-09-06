@@ -1,6 +1,8 @@
-==============
+.. _week1_day2:
+
+=================================================
 Week 1 - Day 2: Security, Test-driven development
-==============
+=================================================
 
 Learning objectives for this module :ref:`week01-day2-objectives`
 

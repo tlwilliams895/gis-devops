@@ -1,3 +1,5 @@
+.. _week8_project:
+
 =====================
 Week 8 - Project Week - Zika Mission Control Part 4
 =====================

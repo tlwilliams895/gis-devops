@@ -1,3 +1,5 @@
+.. _week9_day3:
+
 ==============
 Week 9 - Day 3: Intro to Docker
 ==============

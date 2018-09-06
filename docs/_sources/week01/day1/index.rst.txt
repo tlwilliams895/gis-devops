@@ -1,4 +1,4 @@
-.. _day1:
+.. _week1_day1:
 
 =====================
 Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing

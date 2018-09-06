@@ -1,6 +1,8 @@
-==============
+.. _week3_day2:
+
+=====================================
 Week 3 - Day 2 Swagger REST framework
-==============
+=====================================
 
 Learning objectives for this module :ref:`week03-day2-objectives`
 

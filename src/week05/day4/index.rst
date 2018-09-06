@@ -1,3 +1,5 @@
+.. _week5_day4:
+
 ==============
 Week 5 - Day 4: Gradle, Continuous Integration
 ==============
