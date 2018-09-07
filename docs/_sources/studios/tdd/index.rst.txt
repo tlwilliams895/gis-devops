@@ -38,14 +38,15 @@ Requirements
 * The constructor should take mixed-case strings, but set fields as lowercase strings. For example, if passed ``"HTTPS://LAUNCHCODE.ORG"`` then calling ``getDomain()`` should return ``"launchcode.org"``.
 * ``Url`` should override ``toString()``, which should return a properly-formatted version of the URL (e.g. ``"https://launchcode.org/learn"``)
 * The string passed to the constructor should satisfy each of the following. If it doesn't, then the constructor should throw an ``IllegalArgumentException`` with an appropriate message.
+  
+  * The protocol is one of: ftp, http, https, and file
+  * The path may be empty, but domain and protocol must both be non-empty
+  * The domain may only contain letters, numbers, ``.``, ``-``, or ``_``
 
-    * The protocol is one of: ftp, http, https, and file
-    * The path may be empty, but domain and protocol must both be non-empty
-    * The domain may only contain letters, numbers, ``.``, ``-``, or ``_``
+.. note::
 
-<aside class="aside-note" markdown="1">
-These requirements are not comprehensive of how a URL may be structured, but they encompass a large number of URLs you use on a daily basis.
-</aside>
+    These requirements are not comprehensive of how a URL may be structured, but they encompass a large number of URLs you use on a daily basis.
+
 
 Bonus Missions
 --------------
@@ -61,11 +62,12 @@ Turning In Your Work
 If you don't complete each of the tasks, turn in as much as you have completed by the end of the day.
 
 * Commit and push your work to GitLab
-* Notify the instructor that you are done
+* Create a Merge Request for the branch you pushed (you do this on the GitLab website)
+* Ask your classmates and instructor to review your code
 
 Resources
 ---------
 * `Java Regex Docs <https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html>`_
-<aside class="aside-note" markdown="1">
-The "intentions menu", Alt + Enter, in Intellij has a "Check Regex" option that brings up a Regular Expression tester.
-</aside>
+.. tip::
+
+    The "intentions menu", Alt + Enter, in Intellij has a "Check Regex" option that brings up a Regular Expression tester.

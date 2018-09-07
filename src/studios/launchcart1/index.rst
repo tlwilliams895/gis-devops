@@ -10,11 +10,7 @@ This activity gives you practice writing integration tests in Spring.
 Getting Ready
 -------------
 
-Fork the `LaunchCodeTraining/launchcart repo <https://gitlab.com/LaunchCodeTraining/launchcart>`_ and clone it to your laptop. For this project we will start with the ``master`` branch. After forking and cloning, it's a good idea to make a **feature branch** to contain your work. Example::
-
- git checkout -b day3-studio
-
-creates a branch named **day3-studio** and checks it out at the same time.
+Fork the `LaunchCodeTraining/launchcart repo <https://gitlab.com/LaunchCodeTraining/launchcart>`_ and clone it to your laptop. For this project we will start with the ``master`` branch. After forking and cloning, it's a good idea to make a **feature branch** to contain your work. Example: ``git checkout -b day3-studio`` creates a branch named **day3-studio** and checks it out at the same time.
 
 Your Tasks
 ----------
@@ -45,9 +41,10 @@ Display the cart total at ``/cart``. Before adding code to the controller and/or
 
 After you have written your test(s) and the corresponding code passes, run all of the tests and commit.
 
-<aside class="aside-note" markdown="1">
-Don't worry about formatting the total as currency (i.e. with exactly 2 decimal places) when displaying it in the view.
-</aside>
+.. note::
+
+    Don't worry about formatting the total as currency (i.e. with exactly 2 decimal places) when displaying it in the view.
+
 
 Add Ability To Remove Items From The Cart
 =========================================
@@ -64,11 +61,11 @@ Implement Unit Test for ItemMemoryRepositoryTests
 The previous programmer left a ``TODO`` in the unit test ``/launchcart/src/test/java/org/launchcode/launchcart/data/ItemMemoryRepositoryTests.java.testAddItems()```. Please write this test so that
 we can be sure our repository class correctly saves items.
 
-<aside class="aside-note" markdown="1">
-This version of LaunchCart does not use an SQL database. Use this test as a way to get familair with how Items and Carts are persisted for this project.
-</aside>
+.. note::
 
-At this point, you may [turn in your work](#turning-in-your-work) before continuing on to the Bonus Mission.
+    This version of LaunchCart does not use an SQL database. Use this test as a way to get familair with how Items and Carts are persisted for this project.
+
+
 
 Bonus Missions
 --------------

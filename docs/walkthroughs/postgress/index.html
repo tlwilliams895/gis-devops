@@ -259,8 +259,9 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: PostgreSQL</a><ul>
-<li><a class="reference internal" href="#install">Install</a></li>
-<li><a class="reference internal" href="#follow-along-as-we">Follow Along as we…</a></li>
+<li><a class="reference internal" href="#install-postgres-app">Install Postgres App</a></li>
+<li><a class="reference internal" href="#let-s-run-some-postgres-commands">Let’s Run Some Postgres Commands</a></li>
+<li><a class="reference internal" href="#now-for-some-sql-queries">Now For Some SQL Queries</a></li>
 </ul>
 </li>
 </ul>
@@ -272,38 +273,52 @@
   <div class="section" id="walkthrough-postgresql">
 <span id="postgres-walkthrough"></span><h1>Walkthrough: PostgreSQL<a class="headerlink" href="#walkthrough-postgresql" title="Permalink to this headline">¶</a></h1>
 <p>Follow along with the instructor as we work with PostgreSQL</p>
-<div class="section" id="install">
-<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="install-postgres-app">
+<h2>Install Postgres App<a class="headerlink" href="#install-postgres-app" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Go <a class="reference external" href="https://postgresapp.com/">here</a></li>
+<li>Go <a class="reference external" href="https://postgresapp.com/">https://postgresapp.com/</a></li>
 <li>Download and open the file</li>
 <li>Note: this is specifcally for Mac OS</li>
 </ul>
 </div>
-<div class="section" id="follow-along-as-we">
-<h2>Follow Along as we…<a class="headerlink" href="#follow-along-as-we" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="let-s-run-some-postgres-commands">
+<h2>Let’s Run Some Postgres Commands<a class="headerlink" href="#let-s-run-some-postgres-commands" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Open Postgres.app on your mac</li>
-<li>Create database sports;</li>
-<li>l - shows list of databases</li>
-<li>create schema baseball;</li>
-<li>Create table baseball.teams (name varchar(50), description varchar(100));</li>
-<li>d baseball.teams - show info about table</li>
+<li>In the postgres terminal we will run the following commands</li>
+<li><code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">database</span> <span class="pre">sports;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">\l</span></code> shows list of databases</li>
+<li><code class="docutils literal notranslate"><span class="pre">create</span> <span class="pre">schema</span> <span class="pre">baseball;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">table</span> <span class="pre">baseball.teams</span> <span class="pre">(name</span> <span class="pre">varchar(50),</span> <span class="pre">description</span> <span class="pre">varchar(100));</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">\d</span> <span class="pre">baseball.teams</span></code> - show info about table</li>
+</ul>
+</div>
+<div class="section" id="now-for-some-sql-queries">
+<h2>Now For Some SQL Queries<a class="headerlink" href="#now-for-some-sql-queries" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
 <li>Insert</li>
 <li>Select</li>
 <li>delete</li>
-<li>Alter table
-* ALTER TABLE baseball.teams ADD COLUMN id integer PRIMARY KEY;</li>
-<li>Constraints</li>
+<li>Alter table<ul>
+<li>ALTER TABLE baseball.teams ADD COLUMN id integer PRIMARY KEY;</li>
+</ul>
+</li>
+<li>Constraints<ul>
 <li>Not null</li>
 <li>Primary key</li>
 <li>Foreign key</li>
-<li>Sequence</li>
+</ul>
+</li>
+<li>Create a Sequence<ul>
 <li>CREATE SEQUENCE baseball.teams_id_seq START 10;</li>
 <li>DEFAULT nextval(‘baseball.teams_id_seq’);</li>
-<li>Indexes</li>
+</ul>
+</li>
+<li>Indexes<ul>
 <li>Created automatically with Primary Key and Unique constraints</li>
 <li>You can also add an index manually</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

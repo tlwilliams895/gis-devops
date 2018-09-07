@@ -298,28 +298,22 @@
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">There should be only one <code class="docutils literal notranslate"><span class="pre">Url</span></code> constructor, and it should take a string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;https://launchcode.org/learn&quot;</span></code>) and set <code class="docutils literal notranslate"><span class="pre">domain</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol</span></code>, and <code class="docutils literal notranslate"><span class="pre">path</span></code> fields. Note that protocol and domain will not contain any <code class="docutils literal notranslate"><span class="pre">/</span></code> characters, but the path may.</p>
-</li>
-<li><p class="first">The three should be immutable. In other words, they should be <code class="docutils literal notranslate"><span class="pre">final</span></code> and have getters but not setters.</p>
-</li>
-<li><p class="first">The constructor should take mixed-case strings, but set fields as lowercase strings. For example, if passed <code class="docutils literal notranslate"><span class="pre">&quot;HTTPS://LAUNCHCODE.ORG&quot;</span></code> then calling <code class="docutils literal notranslate"><span class="pre">getDomain()</span></code> should return <code class="docutils literal notranslate"><span class="pre">&quot;launchcode.org&quot;</span></code>.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">Url</span></code> should override <code class="docutils literal notranslate"><span class="pre">toString()</span></code>, which should return a properly-formatted version of the URL (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;https://launchcode.org/learn&quot;</span></code>)</p>
-</li>
-<li><p class="first">The string passed to the constructor should satisfy each of the following. If it doesn’t, then the constructor should throw an <code class="docutils literal notranslate"><span class="pre">IllegalArgumentException</span></code> with an appropriate message.</p>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
+<li>There should be only one <code class="docutils literal notranslate"><span class="pre">Url</span></code> constructor, and it should take a string (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;https://launchcode.org/learn&quot;</span></code>) and set <code class="docutils literal notranslate"><span class="pre">domain</span></code>, <code class="docutils literal notranslate"><span class="pre">protocol</span></code>, and <code class="docutils literal notranslate"><span class="pre">path</span></code> fields. Note that protocol and domain will not contain any <code class="docutils literal notranslate"><span class="pre">/</span></code> characters, but the path may.</li>
+<li>The three should be immutable. In other words, they should be <code class="docutils literal notranslate"><span class="pre">final</span></code> and have getters but not setters.</li>
+<li>The constructor should take mixed-case strings, but set fields as lowercase strings. For example, if passed <code class="docutils literal notranslate"><span class="pre">&quot;HTTPS://LAUNCHCODE.ORG&quot;</span></code> then calling <code class="docutils literal notranslate"><span class="pre">getDomain()</span></code> should return <code class="docutils literal notranslate"><span class="pre">&quot;launchcode.org&quot;</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Url</span></code> should override <code class="docutils literal notranslate"><span class="pre">toString()</span></code>, which should return a properly-formatted version of the URL (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;https://launchcode.org/learn&quot;</span></code>)</li>
+<li>The string passed to the constructor should satisfy each of the following. If it doesn’t, then the constructor should throw an <code class="docutils literal notranslate"><span class="pre">IllegalArgumentException</span></code> with an appropriate message.<ul>
 <li>The protocol is one of: ftp, http, https, and file</li>
 <li>The path may be empty, but domain and protocol must both be non-empty</li>
 <li>The domain may only contain letters, numbers, <code class="docutils literal notranslate"><span class="pre">.</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, or <code class="docutils literal notranslate"><span class="pre">_</span></code></li>
 </ul>
-</div></blockquote>
 </li>
 </ul>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-These requirements are not comprehensive of how a URL may be structured, but they encompass a large number of URLs you use on a daily basis.
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These requirements are not comprehensive of how a URL may be structured, but they encompass a large number of URLs you use on a daily basis.</p>
+</div>
 </div>
 <div class="section" id="bonus-missions">
 <h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
@@ -334,7 +328,8 @@ These requirements are not comprehensive of how a URL may be structured, but the
 <p>If you don’t complete each of the tasks, turn in as much as you have completed by the end of the day.</p>
 <ul class="simple">
 <li>Commit and push your work to GitLab</li>
-<li>Notify the instructor that you are done</li>
+<li>Create a Merge Request for the branch you pushed (you do this on the GitLab website)</li>
+<li>Ask your classmates and instructor to review your code</li>
 </ul>
 </div>
 <div class="section" id="resources">
@@ -342,9 +337,10 @@ These requirements are not comprehensive of how a URL may be structured, but the
 <ul class="simple">
 <li><a class="reference external" href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">Java Regex Docs</a></li>
 </ul>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-The “intentions menu”, Alt + Enter, in Intellij has a “Check Regex” option that brings up a Regular Expression tester.
-&lt;/aside&gt;</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The “intentions menu”, Alt + Enter, in Intellij has a “Check Regex” option that brings up a Regular Expression tester.</p>
+</div>
 </div>
 </div>
 

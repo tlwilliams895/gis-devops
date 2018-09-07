@@ -68,4 +68,4 @@ Example Usage
 
 Resources
 ---------
- * `Spring framework <https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#integration-testing>`_
+* `Spring framework <https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#integration-testing>`_

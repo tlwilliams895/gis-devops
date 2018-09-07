@@ -282,11 +282,7 @@
 <p>This activity gives you practice writing integration tests in Spring.</p>
 <div class="section" id="getting-ready">
 <h2>Getting Ready<a class="headerlink" href="#getting-ready" title="Permalink to this headline">¶</a></h2>
-<p>Fork the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">LaunchCodeTraining/launchcart repo</a> and clone it to your laptop. For this project we will start with the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. After forking and cloning, it’s a good idea to make a <strong>feature branch</strong> to contain your work. Example:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git checkout -b day3-studio
-</pre></div>
-</div>
-<p>creates a branch named <strong>day3-studio</strong> and checks it out at the same time.</p>
+<p>Fork the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">LaunchCodeTraining/launchcart repo</a> and clone it to your laptop. For this project we will start with the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. After forking and cloning, it’s a good idea to make a <strong>feature branch</strong> to contain your work. Example: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">day3-studio</span></code> creates a branch named <strong>day3-studio</strong> and checks it out at the same time.</p>
 </div>
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
@@ -305,9 +301,10 @@
 <p>Add a <code class="docutils literal notranslate"><span class="pre">computeTotal</span></code> method to <code class="docutils literal notranslate"><span class="pre">Cart</span></code>, writing a unit test to verify its behavior before adding any code to the class itself.</p>
 <p>Display the cart total at <code class="docutils literal notranslate"><span class="pre">/cart</span></code>. Before adding code to the controller and/or view, write an integration test to verify that the total is displayed properly.</p>
 <p>After you have written your test(s) and the corresponding code passes, run all of the tests and commit.</p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-Don’t worry about formatting the total as currency (i.e. with exactly 2 decimal places) when displaying it in the view.
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Don’t worry about formatting the total as currency (i.e. with exactly 2 decimal places) when displaying it in the view.</p>
+</div>
 </div>
 <div class="section" id="add-ability-to-remove-items-from-the-cart">
 <h3>Add Ability To Remove Items From The Cart<a class="headerlink" href="#add-ability-to-remove-items-from-the-cart" title="Permalink to this headline">¶</a></h3>
@@ -319,10 +316,10 @@ Don’t worry about formatting the total as currency (i.e. with exactly 2 decima
 <h3>Implement Unit Test for ItemMemoryRepositoryTests<a class="headerlink" href="#implement-unit-test-for-itemmemoryrepositorytests" title="Permalink to this headline">¶</a></h3>
 <p>The previous programmer left a <code class="docutils literal notranslate"><span class="pre">TODO</span></code> in the unit test <code class="docutils literal notranslate"><span class="pre">/launchcart/src/test/java/org/launchcode/launchcart/data/ItemMemoryRepositoryTests.java.testAddItems()`</span></code>. Please write this test so that
 we can be sure our repository class correctly saves items.</p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-This version of LaunchCart does not use an SQL database. Use this test as a way to get familair with how Items and Carts are persisted for this project.
-&lt;/aside&gt;</p>
-<p>At this point, you may [turn in your work](#turning-in-your-work) before continuing on to the Bonus Mission.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This version of LaunchCart does not use an SQL database. Use this test as a way to get familair with how Items and Carts are persisted for this project.</p>
+</div>
 </div>
 </div>
 <div class="section" id="bonus-missions">
