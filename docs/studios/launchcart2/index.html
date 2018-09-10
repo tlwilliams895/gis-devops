@@ -281,13 +281,14 @@
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>In the terminal go to project folder for <strong>Car Integration Tests</strong></li>
-<li>Checkout the branch that contains the solution for the Day 3 walkthrough. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code> or <code class="docutils literal notranslate"><span class="pre">$git</span> <span class="pre">checkout</span> <span class="pre">solution</span></code></li>
+<li>In the terminal go to project folder for <strong>LaunchCart</strong></li>
+<li>Checkout the branch that contains the solution for the Day 3 studio. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">day3-solution</span></code></li>
 <li>Create a new branch for today’s work: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">get</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">day4-add-hibernate</span></code></li>
 </ol>
-<p>&lt;aside class=”aside-pro-tip” markdown=”1”&gt;
-If you have any uncommitted changes, stash them using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code>. You can retrieve them later via <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span> <span class="pre">pop</span></code>.
-&lt;/aside&gt;</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">If you have any uncommitted changes, stash them using <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span></code>. You can retrieve them later via <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">stash</span> <span class="pre">pop</span></code>.</p>
+</div>
 </div>
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
@@ -312,13 +313,11 @@ If you have any uncommitted changes, stash them using <code class="docutils lite
 <li><p class="first">Run all of the tests to ensure that they pass</p>
 </li>
 <li><p class="first">Add a checkbox to <code class="docutils literal notranslate"><span class="pre">templates/item/new.html</span></code>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```html
-&lt;div class=&quot;form-group&quot;&gt;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;form-group&quot;&gt;
     &lt;input type=&quot;checkbox&quot; id=&quot;newItem&quot;
-           name=&quot;newItem&quot; value=&quot;true&quot; checked=&quot;checked&quot; /&gt;
+            name=&quot;newItem&quot; value=&quot;true&quot; checked=&quot;checked&quot; /&gt;
     &lt;label for=&quot;newItem&quot;&gt;New Item&lt;/label&gt;
 &lt;/div&gt;
-```
 </pre></div>
 </div>
 </li>
@@ -332,24 +331,21 @@ If you have any uncommitted changes, stash them using <code class="docutils lite
 <div class="section" id="bonus-mission">
 <h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
 <p>Another basic feature that is missing is the ability to add some quantity of items (greater than 1) to the cart. To do this, we need to introduce a new model class, <code class="docutils literal notranslate"><span class="pre">CartItem</span></code>.</p>
-<p>&lt;aside class=”aside-pro-tip” markdown=”1”&gt;
-Before embarking on this mission, create a feature branch to isolate your work. Aside from being a best-practice, this will also keep your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch nice and clean in the event you don’t finish the mission. This will be helpful since we’ll continue working on this app in a future studio.
-&lt;/aside&gt;</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">Before embarking on this mission, create a feature branch to isolate your work. Aside from being a best-practice, this will also keep your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch nice and clean in the event you don’t finish the mission. This will be helpful since we’ll continue working on this app in a future studio.</p>
+</div>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> class with fields <code class="docutils literal notranslate"><span class="pre">item</span></code> and <code class="docutils literal notranslate"><span class="pre">quantity</span></code>, and refactor <code class="docutils literal notranslate"><span class="pre">Cart</span></code> to store a collection of <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects instead of <code class="docutils literal notranslate"><span class="pre">Item</span></code> objects. As <code class="docutils literal notranslate"><span class="pre">Cart</span></code> and <code class="docutils literal notranslate"><span class="pre">Item</span></code> have done, you should extend <code class="docutils literal notranslate"><span class="pre">AbstractEntity</span></code> to get the common identifier configuration contained in that base class.</p>
 <p>Start by refactoring the model:
 * Add the new model class
 * Re/write tests in <code class="docutils literal notranslate"><span class="pre">TestCart</span></code> as necessary
 * Refactor <cite>Cart</cite> to use <code class="docutils literal notranslate"><span class="pre">CartItem</span></code></p>
 <p>Once you have a working model that uses <code class="docutils literal notranslate"><span class="pre">CartItem</span></code>, run <strong>all</strong> of your tests, including the integration tests. You’ll have some work to do here, since changing the model will break parts of the controller and view.</p>
-<p>&lt;aside class=”aside-hint” markdown=”1”&gt;
-You may experience a situation where your integration tests fail because a new item that is seemingly added to the cart isn’t actually there when viewing <code class="docutils literal notranslate"><span class="pre">/cart</span></code>. If this is the case, it’s likely that Hibernate isn’t persisting your new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> instances. These objects are never handled directly by the controller, and thus never saved via a repository.</p>
-<p>You can force Hibernate to save new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects in all situations by adding a cascade property to the <code class="docutils literal notranslate"><span class="pre">&#64;OneToMany</span></code> collection storing <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>```java
-</pre></div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>You may experience a situation where your integration tests fail because a new item that is seemingly added to the cart isn’t actually there when viewing <code class="docutils literal notranslate"><span class="pre">/cart</span></code>. If this is the case, it’s likely that Hibernate isn’t persisting your new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> instances. These objects are never handled directly by the controller, and thus never saved via a repository.</p>
+<p class="last">You can force Hibernate to save new <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects in all situations by adding a cascade property to the <code class="docutils literal notranslate"><span class="pre">&#64;OneToMany</span></code> collection storing <code class="docutils literal notranslate"><span class="pre">CartItem</span></code> objects via <code class="docutils literal notranslate"><span class="pre">&#64;OneToMany(cascade</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">CascadeType.ALL</span> <span class="pre">})</span></code></p>
 </div>
-<p>&#64;OneToMany(cascade = { CascadeType.ALL })
-<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></p>
-<p>&lt;/aside&gt;</p>
 <p>After your model has been refactored, and all of your tests pass, you’ll need to refactor the controller and view layers heavily to get this to work. This will include adding functionality that allows the user to enter a quantity when adding an item to the cart.</p>
 <p>As always, write your tests first!</p>
 </div>
@@ -358,7 +354,7 @@ You may experience a situation where your integration tests fail because a new i
 <p>If you don’t complete each of the tasks, turn in as much as you have completed by the end of the day.</p>
 <ul class="simple">
 <li>Commit and push your work to GitLab</li>
-<li>Notify the instructor that you are done</li>
+<li>Create a Merge Request and have the teacher and classmates review your changes</li>
 </ul>
 </div>
 </div>
