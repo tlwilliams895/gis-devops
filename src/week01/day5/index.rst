@@ -10,7 +10,7 @@ Lesson Content
 --------------
 
 * `HTTP <https://education.launchcode.org/gis-devops-slides/week1/day5_http.html#1>`_
-* `Intro to APIS <https://education.launchcode.org/gis-devops-slides/week1/day5_apis.html#1>`_
+* `Intro to APIS and OpenLayers3 <https://education.launchcode.org/gis-devops-slides/week1/day5_apis.html#1>`_
 
 Walkthrough
 -----------
