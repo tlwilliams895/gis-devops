@@ -28,24 +28,30 @@ Requirements
 
 Here is a mockup of the application you will be building.
 
-  .. image:: /_static/images/cdc_zika_dashboard.png
+.. image:: /_static/images/cdc_zika_dashboard.png
 
- * The database should be populated with Zika report data from Brazil, Mexico, Panama, and Haiti.
- * The app should show a red circle for each location that has provided a Zika report.
- * Upon clicking on a red dot, the location's name and any reported data show up below the status bar. Remember, each location may report multiple statistics and every country does not report the same statistics.
+* The database should be populated with Zika report data from Brazil, Mexico, Panama, and Haiti.
+* The app should show a red circle for each location that has provided a Zika report.
+* Upon clicking on a red dot, the location's name and any reported data show up below the status bar. Remember, each location may report multiple statistics and every country does not report the same statistics.
 
 Project Hints
 =============
 
 * Postgres allows you to import CSV files directly into the database if the columns on your CSV match the columns of in your target database table. Make sure that you have the full path to the file in the copy command.
-```COPY report(field1, field2, field3, field4) from '/this/is/the/full/path/to/the/file' DELIMITER ',' CSV HEADER;```
-* Every time Spring Boot starts up, it will run an ``import.sql`` file located in ``src/main/resources``. If you are importing data directly into the database via CSV, this is a convenient way to populate your database.
+
+::
+
+  COPY report(field1, field2, field3, field4) from 
+  '/this/is/the/full/path/to/the/file' DELIMITER ',' CSV HEADER;
+
+* Every time Spring Boot starts up, it will run an ``import.sql`` file located in ``src/main/resources``, if the `ddl-auto` property is set to ``create`` or ``create-drop``. This is a convenient way to populate your database via CSV file.
 * Remember, Spring Boot is set to recreate your database every time it starts up.
 
 Setup Project
 =============
 
-Fork and clone Zika CDC Dashboard https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard
+- Fork and clone Zika CDC Dashboard https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard
+- Then create a feature branch ``$ git checkout -b week2-solution``
 
 Setup Postgres
 ==============
@@ -53,39 +59,38 @@ Setup Postgres
 Run ``psql`` CLI by double clicking on the ``postgres`` database in the Postgresql App
 
 Open the Postgres UI and double click on the ``postgres`` db to open a ``psql`` command prompt.
-Then execute:
+Then execute these in terminal::
 
-```nohighlight
 $ createdb zika
 $ createdb zika_test
 $ psql -U (your mac username) zika
-* CREATE EXTENSION postgis;
-* CREATE EXTENSION postgis_topology;
-* CREATE EXTENSION fuzzystrmatch;
-* CREATE EXTENSION postgis_tiger_geocoder;
-* \c zika_test
-* CREATE EXTENSION postgis;
-* CREATE EXTENSION postgis_topology;
-* CREATE EXTENSION fuzzystrmatch;
-* CREATE EXTENSION postgis_tiger_geocoder;
-```
 
-Execute the above commands inside of the ``zika_test`` db as well.
+Execte these in the psql prompt::
 
-Create a new user for your application by opening Postgres UI and double clicking on the ``zika`` db to open a ``psql`` command prompt connected to the ``zika`` db.
+  zika=# CREATE EXTENSION postgis;
+  zika=# CREATE EXTENSION postgis_topology;
+  zika=# CREATE EXTENSION fuzzystrmatch;
+  zika=# CREATE EXTENSION postgis_tiger_geocoder;
+  zika=# \c zika_test
+  zika_test=# CREATE EXTENSION postgis;
+  zika_test=# CREATE EXTENSION postgis_topology;
+  zika_test=# CREATE EXTENSION fuzzystrmatch;
+  zika_test=# CREATE EXTENSION postgis_tiger_geocoder;
 
-```nohighlight
-# CREATE USER zika_app_user WITH PASSWORD 'somethingsensible' CREATEDB;
-# ALTER ROLE zika_app_user WITH SUPERUSER;
-```
+Create a new user for your application by opening Postgres UI and double clicking on the ``zika`` db to open a ``psql`` command prompt connected to the ``zika`` db.::
+
+  # CREATE USER zika_app_user WITH PASSWORD 'somethingsensible' CREATEDB;
+  # ALTER ROLE zika_app_user WITH SUPERUSER;
+
 
 Turning In Your Work
 ====================
 
- Your goal is to have your project done by Friday morning.
+Your goal is to have your project done by Friday morning.
 
- * Commit and push your work to GitLab.
- * Notify the instructor when you are done.
+* Commit and push your work to GitLab.
+* Create a Merge Request in Gitlab
+* Ask your instructor and classmates to review your Merge Request
 
 Bonus Missions
 ==============
@@ -100,6 +105,6 @@ Resources
 * `geojson.io <http://geojson.io/#map=2/20.0/0.0>`_
 * `Spring Data JPA DataRepostiry query documentation <https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html>`_
 
-<aside class="aside-note" markdown="1">
-Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.
-</aside>
+.. note::
+
+  Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.

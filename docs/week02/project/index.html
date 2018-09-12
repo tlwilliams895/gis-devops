@@ -300,65 +300,70 @@
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>Here is a mockup of the application you will be building.</p>
-<blockquote>
-<div><blockquote>
-<div><img alt="../../_images/cdc_zika_dashboard.png" src="../../_images/cdc_zika_dashboard.png" />
-</div></blockquote>
+<img alt="../../_images/cdc_zika_dashboard.png" src="../../_images/cdc_zika_dashboard.png" />
 <ul class="simple">
 <li>The database should be populated with Zika report data from Brazil, Mexico, Panama, and Haiti.</li>
 <li>The app should show a red circle for each location that has provided a Zika report.</li>
 <li>Upon clicking on a red dot, the location’s name and any reported data show up below the status bar. Remember, each location may report multiple statistics and every country does not report the same statistics.</li>
 </ul>
-</div></blockquote>
 </div>
 <div class="section" id="project-hints">
 <h2>Project Hints<a class="headerlink" href="#project-hints" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Postgres allows you to import CSV files directly into the database if the columns on your CSV match the columns of in your target database table. Make sure that you have the full path to the file in the copy command.</li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`COPY</span> <span class="pre">report(field1,</span> <span class="pre">field2,</span> <span class="pre">field3,</span> <span class="pre">field4)</span> <span class="pre">from</span> <span class="pre">'/this/is/the/full/path/to/the/file'</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER;`</span></code>
-* Every time Spring Boot starts up, it will run an <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file located in <code class="docutils literal notranslate"><span class="pre">src/main/resources</span></code>. If you are importing data directly into the database via CSV, this is a convenient way to populate your database.
-* Remember, Spring Boot is set to recreate your database every time it starts up.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>COPY report(field1, field2, field3, field4) from
+&#39;/this/is/the/full/path/to/the/file&#39; DELIMITER &#39;,&#39; CSV HEADER;
+</pre></div>
+</div>
+<ul class="simple">
+<li>Every time Spring Boot starts up, it will run an <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file located in <code class="docutils literal notranslate"><span class="pre">src/main/resources</span></code>, if the <cite>ddl-auto</cite> property is set to <code class="docutils literal notranslate"><span class="pre">create</span></code> or <code class="docutils literal notranslate"><span class="pre">create-drop</span></code>. This is a convenient way to populate your database via CSV file.</li>
+<li>Remember, Spring Boot is set to recreate your database every time it starts up.</li>
+</ul>
 </div>
 <div class="section" id="setup-project">
 <h2>Setup Project<a class="headerlink" href="#setup-project" title="Permalink to this headline">¶</a></h2>
-<p>Fork and clone Zika CDC Dashboard <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard">https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard</a></p>
+<ul class="simple">
+<li>Fork and clone Zika CDC Dashboard <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard">https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard</a></li>
+<li>Then create a feature branch <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">week2-solution</span></code></li>
+</ul>
 </div>
 <div class="section" id="setup-postgres">
 <h2>Setup Postgres<a class="headerlink" href="#setup-postgres" title="Permalink to this headline">¶</a></h2>
 <p>Run <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI by double clicking on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> database in the Postgresql App</p>
 <p>Open the Postgres UI and double click on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt.
-Then execute:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">createdb</span> <span class="pre">zika</span>
-<span class="pre">$</span> <span class="pre">createdb</span> <span class="pre">zika_test</span>
-<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-U</span> <span class="pre">(your</span> <span class="pre">mac</span> <span class="pre">username)</span> <span class="pre">zika</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis;</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_topology;</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">fuzzystrmatch;</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_tiger_geocoder;</span>
-<span class="pre">*</span> <span class="pre">\c</span> <span class="pre">zika_test</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis;</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_topology;</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">fuzzystrmatch;</span>
-<span class="pre">*</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_tiger_geocoder;</span>
-<span class="pre">`</span></code></p>
-<p>Execute the above commands inside of the <code class="docutils literal notranslate"><span class="pre">zika_test</span></code> db as well.</p>
-<p>Create a new user for your application by opening Postgres UI and double clicking on the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt connected to the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">#</span> <span class="pre">CREATE</span> <span class="pre">USER</span> <span class="pre">zika_app_user</span> <span class="pre">WITH</span> <span class="pre">PASSWORD</span> <span class="pre">'somethingsensible'</span> <span class="pre">CREATEDB;</span>
-<span class="pre">#</span> <span class="pre">ALTER</span> <span class="pre">ROLE</span> <span class="pre">zika_app_user</span> <span class="pre">WITH</span> <span class="pre">SUPERUSER;</span>
-<span class="pre">`</span></code></p>
+Then execute these in terminal:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ createdb zika
+$ createdb zika_test
+$ psql -U (your mac username) zika
+</pre></div>
+</div>
+<p>Execte these in the psql prompt:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>zika=# CREATE EXTENSION postgis;
+zika=# CREATE EXTENSION postgis_topology;
+zika=# CREATE EXTENSION fuzzystrmatch;
+zika=# CREATE EXTENSION postgis_tiger_geocoder;
+zika=# \c zika_test
+zika_test=# CREATE EXTENSION postgis;
+zika_test=# CREATE EXTENSION postgis_topology;
+zika_test=# CREATE EXTENSION fuzzystrmatch;
+zika_test=# CREATE EXTENSION postgis_tiger_geocoder;
+</pre></div>
+</div>
+<p>Create a new user for your application by opening Postgres UI and double clicking on the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt connected to the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># CREATE USER zika_app_user WITH PASSWORD &#39;somethingsensible&#39; CREATEDB;
+# ALTER ROLE zika_app_user WITH SUPERUSER;
+</pre></div>
+</div>
 </div>
 <div class="section" id="turning-in-your-work">
 <h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>Your goal is to have your project done by Friday morning.</p>
+<p>Your goal is to have your project done by Friday morning.</p>
 <ul class="simple">
 <li>Commit and push your work to GitLab.</li>
-<li>Notify the instructor when you are done.</li>
+<li>Create a Merge Request in Gitlab</li>
+<li>Ask your instructor and classmates to review your Merge Request</li>
 </ul>
-</div></blockquote>
 </div>
 <div class="section" id="bonus-missions">
 <h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
@@ -372,9 +377,10 @@ Then execute:</p>
 <li><a class="reference external" href="http://geojson.io/#map=2/20.0/0.0">geojson.io</a></li>
 <li><a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/1.5.0.RELEASE/reference/html/jpa.repositories.html">Spring Data JPA DataRepostiry query documentation</a></li>
 </ul>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.</p>
+</div>
 </div>
 </div>
 
