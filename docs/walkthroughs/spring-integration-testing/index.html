@@ -260,13 +260,13 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: Spring Integration Tests</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
-<li><a class="reference internal" href="#what-we-will-do">What we will do</a></li>
 <li><a class="reference internal" href="#spring-integration-test-utilities">Spring Integration Test Utilities</a><ul>
 <li><a class="reference internal" href="#class-level-configuration">Class-level Configuration</a></li>
 <li><a class="reference internal" href="#executing-and-verifying-results">Executing and Verifying Results</a></li>
 <li><a class="reference internal" href="#example-usage">Example Usage</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#our-tasks">Our Tasks</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
 </li>
@@ -282,15 +282,8 @@
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Fork this repo: <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/car-integration-test-starter/">Car Integration Tests</a></li>
+<li>Create a feature branch <cite>$ git checkout -b walkthrough-solution</cite></li>
 <li>Open project in Intellij by opening gradle.build file as a project</li>
-</ol>
-</div>
-<div class="section" id="what-we-will-do">
-<h2>What we will do<a class="headerlink" href="#what-we-will-do" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>Add an integration test for going to the url <code class="docutils literal notranslate"><span class="pre">/car</span></code></li>
-<li>Add an integartion test for going to the url <code class="docutils literal notranslate"><span class="pre">/car/:id</span></code></li>
-<li>Implement the route /car/:id (make the tests green)</li>
 </ol>
 </div>
 <div class="section" id="spring-integration-test-utilities">
@@ -368,6 +361,16 @@
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="our-tasks">
+<h2>Our Tasks<a class="headerlink" href="#our-tasks" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>In Intellij go to test class <code class="docutils literal notranslate"><span class="pre">/src/test/java/org/launchcode/training/CarControllerTests.java</span></code></li>
+<li>Add an integration test for going to the url <code class="docutils literal notranslate"><span class="pre">/car</span></code></li>
+<li>Implement the route <code class="docutils literal notranslate"><span class="pre">/car</span></code> and make the new test pass</li>
+<li>Add an integartion test for going to the url <code class="docutils literal notranslate"><span class="pre">/car/:id</span></code></li>
+<li>Implement the route <code class="docutils literal notranslate"><span class="pre">/car/:id</span></code> and make the new test pass</li>
+</ol>
 </div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>

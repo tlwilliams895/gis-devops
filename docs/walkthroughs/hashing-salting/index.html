@@ -260,13 +260,11 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: Hashing and Salting Passwords</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
-<li><a class="reference internal" href="#what-s-the-status">What’s the Status?</a><ul>
+<li><a class="reference internal" href="#determine-the-status-of-the-current-code">Determine the Status of the Current Code</a></li>
 <li><a class="reference internal" href="#implement-secure-password-hashing-using-bcrypt">Implement Secure Password Hashing using BCrypt</a></li>
 <li><a class="reference internal" href="#use-the-bcryptpasswordencoder-class">Use the BCryptPasswordEncoder Class</a></li>
 <li><a class="reference internal" href="#let-s-see-if-it-works">Let’s see if it works!</a></li>
 <li><a class="reference internal" href="#quiz">Quiz</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
 </li>
@@ -282,19 +280,20 @@
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Checkout the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch of <code class="docutils literal notranslate"><span class="pre">https://gitlab.com/LaunchCodeTraining/launchcart</span></code></li>
-<li>Create and checkout a <strong>feature branch</strong> named <code class="docutils literal notranslate"><span class="pre">securely-hash-passwords</span></code></li>
+<li>Create and checkout a <strong>feature branch</strong> named <code class="docutils literal notranslate"><span class="pre">securely-hash-passwords</span></code> via <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">securely-hash-passwords</span></code></li>
 </ol>
 </div>
-<div class="section" id="what-s-the-status">
-<h2>What’s the Status?<a class="headerlink" href="#what-s-the-status" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="determine-the-status-of-the-current-code">
+<h2>Determine the Status of the Current Code<a class="headerlink" href="#determine-the-status-of-the-current-code" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Run tests to see current status</li>
 <li>Search for any <code class="docutils literal notranslate"><span class="pre">//TODO</span></code> comments</li>
 <li>We need to make sure that passwords are hashed properly when stored in the database</li>
 </ol>
+</div>
 <div class="section" id="implement-secure-password-hashing-using-bcrypt">
-<h3>Implement Secure Password Hashing using BCrypt<a class="headerlink" href="#implement-secure-password-hashing-using-bcrypt" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic" start="3">
+<h2>Implement Secure Password Hashing using BCrypt<a class="headerlink" href="#implement-secure-password-hashing-using-bcrypt" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
 <li><p class="first">Search for a Spring Security implementation of BCrypt</p>
 </li>
 <li><p class="first">Add <strong>Spring Security</strong> dependency to <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>:</p>
@@ -308,8 +307,8 @@
 </ol>
 </div>
 <div class="section" id="use-the-bcryptpasswordencoder-class">
-<h3>Use the BCryptPasswordEncoder Class<a class="headerlink" href="#use-the-bcryptpasswordencoder-class" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic" start="5">
+<h2>Use the BCryptPasswordEncoder Class<a class="headerlink" href="#use-the-bcryptpasswordencoder-class" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
 <li><p class="first">Use <code class="docutils literal notranslate"><span class="pre">BCryptPasswordEncoder.encode</span></code> in the <code class="docutils literal notranslate"><span class="pre">User.java</span></code> contructor:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>public User(String username, String password) {
     this.username = username;
@@ -332,31 +331,28 @@ private static String hashPassword(String password) {
 </ol>
 </div>
 <div class="section" id="let-s-see-if-it-works">
-<h3>Let’s see if it works!<a class="headerlink" href="#let-s-see-if-it-works" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple" start="7">
+<h2>Let’s see if it works!<a class="headerlink" href="#let-s-see-if-it-works" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
 <li>Make sure the tests pass</li>
 <li>Run <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> and see if you can register (register a few users)</li>
 <li>Verify what the hashed and salted password looks like in the database</li>
 </ol>
 </div>
 <div class="section" id="quiz">
-<h3>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">¶</a></h3>
+<h2>Quiz<a class="headerlink" href="#quiz" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Where is the salt stored?</li>
 </ul>
 </div>
-</div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li><a class="reference external" href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet">OWASP Hashing Guidelines</a></li>
 <li><a class="reference external" href="https://docs.spring.io/spring-security/site/docs/5.0.7.RELEASE/reference/htmlsingle/#spring-security-crypto-passwordencoders">Spring Security - BCrypt documentation</a></li>
 <li><a class="reference external" href="https://github.com/spring-projects/spring-security/blob/5888a3f6b7e9f56e5d47ecbea3444209c713e3bf/crypto/src/main/java/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.java">Spring Security - BCrypt source code</a></li>
 <li><a class="reference external" href="https://crackstation.net/hashing-security.htm">In Depth Background and Guidance for Hashing</a></li>
 <li><a class="reference external" href="https://en.wikipedia.org/wiki/Bcrypt">Bcrypt</a></li>
 </ul>
-</div></blockquote>
 </div>
 </div>
 

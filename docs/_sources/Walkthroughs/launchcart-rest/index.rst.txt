@@ -10,19 +10,19 @@ In this walkthrough, the instructor will guide you through adding some RESTful e
 Getting Started
 ===============
 
-From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTraining/launchcart that you used previously, check out the ``rest-walkthrough`` branch. Then create a feature branch.
+From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTraining/launchcart that you used previously, check out the ``rest-walkthrough`` branch. Then create a feature branch.::
+    
+    $ git checkout rest-walkthrough
+    $ git checkout -b rest-walkthrough-solution
 
-```nohighlight
-$ git checkout rest-walkthrough
-$ git checkout -b rest-walkthrough-solution
-```
 
 This starter code has some functionality beyond what you added in the LaunchCart 2 studi0 :ref:`launchcart-part2`. In particular, it has a ``Customer`` class, along with functionality for users to register and log in as customers.
 
-<aside class="aside-hint" markdown="1">
-A good way to see what has been added in a branch is to you use the **comparison** feature of Gitlab.
-Example: https://gitlab.com/LaunchCodeTraining/launchcart/branches https://gitlab.com/LaunchCodeTraining/launchcart/branches and notice the **Compare** button next to each branch.
-</aside>
+.. hint:: 
+
+    A good way to see what has been added in a branch is to you use the **comparison** feature of Gitlab.
+    Example: https://gitlab.com/LaunchCodeTraining/launchcart/branches https://gitlab.com/LaunchCodeTraining/launchcart/branches and notice the **Compare** button next to each branch.
+
 
 Adding a REST Controller
 ========================
@@ -43,9 +43,9 @@ We will now implement the following resources:
 * ``PUT /api/items/{id}``
 * ``DELETE /api/items/{id}``
 
-Additionally, we will demonstrate how to enable XML as a resource format. To do this, add the following Gradle dependency:
-```nohighlight
-compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
-```
+Additionally, we will demonstrate how to enable XML as a resource format. To do this, add the following Gradle dependency::
+
+    compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
+
 
 Then annotate the ``Item`` class with ``@XmlRootElement``. Then add ``@XmlElement`` to each field that should be included in the XML serialization as an XML element child of ``<Item>``, and ``@XmlAttribute`` to each field that should be included as an XML attribute of ``<Item>``. Don't forget about inherited fields.

@@ -9,13 +9,8 @@ Setup
 -----
 
 1. Fork this repo: `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter/>`_
-2. Open project in Intellij by opening gradle.build file as a project
-
-What we will do
----------------
-1. Add an integration test for going to the url ``/car``
-2. Add an integartion test for going to the url ``/car/:id``
-3. Implement the route /car/:id (make the tests green)
+2. Create a feature branch `$ git checkout -b walkthrough-solution`
+3. Open project in Intellij by opening gradle.build file as a project
 
 Spring Integration Test Utilities
 ---------------------------------
@@ -65,6 +60,14 @@ Example Usage
       .andExpect(status().isOk())
       //the HTML returned should contain text "Tesla"
       .andExpect(content(string(containsString("Tesla"))));
+
+Our Tasks
+---------
+1. In Intellij go to test class ``/src/test/java/org/launchcode/training/CarControllerTests.java``
+2. Add an integration test for going to the url ``/car``
+3. Implement the route ``/car`` and make the new test pass 
+4. Add an integartion test for going to the url ``/car/:id``
+5. Implement the route ``/car/:id`` and make the new test pass
 
 Resources
 ---------

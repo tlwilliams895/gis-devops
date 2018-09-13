@@ -274,16 +274,17 @@
 <p>In this walkthrough, the instructor will guide you through adding some RESTful endpoints to the LaunchCart application.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> project/repository <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">https://gitlab.com/LaunchCodeTraining/launchcart</a> that you used previously, check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch. Then create a feature branch.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">rest-walkthrough</span>
-<span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">rest-walkthrough-solution</span>
-<span class="pre">`</span></code></p>
+<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> project/repository <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">https://gitlab.com/LaunchCodeTraining/launchcart</a> that you used previously, check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch. Then create a feature branch.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ git checkout rest-walkthrough
+$ git checkout -b rest-walkthrough-solution
+</pre></div>
+</div>
 <p>This starter code has some functionality beyond what you added in the LaunchCart 2 studi0 <a class="reference internal" href="../../studios/launchcart2/index.html#launchcart-part2"><span class="std std-ref">Studio: LaunchCart Part 2</span></a>. In particular, it has a <code class="docutils literal notranslate"><span class="pre">Customer</span></code> class, along with functionality for users to register and log in as customers.</p>
-<p>&lt;aside class=”aside-hint” markdown=”1”&gt;
-A good way to see what has been added in a branch is to you use the <strong>comparison</strong> feature of Gitlab.
-Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">https://gitlab.com/LaunchCodeTraining/launchcart/branches</a> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">https://gitlab.com/LaunchCodeTraining/launchcart/branches</a> and notice the <strong>Compare</strong> button next to each branch.
-&lt;/aside&gt;</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">A good way to see what has been added in a branch is to you use the <strong>comparison</strong> feature of Gitlab.
+Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">https://gitlab.com/LaunchCodeTraining/launchcart/branches</a> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">https://gitlab.com/LaunchCodeTraining/launchcart/branches</a> and notice the <strong>Compare</strong> button next to each branch.</p>
+</div>
 </div>
 <div class="section" id="adding-a-rest-controller">
 <h2>Adding a REST Controller<a class="headerlink" href="#adding-a-rest-controller" title="Permalink to this headline">¶</a></h2>
@@ -302,10 +303,10 @@ Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraini
 <li><code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/api/items/{id}</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/items/{id}</span></code></li>
 </ul>
-<p>Additionally, we will demonstrate how to enable XML as a resource format. To do this, add the following Gradle dependency:
-<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')</span>
-<span class="pre">`</span></code></p>
+<p>Additionally, we will demonstrate how to enable XML as a resource format. To do this, add the following Gradle dependency:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(&#39;com.fasterxml.jackson.dataformat:jackson-dataformat-xml&#39;)
+</pre></div>
+</div>
 <p>Then annotate the <code class="docutils literal notranslate"><span class="pre">Item</span></code> class with <code class="docutils literal notranslate"><span class="pre">&#64;XmlRootElement</span></code>. Then add <code class="docutils literal notranslate"><span class="pre">&#64;XmlElement</span></code> to each field that should be included in the XML serialization as an XML element child of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;XmlAttribute</span></code> to each field that should be included as an XML attribute of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>. Don’t forget about inherited fields.</p>
 </div>
 </div>
