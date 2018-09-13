@@ -260,7 +260,10 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: LaunchCart REST</a><ul>
 <li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#what-s-new">What’s New</a></li>
 <li><a class="reference internal" href="#adding-a-rest-controller">Adding a REST Controller</a></li>
+<li><a class="reference internal" href="#our-tasks">Our Tasks</a></li>
+<li><a class="reference internal" href="#bonus">Bonus</a></li>
 </ul>
 </li>
 </ul>
@@ -279,7 +282,10 @@
 $ git checkout -b rest-walkthrough-solution
 </pre></div>
 </div>
-<p>This starter code has some functionality beyond what you added in the LaunchCart 2 studi0 <a class="reference internal" href="../../studios/launchcart2/index.html#launchcart-part2"><span class="std std-ref">Studio: LaunchCart Part 2</span></a>. In particular, it has a <code class="docutils literal notranslate"><span class="pre">Customer</span></code> class, along with functionality for users to register and log in as customers.</p>
+</div>
+<div class="section" id="what-s-new">
+<h2>What’s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
+<p>This starter code has some functionality beyond what you added in the <a class="reference internal" href="../../studios/launchcart2/index.html#launchcart-part2"><span class="std std-ref">Studio: LaunchCart Part 2</span></a>. In particular, it has a <code class="docutils literal notranslate"><span class="pre">Customer</span></code> class, along with functionality for users to register and log in as customers.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">A good way to see what has been added in a branch is to you use the <strong>comparison</strong> feature of Gitlab.
@@ -291,11 +297,14 @@ Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraini
 <p>Let’s complete a few setup steps before starting to code:</p>
 <ul class="simple">
 <li>Create a new package, <code class="docutils literal notranslate"><span class="pre">org.launchcode.launchcart.controllers.rest</span></code></li>
-<li>Create a new class in his package named <code class="docutils literal notranslate"><span class="pre">ItemRestController</span></code></li>
+<li>Create a new class in this package named <code class="docutils literal notranslate"><span class="pre">ItemRestController</span></code></li>
 <li>Annotate the class with <code class="docutils literal notranslate"><span class="pre">&#64;RestController</span></code></li>
 </ul>
 <p>In the <code class="docutils literal notranslate"><span class="pre">test</span></code> module, note that there are two new classes. <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> class contains a couple of utility methods to handle serializing Java objects for the purposes of testing. And <code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code> extends <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> and contains the integration tests for the functionality that we’ll be adding. We’ll review this code in class.</p>
-<p>We will now implement the following resources:</p>
+</div>
+<div class="section" id="our-tasks">
+<h2>Our Tasks<a class="headerlink" href="#our-tasks" title="Permalink to this headline">¶</a></h2>
+<p>We will now implement the item resource in the following ways:</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items</span></code> (with parameter <code class="docutils literal notranslate"><span class="pre">price</span></code>)</li>
 <li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items/{id}</span></code></li>
@@ -303,7 +312,10 @@ Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraini
 <li><code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/api/items/{id}</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/items/{id}</span></code></li>
 </ul>
-<p>Additionally, we will demonstrate how to enable XML as a resource format. To do this, add the following Gradle dependency:</p>
+</div>
+<div class="section" id="bonus">
+<h2>Bonus<a class="headerlink" href="#bonus" title="Permalink to this headline">¶</a></h2>
+<p>Enable XML as a resource format. To do this, add the following Gradle dependency:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(&#39;com.fasterxml.jackson.dataformat:jackson-dataformat-xml&#39;)
 </pre></div>
 </div>

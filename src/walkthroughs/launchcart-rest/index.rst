@@ -17,7 +17,7 @@ From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTra
 
 What's New
 ==========
-This starter code has some functionality beyond what you added in the LaunchCart 2 studi0 :ref:`launchcart-part2`. In particular, it has a ``Customer`` class, along with functionality for users to register and log in as customers.
+This starter code has some functionality beyond what you added in the :ref:`launchcart-part2`. In particular, it has a ``Customer`` class, along with functionality for users to register and log in as customers.
 
 .. hint:: 
 
@@ -31,12 +31,14 @@ Adding a REST Controller
 Let's complete a few setup steps before starting to code:
 
 * Create a new package, ``org.launchcode.launchcart.controllers.rest``
-* Create a new class in his package named ``ItemRestController``
+* Create a new class in this package named ``ItemRestController``
 * Annotate the class with ``@RestController``
 
 In the ``test`` module, note that there are two new classes. ``AbstractBaseRestIntegrationTest`` class contains a couple of utility methods to handle serializing Java objects for the purposes of testing. And ``ItemRestControllerTests`` extends ``AbstractBaseRestIntegrationTest`` and contains the integration tests for the functionality that we'll be adding. We'll review this code in class.
 
-We will now implement the following resources:
+Our Tasks
+=========
+We will now implement the item resource in the following ways:
 
 * ``GET /api/items`` (with parameter ``price``)
 * ``GET /api/items/{id}``
@@ -44,9 +46,10 @@ We will now implement the following resources:
 * ``PUT /api/items/{id}``
 * ``DELETE /api/items/{id}``
 
-Additionally, we will demonstrate how to enable XML as a resource format. To do this, add the following Gradle dependency::
+Bonus
+=====
+Enable XML as a resource format. To do this, add the following Gradle dependency::
 
     compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
-
 
 Then annotate the ``Item`` class with ``@XmlRootElement``. Then add ``@XmlElement`` to each field that should be included in the XML serialization as an XML element child of ``<Item>``, and ``@XmlAttribute`` to each field that should be included as an XML attribute of ``<Item>``. Don't forget about inherited fields.
