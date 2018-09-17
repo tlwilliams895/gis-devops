@@ -262,11 +262,7 @@
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#continuous-inspection">Continuous Inspection</a></li>
 <li><a class="reference internal" href="#install-and-configure-sonarqube">Install and Configure Sonarqube</a></li>
-<li><a class="reference internal" href="#configure-your-java-project">Configure your Java Project</a><ul>
-<li><a class="reference internal" href="#id6">}</a></li>
-<li><a class="reference internal" href="#id11">}</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#configure-your-java-project">Configure your Java Project</a></li>
 <li><a class="reference internal" href="#run-sonarqube-gradle-task">Run Sonarqube Gradle Task</a></li>
 <li><a class="reference internal" href="#view-the-results-in-sonarqube">View the Results in Sonarqube</a></li>
 </ul>
@@ -310,24 +306,17 @@ keep our code consistent between developers and hopefully more secure and stable
 <ul class="simple">
 <li>Add both of these to your <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
 </ul>
-<p><a href="#id2"><span class="problematic" id="id3">``</span></a><a href="#id4"><span class="problematic" id="id5">`</span></a>javascript
-plugins {</p>
-<blockquote>
-<div>id “org.sonarqube” version “2.5”</div></blockquote>
-<div class="section" id="id6">
-<h3>}<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
-<p><a href="#id7"><span class="problematic" id="id8">``</span></a><a href="#id9"><span class="problematic" id="id10">`</span></a>javascript
-sonarqube {</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>properties {</dt>
-<dd>property “sonar.projectKey”, “airwaze-studio”</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">plugins</span> <span class="p">{</span>
+    <span class="nx">id</span> <span class="s2">&quot;org.sonarqube&quot;</span> <span class="nx">version</span> <span class="s2">&quot;2.5&quot;</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<div class="section" id="id11">
-<h3>}<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sonarqube</span> <span class="p">{</span>
+    <span class="nx">properties</span> <span class="p">{</span>
+    <span class="nx">property</span> <span class="s2">&quot;sonar.projectKey&quot;</span><span class="p">,</span> <span class="s2">&quot;airwaze-studio&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="run-sonarqube-gradle-task">

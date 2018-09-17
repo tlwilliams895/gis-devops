@@ -10,24 +10,19 @@ In this activity, we'll create and customize a simple Gradle Java project using 
 Getting Familiar With Gradle
 ============================
 
-Create a project directory:
+Create a project directory:::
 
-````nohighlight
-$ mkdir gradle-walkthrough
-$ cd gradle-walkthrough
-````
+    $ mkdir gradle-walkthrough
+    $ cd gradle-walkthrough
 
-Initialize the project as a Gradle project using the Java application template:
+Initialize the project as a Gradle project using the Java application template:::
 
-```nohighlight
-$ gradle init --type java-application
-```
+    $ gradle init --type java-application
 
-Open the project in an editor and have a look around to see what Gradle created for you:
 
-```nohighlight
-$ code .
-```
+Open the project in an editor and have a look around to see what Gradle created for you:::
+
+    $ code .
 
 **Answer these questions:**
 
@@ -38,35 +33,29 @@ $ code .
 * Where will these dependencies be resolved from?
 * What tasks are available to your project?
 
-One of the tasks we have available is the ``test`` task. Let's run it:
+One of the tasks we have available is the ``test`` task. Let's run it:::
 
-```nohighlight
-$ gradle test
-```
+    $ gradle test
 
-Assuming that the tests pass, let's build the project:
 
-```nohighlight
-$ gradle build
-```
+Assuming that the tests pass, let's build the project:::
+
+    $ gradle build
+
 
 When the build has successfully finished, locate the resulting ``.class`` files and the bundled JAR file.
 
-<aside class="aside-hint" markdown="1">
-The `build/` directory would be a smart place to begin your search.
-</aside>
+.. note::
 
-Let's run the app:
+    The `build/` directory would be a smart place to begin your search.
 
-```nohighlight
-$ gradle run
-```
+Let's run the app:::
 
-And now clean up all of the built files:
+    $ gradle run
 
-```nohighlight
-$ gradle clean
-```
+And now clean up all of the built files:::
+
+    $ gradle clean
 
 **What was removed from the project?**
 
@@ -77,40 +66,32 @@ Let's carry out some basic customization of our simple Java project.
 
 We want to be able to view our project tasks as a tree. We can do a similar thing with dependencies using ``gradle dependencies`` but no such task exists to display task relationships in tree form. Thankfully, somebody has written a plugin to do that!
 
-Find the ``com.dorongold.task-tree`` plugin and enable it in your project. Once it is enabled, you can view the dependency graph for a task by using:
+Find the ``com.dorongold.task-tree`` plugin and enable it in your project. Once it is enabled, you can view the dependency graph for a task by using:::
 
-```nohighlight
-$ gradle <task 1>...<task N> taskTree
-```
+    $ gradle <task 1>...<task N> taskTree
 
 **Which tasks are executed when running the ``build`` task?**
 
 Let's customize the way in which the JAR is built for our project. Suppose we wanted to be able to build all of the class files without bundling them into a JAR.
 
-We can do this by adding a configuration block to the ``jar`` task. Add this to your ``build.gradle`` file:
+We can do this by adding a configuration block to the ``jar`` task. Add this to your ``build.gradle`` file:::
 
-```groovy
-jar {
-    onlyIf {
-        System.properties['makeJar'] == 'true'
+    jar {
+        onlyIf {
+            System.properties['makeJar'] == 'true'
+        }
     }
-}
-```
 
-Now, a JAR will be built only when we add the ``-DmakeJar=true`` flag to our Gradle command, like so:
+Now, a JAR will be built only when we add the ``-DmakeJar=true`` flag to our Gradle command, like so:::
 
-```nohighlight
-$ gradle -DmakeJar=true build
-```
+    $ gradle -DmakeJar=true build
 
 Try running ``gradle build`` without the flag and see that the class files were built, but not the JAR. Then run it with the flag and see that you now have a JAR. Note the name of the resulting JAR. What is it?
 
-Finally, we can customize the name of our JAR by adding these properties to the ``jar`` configuration block:
+Finally, we can customize the name of our JAR by adding these properties to the ``jar`` configuration block:::
 
-```groovy
-baseName = 'app'
-version = '0.0.1-SNAPSHOT'
-```
+    baseName = 'app'
+    version = '0.0.1-SNAPSHOT'
 
 Gradle in Sprint Boot Projects
 ==============================

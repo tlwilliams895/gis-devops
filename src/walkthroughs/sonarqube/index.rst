@@ -40,18 +40,21 @@ Configure your Java Project
 ===========================
 
 * Add both of these to your ``build.gradle`` file
-```javascript
-plugins {
-    id "org.sonarqube" version "2.5"
-}
-```
-```javascript
-sonarqube {
-    properties {
-      property "sonar.projectKey", "airwaze-studio"
+
+.. code-block:: javascript
+
+    plugins {
+        id "org.sonarqube" version "2.5"
     }
-}
-```
+
+.. code-block:: javascript
+
+    sonarqube {
+        properties {
+        property "sonar.projectKey", "airwaze-studio"
+        }
+    }
+
 
 Run Sonarqube Gradle Task
 =========================

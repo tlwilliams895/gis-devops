@@ -25,12 +25,16 @@ Download Jenkins * Generic War
 
 * Copy the ``jenkins.war`` file the folder to ``~/jenkins``
 * Now start jenkins via terminal
-```
-$ java -jar ~/jenkins/jenkins.war --httpPort=9090
-```
-<aside class="aside-note" markdown="1">
-Normally you would not install jenkins on your dev machine. You would isntall it on a server that would be continsouly running so that it could react to a commit at anytime.
-</aside>
+
+::
+
+  $ java -jar ~/jenkins/jenkins.war --httpPort=9090
+
+
+.. note::
+
+  Normally you would not install jenkins on your dev machine. You would isntall it on a server that would be continsouly running so that it could react to a commit at anytime.
+
 
 Configure Jenkins
 -----------------
@@ -132,7 +136,9 @@ Custom Workspace Direstory
 * Click **Add build step**
 * Click **Invode Gradle script**
 * Enter ``clean test`` into the **Tasks** input
+
 Now we need to kick off the **CreateJar Project**
+
 * Go to **Post Build Actions**
 * Enter ``Airwaze CreateJar`` as the project to build
 * Click **Add Parameters** and select **Build on the same node**
@@ -171,14 +177,14 @@ Configure CreateJar Project
 Setup S3 Bucket (Needed so we can configure the next project)
 -------------------------------------------------------------
 
- * If you haven't already, you need to install ``awscli``. Instructions can be found in the `AWS3 Studio <https://education.launchcode.org/gis-devops/studios/AWS3/>`_
- * Create a new S3 bucket that will used for the ``.jar`` files your jenkins builds produce
- * Be sure to create the new bucket with **VERSIONING** enabled
+* If you haven't already, you need to install ``awscli``. Instructions can be found in the `AWS3 Studio <https://education.launchcode.org/gis-devops/studios/AWS3/>`_
+* Create a new S3 bucket that will used for the ``.jar`` files your jenkins builds produce
+* Be sure to create the new bucket with **VERSIONING** enabled
 
- Make sure your s3 bucket shows up when you run this command in terminal
- ```
- $ aws s3 ls
- ```
+Make sure your s3 bucket shows up when you run this command in terminal::
+ 
+  $ aws s3 ls
+ 
 
 Configure Deliver Project
 -------------------------

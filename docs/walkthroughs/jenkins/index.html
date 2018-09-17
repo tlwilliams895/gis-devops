@@ -313,12 +313,13 @@
 <li>Copy the <code class="docutils literal notranslate"><span class="pre">jenkins.war</span></code> file the folder to <code class="docutils literal notranslate"><span class="pre">~/jenkins</span></code></li>
 <li>Now start jenkins via terminal</li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">java</span> <span class="pre">-jar</span> <span class="pre">~/jenkins/jenkins.war</span> <span class="pre">--httpPort=9090</span>
-<span class="pre">`</span></code>
-&lt;aside class=”aside-note” markdown=”1”&gt;
-Normally you would not install jenkins on your dev machine. You would isntall it on a server that would be continsouly running so that it could react to a commit at anytime.
-&lt;/aside&gt;</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ java -jar ~/jenkins/jenkins.war --httpPort=9090
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Normally you would not install jenkins on your dev machine. You would isntall it on a server that would be continsouly running so that it could react to a commit at anytime.</p>
+</div>
 <div class="section" id="configure-jenkins">
 <h3>Configure Jenkins<a class="headerlink" href="#configure-jenkins" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -432,13 +433,15 @@ Normally you would not install jenkins on your dev machine. You would isntall it
 <li>Click <strong>Invode Gradle script</strong></li>
 <li>Enter <code class="docutils literal notranslate"><span class="pre">clean</span> <span class="pre">test</span></code> into the <strong>Tasks</strong> input</li>
 </ul>
-<p>Now we need to kick off the <strong>CreateJar Project</strong>
-* Go to <strong>Post Build Actions</strong>
-* Enter <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code> as the project to build
-* Click <strong>Add Parameters</strong> and select <strong>Build on the same node</strong>
-* Click <strong>Add Parameters</strong> again and select <strong>Predefined parameters</strong>
-* Enter this <code class="docutils literal notranslate"><span class="pre">AIRWAZE_WORKSPACE=${WORKSPACE}</span></code> into input
-* Click save</p>
+<p>Now we need to kick off the <strong>CreateJar Project</strong></p>
+<ul class="simple">
+<li>Go to <strong>Post Build Actions</strong></li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code> as the project to build</li>
+<li>Click <strong>Add Parameters</strong> and select <strong>Build on the same node</strong></li>
+<li>Click <strong>Add Parameters</strong> again and select <strong>Predefined parameters</strong></li>
+<li>Enter this <code class="docutils literal notranslate"><span class="pre">AIRWAZE_WORKSPACE=${WORKSPACE}</span></code> into input</li>
+<li>Click save</li>
+</ul>
 </div>
 <div class="section" id="run-the-compile-project-which-runs-the-test-project">
 <h3>Run the Compile Project, which runs the Test Project<a class="headerlink" href="#run-the-compile-project-which-runs-the-test-project" title="Permalink to this headline">¶</a></h3>
@@ -473,17 +476,15 @@ Normally you would not install jenkins on your dev machine. You would isntall it
 </div>
 <div class="section" id="setup-s3-bucket-needed-so-we-can-configure-the-next-project">
 <h3>Setup S3 Bucket (Needed so we can configure the next project)<a class="headerlink" href="#setup-s3-bucket-needed-so-we-can-configure-the-next-project" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ul class="simple">
+<ul class="simple">
 <li>If you haven’t already, you need to install <code class="docutils literal notranslate"><span class="pre">awscli</span></code>. Instructions can be found in the <a class="reference external" href="https://education.launchcode.org/gis-devops/studios/AWS3/">AWS3 Studio</a></li>
 <li>Create a new S3 bucket that will used for the <code class="docutils literal notranslate"><span class="pre">.jar</span></code> files your jenkins builds produce</li>
 <li>Be sure to create the new bucket with <strong>VERSIONING</strong> enabled</li>
 </ul>
-<p>Make sure your s3 bucket shows up when you run this command in terminal
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span>
-<span class="pre">`</span></code></p>
-</div></blockquote>
+<p>Make sure your s3 bucket shows up when you run this command in terminal:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 ls
+</pre></div>
+</div>
 </div>
 <div class="section" id="configure-deliver-project">
 <h3>Configure Deliver Project<a class="headerlink" href="#configure-deliver-project" title="Permalink to this headline">¶</a></h3>
