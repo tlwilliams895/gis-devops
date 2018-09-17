@@ -12,32 +12,30 @@ Integrating Elasticsearch
 
 We'll walk through several steps needed to use Elasticsearch within Spring.
 
-<aside class="aside-note" markdown="1">
+.. note::
 
-The code that we'll look at is in the ``elasticsearch`` branch of the ``LaunchCodeTraining/launchcart`` repository.
+    The code that we'll look at is in the ``elasticsearch`` branch of the ``LaunchCodeTraining/launchcart`` repository.
 
-To view the specific changes, look at this `commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956>`_.
+    To view the specific changes, look at this `commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956>`_.
 
-</aside>
 
-1. Add Gradle dependencies
-    ```
+1. Add Gradle dependencies::
+    
     compile('org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.10.RELEASE')
-	compile(group: 'org.elasticsearch.client', name: 'transport', version: '6.2.3')
-    ```
-1. Create the ``EsConfig`` class to setup an embedded Elasticsearch instance
-1. Write an integration test for the desired behavior
-1. Create the ``ItemDocument`` and ``ItemDocumentRepository`` classes
-1. Create ``ItemDocumentController`` and implement the ``search`` method
-1. Create ``EsController`` and ``EsUtils`` to enable admin-oriented interactions with the ES instance
+    compile(group: 'org.elasticsearch.client', name: 'transport', version: '6.2.3')
+    
+2. Create the ``EsConfig`` class to setup an embedded Elasticsearch instance
+3. Write an integration test for the desired behavior
+4. Create the ``ItemDocument`` and ``ItemDocumentRepository`` classes
+5. Create ``ItemDocumentController`` and implement the ``search`` method
+6. Create ``EsController`` and ``EsUtils`` to enable admin-oriented interactions with the ES instance
 
-<aside class="aside-warning" markdown="1">
+.. note::
 
-This approach uses the ``TransportClient`` class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the ``TransportClient`` have the _same major versions_. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.
+    This approach uses the ``TransportClient`` class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the ``TransportClient`` have the _same major versions_. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.
 
-Read more about the state of the official `Elasticsearch Java clients <https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients>`_.
+    Read more about the state of the official `Elasticsearch Java clients <https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients>`_.
 
-</aside>
 
 Your Tasks
 ==========

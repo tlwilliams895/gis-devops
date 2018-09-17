@@ -277,32 +277,34 @@
 <div class="section" id="integrating-elasticsearch">
 <h2>Integrating Elasticsearch<a class="headerlink" href="#integrating-elasticsearch" title="Permalink to this headline">¶</a></h2>
 <p>We’ll walk through several steps needed to use Elasticsearch within Spring.</p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
 <p>The code that we’ll look at is in the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">LaunchCodeTraining/launchcart</span></code> repository.</p>
-<p>To view the specific changes, look at this <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956">commit</a>.</p>
-<p>&lt;/aside&gt;</p>
+<p class="last">To view the specific changes, look at this <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956">commit</a>.</p>
+</div>
 <ol class="arabic">
-<li><dl class="first docutils">
-<dt>Add Gradle dependencies</dt>
-<dd><p class="first"><a href="#id1"><span class="problematic" id="id2">``</span></a>`
-compile(‘org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.10.RELEASE’)</p>
-<blockquote>
-<div><p>compile(group: ‘org.elasticsearch.client’, name: ‘transport’, version: ‘6.2.3’)</p>
-</div></blockquote>
-<p class="last"><a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
-</dd>
-</dl>
+<li><p class="first">Add Gradle dependencies:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(&#39;org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.10.RELEASE&#39;)
+compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, version: &#39;6.2.3&#39;)
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create the <code class="docutils literal notranslate"><span class="pre">EsConfig</span></code> class to setup an embedded Elasticsearch instance</p>
+</li>
+<li><p class="first">Write an integration test for the desired behavior</p>
+</li>
+<li><p class="first">Create the <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> and <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository</span></code> classes</p>
+</li>
+<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">ItemDocumentController</span></code> and implement the <code class="docutils literal notranslate"><span class="pre">search</span></code> method</p>
+</li>
+<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">EsController</span></code> and <code class="docutils literal notranslate"><span class="pre">EsUtils</span></code> to enable admin-oriented interactions with the ES instance</p>
 </li>
 </ol>
-<p>1. Create the <code class="docutils literal notranslate"><span class="pre">EsConfig</span></code> class to setup an embedded Elasticsearch instance
-1. Write an integration test for the desired behavior
-1. Create the <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> and <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository</span></code> classes
-1. Create <code class="docutils literal notranslate"><span class="pre">ItemDocumentController</span></code> and implement the <code class="docutils literal notranslate"><span class="pre">search</span></code> method
-1. Create <code class="docutils literal notranslate"><span class="pre">EsController</span></code> and <code class="docutils literal notranslate"><span class="pre">EsUtils</span></code> to enable admin-oriented interactions with the ES instance</p>
-<p>&lt;aside class=”aside-warning” markdown=”1”&gt;</p>
-<p>This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the _same major <a href="#id7"><span class="problematic" id="id8">versions_</span></a>. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.</p>
-<p>Read more about the state of the official <a class="reference external" href="https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients">Elasticsearch Java clients</a>.</p>
-<p>&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the _same major <a href="#id1"><span class="problematic" id="id2">versions_</span></a>. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.</p>
+<p class="last">Read more about the state of the official <a class="reference external" href="https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients">Elasticsearch Java clients</a>.</p>
+</div>
 </div>
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>

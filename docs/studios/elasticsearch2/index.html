@@ -260,10 +260,7 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Elasticsearch Queries Studio 2</a><ul>
 <li><a class="reference internal" href="#kibana-setup">Kibana Setup</a></li>
-<li><a class="reference internal" href="#using-kibana">Using Kibana</a><ul>
-<li><a class="reference internal" href="#id5">}</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#using-kibana">Using Kibana</a></li>
 <li><a class="reference internal" href="#loading-data">Loading Data</a></li>
 <li><a class="reference internal" href="#your-tasks">Your Tasks</a></li>
 <li><a class="reference internal" href="#turning-in-your-work">Turning In Your Work</a></li>
@@ -279,14 +276,14 @@
 <span id="elasticsearch2-studio"></span><h1>Elasticsearch Queries Studio 2<a class="headerlink" href="#elasticsearch-queries-studio-2" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="kibana-setup">
 <h2>Kibana Setup<a class="headerlink" href="#kibana-setup" title="Permalink to this headline">¶</a></h2>
-<p>Install Kibana by running the following HomeBrew command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">brew</span> <span class="pre">install</span> <span class="pre">kibana</span>
-<span class="pre">`</span></code></p>
-<p>To start the Kibana server in the background, run the following command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">kibana</span> <span class="pre">&amp;</span>
-<span class="pre">`</span></code></p>
+<p>Install Kibana by running the following HomeBrew command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew install kibana
+</pre></div>
+</div>
+<p>To start the Kibana server in the background, run the following command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ kibana &amp;
+</pre></div>
+</div>
 <p>Navigate to <a class="reference external" href="http://localhost:5601">http://localhost:5601</a> localhost:5601 to view the running server.</p>
 <p>Take a second to look at each of the pages below. They may be beneficial during your development:</p>
 <ol class="arabic simple">
@@ -295,68 +292,53 @@
 <li>Visualize <a class="reference external" href="http://localhost:5601/app/kibana#/visualize">http://localhost:5601/app/kibana#/visualize</a> - Perform analysis and create graphics describing your data.</li>
 <li>Dashboard <a class="reference external" href="http://localhost:5601/app/kibana#/dashboard">http://localhost:5601/app/kibana#/dashboard</a> - Combine graphs to give you a comprehensive picture of your data.</li>
 </ol>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-If your indices are listed in the Discover pane, you’re likely missing a default index pattern. Add the <code class="docutils literal notranslate"><span class="pre">twitter</span></code> index as a default pattern. This can be changed later in the Management pane.
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If your indices are listed in the Discover pane, you’re likely missing a default index pattern. Add the <code class="docutils literal notranslate"><span class="pre">twitter</span></code> index as a default pattern. This can be changed later in the Management pane.</p>
+</div>
 </div>
 <div class="section" id="using-kibana">
 <h2>Using Kibana<a class="headerlink" href="#using-kibana" title="Permalink to this headline">¶</a></h2>
 <p>Open the <a class="reference external" href="http://localhost:5601/app/kibana#/dev_tools">Dev Tools</a>. Let’s run a few queries.</p>
 <p>Instead of using cURL. Queries can be put into Dev Tools by specifing the HTTP verb and the query text.</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>json
-GET _search
-{</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>“query”: {</dt>
-<dd><dl class="first docutils">
-<dt>“match_all”: {</dt>
-<dd>“”</dd>
-</dl>
-<p class="last">}</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<div class="section" id="id5">
-<h3>}<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>Also, notice that the left panel provides error messages with the line number of the error. In this case we have some errand quote marks in our query. Remove them and run the query again.</p>
 <p>Next, open the <a class="reference external" href="http://localhost:5601/app/kibana#/discover">Discover Page</a>. This page provides a paginated list of all of the documents in your cluster. The search bar provides a quick way to search by attribute name.</p>
 <p>Next, click on the <a class="reference external" href="http://localhost:5601/app/kibana#/visualize">Visualize Page</a>. This page allows you to create detailed graphs of your data.</p>
 </div>
-</div>
 <div class="section" id="loading-data">
 <h2>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
-<p>First, let’s delete the data in the <code class="docutils literal notranslate"><span class="pre">twitter</span></code> index:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XDELETE</span> <span class="pre">'localhost:9200/twitter'</span>
-<span class="pre">`</span></code></p>
-<p>As we did yesterday, let’s load some data. Create a script:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">touch</span> <span class="pre">load_data_geo.sh</span>
-<span class="pre">$</span> <span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">load_data_geo.sh</span>
-<span class="pre">`</span></code></p>
-<p>Then copy/paste the contents of this <a class="reference external" href="https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4">gist</a>. Save and run the script:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">./load_data_geo.sh</span>
-<span class="pre">`</span></code></p>
-<p>Verify that the mapping was created properly by running the following command and checking that the <code class="docutils literal notranslate"><span class="pre">location</span></code> field is of type <code class="docutils literal notranslate"><span class="pre">geo_point</span></code>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">curl</span> <span class="pre">'localhost:9200/twitter/_mappings?pretty'</span>
-<span class="pre">`</span></code></p>
+<p>First, let’s delete the data in the <code class="docutils literal notranslate"><span class="pre">twitter</span></code> index::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl -XDELETE &#39;localhost:9200/twitter&#39;
+</pre></div>
+</div>
+<p>As we did yesterday, let’s load some data. Create a script::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ touch load_data_geo.sh
+$ chmod +x load_data_geo.sh
+</pre></div>
+</div>
+<p>Then copy/paste the contents of this <a class="reference external" href="https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4">gist</a>. Save and run the script::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ./load_data_geo.sh
+</pre></div>
+</div>
+<p>Verify that the mapping was created properly by running the following command and checking that the <code class="docutils literal notranslate"><span class="pre">location</span></code> field is of type <code class="docutils literal notranslate"><span class="pre">geo_point</span></code>::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl &#39;localhost:9200/twitter/_mappings?pretty&#39;
+</pre></div>
+</div>
 <p>If something went wrong, delete the index, get help from an instructor, and try again.</p>
 </div>
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
 <p>Now you’ll get some practice with Elasticsearch. Carry out each of the following tasks. Once you have a successful query/command for each, save the commend in a <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file for submission</p>
-<p>1. Find all tweets with between 5 and 10 likes, inclusive of those endpoints.
-1. Find all tweets by Mary Jones that have at least 2 likes
-1. Find all tweets that contain the text “Elasticsearch”, including mispellings up to distance of 3 away.
-1. Find all tweets that have a location (Hint: Try the exists query <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html</a>)
-1. Find all tweets that do not have a location
-1. Find the average number of likes for tweets that have a location
-1. Find the average number of likes for tweets that do not have a location
-1. Find all tweets with locations within 500km of Boise, ID</p>
+<ol class="arabic simple">
+<li>Find all tweets with between 5 and 10 likes, inclusive of those endpoints.</li>
+<li>Find all tweets by Mary Jones that have at least 2 likes</li>
+<li>Find all tweets that contain the text “Elasticsearch”, including mispellings up to distance of 3 away.</li>
+<li>Find all tweets that have a location (Hint: Try the exists query <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html">https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html</a>)</li>
+<li>Find all tweets that do not have a location</li>
+<li>Find the average number of likes for tweets that have a location</li>
+<li>Find the average number of likes for tweets that do not have a location</li>
+<li>Find all tweets with locations within 500km of Boise, ID</li>
+</ol>
 </div>
 <div class="section" id="turning-in-your-work">
 <h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
