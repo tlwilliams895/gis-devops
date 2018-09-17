@@ -261,10 +261,7 @@
 <li><a class="reference internal" href="#">Walkthrough: ESLint Ariwaze</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#let-s-add-eslint">Let’s Add ESLint</a></li>
-<li><a class="reference internal" href="#override-the-airbnb-indentation-rule">Override the Airbnb indentation rule</a><ul>
-<li><a class="reference internal" href="#id11">}</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#override-the-airbnb-indentation-rule">Override the Airbnb indentation rule</a></li>
 <li><a class="reference internal" href="#let-s-do-some-linting">Let’s Do Some Linting!</a></li>
 <li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
@@ -289,52 +286,58 @@
 </div>
 <div class="section" id="let-s-add-eslint">
 <h2>Let’s Add ESLint<a class="headerlink" href="#let-s-add-eslint" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Open your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file and add <code class="docutils literal notranslate"><span class="pre">**/node_modules</span></code></li>
-<li>In terminal go to <code class="docutils literal notranslate"><span class="pre">airwaze/src/main/resources</span></code></li>
-<li>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">init</span></code>. <strong>See below</strong> for prompts
-1. airwaze
-2. enter to accept default
-3. js to display airports and routes
-4. enter to accept default
-5. test
-6. press enter for remaining to accept default</li>
-<li>Review the <code class="docutils literal notranslate"><span class="pre">package.json</span></code> file that was just created</li>
-<li>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">eslint</span> <span class="pre">--save-dev</span></code></li>
-<li>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">eslint-plugin-import</span> <span class="pre">--save-dev</span></code></li>
-<li>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">./node_modules/.bin/eslint</span> <span class="pre">--init</span></code> <strong>See below</strong> for how answer prompts
-1. Use a popular style guide.
-2. Pick Airbnb
-3. NO to using React
-4. Pick JavaScript for config file type</li>
-<li>Review the file that was just created <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code></li>
-<li>Add this to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code> file OR if <code class="docutils literal notranslate"><span class="pre">&quot;scripts&quot;</span></code> is already defined, simply update the value</li>
+<ul>
+<li><p class="first">Open your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file and add <code class="docutils literal notranslate"><span class="pre">**/node_modules</span></code></p>
+</li>
+<li><p class="first">In terminal go to <code class="docutils literal notranslate"><span class="pre">airwaze/src/main/resources</span></code></p>
+</li>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">init</span></code>. <strong>See below</strong> for prompts</p>
+<ol class="arabic simple">
+<li>airwaze</li>
+<li>enter to accept default</li>
+<li>js to display airports and routes</li>
+<li>enter to accept default</li>
+<li>test</li>
+<li>press enter for remaining to accept default</li>
+</ol>
+</li>
+<li><p class="first">Review the <code class="docutils literal notranslate"><span class="pre">package.json</span></code> file that was just created</p>
+</li>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">eslint</span> <span class="pre">--save-dev</span></code></p>
+</li>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">eslint-plugin-import</span> <span class="pre">--save-dev</span></code></p>
+</li>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">./node_modules/.bin/eslint</span> <span class="pre">--init</span></code> <strong>See below</strong> for how answer prompts</p>
+<ol class="arabic simple">
+<li>Use a popular style guide.</li>
+<li>Pick Airbnb</li>
+<li>NO to using React</li>
+<li>Pick JavaScript for config file type</li>
+</ol>
+</li>
+<li><p class="first">Review the file that was just created <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code></p>
+</li>
+<li><p class="first">Add this to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code> file OR if <code class="docutils literal notranslate"><span class="pre">&quot;scripts&quot;</span></code> is already defined, simply update the value:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;scripts&quot;: {
+</pre></div>
+</div>
+<blockquote>
+<div><p>“test”: “eslint static/js/script.js”</p>
+</div></blockquote>
+<p>},</p>
+</li>
 </ul>
-<dl class="docutils">
-<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></dt>
-<dd><dl class="first docutils">
-<dt>“scripts”: {</dt>
-<dd>“test”: “eslint static/js/script.js”</dd>
-</dl>
-<p class="last">},</p>
-</dd>
-</dl>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
 </div>
 <div class="section" id="override-the-airbnb-indentation-rule">
 <h2>Override the Airbnb indentation rule<a class="headerlink" href="#override-the-airbnb-indentation-rule" title="Permalink to this headline">¶</a></h2>
-<p>Modify <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code> to look like this. If you don’t, you will get numerious <code class="docutils literal notranslate"><span class="pre">indent</span></code> errors because Airbnb lint rules detault to two spaces.
-<a href="#id9"><span class="problematic" id="id10">``</span></a>`
-{</p>
-<blockquote>
-<div><p>“extends”: “airbnb-base”,
-“rules”: {</p>
-<blockquote>
-<div>“indent”: [“error”, 4]</div></blockquote>
-<p>}</p>
-</div></blockquote>
-<div class="section" id="id11">
-<h3>}<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
+<p>Modify <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code> to look like this. If you don’t, you will get numerious <code class="docutils literal notranslate"><span class="pre">indent</span></code> errors because Airbnb lint rules detault to two spaces.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
+    &quot;extends&quot;: &quot;airbnb-base&quot;,
+    &quot;rules&quot;: {
+        &quot;indent&quot;: [&quot;error&quot;, 4]
+    }
+}
+</pre></div>
 </div>
 </div>
 <div class="section" id="let-s-do-some-linting">

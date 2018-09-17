@@ -19,40 +19,44 @@ Let's Add ESLint
 * Open your ``.gitignore`` file and add ``**/node_modules``
 * In terminal go to ``airwaze/src/main/resources``
 * Run ``$ npm init``. **See below** for prompts
+
   1. airwaze
   2. enter to accept default
   3. js to display airports and routes
   4. enter to accept default
   5. test
   6. press enter for remaining to accept default
+
 * Review the ``package.json`` file that was just created
 * Run ``$ npm install eslint --save-dev``
 * Run ``$ npm install eslint-plugin-import --save-dev``
 * Run ``$ ./node_modules/.bin/eslint --init`` **See below** for how answer prompts
+
   1. Use a popular style guide.
   2. Pick Airbnb
   3. NO to using React
   4. Pick JavaScript for config file type
+
 * Review the file that was just created ``.eslintrc.js``
-* Add this to your ``package.json`` file OR if ``"scripts"`` is already defined, simply update the value
-```
+* Add this to your ``package.json`` file OR if ``"scripts"`` is already defined, simply update the value::
+
   "scripts": {
-        "test": "eslint static/js/script.js"
+    "test": "eslint static/js/script.js"
   },
-```
+
 
 Override the Airbnb indentation rule
 ====================================
 
-Modify ``.eslintrc.js`` to look like this. If you don't, you will get numerious ``indent`` errors because Airbnb lint rules detault to two spaces.
-```
-{
-    "extends": "airbnb-base",
-    "rules": {
-        "indent": ["error", 4]
-    }
-}
-```
+Modify ``.eslintrc.js`` to look like this. If you don't, you will get numerious ``indent`` errors because Airbnb lint rules detault to two spaces.::
+
+  {
+      "extends": "airbnb-base",
+      "rules": {
+          "indent": ["error", 4]
+      }
+  }
+
 
 Let's Do Some Linting!
 ======================
