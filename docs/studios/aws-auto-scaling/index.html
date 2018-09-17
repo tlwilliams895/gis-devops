@@ -287,60 +287,60 @@
 <p>The ability to scale horizontally is very important in building Cloud Native applications.  In this studio, you will be extending your <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">Airwaze App</a> to scale horizontally as traffic on the server increases.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt>&lt;aside class=”aside-note”&gt;</dt>
-<dd>Note!  You will be working in the “Northern Virginia region.</dd>
-</dl>
-<p>&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note!  You will be working in the <strong>Northern Virginia</strong> region.</p>
+</div>
 <div class="section" id="aws-cli">
 <h3>AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h3>
 <p>We will be using the <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">AWS CLI tool</a> for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.</p>
-<p>To install the AWS CLI tool run the following commands:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">brew</span> <span class="pre">install</span> <span class="pre">awscli</span>
-<span class="pre">$</span> <span class="pre">echo</span> <span class="pre">'complete</span> <span class="pre">-C</span> <span class="pre">aws_completer</span> <span class="pre">aws'</span> <span class="pre">&gt;&gt;</span> <span class="pre">~/.bashrc</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">--version</span>
-<span class="pre">`</span></code></p>
+<p>To install the AWS CLI tool run the following commands::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew install awscli
+$ echo &#39;complete -C aws_completer aws&#39; &gt;&gt; ~/.bashrc
+$ aws --version
+</pre></div>
+</div>
 <p>Next configure the AWS CLI tool with your credentials.  These credentials can be found in IAM &gt; Users &gt; You. Click “Create Access Key”.
 Screenshot of IAM credentails</p>
 <blockquote>
 <div><img alt="../../_images/iam_get_credentials.png" src="../../_images/iam_get_credentials.png" />
 </div></blockquote>
-<dl class="docutils">
-<dt>&lt;aside class=”aside-note”&gt;</dt>
-<dd>It is very important that you keep the <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span></code> private.  Access to that key allows anyone to programmatically spin up infrastructure on the AWS account.</dd>
-</dl>
-<p>&lt;/aside&gt;</p>
-<p>Next configure your the AWS CLI tool.  Use the “Default region name” or <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">configure</span>
-<span class="pre">AWS</span> <span class="pre">Access</span> <span class="pre">Key</span> <span class="pre">ID</span> <span class="pre">[None]:</span> <span class="pre">AK-------------------</span>
-<span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span> <span class="pre">[None]:</span> <span class="pre">r4------------------</span>
-<span class="pre">Default</span> <span class="pre">region</span> <span class="pre">name</span> <span class="pre">[None]:</span> <span class="pre">us-east-1</span>
-<span class="pre">Default</span> <span class="pre">output</span> <span class="pre">format</span> <span class="pre">[None]:</span>
-<span class="pre">`</span></code></p>
-<p>You should now be able to run commands against AWS.  For example, you should now be able to list all of the buckets in S3:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span>
-<span class="pre">`</span></code></p>
-<p>Take a look around by looking at the help pages for a couple of commands:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">help</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">help</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">help</span>
-<span class="pre">`</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">It is very important that you keep the <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span></code> private.  Access to that key allows anyone to programmatically spin up infrastructure on the AWS account.</p>
+</div>
+<p>Next configure your the AWS CLI tool.  Use the “Default region name” or <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws configure
+AWS Access Key ID [None]: AK-------------------
+AWS Secret Access Key [None]: r4------------------
+Default region name [None]: us-east-1
+Default output format [None]:
+</pre></div>
+</div>
+<p>You should now be able to run commands against AWS.  For example, you should now be able to list all of the buckets in S3::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 ls
+</pre></div>
+</div>
+<p>Take a look around by looking at the help pages for a couple of commands::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws help
+$ aws s3 help
+$ aws s3 sync help
+</pre></div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">help</span></code> command is a quick alternative to looking up information about the tool on line.</p>
 </div>
 <div class="section" id="create-a-keypair-for-the-region">
 <h3>Create a KeyPair for the Region<a class="headerlink" href="#create-a-keypair-for-the-region" title="Permalink to this headline">¶</a></h3>
-<p>Since you are in a new Region, you will need to create a new KeyPair.
-1. Make sure you are in region <code class="docutils literal notranslate"><span class="pre">U.S.</span> <span class="pre">East</span> <span class="pre">(N.Virginia)</span></code>
-2. Go to EC2 in the services menu
-3. Click <strong>Key Pairs</strong> in the left menu in the <strong>NETWORK &amp; SECURITY</strong> section
-4. Enter a name like <code class="docutils literal notranslate"><span class="pre">yourname-useast-key</span></code>
-5. Download key
-6. Copy the key to your <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder
-7. Make it so that only the owner can read and write to the file <code class="docutils literal notranslate"><span class="pre">$chmod</span> <span class="pre">400</span> <span class="pre">yourname-useast-key.pem</span></code></p>
+<p>Since you are in a new Region, you will need to create a new KeyPair.</p>
+<ol class="arabic simple">
+<li>Make sure you are in region <code class="docutils literal notranslate"><span class="pre">U.S.</span> <span class="pre">East</span> <span class="pre">(N.Virginia)</span></code></li>
+<li>Go to EC2 in the services menu</li>
+<li>Click <strong>Key Pairs</strong> in the left menu in the <strong>NETWORK &amp; SECURITY</strong> section</li>
+<li>Enter a name like <code class="docutils literal notranslate"><span class="pre">yourname-useast-key</span></code></li>
+<li>Download key</li>
+<li>Copy the key to your <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder</li>
+<li>Make it so that only the owner can read and write to the file <code class="docutils literal notranslate"><span class="pre">$chmod</span> <span class="pre">400</span> <span class="pre">yourname-useast-key.pem</span></code></li>
+</ol>
 </div>
 </div>
 <div class="section" id="configure-your-vpc-via-cloudformation">
@@ -349,11 +349,11 @@ Screenshot of IAM credentails</p>
 <p>You’ll be using a CloudFormation template that adds 4 Subnets, 3 Security Groups, and 1 RDS.  AWS CloudFormation will pull the template from S3.</p>
 <div class="section" id="review-the-cloudformation-script">
 <h3>Review the CloudFormation Script<a class="headerlink" href="#review-the-cloudformation-script" title="Permalink to this headline">¶</a></h3>
-<p>Take a look at the template by downloading it with the <code class="docutils literal notranslate"><span class="pre">aws-cli</span></code> tool. Then open <code class="docutils literal notranslate"><span class="pre">airwaze_cloudformation.json</span></code> in your favorite editor. You should recognize the names and properties listed from previous studios, the only new thing is seeing them in this format.
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">mkdir</span> <span class="pre">~/s3-sync</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">s3://launchcode-gisdevops-cloudformation</span> <span class="pre">~/s3-sync</span>
-<span class="pre">`</span></code></p>
+<p>Take a look at the template by downloading it with the <code class="docutils literal notranslate"><span class="pre">aws-cli</span></code> tool. Then open <code class="docutils literal notranslate"><span class="pre">airwaze_cloudformation.json</span></code> in your favorite editor. You should recognize the names and properties listed from previous studios, the only new thing is seeing them in this format.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/s3-sync
+$ aws s3 sync s3://launchcode-gisdevops-cloudformation ~/s3-sync
+</pre></div>
+</div>
 </div>
 <div class="section" id="using-the-cloudformation-script">
 <h3>Using the CloudFormation Script<a class="headerlink" href="#using-the-cloudformation-script" title="Permalink to this headline">¶</a></h3>
@@ -386,20 +386,20 @@ Screenshot of IAM credentails</p>
 <div class="section" id="configure-buckets">
 <h3>Configure Buckets<a class="headerlink" href="#configure-buckets" title="Permalink to this headline">¶</a></h3>
 <p>Since you will be scaling machines horizontally, you won’t be able to <code class="docutils literal notranslate"><span class="pre">scp</span></code> a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they spin up.  The servers will download a copy of the application from S3.</p>
-<p>First create a new bucket in S3.  Remember <strong>EVERY</strong> bucket in S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">mb</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span>
-<span class="pre">`</span></code></p>
+<p>First create a new bucket in S3.  Remember <strong>EVERY</strong> bucket in S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 mb s3://launchcode-gisdevops-c1-yourname/
+</pre></div>
+</div>
 <p>Run <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span></code> to make sure that the bucket was created properly.</p>
-<p>Go ahead and build a new executable jar file using the Gradle <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code> command.  When it is finished building rename the file to <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> and upload the jar to S3 using the following command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">cp</span> <span class="pre">build/libs/app.jar</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span> <span class="pre">#</span> <span class="pre">check</span> <span class="pre">to</span> <span class="pre">make</span> <span class="pre">sure</span> <span class="pre">it</span> <span class="pre">uploaded</span>
-<span class="pre">`</span></code></p>
-<p>When we run our initialization script later, the script will pull down the <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> file with this command:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">s3://launchcode-gisdevops-c1-yourname/</span> <span class="pre">/opt/airwaze</span>
-<span class="pre">`</span></code></p>
+<p>Go ahead and build a new executable jar file using the Gradle <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code> command.  When it is finished building rename the file to <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> and upload the jar to S3 using the following command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 cp build/libs/app.jar s3://launchcode-gisdevops-c1-yourname/
+$ aws s3 ls s3://launchcode-gisdevops-c1-yourname/ # check to make sure it uploaded
+</pre></div>
+</div>
+<p>When we run our initialization script later, the script will pull down the <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> file with this command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 sync s3://launchcode-gisdevops-c1-yourname/ /opt/airwaze
+</pre></div>
+</div>
 <p>You should also check out S3 in the console:
 <a class="reference external" href="https://s3.console.aws.amazon.com/s3/home?region=us-east-1">https://s3.console.aws.amazon.com/s3/home?region=us-east-1</a></p>
 </div>
@@ -410,49 +410,49 @@ Screenshot of IAM credentails</p>
 <li>Create an EC2 instance in the <code class="docutils literal notranslate"><span class="pre">SubnetWebAppPublic</span></code> subnet.</li>
 <li>Once it is up, SSH into the server and run the following commands:</li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span>
-<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">postgresql</span>
-<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com</span> <span class="pre">-p</span> <span class="pre">5432</span> <span class="pre">-U</span> <span class="pre">masterUser</span> <span class="pre">airwaze</span>
-<span class="pre">CREATE</span> <span class="pre">USER</span> <span class="pre">airwaze_user</span> <span class="pre">WITH</span> <span class="pre">PASSWORD</span> <span class="pre">'verysecurepassword';</span>
-<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis;</span>
-<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_topology;</span>
-<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">fuzzystrmatch;</span>
-<span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">postgis_tiger_geocoder;</span>
-<span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">airport</span>
-<span class="pre">(</span>
-<span class="pre">id</span> <span class="pre">serial</span> <span class="pre">primary</span> <span class="pre">key,</span>
-<span class="pre">airport_id</span> <span class="pre">integer,</span>
-<span class="pre">airport_lat_long</span> <span class="pre">geometry,</span>
-<span class="pre">altitude</span> <span class="pre">integer,</span>
-<span class="pre">city</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">country</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">faa_code</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">icao</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">name</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">time_zone</span> <span class="pre">character</span> <span class="pre">varying(255)</span>
-<span class="pre">);</span>
-<span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">route</span>
-<span class="pre">(</span>
-<span class="pre">id</span> <span class="pre">serial</span> <span class="pre">primary</span> <span class="pre">key,</span>
-<span class="pre">airline</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">airline_id</span> <span class="pre">integer,</span>
-<span class="pre">dst</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">dst_id</span> <span class="pre">integer,</span>
-<span class="pre">route_geom</span> <span class="pre">geometry,</span>
-<span class="pre">src</span> <span class="pre">character</span> <span class="pre">varying(255),</span>
-<span class="pre">src_id</span> <span class="pre">integer</span>
-<span class="pre">);</span>
-<span class="pre">ALTER</span> <span class="pre">TABLE</span> <span class="pre">airport</span> <span class="pre">OWNER</span> <span class="pre">to</span> <span class="pre">airwaze_user;</span>
-<span class="pre">ALTER</span> <span class="pre">TABLE</span> <span class="pre">route</span> <span class="pre">OWNER</span> <span class="pre">to</span> <span class="pre">airwaze_user;</span>
-<span class="pre">`</span></code></p>
-<p>Also, send up the <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> file and the <code class="docutils literal notranslate"><span class="pre">Airports.csv</span></code> file and get those in the database.
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/mikes-keys.pem</span> <span class="pre">routes.csv</span>&#160; <span class="pre">ubuntu&#64;35.170.78.180:/home/ubuntu</span>
-<span class="pre">$</span> <span class="pre">scp</span> <span class="pre">-i</span> <span class="pre">~/.ssh/mikes-keys.pem</span> <span class="pre">Airports.csv</span>&#160; <span class="pre">ubuntu&#64;35.170.78.180:/home/ubuntu</span>
-<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com</span> <span class="pre">-d</span> <span class="pre">airwaze</span> <span class="pre">-U</span> <span class="pre">airwaze_user</span> <span class="pre">-c</span> <span class="pre">&quot;\copy</span> <span class="pre">route(src,</span> <span class="pre">src_id,</span> <span class="pre">dst,</span> <span class="pre">dst_id,</span> <span class="pre">airline,</span> <span class="pre">route_geom)</span> <span class="pre">from</span> <span class="pre">STDIN</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER&quot;</span> <span class="pre">&lt;</span> <span class="pre">/home/ubuntu/routes.csv</span>
-<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com</span> <span class="pre">-d</span> <span class="pre">airwaze</span> <span class="pre">-U</span> <span class="pre">airwaze_user</span> <span class="pre">-c</span> <span class="pre">&quot;\copy</span> <span class="pre">airport(airport_id,</span> <span class="pre">name,</span> <span class="pre">city,</span> <span class="pre">country,</span> <span class="pre">faa_code,</span> <span class="pre">icao,</span> <span class="pre">altitude,</span> <span class="pre">time_zone,</span> <span class="pre">airport_lat_long)</span> <span class="pre">from</span> <span class="pre">STDIN</span> <span class="pre">DELIMITER</span> <span class="pre">','</span> <span class="pre">CSV</span> <span class="pre">HEADER&quot;</span> <span class="pre">&lt;</span> <span class="pre">/home/ubuntu/Airports.csv</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get install postgresql
+$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -p 5432 -U masterUser airwaze
+CREATE USER airwaze_user WITH PASSWORD &#39;verysecurepassword&#39;;
+CREATE EXTENSION postgis;
+CREATE EXTENSION postgis_topology;
+CREATE EXTENSION fuzzystrmatch;
+CREATE EXTENSION postgis_tiger_geocoder;
+CREATE TABLE airport
+(
+id serial primary key,
+airport_id integer,
+airport_lat_long geometry,
+altitude integer,
+city character varying(255),
+country character varying(255),
+faa_code character varying(255),
+icao character varying(255),
+name character varying(255),
+time_zone character varying(255)
+);
+CREATE TABLE route
+(
+id serial primary key,
+airline character varying(255),
+airline_id integer,
+dst character varying(255),
+dst_id integer,
+route_geom geometry,
+src character varying(255),
+src_id integer
+);
+ALTER TABLE airport OWNER to airwaze_user;
+ALTER TABLE route OWNER to airwaze_user;
+</pre></div>
+</div>
+<p>Also, send up the <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> file and the <code class="docutils literal notranslate"><span class="pre">Airports.csv</span></code> file and get those in the database.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ scp -i ~/.ssh/mikes-keys.pem routes.csv  ubuntu@35.170.78.180:/home/ubuntu
+$ scp -i ~/.ssh/mikes-keys.pem Airports.csv  ubuntu@35.170.78.180:/home/ubuntu
+$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c &quot;\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/routes.csv
+$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c &quot;\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/Airports.csv
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="create-the-launch-configuration">
@@ -509,41 +509,47 @@ Screenshot of IAM credentails</p>
 <li>Click “Review”</li>
 <li>Click “Create Launch configuration”</li>
 </ul>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a>`
-#!/bin/bash
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
 # Install Java
-apt-get update -y &amp;&amp; apt-get install -y openjdk-8-jdk awscli</p>
-<p># Create airwaze user
+apt-get update -y &amp;&amp; apt-get install -y openjdk-8-jdk awscli
+
+# Create airwaze user
 useradd -M airwaze
 mkdir /opt/airwaze
 mkdir /etc/opt/airwaze
 aws s3 cp s3://launchcode-gisdevops-c1-traineemike/app.jar /opt/airwaze/app.jar
 chown -R airwaze:airwaze /opt/airwaze /etc/opt/airwaze
-chmod 777 /opt/airwaze</p>
-<p># Write Airwaze config file
+chmod 777 /opt/airwaze
+
+# Write Airwaze config file
 cat &lt;&lt; EOF &gt; /etc/opt/airwaze/airwaze.config
 APP_DB_HOST=airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com
 APP_DB_PORT=5432
 APP_DB_NAME=airwaze
 APP_DB_USER=airwaze_user
 APP_DB_PASS=verysecurepassword
-EOF</p>
-<p># Write systemd unit file
+EOF
+
+# Write systemd unit file
 cat &lt;&lt; EOF &gt; /etc/systemd/system/airwaze.service
 [Unit]
 Description=Airwaze Studio
-After=syslog.target</p>
-<p>[Service]
+After=syslog.target
+
+[Service]
 User=airwaze
 EnvironmentFile=/etc/opt/airwaze/airwaze.config
 ExecStart=/usr/bin/java -jar /opt/airwaze/app.jar SuccessExitStatus=143
-Restart=always</p>
-<p>[Install]
+Restart=always
+
+[Install]
 WantedBy=multi-user.target
-EOF</p>
-<p>systemctl enable airwaze.service
+EOF
+
+systemctl enable airwaze.service
 systemctl start airwaze.service
-<a href="#id3"><span class="problematic" id="id4">``</span></a><a href="#id5"><span class="problematic" id="id6">`</span></a></p>
+</pre></div>
+</div>
 <p>Screenshot of Auto Scale security groups</p>
 <blockquote>
 <div><img alt="../../_images/auto_scale_security_groups.png" src="../../_images/auto_scale_security_groups.png" />
@@ -613,21 +619,20 @@ systemctl start airwaze.service
 <p>Next, you want to test that your autoscaling is working properly.</p>
 <p>You are going to be using a Node library called <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a>.
 Loadtest measures the average latency time of a concurrent requests to a server.</p>
-<dl class="docutils">
-<dt>&lt;aside class=”aside-note”&gt;</dt>
-<dd>Note: Tools like loadtest and Apache AB are like guns.  You don’t point them live things unless you want to kill it.  It’s fine to point a load test tool at your non production apps on AWS; in fact you need to make sure that it can handle load.  You would never want to point a load testing tool at a live site because:
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note: Tools like loadtest and Apache AB are like guns.  You don’t point them live things unless you want to kill it.  It’s fine to point a load test tool at your non production apps on AWS; in fact you need to make sure that it can handle load.  You would never want to point a load testing tool at a live site because:
 * It’s your live site (your staging environment should be similar enough to production to replicate the error).
-* Your production site will be sitting behind one or more layers like a CDN.  Your load test is going to look a lot like a denial of service attack. Services like your CDN are designed to recognize and block attacks at the fringe of your network.  Running a load test against a live site is a good way to get your IP address blocked.</dd>
-</dl>
-<p>&lt;/aside&gt;</p>
-<p>To install <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a> install the following npm package globally (<code class="docutils literal notranslate"><span class="pre">-g</span></code>)
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">loadtest</span>
-<span class="pre">`</span></code></p>
-<p>Next, you can run a command to put load on the server. The following command runs 200 requests per second sending 10 concurrent results to the server at a time.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">loadtest</span> <span class="pre">-c</span> <span class="pre">10</span> <span class="pre">--rps</span> <span class="pre">200</span> <span class="pre">http://internal-airwa-WebAp-1CT34V4AX36U0-774969334.us-east-1.elb.amazonaws.com</span>
-<span class="pre">`</span></code></p>
+* Your production site will be sitting behind one or more layers like a CDN.  Your load test is going to look a lot like a denial of service attack. Services like your CDN are designed to recognize and block attacks at the fringe of your network.  Running a load test against a live site is a good way to get your IP address blocked.</p>
+</div>
+<p>To install <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a> install the following npm package globally (<code class="docutils literal notranslate"><span class="pre">-g</span></code>):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo npm install -g loadtest
+</pre></div>
+</div>
+<p>Next, you can run a command to put load on the server. The following command runs 200 requests per second sending 10 concurrent results to the server at a time.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>loadtest -c 10 --rps 200 http://internal-airwa-WebAp-1CT34V4AX36U0-774969334.us-east-1.elb.amazonaws.com
+</pre></div>
+</div>
 <p>How many auto scaling servers does it take to accomodate a load of 200 requests per second?</p>
 </div>
 </div>
