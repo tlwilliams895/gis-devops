@@ -7,7 +7,7 @@ Week 6 - Project Week - Zika Mission Control Part 3
 Project
 =======
 
-Mission Briefing 3 : `pdf </_static/images/zika_mission_briefing_3.pdf>`_
+Mission Briefing 3 : `pdf <../../_static/images/zika_mission_briefing_3.pdf>`_
 
 Overview
 ========

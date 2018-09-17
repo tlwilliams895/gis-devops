@@ -9,7 +9,7 @@ Learning objectives for this week :ref:`week02-objectives`
 Project
 =======
 
-* Mission Briefing 1 : `pdf </_static/images/Zika_Mission_Briefing--Mission1.pdf>`_
+* Mission Briefing 1 : `pdf <../../_static/images/zika_mission_briefing_1.pdf>`_
 
 
 Overview

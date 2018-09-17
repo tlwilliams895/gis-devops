@@ -285,7 +285,7 @@
 <span id="week4-project"></span><h1>Week 4 - Project Week - Zika Mission Control Part 2<a class="headerlink" href="#week-4-project-week-zika-mission-control-part-2" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="project">
 <h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
-<p>Mission Briefing 2 : <a class="reference external" href="/_static/images/zika_mission_briefing-mission_2.pdf">pdf</a></p>
+<p>Mission Briefing 2 : <a class="reference external" href="../../_static/images/zika_mission_briefing_2.pdf">pdf</a></p>
 </div>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
@@ -295,9 +295,10 @@
 <li>CDC scientists have the  ability to visualize how the infection rate of each area changes over time.</li>
 <li>CDC scientists have the ability to perform fuzzy search across all of the data.</li>
 </ol>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-Remember, in Agile a story is just a “guaranteed conversation”. Stories usually don’t contain all of the details necessary to complete the task and that’s why it is important to follow up with the client and talk through the exact needs of your customer.
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Remember, in Agile a story is just a “guaranteed conversation”. Stories usually don’t contain all of the details necessary to complete the task and that’s why it is important to follow up with the client and talk through the exact needs of your customer.</p>
+</div>
 </div>
 <div class="section" id="getting-the-code">
 <h2>Getting the code<a class="headerlink" href="#getting-the-code" title="Permalink to this headline">¶</a></h2>
@@ -309,13 +310,11 @@ Remember, in Agile a story is just a “guaranteed conversation”. Stories usua
 <li>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">week4-soltuion</span></code></li>
 <li>Now you can get the new files by pulling them in. Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">merge</span> <span class="pre">week4-starter</span></code> OR by simply pasting in select files. The choice is up to you.</li>
 </ol>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-If you decide to back out of a merge and try something else you can always reset your branch to it’s previous state.
-The below command destroys all non committed changes in your local branch and reverts back to the previous commit.
-<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span>
-<span class="pre">`</span></code>
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you decide to back out of a merge and try something else you can always reset your branch to it’s previous state.
+The below command destroys all non committed changes in your local branch and reverts back to the previous commit. <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span></code></p>
+</div>
 </div>
 <div class="section" id="what-s-new-in-the-code">
 <h2>What’s new in the code<a class="headerlink" href="#what-s-new-in-the-code" title="Permalink to this headline">¶</a></h2>
@@ -329,27 +328,21 @@ The below command destroys all non committed changes in your local branch and re
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Use TDD when implementing these requirements
-1. Build out a <code class="docutils literal notranslate"><span class="pre">/api/report</span></code> endpoint that accepts a POST containing Report JSON in the body.</p>
-<blockquote>
-<div><ul class="simple">
+<p>Use TDD when implementing these requirements</p>
+<ol class="arabic simple">
+<li>Build out a <code class="docutils literal notranslate"><span class="pre">/api/report</span></code> endpoint that accepts a POST containing Report JSON in the body.<ul>
 <li>Store the Report created from JSON in PostGis</li>
 <li>Store the ReportDocument created from JSON in ElasticSearch</li>
 </ul>
-</div></blockquote>
-<ol class="arabic simple" start="2">
+</li>
 <li>Show Zika report data for a certain date on a map via OpenLayers (reports grouped by state for a certain date)</li>
 <li>When a feature is clicked show the related report data (like in week 2 zika project)</li>
 <li>Ability to change the data displayed by changing the report date</li>
-<li>Search input and search button that uses ElasticSearch fuzzy search</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
+<li>Search input and search button that uses ElasticSearch fuzzy search<ul>
 <li>When search is executed matching reports should be shown below map</li>
 <li>And/Or Features present on map should change to be only those that match report date and fuzzy search term</li>
 </ul>
-</div></blockquote>
-<ol class="arabic simple" start="6">
+</li>
 <li>Make sure you application is secure from sql injection attacks <a class="reference external" href="https://www.owasp.org/index.php/SQL_Injection">https://www.owasp.org/index.php/SQL_Injection</a> by validating the query parameters</li>
 <li>Create API docs with springfox and swagger</li>
 <li>Use Eslint and Airbnb ruleset to make sure your JS meets team standards</li>
@@ -358,29 +351,25 @@ The below command destroys all non committed changes in your local branch and re
 <div class="section" id="suggested-endpoints-parameters">
 <h2>Suggested Endpoints/Parameters<a class="headerlink" href="#suggested-endpoints-parameters" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><code class="docutils literal notranslate"><span class="pre">api/report?date=2016-05-14</span></code> should return GeoJSON created from reports filtered by report date</li>
-</ol>
-<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">api/report?date=2016-05-14</span></code> should return GeoJSON created from reports filtered by report date<ul>
 <li>Most likey you want this data to come from ElasticSearch because of requirement #2</li>
 </ul>
-<ol class="arabic simple" start="2">
+</li>
 <li><code class="docutils literal notranslate"><span class="pre">api/report?search=brzil</span></code> should return GeoJSON created from ElasticSearch filtered using fuzzy search</li>
 <li><code class="docutils literal notranslate"><span class="pre">api/report?search=brzil&amp;date=2016-05-14</span></code> should use both the <code class="docutils literal notranslate"><span class="pre">date</span></code> and <code class="docutils literal notranslate"><span class="pre">search</span></code> query parameters to limit the results3.</li>
 <li><code class="docutils literal notranslate"><span class="pre">api/report/unique-dates</span></code> returns json containing all unique report dates</li>
 </ol>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-To index all of the reports in Postgis into ElasticSearch use the following command:
-<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XPOST</span> <span class="pre">http://localhost:8080/api/_cluster/reindex</span>
-<span class="pre">`</span></code>
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To index all of the reports in Postgis into ElasticSearch use the following command: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XPOST</span> <span class="pre">http://localhost:8080/api/_cluster/reindex</span></code></p>
+</div>
 </div>
 <div class="section" id="database-setup">
 <h2>Database Setup<a class="headerlink" href="#database-setup" title="Permalink to this headline">¶</a></h2>
-<p>Install the following extension on your Postgis databases (don’t forget your test db):</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">#</span> <span class="pre">CREATE</span> <span class="pre">EXTENSION</span> <span class="pre">unaccent;</span>
-<span class="pre">`</span></code></p>
+<p>Install the following extension on your Postgis databases (don’t forget your test db)::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># CREATE EXTENSION unaccent;
+</pre></div>
+</div>
 </div>
 <div class="section" id="bonus-missions">
 <h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
@@ -395,47 +384,50 @@ To index all of the reports in Postgis into ElasticSearch use the following comm
 <h3>Adding Boundary Geometries<a class="headerlink" href="#adding-boundary-geometries" title="Permalink to this headline">¶</a></h3>
 <p>The data that the scientists want to ingest is summarized in the CDC Zika Repository <a class="reference external" href="https://github.com/cdcepi/zika">https://github.com/cdcepi/zika</a>. If you open up the data for Argentina <a class="reference external" href="https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv">https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv</a>, you’ll notice that the data looks pretty similiar to last mission, except that there is no latitude or longitude to GeoCode each row; however, each row does have a location field. We should be able to indentify those locations to actual data points on a map.</p>
 <p>You Google for “political boundaries geojson” and you find gadm.org <a class="reference external" href="http://www.gadm.org/">http://www.gadm.org/</a>. country serves up geospatial data about administrative boundaries for each state. Go to the GADM Downloads Page <a class="reference external" href="http://www.gadm.org/country">http://www.gadm.org/country</a> to check out the data.</p>
-<p>&lt;img src=”../../materials/week04/GADM_download_page.png”&gt;&lt;/img&gt;</p>
+<img alt="../../_images/GADM_download_page.png" src="../../_images/GADM_download_page.png" />
 <p>Download the shapefile for Brazil <a class="reference external" href="http://biogeo.ucdavis.edu/data/gadm2.8/shp/BRA_adm_shp.zip">http://biogeo.ucdavis.edu/data/gadm2.8/shp/BRA_adm_shp.zip</a>.</p>
 <p>The file <code class="docutils literal notranslate"><span class="pre">BRA_adm_shp.zip</span></code> will download. Double click the file to unzip the file. You should see three shapefiles: <code class="docutils literal notranslate"><span class="pre">BRA_adm0.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm2.shp</span></code>. <code class="docutils literal notranslate"><span class="pre">BRA_adm3.shp</span></code>. Let’s take a look at these shapefiles. In order to look at a shapefile, you will need download QGIS <a class="reference external" href="https://qgis.org/en/site/">https://qgis.org/en/site/</a>, an open source desktop viewer for geospatial data. Click Here to Download QGIS <a class="reference external" href="https://connect.boundlessgeo.com/Downloads">https://connect.boundlessgeo.com/Downloads</a>. Double click the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file to install.</p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-Note: Use your personal email to register on Boundless Connect to get access to the QGIS download.
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Note: Use your personal email to register on Boundless Connect to get access to the QGIS download.</p>
+</div>
 <p>After QGIS is installed, drag the <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code> file into the QGIS window in order to import the file.</p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-The zoom on the QGIS window is VERY sensitive. You may need to automatically zoom to the layer you would like to view. Right click on your layer in the <code class="docutils literal notranslate"><span class="pre">Layers</span> <span class="pre">Panel</span></code>, and select <code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">to</span> <span class="pre">Layer</span></code>.
-&lt;img src=”../../materials/week04/QGIS_zoom_to_layer.png”&gt;&lt;/img&gt;
-&lt;/aside&gt;</p>
-<p>Great! That looks exactly like what we need. Let’s convert the file into GeoJSON so that we can serve it up from within our web application. We can use the <code class="docutils literal notranslate"><span class="pre">ogr2ogr</span></code> command.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">ogr2ogr</span> <span class="pre">-f</span> <span class="pre">&quot;GeoJSON&quot;</span> <span class="pre">brazil.geojson</span> <span class="pre">BRA_adm_shp/BRA_adm1.shp</span>
-<span class="pre">`</span></code></p>
-<p>After the command completes, check out the <code class="docutils literal notranslate"><span class="pre">brazil.geojson</span></code> file. Yikes! The file seems pretty big. Let’s see how big:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">ls</span> <span class="pre">-lh</span> <span class="pre">brazil.geojson</span>
-<span class="pre">`</span></code></p>
-<p>&lt;img src=”../../materials/week04/CLI_check_file_size.png”&gt;&lt;/img&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The zoom on the QGIS window is VERY sensitive. You may need to automatically zoom to the layer you would like to view. Right click on your layer in the <code class="docutils literal notranslate"><span class="pre">Layers</span> <span class="pre">Panel</span></code>, and select <code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">to</span> <span class="pre">Layer</span></code>.</p>
+</div>
+<img alt="../../_images/QGIS_zoom_to_layer.png" src="../../_images/QGIS_zoom_to_layer.png" />
+<p>Great! That looks exactly like what we need. Let’s convert the file into GeoJSON so that we can serve it up from within our web application. We can use the <code class="docutils literal notranslate"><span class="pre">ogr2ogr</span></code> command.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ogr2ogr -f &quot;GeoJSON&quot; brazil.geojson BRA_adm_shp/BRA_adm1.shp
+</pre></div>
+</div>
+<p>After the command completes, check out the <code class="docutils literal notranslate"><span class="pre">brazil.geojson</span></code> file. Yikes! The file seems pretty big. Let’s see how big::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls -lh brazil.geojson
+</pre></div>
+</div>
+<img alt="../../_images/CLI_check_file_size.png" src="../../_images/CLI_check_file_size.png" />
 <p>A 25M file is not going to work well in our web app. And that’s just Brazil!</p>
 <p>Fortunately, shapefiles can be compressed in size by reducing the amount of detail. In QGIS, select <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">&gt;</span> <span class="pre">Geometry</span> <span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Simplify</span> <span class="pre">geometries</span></code> from the top menu. Select your Brazil Geometry <code class="docutils literal notranslate"><span class="pre">BRA_adm1</span></code> and set the tolerance to <code class="docutils literal notranslate"><span class="pre">0.05</span></code>. Hit Run.</p>
-<p>&lt;img src=”../../materials/week04/QGIS_simplify_geometries.png”&gt;&lt;/img&gt;</p>
+<img alt="../../_images/QGIS_simplify_geometries.png" src="../../_images/QGIS_simplify_geometries.png" />
 <p>QGIS should generate a new layer that looks pretty much the same as the last layer.</p>
 <p>Right click on the newly created layer and select <strong>Save As…</strong>. Save the file as GeoJSON with the name <code class="docutils literal notranslate"><span class="pre">brazil_compressed.geojson</span></code>. Be sure to type in the entire path of the file that you are creating.</p>
-<p>&lt;img src=”../../materials/week04/QGIS_save_as.png”&gt;&lt;/img&gt;
-Now if you check the size of the newly created <code class="docutils literal notranslate"><span class="pre">brazil_compressed.geojson</span></code>, you should see that it is much smaller!</p>
-<p>Run the command:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">ls</span> <span class="pre">-lh</span> <span class="pre">brazil_compressed.geojson</span>
-<span class="pre">`</span></code></p>
-<p>&lt;img src=”../../materials/week04/CLI_check_compressed_file_size.png”&gt;&lt;/img&gt;</p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-A file size of 331K isn’t great for a webapp; it’s still a bit large. In a few weeks, we’ll look at how some of the features of GeoServer allows you to display large amounts of data without a big download.
-&lt;/aside&gt;</p>
-<p>The last step is to join all of the GeoJSON files together. To do that, we can use a nice Node.js library from MapBox. Run the following commands:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">-g</span> <span class="pre">&#64;mapbox/geojson-merge</span>
-<span class="pre">$</span> <span class="pre">geojson-merge</span> <span class="pre">argentina_compressed.geojson</span> <span class="pre">brazil_compressed.geojson</span> <span class="pre">columbia_compressed.geojson</span> <span class="pre">dominican_republic_compressed.geojson</span> <span class="pre">el_salvador_compressed.geojson</span> <span class="pre">equador_compressed.geojson</span> <span class="pre">guatamala_compressed.geojson</span> <span class="pre">haiti_compressed.geojson</span> <span class="pre">mexico_compressed.geojson</span>
-<span class="pre">nicaragua_compressed.geojson</span> <span class="pre">panama_compressed.geojson</span> <span class="pre">&gt;</span> <span class="pre">states.geojson</span>
-<span class="pre">`</span></code></p>
+<img alt="../../_images/QGIS_save_as.png" src="../../_images/QGIS_save_as.png" />
+<p>Now if you check the size of the newly created <code class="docutils literal notranslate"><span class="pre">brazil_compressed.geojson</span></code>, you should see that it is much smaller!</p>
+<p>Run the command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls -lh brazil_compressed.geojson
+</pre></div>
+</div>
+<img alt="../../_images/CLI_check_compressed_file_size.png" src="../../_images/CLI_check_compressed_file_size.png" />
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A file size of 331K isn’t great for a webapp; it’s still a bit large. In a few weeks, we’ll look at how some of the features of GeoServer allows you to display large amounts of data without a big download.</p>
+</div>
+<p>The last step is to join all of the GeoJSON files together. To do that, we can use a nice Node.js library from MapBox. Run the following commands::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ npm install -g @mapbox/geojson-merge
+$ geojson-merge argentina_compressed.geojson brazil_compressed.geojson columbia_compressed.geojson dominican_republic_compressed.geojson el_salvador_compressed.geojson equador_compressed.geojson guatamala_compressed.geojson haiti_compressed.geojson mexico_compressed.geojson
+nicaragua_compressed.geojson panama_compressed.geojson &gt; states.geojson
+</pre></div>
+</div>
 <p>To save you time, we went ahead and optimized the geometries for each country. Some might still need some work, but can
 tackle that some day when you are bored.</p>
 </div>
