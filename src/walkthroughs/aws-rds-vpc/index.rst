@@ -13,18 +13,17 @@ Setup
 This project uses the `Simple Map App <https://gitlab.com/LaunchCodeTraining/simple-map-app>`_
 
 Remember, in order to connect to an EC2 in a VPC you need to have the following pieces configured:
-0. Your EC2 instance should have been created with a public IP address.
-1. Port 22 open on the security group of the EC2 instance.
-2. Port 22 open on the subnet of the EC2 instance.
-3. An Internet Gateway needs to be attached to your VPC.
-4. There needs to be a custom route directing traffic from `0.0.0.0/0` to your Internet Gateway.
 
-`Here <https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/>`_ is an 1AWS Article on Troubleshooting SSH `connections  if you have any trouble.
+1. Your EC2 instance should have been created with a public IP address.
+2. Port 22 open on the security group of the EC2 instance.
+3. Port 22 open on the subnet of the EC2 instance.
+4. An Internet Gateway needs to be attached to your VPC.
+5. There needs to be a custom route directing traffic from `0.0.0.0/0` to your Internet Gateway.
+
+`Here <https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/>`_ is an AWS Article on Troubleshooting SSH `connections  if you have any trouble.
 
 Goals
 =====
-
-There are two goals for this walkthrough:
 
 1. Create an RDS instance
 2. Use the RDS instance in your airwaze app running on EC2

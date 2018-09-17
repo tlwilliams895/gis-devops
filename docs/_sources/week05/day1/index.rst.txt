@@ -9,7 +9,7 @@ Learning objectives for this module :ref:`week05-day1-objectives`
 Lesson Content
 ==============
 
-* Intro to DevOps https://education.launchcode.org/gis-devops-slides/week5/intro-to-devops.html
+* `Intro to DevOps <https://education.launchcode.org/gis-devops-slides/week5/intro-to-devops.html>`_
 * `SECURITY - Misconfiguration <https://education.launchcode.org/gis-devops-slides/security/security-misconfiguration.html#1>`_
 
 
