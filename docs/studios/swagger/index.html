@@ -259,8 +259,11 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Studio: Springfox and Swagger</a><ul>
-<li><a class="reference internal" href="#getting-ready">Getting Ready</a></li>
-<li><a class="reference internal" href="#configure-springfox">Configure Springfox</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#configure-springfox">Configure Springfox</a><ul>
+<li><a class="reference internal" href="#view-the-generated-swagger-documentation">View the Generated Swagger Documentation</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#tasks">Tasks</a></li>
 <li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 <li><a class="reference internal" href="#turn-in-your-work">Turn in your Work</a></li>
@@ -275,35 +278,36 @@
   <div class="section" id="studio-springfox-and-swagger">
 <span id="swagger-studio"></span><h1>Studio: Springfox and Swagger<a class="headerlink" href="#studio-springfox-and-swagger" title="Permalink to this headline">¶</a></h1>
 <p>In this studio, we will be learning how to use Springfox to autogenerate the Swagger docs.</p>
-<div class="section" id="getting-ready">
-<h2>Getting Ready<a class="headerlink" href="#getting-ready" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">add-springfox</span></code> branch off of your <code class="docutils literal notranslate"><span class="pre">launchcart\rest-studio-solution</span></code>. Do NOT create the branch off of the walkthrough studio.</p>
 </div>
 <div class="section" id="configure-springfox">
 <h2>Configure Springfox<a class="headerlink" href="#configure-springfox" title="Permalink to this headline">¶</a></h2>
-<p>Add these to your <code class="docutils literal notranslate"><span class="pre">dependencies</span> <span class="pre">{</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>
-<a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>no-highlight</p>
-<blockquote>
-<div>compile(group: ‘io.springfox’, name: ‘springfox-swagger2’, version: ‘2.7.0’)
-compile(group: ‘io.springfox’, name: ‘springfox-swagger-ui’, version: ‘2.7.0’)</div></blockquote>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
-<p>Add <code class="docutils literal notranslate"><span class="pre">&#64;EnableSwagger2</span></code> annotation to <code class="docutils literal notranslate"><span class="pre">LaunchcartApplication</span></code>
-<a href="#id9"><span class="problematic" id="id10">``</span></a><a href="#id11"><span class="problematic" id="id12">`</span></a>java</p>
-<blockquote>
-<div><p>&#64;EnableSwagger2
-&#64;SpringBootApplication
-public class LaunchcartApplication {</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>public static void main(String[] args) {</dt>
-<dd>SpringApplication.run(LaunchcartApplication.class, args);</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<p>}</p>
-</div></blockquote>
-<p><a href="#id13"><span class="problematic" id="id14">``</span></a><a href="#id15"><span class="problematic" id="id16">`</span></a></p>
+<p>Add these to your <code class="docutils literal notranslate"><span class="pre">dependencies</span> <span class="pre">{</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger2&#39;, version: &#39;2.7.0&#39;)
+compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, version: &#39;2.7.0&#39;)
+</pre></div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">&#64;EnableSwagger2</span></code> annotation to <code class="docutils literal notranslate"><span class="pre">LaunchcartApplication.java</span></code></p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@EnableSwagger2</span>
+<span class="nd">@SpringBootApplication</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">LaunchcartApplication</span> <span class="o">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">SpringApplication</span><span class="o">.</span><span class="na">run</span><span class="o">(</span><span class="n">LaunchcartApplication</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">args</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="section" id="view-the-generated-swagger-documentation">
+<h3>View the Generated Swagger Documentation<a class="headerlink" href="#view-the-generated-swagger-documentation" title="Permalink to this headline">¶</a></h3>
 <p>Now go to <a class="reference external" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Because of security code included in the LaunchCart application, this URL not load unless you are currently logged in.</p>
+</div>
+</div>
 </div>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>

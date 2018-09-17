@@ -7,8 +7,8 @@ Studio: Test-Driven Development
 
 For this studio, you will create a class to represent `URLs <https://en.wikipedia.org/wiki/URL>`_ as Java objects. You will do this using a test-driven approach.
 
-Getting Ready
--------------
+Getting Started
+---------------
 
 Create a new Java project in IntelliJ named `tdd`. Use the Gradle project template. Initialize the project as a Git repository, then create a corresponding remote repository in your GitLab account. Connect your local to the remote, commit, and push.
 

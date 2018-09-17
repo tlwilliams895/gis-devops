@@ -7,8 +7,8 @@ Studio - OpenLayers ES2015 Workshop
 
 This activity gives you practice with JavaScript, ES2015, Webpack, and OpenLayers
 
-Getting Ready
-=============
+Getting Started
+===============
 
 * Fork the `LaunchCodeTraining/openlayers-eslint-workshop-studio <https://gitlab.com/LaunchCodeTraining/openlayers-eslint-workshop-studio>`_ and clone it to your laptop.
 * Open the project in your favorite JavaScript editor (Visual Studio Code, Atom, Webstorm, or even Intellij if you have a JavaScript plugin installed)

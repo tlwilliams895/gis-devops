@@ -7,8 +7,8 @@ Studio: LaunchCart REST
 
 In this studio, we'll add additional RESTful endpoints to the LaunchCart application. It builds upon the changes we added in the LaunchCart REST walkthrough :ref:`walkthrough-launchcart-rest`.
 
-Getting Ready
-=============
+Getting Started
+===============
 
 From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTraining/launchcart that you used previously, make sure you are in the ``rest-walkthrough`` branch that you used earlier today.
 

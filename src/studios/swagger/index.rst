@@ -7,22 +7,24 @@ Studio: Springfox and Swagger
 
 In this studio, we will be learning how to use Springfox to autogenerate the Swagger docs.
 
-Getting Ready
-=============
+Getting Started
+===============
 
 Create a ``add-springfox`` branch off of your ``launchcart\rest-studio-solution``. Do NOT create the branch off of the walkthrough studio.
 
 Configure Springfox
 ===================
 
-Add these to your ``dependencies {`` in ``build.gradle``
-```no-highlight
+Add these to your ``dependencies {`` in ``build.gradle``::
+
 	compile(group: 'io.springfox', name: 'springfox-swagger2', version: '2.7.0')
 	compile(group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.7.0')
-```
 
-Add ``@EnableSwagger2`` annotation to ``LaunchcartApplication``
-```java
+
+Add ``@EnableSwagger2`` annotation to ``LaunchcartApplication.java``
+
+.. code-block:: java
+
   @EnableSwagger2
   @SpringBootApplication
   public class LaunchcartApplication {
@@ -31,9 +33,14 @@ Add ``@EnableSwagger2`` annotation to ``LaunchcartApplication``
       SpringApplication.run(LaunchcartApplication.class, args);
     }
   }
-```
 
+View the Generated Swagger Documentation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Now go to http://localhost:8080/swagger-ui.html.
+
+.. Warning::
+
+  Because of security code included in the LaunchCart application, this URL not load unless you are currently logged in.
 
 Tasks
 =====
