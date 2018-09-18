@@ -220,6 +220,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../week09/day4/index.html">Week 9 - Day 4: OAuth2</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#lesson">Lesson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#resources">Resources</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../week09/day5/index.html">Week 9 - Day 5: Certificates</a><ul>
@@ -286,11 +287,10 @@
 <li><a class="reference external" href="https://devhints.io/docker-compose">Docker and Docker Compose Cheatsheet</a></li>
 <li><a class="reference external" href="https://docs.docker.com/compose">Official Docker Compose Docs</a></li>
 </ul>
-<dl class="docutils">
-<dt>&lt;aside class=”aside-warning” markdown=”1”&gt;</dt>
-<dd>Remember that the <code class="docutils literal notranslate"><span class="pre">--link</span></code> flag is deprecated for Docker. Please use Docker Compose instead.  :-)</dd>
-</dl>
-<p>&lt;/aside&gt;</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Remember that the <code class="docutils literal notranslate"><span class="pre">--link</span></code> flag is deprecated for Docker. Please use Docker Compose instead.  :-)</p>
+</div>
 <div class="section" id="helpful-commands">
 <h3>Helpful Commands<a class="headerlink" href="#helpful-commands" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -301,69 +301,60 @@
 </div>
 <div class="section" id="goals">
 <h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
-<p>At the end of this studio your project should have the following:
-1. A Docker file that runs the Airwaze executable jar file.
-2. A Docker Compose file that allows you to stand up Airwaze with the command <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code></p>
+<p>At the end of this studio your project should have the following:</p>
+<ol class="arabic simple">
+<li>A Docker file that runs the Airwaze executable jar file.</li>
+<li>A Docker Compose file that allows you to stand up Airwaze with the command <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span></code></li>
+</ol>
 </div>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>To run Airwaze, you need two different containers:
-1. A Web server running with Java installed to run a Spring Boot executable jar file.
-2. A PostGIS database.</p>
+<p>To run Airwaze, you need two different containers:</p>
+<ol class="arabic simple">
+<li>A Web server running with Java installed to run a Spring Boot executable jar file.</li>
+<li>A PostGIS database.</li>
+</ol>
 <p>You will need to create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> to run the Airwaze app.  Additionally, you will need a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> to connect the Airwaze container to the <code class="docutils literal notranslate"><span class="pre">postgis</span></code> container.  Use existing Docker images to run PostGIS.  Here are some Docker commands that we have used in the past to run PostGIS.</p>
-<p>For running <strong>Postgis</strong>, we used the following docker command:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;postgis&quot;</span> <span class="pre">-p</span> <span class="pre">5432:5432</span> <span class="pre">-d</span> <span class="pre">-t</span> <span class="pre">--env-file</span> <span class="pre">./env.list</span> <span class="pre">kartoza/postgis:10.0-2.4</span>
-<span class="pre">`</span></code></p>
+<p>For running <strong>Postgis</strong>, we used the following docker command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run --name &quot;postgis&quot; -p 5432:5432 -d -t --env-file ./env.list kartoza/postgis:10.0-2.4
+</pre></div>
+</div>
 </div>
 <div class="section" id="hints">
 <h2>Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h2>
 <p>If you expose the port <code class="docutils literal notranslate"><span class="pre">5432</span></code> on your PostGIS container using the <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">5432:5432</span></code> option, you will only be able to connect to it via``psql -h 127.0.0.1 -p 5432 -U airwaze_app_user airwaze``</p>
 <p>Settings up databases in Docker can be kind of tricky because they typically require setting up users and a schema before they can be used by an application server. Here is an example <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> file that configure the PostGIS container, note all of the file is not shown.</p>
-<dl class="docutils">
-<dt><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a></dt>
-<dd><dl class="first last docutils">
-<dt>postgis:</dt>
-<dd><p class="first">image: “kartoza/postgis:10.0-2.4”
-ports:</p>
-<blockquote>
-<div><ul class="simple">
-<li>“5432:5432”</li>
-</ul>
-</div></blockquote>
-<dl class="docutils">
-<dt>environment:</dt>
-<dd><ul class="first last simple">
-<li>POSTGRES_PASS=verysecurepassword</li>
-<li>POSTGRES_USER=airwaze_app_user</li>
-<li>POSTGRES_DBNAME=airwaze</li>
-</ul>
-</dd>
-</dl>
-<p class="last">command: sh -c “echo “host all all 0.0.0.0/0 md5” &gt;&gt; /etc/postgresql/10/main/pg_hba.conf &amp;&amp; /start-postgis.sh”</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p><a href="#id5"><span class="problematic" id="id6">``</span></a><a href="#id7"><span class="problematic" id="id8">`</span></a></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>postgis:
+  image: &quot;kartoza/postgis:10.0-2.4&quot;
+  ports:
+    - &quot;5432:5432&quot;
+  environment:
+    - POSTGRES_PASS=verysecurepassword
+    - POSTGRES_USER=airwaze_app_user
+    - POSTGRES_DBNAME=airwaze
+  command: sh -c &quot;echo \&quot;host all all 0.0.0.0/0 md5\&quot; &gt;&gt; /etc/postgresql/10/main/pg_hba.conf &amp;&amp; /start-postgis.sh&quot;
+</pre></div>
+</div>
 </div>
 <div class="section" id="bonus-missions">
 <h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
-<p>Get your <strong>Zika CDC Dashboard</strong> to run via a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file.
-* Container running <strong>Zika CDC Dashboard</strong>
-* Container running <strong>PostGIS</strong>
-* Conatiner running <strong>ElasticSearch</strong>
-* Conatiner runninng <strong>GeoServer</strong>
-* DockerFile to create the <strong>Zika CDC Dashboard</strong> image
-* DockerFile to create and populate the <strong>PostGIS</strong> container
-* Docker compose file that spins up and connects the containers</p>
+<p>Get your <strong>Zika CDC Dashboard</strong> to run via a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file.</p>
+<ul class="simple">
+<li>Container running <strong>Zika CDC Dashboard</strong></li>
+<li>Container running <strong>PostGIS</strong></li>
+<li>Conatiner running <strong>ElasticSearch</strong></li>
+<li>Conatiner runninng <strong>GeoServer</strong></li>
+<li>DockerFile to create the <strong>Zika CDC Dashboard</strong> image</li>
+<li>DockerFile to create and populate the <strong>PostGIS</strong> container</li>
+<li>Docker compose file that spins up and connects the containers</li>
+</ul>
 </div>
 <div class="section" id="zika-hints">
 <h2>Zika Hints<a class="headerlink" href="#zika-hints" title="Permalink to this headline">¶</a></h2>
-<p>For running <strong>Elasticsearch</strong>, we used the following docker command:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;es&quot;</span> <span class="pre">-p</span> <span class="pre">9200:9200</span> <span class="pre">-p</span> <span class="pre">9300:9300</span> <span class="pre">-e</span> <span class="pre">&quot;discovery.type=single-node&quot;</span>&#160; <span class="pre">-e</span> <span class="pre">&quot;xpack.security.enabled=false&quot;</span> <span class="pre">docker.elastic.co/elasticsearch/elasticsearch:5.6.0</span>
-<span class="pre">`</span></code></p>
+<p>For running <strong>Elasticsearch</strong>, we used the following docker command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run --name &quot;es&quot; -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot;  -e &quot;xpack.security.enabled=false&quot; docker.elastic.co/elasticsearch/elasticsearch:5.6.0
+</pre></div>
+</div>
 </div>
 </div>
 
