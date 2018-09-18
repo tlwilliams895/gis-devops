@@ -302,17 +302,19 @@
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>To complete this project, your app should meet the following requirements:</p>
-<ul class="simple">
+<ol class="arabic simple">
 <li>Your application is deployed via AWS at a live URL</li>
 <li>You use CentOS for your EC2 instances (details below)</li>
 <li>Setup a LaunchConfiguration to spin up new Web App EC2 instances</li>
 <li>You setup a VPC for your Web app, RDS, and ElasticSearch</li>
 <li>ElasticSearch is hosted on an EC2 inside your VPC</li>
 <li>Your application can consistently handle 300 requests per second</li>
-<li>Jenkins watches your repo pushes a release to S3 if all of the following pass:
-* All tests pass</li>
-<li>ESLint has no warnings</li>
+<li>Jenkins watches your repo pushes a release to S3 if all of the following pass:<ul>
+<li>All tests pass</li>
 </ul>
+</li>
+<li>ESLint has no warnings</li>
+</ol>
 </div>
 <div class="section" id="new-stuff">
 <h2>New Stuff<a class="headerlink" href="#new-stuff" title="Permalink to this headline">¶</a></h2>
@@ -330,49 +332,56 @@
 </div>
 <div class="section" id="setup-locally">
 <h2>Setup Locally<a class="headerlink" href="#setup-locally" title="Permalink to this headline">¶</a></h2>
-<p>To run Elasticsearch locally, we are going to be using Docker:
-* Download docker installer from <a class="reference external" href="https://store.docker.com/editions/community/docker-ce-desktop-mac">here</a>
-* That will install docker as a service and an application that will run everytime your computer starts. (look for the whale icon in your menu bar at the top of your mac)
-* Now you can run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span></code> commands in your terminal. Like the one below. (this runs a docker instance that contains ElasticSearch)
-* The connection information for the docker version of ElasticSearch is contained in the comments of <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week6-starter/src/main/resources/application.properties">this file</a>
-* MAKE SURE YOUR TESTS ARE PASSING LOCALLY BEFORE MOVING TO THE CLOUD
-&lt;aside class=”aside-note” markdown=”1”&gt;
-Be sure to stop your home brew Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">stop</span> <span class="pre">elasticsearch</span></code>
-&lt;/aside&gt;
-Create the container (NOTE: An id will be returned)
-<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">create</span> <span class="pre">-p</span> <span class="pre">9200:9200</span> <span class="pre">-p</span> <span class="pre">9300:9300</span> <span class="pre">-e</span> <span class="pre">&quot;discovery.type=single-node&quot;</span>&#160; <span class="pre">-e</span> <span class="pre">&quot;xpack.security.enabled=false&quot;</span> <span class="pre">docker.elastic.co/elasticsearch/elasticsearch:5.6.0</span>
-<span class="pre">63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8</span> <span class="pre">&lt;-----</span> <span class="pre">this</span> <span class="pre">is</span> <span class="pre">returned</span> <span class="pre">after</span> <span class="pre">the</span> <span class="pre">above</span> <span class="pre">command,</span> <span class="pre">it's</span> <span class="pre">id</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">container</span> <span class="pre">that</span> <span class="pre">is</span> <span class="pre">created</span> <span class="pre">COPY</span> <span class="pre">THIS</span> <span class="pre">SOMEHWERE</span>
-<span class="pre">`</span></code>
-Start the container
-<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">docker</span> <span class="pre">start</span> <span class="pre">63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8</span>
-<span class="pre">`</span></code></p>
-<p>You can restart or stop the container as well
-* <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">restart</span> <span class="pre">63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8</span></code>
-* <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">stop</span> <span class="pre">63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8</span></code></p>
-<p>&lt;aside class=”aside-warning” markdown=”1”&gt;
-The error <code class="docutils literal notranslate"><span class="pre">None</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">configured</span> <span class="pre">nodes</span> <span class="pre">are</span> <span class="pre">available</span></code> can be caused by starting up your Web App before ElasticSearch is running. This can also happen if you restart your ElasticSearch while your Web App is running.
-&lt;/aside&gt;</p>
+<p>To run Elasticsearch locally, we are going to be using Docker:</p>
+<ul class="simple">
+<li>Download docker installer from <a class="reference external" href="https://store.docker.com/editions/community/docker-ce-desktop-mac">here</a></li>
+<li>That will install docker as a service and an application that will run everytime your computer starts. (look for the whale icon in your menu bar at the top of your mac)</li>
+<li>Now you can run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span></code> commands in your terminal. Like the one below. (this runs a docker instance that contains ElasticSearch)</li>
+<li>The connection information for the docker version of ElasticSearch is contained in the comments of <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week6-starter/src/main/resources/application.properties">this file</a></li>
+<li>MAKE SURE YOUR TESTS ARE PASSING LOCALLY BEFORE MOVING TO THE CLOUD</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Be sure to stop your home brew Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">stop</span> <span class="pre">elasticsearch</span></code></p>
+</div>
+<p>Create the container (NOTE: An id will be returned):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker create -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot;  -e &quot;xpack.security.enabled=false&quot; docker.elastic.co/elasticsearch/elasticsearch:5.6.0
+63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8 &lt;----- this is returned after the above command, it&#39;s id of the container that is created COPY THIS SOMEHWERE
+</pre></div>
+</div>
+<p>Start the container:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker start 63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8
+</pre></div>
+</div>
+<p>You can restart or stop the container as well:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker restart 63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8
+$ docker stop 63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The error <code class="docutils literal notranslate"><span class="pre">None</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">configured</span> <span class="pre">nodes</span> <span class="pre">are</span> <span class="pre">available</span></code> can be caused by starting up your Web App before ElasticSearch is running. This can also happen if you restart your ElasticSearch while your Web App is running.</p>
+</div>
 </div>
 <div class="section" id="setup-in-the-cloud">
 <h2>Setup in the Cloud<a class="headerlink" href="#setup-in-the-cloud" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="centos">
 <h3>CentOS<a class="headerlink" href="#centos" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">CentOS</span></code> is a free, enterprise class, Linux distribution based on Red Hat Enterprise Linux. Most of the commands will be the same as Ubuntu, except the package manager will use <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">install</span></code> instead of <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span></code>. CentOS comes with less software installed than Ubuntu. For example <code class="docutils literal notranslate"><span class="pre">telnet</span></code> has to be installed via <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">telnet</span></code>. <a class="reference external" href="https://wiki.centos.org/Cloud/AWS">Info on Image of CentOS we will use</a></p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-To <code class="docutils literal notranslate"><span class="pre">ssh</span></code> into a CentOS instance, you will need to use the username <code class="docutils literal notranslate"><span class="pre">centos</span></code>.
-&lt;/aside&gt;</p>
-<p>How to manually create an AWS EC2 instance using CentOS
-* Go to Oregon Region
-* Click <strong>Launch Instance</strong> in the EC2 Dashboard
-* Click <strong>My AMIs</strong>
-* Search for <strong>centos</strong>
-* Click <strong>CentOS Image</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To <code class="docutils literal notranslate"><span class="pre">ssh</span></code> into a CentOS instance, you will need to use the username <code class="docutils literal notranslate"><span class="pre">centos</span></code>.</p>
+</div>
+<p>How to manually create an AWS EC2 instance using CentOS</p>
+<ul class="simple">
+<li>Go to Oregon Region</li>
+<li>Click <strong>Launch Instance</strong> in the EC2 Dashboard</li>
+<li>Click <strong>My AMIs</strong></li>
+<li>Search for <strong>centos</strong></li>
+<li>Click <strong>CentOS Image</strong></li>
+</ul>
 <p>CentOS Image</p>
-<blockquote>
-<div><img alt="../../_images/centos-image.png" src="../../_images/centos-image.png" />
-</div></blockquote>
+<img alt="../../_images/centos-image.png" src="../../_images/centos-image.png" />
 </div>
 <div class="section" id="cloud-elasticsearch">
 <h3>Cloud ElasticSearch<a class="headerlink" href="#cloud-elasticsearch" title="Permalink to this headline">¶</a></h3>
@@ -391,32 +400,33 @@ To <code class="docutils literal notranslate"><span class="pre">ssh</span></code
 <li>Create CentOS EC2 named “YourName-ZikaAdminMachine”</li>
 <li>Install Postgresql</li>
 <li>Copy over .csv files to the server</li>
+<li>Create the db tables<ul>
+<li>You can use Hibernate to do this, if you have a Web App connected to your RDS</li>
+<li>Or you can create the tables manually</li>
+<li>See <a class="reference external" href="https://education.launchcode.org/gis-devops/studios/AWS-auto-scaling/">Conifgure the Database in Week5 Day3 Studio</a></li>
+</ul>
+</li>
+<li>Run psql COPY commands to populate the tables (Example for locations below)</li>
 </ol>
-<p>4. Create the db tables
-* You can use Hibernate to do this, if you have a Web App connected to your RDS
-* Or you can create the tables manually
-* See <a class="reference external" href="https://education.launchcode.org/gis-devops/studios/AWS-auto-scaling/">Conifgure the Database in Week5 Day3 Studio</a>
-5. Run psql COPY commands to populate the tables (Example for locations below)
-<code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">gary-zika-db.1234.us-west-2.rds.amazonaws.com</span> <span class="pre">-d</span> <span class="pre">zika</span> <span class="pre">-U</span> <span class="pre">zika_app_user</span> <span class="pre">-c</span> <span class="pre">&quot;\copy</span> <span class="pre">location(ID_0,ISO,NAME_0,ID_1,NAME_1,HASC_1,CCN_1,CCA_1,TYPE_1,ENGTYPE_1,NL_NAME_1,VARNAME_1,geom)</span> <span class="pre">from</span> <span class="pre">STDIN</span> <span class="pre">WITH</span> <span class="pre">DELIMITER</span> <span class="pre">E'\t'</span> <span class="pre">CSV&quot;</span> <span class="pre">&lt;</span> <span class="pre">locations.csv</span>
-<span class="pre">`</span></code></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ psql -h gary-zika-db.1234.us-west-2.rds.amazonaws.com -d zika -U zika_app_user -c &quot;\copy location(ID_0,ISO,NAME_0,ID_1,NAME_1,HASC_1,CCN_1,CCA_1,TYPE_1,ENGTYPE_1,NL_NAME_1,VARNAME_1,geom) from STDIN WITH DELIMITER E&#39;\t&#39; CSV&quot; &lt; locations.csv
+</pre></div>
+</div>
 </div>
 <div class="section" id="seed-the-elasticsearch-data-store">
 <h3>Seed the ElasticSearch Data Store<a class="headerlink" href="#seed-the-elasticsearch-data-store" title="Permalink to this headline">¶</a></h3>
 <p>When you ElasticSearch instance starts it has not data. We need to insert all reports in Postgresl into ElasticSearch.</p>
 <ol class="arabic simple">
 <li>You need to make a <code class="docutils literal notranslate"><span class="pre">POST</span></code> reuqest to <code class="docutils literal notranslate"><span class="pre">/api/_cluster/reindex</span></code> to a WebApp that is connected to your <strong>cloud</strong> ElasticSearch</li>
-<li>That can be done with your “YourName-AdminMachine” EC2 or by connectioning your <strong>local</strong> WebApp to your <strong>cloud</strong> ElasticSearch</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
+<li>That can be done with your “YourName-AdminMachine” EC2 or by connectioning your <strong>local</strong> WebApp to your <strong>cloud</strong> ElasticSearch<ul>
 <li>If you choose to use your “YourName-AdminMachine” EC2, it will likely need to be a <code class="docutils literal notranslate"><span class="pre">t2.medium</span></code> to be able to handle the memory load of selecting all reports and then sending them to ES</li>
 </ul>
-</div></blockquote>
-<p>2. This instance can be spun down after your RDS and ElasticSearch is working
-&lt;aside class=”aside-note” markdown=”1”&gt;
-The “YourName-AdminMachine” instance may need to be a <code class="docutils literal notranslate"><span class="pre">t2.small</span></code> or <code class="docutils literal notranslate"><span class="pre">t2.medium</span></code> in order to handle the POST request that transfers all the reports to ElasticSearch. You will know this is the case if you see “out of memory” exceptions.
-&lt;/aside&gt;</p>
+</li>
+<li>This instance can be spun down after your RDS and ElasticSearch is working</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The “YourName-AdminMachine” instance may need to be a <code class="docutils literal notranslate"><span class="pre">t2.small</span></code> or <code class="docutils literal notranslate"><span class="pre">t2.medium</span></code> in order to handle the POST request that transfers all the reports to ElasticSearch. You will know this is the case if you see “out of memory” exceptions.</p>
+</div>
 </div>
 <div class="section" id="vpc-setup">
 <h3>VPC Setup<a class="headerlink" href="#vpc-setup" title="Permalink to this headline">¶</a></h3>
@@ -428,9 +438,10 @@ The “YourName-AdminMachine” instance may need to be a <code class="docutils 
 <li>One security group for databases (port 5432 open). <code class="docutils literal notranslate"><span class="pre">DatabaseSecurityGroup</span></code></li>
 <li>One security group for load balancers (port 80 open). <code class="docutils literal notranslate"><span class="pre">ELBSecurityGroup</span></code></li>
 </ol>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-This script does NOT create an RDS, you will have to do that yourself
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This script does NOT create an RDS, you will have to do that yourself</p>
+</div>
 <p>The setup CloudFormation script can be found at:</p>
 <p><a class="reference external" href="https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/zika_cloudformation.json">https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/zika_cloudformation.json</a></p>
 <p>Follow the instruction from the <a class="reference external" href="https://education.launchcode.org/gis-devops/studios/AWS-auto-scaling">Scaling AWS Studio</a> to setup your VPC from a CloudFormation script.</p>
