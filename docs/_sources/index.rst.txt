@@ -57,6 +57,10 @@ Week 6:
 
   week06/project/index
 
+Week 7:
+
+* Week 7 - Days 1 - 5: Boundless PostGIS, Geoserver, and OpenLayers training
+
 Week 8:
 
 .. toctree::
@@ -66,9 +70,16 @@ Week 8:
 
 Week 9:
 
+
+* Week 9 - Days 1-2: Pivotal Training
 .. toctree::
   :maxdepth: 1
-
+  
   week09/day3/index
   week09/day4/index
   week09/day5/index
+
+Week 10:
+
+* Week 10 - Days 1-4: Final work on Zika Projects
+* Week 10 - Day 5: Project Presentation
