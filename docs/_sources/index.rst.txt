@@ -1,8 +1,6 @@
 GIS DevOps
 ==========
 
-.. note:: This is the new home of the GIS DevOps curriculum, and is in-progress. The old curriculum site is still available, under the new URL `education.launchcode.org/gis-devops-OLD/ <https://education.launchcode.org/gis-devops-OLD/>`_.
-
 Week 1:
 
 .. toctree::
@@ -74,7 +72,7 @@ Week 9:
 * Week 9 - Days 1-2: Pivotal Training
 .. toctree::
   :maxdepth: 1
-  
+
   week09/day3/index
   week09/day4/index
   week09/day5/index
@@ -82,4 +80,4 @@ Week 9:
 Week 10:
 
 * Week 10 - Days 1-4: Final work on Zika Projects
-* Week 10 - Day 5: Project Presentation
+* Week 10 - Day 5: Project Presentation and Graduation
