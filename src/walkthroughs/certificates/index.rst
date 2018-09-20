@@ -27,69 +27,70 @@ After checking out the example project, you will neeed to generate the cryptogra
 
 A ``jks`` also known as a ``Java Key Store`` will need to be generated.  Since we will be using a self-signed certificate, this ``jks`` file will act as our local Certificate Authority.  Run the following command (be sure to use a secure password!):
 
-```
-$ make create-keystore PASSWORD=changeit
-$ # Generate a certificate authority (CA)
-keytool -genkey -alias ca -ext BC=ca:true \
-	    -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-	    -validity 3650 -dname 'CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
-	    -keystore keystore.jks -storepass changeit
-```
+::
+
+	$ make create-keystore PASSWORD=changeit
+	$ # Generate a certificate authority (CA)
+	keytool -genkey -alias ca -ext BC=ca:true \
+			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
+			-validity 3650 -dname 'CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
+			-keystore keystore.jks -storepass changeit
+
 
 By doing an ``ls``, you should now see that you ``keystore.jks`` file in your directory.
 
-Next you will create a certificate for you local development environment. Run the following command:
-```
-$ make add-host HOSTNAME=localhost
-```
+Next you will create a certificate for you local development environment. Run the following command:::
+
+	$ make add-host HOSTNAME=localhost
 
 Running ``ls`` will show that there are now two additional files in your director: ``localhost.csr`` and ``localhost.cst``.
 
 Next, you will need to create a ``truststore``.  The ``truststore`` is where all trusted certificates are located.  It is essentially the ``known_hosts`` for certificates.
 
-```
-$ make create-truststore PASSWORD=verysecurepassword
-# Export certificate authority
-keytool -export -alias ca -file ca.crt -rfc \
-	    -keystore keystore.jks -storepass verysecurepassword
-Certificate stored in file <ca.crt>
-# Import certificate authority into a new truststore
-keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
-	    -keystore truststore.jks -storepass verysecurepassword
-Certificate was added to keystore
-```
+::
+
+	$ make create-truststore PASSWORD=verysecurepassword
+	# Export certificate authority
+	keytool -export -alias ca -file ca.crt -rfc \
+			-keystore keystore.jks -storepass verysecurepassword
+	Certificate stored in file <ca.crt>
+	# Import certificate authority into a new truststore
+	keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
+			-keystore truststore.jks -storepass verysecurepassword
+	Certificate was added to keystore
+
 
 Running ``ls`` will show that two more files have been added to your directory: ``ca.crt`` and ``truststore.jks``.
 
 Next, you will add the certificate that you generated to the ``truststore.jks`` so that your user can access the site.
 
-```
-$ make add-client CLIENTNAME=cid
-keytool -genkey -alias cid \
-	    -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass verysecurepassword \
-	    -validity 3650 -dname 'CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
-	    -keystore truststore.jks -storepass verysecurepassword
-# Generate a host certificate signing request
-keytool -certreq -alias cid -ext BC=ca:true \
-	    -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
-	    -validity 3650 -file "cid.csr" \
-	    -keystore truststore.jks -storepass verysecurepassword
-# Generate signed certificate with the certificate authority
-keytool -gencert -alias ca \
-	    -validity 3650 -sigalg SHA512withRSA \
-	    -infile "cid.csr" -outfile "cid.crt" -rfc \
-	    -keystore keystore.jks -storepass verysecurepassword
-# Import signed certificate into the truststore
-keytool -import -trustcacerts -alias cid \
-	    -file "cid.crt" \
-	    -keystore truststore.jks -storepass verysecurepassword
-Certificate reply was installed in keystore
-# Export private certificate for importing into a browser
-keytool -importkeystore -srcalias cid \
-	    -srckeystore truststore.jks -srcstorepass verysecurepassword \
-	    -destkeystore "cid.p12" -deststorepass verysecurepassword \
-	    -deststoretype PKCS12
-```
+::
+
+	$ make add-client CLIENTNAME=cid
+	keytool -genkey -alias cid \
+			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass verysecurepassword \
+			-validity 3650 -dname 'CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
+			-keystore truststore.jks -storepass verysecurepassword
+	# Generate a host certificate signing request
+	keytool -certreq -alias cid -ext BC=ca:true \
+			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
+			-validity 3650 -file "cid.csr" \
+			-keystore truststore.jks -storepass verysecurepassword
+	# Generate signed certificate with the certificate authority
+	keytool -gencert -alias ca \
+			-validity 3650 -sigalg SHA512withRSA \
+			-infile "cid.csr" -outfile "cid.crt" -rfc \
+			-keystore keystore.jks -storepass verysecurepassword
+	# Import signed certificate into the truststore
+	keytool -import -trustcacerts -alias cid \
+			-file "cid.crt" \
+			-keystore truststore.jks -storepass verysecurepassword
+	Certificate reply was installed in keystore
+	# Export private certificate for importing into a browser
+	keytool -importkeystore -srcalias cid \
+			-srckeystore truststore.jks -srcstorepass verysecurepassword \
+			-destkeystore "cid.p12" -deststorepass verysecurepassword \
+			-deststoretype PKCS12
 
 A lot just happened, let's review.
 

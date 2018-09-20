@@ -289,58 +289,61 @@
 <h3>Certificate Setup<a class="headerlink" href="#certificate-setup" title="Permalink to this headline">¶</a></h3>
 <p>After checking out the example project, you will neeed to generate the cryptographic components required for Spring Boot to host a certificate.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">jks</span></code> also known as a <code class="docutils literal notranslate"><span class="pre">Java</span> <span class="pre">Key</span> <span class="pre">Store</span></code> will need to be generated.  Since we will be using a self-signed certificate, this <code class="docutils literal notranslate"><span class="pre">jks</span></code> file will act as our local Certificate Authority.  Run the following command (be sure to use a secure password!):</p>
-<p><a href="#id2"><span class="problematic" id="id3">``</span></a>`
-$ make create-keystore PASSWORD=changeit
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make create-keystore PASSWORD=changeit
 $ # Generate a certificate authority (CA)
-keytool -genkey -alias ca -ext BC=ca:true </p>
-<blockquote>
-<div>-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit -validity 3650 -dname ‘CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC’ -keystore keystore.jks -storepass changeit</div></blockquote>
-<p><a href="#id4"><span class="problematic" id="id5">``</span></a><a href="#id6"><span class="problematic" id="id7">`</span></a></p>
+keytool -genkey -alias ca -ext BC=ca:true \
+                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
+                -validity 3650 -dname &#39;CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
+                -keystore keystore.jks -storepass changeit
+</pre></div>
+</div>
 <p>By doing an <code class="docutils literal notranslate"><span class="pre">ls</span></code>, you should now see that you <code class="docutils literal notranslate"><span class="pre">keystore.jks</span></code> file in your directory.</p>
-<p>Next you will create a certificate for you local development environment. Run the following command:
-<code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">$</span> <span class="pre">make</span> <span class="pre">add-host</span> <span class="pre">HOSTNAME=localhost</span>
-<span class="pre">`</span></code></p>
+<p>Next you will create a certificate for you local development environment. Run the following command::</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make add-host HOSTNAME=localhost
+</pre></div>
+</div>
 <p>Running <code class="docutils literal notranslate"><span class="pre">ls</span></code> will show that there are now two additional files in your director: <code class="docutils literal notranslate"><span class="pre">localhost.csr</span></code> and <code class="docutils literal notranslate"><span class="pre">localhost.cst</span></code>.</p>
 <p>Next, you will need to create a <code class="docutils literal notranslate"><span class="pre">truststore</span></code>.  The <code class="docutils literal notranslate"><span class="pre">truststore</span></code> is where all trusted certificates are located.  It is essentially the <code class="docutils literal notranslate"><span class="pre">known_hosts</span></code> for certificates.</p>
-<p><a href="#id8"><span class="problematic" id="id9">``</span></a>`
-$ make create-truststore PASSWORD=verysecurepassword
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make create-truststore PASSWORD=verysecurepassword
 # Export certificate authority
-keytool -export -alias ca -file ca.crt -rfc </p>
-<blockquote>
-<div>-keystore keystore.jks -storepass verysecurepassword</div></blockquote>
-<p>Certificate stored in file &lt;ca.crt&gt;
+keytool -export -alias ca -file ca.crt -rfc \
+                -keystore keystore.jks -storepass verysecurepassword
+Certificate stored in file &lt;ca.crt&gt;
 # Import certificate authority into a new truststore
-keytool -import -trustcacerts -noprompt -alias ca -file ca.crt </p>
-<blockquote>
-<div>-keystore truststore.jks -storepass verysecurepassword</div></blockquote>
-<p>Certificate was added to keystore
-<a href="#id10"><span class="problematic" id="id11">``</span></a><a href="#id12"><span class="problematic" id="id13">`</span></a></p>
+keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
+                -keystore truststore.jks -storepass verysecurepassword
+Certificate was added to keystore
+</pre></div>
+</div>
 <p>Running <code class="docutils literal notranslate"><span class="pre">ls</span></code> will show that two more files have been added to your directory: <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> and <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code>.</p>
 <p>Next, you will add the certificate that you generated to the <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code> so that your user can access the site.</p>
-<p><a href="#id14"><span class="problematic" id="id15">``</span></a>`
-$ make add-client CLIENTNAME=cid
-keytool -genkey -alias cid </p>
-<blockquote>
-<div>-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass verysecurepassword -validity 3650 -dname ‘CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC’ -keystore truststore.jks -storepass verysecurepassword</div></blockquote>
-<p># Generate a host certificate signing request
-keytool -certreq -alias cid -ext BC=ca:true </p>
-<blockquote>
-<div>-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -validity 3650 -file “cid.csr” -keystore truststore.jks -storepass verysecurepassword</div></blockquote>
-<p># Generate signed certificate with the certificate authority
-keytool -gencert -alias ca </p>
-<blockquote>
-<div>-validity 3650 -sigalg SHA512withRSA -infile “cid.csr” -outfile “cid.crt” -rfc -keystore keystore.jks -storepass verysecurepassword</div></blockquote>
-<p># Import signed certificate into the truststore
-keytool -import -trustcacerts -alias cid </p>
-<blockquote>
-<div>-file “cid.crt” -keystore truststore.jks -storepass verysecurepassword</div></blockquote>
-<p>Certificate reply was installed in keystore
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make add-client CLIENTNAME=cid
+keytool -genkey -alias cid \
+                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass verysecurepassword \
+                -validity 3650 -dname &#39;CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
+                -keystore truststore.jks -storepass verysecurepassword
+# Generate a host certificate signing request
+keytool -certreq -alias cid -ext BC=ca:true \
+                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
+                -validity 3650 -file &quot;cid.csr&quot; \
+                -keystore truststore.jks -storepass verysecurepassword
+# Generate signed certificate with the certificate authority
+keytool -gencert -alias ca \
+                -validity 3650 -sigalg SHA512withRSA \
+                -infile &quot;cid.csr&quot; -outfile &quot;cid.crt&quot; -rfc \
+                -keystore keystore.jks -storepass verysecurepassword
+# Import signed certificate into the truststore
+keytool -import -trustcacerts -alias cid \
+                -file &quot;cid.crt&quot; \
+                -keystore truststore.jks -storepass verysecurepassword
+Certificate reply was installed in keystore
 # Export private certificate for importing into a browser
-keytool -importkeystore -srcalias cid </p>
-<blockquote>
-<div>-srckeystore truststore.jks -srcstorepass verysecurepassword -destkeystore “cid.p12” -deststorepass verysecurepassword -deststoretype PKCS12</div></blockquote>
-<p><a href="#id16"><span class="problematic" id="id17">``</span></a><a href="#id18"><span class="problematic" id="id19">`</span></a></p>
+keytool -importkeystore -srcalias cid \
+                -srckeystore truststore.jks -srcstorepass verysecurepassword \
+                -destkeystore &quot;cid.p12&quot; -deststorepass verysecurepassword \
+                -deststoretype PKCS12
+</pre></div>
+</div>
 <p>A lot just happened, let’s review.</p>
 <ul class="simple">
 <li>First, it needs to create a key for your user. A key is created and placed in the <code class="docutils literal notranslate"><span class="pre">keystore.jks</span></code>.</li>
