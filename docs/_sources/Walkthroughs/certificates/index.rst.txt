@@ -7,21 +7,49 @@ Certificates
 
 In this walkthrough, we will be looking at how a servers use certificates to validate their identity.
 
-Setup
-=====
-
-For this walkthrough, we will be using the Spring Security to attach a certificate to a server.
-
+Starter Repo
+============
 Check out the `Server Certificate Repo <https://gitlab.com/LaunchCodeTraining/x509-certificate-starter>`_ from Gitlab.  The project in the `Server Certificate Repo <https://gitlab.com/LaunchCodeTraining/x509-certificate-starter>`_ contains a simple project that contains the following:
 
 1. ``UserController`` that checks the certificate of the user
-
 2.  A properties file that defines the ``jks``, the ``truststore``, and other configuration for SSL.
-
 3.  A Makefile that simplifies the process of creating certificates.
 
+Spring Security
+===============
+
+For this walkthrough, we will be using `Spring Security <https://docs.spring.io/spring-security/site/docs/4.2.8.RELEASE/reference/htmlsingle/>`_ to secure our application.  Spring Security will enable us to use username/password, client certificates, and attach a certificate to our server.
+
+Spring Security Configuration
+-------------------------------
+There are specific properties in ``application.properties`` that configure Spring Security and Tomcat server settings. `More information on Spring Security Users <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-security.html>`_
+
+* ``server.ssl.key-store`` = where the keystore is located
+* ``server.ssl.key-store-password`` = password for the keystore
+* ``server.ssl.key-alias`` = alias listed on certificate
+* ``server.ssl.key-password`` = password used to create certificate
+* ``server.ssl.enabled`` = enable SSL in Tomcat
+* ``security.user.name`` = set a default username for spring security, these can be dynamically loaded
+* ``security.user.password`` = set a default username for spring security, these can be dynamically loaded
+* ``server.port`` = not security specific, but the port that Tomcat will be listning for requests on
+
+.. note::
+
+	Port 8443 is the alternate SSL port. The default SSL port is 443
+
+Run Configurations Setup
+------------------------
+
+1. Create a **Run Configuration** that will run the ``bootRun`` task
+2. Add three **Environment Variables** that match the tokens in ``application.properties``
+
+   * ``CERT-PASSWORD`` = A secure password you will use when creating certificates
+   * ``APP-USERNAME`` = adminUser
+   * ``APP-PASSWORD`` = changeit
+
+
 Certificate Setup
------------------
+=================
 
 After checking out the example project, you will neeed to generate the cryptographic components required for Spring Boot to host a certificate.
 
@@ -67,6 +95,7 @@ Next, you will add the certificate that you generated to the ``truststore.jks`` 
 ::
 
 	$ make add-client CLIENTNAME=cid
+	//output
 	keytool -genkey -alias cid \
 			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass verysecurepassword \
 			-validity 3650 -dname 'CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
@@ -139,4 +168,14 @@ Open the Keychain Access program again and click on ``MyCertificates``.  These a
 
   .. image:: /_static/images/import-clientside-cert.png
 
-After adding the client-side cert your browser will ask you to select a certificate and it works!
+After adding the client-side cert your browser will ask you to select a certificate
+
+Run the Application
+-------------------
+
+* In Intellij run the ``bootRun`` task via **Run Configurations** menu
+* Make sure you application starts without errors
+* Then visit ``https://localhost:8443/user`` in your browser (the one configured to use the Certificate Authority)
+  
+  * If the app asks for username and password, check application properties for the values
+  * Remember those values are set in **Run Configurations**

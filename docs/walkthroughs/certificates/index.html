@@ -260,9 +260,15 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Certificates</a><ul>
-<li><a class="reference internal" href="#setup">Setup</a><ul>
-<li><a class="reference internal" href="#certificate-setup">Certificate Setup</a></li>
+<li><a class="reference internal" href="#starter-repo">Starter Repo</a></li>
+<li><a class="reference internal" href="#spring-security">Spring Security</a><ul>
+<li><a class="reference internal" href="#spring-security-configuration">Spring Security Configuration</a></li>
+<li><a class="reference internal" href="#run-configurations-setup">Run Configurations Setup</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#certificate-setup">Certificate Setup</a><ul>
 <li><a class="reference internal" href="#authorization">Authorization</a></li>
+<li><a class="reference internal" href="#run-the-application">Run the Application</a></li>
 </ul>
 </li>
 </ul>
@@ -276,17 +282,51 @@
   <div class="section" id="certificates">
 <span id="walkthrough-certificates"></span><h1>Certificates<a class="headerlink" href="#certificates" title="Permalink to this headline">¶</a></h1>
 <p>In this walkthrough, we will be looking at how a servers use certificates to validate their identity.</p>
-<div class="section" id="setup">
-<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>For this walkthrough, we will be using the Spring Security to attach a certificate to a server.</p>
+<div class="section" id="starter-repo">
+<h2>Starter Repo<a class="headerlink" href="#starter-repo" title="Permalink to this headline">¶</a></h2>
 <p>Check out the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/x509-certificate-starter">Server Certificate Repo</a> from Gitlab.  The project in the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/x509-certificate-starter">Server Certificate Repo</a> contains a simple project that contains the following:</p>
 <ol class="arabic simple">
 <li><code class="docutils literal notranslate"><span class="pre">UserController</span></code> that checks the certificate of the user</li>
 <li>A properties file that defines the <code class="docutils literal notranslate"><span class="pre">jks</span></code>, the <code class="docutils literal notranslate"><span class="pre">truststore</span></code>, and other configuration for SSL.</li>
 <li>A Makefile that simplifies the process of creating certificates.</li>
 </ol>
+</div>
+<div class="section" id="spring-security">
+<h2>Spring Security<a class="headerlink" href="#spring-security" title="Permalink to this headline">¶</a></h2>
+<p>For this walkthrough, we will be using <a class="reference external" href="https://docs.spring.io/spring-security/site/docs/4.2.8.RELEASE/reference/htmlsingle/">Spring Security</a> to secure our application.  Spring Security will enable us to use username/password, client certificates, and attach a certificate to our server.</p>
+<div class="section" id="spring-security-configuration">
+<h3>Spring Security Configuration<a class="headerlink" href="#spring-security-configuration" title="Permalink to this headline">¶</a></h3>
+<p>There are specific properties in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> that configure Spring Security and Tomcat server settings. <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-security.html">More information on Spring Security Users</a></p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-store</span></code> = where the keystore is located</li>
+<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-store-password</span></code> = password for the keystore</li>
+<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-alias</span></code> = alias listed on certificate</li>
+<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-password</span></code> = password used to create certificate</li>
+<li><code class="docutils literal notranslate"><span class="pre">server.ssl.enabled</span></code> = enable SSL in Tomcat</li>
+<li><code class="docutils literal notranslate"><span class="pre">security.user.name</span></code> = set a default username for spring security, these can be dynamically loaded</li>
+<li><code class="docutils literal notranslate"><span class="pre">security.user.password</span></code> = set a default username for spring security, these can be dynamically loaded</li>
+<li><code class="docutils literal notranslate"><span class="pre">server.port</span></code> = not security specific, but the port that Tomcat will be listning for requests on</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Port 8443 is the alternate SSL port. The default SSL port is 443</p>
+</div>
+</div>
+<div class="section" id="run-configurations-setup">
+<h3>Run Configurations Setup<a class="headerlink" href="#run-configurations-setup" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Create a <strong>Run Configuration</strong> that will run the <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> task</li>
+<li>Add three <strong>Environment Variables</strong> that match the tokens in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">CERT-PASSWORD</span></code> = A secure password you will use when creating certificates</li>
+<li><code class="docutils literal notranslate"><span class="pre">APP-USERNAME</span></code> = adminUser</li>
+<li><code class="docutils literal notranslate"><span class="pre">APP-PASSWORD</span></code> = changeit</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
 <div class="section" id="certificate-setup">
-<h3>Certificate Setup<a class="headerlink" href="#certificate-setup" title="Permalink to this headline">¶</a></h3>
+<h2>Certificate Setup<a class="headerlink" href="#certificate-setup" title="Permalink to this headline">¶</a></h2>
 <p>After checking out the example project, you will neeed to generate the cryptographic components required for Spring Boot to host a certificate.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">jks</span></code> also known as a <code class="docutils literal notranslate"><span class="pre">Java</span> <span class="pre">Key</span> <span class="pre">Store</span></code> will need to be generated.  Since we will be using a self-signed certificate, this <code class="docutils literal notranslate"><span class="pre">jks</span></code> file will act as our local Certificate Authority.  Run the following command (be sure to use a secure password!):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make create-keystore PASSWORD=changeit
@@ -318,6 +358,7 @@ Certificate was added to keystore
 <p>Running <code class="docutils literal notranslate"><span class="pre">ls</span></code> will show that two more files have been added to your directory: <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> and <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code>.</p>
 <p>Next, you will add the certificate that you generated to the <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code> so that your user can access the site.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make add-client CLIENTNAME=cid
+//output
 keytool -genkey -alias cid \
                 -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass verysecurepassword \
                 -validity 3650 -dname &#39;CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
@@ -352,7 +393,6 @@ keytool -importkeystore -srcalias cid \
 <li>Fourth, the <code class="docutils literal notranslate"><span class="pre">cid.crt</span></code> file is stored in the <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code>.</li>
 <li>Fifth and finally, the <code class="docutils literal notranslate"><span class="pre">cid.crt</span></code> file needs to be exported so that it can be included in the browser.  The result is a <code class="docutils literal notranslate"><span class="pre">cid.p12</span></code> file that can be given to the user and used to authenticate against an X509 server.</li>
 </ul>
-</div>
 <div class="section" id="authorization">
 <h3>Authorization<a class="headerlink" href="#authorization" title="Permalink to this headline">¶</a></h3>
 <p>Now that everything has been setup in on the server side, let’s run the app and try to get access.</p>
@@ -381,7 +421,19 @@ keytool -importkeystore -srcalias cid \
 <blockquote>
 <div><img alt="../../_images/import-clientside-cert.png" src="../../_images/import-clientside-cert.png" />
 </div></blockquote>
-<p>After adding the client-side cert your browser will ask you to select a certificate and it works!</p>
+<p>After adding the client-side cert your browser will ask you to select a certificate</p>
+</div>
+<div class="section" id="run-the-application">
+<h3>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>In Intellij run the <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> task via <strong>Run Configurations</strong> menu</li>
+<li>Make sure you application starts without errors</li>
+<li>Then visit <code class="docutils literal notranslate"><span class="pre">https://localhost:8443/user</span></code> in your browser (the one configured to use the Certificate Authority)<ul>
+<li>If the app asks for username and password, check application properties for the values</li>
+<li>Remember those values are set in <strong>Run Configurations</strong></li>
+</ul>
+</li>
+</ul>
 </div>
 </div>
 </div>
