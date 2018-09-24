@@ -7,46 +7,48 @@ Certificates
 
 In this walkthrough, we will be looking at how a servers use certificates to validate their identity.
 
-Starter Repo
-============
-Check out the `Server Certificate Repo <https://gitlab.com/LaunchCodeTraining/x509-certificate-starter>`_ from Gitlab.  The project in the `Server Certificate Repo <https://gitlab.com/LaunchCodeTraining/x509-certificate-starter>`_ contains a simple project that contains the following:
-
-1. ``UserController`` that checks the certificate of the user
-2.  A properties file that defines the ``jks``, the ``truststore``, and other configuration for SSL.
-3.  A Makefile that simplifies the process of creating certificates.
-
 Spring Security
 ===============
 
 For this walkthrough, we will be using `Spring Security <https://docs.spring.io/spring-security/site/docs/4.2.8.RELEASE/reference/htmlsingle/>`_ to secure our application.  Spring Security will enable us to use username/password, client certificates, and attach a certificate to our server.
 
-Spring Security Configuration
--------------------------------
-There are specific properties in ``application.properties`` that configure Spring Security and Tomcat server settings. `More information on Spring Security Users <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-security.html>`_
+Setup
+=====
 
-* ``server.ssl.key-store`` = where the keystore is located
-* ``server.ssl.key-store-password`` = password for the keystore
-* ``server.ssl.key-alias`` = alias listed on certificate
-* ``server.ssl.key-password`` = password used to create certificate
-* ``server.ssl.enabled`` = enable SSL in Tomcat
-* ``security.user.name`` = set a default username for spring security, these can be dynamically loaded
-* ``security.user.password`` = set a default username for spring security, these can be dynamically loaded
-* ``server.port`` = not security specific, but the port that Tomcat will be listning for requests on
+1. Check out the `Server Certificate Repo <https://gitlab.com/LaunchCodeTraining/x509-certificate-starter>`_ from Gitlab
+2. Review the starter code
 
-.. note::
+   1. ``UserController`` that checks the certificate of the user
+   2.  A properties file that defines the ``jks``, the ``truststore``, and other configuration for SSL.
+   3.  A Makefile in ``src/main/resources/certs`` that contains commands to simplify the process of creating certificates.
 
-	Port 8443 is the alternate SSL port. The default SSL port is 443
+Simple Security With Spring
+===========================
 
-Run Configurations Setup
-------------------------
+1. In your browser go to http://localhost:8080/user
+2. You should see a login prompt
 
+   * This prompt is created by the browser as part of `Basic Access Authentication <https://en.wikipedia.org/wiki/Basic_access_authentication>`_
+   * NOTE: `Basic Access Authentication <https://en.wikipedia.org/wiki/Basic_access_authentication>`_ is not secure by itself, it should be used with ``HTTPS``
+
+3. `Basic Access Authentication <https://en.wikipedia.org/wiki/Basic_access_authentication>`_ is enabled because Spring Security is included in the ``gradle`` file
+
+Set and Use Username/Password
+-----------------------------
 1. Create a **Run Configuration** that will run the ``bootRun`` task
-2. Add three **Environment Variables** that match the tokens in ``application.properties``
+2. In **Run Configuration**, add the below **Environment Variables** and values
 
-   * ``CERT-PASSWORD`` = A secure password you will use when creating certificates
    * ``APP-USERNAME`` = adminUser
    * ``APP-PASSWORD`` = changeit
+   * For now ignore the other commented out values in ``application.properties``
 
+3. Run ``bootRun`` task via **Run Configuration** menu
+4. Go to http://localhost:8080/user
+5. Enter the username/password you have stored in **Run Configuration** 
+
+Certificates with Spring Security
+=================================
+We want to add HTTPS to our web application using Spring Security.
 
 Certificate Setup
 =================
@@ -55,6 +57,8 @@ After checking out the example project, you will neeed to generate the cryptogra
 
 A ``jks`` also known as a ``Java Key Store`` will need to be generated.  Since we will be using a self-signed certificate, this ``jks`` file will act as our local Certificate Authority.  Run the following command (be sure to use a secure password!):
 
+Create Keystore
+---------------
 ::
 
 	$ make create-keystore PASSWORD=changeit
@@ -67,29 +71,35 @@ A ``jks`` also known as a ``Java Key Store`` will need to be generated.  Since w
 
 By doing an ``ls``, you should now see that you ``keystore.jks`` file in your directory.
 
+Create Certificate
+------------------
 Next you will create a certificate for you local development environment. Run the following command:::
 
-	$ make add-host HOSTNAME=localhost
+	$ make add-host HOSTNAME=localhost PASSWORD=changeit
 
 Running ``ls`` will show that there are now two additional files in your director: ``localhost.csr`` and ``localhost.cst``.
 
+Create Truststore
+-----------------
 Next, you will need to create a ``truststore``.  The ``truststore`` is where all trusted certificates are located.  It is essentially the ``known_hosts`` for certificates.
 
 ::
 
-	$ make create-truststore PASSWORD=verysecurepassword
+	$ make create-truststore PASSWORD=changeit
 	# Export certificate authority
 	keytool -export -alias ca -file ca.crt -rfc \
-			-keystore keystore.jks -storepass verysecurepassword
+			-keystore keystore.jks -storepass changeit
 	Certificate stored in file <ca.crt>
 	# Import certificate authority into a new truststore
 	keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
-			-keystore truststore.jks -storepass verysecurepassword
+			-keystore truststore.jks -storepass changeit
 	Certificate was added to keystore
 
 
 Running ``ls`` will show that two more files have been added to your directory: ``ca.crt`` and ``truststore.jks``.
 
+Add Certificate to Keystore
+---------------------------
 Next, you will add the certificate that you generated to the ``truststore.jks`` so that your user can access the site.
 
 ::
@@ -97,30 +107,32 @@ Next, you will add the certificate that you generated to the ``truststore.jks`` 
 	$ make add-client CLIENTNAME=cid
 	//output
 	keytool -genkey -alias cid \
-			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass verysecurepassword \
+			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
 			-validity 3650 -dname 'CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
-			-keystore truststore.jks -storepass verysecurepassword
+			-keystore truststore.jks -storepass changeit
 	# Generate a host certificate signing request
 	keytool -certreq -alias cid -ext BC=ca:true \
 			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
 			-validity 3650 -file "cid.csr" \
-			-keystore truststore.jks -storepass verysecurepassword
+			-keystore truststore.jks -storepass changeit
 	# Generate signed certificate with the certificate authority
 	keytool -gencert -alias ca \
 			-validity 3650 -sigalg SHA512withRSA \
 			-infile "cid.csr" -outfile "cid.crt" -rfc \
-			-keystore keystore.jks -storepass verysecurepassword
+			-keystore keystore.jks -storepass changeit
 	# Import signed certificate into the truststore
 	keytool -import -trustcacerts -alias cid \
 			-file "cid.crt" \
-			-keystore truststore.jks -storepass verysecurepassword
+			-keystore truststore.jks -storepass changeit
 	Certificate reply was installed in keystore
 	# Export private certificate for importing into a browser
 	keytool -importkeystore -srcalias cid \
-			-srckeystore truststore.jks -srcstorepass verysecurepassword \
-			-destkeystore "cid.p12" -deststorepass verysecurepassword \
+			-srckeystore truststore.jks -srcstorepass changeit \
+			-destkeystore "cid.p12" -deststorepass changeit \
 			-deststoretype PKCS12
 
+What Just Happened?
+-------------------
 A lot just happened, let's review.
 
 * First, it needs to create a key for your user. A key is created and placed in the ``keystore.jks``.
@@ -133,12 +145,46 @@ A lot just happened, let's review.
 
 * Fifth and finally, the ``cid.crt`` file needs to be exported so that it can be included in the browser.  The result is a ``cid.p12`` file that can be given to the user and used to authenticate against an X509 server.
 
-Authorization
--------------
 
-Now that everything has been setup in on the server side, let's run the app and try to get access.
+Connect Spring Security to your Keystore and Certificate
+--------------------------------------------------------
+There are specific properties in ``application.properties`` that configure Spring Security and Tomcat server settings. `More information on Spring Security Users <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-security.html>`_
 
-Before you click run on your application, make sure that the ``application.properties`` is configured to point to the ``keystore.jks`` and the ``truststore.jks``.  You will need to add the password for both the ``keystore.jks`` and the ``truststore.jks`` in order for the Java app to access those files.
+* ``security.user.name`` = set a default username for spring security, these can be dynamically loaded
+* ``security.user.password`` = set a default username for spring security, these can be dynamically loaded
+
+* ``server.ssl.key-store`` = where the keystore is located
+* ``server.ssl.key-store-password`` = password for the keystore
+* ``server.ssl.key-alias`` = alias listed on certificate
+* ``server.ssl.key-password`` = password used to create certificate
+* ``server.ssl.enabled`` = enable SSL in Tomcat
+
+* ``server.port`` = not security specific, but the port that Tomcat will be listning for requests on
+
+.. note::
+
+	Port 8443 is the alternate SSL port. The default SSL port is 443
+
+Configure Intellij Run Configurations
+-----------------------------------------
+1. Add ``CERT-PASSWORD`` and it's value to **Environment Variables** in **Run Configurations**
+
+   * ``CERT-PASSWORD`` = The password you used to create keystore and certificate in previous section
+
+Connection is Not Secure
+------------------------
+Let's try out our app and see what happens.
+
+1. Uncomment all properties in ``application.properties``
+2. Set all values in **Run Configurations**
+3. Run or ReRun ``bootRun`` task
+4. Go to ``https://localhost:8443/`` in your browser
+5. You should see this
+
+.. image:: /_static/image/insecure-connection.png
+
+Add Certificate to the Browser
+------------------------------
 
 Upon running the app, navigate to https://localhost:8443.  Notice that the app is now running on ``https``.  This says that all traffic going over the write is encrypted.  The only question is "Do you trust the person that you are talking to?".
 
@@ -162,6 +208,9 @@ By clicking on ``Certificates`` in the bottom left hand corner of the screen, yo
 
 Click the "+" button and add the `localhost.crt` certificate that you had generated earlier in the walkthrough.
 
+Client Certificates
+===================
+
 Adding client-side certificates for Authorization
 
 Open the Keychain Access program again and click on ``MyCertificates``.  These are the client-side certificates that are currently installed on your compuster and that can be used to access a remote server.  Let's add a new certificate by clicking ``File > Import Items...``.  Import the ``cid.p12`` file that you created earlier in the studio. 
@@ -171,11 +220,8 @@ Open the Keychain Access program again and click on ``MyCertificates``.  These a
 After adding the client-side cert your browser will ask you to select a certificate
 
 Run the Application
--------------------
+===================
 
 * In Intellij run the ``bootRun`` task via **Run Configurations** menu
 * Make sure you application starts without errors
 * Then visit ``https://localhost:8443/user`` in your browser (the one configured to use the Certificate Authority)
-  
-  * If the app asks for username and password, check application properties for the values
-  * Remember those values are set in **Run Configurations**
