@@ -181,7 +181,7 @@ Let's try out our app and see what happens.
 4. Go to ``https://localhost:8443/`` in your browser
 5. You should see this or something like it depending on your browser
 
-.. image:: /_static/image/insecure-connection.png
+.. image:: /_static/images/insecure-connection.png
 
 Add Certificate to the Browser
 ------------------------------
@@ -190,28 +190,12 @@ Upon running the app, navigate to https://localhost:8443.  Notice that the app i
 
 The first thing you will notice is that your browser doesn't recognize the certificate from the server. Anytime there is a bad certificate on a server, your browser will freak out.  Let's fix that.
 
-Open the Settings tab on Chrome (or the browser of your choie).
-
-  .. image:: /_static/images/settings-bar.png
-
-Under Advanced Settings, you will find the link to the ``Privacy and security`` page.
-
-  .. image:: /_static/images/advanced-settings.png
-
-Finally, you should find the ``Manage certificates`` link on the page to be able to configure the certificates your browser trusts.
-
-  .. image:: /_static/image/manage-certificates.png
-
-By clicking on ``Certificates`` in the bottom left hand corner of the screen, you should be able to see all of the certificates your browser supports.  They may be spread across several keychains. Be sure that you do not have any certificates selected otherwise the "+" button will not be enabled.
-
-  .. image:: /_static/images/adding-certificate.png
-
-Click the "+" button and add the `localhost.crt` certificate that you had generated earlier in the walkthrough.
+Add ``ca.crt`` as a CA to your browser
 
 Client Certificates
 ===================
 
-Adding client-side certificates for Authorization
+Nex we can identify a user by giving each user a certificate. This is called client-side certificates for Authorization.
 
 Open the Keychain Access program again and click on ``MyCertificates``.  These are the client-side certificates that are currently installed on your compuster and that can be used to access a remote server.  Let's add a new certificate by clicking ``File > Import Items...``.  Import the ``cid.p12`` file that you created earlier in the studio. 
 

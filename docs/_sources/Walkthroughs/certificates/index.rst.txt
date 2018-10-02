@@ -179,9 +179,9 @@ Let's try out our app and see what happens.
 2. Set all values in **Run Configurations**
 3. Run or ReRun ``bootRun`` task
 4. Go to ``https://localhost:8443/`` in your browser
-5. You should see this
+5. You should see this or something like it depending on your browser
 
-.. image:: /_static/image/insecure-connection.png
+.. image:: /_static/images/insecure-connection.png
 
 Add Certificate to the Browser
 ------------------------------
@@ -200,7 +200,7 @@ Under Advanced Settings, you will find the link to the ``Privacy and security`` 
 
 Finally, you should find the ``Manage certificates`` link on the page to be able to configure the certificates your browser trusts.
 
-  .. image:: /_static/image/manage-certificates.png
+  .. image:: /_static/images/manage-certificates.png
 
 By clicking on ``Certificates`` in the bottom left hand corner of the screen, you should be able to see all of the certificates your browser supports.  They may be spread across several keychains. Be sure that you do not have any certificates selected otherwise the "+" button will not be enabled.
 
