@@ -264,23 +264,32 @@
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#simple-security-with-spring">Simple Security With Spring</a><ul>
 <li><a class="reference internal" href="#set-and-use-username-password">Set and Use Username/Password</a></li>
+<li><a class="reference internal" href="#basic-access-auth-login-form">Basic Access Auth Login Form</a></li>
+<li><a class="reference internal" href="#login-success">Login Success</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#certificates-with-spring-security">Certificates with Spring Security</a></li>
-<li><a class="reference internal" href="#certificate-setup">Certificate Setup</a><ul>
-<li><a class="reference internal" href="#create-keystore">Create Keystore</a></li>
-<li><a class="reference internal" href="#create-certificate">Create Certificate</a></li>
-<li><a class="reference internal" href="#create-truststore">Create Truststore</a></li>
-<li><a class="reference internal" href="#add-certificate-to-keystore">Add Certificate to Keystore</a></li>
-<li><a class="reference internal" href="#what-just-happened">What Just Happened?</a></li>
-<li><a class="reference internal" href="#connect-spring-security-to-your-keystore-and-certificate">Connect Spring Security to your Keystore and Certificate</a></li>
+<li><a class="reference internal" href="#https-certificates-with-spring-security">HTTPS Certificates with Spring Security</a><ul>
+<li><a class="reference internal" href="#enable-https-in-applicaiton-properties">Enable HTTPS in Applicaiton Properties</a></li>
 <li><a class="reference internal" href="#configure-intellij-run-configurations">Configure Intellij Run Configurations</a></li>
+<li><a class="reference internal" href="#create-https-certificate">Create HTTPS Certificate</a></li>
+<li><a class="reference internal" href="#create-keystore-keystork-jks">Create Keystore (keystork.jks)</a></li>
+<li><a class="reference internal" href="#create-certificate-localhost-crt">Create Certificate (localhost.crt)</a></li>
+<li><a class="reference internal" href="#create-truststore-ca-crt">Create Truststore (ca.crt)</a></li>
 <li><a class="reference internal" href="#connection-is-not-secure">Connection is Not Secure</a></li>
-<li><a class="reference internal" href="#add-certificate-to-the-browser">Add Certificate to the Browser</a></li>
+<li><a class="reference internal" href="#add-certificate-authority-to-the-browser-ca-crt">Add Certificate Authority to the Browser (ca.crt)</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#client-certificates">Client Certificates</a></li>
-<li><a class="reference internal" href="#run-the-application">Run the Application</a></li>
+<li><a class="reference internal" href="#client-certificates">Client Certificates</a><ul>
+<li><a class="reference internal" href="#enable-certificate-authentication-in-spring-security">Enable Certificate Authentication in Spring Security</a></li>
+<li><a class="reference internal" href="#update-usercontroller-class">Update UserController Class</a></li>
+<li><a class="reference internal" href="#update-certsapplication-class">Update CertsApplication Class</a></li>
+<li><a class="reference internal" href="#add-cnuserdetailservice-class">Add CNUserDetailService Class</a></li>
+<li><a class="reference internal" href="#try-it-out-before-creating-client-certificate">Try it Out Before Creating Client Certificate</a></li>
+<li><a class="reference internal" href="#create-and-add-client-certificate-to-keystore-janet-crt">Create and Add Client Certificate to Keystore (janet.crt)</a></li>
+<li><a class="reference internal" href="#add-client-certificate-to-the-browser">Add Client Certificate to the Browser</a></li>
+<li><a class="reference internal" href="#summary-of-client-authentication">Summary of Client Authentication</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -314,7 +323,6 @@
 <li>In your browser go to <a class="reference external" href="http://localhost:8080/user">http://localhost:8080/user</a></li>
 <li>You should see a login prompt<ul>
 <li>This prompt is created by the browser as part of <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic Access Authentication</a></li>
-<li>NOTE: <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic Access Authentication</a> is not secure by itself, it should be used with <code class="docutils literal notranslate"><span class="pre">HTTPS</span></code></li>
 </ul>
 </li>
 <li><a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic Access Authentication</a> is enabled because Spring Security is included in the <code class="docutils literal notranslate"><span class="pre">gradle</span></code> file</li>
@@ -334,17 +342,56 @@
 <li>Enter the username/password you have stored in <strong>Run Configuration</strong></li>
 </ol>
 </div>
+<div class="section" id="basic-access-auth-login-form">
+<h3>Basic Access Auth Login Form<a class="headerlink" href="#basic-access-auth-login-form" title="Permalink to this headline">¶</a></h3>
+<img alt="../../_images/basic-access-auth-login.png" src="../../_images/basic-access-auth-login.png" />
 </div>
-<div class="section" id="certificates-with-spring-security">
-<h2>Certificates with Spring Security<a class="headerlink" href="#certificates-with-spring-security" title="Permalink to this headline">¶</a></h2>
-<p>We want to add HTTPS to our web application using Spring Security.</p>
+<div class="section" id="login-success">
+<h3>Login Success<a class="headerlink" href="#login-success" title="Permalink to this headline">¶</a></h3>
+<img alt="../../_images/basic-login-success.png" src="../../_images/basic-login-success.png" />
 </div>
-<div class="section" id="certificate-setup">
-<h2>Certificate Setup<a class="headerlink" href="#certificate-setup" title="Permalink to this headline">¶</a></h2>
-<p>After checking out the example project, you will neeed to generate the cryptographic components required for Spring Boot to host a certificate.</p>
+</div>
+<div class="section" id="https-certificates-with-spring-security">
+<h2>HTTPS Certificates with Spring Security<a class="headerlink" href="#https-certificates-with-spring-security" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Basic_access_authentication">Basic Access Authentication</a> is not secure by itself, it should be used with HTTPS. We want to add HTTPS to our web application using Spring Security.</p>
+<div class="section" id="enable-https-in-applicaiton-properties">
+<h3>Enable HTTPS in Applicaiton Properties<a class="headerlink" href="#enable-https-in-applicaiton-properties" title="Permalink to this headline">¶</a></h3>
+<p>There are specific properties in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> that configure Spring Security and Tomcat server settings. <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-security.html">More information on Spring Security Users</a></p>
+<p>These are the properties that enable HTTPS (SSL):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>server.ssl.key-store=src/main/resources/certs/keystore.jks
+server.ssl.key-store-password=${CERT-PASSWORD}
+server.ssl.key-alias=localhost
+server.ssl.key-password=${CERT-PASSWORD}
+server.ssl.enabled=true
+server.port=8443
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Port 8443 is the alternate SSL port. The default SSL port is 443</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If you run <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> before creating certs for HTTPS, you will see this error: <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">Tomcat</span> <span class="pre">connector</span> <span class="pre">configured</span> <span class="pre">to</span> <span class="pre">listen</span> <span class="pre">on</span> <span class="pre">port</span> <span class="pre">8443</span> <span class="pre">failed</span> <span class="pre">to</span> <span class="pre">start.</span> <span class="pre">The</span> <span class="pre">port</span> <span class="pre">may</span> <span class="pre">already</span> <span class="pre">be</span> <span class="pre">in</span> <span class="pre">use</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">connector</span> <span class="pre">may</span> <span class="pre">be</span> <span class="pre">misconfigured.</span></code></p>
+</div>
+</div>
+<div class="section" id="configure-intellij-run-configurations">
+<h3>Configure Intellij Run Configurations<a class="headerlink" href="#configure-intellij-run-configurations" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Add <code class="docutils literal notranslate"><span class="pre">CERT-PASSWORD</span></code> and it’s value to <strong>Environment Variables</strong> in <strong>Run Configurations</strong><ul>
+<li><code class="docutils literal notranslate"><span class="pre">CERT-PASSWORD</span></code> = The password you used to create keystore and certificate in previous section</li>
+<li>You will use this password value for all <a href="#id4"><span class="problematic" id="id5">``</span></a>PASSWORD=``commands below</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="create-https-certificate">
+<h3>Create HTTPS Certificate<a class="headerlink" href="#create-https-certificate" title="Permalink to this headline">¶</a></h3>
+<p>After checking out the example project, you will need to generate the cryptographic components required for Spring Boot to host a certificate.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">jks</span></code> also known as a <code class="docutils literal notranslate"><span class="pre">Java</span> <span class="pre">Key</span> <span class="pre">Store</span></code> will need to be generated.  Since we will be using a self-signed certificate, this <code class="docutils literal notranslate"><span class="pre">jks</span></code> file will act as our local Certificate Authority.  Run the following command (be sure to use a secure password!):</p>
-<div class="section" id="create-keystore">
-<h3>Create Keystore<a class="headerlink" href="#create-keystore" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="create-keystore-keystork-jks">
+<h3>Create Keystore (keystork.jks)<a class="headerlink" href="#create-keystore-keystork-jks" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make create-keystore PASSWORD=changeit
 $ # Generate a certificate authority (CA)
 keytool -genkey -alias ca -ext BC=ca:true \
@@ -355,16 +402,16 @@ keytool -genkey -alias ca -ext BC=ca:true \
 </div>
 <p>By doing an <code class="docutils literal notranslate"><span class="pre">ls</span></code>, you should now see that you <code class="docutils literal notranslate"><span class="pre">keystore.jks</span></code> file in your directory.</p>
 </div>
-<div class="section" id="create-certificate">
-<h3>Create Certificate<a class="headerlink" href="#create-certificate" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="create-certificate-localhost-crt">
+<h3>Create Certificate (localhost.crt)<a class="headerlink" href="#create-certificate-localhost-crt" title="Permalink to this headline">¶</a></h3>
 <p>Next you will create a certificate for you local development environment. Run the following command::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make add-host HOSTNAME=localhost PASSWORD=changeit
 </pre></div>
 </div>
 <p>Running <code class="docutils literal notranslate"><span class="pre">ls</span></code> will show that there are now two additional files in your director: <code class="docutils literal notranslate"><span class="pre">localhost.csr</span></code> and <code class="docutils literal notranslate"><span class="pre">localhost.cst</span></code>.</p>
 </div>
-<div class="section" id="create-truststore">
-<h3>Create Truststore<a class="headerlink" href="#create-truststore" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="create-truststore-ca-crt">
+<h3>Create Truststore (ca.crt)<a class="headerlink" href="#create-truststore-ca-crt" title="Permalink to this headline">¶</a></h3>
 <p>Next, you will need to create a <code class="docutils literal notranslate"><span class="pre">truststore</span></code>.  The <code class="docutils literal notranslate"><span class="pre">truststore</span></code> is where all trusted certificates are located.  It is essentially the <code class="docutils literal notranslate"><span class="pre">known_hosts</span></code> for certificates.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make create-truststore PASSWORD=changeit
 # Export certificate authority
@@ -379,76 +426,6 @@ Certificate was added to keystore
 </div>
 <p>Running <code class="docutils literal notranslate"><span class="pre">ls</span></code> will show that two more files have been added to your directory: <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> and <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code>.</p>
 </div>
-<div class="section" id="add-certificate-to-keystore">
-<h3>Add Certificate to Keystore<a class="headerlink" href="#add-certificate-to-keystore" title="Permalink to this headline">¶</a></h3>
-<p>Next, you will add the certificate that you generated to the <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code> so that your user can access the site.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make add-client CLIENTNAME=cid
-//output
-keytool -genkey -alias cid \
-                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-                -validity 3650 -dname &#39;CN=cid,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
-                -keystore truststore.jks -storepass changeit
-# Generate a host certificate signing request
-keytool -certreq -alias cid -ext BC=ca:true \
-                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
-                -validity 3650 -file &quot;cid.csr&quot; \
-                -keystore truststore.jks -storepass changeit
-# Generate signed certificate with the certificate authority
-keytool -gencert -alias ca \
-                -validity 3650 -sigalg SHA512withRSA \
-                -infile &quot;cid.csr&quot; -outfile &quot;cid.crt&quot; -rfc \
-                -keystore keystore.jks -storepass changeit
-# Import signed certificate into the truststore
-keytool -import -trustcacerts -alias cid \
-                -file &quot;cid.crt&quot; \
-                -keystore truststore.jks -storepass changeit
-Certificate reply was installed in keystore
-# Export private certificate for importing into a browser
-keytool -importkeystore -srcalias cid \
-                -srckeystore truststore.jks -srcstorepass changeit \
-                -destkeystore &quot;cid.p12&quot; -deststorepass changeit \
-                -deststoretype PKCS12
-</pre></div>
-</div>
-</div>
-<div class="section" id="what-just-happened">
-<h3>What Just Happened?<a class="headerlink" href="#what-just-happened" title="Permalink to this headline">¶</a></h3>
-<p>A lot just happened, let’s review.</p>
-<ul class="simple">
-<li>First, it needs to create a key for your user. A key is created and placed in the <code class="docutils literal notranslate"><span class="pre">keystore.jks</span></code>.</li>
-<li>Second, a signing requrest <code class="docutils literal notranslate"><span class="pre">.csr</span></code> file was generated based on the key.  This is what is used to aske the Certificate Authority to sign your certificate.</li>
-<li>Third, the signing requrest <code class="docutils literal notranslate"><span class="pre">.csr</span></code> is passed to the Certificate Authority and a signed certificate is passed back as the <code class="docutils literal notranslate"><span class="pre">cid.crt</span></code>.</li>
-<li>Fourth, the <code class="docutils literal notranslate"><span class="pre">cid.crt</span></code> file is stored in the <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code>.</li>
-<li>Fifth and finally, the <code class="docutils literal notranslate"><span class="pre">cid.crt</span></code> file needs to be exported so that it can be included in the browser.  The result is a <code class="docutils literal notranslate"><span class="pre">cid.p12</span></code> file that can be given to the user and used to authenticate against an X509 server.</li>
-</ul>
-</div>
-<div class="section" id="connect-spring-security-to-your-keystore-and-certificate">
-<h3>Connect Spring Security to your Keystore and Certificate<a class="headerlink" href="#connect-spring-security-to-your-keystore-and-certificate" title="Permalink to this headline">¶</a></h3>
-<p>There are specific properties in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> that configure Spring Security and Tomcat server settings. <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-security.html">More information on Spring Security Users</a></p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">security.user.name</span></code> = set a default username for spring security, these can be dynamically loaded</li>
-<li><code class="docutils literal notranslate"><span class="pre">security.user.password</span></code> = set a default username for spring security, these can be dynamically loaded</li>
-<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-store</span></code> = where the keystore is located</li>
-<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-store-password</span></code> = password for the keystore</li>
-<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-alias</span></code> = alias listed on certificate</li>
-<li><code class="docutils literal notranslate"><span class="pre">server.ssl.key-password</span></code> = password used to create certificate</li>
-<li><code class="docutils literal notranslate"><span class="pre">server.ssl.enabled</span></code> = enable SSL in Tomcat</li>
-<li><code class="docutils literal notranslate"><span class="pre">server.port</span></code> = not security specific, but the port that Tomcat will be listning for requests on</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Port 8443 is the alternate SSL port. The default SSL port is 443</p>
-</div>
-</div>
-<div class="section" id="configure-intellij-run-configurations">
-<h3>Configure Intellij Run Configurations<a class="headerlink" href="#configure-intellij-run-configurations" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>Add <code class="docutils literal notranslate"><span class="pre">CERT-PASSWORD</span></code> and it’s value to <strong>Environment Variables</strong> in <strong>Run Configurations</strong><ul>
-<li><code class="docutils literal notranslate"><span class="pre">CERT-PASSWORD</span></code> = The password you used to create keystore and certificate in previous section</li>
-</ul>
-</li>
-</ol>
-</div>
 <div class="section" id="connection-is-not-secure">
 <h3>Connection is Not Secure<a class="headerlink" href="#connection-is-not-secure" title="Permalink to this headline">¶</a></h3>
 <p>Let’s try out our app and see what happens.</p>
@@ -461,45 +438,92 @@ keytool -importkeystore -srcalias cid \
 </ol>
 <img alt="../../_images/insecure-connection.png" src="../../_images/insecure-connection.png" />
 </div>
-<div class="section" id="add-certificate-to-the-browser">
-<h3>Add Certificate to the Browser<a class="headerlink" href="#add-certificate-to-the-browser" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="add-certificate-authority-to-the-browser-ca-crt">
+<h3>Add Certificate Authority to the Browser (ca.crt)<a class="headerlink" href="#add-certificate-authority-to-the-browser-ca-crt" title="Permalink to this headline">¶</a></h3>
 <p>Upon running the app, navigate to <a class="reference external" href="https://localhost:8443">https://localhost:8443</a>.  Notice that the app is now running on <code class="docutils literal notranslate"><span class="pre">https</span></code>.  This says that all traffic going over the write is encrypted.  The only question is “Do you trust the person that you are talking to?”.</p>
 <p>The first thing you will notice is that your browser doesn’t recognize the certificate from the server. Anytime there is a bad certificate on a server, your browser will freak out.  Let’s fix that.</p>
-<p>Open the Settings tab on Chrome (or the browser of your choie).</p>
-<blockquote>
-<div><img alt="../../_images/settings-bar.png" src="../../_images/settings-bar.png" />
-</div></blockquote>
-<p>Under Advanced Settings, you will find the link to the <code class="docutils literal notranslate"><span class="pre">Privacy</span> <span class="pre">and</span> <span class="pre">security</span></code> page.</p>
-<blockquote>
-<div><img alt="../../_images/advanced-settings.png" src="../../_images/advanced-settings.png" />
-</div></blockquote>
-<p>Finally, you should find the <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">certificates</span></code> link on the page to be able to configure the certificates your browser trusts.</p>
-<blockquote>
-<div><img alt="../../_images/manage-certificates.png" src="../../_images/manage-certificates.png" />
-</div></blockquote>
-<p>By clicking on <code class="docutils literal notranslate"><span class="pre">Certificates</span></code> in the bottom left hand corner of the screen, you should be able to see all of the certificates your browser supports.  They may be spread across several keychains. Be sure that you do not have any certificates selected otherwise the “+” button will not be enabled.</p>
-<blockquote>
-<div><img alt="../../_images/adding-certificate.png" src="../../_images/adding-certificate.png" />
-</div></blockquote>
-<p>Click the “+” button and add the <cite>localhost.crt</cite> certificate that you had generated earlier in the walkthrough.</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> as a CA to your browser</p>
 </div>
 </div>
 <div class="section" id="client-certificates">
 <h2>Client Certificates<a class="headerlink" href="#client-certificates" title="Permalink to this headline">¶</a></h2>
-<p>Adding client-side certificates for Authorization</p>
-<p>Open the Keychain Access program again and click on <code class="docutils literal notranslate"><span class="pre">MyCertificates</span></code>.  These are the client-side certificates that are currently installed on your compuster and that can be used to access a remote server.  Let’s add a new certificate by clicking <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Import</span> <span class="pre">Items...</span></code>.  Import the <code class="docutils literal notranslate"><span class="pre">cid.p12</span></code> file that you created earlier in the studio.</p>
-<blockquote>
-<div><img alt="../../_images/import-clientside-cert.png" src="../../_images/import-clientside-cert.png" />
-</div></blockquote>
-<p>After adding the client-side cert your browser will ask you to select a certificate</p>
+<p>Spring Security can be configured to authenticate users using client certificates.</p>
+<div class="section" id="enable-certificate-authentication-in-spring-security">
+<h3>Enable Certificate Authentication in Spring Security<a class="headerlink" href="#enable-certificate-authentication-in-spring-security" title="Permalink to this headline">¶</a></h3>
+<p>Add these properties to <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> to enable client authentication user certificates:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>server.ssl.trust-store=src/main/resources/certs/truststore.jks
+server.ssl.trust-store-password=${CERT-PASSWORD}
+server.ssl.client-auth=need
+</pre></div>
 </div>
-<div class="section" id="run-the-application">
-<h2>Run the Application<a class="headerlink" href="#run-the-application" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="update-usercontroller-class">
+<h3>Update UserController Class<a class="headerlink" href="#update-usercontroller-class" title="Permalink to this headline">¶</a></h3>
+<p>::
+TODO</p>
+</div>
+<div class="section" id="update-certsapplication-class">
+<h3>Update CertsApplication Class<a class="headerlink" href="#update-certsapplication-class" title="Permalink to this headline">¶</a></h3>
+<p>::
+TODO</p>
+</div>
+<div class="section" id="add-cnuserdetailservice-class">
+<h3>Add CNUserDetailService Class<a class="headerlink" href="#add-cnuserdetailservice-class" title="Permalink to this headline">¶</a></h3>
+<p>::
+TODO</p>
+</div>
+<div class="section" id="try-it-out-before-creating-client-certificate">
+<h3>Try it Out Before Creating Client Certificate<a class="headerlink" href="#try-it-out-before-creating-client-certificate" title="Permalink to this headline">¶</a></h3>
+<p>Show image of 403 error</p>
+</div>
+<div class="section" id="create-and-add-client-certificate-to-keystore-janet-crt">
+<h3>Create and Add Client Certificate to Keystore (janet.crt)<a class="headerlink" href="#create-and-add-client-certificate-to-keystore-janet-crt" title="Permalink to this headline">¶</a></h3>
+<p>Next, you will create a client certificate and add it to the truststore.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make add-client CLIENTNAME=janet PASSWORD=changeit
+//output
+keytool -genkey -alias janet \
+                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
+                -validity 3650 -dname &#39;CN=janet,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
+                -keystore truststore.jks -storepass changeit
+# Generate a host certificate signing request
+keytool -certreq -alias janet -ext BC=ca:true \
+                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
+                -validity 3650 -file &quot;janet.csr&quot; \
+                -keystore truststore.jks -storepass changeit
+# Generate signed certificate with the certificate authority
+keytool -gencert -alias ca \
+                -validity 3650 -sigalg SHA512withRSA \
+                -infile &quot;janet.csr&quot; -outfile &quot;janet.crt&quot; -rfc \
+                -keystore keystore.jks -storepass changeit
+# Import signed certificate into the truststore
+keytool -import -trustcacerts -alias janet \
+                -file &quot;janet.crt&quot; \
+                -keystore truststore.jks -storepass changeit
+Certificate reply was installed in keystore
+# Export private certificate for importing into a browser
+keytool -importkeystore -srcalias janet \
+                -srckeystore truststore.jks -srcstorepass changeit \
+                -destkeystore &quot;janet.p12&quot; -deststorepass changeit \
+                -deststoretype PKCS12
+</pre></div>
+</div>
+</div>
+<div class="section" id="add-client-certificate-to-the-browser">
+<h3>Add Client Certificate to the Browser<a class="headerlink" href="#add-client-certificate-to-the-browser" title="Permalink to this headline">¶</a></h3>
+<p>Your browser needs to be configured to use a certificate to authenticate you when visiting certain sites.</p>
+<p>TODO: instructions and images</p>
+</div>
+<div class="section" id="summary-of-client-authentication">
+<h3>Summary of Client Authentication<a class="headerlink" href="#summary-of-client-authentication" title="Permalink to this headline">¶</a></h3>
+<p>A lot just happened, let’s review.</p>
 <ul class="simple">
-<li>In Intellij run the <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> task via <strong>Run Configurations</strong> menu</li>
-<li>Make sure you application starts without errors</li>
-<li>Then visit <code class="docutils literal notranslate"><span class="pre">https://localhost:8443/user</span></code> in your browser (the one configured to use the Certificate Authority)</li>
+<li>First, it needs to create a key for your user. A key is created and placed in the <code class="docutils literal notranslate"><span class="pre">keystore.jks</span></code>.</li>
+<li>Second, a signing requrest <code class="docutils literal notranslate"><span class="pre">.csr</span></code> file was generated based on the key.  This is what is used to aske the Certificate Authority to sign your certificate.</li>
+<li>Third, the signing requrest <code class="docutils literal notranslate"><span class="pre">.csr</span></code> is passed to the Certificate Authority and a signed certificate is passed back as the <code class="docutils literal notranslate"><span class="pre">janet.crt</span></code>.</li>
+<li>Fourth, the <code class="docutils literal notranslate"><span class="pre">janet.crt</span></code> file is stored in the <code class="docutils literal notranslate"><span class="pre">truststore.jks</span></code>.</li>
+<li>Fifth and finally, the <code class="docutils literal notranslate"><span class="pre">janet.crt</span></code> file needs to be exported so that it can be included in the browser.  The result is a <code class="docutils literal notranslate"><span class="pre">janet.p12</span></code> file that can be given to the user and used to authenticate against an X509 server.</li>
 </ul>
+</div>
 </div>
 </div>
 
