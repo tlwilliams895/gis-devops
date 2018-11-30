@@ -9,7 +9,7 @@ Setup
 #####
 
 1. Checkout the ``rest-walkthrough`` branch of ``https://gitlab.com/LaunchCodeTraining/launchcart``
-2. Create and checkout a **feature branch** named ``securely-hash-passwords`` via ``$ git checkout -b securely-hash-passwords``
+2. Create and checkout a **story branch** named ``securely-hash-passwords`` via ``$ git checkout -b securely-hash-passwords``
 
 Determine the Status of the Current Code
 ########################################

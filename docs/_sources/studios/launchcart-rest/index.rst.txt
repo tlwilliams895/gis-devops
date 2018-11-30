@@ -14,7 +14,7 @@ From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTra
 
 If you don't have the walkthrough code, you can fetch changes from the remote and check out the ``rest-studio`` branch.
 
-Create a feature branch ``$ git checkout -b rest-studio-solution``
+Create a story branch ``$ git checkout -b rest-studio-solution``
 
 Add ``new`` Parameter to ``/api/items``
 =======================================

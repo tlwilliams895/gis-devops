@@ -9,7 +9,7 @@ Setup
 -----
 
 1. Fork this repo: `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter/>`_
-2. Create a feature branch `$ git checkout -b walkthrough-solution`
+2. Create a story branch `$ git checkout -b walkthrough-solution`
 3. Open project in Intellij by opening gradle.build file as a project
 
 Spring Integration Test Utilities

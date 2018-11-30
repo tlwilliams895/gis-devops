@@ -51,7 +51,7 @@ Setup Project
 =============
 
 - Fork and clone Zika CDC Dashboard https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard
-- Then create a feature branch ``$ git checkout -b week2-solution``
+- Then create a story branch ``$ git checkout -b week2-solution``
 
 Setup Postgres
 ==============

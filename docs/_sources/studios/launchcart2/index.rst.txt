@@ -57,7 +57,7 @@ Another basic feature that is missing is the ability to add some quantity of ite
 
 .. Tip::
 
-    Before embarking on this mission, create a feature branch to isolate your work. Aside from being a best-practice, this will also keep your ``master`` branch nice and clean in the event you don't finish the mission. This will be helpful since we'll continue working on this app in a future studio.
+    Before embarking on this mission, create a story branch to isolate your work. Aside from being a best-practice, this will also keep your ``master`` branch nice and clean in the event you don't finish the mission. This will be helpful since we'll continue working on this app in a future studio.
 
 Create a ``CartItem`` class with fields ``item`` and ``quantity``, and refactor ``Cart`` to store a collection of ``CartItem`` objects instead of ``Item`` objects. As ``Cart`` and ``Item`` have done, you should extend ``AbstractEntity`` to get the common identifier configuration contained in that base class.
 

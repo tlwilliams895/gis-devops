@@ -64,6 +64,7 @@ If you don't complete each of the tasks, turn in as much as you have completed b
 * Commit and push your work to GitLab
 * Create a Merge Request for the branch you pushed (you do this on the GitLab website)
 * Ask your classmates and instructor to review your code
+* See this for details about branching and Merge Requests `Branching and Merge Request Guidelines <https://docs.google.com/document/d/1Suneuf-NTohBP2Z5BFEkkCKopVbSDsAQga9ZMfPEb3o/edit>`_
 
 Resources
 ---------

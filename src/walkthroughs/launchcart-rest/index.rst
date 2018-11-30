@@ -10,7 +10,7 @@ In this walkthrough, the instructor will guide you through adding some RESTful e
 Getting Started
 ===============
 
-From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTraining/launchcart that you used previously, check out the ``rest-walkthrough`` branch. Then create a feature branch.::
+From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTraining/launchcart that you used previously, check out the ``rest-walkthrough`` branch. Then create a story branch.::
     
     $ git checkout rest-walkthrough
     $ git checkout -b rest-walkthrough-solution

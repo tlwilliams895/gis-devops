@@ -11,7 +11,7 @@ Setup
 =====
 
 * Fork and clone the JQuery OpenLayers Starter https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter repo.
-* Create a feature branch named ``day5-solution``
+* Create a story branch named ``day5-solution``
 * Open this folder with any editor you choose. We suggest Visual Studio Code since this project is only JavaScript and HTML.
 
 Review the code

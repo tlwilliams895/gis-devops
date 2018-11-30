@@ -10,7 +10,7 @@ Follow along with the instructor as we configure Sonarqube.
 Setup
 =====
 
-Create a new feature branch in your ``airwaze-studio`` repoo. Name it ``add-sonarqube``.  When finished with this walkthrough you can merge it into your ``master`` branch.
+Create a new story branch in your ``airwaze-studio`` repoo. Name it ``add-sonarqube``.  When finished with this walkthrough you can merge it into your ``master`` branch.
 
 Continuous Inspection
 =====================

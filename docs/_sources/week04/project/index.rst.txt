@@ -26,7 +26,7 @@ Your goal is to extend the CDC Zika Dashboard that you built last week. The scie
 
 Getting the code
 ================
-1. Create a feature branch named ``week4-solution`` from your solution to the week 2 zika project
+1. Create a story branch named ``week4-solution`` from your solution to the week 2 zika project
 2. Make sure you have a remote in your repo that points to https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard
 3. Run ``git fetch upstream`` (Assuming upstream points to the above repo)
 4. Run ``git checkout -b week4-starter upstream/week4-starter``

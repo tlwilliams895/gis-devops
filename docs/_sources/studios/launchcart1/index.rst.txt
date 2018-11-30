@@ -10,7 +10,7 @@ This activity gives you practice writing integration tests in Spring.
 Getting Started
 ---------------
 
-Fork the `LaunchCodeTraining/launchcart repo <https://gitlab.com/LaunchCodeTraining/launchcart>`_ and clone it to your laptop. For this project we will start with the ``master`` branch. After forking and cloning, it's a good idea to make a **feature branch** to contain your work. Example: ``git checkout -b day3-studio`` creates a branch named **day3-studio** and checks it out at the same time.
+Fork the `LaunchCodeTraining/launchcart repo <https://gitlab.com/LaunchCodeTraining/launchcart>`_ and clone it to your laptop. For this project we will start with the ``master`` branch. After forking and cloning, it's a good idea to make a **story branch** to contain your work. Example: ``git checkout -b day3-studio`` creates a branch named **day3-studio** and checks it out at the same time.
 
 Your Tasks
 ----------

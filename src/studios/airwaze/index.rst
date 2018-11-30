@@ -11,7 +11,7 @@ Set Up Project
 ==============
 * Fork and clone this `Gitlab project <https://gitlab.com/LaunchCodeTraining/airwaze-studio>`_.
 * Then open the project in IntelliJ
-* Create a feature branch ``$ git checkout -b day5-solution``
+* Create a story branch ``$ git checkout -b day5-solution``
 
 What is PostGIS?
 ===============
