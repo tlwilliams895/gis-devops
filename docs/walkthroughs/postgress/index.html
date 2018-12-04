@@ -7,7 +7,7 @@
     <title>Walkthrough: PostgreSQL &#8212; LaunchCode Curriculum Docs  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
@@ -260,7 +260,10 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: PostgreSQL</a><ul>
-<li><a class="reference internal" href="#install-postgres-app">Install Postgres App</a></li>
+<li><a class="reference internal" href="#install-postgres-app">Install Postgres App</a><ul>
+<li><a class="reference internal" href="#add-postgres-to-your-path">Add postgres to your $PATH</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#let-s-run-some-postgres-commands">Let’s Run Some Postgres Commands</a></li>
 <li><a class="reference internal" href="#now-for-some-sql-queries">Now For Some SQL Queries</a></li>
 </ul>
@@ -281,6 +284,30 @@
 <li>Download and open the file</li>
 <li>Note: this is specifcally for Mac OS</li>
 </ul>
+<div class="section" id="add-postgres-to-your-path">
+<h3>Add postgres to your $PATH<a class="headerlink" href="#add-postgres-to-your-path" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">Open a terminal</p>
+</li>
+<li><p class="first">Open your <code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code> in an editor like nano:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ nano ~/.bash_profile
+</pre></div>
+</div>
+</li>
+<li><p class="first">Paste in this text to your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># add postgres and it&#39;s related commands to path
+export PATH=&quot;/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Save your <code class="docutils literal notranslate"><span class="pre">~/.bash_profile</span></code> file</p>
+</li>
+<li><p class="first">Open a new terminal and run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">postgres</span> <span class="pre">--version</span></code></p>
+</li>
+<li><p class="first">You will use the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> command on the terminal later in the class</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="section" id="let-s-run-some-postgres-commands">
 <h2>Let’s Run Some Postgres Commands<a class="headerlink" href="#let-s-run-some-postgres-commands" title="Permalink to this headline">¶</a></h2>

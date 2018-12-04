@@ -14,6 +14,24 @@ Install Postgres App
 - Download and open the file
 - Note: this is specifcally for Mac OS
 
+Add postgres to your $PATH
+**************************
+
+* Open a terminal
+* Open your ``.bash_profile`` in an editor like nano::
+
+    $ nano ~/.bash_profile
+
+* Paste in this text to your ``~/.bash_profile``::
+
+    # add postgres and it's related commands to path
+    export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+
+* Save your ``~/.bash_profile`` file
+* Open a new terminal and run ``$ postgres --version``
+* You will use the ``postgres`` command on the terminal later in the class
+
+
 Let's Run Some Postgres Commands
 --------------------------------
 
