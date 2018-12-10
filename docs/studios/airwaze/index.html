@@ -353,6 +353,8 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 <ul class="simple">
 <li>Create users <code class="docutils literal notranslate"><span class="pre">airwaze_user</span></code> and <code class="docutils literal notranslate"><span class="pre">airwaze_test_user</span></code></li>
 <li>Grant the users access to only what they need <code class="docutils literal notranslate"><span class="pre">airwaze_user</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> and <code class="docutils literal notranslate"><span class="pre">airwaze_test_user</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">airewaze_test</span></code></li>
+<li>For hints on above, go look at Week 1 Day 4 Walkthrough</li>
+<li>After you have created the users, you need to grant special <code class="docutils literal notranslate"><span class="pre">superuser</span></code> rights because we are going to be running a file with <code class="docutils literal notranslate"><span class="pre">postgres</span></code></li>
 </ul>
 </div>
 <div class="section" id="now-let-s-use-the-new-database">
@@ -374,6 +376,7 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 <ul class="simple">
 <li>Review the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file in the airwaze project</li>
 <li>Be sure that the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> points to <strong>your</strong> local copies of the <code class="docutils literal notranslate"><span class="pre">airports.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code>. It needs to be the “full path” to each file on your local computer.</li>
+<li>You will need to change the path value for both files listed. <code class="docutils literal notranslate"><span class="pre">/Users/YOUR-USERNAME/YOUR-PATH/airwaze-studio/routes.csv</span></code></li>
 <li>Open the <code class="docutils literal notranslate"><span class="pre">csv</span></code> files to see what data is being imported for routes and airports</li>
 </ul>
 </div>
@@ -385,6 +388,7 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 <li>When the Spring Boot application starts it will execute the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file and populate the related tables</li>
 <li>Then go to <code class="docutils literal notranslate"><span class="pre">http://localhost:8080</span></code> in your browser. You should see a map with Mexico on it that includes a map layer for airports as red circles.</li>
 </ul>
+<img alt="../../_images/airwaze-example.png" src="../../_images/airwaze-example.png" />
 </div>
 <div class="section" id="review-the-tables-and-data-in-postgis">
 <h2>Review the Tables and Data in Postgis<a class="headerlink" href="#review-the-tables-and-data-in-postgis" title="Permalink to this headline">¶</a></h2>
@@ -407,24 +411,19 @@ airwaze=# \d route
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>When the map is clicked, list all airports that are at that pixel</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
+<li>When the map is clicked, list all airports that are at that pixel<ul>
 <li>You will need to add more code to the function <code class="docutils literal notranslate"><span class="pre">map.forEachFeatureAtPixel(event.pixel,</span> <span class="pre">function(feature,layer)</span></code> in <code class="docutils literal notranslate"><span class="pre">resources/static/js/scripts.js</span></code></li>
 </ul>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li>Create a route endpoint that returns routes for a certain srcId. Example: <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/route/?srcId=12</span></code></li>
-<li>When an airport feature is clicked on the map, show the routes for that airport</li>
-</ol>
-<blockquote>
-<div><ul class="simple">
+</li>
+<li>Create a route endpoint that returns routes for a certain srcId.<ul>
+<li>Example: <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/route/?srcId=12</span></code></li>
+</ul>
+</li>
+<li>When an airport feature is clicked on the map, show the routes for that airport<ul>
 <li>By adding a router layer that only contains routes connected to the clicked airport</li>
 <li>The data for the new layer will be provided by <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/route/?srcId=X</span></code>, where X will be the <code class="docutils literal notranslate"><span class="pre">airportId</span></code> from the feature</li>
 </ul>
-</div></blockquote>
-<ol class="arabic simple" start="4">
+</li>
 <li>Write integration tests for <code class="docutils literal notranslate"><span class="pre">RouteController</span></code> use <code class="docutils literal notranslate"><span class="pre">AirportControllerTests</span></code> as a guide</li>
 </ol>
 </div>

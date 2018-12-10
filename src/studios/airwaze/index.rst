@@ -67,6 +67,12 @@ Create Users and Grant Access Rights
 ====================================
 * Create users ``airwaze_user`` and ``airwaze_test_user``
 * Grant the users access to only what they need ``airwaze_user`` -> ``airwaze`` and ``airwaze_test_user`` -> ``airewaze_test``
+* For hints on above, go look at Week 1 Day 4 Walkthrough
+* After you have created the users, you need to grant special ``superuser`` rights because we are going to be running a file with ``postgres``
+
+.. code-block::sql
+
+    ALTER USER airwaze_user with superuser;
 
 Now Let's Use the New Database
 ==============================
@@ -87,6 +93,7 @@ The ``import.sql`` file in this project contains SQL statements that import CSV 
 
 - Review the ``import.sql`` file in the airwaze project
 - Be sure that the ``import.sql`` points to **your** local copies of the ``airports.csv`` and ``routes.csv``. It needs to be the "full path" to each file on your local computer.
+- You will need to change the path value for both files listed. ``/Users/YOUR-USERNAME/YOUR-PATH/airwaze-studio/routes.csv``
 - Open the ``csv`` files to see what data is being imported for routes and airports
 
 Run the Application and Populate the Database
@@ -96,6 +103,8 @@ Run the Application and Populate the Database
 * Make sure there aren't any errors in the log.
 * When the Spring Boot application starts it will execute the ``import.sql`` file and populate the related tables
 * Then go to ``http://localhost:8080`` in your browser. You should see a map with Mexico on it that includes a map layer for airports as red circles.
+
+.. image :: /_static/images/airwaze-example.png
 
 Review the Tables and Data in Postgis
 ======================================================
@@ -117,11 +126,18 @@ Review AirportController
 Tasks
 =====
 1. When the map is clicked, list all airports that are at that pixel
- * You will need to add more code to the function ``map.forEachFeatureAtPixel(event.pixel, function(feature,layer)`` in ``resources/static/js/scripts.js``
-2. Create a route endpoint that returns routes for a certain srcId. Example: ``http://localhost:8080/route/?srcId=12``
+   
+   * You will need to add more code to the function ``map.forEachFeatureAtPixel(event.pixel, function(feature,layer)`` in ``resources/static/js/scripts.js``
+
+2. Create a route endpoint that returns routes for a certain srcId.
+
+   * Example: ``http://localhost:8080/route/?srcId=12``
+   
 3. When an airport feature is clicked on the map, show the routes for that airport
- * By adding a router layer that only contains routes connected to the clicked airport
- * The data for the new layer will be provided by ``http://localhost:8080/route/?srcId=X``, where X will be the ``airportId`` from the feature
+   
+   * By adding a router layer that only contains routes connected to the clicked airport
+   * The data for the new layer will be provided by ``http://localhost:8080/route/?srcId=X``, where X will be the ``airportId`` from the feature
+
 4. Write integration tests for ``RouteController`` use ``AirportControllerTests`` as a guide
 
 Bonus Missions
