@@ -132,7 +132,7 @@ Tasks
 2. Create a route endpoint that returns routes for a certain srcId.
 
    * Example: ``http://localhost:8080/route/?srcId=12``
-   
+
 3. When an airport feature is clicked on the map, show the routes for that airport
    
    * By adding a router layer that only contains routes connected to the clicked airport
@@ -147,6 +147,12 @@ Bonus Missions
 * Sort airports by alpha order when they are displayed below the map
 * Check what kind of feature was clicked when map.onclick runs
 * Remove previous route layers when adding a new one
+
+Solution Screen Shot
+====================
+(Your list of airports can be organized and styled differently)
+
+.. image :: /_static/images/airwaze-solution-example.png
 
 Resources
 =========
