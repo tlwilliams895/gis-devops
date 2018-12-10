@@ -29,18 +29,27 @@ Let's make a map show up
 
 Next, add OpenLayers to your project by including the JavaScript source in the head.
 
+- OpenLayers is a JavaScript library that is used to show Maps, layers, and features
+- The ``ol.js`` files has alredy been downloaded. We need to add a link to it in our html
+
 .. code-block:: html
 
-    <script src="https://openlayers.org/en/v4.6.4/build/ol.js" type="text/javascript"></script>
+    <script src="ol-v5.3.0/build/ol.js"></script>
+    <link rel="stylesheet" href="ol-v5.3.0/css/ol.css">
  
-- Next add a link for JQuery. You can find the current version at `code.jquery.com <https://code.jquery.com>`_
+Add a link for JQuery JavaScript library
+  
+- We'll use jQuery to make things like AJAX calls and DOM manipulation a bit easier.
+- The ``jquery-3.3.1.min.js`` files has alredy been downloaded. We need to add a link to it in our html
 
-  - The minified version is fine
-  - We'll use jQuery to make things like AJAX calls and DOM manipulation a bit easier.
+.. code-block:: html
 
-- Put the placeholder for the map on the page, within the ``<body>``
+    <script src="js/jquery-3.3.1.min.js"></script>
 
-  - This ``div`` will be replaced with the contents of the rendered map.
+We need to create a ``<div>`` that will contain our Map
+
+- This ``div`` will be replaced with the contents of the rendered map.
+- Add a ``<div>`` inside of the ``<body>``
 
 .. code-block:: html
 
@@ -58,6 +67,11 @@ Then set the size for the map, by adding this to the ``<head>``
         }
     </style>
  
+What your code should look like
+--------------------------------
+ .. image :: /_static/images/open-layers-resources.png
+
+
 Let's see it in action
 ======================
 
@@ -88,7 +102,7 @@ Add the following HTML to ``index.html``
 .. code-block:: html
 
     <button id="list-all-airports">list airports</button>
-    <ul id="all-airports"></ul>
+    <ul id="airports"></ul>
 
 
 We need to GET the data by making an AJAX request to ``http://localhost:7070/json/german_airports.geojson``. For this we will use jQuery. Add
@@ -98,7 +112,7 @@ the below code to ``script.js``. Then click the button and see what was logged i
 
     $('#list-all-airports').on('click', function() {
         console.log('pulling data');
-        $('#all-airports').empty();
+        $('#airports').empty();
         $.getJSON('http://localhost:7070/json/german_airports.geojson', {}).done(function(json) {
             console.log(json);
         });
@@ -110,10 +124,10 @@ Now let's loop over the results and add each feature to the airport list. Edit t
 
     $('#list-all-airports').on('click', function() {
         console.log('pulling data');
-        $('#all-airports').empty();
+        $('#airports').empty();
         $.getJSON('http://localhost:7070/json/german_airports.geojson', {}).done(function(json) {
             for (var i=0; i<json.features.length; i++) {
-                $('#all-airports').append('<li>' + json.features[i].properties.dataField + '</li>');
+                $('#airports').append('<li>' + json.features[i].properties.dataField + '</li>');
             }
         });
     });
@@ -171,7 +185,7 @@ We want to add data about this report to our map dashboard. Here is an example o
 
 .. code-block:: html
 
-    <ul id="all-airports">
+    <ul id="airports">
         <li>
             <h3>Aalen-Heidenheim/Elchingen Airport</h3>
             <p>ICAO: EPDA</p>
