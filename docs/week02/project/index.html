@@ -333,13 +333,20 @@
 <h2>Setup Postgres<a class="headerlink" href="#setup-postgres" title="Permalink to this headline">¶</a></h2>
 <p>Run <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI by double clicking on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> database in the Postgresql App</p>
 <p>Open the Postgres UI and double click on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt.
-Then execute these in terminal:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ createdb zika
-$ createdb zika_test
-$ psql -U (your mac username) zika
+In terminal execute this to open a psql session:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ psql -p5432 -d postgres
 </pre></div>
 </div>
-<p>Execte these in the psql prompt:</p>
+<p>In a psql session run this to create the databases:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>postgres=# CREATE DATABASE zika;
+postgres=# CREATE DATABASE zika_test;
+</pre></div>
+</div>
+<p>In the psql session, connect to the zika db:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>postgres=# \c zika
+</pre></div>
+</div>
+<p>Execute these in the psql prompt:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>zika=# CREATE EXTENSION postgis;
 zika=# CREATE EXTENSION postgis_topology;
 zika=# CREATE EXTENSION fuzzystrmatch;
@@ -352,8 +359,8 @@ zika_test=# CREATE EXTENSION postgis_tiger_geocoder;
 </pre></div>
 </div>
 <p>Create a new user for your application by opening Postgres UI and double clicking on the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt connected to the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># CREATE USER zika_app_user WITH PASSWORD &#39;somethingsensible&#39; CREATEDB;
-# ALTER ROLE zika_app_user WITH SUPERUSER;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>postgres=# CREATE USER zika_app_user WITH PASSWORD &#39;somethingsensible&#39; CREATEDB;
+postgres=# ALTER ROLE zika_app_user WITH SUPERUSER;
 </pre></div>
 </div>
 </div>
@@ -380,7 +387,7 @@ zika_test=# CREATE EXTENSION postgis_tiger_geocoder;
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.</p>
+<p class="last">Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively).</p>
 </div>
 </div>
 </div>

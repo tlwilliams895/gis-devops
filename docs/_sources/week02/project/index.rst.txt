@@ -59,13 +59,20 @@ Setup Postgres
 Run ``psql`` CLI by double clicking on the ``postgres`` database in the Postgresql App
 
 Open the Postgres UI and double click on the ``postgres`` db to open a ``psql`` command prompt.
-Then execute these in terminal::
+In terminal execute this to open a psql session::
 
-$ createdb zika
-$ createdb zika_test
-$ psql -U (your mac username) zika
+  $ psql -p5432 -d postgres
 
-Execte these in the psql prompt::
+In a psql session run this to create the databases::
+
+  postgres=# CREATE DATABASE zika;
+  postgres=# CREATE DATABASE zika_test;
+
+In the psql session, connect to the zika db::
+
+  postgres=# \c zika
+
+Execute these in the psql prompt::
 
   zika=# CREATE EXTENSION postgis;
   zika=# CREATE EXTENSION postgis_topology;
@@ -79,8 +86,8 @@ Execte these in the psql prompt::
 
 Create a new user for your application by opening Postgres UI and double clicking on the ``zika`` db to open a ``psql`` command prompt connected to the ``zika`` db.::
 
-  # CREATE USER zika_app_user WITH PASSWORD 'somethingsensible' CREATEDB;
-  # ALTER ROLE zika_app_user WITH SUPERUSER;
+  postgres=# CREATE USER zika_app_user WITH PASSWORD 'somethingsensible' CREATEDB;
+  postgres=# ALTER ROLE zika_app_user WITH SUPERUSER;
 
 
 Turning In Your Work
@@ -107,4 +114,4 @@ Resources
 
 .. note::
 
-  Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively). Be sure to lint your services before attempting to hook them up to the front end.
+  Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively).
