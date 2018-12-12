@@ -33,6 +33,8 @@ Here is a mockup of the application you will be building.
 * The database should be populated with Zika report data from Brazil, Mexico, Panama, and Haiti.
 * The app should show a red circle for each location that has provided a Zika report.
 * Upon clicking on a red dot, the location's name and any reported data show up below the status bar. Remember, each location may report multiple statistics and every country does not report the same statistics.
+* Only show unique location names once per listing(don't repeat location names). See bonus screenshot for example.
+* Also if one click happens to touch multiple reports, all locations should be shown. See bonus screenshot for example.
 
 Project Hints
 =============
@@ -45,7 +47,7 @@ Project Hints
   '/this/is/the/full/path/to/the/file' DELIMITER ',' CSV HEADER;
 
 * Every time Spring Boot starts up, it will run an ``import.sql`` file located in ``src/main/resources``, if the `ddl-auto` property is set to ``create`` or ``create-drop``. This is a convenient way to populate your database via CSV file.
-* Remember, Spring Boot is set to recreate your database every time it starts up.
+* Remember, Spring Boot is set to recreate your database every time it starts up. That can be changed by adjusting the value of `spring.jpa.hibernate.ddl-auto` in application.properties.
 
 Setup Project
 =============
@@ -103,6 +105,8 @@ Bonus Missions
 ==============
 
 If you complete the assignment with time to spare, improve your app by providing context about the size of the Zika outbreak. Use this OpenLayers tutorial https://openlayers.org/en/latest/examples/kml-earthquakes.html as a guide to change the size and color of the feature based on number of cases.
+
+.. image:: /_static/images/bonus_cdc_zika_dashboard.png
 
 Resources
 =========

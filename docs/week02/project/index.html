@@ -306,6 +306,8 @@
 <li>The database should be populated with Zika report data from Brazil, Mexico, Panama, and Haiti.</li>
 <li>The app should show a red circle for each location that has provided a Zika report.</li>
 <li>Upon clicking on a red dot, the location’s name and any reported data show up below the status bar. Remember, each location may report multiple statistics and every country does not report the same statistics.</li>
+<li>Only show unique location names once per listing(don’t repeat location names). See bonus screenshot for example.</li>
+<li>Also if one click happens to touch multiple reports, all locations should be shown. See bonus screenshot for example.</li>
 </ul>
 </div>
 <div class="section" id="project-hints">
@@ -319,7 +321,7 @@
 </div>
 <ul class="simple">
 <li>Every time Spring Boot starts up, it will run an <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file located in <code class="docutils literal notranslate"><span class="pre">src/main/resources</span></code>, if the <cite>ddl-auto</cite> property is set to <code class="docutils literal notranslate"><span class="pre">create</span></code> or <code class="docutils literal notranslate"><span class="pre">create-drop</span></code>. This is a convenient way to populate your database via CSV file.</li>
-<li>Remember, Spring Boot is set to recreate your database every time it starts up.</li>
+<li>Remember, Spring Boot is set to recreate your database every time it starts up. That can be changed by adjusting the value of <cite>spring.jpa.hibernate.ddl-auto</cite> in application.properties.</li>
 </ul>
 </div>
 <div class="section" id="setup-project">
@@ -376,6 +378,7 @@ postgres=# ALTER ROLE zika_app_user WITH SUPERUSER;
 <div class="section" id="bonus-missions">
 <h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
 <p>If you complete the assignment with time to spare, improve your app by providing context about the size of the Zika outbreak. Use this OpenLayers tutorial <a class="reference external" href="https://openlayers.org/en/latest/examples/kml-earthquakes.html">https://openlayers.org/en/latest/examples/kml-earthquakes.html</a> as a guide to change the size and color of the feature based on number of cases.</p>
+<img alt="../../_images/bonus_cdc_zika_dashboard.png" src="../../_images/bonus_cdc_zika_dashboard.png" />
 </div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
