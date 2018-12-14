@@ -1,4 +1,5 @@
 :orphan:
+
 .. _elasticsearch2-studio:
 
 ==============================
@@ -21,8 +22,8 @@ Navigate to http://localhost:5601 localhost:5601 to view the running server.
 
 Take a second to look at each of the pages below. They may be beneficial during your development:
 
-1. Dev Tools http://localhost:5601/app/kibana#/dev_tools - Use the Dev Tools to run queries against your ElasticSearch (without cURL!)
-2. Discover http://localhost:5601/app/kibana#/discover - lists all of the data in your ElasticSearch instance.
+1. Dev Tools http://localhost:5601/app/kibana#/dev_tools - Use the Dev Tools to run queries against your Elasticsearch (without cURL!)
+2. Discover http://localhost:5601/app/kibana#/discover - lists all of the data in your Elasticsearch instance.
 3. Visualize http://localhost:5601/app/kibana#/visualize - Perform analysis and create graphics describing your data.
 4. Dashboard http://localhost:5601/app/kibana#/dashboard - Combine graphs to give you a comprehensive picture of your data.
 

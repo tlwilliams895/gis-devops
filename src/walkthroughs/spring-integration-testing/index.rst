@@ -1,4 +1,5 @@
 :orphan:
+
 .. _SIT-walkthrough:
 
 =====================================
@@ -38,11 +39,11 @@ Executing and Verifying Results
 =============================================================================  =============
 Method                                                                         Info
 =============================================================================  =============
-``MockMvc.perform(RequestBuilder requestBuilder)``                             Perform a request and return a type that allows chaining further actions, such as asserting expectations, on the result. `More info <https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html>`_
+``MockMvc.perform(RequestBuilder requestBuilder)``                             Perform a request and return a type that allows chaining further actions, such as asserting expectations, on the result. `More info on MockMvc <https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html>`_
 
-``MockMvcRequestBuilders.get(String uri)``                                     static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained. `More info <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/request/MockMvcRequestBuilders.html>`_
+``MockMvcRequestBuilders.get(String uri)``                                     static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained. `More info on MockMvcRequestBuilders <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/request/MockMvcRequestBuilders.html>`_
 
-``MockMvcRequestBuilders.post()``                                              static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained.  `More info <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html>`_
+``MockMvcRequestBuilders.post()``                                              static method that performs a GET request. Returns a MockMvcRequestBuilder that can be chained.  `More info on MockMvcResultMatchers <https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/servlet/result/MockMvcResultMatchers.html>`_
 
 ``MockMvcRequestMatchers - content(), jsonPath(), status()``                   The type of result to expect: HTML, JSON, status...  More info
 
@@ -65,7 +66,7 @@ Our Tasks
 ---------
 1. In Intellij go to test class ``/src/test/java/org/launchcode/training/CarControllerTests.java``
 2. Add an integration test for going to the url ``/car``
-3. Implement the route ``/car`` and make the new test pass 
+3. Implement the route ``/car`` and make the new test pass
 4. Add an integartion test for going to the url ``/car/:id``
 5. Implement the route ``/car/:id`` and make the new test pass
 

@@ -1,4 +1,5 @@
 :orphan:
+
 .. _eslint-airwaze-walkthrough:
 
 ===========================
@@ -40,9 +41,9 @@ Let's Add ESLint
 * Review the file that was just created ``.eslintrc.js``
 * Add this to your ``package.json`` file OR if ``"scripts"`` is already defined, simply update the value::
 
-  "scripts": {
-    "test": "eslint static/js/script.js"
-  },
+    "scripts": {
+        "test": "eslint static/js/script.js"
+    },
 
 
 Override the Airbnb indentation rule

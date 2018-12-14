@@ -1,4 +1,5 @@
 :orphan:
+
 .. _walkthrough-AWS-RDS-VPC:
 
 ================================================
@@ -20,7 +21,7 @@ Remember, in order to connect to an EC2 in a VPC you need to have the following 
 4. An Internet Gateway needs to be attached to your VPC.
 5. There needs to be a custom route directing traffic from `0.0.0.0/0` to your Internet Gateway.
 
-`Here <https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/>`_ is an AWS Article on Troubleshooting SSH `connections  if you have any trouble.
+Refer to the `AWS Article on Troubleshooting SSH connections <https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/>`_ if you have any trouble.
 
 Goals
 =====

@@ -1,4 +1,5 @@
 :orphan:
+
 .. _tdd-walkthrough:
 
 ================
@@ -12,8 +13,8 @@ Setup
 * We will use the same repo from Day 1
 * Open the car unit tests project in Intellij https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter
 
-Follow Along as we...
----------------------
+Follow Along
+------------
 
 1. Discuss the requirements we want to add
 2. Create a test list

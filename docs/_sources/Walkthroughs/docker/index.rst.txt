@@ -1,4 +1,5 @@
 :orphan:
+
 .. _walkthrough-docker:
 
 =========================
@@ -61,7 +62,7 @@ Setup
 Clone this repo `docker-flask-walkthrough <https://gitlab.com/LaunchCodeTraining/docker-flask-walkthrough>`_
 
 Install dependencies using pip by running:::
- 
+
   $ pip install --user -r requirements.txt
 
 
@@ -84,7 +85,7 @@ Review file ``simple_app.py``::
       app.run(host="0.0.0.0", debug=True)
 
 Run the simple web app by running the below command::
-  
+
   $ python simple_app.py
 
 Navigate to ``http://localhost:5000``, it should show our simple message.  Please **stop** this process as we will next get this running via a Docker container.

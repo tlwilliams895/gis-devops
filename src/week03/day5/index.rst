@@ -50,7 +50,7 @@ Topics
 * Authorization
 * HATEOAS
 * Four levels of the REST maturity model
-* ElasticSearch
+* Elasticsearch
 * NoSQL vs relational databases
 * ES indexes
 * ES clusters

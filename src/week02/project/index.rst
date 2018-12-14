@@ -1,7 +1,7 @@
 .. _week2_project:
 
 ============================================
-Week 2 - Project Week - Zika Mission Control
+Week 2 - Project Week: Zika Mission Control
 ============================================
 
 Learning objectives for this week :ref:`week02-objectives`

@@ -92,7 +92,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week - Zika Mission Control</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week: Zika Mission Control</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
@@ -130,7 +130,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studios">Studios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studio">Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
 </ul>
@@ -146,7 +146,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week - Zika Mission Control Part 2</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week: Zika Mission Control Part 2</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#project">Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#getting-the-code">Getting the code</a></li>
@@ -192,7 +192,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week - Zika Mission Control Part 3</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week: Zika Mission Control Part 3</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#project">Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#requirements">Requirements</a></li>
@@ -203,7 +203,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week - Zika Mission Control Part 4</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week: Zika Mission Control Part 4</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#new-stuff">New Stuff</a></li>
@@ -366,10 +366,8 @@ spring.jpa.hibernate.ddl-auto = update
 <li>To create the subnet, give it a descriptive name to help identify it later.</li>
 <li>Select your VPC from the VPC select list.</li>
 <li>Select one of the availablity zones for your region.</li>
-<li>Create a new CIDR block for this private subnet.<ul>
-<li>Remember, if you use a <code class="docutils literal notranslate"><span class="pre">x.x.x.x/24</span></code> subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.</li>
-</ul>
-</li>
+<li>Create a new CIDR block for this private subnet.
+* Remember, if you use a <code class="docutils literal notranslate"><span class="pre">x.x.x.x/24</span></code> subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.</li>
 <li>Do this twice, with a different availability zone and CIDR block for both subnets.</li>
 </ul>
 <p>Screen shot of the Create Subnet configuration window</p>
@@ -508,15 +506,13 @@ spring.jpa.hibernate.ddl-auto = update
 </div></blockquote>
 <ul class="simple">
 <li>At the bottom of the “Configure Instance Details” screen is a collapsed area called “Advanced Details.” Click the text “Advanced Details” to expand this.</li>
-<li>You will see a “User data” section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:<ul>
-<li>Installs Java</li>
-<li>Creates the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> system user</li>
-<li>Creates the application and configuration directories</li>
-<li>Writes the airwaze configuration file, which includes the environment variables for the application</li>
-<li>Writes the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> service file</li>
-<li>Prepares the service for execution</li>
-</ul>
-</li>
+<li>You will see a “User data” section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
+- Installs Java
+- Creates the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> system user
+- Creates the application and configuration directories
+- Writes the airwaze configuration file, which includes the environment variables for the application
+- Writes the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> service file
+- Prepares the service for execution</li>
 <li>This script is run as <code class="docutils literal notranslate"><span class="pre">root</span></code>, so <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is not needed for these commands. That also means you must be careful when crafting a script to run here.</li>
 <li>Copy this script in the “User data” section and adjust the <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> to your RDS instance’s endpoint.</li>
 </ul>
@@ -736,10 +732,8 @@ $ sudo systemctl start airwaze.service
 <div><img alt="../../_images/public-subnet-route-table.png" src="../../_images/public-subnet-route-table.png" />
 </div></blockquote>
 <ul class="simple">
-<li>Change the Route Table selection to one with a target that starts with <code class="docutils literal notranslate"><span class="pre">igw</span></code>. This is your VPC’s internet gateway.<ul>
-<li>An Internet Gateway allows communication between instances in your VPC and the internet.</li>
-</ul>
-</li>
+<li>Change the Route Table selection to one with a target that starts with <code class="docutils literal notranslate"><span class="pre">igw</span></code>. This is your VPC’s internet gateway.
+* An Internet Gateway allows communication between instances in your VPC and the internet.</li>
 <li>Click “Save”</li>
 </ul>
 <p>Screen shot showing a route table that includes an internet gateway</p>
@@ -851,10 +845,8 @@ $ sudo systemctl start airwaze.service
 <li>Stop your other instance</li>
 <li>Refresh the browser and see the application no longer works</li>
 <li>Click “Actions” -&gt; “Instance State” -&gt; “Start” to restart one of your instances</li>
-<li>Refresh the browser and see the application return to a working state<ul>
-<li>This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic</li>
-</ul>
-</li>
+<li>Refresh the browser and see the application return to a working state
+* This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic</li>
 </ul>
 <p>Congratulations! You have successfully created a load-balanced application in the cloud.</p>
 </div>

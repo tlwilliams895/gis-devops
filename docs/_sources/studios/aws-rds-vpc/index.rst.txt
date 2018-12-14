@@ -1,4 +1,5 @@
 :orphan:
+
 .. _studio-AWS-RDS-VPC:
 
 ===========================
@@ -82,7 +83,6 @@ Screen shot with a red circle around the Create Subnet button
 * Select your VPC from the VPC select list.
 * Select one of the availablity zones for your region.
 * Create a new CIDR block for this private subnet.
-  
   * Remember, if you use a ``x.x.x.x/24`` subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.
 
 * Do this twice, with a different availability zone and CIDR block for both subnets.
@@ -229,7 +229,6 @@ Screen shot of the "Configure INstnace Details" screen
 
 * At the bottom of the "Configure Instance Details" screen is a collapsed area called "Advanced Details." Click the text "Advanced Details" to expand this.
 * You will see a "User data" section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
-  
   - Installs Java
   - Creates the ``airwaze`` system user
   - Creates the application and configuration directories
@@ -470,7 +469,6 @@ Screen shot of the "Route Table" tab on the new subnet
   .. image:: /_static/images/lb-cloud/lb/public-subnet-route-table.png
 
 * Change the Route Table selection to one with a target that starts with ``igw``. This is your VPC's internet gateway.
-  
   * An Internet Gateway allows communication between instances in your VPC and the internet.
 
 * Click "Save"
@@ -587,7 +585,6 @@ The real power in a load balancer is it can route traffic away from unhealthy in
 * Refresh the browser and see the application no longer works
 * Click "Actions" -> "Instance State" -> "Start" to restart one of your instances
 * Refresh the browser and see the application return to a working state
-  
   * This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic
 
 Congratulations! You have successfully created a load-balanced application in the cloud.

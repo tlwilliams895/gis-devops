@@ -1,4 +1,5 @@
 :orphan:
+
 .. _walkthrough-openlayers:
 
 ==================================
@@ -36,9 +37,9 @@ Next, add OpenLayers to your project by including the JavaScript source in the h
 
     <script src="ol-v5.3.0/build/ol.js"></script>
     <link rel="stylesheet" href="ol-v5.3.0/css/ol.css">
- 
+
 Add a link for JQuery JavaScript library
-  
+
 - We'll use jQuery to make things like AJAX calls and DOM manipulation a bit easier.
 - The ``jquery-3.3.1.min.js`` files has alredy been downloaded. We need to add a link to it in our html
 
@@ -54,10 +55,10 @@ We need to create a ``<div>`` that will contain our Map
 .. code-block:: html
 
     <div id="mapPlaceholder" class="map"></div>
- 
+
 
 Then set the size for the map, by adding this to the ``<head>``
- 
+
 .. code-block:: html
 
     <style>
@@ -66,7 +67,7 @@ Then set the size for the map, by adding this to the ``<head>``
             width: 100%;
         }
     </style>
- 
+
 What your code should look like
 --------------------------------
  .. image :: /_static/images/open-layers-resources.png
@@ -79,15 +80,15 @@ Start a web server using ``python`` using one of the below commands.
 
 - Open a terminal in the folder where you cloned the starter repo
 - Check python version via:
-  
+
   - ``$ python -V``
 
 - If Python version returned above is 3.X:
-  
+
   - ``$ python -m http.server 7070``
-    
+
 - If Python version returned above is 2.X:
-  
+
   - ``$ python -m SimpleHTTPServer 7070``
 
 - In a browser go to ``http://localhost:7070/index.html``
@@ -213,6 +214,7 @@ For the next feature we will need to use `Javascript Template Literals <https://
     const = `Template literals start and end with ticks and you can includes variables like so. Hello ${name}.
     You can include ' and " inside of the template literals. And you can break into multiple lines.
     `;
+
 
 Show Airport List when Map Clicked
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -44,7 +44,7 @@ Set and Use Username/Password
 
 3. Run ``bootRun`` task via **Run Configuration** menu
 4. Go to http://localhost:8080/user
-5. Enter the username/password you have stored in **Run Configuration** 
+5. Enter the username/password you have stored in **Run Configuration**
 
 Basic Access Auth Login Form
 ----------------------------
@@ -64,27 +64,27 @@ There are specific properties in ``application.properties`` that configure Sprin
 
 These are the properties that enable HTTPS (SSL)::
 
-	server.ssl.key-store=src/main/resources/certs/keystore.jks
-	server.ssl.key-store-password=${CERT-PASSWORD}
-	server.ssl.key-alias=localhost
-	server.ssl.key-password=${CERT-PASSWORD}
-	server.ssl.enabled=true
-	server.port=8443
+    server.ssl.key-store=src/main/resources/certs/keystore.jks
+    server.ssl.key-store-password=${CERT-PASSWORD}
+    server.ssl.key-alias=localhost
+    server.ssl.key-password=${CERT-PASSWORD}
+    server.ssl.enabled=true
+    server.port=8443
 
 .. note::
 
-	Port 8443 is the alternate SSL port. The default SSL port is 443
+   Port 8443 is the alternate SSL port. The default SSL port is 443
 
 .. warning::
 
-	If you run ``bootRun`` before creating certs for HTTPS, you will see this error: ``The Tomcat connector configured to listen on port 8443 failed to start. The port may already be in use or the connector may be misconfigured.``
+    If you run ``bootRun`` before creating certs for HTTPS, you will see this error: ``The Tomcat connector configured to listen on port 8443 failed to start. The port may already be in use or the connector may be misconfigured.``
 
 Configure Intellij Run Configurations
 -------------------------------------
 1. Add ``CERT-PASSWORD`` and it's value to **Environment Variables** in **Run Configurations**
 
    * ``CERT-PASSWORD`` = The password you used to create keystore and certificate in previous section
-   * You will use this password value for all ``PASSWORD=``commands below
+   * You will use this password value for all ``PASSWORD=`` commands below
 
 Create HTTPS Certificate
 ------------------------
@@ -97,12 +97,12 @@ Create Keystore (keystork.jks)
 ------------------------------
 ::
 
-	$ make create-keystore PASSWORD=changeit
-	$ # Generate a certificate authority (CA)
-	keytool -genkey -alias ca -ext BC=ca:true \
-			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-			-validity 3650 -dname 'CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
-			-keystore keystore.jks -storepass changeit
+    $ make create-keystore PASSWORD=changeit
+    $ # Generate a certificate authority (CA)
+    keytool -genkey -alias ca -ext BC=ca:true \
+            -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
+            -validity 3650 -dname 'CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
+            -keystore keystore.jks -storepass changeit
 
 
 By doing an ``ls``, you should now see that you ``keystore.jks`` file in your directory.
@@ -111,7 +111,7 @@ Create Certificate (localhost.crt)
 ----------------------------------
 Next you will create a certificate for you local development environment. Run the following command:::
 
-	$ make add-host HOSTNAME=localhost PASSWORD=changeit
+    $ make add-host HOSTNAME=localhost PASSWORD=changeit
 
 Running ``ls`` will show that there are now two additional files in your director: ``localhost.csr`` and ``localhost.cst``.
 
@@ -121,15 +121,15 @@ Next, you will need to create a ``truststore``.  The ``truststore`` is where all
 
 ::
 
-	$ make create-truststore PASSWORD=changeit
-	# Export certificate authority
-	keytool -export -alias ca -file ca.crt -rfc \
-			-keystore keystore.jks -storepass changeit
-	Certificate stored in file <ca.crt>
-	# Import certificate authority into a new truststore
-	keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
-			-keystore truststore.jks -storepass changeit
-	Certificate was added to keystore
+    $ make create-truststore PASSWORD=changeit
+    # Export certificate authority
+    keytool -export -alias ca -file ca.crt -rfc \
+            -keystore keystore.jks -storepass changeit
+    Certificate stored in file <ca.crt>
+    # Import certificate authority into a new truststore
+    keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
+            -keystore truststore.jks -storepass changeit
+    Certificate was added to keystore
 
 
 Running ``ls`` will show that two more files have been added to your directory: ``ca.crt`` and ``truststore.jks``.
@@ -158,15 +158,16 @@ Add ``ca.crt`` as a CA to your browser
 
 Client Certificates
 ===================
-Spring Security can be configured to authenticate users using client certificates. 
+
+Spring Security can be configured to authenticate users using client certificates.
 
 Enable Certificate Authentication in Spring Security
 ----------------------------------------------------
 Add these properties to ``application.properties`` to enable client authentication user certificates::
 
-	server.ssl.trust-store=src/main/resources/certs/truststore.jks
-	server.ssl.trust-store-password=${CERT-PASSWORD}
-	server.ssl.client-auth=need
+    server.ssl.trust-store=src/main/resources/certs/truststore.jks
+    server.ssl.trust-store-password=${CERT-PASSWORD}
+    server.ssl.client-auth=need
 
 Update UserController Class
 ---------------------------
@@ -193,32 +194,32 @@ Next, you will create a client certificate and add it to the truststore.
 
 ::
 
-	$ make add-client CLIENTNAME=janet PASSWORD=changeit
-	//output
-	keytool -genkey -alias janet \
-			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-			-validity 3650 -dname 'CN=janet,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
-			-keystore truststore.jks -storepass changeit
-	# Generate a host certificate signing request
-	keytool -certreq -alias janet -ext BC=ca:true \
-			-keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
-			-validity 3650 -file "janet.csr" \
-			-keystore truststore.jks -storepass changeit
-	# Generate signed certificate with the certificate authority
-	keytool -gencert -alias ca \
-			-validity 3650 -sigalg SHA512withRSA \
-			-infile "janet.csr" -outfile "janet.crt" -rfc \
-			-keystore keystore.jks -storepass changeit
-	# Import signed certificate into the truststore
-	keytool -import -trustcacerts -alias janet \
-			-file "janet.crt" \
-			-keystore truststore.jks -storepass changeit
-	Certificate reply was installed in keystore
-	# Export private certificate for importing into a browser
-	keytool -importkeystore -srcalias janet \
-			-srckeystore truststore.jks -srcstorepass changeit \
-			-destkeystore "janet.p12" -deststorepass changeit \
-			-deststoretype PKCS12
+    $ make add-client CLIENTNAME=janet PASSWORD=changeit
+    //output
+    keytool -genkey -alias janet \
+            -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
+            -validity 3650 -dname 'CN=janet,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
+            -keystore truststore.jks -storepass changeit
+    # Generate a host certificate signing request
+    keytool -certreq -alias janet -ext BC=ca:true \
+            -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
+            -validity 3650 -file "janet.csr" \
+            -keystore truststore.jks -storepass changeit
+    # Generate signed certificate with the certificate authority
+    keytool -gencert -alias ca \
+            -validity 3650 -sigalg SHA512withRSA \
+            -infile "janet.csr" -outfile "janet.crt" -rfc \
+            -keystore keystore.jks -storepass changeit
+    # Import signed certificate into the truststore
+    keytool -import -trustcacerts -alias janet \
+            -file "janet.crt" \
+            -keystore truststore.jks -storepass changeit
+    Certificate reply was installed in keystore
+    # Export private certificate for importing into a browser
+    keytool -importkeystore -srcalias janet \
+            -srckeystore truststore.jks -srcstorepass changeit \
+            -destkeystore "janet.p12" -deststorepass changeit \
+            -deststoretype PKCS12
 
 Add Client Certificate to the Browser
 -------------------------------------

@@ -157,7 +157,8 @@ html_sidebars = {
     '**': ['localtoc.html'],
     'index': [],
     'search': [],
-    'about': []
+    'about': [],
+    'objectives': []
 }
 
 

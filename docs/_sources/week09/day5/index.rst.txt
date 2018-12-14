@@ -1,8 +1,8 @@
 .. _week9_day5:
 
-==============
+============================
 Week 9 - Day 5: Certificates
-==============
+============================
 
 Learning objectives for this module :ref:`week09-day5-objectives`
 

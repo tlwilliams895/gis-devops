@@ -1,4 +1,5 @@
 :orphan:
+
 .. _elasticsearch1-studio:
 
 ==========================
@@ -11,7 +12,7 @@ Elasticsearch Installation
 We need to install Elasticsearch locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.
 
 On Mac, use Homebrew:::
-    
+
     $ brew install elasticsearch
 
 
@@ -73,7 +74,7 @@ Run the script to create some documents:::
     If an error occurs while running the script, delete the index. Get help from an instructor and then try again.
 
     You can delete an index this way: ``$ curl -XDELETE 'localhost:9200/twitter/``
-    
+
 
 Your Tasks
 ==========

@@ -1,4 +1,5 @@
 :orphan:
+
 .. _elasticsearch-spring-walkthrough:
 
 ====================================
@@ -20,10 +21,10 @@ We'll walk through several steps needed to use Elasticsearch within Spring.
 
 
 1. Add Gradle dependencies::
-    
+
     compile('org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.10.RELEASE')
     compile(group: 'org.elasticsearch.client', name: 'transport', version: '6.2.3')
-    
+
 2. Create the ``EsConfig`` class to setup an embedded Elasticsearch instance
 3. Write an integration test for the desired behavior
 4. Create the ``ItemDocument`` and ``ItemDocumentRepository`` classes
@@ -32,7 +33,7 @@ We'll walk through several steps needed to use Elasticsearch within Spring.
 
 .. note::
 
-    This approach uses the ``TransportClient`` class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the ``TransportClient`` have the _same major versions_. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.
+    This approach uses the ``TransportClient`` class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the ``TransportClient`` have the *same major versions*. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.
 
     Read more about the state of the official `Elasticsearch Java clients <https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients>`_.
 
@@ -54,8 +55,8 @@ We looked at how to push a new item to Elasticsearch when creating it via the RE
 Resources
 =========
 
-* `Spring Data Elasticsearch <tutoria http://www.baeldung.com/spring-data-elasticsearch-tutorial>`_
-* `ElasticSearchRepository <https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html>`_
+* `Spring Data Elasticsearch <http://www.baeldung.com/spring-data-elasticsearch-tutorial>`_
+* `ElasticsearchRepository <https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html>`_
 * `TransportClient <https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html>`_
 * `QueryBuilders <https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html>`_
 * `Spring Data Elasticsearch Queries <http://www.baeldung.com/spring-data-elasticsearch-queries>`_

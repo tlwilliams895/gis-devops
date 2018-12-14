@@ -92,7 +92,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week - Zika Mission Control</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week: Zika Mission Control</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
@@ -130,7 +130,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studios">Studios</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studio">Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
 </ul>
@@ -146,7 +146,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week - Zika Mission Control Part 2</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week: Zika Mission Control Part 2</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#project">Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#getting-the-code">Getting the code</a></li>
@@ -192,7 +192,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week - Zika Mission Control Part 3</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week: Zika Mission Control Part 3</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#project">Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#requirements">Requirements</a></li>
@@ -203,7 +203,7 @@
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week - Zika Mission Control Part 4</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week: Zika Mission Control Part 4</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#new-stuff">New Stuff</a></li>
@@ -381,7 +381,7 @@ server.port=8443
 <ol class="arabic simple">
 <li>Add <code class="docutils literal notranslate"><span class="pre">CERT-PASSWORD</span></code> and it’s value to <strong>Environment Variables</strong> in <strong>Run Configurations</strong><ul>
 <li><code class="docutils literal notranslate"><span class="pre">CERT-PASSWORD</span></code> = The password you used to create keystore and certificate in previous section</li>
-<li>You will use this password value for all <a href="#id4"><span class="problematic" id="id5">``</span></a>PASSWORD=``commands below</li>
+<li>You will use this password value for all <code class="docutils literal notranslate"><span class="pre">PASSWORD=</span></code> commands below</li>
 </ul>
 </li>
 </ol>
@@ -396,9 +396,9 @@ server.port=8443
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make create-keystore PASSWORD=changeit
 $ # Generate a certificate authority (CA)
 keytool -genkey -alias ca -ext BC=ca:true \
-                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-                -validity 3650 -dname &#39;CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
-                -keystore keystore.jks -storepass changeit
+        -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
+        -validity 3650 -dname &#39;CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
+        -keystore keystore.jks -storepass changeit
 </pre></div>
 </div>
 <p>By doing an <code class="docutils literal notranslate"><span class="pre">ls</span></code>, you should now see that you <code class="docutils literal notranslate"><span class="pre">keystore.jks</span></code> file in your directory.</p>
@@ -417,11 +417,11 @@ keytool -genkey -alias ca -ext BC=ca:true \
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make create-truststore PASSWORD=changeit
 # Export certificate authority
 keytool -export -alias ca -file ca.crt -rfc \
-                -keystore keystore.jks -storepass changeit
+        -keystore keystore.jks -storepass changeit
 Certificate stored in file &lt;ca.crt&gt;
 # Import certificate authority into a new truststore
 keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
-                -keystore truststore.jks -storepass changeit
+        -keystore truststore.jks -storepass changeit
 Certificate was added to keystore
 </pre></div>
 </div>
@@ -483,29 +483,29 @@ TODO</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ make add-client CLIENTNAME=janet PASSWORD=changeit
 //output
 keytool -genkey -alias janet \
-                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-                -validity 3650 -dname &#39;CN=janet,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
-                -keystore truststore.jks -storepass changeit
+        -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
+        -validity 3650 -dname &#39;CN=janet,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC&#39; \
+        -keystore truststore.jks -storepass changeit
 # Generate a host certificate signing request
 keytool -certreq -alias janet -ext BC=ca:true \
-                -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
-                -validity 3650 -file &quot;janet.csr&quot; \
-                -keystore truststore.jks -storepass changeit
+        -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
+        -validity 3650 -file &quot;janet.csr&quot; \
+        -keystore truststore.jks -storepass changeit
 # Generate signed certificate with the certificate authority
 keytool -gencert -alias ca \
-                -validity 3650 -sigalg SHA512withRSA \
-                -infile &quot;janet.csr&quot; -outfile &quot;janet.crt&quot; -rfc \
-                -keystore keystore.jks -storepass changeit
+        -validity 3650 -sigalg SHA512withRSA \
+        -infile &quot;janet.csr&quot; -outfile &quot;janet.crt&quot; -rfc \
+        -keystore keystore.jks -storepass changeit
 # Import signed certificate into the truststore
 keytool -import -trustcacerts -alias janet \
-                -file &quot;janet.crt&quot; \
-                -keystore truststore.jks -storepass changeit
+        -file &quot;janet.crt&quot; \
+        -keystore truststore.jks -storepass changeit
 Certificate reply was installed in keystore
 # Export private certificate for importing into a browser
 keytool -importkeystore -srcalias janet \
-                -srckeystore truststore.jks -srcstorepass changeit \
-                -destkeystore &quot;janet.p12&quot; -deststorepass changeit \
-                -deststoretype PKCS12
+        -srckeystore truststore.jks -srcstorepass changeit \
+        -destkeystore &quot;janet.p12&quot; -deststorepass changeit \
+        -deststoretype PKCS12
 </pre></div>
 </div>
 </div>

@@ -1,4 +1,5 @@
 :orphan:
+
 .. _tdd-studio:
 
 ===============================
@@ -38,7 +39,7 @@ Requirements
 * The constructor should take mixed-case strings, but set fields as lowercase strings. For example, if passed ``"HTTPS://LAUNCHCODE.ORG"`` then calling ``getDomain()`` should return ``"launchcode.org"``.
 * ``Url`` should override ``toString()``, which should return a properly-formatted version of the URL (e.g. ``"https://launchcode.org/learn"``)
 * The string passed to the constructor should satisfy each of the following. If it doesn't, then the constructor should throw an ``IllegalArgumentException`` with an appropriate message.
-  
+
   * The protocol is one of: ftp, http, https, and file
   * The path may be empty, but domain and protocol must both be non-empty
   * The domain may only contain letters, numbers, ``.``, ``-``, or ``_``
@@ -69,6 +70,7 @@ If you don't complete each of the tasks, turn in as much as you have completed b
 Resources
 ---------
 * `Java Regex Docs <https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html>`_
+
 .. tip::
 
     The "intentions menu", Alt + Enter, in Intellij has a "Check Regex" option that brings up a Regular Expression tester.

@@ -1,4 +1,5 @@
 :orphan:
+
 .. _studio-docker:
 
 =================
@@ -56,7 +57,7 @@ If you expose the port ``5432`` on your PostGIS container using the ``-p 5432:54
 Settings up databases in Docker can be kind of tricky because they typically require setting up users and a schema before they can be used by an application server. Here is an example ``docker-compose`` file that configure the PostGIS container, note all of the file is not shown.
 
 ::
-  
+
   postgis:
     image: "kartoza/postgis:10.0-2.4"
     ports:
@@ -74,7 +75,7 @@ Get your **Zika CDC Dashboard** to run via a ``docker-compose.yml`` file.
 
 * Container running **Zika CDC Dashboard**
 * Container running **PostGIS**
-* Conatiner running **ElasticSearch**
+* Conatiner running **Elasticsearch**
 * Conatiner runninng **GeoServer**
 * DockerFile to create the **Zika CDC Dashboard** image
 * DockerFile to create and populate the **PostGIS** container

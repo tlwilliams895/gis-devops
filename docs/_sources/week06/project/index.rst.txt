@@ -1,8 +1,8 @@
 .. _week6_project:
 
-=====================
-Week 6 - Project Week - Zika Mission Control Part 3
-=====================
+===================================================
+Week 6 - Project Week: Zika Mission Control Part 3
+===================================================
 
 Project
 =======
@@ -25,8 +25,8 @@ To complete this project, your app should meet the following requirements:
 1. Your application is deployed via AWS at a live URL
 2. You use CentOS for your EC2 instances (details below)
 3. Setup a LaunchConfiguration to spin up new Web App EC2 instances
-4. You setup a VPC for your Web app, RDS, and ElasticSearch
-5. ElasticSearch is hosted on an EC2 inside your VPC
+4. You setup a VPC for your Web app, RDS, and Elasticsearch
+5. Elasticsearch is hosted on an EC2 inside your VPC
 6. Your application can consistently handle 300 requests per second
 7. Jenkins watches your repo pushes a release to S3 if all of the following pass:
 
@@ -46,8 +46,8 @@ Specific Changes
 
 1. For your **Web App** EC2 instances you will be using the ``CentOS`` operating system instead of ``Ubuntu``
 2. Using Spring Data 2.0.2 (dependencies have been updated in build.gradle)
-3. When running locally you will be running **ElasticSearch** inside a **Docker** instance (details below)
-4. When running in the cloud you will be running **ElasticSearch** on a ``Ubuntu`` EC2 instance
+3. When running locally you will be running **Elasticsearch** inside a **Docker** instance (details below)
+4. When running in the cloud you will be running **Elasticsearch** on a ``Ubuntu`` EC2 instance
 
 Setup Locally
 =============
@@ -56,18 +56,18 @@ To run Elasticsearch locally, we are going to be using Docker:
 
 * Download docker installer from `here <https://store.docker.com/editions/community/docker-ce-desktop-mac>`_
 * That will install docker as a service and an application that will run everytime your computer starts. (look for the whale icon in your menu bar at the top of your mac)
-* Now you can run ``$ docker`` commands in your terminal. Like the one below. (this runs a docker instance that contains ElasticSearch)
-* The connection information for the docker version of ElasticSearch is contained in the comments of `this file <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week6-starter/src/main/resources/application.properties>`_
+* Now you can run ``$ docker`` commands in your terminal. Like the one below. (this runs a docker instance that contains Elasticsearch)
+* The connection information for the docker version of Elasticsearch is contained in the comments of `this file <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week6-starter/src/main/resources/application.properties>`_
 * MAKE SURE YOUR TESTS ARE PASSING LOCALLY BEFORE MOVING TO THE CLOUD
 
 .. note::
 
-  Be sure to stop your home brew Elasticsearch by running ``brew services stop elasticsearch``
+  Be sure to stop your home brew Elasticsearch by running ``brew services stop Elasticsearch``
 
 
 Create the container (NOTE: An id will be returned)::
 
-  $ docker create -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:5.6.0
+  $ docker create -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  -e "xpack.security.enabled=false" docker.elastic.co/Elasticsearch/Elasticsearch:5.6.0
   63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8 <----- this is returned after the above command, it's id of the container that is created COPY THIS SOMEHWERE
 
 Start the container::
@@ -82,7 +82,7 @@ You can restart or stop the container as well::
 
 .. note::
 
-  The error ``None of the configured nodes are available`` can be caused by starting up your Web App before ElasticSearch is running. This can also happen if you restart your ElasticSearch while your Web App is running.
+  The error ``None of the configured nodes are available`` can be caused by starting up your Web App before Elasticsearch is running. This can also happen if you restart your Elasticsearch while your Web App is running.
 
 Setup in the Cloud
 ==================
@@ -108,20 +108,20 @@ CentOS Image
 
 .. image:: /_static/images/centos-image.png
 
-Cloud ElasticSearch
+Cloud Elasticsearch
 -------------------
 
-In the clouid you will be running ElasticSearch on it's own EC2 instance.
+In the clouid you will be running Elasticsearch on it's own EC2 instance.
 
-* You will need to spin up a ``Ubuntu`` ``t2.medium`` EC2 instance to serve ElasticSearch (ElasticSearch requires lots of memory)
-* Use the ``startup_elasticsearch.sh`` `script <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week6-starter/cloud/elastic_userdata.sh>`_ in the week6-starter project to configure a ``t2.medium`` machine.
-* You can check on the status of ElasticSearch by sshing into the server and running ``$ journalctl -f -u elasticsearch``
-* If you get an "Out of Memory Exception", be sure to increase the heap size by setting ``Xms3g`` and ``Xmx4g`` in the ``/etc/elasticsearch/jvm.options`` file.
+* You will need to spin up a ``Ubuntu`` ``t2.medium`` EC2 instance to serve Elasticsearch (Elasticsearch requires lots of memory)
+* Use the ``startup_Elasticsearch.sh`` `script <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week6-starter/cloud/elastic_userdata.sh>`_ in the week6-starter project to configure a ``t2.medium`` machine.
+* You can check on the status of Elasticsearch by sshing into the server and running ``$ journalctl -f -u Elasticsearch``
+* If you get an "Out of Memory Exception", be sure to increase the heap size by setting ``Xms3g`` and ``Xmx4g`` in the ``/etc/Elasticsearch/jvm.options`` file.
 
 Create and Populate the RDS
 ---------------------------
 
-You will need to spin up an "YourName-AdminMachine" to configure your RDS. You will likely use this same machine to populate your ElasticSearch instance.
+You will need to spin up an "YourName-AdminMachine" to configure your RDS. You will likely use this same machine to populate your Elasticsearch instance.
 
 1. Create CentOS EC2 named "YourName-ZikaAdminMachine"
 2. Install Postgresql
@@ -138,21 +138,21 @@ You will need to spin up an "YourName-AdminMachine" to configure your RDS. You w
 
   $ psql -h gary-zika-db.1234.us-west-2.rds.amazonaws.com -d zika -U zika_app_user -c "\copy location(ID_0,ISO,NAME_0,ID_1,NAME_1,HASC_1,CCN_1,CCA_1,TYPE_1,ENGTYPE_1,NL_NAME_1,VARNAME_1,geom) from STDIN WITH DELIMITER E'\t' CSV" < locations.csv
 
-Seed the ElasticSearch Data Store
+Seed the Elasticsearch Data Store
 ---------------------------------
 
-When you ElasticSearch instance starts it has not data. We need to insert all reports in Postgresl into ElasticSearch.
+When you Elasticsearch instance starts it has not data. We need to insert all reports in Postgresl into Elasticsearch.
 
-1. You need to make a ``POST`` reuqest to ``/api/_cluster/reindex`` to a WebApp that is connected to your **cloud** ElasticSearch
-2. That can be done with your "YourName-AdminMachine" EC2 or by connectioning your **local** WebApp to your **cloud** ElasticSearch
+1. You need to make a ``POST`` reuqest to ``/api/_cluster/reindex`` to a WebApp that is connected to your **cloud** Elasticsearch
+2. That can be done with your "YourName-AdminMachine" EC2 or by connectioning your **local** WebApp to your **cloud** Elasticsearch
   
    * If you choose to use your "YourName-AdminMachine" EC2, it will likely need to be a ``t2.medium`` to be able to handle the memory load of selecting all reports and then sending them to ES
 
-3. This instance can be spun down after your RDS and ElasticSearch is working
+3. This instance can be spun down after your RDS and Elasticsearch is working
 
 .. note::
 
-  The "YourName-AdminMachine" instance may need to be a ``t2.small`` or ``t2.medium`` in order to handle the POST request that transfers all the reports to ElasticSearch. You will know this is the case if you see "out of memory" exceptions.
+  The "YourName-AdminMachine" instance may need to be a ``t2.small`` or ``t2.medium`` in order to handle the POST request that transfers all the reports to Elasticsearch. You will know this is the case if you see "out of memory" exceptions.
 
 
 VPC Setup

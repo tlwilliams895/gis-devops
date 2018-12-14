@@ -1,7 +1,7 @@
 .. _week4_project:
 
 ===================================================
-Week 4 - Project Week - Zika Mission Control Part 2
+Week 4 - Project Week: Zika Mission Control Part 2
 ===================================================
 
 Project
@@ -45,8 +45,8 @@ What's new in the code
 * CSV files ``data/locations.csv`` and ``data/all_reports.csv``
 * ``src/main/resources/data.sql`` copies the csv data into Postgis when SpringBoot is ran
 * Location data now contains multi-polygons instead of a single point
-* ElasticSearch dependencies and Repositories have been added
-* ``ESController`` contains an endpoint to populate ElasticSearch with all data in your Postgis db
+* Elasticsearch dependencies and Repositories have been added
+* ``ESController`` contains an endpoint to populate Elasticsearch with all data in your Postgis db
 
 Requirements
 ============
@@ -56,12 +56,12 @@ Use TDD when implementing these requirements
 1. Build out a ``/api/report`` endpoint that accepts a POST containing Report JSON in the body.
 
    * Store the Report created from JSON in PostGis
-   * Store the ReportDocument created from JSON in ElasticSearch
+   * Store the ReportDocument created from JSON in Elasticearch
 
 2. Show Zika report data for a certain date on a map via OpenLayers (reports grouped by state for a certain date)
 3. When a feature is clicked show the related report data (like in week 2 zika project)
 4. Ability to change the data displayed by changing the report date
-5. Search input and search button that uses ElasticSearch fuzzy search
+5. Search input and search button that uses Elasticsearch fuzzy search
 
    * When search is executed matching reports should be shown below map
    * And/Or Features present on map should change to be only those that match report date and fuzzy search term
@@ -75,15 +75,15 @@ Suggested Endpoints/Parameters
 
 1. ``api/report?date=2016-05-14`` should return GeoJSON created from reports filtered by report date
 
-   * Most likey you want this data to come from ElasticSearch because of requirement #2
+   * Most likey you want this data to come from Elasticsearch because of requirement #2
 
-2. ``api/report?search=brzil`` should return GeoJSON created from ElasticSearch filtered using fuzzy search
+2. ``api/report?search=brzil`` should return GeoJSON created from Elasticsearch filtered using fuzzy search
 3. ``api/report?search=brzil&date=2016-05-14`` should use both the ``date`` and ``search`` query parameters to limit the results3.
 4. ``api/report/unique-dates`` returns json containing all unique report dates
 
 .. note::
 
-    To index all of the reports in Postgis into ElasticSearch use the following command: ``$ curl -XPOST http://localhost:8080/api/_cluster/reindex``
+    To index all of the reports in Postgis into Elasticsearch use the following command: ``$ curl -XPOST http://localhost:8080/api/_cluster/reindex``
 
 Database Setup
 ==============

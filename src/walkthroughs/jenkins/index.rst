@@ -1,4 +1,5 @@
 :orphan:
+
 .. _walkthrough-jenkins:
 
 ====================
@@ -117,17 +118,19 @@ Configure Test Project
 
 * Navigate to project ``http://localhost:9090/job/Airwaze%20Test/``
 * In **General** select **This project is parameterized**
- String Parameter
+  String Parameter
 
- .. image:: /_static/images/parameter-project-1.png
+  .. image:: /_static/images/parameter-project-1.png
 
 * Paste this ``AIRWAZE_WORKSPACE`` into **name** input
+
 Enter parameter name
 
- .. image:: /_static/images/parameter-project-2.png
+  .. image:: /_static/images/parameter-project-2.png
 
 * Click **Advanced** button and select **Custom Workspace**
 * Enter ``${AIRWAZE_WORKSPACE}`` in the input
+
 Custom Workspace Direstory
 
   .. image:: /_static/images/parameter-project-3.png
@@ -182,9 +185,9 @@ Setup S3 Bucket (Needed so we can configure the next project)
 * Be sure to create the new bucket with **VERSIONING** enabled
 
 Make sure your s3 bucket shows up when you run this command in terminal::
- 
+
   $ aws s3 ls
- 
+
 
 Configure Deliver Project
 -------------------------

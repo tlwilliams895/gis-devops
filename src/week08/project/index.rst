@@ -1,8 +1,8 @@
 .. _week8_project:
 
-=====================
-Week 8 - Project Week - Zika Mission Control Part 4
-=====================
+==================================================
+Week 8 - Project Week: Zika Mission Control Part 4
+==================================================
 
 Overview
 ========
@@ -24,7 +24,7 @@ Requirements
 New Stuff
 =========
 
-There are a few differences in this project compared to week6-starter.  You may want to copy over certain changes instead of merging.
+There are a few differences in this project compared to ``week6-starter``.  You may want to copy over certain changes instead of merging.
 
 * `Week 8 Starter <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/tree/week8-starter>`_
 * `Week8-starer compared to Week6-starter <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/compare/week6-starter...week8-starter>`_
@@ -36,7 +36,7 @@ Specific Changes
 
    * GeoServer container
    * Postgis container
-   * ElasticSearch container
+   * Elasticsearch container
 
 2. Partially normalized repot data
 
@@ -106,7 +106,7 @@ We are going to "link" the postgis and geoserver containers. That tells docker t
 When it's container is running, you can access this GeoServer instance the same way in which you previously accessed GeoServer locally when running the Boundless virtual machine. It will be running on port 8080 (try http://localhost:8080/geoserver) with credientials **admin / geoserver**.
 
 
-Create ElasticSearch Container
+Create Elasticsearch Container
 ------------------------------
 
 ::

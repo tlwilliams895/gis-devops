@@ -1,9 +1,10 @@
 :orphan:
+
 .. _walkthrough-hashing-salting:
 
-=====================================
+==========================================
 Walkthrough: Hashing and Salting Passwords
-=====================================
+==========================================
 
 Setup
 #####
@@ -24,7 +25,7 @@ Implement Secure Password Hashing using BCrypt
 2. Add **Spring Security** dependency to ``build.gradle``::
 
     dependencies {
-	    compile('org.springframework.security:spring-security-crypto')
+        compile('org.springframework.security:spring-security-crypto')
         //more dependencies will be listed above or below...
     }
 

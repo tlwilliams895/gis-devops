@@ -1,8 +1,8 @@
 .. _week5_day2:
 
-==============
+=============================
 Week 5 - Day 2: More with AWS
-==============
+=============================
 
 Learning objectives for this module :ref:`week05-day2-objectives`
 
