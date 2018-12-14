@@ -9,7 +9,6 @@ site_theme_options = {
     'navbar_title': 'GIS DevOps',
     'navbar_site_name': "Pages",
     'bootswatch_theme': 'launchcode',
-    'jrandom': 'whatever',
 }
 
 project = 'LaunchCode Curriculum Docs'
