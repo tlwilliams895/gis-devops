@@ -1,4 +1,5 @@
 :orphan:
+
 .. _aws-EC2-basics-studio:
 
 =========================
@@ -320,8 +321,7 @@ Screen shot of Edit inbound rules display with a new rule of 8080 to "My IP" add
 
   .. image:: /_static/images/add-web-to-security-group.png
 
-* Click ``Save``
-This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.
+* Click ``Save``. This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.
 
 * Open your browser
 * Go to your server on port 8080:

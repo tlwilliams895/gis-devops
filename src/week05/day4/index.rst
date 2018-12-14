@@ -1,10 +1,10 @@
 .. _week5_day4:
 
-==============
+==============================================
 Week 5 - Day 4: Gradle, Continuous Integration
-==============
+==============================================
 
-Learning objectives for this module :ref:`_week05-day4-objectives`
+Learning objectives for this module :ref:`week05-day4-objectives`
 
 
 Lesson Content
@@ -18,13 +18,13 @@ Lesson Content
 Walkthrough
 ===========
 
-- Gradle :ref:`walkthrough-gradle`
-- Jenkins :ref:`walkthrough-jenkins`
+- :ref:`walkthrough-gradle`
+- :ref:`walkthrough-jenkins`
 
 Resources
 =========
 
-* `Gradle <https://gradle.org/>`_
+* `Official Gradle Site <https://gradle.org/>`_
 * `Groovy Language Documentation <http://docs.groovy-lang.org/latest/html/documentation/index.html>`_
 * `Gradle Build Language Reference <https://docs.gradle.org/current/dsl/index.html>`_
 * `Maven Central Repository <https://search.maven.org/>`_
