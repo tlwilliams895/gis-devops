@@ -71,3 +71,12 @@ Enable XML as a resource format. To do this, add the following Gradle dependency
 
 Now annotate the ``Item`` class with ``@XmlRootElement``. Then add ``@XmlElement`` to each field that should be included in the XML serialization as an XML element child of ``<Item>``, and ``@XmlAttribute`` to each field that should be included as an XML attribute of ``<Item>``. Don't forget about inherited fields.
 
+Spring Boot enables JSON formatting/serialization and makes it the default. If you wish XML to be the default format, you can set this up in ``WebApplicationConfig`` by adding:
+
+
+.. code-block:: java
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer){
+        configurer.defaultContentType(MediaType.APPLICATION_XML);
+    }

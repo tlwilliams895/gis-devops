@@ -331,6 +331,13 @@ $ git checkout -b rest-walkthrough-solution
 </pre></div>
 </div>
 <p>Now annotate the <code class="docutils literal notranslate"><span class="pre">Item</span></code> class with <code class="docutils literal notranslate"><span class="pre">&#64;XmlRootElement</span></code>. Then add <code class="docutils literal notranslate"><span class="pre">&#64;XmlElement</span></code> to each field that should be included in the XML serialization as an XML element child of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;XmlAttribute</span></code> to each field that should be included as an XML attribute of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>. Don’t forget about inherited fields.</p>
+<p>Spring Boot enables JSON formatting/serialization and makes it the default. If you wish XML to be the default format, you can set this up in <code class="docutils literal notranslate"><span class="pre">WebApplicationConfig</span></code> by adding:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">configureContentNegotiation</span><span class="o">(</span><span class="n">ContentNegotiationConfigurer</span> <span class="n">configurer</span><span class="o">){</span>
+    <span class="n">configurer</span><span class="o">.</span><span class="na">defaultContentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_XML</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 
