@@ -18,8 +18,7 @@ From the same ``launchcart`` `project/repository <https://gitlab.com/LaunchCodeT
 
 If you haven't already, install the Rested browser plugin: `Firefox <https://addons.mozilla.org/en-
 US/firefox/addon/rested/>`_ | `Chrome <https://chrome.google.com/webstore/detail/rested/eelcnbccacci
-pfolokglfhhmapdchbfg>`_. We'll use this to manually query our REST API. If you are familiar with `cU
-RL <https://curl.haxx.se/>`_ then you may also use that tool to query the API.
+pfolokglfhhmapdchbfg>`_. We'll use this to manually query our REST API. If you are familiar with `cURL <https://curl.haxx.se/>`_ then you may also use that tool to query the API.
 
 What's New
 ==========
