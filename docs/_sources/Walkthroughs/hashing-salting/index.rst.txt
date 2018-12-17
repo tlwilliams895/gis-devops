@@ -9,7 +9,7 @@ Walkthrough: Hashing and Salting Passwords
 Setup
 #####
 
-1. Checkout the ``rest-walkthrough`` branch of `LaunchCodeTraining/launchcart <https://gitlab.com/LaunchCodeTraining/launchcart>`_
+1. Check out the ``rest-walkthrough`` branch of `LaunchCodeTraining/launchcart <https://gitlab.com/LaunchCodeTraining/launchcart>`_
 2. Create and checkout a **story branch** named ``securely-hash-passwords`` via ``$ git checkout -b securely-hash-passwords``
 
 Determine the Status of the Current Code
@@ -31,22 +31,32 @@ Add the **Spring Security** dependency to ``build.gradle``::
 Use the BCryptPasswordEncoder Class
 #####################################
 
-1. Use ``BCryptPasswordEncoder.encode`` in the ``User.java`` contructor::
+1. Create a ``static final`` instance of the encoder class, within ``User``:
 
-    public User(String username, String password) {
-        this.username = username;
-        this.pwHash = hashPassword(password);
-    }
+   .. code-block:: java
 
-    private static String hashPassword(String password) {
-        return encoder.encode(password);
-    }
+        private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-2. Update ``isMatchingPassword(String password)``::
+2. Use ``BCryptPasswordEncoder.encode`` in the ``User.java`` contructor:
 
-    public boolean isMatchingPassword(String password) {
-        return encoder.matches(password, this.pwHash);
-    }
+   .. code-block:: java
+
+        public User(String username, String password) {
+            this.username = username;
+            this.pwHash = hashPassword(password);
+        }
+
+        private static String hashPassword(String password) {
+            return encoder.encode(password);
+        }
+
+3. Update ``isMatchingPassword(String password)``:
+
+   .. code-block:: java
+
+        public boolean isMatchingPassword(String password) {
+            return encoder.matches(password, this.pwHash);
+        }
 
 Let's see if it works!
 ######################

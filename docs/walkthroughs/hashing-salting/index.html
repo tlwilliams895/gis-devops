@@ -281,7 +281,7 @@
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Checkout the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch of <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">LaunchCodeTraining/launchcart</a></li>
+<li>Check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch of <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">LaunchCodeTraining/launchcart</a></li>
 <li>Create and checkout a <strong>story branch</strong> named <code class="docutils literal notranslate"><span class="pre">securely-hash-passwords</span></code> via <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">securely-hash-passwords</span></code></li>
 </ol>
 </div>
@@ -305,22 +305,27 @@
 <div class="section" id="use-the-bcryptpasswordencoder-class">
 <h2>Use the BCryptPasswordEncoder Class<a class="headerlink" href="#use-the-bcryptpasswordencoder-class" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
+<li><p class="first">Create a <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">final</span></code> instance of the encoder class, within <code class="docutils literal notranslate"><span class="pre">User</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">BCryptPasswordEncoder</span> <span class="n">encoder</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BCryptPasswordEncoder</span><span class="o">();</span>
+</pre></div>
+</div>
+</li>
 <li><p class="first">Use <code class="docutils literal notranslate"><span class="pre">BCryptPasswordEncoder.encode</span></code> in the <code class="docutils literal notranslate"><span class="pre">User.java</span></code> contructor:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>public User(String username, String password) {
-    this.username = username;
-    this.pwHash = hashPassword(password);
-}
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="nf">User</span><span class="o">(</span><span class="n">String</span> <span class="n">username</span><span class="o">,</span> <span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">username</span> <span class="o">=</span> <span class="n">username</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">pwHash</span> <span class="o">=</span> <span class="n">hashPassword</span><span class="o">(</span><span class="n">password</span><span class="o">);</span>
+<span class="o">}</span>
 
-private static String hashPassword(String password) {
-    return encoder.encode(password);
-}
+<span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">hashPassword</span><span class="o">(</span><span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">encoder</span><span class="o">.</span><span class="na">encode</span><span class="o">(</span><span class="n">password</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 </li>
 <li><p class="first">Update <code class="docutils literal notranslate"><span class="pre">isMatchingPassword(String</span> <span class="pre">password)</span></code>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>public boolean isMatchingPassword(String password) {
-    return encoder.matches(password, this.pwHash);
-}
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isMatchingPassword</span><span class="o">(</span><span class="n">String</span> <span class="n">password</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">encoder</span><span class="o">.</span><span class="na">matches</span><span class="o">(</span><span class="n">password</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">pwHash</span><span class="o">);</span>
+<span class="o">}</span>
 </pre></div>
 </div>
 </li>

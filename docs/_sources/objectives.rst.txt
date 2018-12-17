@@ -100,13 +100,13 @@ Day 1
 - Describe the URL format for a RESTful web service
 - Describe HTTP status code usage in REST
 - Explain what a resource is
-- Explain how resource formats related to requests
+- Explain how resource formats are related to requests
 - Explain how content negotiation works, and which HTTP headers are necessary for this
 - Explain idempotence in REST
 - Explain statelessness in REST
 - Use and design RESTful URLs, including nested resources and query/filtering parameters
-- Defintion of Sensitive Data Exposure vulnerability
-- Proper guidance on Hashing and Salting passwords
+- Define the "sensitive data exposure" vulnerability
+- Understand and describe the importance and purpose of salting and hashing passwords
 
 .. _week03-day2-objectives:
 

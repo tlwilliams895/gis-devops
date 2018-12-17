@@ -19,6 +19,7 @@ Create a story branch::
 
     $ git checkout -b rest-studio-solution
 
+Write integration tests before coding each controller methods below. In doing so, you may find the documentation for `JsonPath <https://goessner.net/articles/JsonPath/>`_ to be useful. Also, refer to existing tests in ``ItemRestControllerTests``.
 
 Add ``new`` Parameter to ``/api/items``
 =======================================
@@ -45,8 +46,6 @@ Add the following REST resources:
 * ``PUT /api/carts/{id}`` - allow items to be added to a cart
 
 A cart resource should include information about its owner, as well the items contained in the cart. The ``PUT`` method should allow for items to be added and removed from the cart.
-
-Write integration tests before coding each controller method.
 
 Bonus Mission
 =============

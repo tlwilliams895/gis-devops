@@ -284,6 +284,8 @@
 $ git checkout -b rest-walkthrough-solution
 </pre></div>
 </div>
+<p>If you haven’t already, install the Rested browser plugin: <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rested/">Firefox</a> | <a class="reference external" href="https://chrome.google.com/webstore/detail/rested/eelcnbccaccipfolokglfhhmapdchbfg">Chrome</a>. We’ll use this to manually query our REST API. If you are familiar with <a class="reference external" href="https://curl.haxx.se/">cU
+RL</a> then you may also use that tool to query the API.</p>
 </div>
 <div class="section" id="what-s-new">
 <h2>What’s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
@@ -291,7 +293,11 @@ $ git checkout -b rest-walkthrough-solution
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p>A good way to see what has been added in a branch is to you use the <strong>comparison</strong> feature of Gitlab.</p>
-<p class="last">Example: View the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">launchcart branches</a> and notice the <strong>Compare</strong> button next to each branch.</p>
+<p>Example: View the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">launchcart branches</a> and notice the <strong>Compare</strong> button next to each branch.</p>
+<p>This can also be done in the terminal using <cite>git</cite>:</p>
+<div class="last highlight-none notranslate"><div class="highlight"><pre><span></span>$ git diff launchcart2 rest-walkthrough
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="adding-a-rest-controller">
@@ -302,7 +308,11 @@ $ git checkout -b rest-walkthrough-solution
 <li>Create a new class in this package named <code class="docutils literal notranslate"><span class="pre">ItemRestController</span></code></li>
 <li>Annotate the class with <code class="docutils literal notranslate"><span class="pre">&#64;RestController</span></code></li>
 </ul>
-<p>In the <code class="docutils literal notranslate"><span class="pre">test</span></code> module, note that there are two new classes. <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> contains a couple of utility methods to handle serializing Java objects for the purposes of testing. And <code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code> extends <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> and contains the integration tests for the functionality that we’ll be adding. We’ll review this code in class.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">test</span></code> module, note that there are two new classes:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> contains a couple of utility methods to handle serializing Java objects for the purposes of testing.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code> extends <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> and contains the integration tests for the functionality that we’ll be adding. We’ll review this code in class.</li>
+</ul>
 </div>
 <div class="section" id="our-tasks">
 <h2>Our Tasks<a class="headerlink" href="#our-tasks" title="Permalink to this headline">¶</a></h2>

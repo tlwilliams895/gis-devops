@@ -16,6 +16,11 @@ From the same ``launchcart`` `project/repository <https://gitlab.com/LaunchCodeT
     $ git checkout rest-walkthrough
     $ git checkout -b rest-walkthrough-solution
 
+If you haven't already, install the Rested browser plugin: `Firefox <https://addons.mozilla.org/en-
+US/firefox/addon/rested/>`_ | `Chrome <https://chrome.google.com/webstore/detail/rested/eelcnbccacci
+pfolokglfhhmapdchbfg>`_. We'll use this to manually query our REST API. If you are familiar with `cU
+RL <https://curl.haxx.se/>`_ then you may also use that tool to query the API.
+
 What's New
 ==========
 
@@ -27,6 +32,11 @@ This starter code has some functionality beyond what you added in  :ref:`launchc
 
     Example: View the `launchcart branches <https://gitlab.com/LaunchCodeTraining/launchcart/branches>`_ and notice the **Compare** button next to each branch.
 
+    This can also be done in the terminal using `git`::
+
+        $ git diff launchcart2 rest-walkthrough
+
+
 
 Adding a REST Controller
 ========================
@@ -37,7 +47,10 @@ Let's complete a few setup steps before starting to code:
 * Create a new class in this package named ``ItemRestController``
 * Annotate the class with ``@RestController``
 
-In the ``test`` module, note that there are two new classes. ``AbstractBaseRestIntegrationTest`` contains a couple of utility methods to handle serializing Java objects for the purposes of testing. And ``ItemRestControllerTests`` extends ``AbstractBaseRestIntegrationTest`` and contains the integration tests for the functionality that we'll be adding. We'll review this code in class.
+In the ``test`` module, note that there are two new classes:
+
+- ``AbstractBaseRestIntegrationTest`` contains a couple of utility methods to handle serializing Java objects for the purposes of testing. 
+- ``ItemRestControllerTests`` extends ``AbstractBaseRestIntegrationTest`` and contains the integration tests for the functionality that we'll be adding. We'll review this code in class.
 
 Our Tasks
 =========
@@ -58,3 +71,4 @@ Enable XML as a resource format. To do this, add the following Gradle dependency
     compile('com.fasterxml.jackson.dataformat:jackson-dataformat-xml')
 
 Now annotate the ``Item`` class with ``@XmlRootElement``. Then add ``@XmlElement`` to each field that should be included in the XML serialization as an XML element child of ``<Item>``, and ``@XmlAttribute`` to each field that should be included as an XML attribute of ``<Item>``. Don't forget about inherited fields.
+
