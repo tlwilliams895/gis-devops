@@ -265,7 +265,7 @@
 <li><a class="reference internal" href="#what-s-new">What’s New</a></li>
 <li><a class="reference internal" href="#adding-a-rest-controller">Adding a REST Controller</a></li>
 <li><a class="reference internal" href="#our-tasks">Our Tasks</a></li>
-<li><a class="reference internal" href="#bonus">Bonus</a></li>
+<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 </ul>
 </li>
 </ul>
@@ -279,7 +279,7 @@
 <p>In this walkthrough, the instructor will guide you through adding some RESTful endpoints to the LaunchCart application.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> project/repository <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">https://gitlab.com/LaunchCodeTraining/launchcart</a> that you used previously, check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch. Then create a story branch.:</p>
+<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">project/repository</a>  that you used previously, check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch. Then create a story branch.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ git checkout rest-walkthrough
 $ git checkout -b rest-walkthrough-solution
 </pre></div>
@@ -287,11 +287,11 @@ $ git checkout -b rest-walkthrough-solution
 </div>
 <div class="section" id="what-s-new">
 <h2>What’s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
-<p>This starter code has some functionality beyond what you added in the <a class="reference internal" href="../../studios/launchcart2/index.html#launchcart-part2"><span class="std std-ref">Studio: LaunchCart Part 2</span></a>. In particular, it has a <code class="docutils literal notranslate"><span class="pre">Customer</span></code> class, along with functionality for users to register and log in as customers.</p>
+<p>This starter code has some functionality beyond what you added in  <a class="reference internal" href="../../studios/launchcart2/index.html#launchcart-part2"><span class="std std-ref">Studio: LaunchCart Part 2</span></a>. In particular, it has a <code class="docutils literal notranslate"><span class="pre">Customer</span></code> class, along with functionality for users to register and log in as customers.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">A good way to see what has been added in a branch is to you use the <strong>comparison</strong> feature of Gitlab.
-Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">https://gitlab.com/LaunchCodeTraining/launchcart/branches</a> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">https://gitlab.com/LaunchCodeTraining/launchcart/branches</a> and notice the <strong>Compare</strong> button next to each branch.</p>
+<p>A good way to see what has been added in a branch is to you use the <strong>comparison</strong> feature of Gitlab.</p>
+<p class="last">Example: View the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">launchcart branches</a> and notice the <strong>Compare</strong> button next to each branch.</p>
 </div>
 </div>
 <div class="section" id="adding-a-rest-controller">
@@ -302,11 +302,11 @@ Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraini
 <li>Create a new class in this package named <code class="docutils literal notranslate"><span class="pre">ItemRestController</span></code></li>
 <li>Annotate the class with <code class="docutils literal notranslate"><span class="pre">&#64;RestController</span></code></li>
 </ul>
-<p>In the <code class="docutils literal notranslate"><span class="pre">test</span></code> module, note that there are two new classes. <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> class contains a couple of utility methods to handle serializing Java objects for the purposes of testing. And <code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code> extends <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> and contains the integration tests for the functionality that we’ll be adding. We’ll review this code in class.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">test</span></code> module, note that there are two new classes. <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> contains a couple of utility methods to handle serializing Java objects for the purposes of testing. And <code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code> extends <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> and contains the integration tests for the functionality that we’ll be adding. We’ll review this code in class.</p>
 </div>
 <div class="section" id="our-tasks">
 <h2>Our Tasks<a class="headerlink" href="#our-tasks" title="Permalink to this headline">¶</a></h2>
-<p>We will now implement the item resource in the following ways:</p>
+<p>We will now implement the Item resource in the following ways:</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items</span></code> (with parameter <code class="docutils literal notranslate"><span class="pre">price</span></code>)</li>
 <li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items/{id}</span></code></li>
@@ -315,13 +315,13 @@ Example: <a class="reference external" href="https://gitlab.com/LaunchCodeTraini
 <li><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/items/{id}</span></code></li>
 </ul>
 </div>
-<div class="section" id="bonus">
-<h2>Bonus<a class="headerlink" href="#bonus" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bonus-mission">
+<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
 <p>Enable XML as a resource format. To do this, add the following Gradle dependency:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(&#39;com.fasterxml.jackson.dataformat:jackson-dataformat-xml&#39;)
 </pre></div>
 </div>
-<p>Then annotate the <code class="docutils literal notranslate"><span class="pre">Item</span></code> class with <code class="docutils literal notranslate"><span class="pre">&#64;XmlRootElement</span></code>. Then add <code class="docutils literal notranslate"><span class="pre">&#64;XmlElement</span></code> to each field that should be included in the XML serialization as an XML element child of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;XmlAttribute</span></code> to each field that should be included as an XML attribute of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>. Don’t forget about inherited fields.</p>
+<p>Now annotate the <code class="docutils literal notranslate"><span class="pre">Item</span></code> class with <code class="docutils literal notranslate"><span class="pre">&#64;XmlRootElement</span></code>. Then add <code class="docutils literal notranslate"><span class="pre">&#64;XmlElement</span></code> to each field that should be included in the XML serialization as an XML element child of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;XmlAttribute</span></code> to each field that should be included as an XML attribute of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>. Don’t forget about inherited fields.</p>
 </div>
 </div>
 

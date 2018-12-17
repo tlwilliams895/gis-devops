@@ -4,7 +4,7 @@
 Week 3 - Day 2 Swagger REST framework
 =====================================
 
-Learning objectives for this module :ref:`week03-day2-objectives`
+Learning objectives for :ref:`week03-day2-objectives`
 
 Lesson Content
 ==============
@@ -15,14 +15,14 @@ Lesson Content
 Walkthrough
 ===========
 
-SwaggerUI Example :ref:`walkthrough-swagger`
+:ref:`walkthrough-swagger`
 
 Studio
 ======
 
-In the morning, continue working on the LaunchCart REST studio :ref:`launchcart-rest-studio`, jumping into the Bonus Missions if you complete the primary tasks.
+In the morning, continue working on the :ref:`launchcart-rest-studio`, jumping into the Bonus Missions if you complete the primary tasks.
 
-Complete the SwaggerUI Studio :ref:`swagger-studio`
+Complete :ref:`swagger-studio`
 
 Resources
 =========

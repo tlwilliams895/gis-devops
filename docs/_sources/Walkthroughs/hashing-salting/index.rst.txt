@@ -9,20 +9,19 @@ Walkthrough: Hashing and Salting Passwords
 Setup
 #####
 
-1. Checkout the ``rest-walkthrough`` branch of ``https://gitlab.com/LaunchCodeTraining/launchcart``
+1. Checkout the ``rest-walkthrough`` branch of `LaunchCodeTraining/launchcart <https://gitlab.com/LaunchCodeTraining/launchcart>`_
 2. Create and checkout a **story branch** named ``securely-hash-passwords`` via ``$ git checkout -b securely-hash-passwords``
 
 Determine the Status of the Current Code
 ########################################
+
 1. Run tests to see current status
 2. Search for any ``//TODO`` comments
-3. We need to make sure that passwords are hashed properly when stored in the database
 
 Implement Secure Password Hashing using BCrypt
 ##############################################
 
-1. Search for a Spring Security implementation of BCrypt
-2. Add **Spring Security** dependency to ``build.gradle``::
+Add the **Spring Security** dependency to ``build.gradle``::
 
     dependencies {
         compile('org.springframework.security:spring-security-crypto')
@@ -51,12 +50,14 @@ Use the BCryptPasswordEncoder Class
 
 Let's see if it works!
 ######################
+
 1. Make sure the tests pass
 2. Run ``bootRun`` and see if you can register (register a few users)
 3. Verify what the hashed and salted password looks like in the database
 
 Quiz
-#########
+####
+
 * Where is the salt stored?
 
 Resources

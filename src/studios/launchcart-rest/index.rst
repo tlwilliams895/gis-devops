@@ -6,16 +6,19 @@
 Studio: LaunchCart REST
 =======================
 
-In this studio, we'll add additional RESTful endpoints to the LaunchCart application. It builds upon the changes we added in the LaunchCart REST walkthrough :ref:`walkthrough-launchcart-rest`.
+In this studio, we'll add additional RESTful endpoints to the LaunchCart application. It builds upon the changes we added in the :ref:`walkthrough-launchcart-rest`.
 
 Getting Started
 ===============
 
-From the same ``launchcart`` project/repository https://gitlab.com/LaunchCodeTraining/launchcart that you used previously, make sure you are in the ``rest-walkthrough`` branch that you used earlier today.
+From the same ``launchcart`` `project/repository <https://gitlab.com/LaunchCodeTraining/launchcart>`_ that you used previously, make sure you are in the ``rest-walkthrough`` branch that you used earlier today.
 
 If you don't have the walkthrough code, you can fetch changes from the remote and check out the ``rest-studio`` branch.
 
-Create a story branch ``$ git checkout -b rest-studio-solution``
+Create a story branch::
+
+    $ git checkout -b rest-studio-solution
+
 
 Add ``new`` Parameter to ``/api/items``
 =======================================
@@ -33,8 +36,10 @@ Add the following REST resources:
 Write integration tests before coding each controller method. When testing, be sure to test for the expected status code, content type, and response contents.
 
 Add ``/api/carts`` Resources
-==========================
+============================
+
 Add the following REST resources:
+
 * ``GET /api/carts``
 * ``GET /api/carts/{id}``
 * ``PUT /api/carts/{id}`` - allow items to be added to a cart
@@ -43,13 +48,10 @@ A cart resource should include information about its owner, as well the items co
 
 Write integration tests before coding each controller method.
 
-Bonus Missions
-==============
+Bonus Mission
+=============
 
-If you finish the primary studio tasks, try one or more of the following:
-
-* Enable HATEOAS for your REST controllers by referencing the Spring tutorial, Building a Hypermedia-Driven `RESTful Web Service <https://spring.io/guides/gs/rest-hateoas/>`_. The sections titled "Create a resources representation class" and "Create a RestController" are most relevant.
-* Add XML as a response format. There are some brief notes on how to do this at the bottom of the `LaunchCart REST walkthrough <https://education.launchcode.org/gis-devops/walkthroughs/launchcart-rest/>`_. When testing, be sure to set the ``Content-Type`` header to ``application/xml``.
+If you finish the primary studio tasks, try to enable HATEOAS for your REST controllers by referencing the Spring tutorial, `Building a Hypermedia-Driven RESTful Web Service <https://spring.io/guides/gs/rest-hateoas/>`_. The sections titled "Create a resources representation class" and "Create a RestController" are most relevant.
 
 Turning In Your Work
 ====================
@@ -57,5 +59,5 @@ Turning In Your Work
 If you don't complete each of the tasks, turn in as much as you have completed by the end of the day.
 
 * Commit and push your work to GitLab
-* Create a MergeRequest for your `rest-stuio-solution`
-* Post the URL to your MergeRequest in slack
+* Create a merge request for your `rest-studio-solution`
+* Post the URL to your merge request in slack

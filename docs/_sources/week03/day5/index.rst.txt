@@ -12,28 +12,24 @@ Today we'll learn about ES2015, ESLint, Webpack, and do more with OpenLayers
 Lesson Content
 ==============
 
-* First Let's Review
-
-  * We will list or draw out all the new technologies
-
-* `ES2015, ESLint, Webpack Slides <https://education.launchcode.org/gis-devops-slides/week3/es2015-eslint.html>`_
+`ES2015, ESLint, Webpack Slides <https://education.launchcode.org/gis-devops-slides/week3/es2015-eslint.html>`_
 
 Walkthrough
 ===========
 
-* ESLint Airwaze :ref:`eslint-airwaze-walkthrough`
+:ref:`eslint-airwaze-walkthrough`
 
 Studio
 ======
 
-* Openlayers ES2015 Workshop :ref:`openlayers-es2015-studio`
+:ref:`openlayers-es2015-studio`
 
 Retro
 =====
 
 Now that we have completed an instruction week, let's have a brief retro.
 
-Topics
+**Topics**
 
 * REST
 * HTTP methods with REST
@@ -68,7 +64,7 @@ Topics
 * ES2015 additions
 * Webpack
 
-You will be required to work with these next week in your project week. We don't expect you to know all of them now, but you should feel comfortable working with them next week.
+You will be required to work with these next week in your project week. We don't expect you to have mastered all of them now, but you should feel comfortable working with them next week.
 
 What went well this week? (Which topics did you enjoy, or feel comfortable with?)
 

@@ -14,12 +14,12 @@ Today we begin our journey with Elasticsearch, focusing on basic concepts and qu
 Lesson Content
 ==============
 
-`Slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch1.html>`_
+`Intro to Elasticsearch slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch1.html>`_
 
 Studio
 ======
 
-Elasticsearch Query Studio :ref:`elasticsearch1-studio`
+:ref:`elasticsearch1-studio`
 
 Resources
 =========

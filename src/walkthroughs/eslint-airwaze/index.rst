@@ -3,7 +3,7 @@
 .. _eslint-airwaze-walkthrough:
 
 ===========================
-Walkthrough: ESLint Ariwaze
+Walkthrough: ESLint Airwaze
 ===========================
 
 Setup

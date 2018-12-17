@@ -265,7 +265,7 @@
 <li><a class="reference internal" href="#add-new-parameter-to-api-items">Add <code class="docutils literal notranslate"><span class="pre">new</span></code> Parameter to <code class="docutils literal notranslate"><span class="pre">/api/items</span></code></a></li>
 <li><a class="reference internal" href="#add-api-customers-resources">Add <code class="docutils literal notranslate"><span class="pre">/api/customers</span></code> Resources</a></li>
 <li><a class="reference internal" href="#add-api-carts-resources">Add <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> Resources</a></li>
-<li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
+<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 <li><a class="reference internal" href="#turning-in-your-work">Turning In Your Work</a></li>
 </ul>
 </li>
@@ -277,12 +277,15 @@
       
   <div class="section" id="studio-launchcart-rest">
 <span id="launchcart-rest-studio"></span><h1>Studio: LaunchCart REST<a class="headerlink" href="#studio-launchcart-rest" title="Permalink to this headline">¶</a></h1>
-<p>In this studio, we’ll add additional RESTful endpoints to the LaunchCart application. It builds upon the changes we added in the LaunchCart REST walkthrough <a class="reference internal" href="../../walkthroughs/launchcart-rest/index.html#walkthrough-launchcart-rest"><span class="std std-ref">Walkthrough: LaunchCart REST</span></a>.</p>
+<p>In this studio, we’ll add additional RESTful endpoints to the LaunchCart application. It builds upon the changes we added in the <a class="reference internal" href="../../walkthroughs/launchcart-rest/index.html#walkthrough-launchcart-rest"><span class="std std-ref">Walkthrough: LaunchCart REST</span></a>.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> project/repository <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">https://gitlab.com/LaunchCodeTraining/launchcart</a> that you used previously, make sure you are in the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch that you used earlier today.</p>
+<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">project/repository</a> that you used previously, make sure you are in the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch that you used earlier today.</p>
 <p>If you don’t have the walkthrough code, you can fetch changes from the remote and check out the <code class="docutils literal notranslate"><span class="pre">rest-studio</span></code> branch.</p>
-<p>Create a story branch <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">rest-studio-solution</span></code></p>
+<p>Create a story branch:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ git checkout -b rest-studio-solution
+</pre></div>
+</div>
 </div>
 <div class="section" id="add-new-parameter-to-api-items">
 <h2>Add <code class="docutils literal notranslate"><span class="pre">new</span></code> Parameter to <code class="docutils literal notranslate"><span class="pre">/api/items</span></code><a class="headerlink" href="#add-new-parameter-to-api-items" title="Permalink to this headline">¶</a></h2>
@@ -298,28 +301,26 @@
 </div>
 <div class="section" id="add-api-carts-resources">
 <h2>Add <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> Resources<a class="headerlink" href="#add-api-carts-resources" title="Permalink to this headline">¶</a></h2>
-<p>Add the following REST resources:
-* <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/carts</span></code>
-* <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/carts/{id}</span></code>
-* <code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/api/carts/{id}</span></code> - allow items to be added to a cart</p>
+<p>Add the following REST resources:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/carts</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/carts/{id}</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/api/carts/{id}</span></code> - allow items to be added to a cart</li>
+</ul>
 <p>A cart resource should include information about its owner, as well the items contained in the cart. The <code class="docutils literal notranslate"><span class="pre">PUT</span></code> method should allow for items to be added and removed from the cart.</p>
 <p>Write integration tests before coding each controller method.</p>
 </div>
-<div class="section" id="bonus-missions">
-<h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
-<p>If you finish the primary studio tasks, try one or more of the following:</p>
-<ul class="simple">
-<li>Enable HATEOAS for your REST controllers by referencing the Spring tutorial, Building a Hypermedia-Driven <a class="reference external" href="https://spring.io/guides/gs/rest-hateoas/">RESTful Web Service</a>. The sections titled “Create a resources representation class” and “Create a RestController” are most relevant.</li>
-<li>Add XML as a response format. There are some brief notes on how to do this at the bottom of the <a class="reference external" href="https://education.launchcode.org/gis-devops/walkthroughs/launchcart-rest/">LaunchCart REST walkthrough</a>. When testing, be sure to set the <code class="docutils literal notranslate"><span class="pre">Content-Type</span></code> header to <code class="docutils literal notranslate"><span class="pre">application/xml</span></code>.</li>
-</ul>
+<div class="section" id="bonus-mission">
+<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
+<p>If you finish the primary studio tasks, try to enable HATEOAS for your REST controllers by referencing the Spring tutorial, <a class="reference external" href="https://spring.io/guides/gs/rest-hateoas/">Building a Hypermedia-Driven RESTful Web Service</a>. The sections titled “Create a resources representation class” and “Create a RestController” are most relevant.</p>
 </div>
 <div class="section" id="turning-in-your-work">
 <h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
 <p>If you don’t complete each of the tasks, turn in as much as you have completed by the end of the day.</p>
 <ul class="simple">
 <li>Commit and push your work to GitLab</li>
-<li>Create a MergeRequest for your <cite>rest-stuio-solution</cite></li>
-<li>Post the URL to your MergeRequest in slack</li>
+<li>Create a merge request for your <cite>rest-studio-solution</cite></li>
+<li>Post the URL to your merge request in slack</li>
 </ul>
 </div>
 </div>

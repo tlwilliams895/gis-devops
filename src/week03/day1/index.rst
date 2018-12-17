@@ -4,25 +4,25 @@
 Week 3 - Day 1: RESTful web services
 ====================================
 
-Learning objectives for this module :ref:`week03-day1-objectives`
+Learning objectives for :ref:`week03-day1-objectives`
 
 Lesson Content
 ==============
 
-* `SECURITY - Sensitive Data slides <https://education.launchcode.org/gis-devops-slides/security/hashing-salting.html#1>`_
+* `Security - Sensitive Data slides <https://education.launchcode.org/gis-devops-slides/security/hashing-salting.html#1>`_
 * `REST lesson slides <https://education.launchcode.org/gis-devops-slides/week3/rest.html#1>`_
 
 
 Walkthroughs
 =============
 
-* Security - Hashing and Salting :ref:`walkthrough-hashing-salting`
-* LaunchCart REST :ref:`walkthrough-launchcart-rest`
+* :ref:`walkthrough-hashing-salting`
+* :ref:`walkthrough-launchcart-rest`
 
 Studio
 ======
 
-* Complete the LaunchCart REST studio :ref:`launchcart-rest-studio`
+* Complete :ref:`launchcart-rest-studio`
 
 Resources
 =========

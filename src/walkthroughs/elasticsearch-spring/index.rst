@@ -17,7 +17,7 @@ We'll walk through several steps needed to use Elasticsearch within Spring.
 
     The code that we'll look at is in the ``elasticsearch`` branch of the ``LaunchCodeTraining/launchcart`` repository.
 
-    To view the specific changes, look at this `commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956>`_.
+    To view the specific changes, look at `this commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956>`_.
 
 
 1. Add Gradle dependencies::

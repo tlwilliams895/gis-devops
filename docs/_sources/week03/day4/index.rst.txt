@@ -4,7 +4,7 @@
 Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring
 ==============================================================
 
-Learning objectives for this module :ref:`week03-day4-objectives`
+Learning objectives for :ref:`week03-day4-objectives`
 
 Summary
 =======
@@ -14,7 +14,7 @@ Today we'll learn about filtering in Elasticsearch, along with some other featur
 Lesson Content
 ==============
 
-`Slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch2.html>`_
+`ES Filtering Slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch2.html>`_
 
 Studio
 ======
@@ -26,7 +26,7 @@ Walkthrough
 
 In the afternoon, we'll look at how to integrate Elasticsearch with Spring.
 
-:ref:`elasticsearch-spring-walkthrough`
+Follow along with :ref:`elasticsearch-spring-walkthrough`
 
 Resources
 =========
