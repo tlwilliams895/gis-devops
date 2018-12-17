@@ -19,17 +19,24 @@ Create a story branch::
 
     $ git checkout -b rest-studio-solution
 
-Write integration tests before coding each controller methods below. In doing so, you may find the documentation for `JsonPath <https://goessner.net/articles/JsonPath/>`_ to be useful. Also, refer to existing tests in ``ItemRestControllerTests``.
+Write integration tests before coding each controller method below. In doing so, you may find the documentation for `JsonPath <https://goessner.net/articles/JsonPath/>`_ to be useful. Also, refer to existing tests in ``ItemRestControllerTests``.
 
 Add ``new`` Parameter to ``/api/items``
 =======================================
 
 Add a ``new`` parameter to the ``GET /api/items`` endpoint. Note that this should work **in conjunction** with the ``price`` parameter, so that one, both, or neither can be used when querying the resource.
 
+.. note:: Since you'll be adding a new field to `Item`
+
+.. hint::
+
+    You'll need to create one or more new query methods in `ItemRepository`. You might find the documentation on Spring Data JPA `query creation <https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation>`_ helpful for this.
+
 Add ``/api/customers`` Resources
 ================================
 
 Add the following REST resources:
+
 * ``GET /api/customers``
 * ``GET /api/customers/{id}``
 * ``GET /api/customers/{id}/cart``
