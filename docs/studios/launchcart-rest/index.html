@@ -291,10 +291,6 @@
 <div class="section" id="add-new-parameter-to-api-items">
 <h2>Add <code class="docutils literal notranslate"><span class="pre">new</span></code> Parameter to <code class="docutils literal notranslate"><span class="pre">/api/items</span></code><a class="headerlink" href="#add-new-parameter-to-api-items" title="Permalink to this headline">¶</a></h2>
 <p>Add a <code class="docutils literal notranslate"><span class="pre">new</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items</span></code> endpoint. Note that this should work <strong>in conjunction</strong> with the <code class="docutils literal notranslate"><span class="pre">price</span></code> parameter, so that one, both, or neither can be used when querying the resource.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Since you’ll be adding a new field to <cite>Item</cite></p>
-</div>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">You’ll need to create one or more new query methods in <cite>ItemRepository</cite>. You might find the documentation on Spring Data JPA <a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation">query creation</a> helpful for this.</p>
