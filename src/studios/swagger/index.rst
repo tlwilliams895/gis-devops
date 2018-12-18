@@ -11,7 +11,7 @@ In this studio, we will be learning how to use Springfox to autogenerate the Swa
 Getting Started
 ===============
 
-Create a ``add-springfox`` branch off of your ``launchcart\rest-studio-solution``. Do NOT create the branch off of the walkthrough studio.
+Create a ``add-springfox`` branch off of your ``launchcart/rest-studio-solution``. Do *not* create the branch off of the walkthrough studio, since we manually created Swagger docs in that branch.
 
 Configure Springfox
 ===================

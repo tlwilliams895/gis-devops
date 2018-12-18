@@ -278,15 +278,15 @@
 <div class="section" id="elasticsearch-installation">
 <h2>Elasticsearch Installation<a class="headerlink" href="#elasticsearch-installation" title="Permalink to this headline">¶</a></h2>
 <p>We need to install Elasticsearch locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.</p>
-<p>On Mac, use Homebrew::</p>
+<p>On Mac, use Homebrew:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew install elasticsearch
 </pre></div>
 </div>
-<p>And then, to start up the server::</p>
+<p>And then, to start up the server:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew services start elasticsearch
 </pre></div>
 </div>
-<p>Check that the installation and starteup were successful by checking the cluster’s health::</p>
+<p>Check that the installation and starteup were successful by checking the cluster’s health:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl -XGET &#39;localhost:9200/_cat/health?v&amp;pretty&#39;
 </pre></div>
 </div>
@@ -301,20 +301,20 @@
 </div>
 <p>Cluster health is expressed as the color green, yellow, or red.</p>
 <ul class="simple">
-<li>Green - everything is good (cluster is fully functional)</li>
-<li>Yellow - all data is available but some replicas are not yet allocated (cluster is fully functional, but more vulnerable to data loss/corruption)</li>
-<li>Red - some data is not available for whatever reason (cluster is partially functional)</li>
+<li><strong>Green</strong> - everything is good (cluster is fully functional)</li>
+<li><strong>Yellow</strong> - all data is available but some replicas are not yet allocated (cluster is fully functional, but more vulnerable to data loss/corruption)</li>
+<li><strong>Red</strong> - some data is not available for whatever reason (cluster is partially functional)</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">When a cluster is red, it will continue to serve search requests from the available shards but you will likely need to fix it ASAP since there are unassigned shards.</p>
 </div>
 <p>You can see from the output that we have 1 node and 0 shards (since there’s no data yet).
-Let’s confirm we don’t have any indices yet.:</p>
+Let’s confirm we don’t have any indices yet.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl -XGET &#39;localhost:9200/_cat/indices?v&amp;pretty&#39;
 </pre></div>
 </div>
-<p>Your response should just show headers and no content::</p>
+<p>Your response should just show headers and no content:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>health status index                                    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 </pre></div>
 </div>

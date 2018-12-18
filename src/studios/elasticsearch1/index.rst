@@ -11,20 +11,20 @@ Elasticsearch Installation
 
 We need to install Elasticsearch locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.
 
-On Mac, use Homebrew:::
+On Mac, use Homebrew: ::
 
     $ brew install elasticsearch
 
 
-And then, to start up the server:::
+And then, to start up the server: ::
 
     $ brew services start elasticsearch
 
-Check that the installation and starteup were successful by checking the cluster’s health:::
+Check that the installation and starteup were successful by checking the cluster's health: ::
 
     $ curl -XGET 'localhost:9200/_cat/health?v&pretty'
 
-All being well, the output should look something like this::
+All being well, the output should look something like this: ::
 
     epoch      timestamp cluster              status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
     1516231703 17:28:23  elasticsearch_cheryl yellow          1         1      5   5    0    0        5             0                  -                 50.0%
@@ -37,21 +37,21 @@ All being well, the output should look something like this::
 
 Cluster health is expressed as the color green, yellow, or red.
 
-* Green - everything is good (cluster is fully functional)
-* Yellow - all data is available but some replicas are not yet allocated (cluster is fully functional, but more vulnerable to data loss/corruption)
-* Red - some data is not available for whatever reason (cluster is partially functional)
+* **Green** - everything is good (cluster is fully functional)
+* **Yellow** - all data is available but some replicas are not yet allocated (cluster is fully functional, but more vulnerable to data loss/corruption)
+* **Red** - some data is not available for whatever reason (cluster is partially functional)
 
 .. note::
 
     When a cluster is red, it will continue to serve search requests from the available shards but you will likely need to fix it ASAP since there are unassigned shards.
 
-You can see from the output that we have 1 node and 0 shards (since there’s no data yet).
-Let’s confirm we don’t have any indices yet.::
+You can see from the output that we have 1 node and 0 shards (since there's no data yet).
+Let's confirm we don't have any indices yet. ::
 
     $ curl -XGET 'localhost:9200/_cat/indices?v&pretty'
 
 
-Your response should just show headers and no content:::
+Your response should just show headers and no content: ::
 
     health status index                                    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 

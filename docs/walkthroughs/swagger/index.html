@@ -264,7 +264,11 @@
 <li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
 <li><a class="reference internal" href="#open-your-launchcart-project-in-intellij">Open Your Launchcart Project in Intellij</a></li>
 <li><a class="reference internal" href="#setup-intellij">Setup Intellij</a></li>
-<li><a class="reference internal" href="#embed-swaggerui-into-the-launchcart-project">Embed SwaggerUI into the Launchcart Project</a></li>
+<li><a class="reference internal" href="#embed-swaggerui-into-the-launchcart-project">Embed SwaggerUI into the Launchcart Project</a><ul>
+<li><a class="reference internal" href="#move-swagger-to-your-project">Move Swagger to Your Project</a></li>
+<li><a class="reference internal" href="#setup-swagger-yaml-file">Setup Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#load-swagger-in-the-browser">Load Swagger in the Browser</a></li>
@@ -298,31 +302,40 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <h3>Setup Intellij<a class="headerlink" href="#setup-intellij" title="Permalink to this headline">¶</a></h3>
 <p>Since we are going to be writing the <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> in IntelliJ, let’s get a plugin to help out.</p>
 <p>Click the magnifying glass in the upper right hand corner and type “Plugin”. Select “Plugins” from the menu. Then select “Browse repositories…”.</p>
-<ul class="simple">
+<ol class="arabic simple">
 <li>Click the magnifying glass in the upper right hand corder and type “Plugin”.</li>
 <li>Select “Plugins” from the menu.</li>
 <li>Then select “Browse repositories…”.</li>
-<li>Search for “Swagger” in the search bar and install the “Swagger Plugin”.</li>
+<li>Search for “Swagger” in the search bar and install the “Swagger” plugin (there may be mutiple results; install the one with the most stars .</li>
 <li>Restart Intellij after the plugin has installed.</li>
-</ul>
+</ol>
 </div>
 <div class="section" id="embed-swaggerui-into-the-launchcart-project">
 <h3>Embed SwaggerUI into the Launchcart Project<a class="headerlink" href="#embed-swaggerui-into-the-launchcart-project" title="Permalink to this headline">¶</a></h3>
-<p>Clone the SwaggerUI repository <a class="reference external" href="https://github.com/swagger-api/swagger-ui/tree/2.x">https://github.com/swagger-api/swagger-ui/tree/2.x</a> from Github. Note: We are downloading the SwaggerUI for 2.x.</p>
-<p>Navigate into the repo that you just cloned and copy the contents of <code class="docutils literal notranslate"><span class="pre">swagger-ui/dist</span></code> directory into <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code> directory.</p>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">$</span> <span class="pre">cp</span> <span class="pre">-R</span> <span class="pre">dist/*</span> <span class="pre">{path</span> <span class="pre">of</span> <span class="pre">launchcart</span> <span class="pre">project}/src/main/resources/static/swagger</span>
-<span class="pre">`</span></code>
-&lt;aside class=”aside-note” markdown=”1”&gt;
-You will need to create the <cite>static/swagger</cite> directory first.
-&lt;/aside&gt;</p>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-The <cite>dist</cite> directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
-&lt;/aside&gt;</p>
-<p>## Setup Swagger .yaml File
-In folder <cite>launchcart/src/main/resources/static/swagger</cite>:
-1. Create a swagger.yaml file  <cite>touch swagger.yaml</cite>.
-2. Edit <cite>swaggerindex.html</cite> to point at the local <cite>swagger.yaml</cite> to look like the example below:</p>
+<p>Clone the <a class="reference external" href="https://github.com/swagger-api/swagger-ui/tree/2.x">SwaggerUI repository</a> from Github.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We are downloading the SwaggerUI for 2.x branch.</p>
+</div>
+<div class="section" id="move-swagger-to-your-project">
+<h4>Move Swagger to Your Project<a class="headerlink" href="#move-swagger-to-your-project" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li>In IntelliJ, create the directory <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code></li>
+<li>Navigate into the repo that you just cloned.</li>
+<li>Copy the <em>contents</em> of <code class="docutils literal notranslate"><span class="pre">swagger-ui/dist</span></code> directory into <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger/</span></code> directory.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document</p>
+</div>
+</div>
+<div class="section" id="setup-swagger-yaml-file">
+<h4>Setup Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File<a class="headerlink" href="#setup-swagger-yaml-file" title="Permalink to this headline">¶</a></h4>
+<p>In folder <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code>:</p>
+<ol class="arabic simple">
+<li>Create a swagger.yaml file  <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">swagger.yaml</span></code>.</li>
+<li>Edit <code class="docutils literal notranslate"><span class="pre">swagger/index.html</span></code> to point at the local <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code>, like the example below:</li>
+</ol>
 <div class="code html highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
 window.onload = function() {
 
@@ -348,13 +361,14 @@ window.onload = function() {
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="load-swagger-in-the-browser">
 <h2>Load Swagger in the Browser<a class="headerlink" href="#load-swagger-in-the-browser" title="Permalink to this headline">¶</a></h2>
 <p>Start up SpringBoot and navigate to the url <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/swagger/index.html</span></code>. You should see a SwaggerUI page displayed.</p>
 </div>
 <div class="section" id="writing-the-swagger-yaml">
 <h2>Writing the Swagger YAML<a class="headerlink" href="#writing-the-swagger-yaml" title="Permalink to this headline">¶</a></h2>
-<p>Next we need to begin writing the Swagger YAML file. Copy the following code into your <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> file located in the <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code> directory.</p>
+<p>Next we need to begin writing the Swagger YAML file. Copy the following code into your <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> file located in the <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger/</span></code> directory.</p>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>swagger: &#39;2.0&#39;
 info:
   description: |
@@ -374,9 +388,10 @@ definitions:
 </div>
 <p>Let’s start with the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
 <p>Add an entry to the <code class="docutils literal notranslate"><span class="pre">tags</span></code> section, to add a header for all of the endpoints for the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
-<p>&lt;aside class=”aside-warning” markdown=”1”&gt;
-YAML is white-spaced based. Be VERY careful with tabs and spaces. <a class="reference external" href="http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Reference</a>
-&lt;/aside&gt;</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">YAML is white-spaced based. Be <em>very</em> careful with tabs and spaces. You may also find the <a class="reference external" href="http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Reference</a> helpful.</p>
+</div>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>- name: cart
   description: Cart provides access to all of the items you are about to buy.
 </pre></div>
@@ -408,7 +423,7 @@ YAML is white-spaced based. Be VERY careful with tabs and spaces. <a class="refe
 <p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
 <span class="pre">[{&quot;uid&quot;:1,&quot;items&quot;:[{&quot;uid&quot;:1,&quot;name&quot;:&quot;Chacos&quot;,&quot;price&quot;:1000.0,&quot;newItem&quot;:true,&quot;description&quot;:&quot;I</span> <span class="pre">think</span> <span class="pre">they're</span> <span class="pre">sandals&quot;}]}]</span>
 <span class="pre">`</span></code></p>
-<p>To represent the cart and it’s contents, update the <cite>/carts</cite> definition to this.:</p>
+<p>To represent the cart and it’s contents, update the <cite>/carts</cite> definition to this:</p>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>paths:
     /carts:
         get:
@@ -439,14 +454,15 @@ YAML is white-spaced based. Be VERY careful with tabs and spaces. <a class="refe
                           - api_key: []
 </pre></div>
 </div>
-<p>&lt;aside class=”aside-note” markdown=”1”&gt;
-Make sure that your whitespace is correct. There can only be a one tab indent for every map.</p>
-<p>Incorrect indentation may cause your API endpoints not to show up or display erros.
-&lt;/aside&gt;</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Make sure that your whitespace is correct. There can only be a one tab indent for every map.</p>
+<p class="last">Incorrect indentation may cause your API endpoints not to show up or display erros.</p>
+</div>
 </div>
 <div class="section" id="definitions">
 <h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
-<p>We can define types that are returned. Add the below <code class="docutils literal notranslate"><span class="pre">yaml</span></code> to the <code class="docutils literal notranslate"><span class="pre">defintions</span></code> section. Notice that this is referenced in the <code class="docutils literal notranslate"><span class="pre">responses</span></code> section of <code class="docutils literal notranslate"><span class="pre">/cart</span></code></p>
+<p>We can define types that are returned. Add the below <code class="docutils literal notranslate"><span class="pre">yaml</span></code> to the <code class="docutils literal notranslate"><span class="pre">defintions</span></code> section. Notice that this is referenced in the <code class="docutils literal notranslate"><span class="pre">responses</span></code> section of <code class="docutils literal notranslate"><span class="pre">/cart</span></code>.</p>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>definitions:
   Item:
     type: object
@@ -514,12 +530,12 @@ Make sure that your whitespace is correct. There can only be a one tab indent fo
 </div>
 <div class="section" id="parameters">
 <h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
-<p>There are two types of parameters <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See this for more info about documenting parameters <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/">https://swagger.io/docs/specification/describing-parameters/</a></p>
+<p>There are two types of parameters: <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See the <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/">Swagger documentatio</a> for more info about documenting parameters.</p>
 </div>
 </div>
 <div class="section" id="continue-on">
 <h2>Continue On<a class="headerlink" href="#continue-on" title="Permalink to this headline">¶</a></h2>
-<p>Continue on to provide documentation for the rest of the Cart API. It should be much easier now that the Cart definition has been created.</p>
+<p>Continue on to provide documentation for the rest of the LaunchCart API. It should be much easier now that the Cart definition has been created.</p>
 </div>
 </div>
 

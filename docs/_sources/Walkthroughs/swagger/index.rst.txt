@@ -24,34 +24,35 @@ Since we are going to be writing the ``swagger.yaml`` in IntelliJ, let's get a p
 
 Click the magnifying glass in the upper right hand corner and type "Plugin". Select "Plugins" from the menu. Then select "Browse repositories...".
 
-* Click the magnifying glass in the upper right hand corder and type "Plugin".
-* Select "Plugins" from the menu.
-* Then select "Browse repositories...".
-* Search for "Swagger" in the search bar and install the "Swagger Plugin".
-* Restart Intellij after the plugin has installed.
+1. Click the magnifying glass in the upper right hand corder and type "Plugin".
+2. Select "Plugins" from the menu.
+3. Then select "Browse repositories...".
+4. Search for "Swagger" in the search bar and install the "Swagger" plugin (there may be mutiple results; install the one with the most stars .
+5. Restart Intellij after the plugin has installed.
 
 Embed SwaggerUI into the Launchcart Project
 -------------------------------------------
 
-Clone the SwaggerUI repository https://github.com/swagger-api/swagger-ui/tree/2.x from Github. Note: We are downloading the SwaggerUI for 2.x.
+Clone the `SwaggerUI repository <https://github.com/swagger-api/swagger-ui/tree/2.x>`_ from Github. 
 
-Navigate into the repo that you just cloned and copy the contents of ``swagger-ui/dist`` directory into ``launchcart/src/main/resources/static/swagger`` directory.
+.. note:: We are downloading the SwaggerUI for 2.x branch.
 
-```nohighlight
-$ cp -R dist/* {path of launchcart project}/src/main/resources/static/swagger
-```
-<aside class="aside-note" markdown="1">
-You will need to create the `static/swagger` directory first.
-</aside>
+Move Swagger to Your Project
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-<aside class="aside-note" markdown="1">
-The `dist` directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
-</aside>
+1. In IntelliJ, create the directory ``launchcart/src/main/resources/static/swagger``
+2. Navigate into the repo that you just cloned.
+3. Copy the *contents* of ``swagger-ui/dist`` directory into ``launchcart/src/main/resources/static/swagger/`` directory.
 
-## Setup Swagger .yaml File
-In folder `launchcart/src/main/resources/static/swagger`:
-1. Create a swagger.yaml file  `touch swagger.yaml`.
-2. Edit `swagger\index.html` to point at the local `swagger.yaml` to look like the example below:
+.. note:: The ``dist/`` directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
+
+Setup Swagger ``.yaml`` File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In folder ``launchcart/src/main/resources/static/swagger``:
+
+1. Create a swagger.yaml file  ``touch swagger.yaml``.
+2. Edit ``swagger/index.html`` to point at the local ``swagger.yaml``, like the example below:
 
 .. code:: html
 
@@ -86,7 +87,7 @@ Start up SpringBoot and navigate to the url ``http://localhost:8080/swagger/inde
 Writing the Swagger YAML
 ========================
 
-Next we need to begin writing the Swagger YAML file. Copy the following code into your ``swagger.yaml`` file located in the ``launchcart/src/main/resources/static/swagger`` directory.
+Next we need to begin writing the Swagger YAML file. Copy the following code into your ``swagger.yaml`` file located in the ``launchcart/src/main/resources/static/swagger/`` directory.
 
 .. code:: yaml
 
@@ -111,9 +112,7 @@ Let's start with the ``/api/carts`` path.
 
 Add an entry to the ``tags`` section, to add a header for all of the endpoints for the ``/api/carts`` path.
 
-<aside class="aside-warning" markdown="1">
-YAML is white-spaced based. Be VERY careful with tabs and spaces. `YAML Reference <http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html>`_
-</aside>
+.. warning:: YAML is white-spaced based. Be *very* careful with tabs and spaces. You may also find the `YAML Reference <http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html>`_ helpful.
 
 .. code:: yaml
 
@@ -152,7 +151,7 @@ Review Cart JSON
 [{"uid":1,"items":[{"uid":1,"name":"Chacos","price":1000.0,"newItem":true,"description":"I think they're sandals"}]}]
 ```
 
-To represent the cart and it's contents, update the `/carts` definition to this.:
+To represent the cart and it's contents, update the `/carts` definition to this:
 
 .. code:: yaml
 
@@ -186,16 +185,16 @@ To represent the cart and it's contents, update the `/carts` definition to this.
                             - api_key: []
 
 
-<aside class="aside-note" markdown="1">
-Make sure that your whitespace is correct. There can only be a one tab indent for every map.
+.. note::
 
-Incorrect indentation may cause your API endpoints not to show up or display erros.
-</aside>
+   Make sure that your whitespace is correct. There can only be a one tab indent for every map.
+
+   Incorrect indentation may cause your API endpoints not to show up or display erros.
 
 Definitions
 -----------
 
-We can define types that are returned. Add the below ``yaml`` to the ``defintions`` section. Notice that this is referenced in the ``responses`` section of ``/cart``
+We can define types that are returned. Add the below ``yaml`` to the ``defintions`` section. Notice that this is referenced in the ``responses`` section of ``/cart``.
 
 .. code:: yaml
 
@@ -271,13 +270,12 @@ But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99
       required: false
       description: match items by newItem true/false
 
-
 Parameters
 ----------
 
-There are two types of parameters ``query`` and ``path``.  See this for more info about documenting parameters https://swagger.io/docs/specification/describing-parameters/
+There are two types of parameters: ``query`` and ``path``.  See the `Swagger documentatio <https://swagger.io/docs/specification/describing-parameters/>`_ for more info about documenting parameters.
 
 Continue On
 ===========
 
-Continue on to provide documentation for the rest of the Cart API. It should be much easier now that the Cart definition has been created.
+Continue on to provide documentation for the rest of the LaunchCart API. It should be much easier now that the Cart definition has been created.
