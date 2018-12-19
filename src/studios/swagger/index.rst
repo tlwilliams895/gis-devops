@@ -98,11 +98,11 @@ Swagger is currently showing *all* endpoints, including non-API endpoints that r
 Overriding Default Info
 -----------------------
 
-While the info provided by default in the auto-generated docs is fine, it's definitely lacking. For example:
+While the info provided by default in the auto-generated docs is fine, it could definitely be better. For example:
 
-1. There isn't a lot of info about our API
-2. API methods are grouped by controller name rather than resource
-3. The return types of some methods doesn't reflect the actual return type. For example, in the case of ``PUT /api/items``
+1. There isn't a lot of info about our API.
+2. API methods are grouped and named by controller name rather than resource.
+3. The return types of some methods doesn't reflect the actual return type. For example, in the case of ``PUT /api/items`` the stated return type is ``ResponseEntity``.
 
 .. image:: /_static/images/springfox-docs-default-1.png
 
