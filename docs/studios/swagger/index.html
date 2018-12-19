@@ -354,7 +354,7 @@ compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, ver
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p>Log out of LaunchCart, and then try to access <a class="reference external" href="http://localhost:8080/swagger-ui.html">your Swagger docs page</a> with your browser’s developer tools opened to the Network tab.</p>
-<p class="last">Note which resource requests return 4xx errors. You’ll need to modify <code class="docutils literal notranslate"><span class="pre">AuthenticationInterceptor.preHandle</span></code> to allow these requests through.</p>
+<p class="last">Note which resource requests return 3xx errors (that is, are redirected to the login screen). You’ll need to modify <code class="docutils literal notranslate"><span class="pre">AuthenticationInterceptor.preHandle</span></code> to allow these requests through.</p>
 </div>
 </div>
 <div class="section" id="display-only-api-endpoints">

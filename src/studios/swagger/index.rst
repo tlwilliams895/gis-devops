@@ -86,7 +86,7 @@ Figure out how to change ``AuthenticationInterceptor.preHandle`` to allow the Sw
 
   Log out of LaunchCart, and then try to access `your Swagger docs page <http://localhost:8080/swagger-ui.html>`_ with your browser's developer tools opened to the Network tab.
 
-  Note which resource requests return 4xx errors. You'll need to modify ``AuthenticationInterceptor.preHandle`` to allow these requests through.
+  Note which resource requests return 3xx errors (that is, are redirected to the login screen). You'll need to modify ``AuthenticationInterceptor.preHandle`` to allow these requests through.
 
 Display Only API Endpoints
 --------------------------
