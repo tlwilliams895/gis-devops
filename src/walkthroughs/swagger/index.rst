@@ -77,6 +77,9 @@ Edit the ``var url = ...`` line so that it points to our ``swagger.yaml`` file, 
 Writing the Swagger YAML
 ========================
 
+Outline
+-------
+
 Next we need to begin writing the Swagger YAML file. Copy the following code into your ``swagger.yaml``.
 
 .. code-block:: yaml
@@ -104,15 +107,25 @@ Start up SpringBoot and navigate to the url http://localhost:8080/swagger/index.
 
 Now we can start adding info about our API endpoints. Let's start with the ``/api/carts`` path.
 
-Add an entry to the ``tags`` section, to add a header for all of the endpoints for the ``/api/carts`` path.
+Tags
+----
 
-.. warning:: YAML is white-spaced based. Be *very* careful with tabs and spaces. You may also find the `YAML Reference <http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html>`_ helpful.
+Add two entries to the ``tags`` section, one for each collection of resource endpoints that we'll be working with (carts and items).
 
 .. code:: yaml
 
    tags:
      - name: cart
       description: Cart provides access to all of the items you are about to buy.
+    - name: item
+      description: Items to be added to cart.
+
+Refresh your browser to see the results.
+
+.. warning:: YAML is white-spaced based. Be *very* careful with tabs and spaces. You may also find the `YAML Reference <http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html>`_ helpful.
+
+Paths
+-----
 
 Also, let's add the ``GET`` endpoint for ``/api/carts`` in the ``paths`` section.
 
@@ -132,7 +145,7 @@ Also, let's add the ``GET`` endpoint for ``/api/carts`` in the ``paths`` section
             description: successful operation
 
 
-Now, let's fill in the schema for the ``/api/carts`` endpoint. In order to do that, first check to see what the service is currently returning.
+Now, let's fill in the schema for the ``/api/carts`` endpoint. In order to do that, let's get some example output from our API.
 
 Visit ``http://localhost:8080/api/carts`` or load the endpoint in the RESTED plugin. You should receive something that looks like this:
 
@@ -154,7 +167,7 @@ Visit ``http://localhost:8080/api/carts`` or load the endpoint in the RESTED plu
   ]
 
 
-To represent the cart and it's contents, update the ``/api/carts`` definition to this:
+Using this info, update the ``/api/carts`` definition to this (not the new ``schema`` section):
 
 .. code-block:: yaml
 
@@ -185,6 +198,26 @@ To represent the cart and it's contents, update the ``/api/carts`` definition to
                           items:
                             $ref: "#/definitions/Item"
 
+Let's also add a path for our Items resources.
+
+.. code:: yaml
+
+    /api/items:
+      get:
+        tags:
+        - item
+        summary: Returns items
+        operationId: getItems
+        produces:
+        - application/json
+        responses:
+          200:
+            description: successful operation
+            schema:
+              type: array
+              items:
+                $ref: "#/definitions/Item"
+
 Refresh your browser to see the updated info.
 
 .. note::
@@ -196,7 +229,7 @@ Refresh your browser to see the updated info.
 Definitions
 -----------
 
-We can define types that are returned. Add the below ``yaml`` to the ``defintions`` section. Notice that this is referenced in the ``responses`` section of ``/cart``.
+We can define types that are returned, to provide examples of sample responses, along with data type info. Add the below ``yaml`` to the ``defintions`` section. Notice that this is referenced in the ``responses`` section of ``/api/cart``.
 
 .. code:: yaml
 
@@ -221,35 +254,8 @@ We can define types that are returned. Add the below ``yaml`` to the ``defintion
           type: string
           example: "I think they're a type of sandals"
 
-
-Let's now add info about our Items resources. In the ``tags`` section of ``swagger.yaml``, add:
-
-.. code:: yaml
-
-  - name: item
-    description: Items to be added to cart.
-
-
-And add this to the ``paths`` section:
-
-.. code:: yaml
-
-    /api/items:
-      get:
-        tags:
-        - item
-        summary: Returns items
-        operationId: getItems
-        produces:
-        - application/json
-        responses:
-          200:
-            description: successful operation
-            schema:
-              type: array
-              items:
-                $ref: "#/definitions/Item"
-
+Parameters
+----------
 
 But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99&new=true``. Add the following ``parameters`` section within the ``/api/items`` path definition:
 
@@ -272,3 +278,5 @@ But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99
 Again, reload your browser to see the new info displayed in SwaggerUI.
 
 ..note:: There are two types of parameters: ``query`` and ``path``.  See the `Swagger documentation <https://swagger.io/docs/specification/describing-parameters/>`_ for more info about documenting parameters.
+
+You can keep going like this to fully document your API. Now that we know how Swagger works, however, we can use a simpler method to automatically create API documentation using Swagger.

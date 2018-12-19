@@ -270,7 +270,11 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#writing-the-swagger-yaml">Writing the Swagger YAML</a><ul>
+<li><a class="reference internal" href="#outline">Outline</a></li>
+<li><a class="reference internal" href="#tags">Tags</a></li>
+<li><a class="reference internal" href="#paths">Paths</a></li>
 <li><a class="reference internal" href="#definitions">Definitions</a></li>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
 </ul>
 </li>
 </ul>
@@ -346,6 +350,8 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 </div>
 <div class="section" id="writing-the-swagger-yaml">
 <h2>Writing the Swagger YAML<a class="headerlink" href="#writing-the-swagger-yaml" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="outline">
+<h3>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h3>
 <p>Next we need to begin writing the Swagger YAML file. Copy the following code into your <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code>.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">swagger</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.0&#39;</span>
 <span class="l l-Scalar l-Scalar-Plain">info</span><span class="p p-Indicator">:</span>
@@ -370,16 +376,25 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <p class="last">If your screen reports and error “failed to parse JSON/YAML response”, then check the format of <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> to make sure it is correct.</p>
 </div>
 <p>Now we can start adding info about our API endpoints. Let’s start with the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
-<p>Add an entry to the <code class="docutils literal notranslate"><span class="pre">tags</span></code> section, to add a header for all of the endpoints for the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
+</div>
+<div class="section" id="tags">
+<h3>Tags<a class="headerlink" href="#tags" title="Permalink to this headline">¶</a></h3>
+<p>Add two entries to the <code class="docutils literal notranslate"><span class="pre">tags</span></code> section, one for each collection of resource endpoints that we’ll be working with (carts and items).</p>
+<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>tags:
+  - name: cart
+   description: Cart provides access to all of the items you are about to buy.
+ - name: item
+   description: Items to be added to cart.
+</pre></div>
+</div>
+<p>Refresh your browser to see the results.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">YAML is white-spaced based. Be <em>very</em> careful with tabs and spaces. You may also find the <a class="reference external" href="http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Reference</a> helpful.</p>
 </div>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>tags:
-  - name: cart
-   description: Cart provides access to all of the items you are about to buy.
-</pre></div>
 </div>
+<div class="section" id="paths">
+<h3>Paths<a class="headerlink" href="#paths" title="Permalink to this headline">¶</a></h3>
 <p>Also, let’s add the <code class="docutils literal notranslate"><span class="pre">GET</span></code> endpoint for <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> in the <code class="docutils literal notranslate"><span class="pre">paths</span></code> section.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
   <span class="l l-Scalar l-Scalar-Plain">/api/carts</span><span class="p p-Indicator">:</span>
@@ -395,7 +410,7 @@ Create and checkout a new branch named <code class="docutils literal notranslate
           <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">successful operation</span>
 </pre></div>
 </div>
-<p>Now, let’s fill in the schema for the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> endpoint. In order to do that, first check to see what the service is currently returning.</p>
+<p>Now, let’s fill in the schema for the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> endpoint. In order to do that, let’s get some example output from our API.</p>
 <p>Visit <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/api/carts</span></code> or load the endpoint in the RESTED plugin. You should receive something that looks like this:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
   <span class="p">{</span>
@@ -413,7 +428,7 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>To represent the cart and it’s contents, update the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> definition to this:</p>
+<p>Using this info, update the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> definition to this (not the new <code class="docutils literal notranslate"><span class="pre">schema</span></code> section):</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
     <span class="l l-Scalar l-Scalar-Plain">/api/carts</span><span class="p p-Indicator">:</span>
         <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
@@ -442,15 +457,34 @@ Create and checkout a new branch named <code class="docutils literal notranslate
                           <span class="l l-Scalar l-Scalar-Plain">$ref</span><span class="p p-Indicator">:</span> <span class="s">&quot;#/definitions/Item&quot;</span>
 </pre></div>
 </div>
+<p>Let’s also add a path for our Items resources.</p>
+<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>/api/items:
+  get:
+    tags:
+    - item
+    summary: Returns items
+    operationId: getItems
+    produces:
+    - application/json
+    responses:
+      200:
+        description: successful operation
+        schema:
+          type: array
+          items:
+            $ref: &quot;#/definitions/Item&quot;
+</pre></div>
+</div>
 <p>Refresh your browser to see the updated info.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Make sure that your whitespace is correct. There can only be a one tab indent for every map.</p>
 <p class="last">Incorrect indentation may cause your API endpoints not to show up or display errors.</p>
 </div>
+</div>
 <div class="section" id="definitions">
 <h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
-<p>We can define types that are returned. Add the below <code class="docutils literal notranslate"><span class="pre">yaml</span></code> to the <code class="docutils literal notranslate"><span class="pre">defintions</span></code> section. Notice that this is referenced in the <code class="docutils literal notranslate"><span class="pre">responses</span></code> section of <code class="docutils literal notranslate"><span class="pre">/cart</span></code>.</p>
+<p>We can define types that are returned, to provide examples of sample responses, along with data type info. Add the below <code class="docutils literal notranslate"><span class="pre">yaml</span></code> to the <code class="docutils literal notranslate"><span class="pre">defintions</span></code> section. Notice that this is referenced in the <code class="docutils literal notranslate"><span class="pre">responses</span></code> section of <code class="docutils literal notranslate"><span class="pre">/api/cart</span></code>.</p>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>definitions:
   Item:
     type: object
@@ -473,29 +507,9 @@ Create and checkout a new branch named <code class="docutils literal notranslate
         example: &quot;I think they&#39;re a type of sandals&quot;
 </pre></div>
 </div>
-<p>Let’s now add info about our Items resources. In the <code class="docutils literal notranslate"><span class="pre">tags</span></code> section of <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code>, add:</p>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>- name: item
-  description: Items to be added to cart.
-</pre></div>
 </div>
-<p>And add this to the <code class="docutils literal notranslate"><span class="pre">paths</span></code> section:</p>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>/api/items:
-  get:
-    tags:
-    - item
-    summary: Returns items
-    operationId: getItems
-    produces:
-    - application/json
-    responses:
-      200:
-        description: successful operation
-        schema:
-          type: array
-          items:
-            $ref: &quot;#/definitions/Item&quot;
-</pre></div>
-</div>
+<div class="section" id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
 <p>But wait, <code class="docutils literal notranslate"><span class="pre">/api/items</span></code> has two optional query parameters <code class="docutils literal notranslate"><span class="pre">/api/items?price=99&amp;new=true</span></code>. Add the following <code class="docutils literal notranslate"><span class="pre">parameters</span></code> section within the <code class="docutils literal notranslate"><span class="pre">/api/items</span></code> path definition:</p>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>parameters:
   - in: query
@@ -514,6 +528,7 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 </div>
 <p>Again, reload your browser to see the new info displayed in SwaggerUI.</p>
 <p>..note:: There are two types of parameters: <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See the <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/">Swagger documentation</a> for more info about documenting parameters.</p>
+<p>You can keep going like this to fully document your API. Now that we know how Swagger works, however, we can use a simpler method to automatically create API documentation using Swagger.</p>
 </div>
 </div>
 </div>
