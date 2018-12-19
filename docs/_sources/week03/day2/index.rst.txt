@@ -33,4 +33,5 @@ Resources
 * `Basic Authentication <https://en.wikipedia.org/wiki/Basic_access_authentication>`_
 * `Understanding HATEOAS <https://spring.io/understanding/HATEOAS>`_
 * `REST Maturity Model <https://martinfowler.com/articles/richardsonMaturityModel.html>`_
+* `OpenAPI Specification <https://swagger.io/specification/>`_
 * `Swagger Docs <https://swagger.io/docs/specification/2-0/paths-and-operations/>`_

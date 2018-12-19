@@ -267,6 +267,12 @@
 <li><a class="reference internal" href="#tasks">Tasks</a><ul>
 <li><a class="reference internal" href="#bypassing-login">Bypassing Login</a></li>
 <li><a class="reference internal" href="#display-only-api-endpoints">Display Only API Endpoints</a></li>
+<li><a class="reference internal" href="#overriding-default-info">Overriding Default Info</a><ul>
+<li><a class="reference internal" href="#grouping-api-methods-by-resource">Grouping API Methods by Resource</a></li>
+<li><a class="reference internal" href="#adding-api-info">Adding API Info</a></li>
+<li><a class="reference internal" href="#documenting-correct-return-types">Documenting Correct Return Types</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#turn-in-your-work">Turn in your Work</a></li>
@@ -287,6 +293,11 @@
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">Do <em>not</em> create the branch off of the walkthrough studio, since we manually created Swagger docs in that branch.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>We will be using some annotations and methods to configure Swagger documentation (via Springfox) for our API. There are Java-based configuration tools provided by Swagger that <em>are not</em> supported by Springfox, so not everything you find on the web will work in this context.</p>
+<p class="last">Refer to the <a class="reference external" href="http://springfox.github.io/springfox/docs/current/">Springfox documentation</a> as your primary reference.</p>
 </div>
 </div>
 <div class="section" id="configure-springfox">
@@ -311,13 +322,21 @@ compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, ver
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Bean</span>
 <span class="kd">public</span> <span class="n">Docket</span> <span class="nf">apiDocket</span><span class="o">()</span> <span class="o">{</span>
   <span class="k">return</span> <span class="k">new</span> <span class="n">Docket</span><span class="o">(</span><span class="n">DocumentationType</span><span class="o">.</span><span class="na">SWAGGER_2</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">apiInfo</span><span class="o">(</span><span class="n">apiInfo</span><span class="o">())</span>
       <span class="o">.</span><span class="na">select</span><span class="o">()</span>
       <span class="o">.</span><span class="na">apis</span><span class="o">(</span><span class="n">RequestHandlerSelectors</span><span class="o">.</span><span class="na">any</span><span class="o">())</span>
       <span class="o">.</span><span class="na">paths</span><span class="o">(</span><span class="n">PathSelectors</span><span class="o">.</span><span class="na">any</span><span class="o">())</span>
       <span class="o">.</span><span class="na">build</span><span class="o">();</span>
 <span class="o">}</span>
+
+<span class="kd">private</span> <span class="n">ApiInfo</span> <span class="nf">apiInfo</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">ApiInfoBuilder</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">title</span><span class="o">(</span><span class="s">&quot;LaunchCart REST API&quot;</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">apiInfo</span></code> method customizes the title of our API documentation, with the same effect as adding a <code class="docutils literal notranslate"><span class="pre">title</span></code> property to the <code class="docutils literal notranslate"><span class="pre">info</span></code> object in a Swagger YAML config file. You’ll add some additional customizations below.</p>
 </div>
 <div class="section" id="view-the-generated-swagger-documentation">
 <h2>View the Generated Swagger Documentation<a class="headerlink" href="#view-the-generated-swagger-documentation" title="Permalink to this headline">¶</a></h2>
@@ -346,13 +365,44 @@ compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, ver
 <p class="last">You should refer to <a class="reference external" href="https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api#advanced">section 6.1 of Baeldung’s Springfox tutorial</a>. And note that while we create a configuration bean above, we haven’t put it to use yet!</p>
 </div>
 </div>
+<div class="section" id="overriding-default-info">
+<h3>Overriding Default Info<a class="headerlink" href="#overriding-default-info" title="Permalink to this headline">¶</a></h3>
+<p>While the info provided by default in the auto-generated docs is fine, it’s definitely lacking. For example:</p>
+<ol class="arabic simple">
+<li>There isn’t a lot of info about our API</li>
+<li>API methods are grouped by controller name rather than resource</li>
+<li>The return types of some methods doesn’t reflect the actual return type. For example, in the case of <code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/api/items</span></code></li>
+</ol>
+<img alt="../../_images/springfox-docs-default-1.png" src="../../_images/springfox-docs-default-1.png" />
+<img alt="../../_images/springfox-docs-default-2.png" src="../../_images/springfox-docs-default-2.png" />
+<p>Let’s address each of these.</p>
+<div class="section" id="grouping-api-methods-by-resource">
+<h4>Grouping API Methods by Resource<a class="headerlink" href="#grouping-api-methods-by-resource" title="Permalink to this headline">¶</a></h4>
+<p>When using Springfox with Spring Boot, Springfox is able to determine a lot about your API based on the Spring Boot annotations that you use. There are also <a class="reference external" href="https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X">additional annotations</a> provided by Swagger that can be used to further enrich your API documentation.</p>
+<p>In particular, the <code class="docutils literal notranslate"><span class="pre">&#64;Api</span></code> annotation can be applied to a class to add tags and other settings. Read an <a class="reference external" href="https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#api">overview of the &#64;Api annotation</a> to learn how to add tags to each of the methods within a class.</p>
+</div>
+<div class="section" id="adding-api-info">
+<h4>Adding API Info<a class="headerlink" href="#adding-api-info" title="Permalink to this headline">¶</a></h4>
+<p>We have already added one custom piece of info to our docs: the title. We can use additional methods of the <code class="docutils literal notranslate"><span class="pre">ApiInfoBuilder</span></code> class to add other <code class="docutils literal notranslate"><span class="pre">info</span></code> object properties such as <code class="docutils literal notranslate"><span class="pre">contact</span></code>, <code class="docutils literal notranslate"><span class="pre">license</span></code>, <code class="docutils literal notranslate"><span class="pre">version</span></code>, and so on.</p>
+<p>By referring to the following resources, add at least 3 additional informational fields to your documentation:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://springfox.github.io/springfox/javadoc/current/springfox/documentation/builders/ApiInfoBuilder.html">ApiInfoBuilder JavaDoc</a></li>
+<li><a class="reference external" href="https://github.com/springfox/springfox-demos/blob/master/boot-swagger/src/main/java/springfoxdemo/boot/swagger/Application.java">ApiInfoBuilder example</a> (see line 139)</li>
+</ul>
+</div>
+<div class="section" id="documenting-correct-return-types">
+<h4>Documenting Correct Return Types<a class="headerlink" href="#documenting-correct-return-types" title="Permalink to this headline">¶</a></h4>
+<p>Springfox scans our classes, reading annotations and method signatures (i.e. the number and type of paramters and return values) to determine the structure of our API. It assumes–reasonably, in many cases–that the return type of a method is the same as the return type of the API endpoint. This is not always the case, however.</p>
+<p>The <a class="reference external" href="https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apioperation">&#64;ApiOperation annotation</a> allows use to specify the return type of an API method, among other things. Apply this annotation to each method with a <code class="docutils literal notranslate"><span class="pre">ResponseEntity</span></code> return type to properly specify the return type of the method.</p>
+</div>
+</div>
 </div>
 <div class="section" id="turn-in-your-work">
 <h2>Turn in your Work<a class="headerlink" href="#turn-in-your-work" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Commit and push your work to GitLab.</li>
-<li>Create a merge request and post it to slack.</li>
-<li>Notify the instructor that you are done, along with the name of the branch that you completed your work in.</li>
+<li>Commit and push your work to GitLab</li>
+<li>Create a merge request and post it to slack</li>
+<li>Notify the instructor that you are done, along with the name of the branch that you completed your work in</li>
 </ul>
 </div>
 </div>
