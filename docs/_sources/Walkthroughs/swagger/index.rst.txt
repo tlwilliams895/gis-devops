@@ -2,22 +2,19 @@
 
 .. _walkthrough-swagger:
 
-=====================
-Walkthrough SwaggerUI
-=====================
+======================
+Walkthrough: SwaggerUI
+======================
 
 In this walkthrough, the instructor will guide through adding API documentation using `SwaggerUI <https://swagger.io/swagger-ui/>`_.
 
 Getting Started
 ===============
 
-Open Your Launchcart Project in Intellij
-----------------------------------------
-
 The same Launchcart project and repo you used for the REST studio.
 Create and checkout a new branch named ``add-swagger`` with this command ``git checkout -b add-swagger``
 
-Setup Intellij
+Setup IntelliJ
 --------------
 
 Since we are going to be writing the ``swagger.yaml`` in IntelliJ, let's get a plugin to help out.
@@ -30,71 +27,63 @@ Click the magnifying glass in the upper right hand corner and type "Plugin". Sel
 4. Search for "Swagger" in the search bar and install the "Swagger" plugin (there may be mutiple results; install the one with the most stars .
 5. Restart Intellij after the plugin has installed.
 
-Embed SwaggerUI into the Launchcart Project
--------------------------------------------
+Add SwaggerUI to the Project
+----------------------------
 
-Clone the `SwaggerUI repository <https://github.com/swagger-api/swagger-ui/tree/2.x>`_ from Github. 
+Clone the `SwaggerUI repository <https://github.com/swagger-api/swagger-ui/tree/2.x>`_ from Github. Alternatively, download the code as a zip file and unzip it. 
 
-.. note:: We are downloading the SwaggerUI for 2.x branch.
+.. note:: We are downloading the SwaggerUI 2.x branch.
 
-Move Swagger to Your Project
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To add the SwaggerUI files to your project:
 
 1. In IntelliJ, create the directory ``launchcart/src/main/resources/static/swagger``
 2. Navigate into the repo that you just cloned.
-3. Copy the *contents* of ``swagger-ui/dist`` directory into ``launchcart/src/main/resources/static/swagger/`` directory.
-
-.. note:: The ``dist/`` directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
+3. Copy the *contents* of ``swagger-ui/dist`` directory into ``launchcart/src/main/resources/static/swagger/`` directory. The ``dist/`` directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
 
 Setup Swagger ``.yaml`` File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In folder ``launchcart/src/main/resources/static/swagger``:
+In the folder ``launchcart/src/main/resources/static/swagger``, create a ``swagger.yaml`` file. You can do this via IntelliJ, or by running ``touch swagger.yaml`` from the directory.
 
-1. Create a swagger.yaml file  ``touch swagger.yaml``.
-2. Edit ``swagger/index.html`` to point at the local ``swagger.yaml``, like the example below:
+Open ``swagger/index.html`` and locate the script block, the top of which should look like this:
 
-.. code:: html
+.. code::
 
-  <script>
-  window.onload = function() {
+  <script type="text/javascript">
+    $(function () {
+      var url = window.location.search.match(/url=([^&]+)/);
+      if (url && url.length > 1) {
+        url = decodeURIComponent(url[1]);
+      } else {
+        url = "http://petstore.swagger.io/v2/swagger.json";
+      }
 
-    // Build a system
-    const ui = SwaggerUIBundle({
-      url: "http://localhost:8080/swagger/swagger.yaml",
-      dom_id: '#swagger-ui',
-      deepLinking: true,
-      presets: [
-        SwaggerUIBundle.presets.apis,
-        SwaggerUIStandalonePreset
-      ],
-      plugins: [
-        SwaggerUIBundle.plugins.DownloadUrl
-      ],
-      layout: "StandaloneLayout"
-    })
+      hljs.configure({
+        highlightSizeThreshold: 5000
+      });
 
-    window.ui = ui
-  }
-  </script>
+Edit the ``var url = ...`` line so that it points to our ``swagger.yaml`` file, and delete the conditional immediately following. The top of the script block should look lik this:
 
+.. code::
 
-Load Swagger in the Browser
-===========================
+  <script type="text/javascript">
+    $(function () {
+      url = "http://localhost:8080/swagger/swagger.yaml";
 
-Start up SpringBoot and navigate to the url ``http://localhost:8080/swagger/index.html``. You should see a SwaggerUI page displayed.
+      hljs.configure({
+        highlightSizeThreshold: 5000
+      });
 
 Writing the Swagger YAML
 ========================
 
-Next we need to begin writing the Swagger YAML file. Copy the following code into your ``swagger.yaml`` file located in the ``launchcart/src/main/resources/static/swagger/`` directory.
+Next we need to begin writing the Swagger YAML file. Copy the following code into your ``swagger.yaml``.
 
-.. code:: yaml
+.. code-block:: yaml
 
   swagger: '2.0'
   info:
-    description: |
-    This is an example RESTful API
+    description: This is an example RESTful API
     version: 1.0.0
     title: LaunchCart API
     termsOfService: http://swagger.io/terms/
@@ -107,8 +96,13 @@ Next we need to begin writing the Swagger YAML file. Copy the following code int
   paths:
   definitions:
 
+Start up SpringBoot and navigate to the url http://localhost:8080/swagger/index.html. You should see a SwaggerUI page displayed. It will look something like this:
 
-Let's start with the ``/api/carts`` path.
+.. image:: /_static/images/swagger-ui.png
+
+.. warning:: If your screen reports and error "failed to parse JSON/YAML response", then check the format of ``swagger.yaml`` to make sure it is correct.
+
+Now we can start adding info about our API endpoints. Let's start with the ``/api/carts`` path.
 
 Add an entry to the ``tags`` section, to add a header for all of the endpoints for the ``/api/carts`` path.
 
@@ -116,19 +110,20 @@ Add an entry to the ``tags`` section, to add a header for all of the endpoints f
 
 .. code:: yaml
 
-  - name: cart
-    description: Cart provides access to all of the items you are about to buy.
+   tags:
+     - name: cart
+      description: Cart provides access to all of the items you are about to buy.
 
 Also, let's add the ``GET`` endpoint for ``/api/carts`` in the ``paths`` section.
 
-.. code:: yaml
+.. code-block:: yaml
 
   paths:
-    /carts:
+    /api/carts:
       get:
         tags:
         - cart
-        summary: Returns all carts that exist..
+        summary: Returns all carts that exist.
         operationId: getAllCarts
         produces:
         - application/json
@@ -137,26 +132,34 @@ Also, let's add the ``GET`` endpoint for ``/api/carts`` in the ``paths`` section
             description: successful operation
 
 
-Next, fill in the schema for the ``/api/carts`` endpoint. In order to do that, first check to see what the service is currently returning.
+Now, let's fill in the schema for the ``/api/carts`` endpoint. In order to do that, first check to see what the service is currently returning.
 
-Review Cart JSON
-----------------
+Visit ``http://localhost:8080/api/carts`` or load the endpoint in the RESTED plugin. You should receive something that looks like this:
 
-* Register for an account on your LaunchCart app
-* Add item(s) to your cart
-* Visit ``http://localhost:8080/api/carts``
-* You should receive something that looks like the below...
+.. code-block:: json
 
-```nohighlight
-[{"uid":1,"items":[{"uid":1,"name":"Chacos","price":1000.0,"newItem":true,"description":"I think they're sandals"}]}]
-```
+  [
+    {
+      "uid": 1,
+      "items": [
+        {
+          "uid": 1,
+          "name": "Chacos",
+          "price": 100,
+          "newItem": true,
+          "description": "I think they're sandals"
+        }
+      ]
+    }
+  ]
 
-To represent the cart and it's contents, update the `/carts` definition to this:
 
-.. code:: yaml
+To represent the cart and it's contents, update the ``/api/carts`` definition to this:
+
+.. code-block:: yaml
 
   paths:
-      /carts:
+      /api/carts:
           get:
               tags:
               - cart
@@ -181,15 +184,14 @@ To represent the cart and it's contents, update the `/carts` definition to this:
                           type: array
                           items:
                             $ref: "#/definitions/Item"
-                          security:
-                            - api_key: []
 
+Refresh your browser to see the updated info.
 
 .. note::
 
    Make sure that your whitespace is correct. There can only be a one tab indent for every map.
 
-   Incorrect indentation may cause your API endpoints not to show up or display erros.
+   Incorrect indentation may cause your API endpoints not to show up or display errors.
 
 Definitions
 -----------
@@ -211,7 +213,7 @@ We can define types that are returned. Add the below ``yaml`` to the ``defintion
         price:
           type: number
           format: int64
-          example: 1.00
+          example: 100
         newItem:
           type: boolean
           example: true
@@ -220,10 +222,7 @@ We can define types that are returned. Add the below ``yaml`` to the ``defintion
           example: "I think they're a type of sandals"
 
 
-Now for Items
--------------
-
-Add this to the ``tags`` section:
+Let's now add info about our Items resources. In the ``tags`` section of ``swagger.yaml``, add:
 
 .. code:: yaml
 
@@ -231,11 +230,11 @@ Add this to the ``tags`` section:
     description: Items to be added to cart.
 
 
-Add this to the ``paths`` section:
+And add this to the ``paths`` section:
 
 .. code:: yaml
 
-    /items:
+    /api/items:
       get:
         tags:
         - item
@@ -252,7 +251,7 @@ Add this to the ``paths`` section:
                 $ref: "#/definitions/Item"
 
 
-But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99&new=true``. Add ``parameters`` to ``item``.
+But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99&new=true``. Add the following ``parameters`` section within the ``/api/items`` path definition:
 
 .. code:: yaml
 
@@ -270,12 +269,6 @@ But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99
       required: false
       description: match items by newItem true/false
 
-Parameters
-----------
+Again, reload your browser to see the new info displayed in SwaggerUI.
 
-There are two types of parameters: ``query`` and ``path``.  See the `Swagger documentatio <https://swagger.io/docs/specification/describing-parameters/>`_ for more info about documenting parameters.
-
-Continue On
-===========
-
-Continue on to provide documentation for the rest of the LaunchCart API. It should be much easier now that the Cart definition has been created.
+..note:: There are two types of parameters: ``query`` and ``path``.  See the `Swagger documentation <https://swagger.io/docs/specification/describing-parameters/>`_ for more info about documenting parameters.

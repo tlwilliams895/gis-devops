@@ -4,7 +4,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Walkthrough SwaggerUI &#8212; LaunchCode Curriculum Docs  documentation</title>
+    <title>Walkthrough: SwaggerUI &#8212; LaunchCode Curriculum Docs  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
@@ -260,26 +260,19 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">Walkthrough SwaggerUI</a><ul>
+<li><a class="reference internal" href="#">Walkthrough: SwaggerUI</a><ul>
 <li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
-<li><a class="reference internal" href="#open-your-launchcart-project-in-intellij">Open Your Launchcart Project in Intellij</a></li>
-<li><a class="reference internal" href="#setup-intellij">Setup Intellij</a></li>
-<li><a class="reference internal" href="#embed-swaggerui-into-the-launchcart-project">Embed SwaggerUI into the Launchcart Project</a><ul>
-<li><a class="reference internal" href="#move-swagger-to-your-project">Move Swagger to Your Project</a></li>
+<li><a class="reference internal" href="#setup-intellij">Setup IntelliJ</a></li>
+<li><a class="reference internal" href="#add-swaggerui-to-the-project">Add SwaggerUI to the Project</a><ul>
 <li><a class="reference internal" href="#setup-swagger-yaml-file">Setup Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#load-swagger-in-the-browser">Load Swagger in the Browser</a></li>
 <li><a class="reference internal" href="#writing-the-swagger-yaml">Writing the Swagger YAML</a><ul>
-<li><a class="reference internal" href="#review-cart-json">Review Cart JSON</a></li>
 <li><a class="reference internal" href="#definitions">Definitions</a></li>
-<li><a class="reference internal" href="#now-for-items">Now for Items</a></li>
-<li><a class="reference internal" href="#parameters">Parameters</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#continue-on">Continue On</a></li>
 </ul>
 </li>
 </ul>
@@ -289,17 +282,14 @@
     <div class="col-md-9 content">
       
   <div class="section" id="walkthrough-swaggerui">
-<span id="walkthrough-swagger"></span><h1>Walkthrough SwaggerUI<a class="headerlink" href="#walkthrough-swaggerui" title="Permalink to this headline">¶</a></h1>
+<span id="walkthrough-swagger"></span><h1>Walkthrough: SwaggerUI<a class="headerlink" href="#walkthrough-swaggerui" title="Permalink to this headline">¶</a></h1>
 <p>In this walkthrough, the instructor will guide through adding API documentation using <a class="reference external" href="https://swagger.io/swagger-ui/">SwaggerUI</a>.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="open-your-launchcart-project-in-intellij">
-<h3>Open Your Launchcart Project in Intellij<a class="headerlink" href="#open-your-launchcart-project-in-intellij" title="Permalink to this headline">¶</a></h3>
 <p>The same Launchcart project and repo you used for the REST studio.
 Create and checkout a new branch named <code class="docutils literal notranslate"><span class="pre">add-swagger</span></code> with this command <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">add-swagger</span></code></p>
-</div>
 <div class="section" id="setup-intellij">
-<h3>Setup Intellij<a class="headerlink" href="#setup-intellij" title="Permalink to this headline">¶</a></h3>
+<h3>Setup IntelliJ<a class="headerlink" href="#setup-intellij" title="Permalink to this headline">¶</a></h3>
 <p>Since we are going to be writing the <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> in IntelliJ, let’s get a plugin to help out.</p>
 <p>Click the magnifying glass in the upper right hand corner and type “Plugin”. Select “Plugins” from the menu. Then select “Browse repositories…”.</p>
 <ol class="arabic simple">
@@ -310,155 +300,153 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <li>Restart Intellij after the plugin has installed.</li>
 </ol>
 </div>
-<div class="section" id="embed-swaggerui-into-the-launchcart-project">
-<h3>Embed SwaggerUI into the Launchcart Project<a class="headerlink" href="#embed-swaggerui-into-the-launchcart-project" title="Permalink to this headline">¶</a></h3>
-<p>Clone the <a class="reference external" href="https://github.com/swagger-api/swagger-ui/tree/2.x">SwaggerUI repository</a> from Github.</p>
+<div class="section" id="add-swaggerui-to-the-project">
+<h3>Add SwaggerUI to the Project<a class="headerlink" href="#add-swaggerui-to-the-project" title="Permalink to this headline">¶</a></h3>
+<p>Clone the <a class="reference external" href="https://github.com/swagger-api/swagger-ui/tree/2.x">SwaggerUI repository</a> from Github. Alternatively, download the code as a zip file and unzip it.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">We are downloading the SwaggerUI for 2.x branch.</p>
+<p class="last">We are downloading the SwaggerUI 2.x branch.</p>
 </div>
-<div class="section" id="move-swagger-to-your-project">
-<h4>Move Swagger to Your Project<a class="headerlink" href="#move-swagger-to-your-project" title="Permalink to this headline">¶</a></h4>
+<p>To add the SwaggerUI files to your project:</p>
 <ol class="arabic simple">
 <li>In IntelliJ, create the directory <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code></li>
 <li>Navigate into the repo that you just cloned.</li>
-<li>Copy the <em>contents</em> of <code class="docutils literal notranslate"><span class="pre">swagger-ui/dist</span></code> directory into <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger/</span></code> directory.</li>
+<li>Copy the <em>contents</em> of <code class="docutils literal notranslate"><span class="pre">swagger-ui/dist</span></code> directory into <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger/</span></code> directory. The <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document</li>
 </ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document</p>
-</div>
-</div>
 <div class="section" id="setup-swagger-yaml-file">
 <h4>Setup Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File<a class="headerlink" href="#setup-swagger-yaml-file" title="Permalink to this headline">¶</a></h4>
-<p>In folder <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code>:</p>
-<ol class="arabic simple">
-<li>Create a swagger.yaml file  <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">swagger.yaml</span></code>.</li>
-<li>Edit <code class="docutils literal notranslate"><span class="pre">swagger/index.html</span></code> to point at the local <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code>, like the example below:</li>
-</ol>
-<div class="code html highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script&gt;
-window.onload = function() {
+<p>In the folder <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code>, create a <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> file. You can do this via IntelliJ, or by running <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">swagger.yaml</span></code> from the directory.</p>
+<p>Open <code class="docutils literal notranslate"><span class="pre">swagger/index.html</span></code> and locate the script block, the top of which should look like this:</p>
+<div class="code highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script type=&quot;text/javascript&quot;&gt;
+  $(function () {
+    var url = window.location.search.match(/url=([^&amp;]+)/);
+    if (url &amp;&amp; url.length &gt; 1) {
+      url = decodeURIComponent(url[1]);
+    } else {
+      url = &quot;http://petstore.swagger.io/v2/swagger.json&quot;;
+    }
 
-  // Build a system
-  const ui = SwaggerUIBundle({
-    url: &quot;http://localhost:8080/swagger/swagger.yaml&quot;,
-    dom_id: &#39;#swagger-ui&#39;,
-    deepLinking: true,
-    presets: [
-      SwaggerUIBundle.presets.apis,
-      SwaggerUIStandalonePreset
-    ],
-    plugins: [
-      SwaggerUIBundle.plugins.DownloadUrl
-    ],
-    layout: &quot;StandaloneLayout&quot;
-  })
+    hljs.configure({
+      highlightSizeThreshold: 5000
+    });
+</pre></div>
+</div>
+<p>Edit the <code class="docutils literal notranslate"><span class="pre">var</span> <span class="pre">url</span> <span class="pre">=</span> <span class="pre">...</span></code> line so that it points to our <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> file, and delete the conditional immediately following. The top of the script block should look lik this:</p>
+<div class="code highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script type=&quot;text/javascript&quot;&gt;
+  $(function () {
+    url = &quot;http://localhost:8080/swagger/swagger.yaml&quot;;
 
-  window.ui = ui
-}
-&lt;/script&gt;
+    hljs.configure({
+      highlightSizeThreshold: 5000
+    });
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="load-swagger-in-the-browser">
-<h2>Load Swagger in the Browser<a class="headerlink" href="#load-swagger-in-the-browser" title="Permalink to this headline">¶</a></h2>
-<p>Start up SpringBoot and navigate to the url <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/swagger/index.html</span></code>. You should see a SwaggerUI page displayed.</p>
 </div>
 <div class="section" id="writing-the-swagger-yaml">
 <h2>Writing the Swagger YAML<a class="headerlink" href="#writing-the-swagger-yaml" title="Permalink to this headline">¶</a></h2>
-<p>Next we need to begin writing the Swagger YAML file. Copy the following code into your <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> file located in the <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger/</span></code> directory.</p>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>swagger: &#39;2.0&#39;
-info:
-  description: |
-  This is an example RESTful API
-  version: 1.0.0
-  title: LaunchCart API
-  termsOfService: http://swagger.io/terms/
-  contact:
-    email: your.email@gmail.com
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-tags:
-paths:
-definitions:
+<p>Next we need to begin writing the Swagger YAML file. Copy the following code into your <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">swagger</span><span class="p p-Indicator">:</span> <span class="s">&#39;2.0&#39;</span>
+<span class="l l-Scalar l-Scalar-Plain">info</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">This is an example RESTful API</span>
+  <span class="l l-Scalar l-Scalar-Plain">version</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0.0</span>
+  <span class="l l-Scalar l-Scalar-Plain">title</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">LaunchCart API</span>
+  <span class="l l-Scalar l-Scalar-Plain">termsOfService</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://swagger.io/terms/</span>
+  <span class="l l-Scalar l-Scalar-Plain">contact</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">email</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">your.email@gmail.com</span>
+  <span class="l l-Scalar l-Scalar-Plain">license</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Apache 2.0</span>
+    <span class="l l-Scalar l-Scalar-Plain">url</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">http://www.apache.org/licenses/LICENSE-2.0.html</span>
+<span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+<span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+<span class="l l-Scalar l-Scalar-Plain">definitions</span><span class="p p-Indicator">:</span>
 </pre></div>
 </div>
-<p>Let’s start with the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
+<p>Start up SpringBoot and navigate to the url <a class="reference external" href="http://localhost:8080/swagger/index.html">http://localhost:8080/swagger/index.html</a>. You should see a SwaggerUI page displayed. It will look something like this:</p>
+<img alt="../../_images/swagger-ui.png" src="../../_images/swagger-ui.png" />
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">If your screen reports and error “failed to parse JSON/YAML response”, then check the format of <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> to make sure it is correct.</p>
+</div>
+<p>Now we can start adding info about our API endpoints. Let’s start with the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
 <p>Add an entry to the <code class="docutils literal notranslate"><span class="pre">tags</span></code> section, to add a header for all of the endpoints for the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last">YAML is white-spaced based. Be <em>very</em> careful with tabs and spaces. You may also find the <a class="reference external" href="http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Reference</a> helpful.</p>
 </div>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>- name: cart
-  description: Cart provides access to all of the items you are about to buy.
+<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>tags:
+  - name: cart
+   description: Cart provides access to all of the items you are about to buy.
 </pre></div>
 </div>
 <p>Also, let’s add the <code class="docutils literal notranslate"><span class="pre">GET</span></code> endpoint for <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> in the <code class="docutils literal notranslate"><span class="pre">paths</span></code> section.</p>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>paths:
-  /carts:
-    get:
-      tags:
-      - cart
-      summary: Returns all carts that exist..
-      operationId: getAllCarts
-      produces:
-      - application/json
-      responses:
-        200:
-          description: successful operation
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">/api/carts</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cart</span>
+      <span class="l l-Scalar l-Scalar-Plain">summary</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Returns all carts that exist.</span>
+      <span class="l l-Scalar l-Scalar-Plain">operationId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">getAllCarts</span>
+      <span class="l l-Scalar l-Scalar-Plain">produces</span><span class="p p-Indicator">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+      <span class="l l-Scalar l-Scalar-Plain">responses</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">200</span><span class="p p-Indicator">:</span>
+          <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">successful operation</span>
 </pre></div>
 </div>
-<p>Next, fill in the schema for the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> endpoint. In order to do that, first check to see what the service is currently returning.</p>
-<div class="section" id="review-cart-json">
-<h3>Review Cart JSON<a class="headerlink" href="#review-cart-json" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Register for an account on your LaunchCart app</li>
-<li>Add item(s) to your cart</li>
-<li>Visit <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/api/carts</span></code></li>
-<li>You should receive something that looks like the below…</li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">`nohighlight</span>
-<span class="pre">[{&quot;uid&quot;:1,&quot;items&quot;:[{&quot;uid&quot;:1,&quot;name&quot;:&quot;Chacos&quot;,&quot;price&quot;:1000.0,&quot;newItem&quot;:true,&quot;description&quot;:&quot;I</span> <span class="pre">think</span> <span class="pre">they're</span> <span class="pre">sandals&quot;}]}]</span>
-<span class="pre">`</span></code></p>
-<p>To represent the cart and it’s contents, update the <cite>/carts</cite> definition to this:</p>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>paths:
-    /carts:
-        get:
-            tags:
-            - cart
-            summary: Returns all carts that exist..
-            operationId: getAllCarts
-            produces:
-            - application/json
-            responses:
-                200:
-                  description: successful operation
-                  schema:
-                    type: object
-                    required:
-                    - uid
-                    - items
-                    properties:
-                      uid:
-                        type: integer
-                        format: int32
-                        example: 34
-                      items:
-                        type: array
-                        items:
-                          $ref: &quot;#/definitions/Item&quot;
-                        security:
-                          - api_key: []
+<p>Now, let’s fill in the schema for the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> endpoint. In order to do that, first check to see what the service is currently returning.</p>
+<p>Visit <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/api/carts</span></code> or load the endpoint in the RESTED plugin. You should receive something that looks like this:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="nt">&quot;uid&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="nt">&quot;items&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&quot;uid&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Chacos&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;price&quot;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="nt">&quot;newItem&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;I think they&#39;re sandals&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">]</span>
 </pre></div>
 </div>
+<p>To represent the cart and it’s contents, update the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> definition to this:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">paths</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">/api/carts</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+            <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">cart</span>
+            <span class="l l-Scalar l-Scalar-Plain">summary</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Returns all carts that exist..</span>
+            <span class="l l-Scalar l-Scalar-Plain">operationId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">getAllCarts</span>
+            <span class="l l-Scalar l-Scalar-Plain">produces</span><span class="p p-Indicator">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+            <span class="l l-Scalar l-Scalar-Plain">responses</span><span class="p p-Indicator">:</span>
+                <span class="l l-Scalar l-Scalar-Plain">200</span><span class="p p-Indicator">:</span>
+                  <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">successful operation</span>
+                  <span class="l l-Scalar l-Scalar-Plain">schema</span><span class="p p-Indicator">:</span>
+                    <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">object</span>
+                    <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span>
+                    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">uid</span>
+                    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">items</span>
+                    <span class="l l-Scalar l-Scalar-Plain">properties</span><span class="p p-Indicator">:</span>
+                      <span class="l l-Scalar l-Scalar-Plain">uid</span><span class="p p-Indicator">:</span>
+                        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">integer</span>
+                        <span class="l l-Scalar l-Scalar-Plain">format</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">int32</span>
+                        <span class="l l-Scalar l-Scalar-Plain">example</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">34</span>
+                      <span class="l l-Scalar l-Scalar-Plain">items</span><span class="p p-Indicator">:</span>
+                        <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">array</span>
+                        <span class="l l-Scalar l-Scalar-Plain">items</span><span class="p p-Indicator">:</span>
+                          <span class="l l-Scalar l-Scalar-Plain">$ref</span><span class="p p-Indicator">:</span> <span class="s">&quot;#/definitions/Item&quot;</span>
+</pre></div>
+</div>
+<p>Refresh your browser to see the updated info.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>Make sure that your whitespace is correct. There can only be a one tab indent for every map.</p>
-<p class="last">Incorrect indentation may cause your API endpoints not to show up or display erros.</p>
-</div>
+<p class="last">Incorrect indentation may cause your API endpoints not to show up or display errors.</p>
 </div>
 <div class="section" id="definitions">
 <h3>Definitions<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
@@ -476,7 +464,7 @@ definitions:
       price:
         type: number
         format: int64
-        example: 1.00
+        example: 100
       newItem:
         type: boolean
         example: true
@@ -485,16 +473,13 @@ definitions:
         example: &quot;I think they&#39;re a type of sandals&quot;
 </pre></div>
 </div>
-</div>
-<div class="section" id="now-for-items">
-<h3>Now for Items<a class="headerlink" href="#now-for-items" title="Permalink to this headline">¶</a></h3>
-<p>Add this to the <code class="docutils literal notranslate"><span class="pre">tags</span></code> section:</p>
+<p>Let’s now add info about our Items resources. In the <code class="docutils literal notranslate"><span class="pre">tags</span></code> section of <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code>, add:</p>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>- name: item
   description: Items to be added to cart.
 </pre></div>
 </div>
-<p>Add this to the <code class="docutils literal notranslate"><span class="pre">paths</span></code> section:</p>
-<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>/items:
+<p>And add this to the <code class="docutils literal notranslate"><span class="pre">paths</span></code> section:</p>
+<div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>/api/items:
   get:
     tags:
     - item
@@ -511,7 +496,7 @@ definitions:
             $ref: &quot;#/definitions/Item&quot;
 </pre></div>
 </div>
-<p>But wait, <code class="docutils literal notranslate"><span class="pre">/api/items</span></code> has two optional query parameters <code class="docutils literal notranslate"><span class="pre">/api/items?price=99&amp;new=true</span></code>. Add <code class="docutils literal notranslate"><span class="pre">parameters</span></code> to <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p>
+<p>But wait, <code class="docutils literal notranslate"><span class="pre">/api/items</span></code> has two optional query parameters <code class="docutils literal notranslate"><span class="pre">/api/items?price=99&amp;new=true</span></code>. Add the following <code class="docutils literal notranslate"><span class="pre">parameters</span></code> section within the <code class="docutils literal notranslate"><span class="pre">/api/items</span></code> path definition:</p>
 <div class="code yaml highlight-none notranslate"><div class="highlight"><pre><span></span>parameters:
   - in: query
     name: price
@@ -527,15 +512,9 @@ definitions:
     description: match items by newItem true/false
 </pre></div>
 </div>
+<p>Again, reload your browser to see the new info displayed in SwaggerUI.</p>
+<p>..note:: There are two types of parameters: <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See the <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/">Swagger documentation</a> for more info about documenting parameters.</p>
 </div>
-<div class="section" id="parameters">
-<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
-<p>There are two types of parameters: <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See the <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/">Swagger documentatio</a> for more info about documenting parameters.</p>
-</div>
-</div>
-<div class="section" id="continue-on">
-<h2>Continue On<a class="headerlink" href="#continue-on" title="Permalink to this headline">¶</a></h2>
-<p>Continue on to provide documentation for the rest of the LaunchCart API. It should be much easier now that the Cart definition has been created.</p>
 </div>
 </div>
 
