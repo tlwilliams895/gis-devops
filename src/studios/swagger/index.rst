@@ -132,7 +132,7 @@ Documenting Correct Return Types
 
 Springfox scans our classes, reading annotations and method signatures (i.e. the number and type of paramters and return values) to determine the structure of our API. It assumes--reasonably, in many cases--that the return type of a method is the same as the return type of the API endpoint. This is not always the case, however.
 
-The `@ApiOperation annotation <https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apioperation>`_ allows use to specify the return type of an API method, among other things. Apply this annotation to each method with a ``ResponseEntity`` return type to properly specify the return type of the method.
+The `@ApiOperation annotation <https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apioperation>`_ allows you to specify the return type of an API method, among other things. Apply this annotation to each method with a ``ResponseEntity`` return type to properly specify the return type of the method.
 
 Turn in your Work
 =================
