@@ -262,12 +262,13 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Studio: Springfox and Swagger</a><ul>
 <li><a class="reference internal" href="#getting-started">Getting Started</a></li>
-<li><a class="reference internal" href="#configure-springfox">Configure Springfox</a><ul>
+<li><a class="reference internal" href="#configure-springfox">Configure Springfox</a></li>
 <li><a class="reference internal" href="#view-the-generated-swagger-documentation">View the Generated Swagger Documentation</a></li>
+<li><a class="reference internal" href="#tasks">Tasks</a><ul>
+<li><a class="reference internal" href="#bypassing-login">Bypassing Login</a></li>
+<li><a class="reference internal" href="#display-only-api-endpoints">Display Only API Endpoints</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#tasks">Tasks</a></li>
-<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 <li><a class="reference internal" href="#turn-in-your-work">Turn in your Work</a></li>
 </ul>
 </li>
@@ -282,13 +283,17 @@
 <p>In this studio, we will be learning how to use Springfox to autogenerate the Swagger docs.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>Create a <code class="docutils literal notranslate"><span class="pre">add-springfox</span></code> branch off of your <code class="docutils literal notranslate"><span class="pre">launchcart/rest-studio-solution</span></code>. Do <em>not</em> create the branch off of the walkthrough studio, since we manually created Swagger docs in that branch.</p>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">add-springfox</span></code> branch off of your <code class="docutils literal notranslate"><span class="pre">launchcart/rest-studio-solution</span></code> branch.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Do <em>not</em> create the branch off of the walkthrough studio, since we manually created Swagger docs in that branch.</p>
+</div>
 </div>
 <div class="section" id="configure-springfox">
 <h2>Configure Springfox<a class="headerlink" href="#configure-springfox" title="Permalink to this headline">¶</a></h2>
-<p>Add these to your <code class="docutils literal notranslate"><span class="pre">dependencies</span> <span class="pre">{</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger2&#39;, version: &#39;2.7.0&#39;)
-compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, version: &#39;2.7.0&#39;)
+<p>Add these to the <code class="docutils literal notranslate"><span class="pre">dependencies</span></code> block in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger2&#39;, version: &#39;2.9.2&#39;)
+compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, version: &#39;2.9.2&#39;)
 </pre></div>
 </div>
 <p>Add <code class="docutils literal notranslate"><span class="pre">&#64;EnableSwagger2</span></code> annotation to <code class="docutils literal notranslate"><span class="pre">LaunchcartApplication.java</span></code></p>
@@ -302,33 +307,51 @@ compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, ver
 <span class="o">}</span>
 </pre></div>
 </div>
+<p>Within the same class, add a <code class="docutils literal notranslate"><span class="pre">Docket</span></code> bean to allow for some code-based configuration of Springfox:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Bean</span>
+<span class="kd">public</span> <span class="n">Docket</span> <span class="nf">apiDocket</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="k">new</span> <span class="n">Docket</span><span class="o">(</span><span class="n">DocumentationType</span><span class="o">.</span><span class="na">SWAGGER_2</span><span class="o">)</span>
+      <span class="o">.</span><span class="na">select</span><span class="o">()</span>
+      <span class="o">.</span><span class="na">apis</span><span class="o">(</span><span class="n">RequestHandlerSelectors</span><span class="o">.</span><span class="na">any</span><span class="o">())</span>
+      <span class="o">.</span><span class="na">paths</span><span class="o">(</span><span class="n">PathSelectors</span><span class="o">.</span><span class="na">any</span><span class="o">())</span>
+      <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="view-the-generated-swagger-documentation">
-<h3>View the Generated Swagger Documentation<a class="headerlink" href="#view-the-generated-swagger-documentation" title="Permalink to this headline">¶</a></h3>
-<p>Now go to <a class="reference external" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a>.</p>
+<h2>View the Generated Swagger Documentation<a class="headerlink" href="#view-the-generated-swagger-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Now start your application. Navigate to <a class="reference external" href="http://localhost:8080/login">http://localhost:8080/login</a> to log in, and then go to <a class="reference external" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a> to view the generated Swagger docs.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Because of security code included in the LaunchCart application, this URL not load unless you are currently logged in.</p>
-</div>
+<p class="last">Because of authentication code included in the LaunchCart application, this URL will not load unless you are logged in.</p>
 </div>
 </div>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Figure out how to change <code class="docutils literal notranslate"><span class="pre">AuthenticationInterceptor.preHandle</span></code> to allow this request to work when you are NOT logged in <a class="reference external" href="http://localhost:8080/swagger-ui.html">http://localhost:8080/swagger-ui.html</a></li>
-<li>Only show <code class="docutils literal notranslate"><span class="pre">/api</span></code> endpoints in the Swagger report</li>
-</ul>
+<div class="section" id="bypassing-login">
+<h3>Bypassing Login<a class="headerlink" href="#bypassing-login" title="Permalink to this headline">¶</a></h3>
+<p>Figure out how to change <code class="docutils literal notranslate"><span class="pre">AuthenticationInterceptor.preHandle</span></code> to allow the Swagger docs to load when you are NOT logged in.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>Log out of LaunchCart, and then try to access <a class="reference external" href="http://localhost:8080/swagger-ui.html">your Swagger docs page</a> with your browser’s developer tools opened to the Network tab.</p>
+<p class="last">Note which resource requests return 4xx errors. You’ll need to modify <code class="docutils literal notranslate"><span class="pre">AuthenticationInterceptor.preHandle</span></code> to allow these requests through.</p>
 </div>
-<div class="section" id="bonus-mission">
-<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Add Swagger documentation to your Airwaze app</li>
-</ul>
+</div>
+<div class="section" id="display-only-api-endpoints">
+<h3>Display Only API Endpoints<a class="headerlink" href="#display-only-api-endpoints" title="Permalink to this headline">¶</a></h3>
+<p>Swagger is currently showing <em>all</em> endpoints, including non-API endpoints that return HTML. Figure out how to display <em>only</em> <code class="docutils literal notranslate"><span class="pre">/api</span></code> endpoints in the Swagger report.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You should refer to <a class="reference external" href="https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api#advanced">section 6.1 of Baeldung’s Springfox tutorial</a>. And note that while we create a configuration bean above, we haven’t put it to use yet!</p>
+</div>
+</div>
 </div>
 <div class="section" id="turn-in-your-work">
 <h2>Turn in your Work<a class="headerlink" href="#turn-in-your-work" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Commit and push your work to GitLab.</li>
-<li>Create a MergeRequest and post it to slack</li>
+<li>Create a merge request and post it to slack.</li>
 <li>Notify the instructor that you are done, along with the name of the branch that you completed your work in.</li>
 </ul>
 </div>
