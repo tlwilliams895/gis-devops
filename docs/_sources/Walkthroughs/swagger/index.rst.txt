@@ -277,6 +277,6 @@ But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99
 
 Again, reload your browser to see the new info displayed in SwaggerUI.
 
-..note:: There are two types of parameters: ``query`` and ``path``.  See the `Swagger documentation <https://swagger.io/docs/specification/describing-parameters/>`_ for more info about documenting parameters.
+.. note:: There are two types of parameters: ``query`` and ``path``.  See the `Swagger documentation <https://swagger.io/docs/specification/describing-parameters/>`_ for more info about documenting parameters.
 
 You can keep going like this to fully document your API. Now that we know how Swagger works, however, we can use a simpler method to automatically create API documentation using Swagger.
