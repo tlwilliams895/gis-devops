@@ -30,7 +30,7 @@ Click the magnifying glass in the upper right hand corner and type "Plugin". Sel
 Add SwaggerUI to the Project
 ----------------------------
 
-Clone the `SwaggerUI repository <https://github.com/swagger-api/swagger-ui/tree/2.x>`_ from Github. Alternatively, download the code as a zip file and unzip it. 
+Clone the `SwaggerUI repository <https://github.com/swagger-api/swagger-ui/tree/2.x>`_ from Github. Alternatively, download the code as a zip file and unzip it.
 
 .. note:: We are downloading the SwaggerUI 2.x branch.
 
@@ -265,18 +265,43 @@ But wait, ``/api/items`` has two optional query parameters ``/api/items?price=99
     - in: query
       name: price
       schema:
-      type: double
+        type: double
       required: false
       description: match items by price
     - in: query
       name: new
       schema:
-      type: boolean
+        type: boolean
       required: false
       description: match items by newItem true/false
 
 Again, reload your browser to see the new info displayed in SwaggerUI.
 
 .. note:: There are two types of parameters: ``query`` and ``path``.  See the `Swagger documentation <https://swagger.io/docs/specification/describing-parameters/>`_ for more info about documenting parameters.
+
+Let's look at an example that uses path parameters.
+
+.. code-block:: yaml
+
+  /api/items/{id}:
+  get:
+    tags:
+    - item
+    summary: Returns an individual
+    operationId: getItem
+    produces:
+    - application/json
+    responses:
+      200:
+        description: successful operation
+        schema:
+          $ref: "#/definitions/Item"
+    parameters:
+    - in: path
+      name: id
+      schema:
+        type: integer
+      required: true
+      description: The ID of an item in the system
 
 You can keep going like this to fully document your API. Now that we know how Swagger works, however, we can use a simpler method to automatically create API documentation using Swagger.

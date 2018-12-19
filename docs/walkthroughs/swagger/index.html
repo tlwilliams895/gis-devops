@@ -515,13 +515,13 @@ Create and checkout a new branch named <code class="docutils literal notranslate
   - in: query
     name: price
     schema:
-    type: double
+      type: double
     required: false
     description: match items by price
   - in: query
     name: new
     schema:
-    type: boolean
+      type: boolean
     required: false
     description: match items by newItem true/false
 </pre></div>
@@ -530,6 +530,29 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">There are two types of parameters: <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See the <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/">Swagger documentation</a> for more info about documenting parameters.</p>
+</div>
+<p>Let’s look at an example that uses path parameters.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">/api/items/{id}</span><span class="p p-Indicator">:</span>
+<span class="l l-Scalar l-Scalar-Plain">get</span><span class="p p-Indicator">:</span>
+  <span class="l l-Scalar l-Scalar-Plain">tags</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">item</span>
+  <span class="l l-Scalar l-Scalar-Plain">summary</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Returns an individual</span>
+  <span class="l l-Scalar l-Scalar-Plain">operationId</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">getItem</span>
+  <span class="l l-Scalar l-Scalar-Plain">produces</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">application/json</span>
+  <span class="l l-Scalar l-Scalar-Plain">responses</span><span class="p p-Indicator">:</span>
+    <span class="l l-Scalar l-Scalar-Plain">200</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">successful operation</span>
+      <span class="l l-Scalar l-Scalar-Plain">schema</span><span class="p p-Indicator">:</span>
+        <span class="l l-Scalar l-Scalar-Plain">$ref</span><span class="p p-Indicator">:</span> <span class="s">&quot;#/definitions/Item&quot;</span>
+  <span class="l l-Scalar l-Scalar-Plain">parameters</span><span class="p p-Indicator">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">in</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">path</span>
+    <span class="l l-Scalar l-Scalar-Plain">name</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">id</span>
+    <span class="l l-Scalar l-Scalar-Plain">schema</span><span class="p p-Indicator">:</span>
+      <span class="l l-Scalar l-Scalar-Plain">type</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">integer</span>
+    <span class="l l-Scalar l-Scalar-Plain">required</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="l l-Scalar l-Scalar-Plain">description</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">The ID of an item in the system</span>
+</pre></div>
 </div>
 <p>You can keep going like this to fully document your API. Now that we know how Swagger works, however, we can use a simpler method to automatically create API documentation using Swagger.</p>
 </div>
