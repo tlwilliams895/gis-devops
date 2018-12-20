@@ -23,7 +23,7 @@ We'll walk through several steps needed to use Elasticsearch within Spring.
 
     The code that we'll look at is in the ``elasticsearch`` branch of the ``LaunchCodeTraining/launchcart`` repository.
 
-    To view the specific changes, look at `this commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956>`_.
+    To view the specific changes, look at `this commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/7e610e2604997fdd54c6ea49a7f1a9b275a93a89>`_.
 
 
 Add Gradle dependencies
@@ -158,7 +158,7 @@ We need to create a new model class to represent the documents that we'll be sto
 .. code-block:: java
 
     /*
-     * src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java
+     * /src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java
      */
     @Document(indexName = "launchcart", type = "items")
     public class ItemDocument {
@@ -224,21 +224,103 @@ We need to create a new model class to represent the documents that we'll be sto
 
 And the repository, which extends ``ElasticsearchRepository``:
 
+.. code-block:: java
 
+    /*
+     * src/main/java/org/launchcode/launchcart/data/ItemDocumentRepository.java
+     */
+    public interface ItemDocumentRepository 
+        extends ElasticsearchRepository<ItemDocument, Integer> {
 
+        Iterable<ItemDocument> search(QueryBuilder queryBuilder);
+
+    }
 
 Controller
 ----------
 
 Create ``ItemDocumentController`` and implement the ``search`` method
 
+.. code-block:: java
+
+    /*
+     * src/main/java/org/launchcode/launchcart/controllers/es/ItemDocumentController.java
+     */
+    @RestController
+    @RequestMapping(value = "/api/items")
+    public class ItemDocumentController {
+
+        @Autowired
+        private ItemDocumentRepository itemDocumentRepository;
+
+        private static final Integer fuzziness = 3;
+
+        @GetMapping(value = "search")
+        public List<ItemDocument> search(@RequestParam String q) {
+            FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("name", q);
+            fuzzyQueryBuilder.fuzziness(Fuzziness.AUTO);
+            List<ItemDocument> results = new ArrayList<>();
+            Iterator<ItemDocument> iterator = itemDocumentRepository.search(fuzzyQueryBuilder).iterator();
+
+            while(iterator.hasNext()) {
+                results.add(iterator.next());
+            }
+
+            return results;
+        }
+
+    }
 
 ES Controller
 -------------
 
 Create ``EsController`` and ``EsUtils`` to enable admin-oriented interactions with the ES instance
 
+.. code-block:: java
 
+    /*
+     * src/main/java/org/launchcode/launchcart/controllers/es/EsController.java
+     */
+    @Controller
+    @RequestMapping(value = "/api/es")
+    public class EsController {
+
+        @Autowired
+        private EsUtil esUtil;
+
+        @PostMapping(value = "/refresh")
+        public ResponseEntity<String> refresh() {
+            esUtil.refresh();
+            return new ResponseEntity<>("Health", HttpStatus.OK);
+        }
+
+    }
+
+
+    /*
+     * src/main/java/org/launchcode/launchcart/util/EsUtil.java
+     */
+    @Component
+    public class EsUtil {
+
+        @Autowired
+        private ItemRepository itemRepository;
+
+        @Autowired
+        private ItemDocumentRepository itemDocumentRepository;
+
+        private static Logger logger = LoggerFactory.getLogger(EsUtil.class);
+
+        public void refresh() {
+            logger.info("Deleting all documents from ItemDocumentRepository");
+            itemDocumentRepository.deleteAll();
+            List<ItemDocument> itemDocuments = new ArrayList<>();
+            for(Item item : itemRepository.findAll()) {
+                itemDocuments.add(new ItemDocument(item));
+            }
+            itemDocumentRepository.save(itemDocuments);
+        }
+    }
 
 Your Tasks
 ==========
@@ -250,7 +332,6 @@ Bonus Missions
 
 We looked at how to push a new item to Elasticsearch when creating it via the REST API. There are still several tasks that can be immediately carried out to fully integrate ES with the application. Try one more more of the following:
 
-* Push a new document to ES when adding an item via the web view.
 * Update a document in ES when updating via the API or web view.
 * Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to ``ItemDocumentRepository.search``, or by creating a new controller method that passes fuzzy search results into a template.
 

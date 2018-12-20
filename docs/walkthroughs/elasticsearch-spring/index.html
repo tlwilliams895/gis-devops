@@ -296,7 +296,7 @@
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>The code that we’ll look at is in the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">LaunchCodeTraining/launchcart</span></code> repository.</p>
-<p class="last">To view the specific changes, look at <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956">this commit</a>.</p>
+<p class="last">To view the specific changes, look at <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/7e610e2604997fdd54c6ea49a7f1a9b275a93a89">this commit</a>.</p>
 </div>
 <div class="section" id="add-gradle-dependencies">
 <h3>Add Gradle dependencies<a class="headerlink" href="#add-gradle-dependencies" title="Permalink to this headline">¶</a></h3>
@@ -405,7 +405,7 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 <h3>Model and Repository<a class="headerlink" href="#model-and-repository" title="Permalink to this headline">¶</a></h3>
 <p>We need to create a new model class to represent the documents that we’ll be storing in ES, along with a corresponding repository.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
-<span class="cm"> * src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java</span>
+<span class="cm"> * /src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java</span>
 <span class="cm"> */</span>
 <span class="nd">@Document</span><span class="o">(</span><span class="n">indexName</span> <span class="o">=</span> <span class="s">&quot;launchcart&quot;</span><span class="o">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;items&quot;</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemDocument</span> <span class="o">{</span>
@@ -470,14 +470,99 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 </pre></div>
 </div>
 <p>And the repository, which extends <code class="docutils literal notranslate"><span class="pre">ElasticsearchRepository</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * src/main/java/org/launchcode/launchcart/data/ItemDocumentRepository.java</span>
+<span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ItemDocumentRepository</span>
+    <span class="kd">extends</span> <span class="n">ElasticsearchRepository</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="nf">search</span><span class="o">(</span><span class="n">QueryBuilder</span> <span class="n">queryBuilder</span><span class="o">);</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="controller">
 <h3>Controller<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h3>
 <p>Create <code class="docutils literal notranslate"><span class="pre">ItemDocumentController</span></code> and implement the <code class="docutils literal notranslate"><span class="pre">search</span></code> method</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * src/main/java/org/launchcode/launchcart/controllers/es/ItemDocumentController.java</span>
+<span class="cm"> */</span>
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/api/items&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemDocumentController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Integer</span> <span class="n">fuzziness</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+
+    <span class="nd">@GetMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;search&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="nf">search</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">FuzzyQueryBuilder</span> <span class="n">fuzzyQueryBuilder</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">fuzzyQuery</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
+        <span class="n">fuzzyQueryBuilder</span><span class="o">.</span><span class="na">fuzziness</span><span class="o">(</span><span class="n">Fuzziness</span><span class="o">.</span><span class="na">AUTO</span><span class="o">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">itemDocumentRepository</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">fuzzyQueryBuilder</span><span class="o">).</span><span class="na">iterator</span><span class="o">();</span>
+
+        <span class="k">while</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">results</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">iterator</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">results</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="es-controller">
 <h3>ES Controller<a class="headerlink" href="#es-controller" title="Permalink to this headline">¶</a></h3>
 <p>Create <code class="docutils literal notranslate"><span class="pre">EsController</span></code> and <code class="docutils literal notranslate"><span class="pre">EsUtils</span></code> to enable admin-oriented interactions with the ES instance</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * src/main/java/org/launchcode/launchcart/controllers/es/EsController.java</span>
+<span class="cm"> */</span>
+<span class="nd">@Controller</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/api/es&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsController</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">EsUtil</span> <span class="n">esUtil</span><span class="o">;</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/refresh&quot;</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">refresh</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">esUtil</span><span class="o">.</span><span class="na">refresh</span><span class="o">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="s">&quot;Health&quot;</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+
+<span class="cm">/*</span>
+<span class="cm"> * src/main/java/org/launchcode/launchcart/util/EsUtil.java</span>
+<span class="cm"> */</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsUtil</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ItemRepository</span> <span class="n">itemRepository</span><span class="o">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="o">;</span>
+
+    <span class="kd">private</span> <span class="kd">static</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">LoggerFactory</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">EsUtil</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">refresh</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">logger</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">&quot;Deleting all documents from ItemDocumentRepository&quot;</span><span class="o">);</span>
+        <span class="n">itemDocumentRepository</span><span class="o">.</span><span class="na">deleteAll</span><span class="o">();</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="n">itemDocuments</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="k">for</span><span class="o">(</span><span class="n">Item</span> <span class="n">item</span> <span class="o">:</span> <span class="n">itemRepository</span><span class="o">.</span><span class="na">findAll</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">itemDocuments</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="n">ItemDocument</span><span class="o">(</span><span class="n">item</span><span class="o">));</span>
+        <span class="o">}</span>
+        <span class="n">itemDocumentRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">itemDocuments</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="your-tasks">
@@ -488,7 +573,6 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 <h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
 <p>We looked at how to push a new item to Elasticsearch when creating it via the REST API. There are still several tasks that can be immediately carried out to fully integrate ES with the application. Try one more more of the following:</p>
 <ul class="simple">
-<li>Push a new document to ES when adding an item via the web view.</li>
 <li>Update a document in ES when updating via the API or web view.</li>
 <li>Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository.search</span></code>, or by creating a new controller method that passes fuzzy search results into a template.</li>
 </ul>
