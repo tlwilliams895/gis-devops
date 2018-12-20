@@ -8,6 +8,12 @@ Walkthrough: Elasticsearch in Spring
 
 We'll walk through the steps to integrate Elasticsearch with Spring, using the Launchcart application.
 
+The goal is to enable fuzzy searching for items via LaunchCart's REST API. This will require:
+
+1. Configuring the application to work with Elasticsearch.
+2. Creating a Java representation of the item documents we want to store in ES.
+3. Creating a REST endpoint that conducts a fuzzy search for item documents.
+
 Integrating Elasticsearch
 =========================
 
@@ -20,22 +26,218 @@ We'll walk through several steps needed to use Elasticsearch within Spring.
     To view the specific changes, look at `this commit <https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956>`_.
 
 
-1. Add Gradle dependencies::
+Add Gradle dependencies
+-----------------------
+
+We need two new dependencies in order to connect ES with Spring Boot.
+
+::
 
     compile('org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.10.RELEASE')
-    compile(group: 'org.elasticsearch.client', name: 'transport', version: '6.2.3')
+    compile(group: 'org.elasticsearch.client', name: 'transport', version: '6.5.2')
 
-2. Create the ``EsConfig`` class to setup an embedded Elasticsearch instance
-3. Write an integration test for the desired behavior
-4. Create the ``ItemDocument`` and ``ItemDocumentRepository`` classes
-5. Create ``ItemDocumentController`` and implement the ``search`` method
-6. Create ``EsController`` and ``EsUtils`` to enable admin-oriented interactions with the ES instance
+.. warning::
+
+    This approach uses the ``TransportClient`` class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the ``TransportClient`` have the *same major versions*.
+
+    Check your version of Elasticsearch by running ``curl localhost:9200``.
+
 
 .. note::
 
-    This approach uses the ``TransportClient`` class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the ``TransportClient`` have the *same major versions*. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.
+    The Spring Data project is in the process of replacing this client with a REST API client that will be version agnostic.
 
     Read more about the state of the official `Elasticsearch Java clients <https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients>`_.
+
+Configuring Spring Boot for ES
+------------------------------
+
+Let's create the ``EsConfig`` class to setup an embedded Elasticsearch instance.
+
+This class will handle connecting to the ES server.
+
+.. code-block:: java
+
+    /*
+     * In /src/java/main/org/launchcode/launchcart/EsConfig.java
+     */
+    @Configuration
+    public class EsConfig {
+
+        // Pull the name of the index from .properties file
+        @Value("${es.cluster-name")
+        private String clusterName;
+
+        @Bean
+        public ElasticsearchOperations elasticsearchTemplate() throws UnknownHostException {
+
+            Settings settings = Settings.builder()
+                    .put("cluster.name", clusterName).build();
+
+            TransportClient client = new PreBuiltTransportClient(settings);
+            TransportAddress address = new InetSocketTransportAddress(InetAddress.getByName("localhost"), 9300);
+            client.addTransportAddress(address);
+            return new ElasticsearchTemplate(client);
+        }
+    }
+
+Define the index name in ``application.properties``.
+
+::
+
+    es.cluster-name=elasticsearch
+
+
+.. warning::
+
+    The Elasticsearch instance that will be used in this integration **will not** be the same instance that you installed previously. This integration method creates and embedded ES cluster that only accepts connections via the Transport Client.
+
+    This means that you can't use the REST API to interact with it directly.
+
+Write A Test
+------------
+
+Following TDD, let's write an integration test for the desired behavior.
+
+.. code-block:: java
+
+    /*
+     * In src/test/java/org/launchcode/launchcart/ItemDocumentControllerTests.java
+     /*
+    @RunWith(SpringRunner.class)
+    @IntegrationTestConfig
+    public class ItemDocumentControllerTests extends AbstractBaseRestIntegrationTest {
+
+        @Autowired
+        private MockMvc mockMvc;
+
+        @Test
+        public void testFuzzySearch() throws Exception {
+            Item item = new Item("Test Item Again", 42);
+            String json = json(item);
+            mockMvc.perform(post("/api/items/")
+                    .content(json)
+                    .contentType(contentType));
+            mockMvc.perform(get("/api/items/search?q={term}", "agn"))
+                    .andDo(print())
+                    .andExpect(status().isOk())
+                    .andExpect(content().contentType(contentType))
+                    .andExpect(jsonPath("$.length()").value(1))
+                    .andExpect(jsonPath("$[0].name").value(item.getName()));
+        }
+
+    }
+
+
+As with our Postgres database, our tests should operate on a different data store instance than we use during development. In ``application-test.properties`` set:
+
+::
+
+    es.cluster-name=elasticsearch_test
+
+Finally, we want to ensure that any documents created during testing are removed each test has run.
+
+In ``AbstractBaseRestIntegrationTest``, add this snippet:
+
+.. code-block:: java
+
+    @Autowired
+    private ItemDocumentRepository itemDocumentRepository;
+
+    @After
+    public void clearItemDocumentRepository() {
+        itemDocumentRepository.deleteAll();
+    }
+
+
+Model and Repository
+--------------------
+
+We need to create a new model class to represent the documents that we'll be storing in ES, along with a corresponding repository.
+
+.. code-block:: java
+
+    /*
+     * src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java
+     */
+    @Document(indexName = "launchcart", type = "items")
+    public class ItemDocument {
+
+        @Id
+        private Integer id;
+        private String name;
+        private double price;
+        private boolean newItem;
+        private String description;
+
+        public ItemDocument() {}
+
+        public ItemDocument(Item item) {
+            this.id = item.getUid();
+            this.name = item.getName();
+            this.price = item.getPrice();
+            this.newItem = item.isNewItem();
+            this.description = item.getDescription();
+        }
+
+        public Integer getId() {
+            return id;
+        }
+
+        public void setId(Integer id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
+
+        public boolean isNewItem() {
+            return newItem;
+        }
+
+        public void setNewItem(boolean newItem) {
+            this.newItem = newItem;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public void setDescription(String description) {
+            this.description = description;
+        }
+    }
+
+
+And the repository, which extends ``ElasticsearchRepository``:
+
+
+
+
+Controller
+----------
+
+Create ``ItemDocumentController`` and implement the ``search`` method
+
+
+ES Controller
+-------------
+
+Create ``EsController`` and ``EsUtils`` to enable admin-oriented interactions with the ES instance
+
 
 
 Your Tasks

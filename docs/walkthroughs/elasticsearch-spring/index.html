@@ -261,7 +261,15 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: Elasticsearch in Spring</a><ul>
-<li><a class="reference internal" href="#integrating-elasticsearch">Integrating Elasticsearch</a></li>
+<li><a class="reference internal" href="#integrating-elasticsearch">Integrating Elasticsearch</a><ul>
+<li><a class="reference internal" href="#add-gradle-dependencies">Add Gradle dependencies</a></li>
+<li><a class="reference internal" href="#configuring-spring-boot-for-es">Configuring Spring Boot for ES</a></li>
+<li><a class="reference internal" href="#write-a-test">Write A Test</a></li>
+<li><a class="reference internal" href="#model-and-repository">Model and Repository</a></li>
+<li><a class="reference internal" href="#controller">Controller</a></li>
+<li><a class="reference internal" href="#es-controller">ES Controller</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#your-tasks">Your Tasks</a></li>
 <li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
@@ -276,6 +284,12 @@
   <div class="section" id="walkthrough-elasticsearch-in-spring">
 <span id="elasticsearch-spring-walkthrough"></span><h1>Walkthrough: Elasticsearch in Spring<a class="headerlink" href="#walkthrough-elasticsearch-in-spring" title="Permalink to this headline">¶</a></h1>
 <p>We’ll walk through the steps to integrate Elasticsearch with Spring, using the Launchcart application.</p>
+<p>The goal is to enable fuzzy searching for items via LaunchCart’s REST API. This will require:</p>
+<ol class="arabic simple">
+<li>Configuring the application to work with Elasticsearch.</li>
+<li>Creating a Java representation of the item documents we want to store in ES.</li>
+<li>Creating a REST endpoint that conducts a fuzzy search for item documents.</li>
+</ol>
 <div class="section" id="integrating-elasticsearch">
 <h2>Integrating Elasticsearch<a class="headerlink" href="#integrating-elasticsearch" title="Permalink to this headline">¶</a></h2>
 <p>We’ll walk through several steps needed to use Elasticsearch within Spring.</p>
@@ -284,28 +298,186 @@
 <p>The code that we’ll look at is in the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">LaunchCodeTraining/launchcart</span></code> repository.</p>
 <p class="last">To view the specific changes, look at <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/9e69a809550df5461ee438d0489d98ac255f1956">this commit</a>.</p>
 </div>
-<ol class="arabic">
-<li><p class="first">Add Gradle dependencies:</p>
+<div class="section" id="add-gradle-dependencies">
+<h3>Add Gradle dependencies<a class="headerlink" href="#add-gradle-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>We need two new dependencies in order to connect ES with Spring Boot.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(&#39;org.springframework.boot:spring-boot-starter-data-elasticsearch:1.5.10.RELEASE&#39;)
-compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, version: &#39;6.2.3&#39;)
+compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, version: &#39;6.5.2&#39;)
 </pre></div>
 </div>
-</li>
-<li><p class="first">Create the <code class="docutils literal notranslate"><span class="pre">EsConfig</span></code> class to setup an embedded Elasticsearch instance</p>
-</li>
-<li><p class="first">Write an integration test for the desired behavior</p>
-</li>
-<li><p class="first">Create the <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> and <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository</span></code> classes</p>
-</li>
-<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">ItemDocumentController</span></code> and implement the <code class="docutils literal notranslate"><span class="pre">search</span></code> method</p>
-</li>
-<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">EsController</span></code> and <code class="docutils literal notranslate"><span class="pre">EsUtils</span></code> to enable admin-oriented interactions with the ES instance</p>
-</li>
-</ol>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the <em>same major versions</em>.</p>
+<p class="last">Check your version of Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">localhost:9200</span></code>.</p>
+</div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the <em>same major versions</em>. Elasticsearch is in the process of replacing this client with a REST API client that will be version agnostic.</p>
+<p>The Spring Data project is in the process of replacing this client with a REST API client that will be version agnostic.</p>
 <p class="last">Read more about the state of the official <a class="reference external" href="https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients">Elasticsearch Java clients</a>.</p>
+</div>
+</div>
+<div class="section" id="configuring-spring-boot-for-es">
+<h3>Configuring Spring Boot for ES<a class="headerlink" href="#configuring-spring-boot-for-es" title="Permalink to this headline">¶</a></h3>
+<p>Let’s create the <code class="docutils literal notranslate"><span class="pre">EsConfig</span></code> class to setup an embedded Elasticsearch instance.</p>
+<p>This class will handle connecting to the ES server.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * In /src/java/main/org/launchcode/launchcart/EsConfig.java</span>
+<span class="cm"> */</span>
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsConfig</span> <span class="o">{</span>
+
+    <span class="c1">// Pull the name of the index from .properties file</span>
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">&quot;${es.cluster-name&quot;</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">clusterName</span><span class="o">;</span>
+
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="n">ElasticsearchOperations</span> <span class="nf">elasticsearchTemplate</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">UnknownHostException</span> <span class="o">{</span>
+
+        <span class="n">Settings</span> <span class="n">settings</span> <span class="o">=</span> <span class="n">Settings</span><span class="o">.</span><span class="na">builder</span><span class="o">()</span>
+                <span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&quot;cluster.name&quot;</span><span class="o">,</span> <span class="n">clusterName</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+
+        <span class="n">TransportClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PreBuiltTransportClient</span><span class="o">(</span><span class="n">settings</span><span class="o">);</span>
+        <span class="n">TransportAddress</span> <span class="n">address</span> <span class="o">=</span> <span class="k">new</span> <span class="n">InetSocketTransportAddress</span><span class="o">(</span><span class="n">InetAddress</span><span class="o">.</span><span class="na">getByName</span><span class="o">(</span><span class="s">&quot;localhost&quot;</span><span class="o">),</span> <span class="mi">9300</span><span class="o">);</span>
+        <span class="n">client</span><span class="o">.</span><span class="na">addTransportAddress</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ElasticsearchTemplate</span><span class="o">(</span><span class="n">client</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Define the index name in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>es.cluster-name=elasticsearch
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>The Elasticsearch instance that will be used in this integration <strong>will not</strong> be the same instance that you installed previously. This integration method creates and embedded ES cluster that only accepts connections via the Transport Client.</p>
+<p class="last">This means that you can’t use the REST API to interact with it directly.</p>
+</div>
+</div>
+<div class="section" id="write-a-test">
+<h3>Write A Test<a class="headerlink" href="#write-a-test" title="Permalink to this headline">¶</a></h3>
+<p>Following TDD, let’s write an integration test for the desired behavior.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">In</span> <span class="n">src</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">org</span><span class="o">/</span><span class="n">launchcode</span><span class="o">/</span><span class="n">launchcart</span><span class="o">/</span><span class="n">ItemDocumentControllerTests</span><span class="o">.</span><span class="na">java</span>
+ <span class="o">/*</span>
+<span class="nd">@RunWith</span><span class="o">(</span><span class="n">SpringRunner</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
+<span class="nd">@IntegrationTestConfig</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemDocumentControllerTests</span> <span class="kd">extends</span> <span class="n">AbstractBaseRestIntegrationTest</span> <span class="o">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFuzzySearch</span><span class="o">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="o">{</span>
+        <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">(</span><span class="s">&quot;Test Item Again&quot;</span><span class="o">,</span> <span class="mi">42</span><span class="o">);</span>
+        <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">json</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">&quot;/api/items/&quot;</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="n">json</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">contentType</span><span class="o">));</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">&quot;/api/items/search?q={term}&quot;</span><span class="o">,</span> <span class="s">&quot;agn&quot;</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">())</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">content</span><span class="o">().</span><span class="na">contentType</span><span class="o">(</span><span class="n">contentType</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">jsonPath</span><span class="o">(</span><span class="s">&quot;$.length()&quot;</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="mi">1</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">jsonPath</span><span class="o">(</span><span class="s">&quot;$[0].name&quot;</span><span class="o">).</span><span class="na">value</span><span class="o">(</span><span class="n">item</span><span class="o">.</span><span class="na">getName</span><span class="o">()));</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>As with our Postgres database, our tests should operate on a different data store instance than we use during development. In <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code> set:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>es.cluster-name=elasticsearch_test
+</pre></div>
+</div>
+<p>Finally, we want to ensure that any documents created during testing are removed each test has run.</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code>, add this snippet:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="o">;</span>
+
+<span class="nd">@After</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">clearItemDocumentRepository</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">itemDocumentRepository</span><span class="o">.</span><span class="na">deleteAll</span><span class="o">();</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="model-and-repository">
+<h3>Model and Repository<a class="headerlink" href="#model-and-repository" title="Permalink to this headline">¶</a></h3>
+<p>We need to create a new model class to represent the documents that we’ll be storing in ES, along with a corresponding repository.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java</span>
+<span class="cm"> */</span>
+<span class="nd">@Document</span><span class="o">(</span><span class="n">indexName</span> <span class="o">=</span> <span class="s">&quot;launchcart&quot;</span><span class="o">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;items&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemDocument</span> <span class="o">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">price</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">newItem</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">description</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ItemDocument</span><span class="o">()</span> <span class="o">{}</span>
+
+    <span class="kd">public</span> <span class="nf">ItemDocument</span><span class="o">(</span><span class="n">Item</span> <span class="n">item</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">getUid</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">getPrice</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">newItem</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">isNewItem</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">description</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="na">getDescription</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="n">Integer</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="o">(</span><span class="n">String</span> <span class="n">name</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">getPrice</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">price</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPrice</span><span class="o">(</span><span class="kt">double</span> <span class="n">price</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">price</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isNewItem</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">newItem</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNewItem</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">newItem</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">newItem</span> <span class="o">=</span> <span class="n">newItem</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getDescription</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">description</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setDescription</span><span class="o">(</span><span class="n">String</span> <span class="n">description</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">description</span> <span class="o">=</span> <span class="n">description</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>And the repository, which extends <code class="docutils literal notranslate"><span class="pre">ElasticsearchRepository</span></code>:</p>
+</div>
+<div class="section" id="controller">
+<h3>Controller<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">ItemDocumentController</span></code> and implement the <code class="docutils literal notranslate"><span class="pre">search</span></code> method</p>
+</div>
+<div class="section" id="es-controller">
+<h3>ES Controller<a class="headerlink" href="#es-controller" title="Permalink to this headline">¶</a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">EsController</span></code> and <code class="docutils literal notranslate"><span class="pre">EsUtils</span></code> to enable admin-oriented interactions with the ES instance</p>
 </div>
 </div>
 <div class="section" id="your-tasks">

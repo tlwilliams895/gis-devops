@@ -9,20 +9,24 @@ Elasticsearch Query Studio
 Elasticsearch Installation
 ==========================
 
-We need to install Elasticsearch locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.
+We need to install Elasticsearch and Kibana locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.
 
 On Mac, use Homebrew: ::
 
     $ brew install elasticsearch
+    $ brew install kibana
 
 
 And then, to start up the server: ::
 
     $ brew services start elasticsearch
+    $ brew services start kibana
+
+In your browser, navigate to http://localhost:5601 to access Kibana. Select the *Dev Tools* view from the left-hand pane.
 
 Check that the installation and starteup were successful by checking the cluster's health: ::
 
-    $ curl -XGET 'localhost:9200/_cat/health?v&pretty'
+    GET /_cat/health?v
 
 All being well, the output should look something like this: ::
 
@@ -32,7 +36,7 @@ All being well, the output should look something like this: ::
 
 .. note::
 
-    If you don't receive something like the response above, restart the service using: ``brew services restart elasticsearch``.
+    If you don't receive something like the response above, restart the service using: ``brew services restart SERVICE_NAME`` (where ``SERVICE_NAME`` is either ``elasticsearch`` or ``kibana``.
 
 
 Cluster health is expressed as the color green, yellow, or red.
@@ -48,7 +52,7 @@ Cluster health is expressed as the color green, yellow, or red.
 You can see from the output that we have 1 node and 0 shards (since there's no data yet).
 Let's confirm we don't have any indices yet. ::
 
-    $ curl -XGET 'localhost:9200/_cat/indices?v&pretty'
+    GET /_cat/indices?v
 
 
 Your response should just show headers and no content: ::
@@ -73,7 +77,7 @@ Run the script to create some documents:::
 
     If an error occurs while running the script, delete the index. Get help from an instructor and then try again.
 
-    You can delete an index this way: ``$ curl -XDELETE 'localhost:9200/twitter/``
+    You can delete an index this way: ``DELETE /twitter/``
 
 
 Your Tasks

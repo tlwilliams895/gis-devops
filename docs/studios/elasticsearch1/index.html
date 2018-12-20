@@ -277,17 +277,20 @@
 <span id="elasticsearch1-studio"></span><h1>Elasticsearch Query Studio<a class="headerlink" href="#elasticsearch-query-studio" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="elasticsearch-installation">
 <h2>Elasticsearch Installation<a class="headerlink" href="#elasticsearch-installation" title="Permalink to this headline">¶</a></h2>
-<p>We need to install Elasticsearch locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.</p>
+<p>We need to install Elasticsearch and Kibana locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.</p>
 <p>On Mac, use Homebrew:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew install elasticsearch
+$ brew install kibana
 </pre></div>
 </div>
 <p>And then, to start up the server:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew services start elasticsearch
+$ brew services start kibana
 </pre></div>
 </div>
+<p>In your browser, navigate to <a class="reference external" href="http://localhost:5601">http://localhost:5601</a> to access Kibana. Select the <em>Dev Tools</em> view from the left-hand pane.</p>
 <p>Check that the installation and starteup were successful by checking the cluster’s health:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl -XGET &#39;localhost:9200/_cat/health?v&amp;pretty&#39;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>GET /_cat/health?v
 </pre></div>
 </div>
 <p>All being well, the output should look something like this:</p>
@@ -297,7 +300,7 @@
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you don’t receive something like the response above, restart the service using: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">restart</span> <span class="pre">elasticsearch</span></code>.</p>
+<p class="last">If you don’t receive something like the response above, restart the service using: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">restart</span> <span class="pre">SERVICE_NAME</span></code> (where <code class="docutils literal notranslate"><span class="pre">SERVICE_NAME</span></code> is either <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> or <code class="docutils literal notranslate"><span class="pre">kibana</span></code>.</p>
 </div>
 <p>Cluster health is expressed as the color green, yellow, or red.</p>
 <ul class="simple">
@@ -311,7 +314,7 @@
 </div>
 <p>You can see from the output that we have 1 node and 0 shards (since there’s no data yet).
 Let’s confirm we don’t have any indices yet.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl -XGET &#39;localhost:9200/_cat/indices?v&amp;pretty&#39;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>GET /_cat/indices?v
 </pre></div>
 </div>
 <p>Your response should just show headers and no content:</p>
@@ -334,7 +337,7 @@ $ chmod +x load_data.sh
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>If an error occurs while running the script, delete the index. Get help from an instructor and then try again.</p>
-<p class="last">You can delete an index this way: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XDELETE</span> <span class="pre">'localhost:9200/twitter/</span></code></p>
+<p class="last">You can delete an index this way: <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/twitter/</span></code></p>
 </div>
 </div>
 <div class="section" id="your-tasks">

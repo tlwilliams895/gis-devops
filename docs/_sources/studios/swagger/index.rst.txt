@@ -134,6 +134,10 @@ Springfox scans our classes, reading annotations and method signatures (i.e. the
 
 The `@ApiOperation annotation <https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apioperation>`_ allows you to specify the return type of an API method, among other things. Apply this annotation to each method with a ``ResponseEntity`` return type to properly specify the return type of the method.
 
+.. hint::
+
+  The linked example demonstrates several parameters of the ``@ApiOperation`` annotation, but you will only need two. The rest are optional and/or don't apply to our situation.
+
 Turn in your Work
 =================
 

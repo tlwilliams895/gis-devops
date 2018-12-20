@@ -394,6 +394,10 @@ compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, ver
 <h4>Documenting Correct Return Types<a class="headerlink" href="#documenting-correct-return-types" title="Permalink to this headline">¶</a></h4>
 <p>Springfox scans our classes, reading annotations and method signatures (i.e. the number and type of paramters and return values) to determine the structure of our API. It assumes–reasonably, in many cases–that the return type of a method is the same as the return type of the API endpoint. This is not always the case, however.</p>
 <p>The <a class="reference external" href="https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X#apioperation">&#64;ApiOperation annotation</a> allows you to specify the return type of an API method, among other things. Apply this annotation to each method with a <code class="docutils literal notranslate"><span class="pre">ResponseEntity</span></code> return type to properly specify the return type of the method.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">The linked example demonstrates several parameters of the <code class="docutils literal notranslate"><span class="pre">&#64;ApiOperation</span></code> annotation, but you will only need two. The rest are optional and/or don’t apply to our situation.</p>
+</div>
 </div>
 </div>
 </div>
