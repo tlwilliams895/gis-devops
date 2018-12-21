@@ -3,7 +3,7 @@
 .. _airwaze-studio:
 
 ================
-Studio: Airwazes
+Studio: Airwaze
 ================
 
 Your goal is to add an additional layer that shows flight routes and display it on the map.  This time we will incorporate our map into a Spring Boot project. We will store geographic data in our Postgresql database. Some starter code has been provided for you.
@@ -15,16 +15,18 @@ Set Up Project
 * Create a story branch ``$ git checkout -b day5-solution``
 
 What is PostGIS?
-===============
+================
+
 `PostGIS <https://postgis.net/>`_ is a spatial database extension for PostgreSQL object-relational database. PostGIS adds support for geographic objects in Postgresql. This includes features such as georgraphic data types, location functions, and location based querying.
 
 Install PostGIS on your Computer
 ================================
+
 - Make sure your Postgresql server is running. Remember we used https://postgresapp.com/ to install Postgresql, which automatically created a service that we can start and stop via its UI in the menu bar.
 - To install the PostGIS extension, run the below commands in terminal
 
-  - Note that this makes the extension available on your computer, but you will need to run additional commands to enable them in a specific database. More on that in the Enable Extension section. 
-  
+  - Note that this makes the extension available on your computer, but you will need to run additional commands to enable them in a specific database. More on that in the Enable Extension section.
+
   ::
 
     $ brew update
@@ -85,7 +87,7 @@ Notice in ``application.properties`` and ``application-test.properties`` that th
 Review import.sql and CSV files
 =====================================
 
-This application uses Spring Boot and Spring Data.  When the project boots up, **if** you have a ``src/main/resources/import.sql`` file, it will automatically be executed against your database by hibernate. 
+This application uses Spring Boot and Spring Data.  When the project boots up, **if** you have a ``src/main/resources/import.sql`` file, it will automatically be executed against your database by hibernate.
 
 - **NOTE** ``import.sql`` only runs if ``ddl-auto=create or create-drop`` in ``application.properties``
 - `More information on Spring Data initialization <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-initialize-a-database-using-hibernate>`_
@@ -127,7 +129,7 @@ Review AirportController
 Tasks
 =====
 1. When the map is clicked, list all airports that are at that pixel
-   
+
    * You will need to add more code to the function ``map.forEachFeatureAtPixel(event.pixel, function(feature,layer)`` in ``resources/static/js/scripts.js``
 
 2. Create a route endpoint that returns routes for a certain srcId.
@@ -135,7 +137,7 @@ Tasks
    * Example: ``http://localhost:8080/route/?srcId=12``
 
 3. When an airport feature is clicked on the map, show the routes for that airport
-   
+
    * By adding a router layer that only contains routes connected to the clicked airport
    * The data for the new layer will be provided by ``http://localhost:8080/route/?srcId=X``, where X will be the ``airportId`` from the feature
 

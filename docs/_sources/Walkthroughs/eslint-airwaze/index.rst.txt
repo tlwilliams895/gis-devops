@@ -73,7 +73,7 @@ Let's Do Some Linting!
 Bonus Mission
 =============
 
-* Get Visual Studio code to "auto lint" using our defined linting rules. You will not have to save and re-run ``$ npm test`` if you enable the auto linting feature
+* Get VisualStudio Code to "auto lint" using our defined linting rules. You will not have to save and re-run ``$ npm test`` if you enable the auto-linting feature.
 
 Resources
 =========

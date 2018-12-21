@@ -3,7 +3,7 @@
 .. _openlayers-es2015-studio:
 
 ===================================
-Studio - OpenLayers ES2015 Workshop
+Studio: OpenLayers ES2015 Workshop
 ===================================
 
 This activity gives you practice with JavaScript, ES2015, Webpack, and OpenLayers

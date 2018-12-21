@@ -332,6 +332,7 @@ Bonus Missions
 
 We looked at how to push a new item to Elasticsearch when creating it via the REST API. There are still several tasks that can be immediately carried out to fully integrate ES with the application. Try one more more of the following:
 
+* We are currently creating and saving a new `ItemDocument` whenever a new `Item` is created, however, we are not updating or deleting an `ItemDocument` when the corresponding `Item` is updated or deleted. Add the code to do this.
 * Update a document in ES when updating via the API or web view.
 * Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to ``ItemDocumentRepository.search``, or by creating a new controller method that passes fuzzy search results into a template.
 
