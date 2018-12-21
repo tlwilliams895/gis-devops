@@ -24,12 +24,6 @@ Then copy/paste the contents of this `gist <https://gist.github.com/chrisbay/8ef
 
   $ ./load_data_geo.sh
 
-Verify that the mapping was created properly by running the following command and checking that the ``location`` field is of type ``geo_point``:::
-
-  GET /twitter/_mappings
-
-If something went wrong, delete the index, get help from an instructor, and try again.
-
 Your Tasks
 ==========
 
