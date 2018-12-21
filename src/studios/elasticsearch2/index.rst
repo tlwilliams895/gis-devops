@@ -36,7 +36,7 @@ Your Tasks
 Carry out each of the following tasks. Once you have a successful query for each, save the command in a ``.txt`` file for submission.
 
 1. What is the data type of the ``location`` field in the ``twitter`` index? What should it be?
-2. Fix the issue with ``location`` by creating a mapping for a new index ``twitter_geo`` that defines ``location`` as a ``geo_point`` field.
+2. Fix the issue with ``location`` by creating a mapping for a new index ``twitter_geo`` that defines ``location`` as a ``geo_point`` field. **Hint**: To build the JSON that you'll need to create the new mapping for ``twitter_geo``, you can copy the reponse from fetching the mapping for ``twitter`` and modify it.
 3. Reindex ``twitter`` into ``twitter_geo``.
 4. Find all tweets with between 5 and 10 likes, inclusive of those endpoints.
 5. Find all tweets by Mary Jones that have at least 2 likes.
