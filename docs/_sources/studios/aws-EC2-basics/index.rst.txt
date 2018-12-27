@@ -23,8 +23,13 @@ Set Up Project
   COPY route(src, src_id, dst, dst_id, airline, route_geom) from '/home/airwaze/routes.csv' DELIMITER ',' CSV HEADER;
   COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from '/home/airwaze/Airports.csv' DELIMITER ',' CSV HEADER;
 
-* Go into IntelliJ's Gradle tool window, and click on ``Tasks > build > bootRepackage``.
-* Verify the jar appears in ``build/libs``
+* Go into IntelliJ's Gradle tool window, and click on ``Tasks > build > bootRepackage``
+* Verify the jar appears here ``/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar``
+* We are going to deploy the ``.jar`` file to a cloud server
+
+.. note::
+
+  The file name ``app-0.0.1-SNAPSHOT.jar`` comes from the ``jar`` property in ``build.gradle``.
 
 Start an Instance on AWS
 ========================

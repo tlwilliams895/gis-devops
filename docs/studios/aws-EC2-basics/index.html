@@ -7,9 +7,9 @@
     <title>Studio: AWS Devops Basics &#8212; LaunchCode Curriculum Docs  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
-    <link rel="stylesheet" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" type="text/css" />
-    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <link rel="stylesheet" type="text/css" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -35,7 +35,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -311,9 +311,14 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 </pre></div>
 </div>
 <ul class="simple">
-<li>Go into IntelliJ’s Gradle tool window, and click on <code class="docutils literal notranslate"><span class="pre">Tasks</span> <span class="pre">&gt;</span> <span class="pre">build</span> <span class="pre">&gt;</span> <span class="pre">bootRepackage</span></code>.</li>
-<li>Verify the jar appears in <code class="docutils literal notranslate"><span class="pre">build/libs</span></code></li>
+<li>Go into IntelliJ’s Gradle tool window, and click on <code class="docutils literal notranslate"><span class="pre">Tasks</span> <span class="pre">&gt;</span> <span class="pre">build</span> <span class="pre">&gt;</span> <span class="pre">bootRepackage</span></code></li>
+<li>Verify the jar appears here <code class="docutils literal notranslate"><span class="pre">/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar</span></code></li>
+<li>We are going to deploy the <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file to a cloud server</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The file name <code class="docutils literal notranslate"><span class="pre">app-0.0.1-SNAPSHOT.jar</span></code> comes from the <code class="docutils literal notranslate"><span class="pre">jar</span></code> property in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>.</p>
+</div>
 </div>
 <div class="section" id="start-an-instance-on-aws">
 <h2>Start an Instance on AWS<a class="headerlink" href="#start-an-instance-on-aws" title="Permalink to this headline">¶</a></h2>
