@@ -296,6 +296,7 @@
       
   <div class="section" id="studio-aws-devops-basics">
 <span id="aws-ec2-basics-studio"></span><h1>Studio: AWS Devops Basics<a class="headerlink" href="#studio-aws-devops-basics" title="Permalink to this headline">¶</a></h1>
+<p>x</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>Your goal is to deploy a Spring Boot project to a remote server and verify its execution. This will establish the basics for working in a cloud environment.</p>
@@ -323,6 +324,18 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 <div class="section" id="start-an-instance-on-aws">
 <h2>Start an Instance on AWS<a class="headerlink" href="#start-an-instance-on-aws" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
+<li>Go and login to the aws console login link for this class.<ul>
+<li>The aws console link should look like this <a class="reference external" href="https://123456.signin.aws.amazon.com/console">https://123456.signin.aws.amazon.com/console</a></li>
+<li>The numbers at the front will be different for every user</li>
+</ul>
+</li>
+<li>Make sure you are using the <strong>N. Virginia</strong> region. Your currently selected region shows up in the top right.</li>
+</ol>
+<p>Screen shot of AWS console with arrow pointing to Region menu</p>
+<blockquote>
+<div><img alt="Screen shot of AWS console with arrow pointing to Region menu" src="../../_images/aws-region.png" />
+</div></blockquote>
+<ol class="arabic simple" start="3">
 <li><dl class="first docutils">
 <dt>Go to the EC2 Dashboard:</dt>
 <dd><ul class="first last">
@@ -335,9 +348,9 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 </ol>
 <p>Screen shot of AWS console with a red arrow pointing to the EC2 link in the Services dropdown</p>
 <blockquote>
-<div><img alt="../../_images/ec2-in-services.png" src="../../_images/ec2-in-services.png" />
+<div><img alt="Screen shot of AWS console with a red arrow pointing to the EC2 link in the Services dropdown" src="../../_images/ec2-in-services.png" />
 </div></blockquote>
-<ol class="arabic simple" start="2">
+<ol class="arabic simple" start="4">
 <li><dl class="first docutils">
 <dt>On the EC2 Dashboard</dt>
 <dd><ul class="first last">
@@ -349,9 +362,9 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 </ol>
 <p>Screen shot of AWS console with a red arrow pointing to the Instances link in the sidebar</p>
 <blockquote>
-<div><img alt="../../_images/instances-in-sidebar.png" src="../../_images/instances-in-sidebar.png" />
+<div><img alt="Screen shot of AWS console with a red arrow pointing to the Instances link in the sidebar" src="../../_images/instances-in-sidebar.png" />
 </div></blockquote>
-<ol class="arabic simple" start="3">
+<ol class="arabic simple" start="5">
 <li><dl class="first docutils">
 <dt>On the Instances screen</dt>
 <dd><ul class="first last">
@@ -363,7 +376,7 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 </ol>
 <p>Screen shot of AWS console with a red circle around the Launch Instance button</p>
 <blockquote>
-<div><img alt="../../_images/launch-instance-button.png" src="../../_images/launch-instance-button.png" />
+<div><img alt="Screen shot of AWS console with a red circle around the Launch Instance button" src="../../_images/launch-instance-button.png" />
 </div></blockquote>
 </div>
 <div class="section" id="starting-an-aws-instance">
@@ -371,37 +384,59 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 <p>When creating a new instance, Amazon provides multiple free <strong>Amazon Machine Images</strong> (AMIs) to choose from. This is a pre-configured operating system installation with multiple tools ready for use. For this exercise, we want to use the <strong>Ubuntu Server 16.04 LTS</strong> AMI. Locate it in the list of “Quick Start” images and click its <code class="docutils literal notranslate"><span class="pre">Select</span></code> button.</p>
 <p>Screen shot showing Ubuntu Server selection in AMI screen</p>
 <blockquote>
-<div><img alt="../../_images/ubuntu-server-ami.png" src="../../_images/ubuntu-server-ami.png" />
+<div><img alt="Screen shot showing Ubuntu Server selection in AMI screen" src="../../_images/ubuntu-server-ami.png" />
 </div></blockquote>
 <div class="section" id="instace-details">
 <h3>Instace Details<a class="headerlink" href="#instace-details" title="Permalink to this headline">¶</a></h3>
 <p>Next, the console will ask which type of instance to set up. Your choice here defines the amount of virtual CPU cores, RAM, and network perforance you want. This also directly affects the cost of the running instance. Select the <code class="docutils literal notranslate"><span class="pre">t2.micro</span></code> service, then click <strong>Configure Instance Details</strong>.</p>
 <p>Screen show with t2.micro selected and red circle highlighting the selection</p>
 <blockquote>
-<div><img alt="../../_images/t2-micro-instance.png" src="../../_images/t2-micro-instance.png" />
+<div><img alt="Screen show with t2.micro selected and red circle highlighting the selection" src="../../_images/t2-micro-instance.png" />
 </div></blockquote>
-<p>The following screen allows for configuration of instance. We do not need to customize this image beyond the defaults, so you can continue to <strong>Add Storage</strong>.</p>
+<p>Next, click <strong>Configure Instance Details</strong></p>
+<ul>
+<li><p class="first">We aren’t going to change anything on this page now</p>
+</li>
+<li><p class="first">However, please take a quick look at the properties that you can change on this page</p>
+<img alt="../../_images/click-configure-instance-details.png" src="../../_images/click-configure-instance-details.png" />
+</li>
+</ul>
+<p>Next, click <strong>Add Storage</strong></p>
+<blockquote>
+<div><img alt="../../_images/click-add-storage.png" src="../../_images/click-add-storage.png" />
+</div></blockquote>
 </div>
 <div class="section" id="storage">
 <h3>Storage<a class="headerlink" href="#storage" title="Permalink to this headline">¶</a></h3>
-<p>On this screen, you can choose what storage is available to your instance. AWS will provision a virtual volume in Elastic Block Store to serve as the volume(s) mounted in your instance. By default, it will create an 8 GiB volume to serve as the instance’s root volume. The default 8 GiB volume is sufficient for this application. Click on “Add Tags” to progress to the next step.</p>
+<p>On this screen, you can choose what storage is available to your instance. AWS will provision a virtual volume in Elastic Block Store to serve as the volume(s) mounted in your instance. By default, it will create an 8 GiB volume to serve as the instance’s root volume.</p>
+<ul class="simple">
+<li>The default 8 GiB volume is sufficient for this application.</li>
+<li>Click on <strong>Add Tags</strong> to progress to the next step.</li>
+</ul>
 <p>Screen shot showing pre-filled 8 GiB storage selection</p>
 <blockquote>
-<div><img alt="../../_images/storage-options.png" src="../../_images/storage-options.png" />
+<div><img alt="Screen shot showing pre-filled 8 GiB storage selection" src="../../_images/storage-options.png" />
 </div></blockquote>
 </div>
 <div class="section" id="add-tags">
 <h3>Add Tags<a class="headerlink" href="#add-tags" title="Permalink to this headline">¶</a></h3>
-<p>The <strong>Add Tags</strong> screen is helpful to “name” our ec2 instance. Since lots of us are going to be creating instances, please click <strong>Add Tag</strong> add a <code class="docutils literal notranslate"><span class="pre">Name</span></code> tag with a value of something unique and relevant to you, example <code class="docutils literal notranslate"><span class="pre">blakes-ec2-walkthrough</span></code>. Then click <strong>Configure Security Group</strong>.</p>
+<p>The <strong>Add Tags</strong> screen is helpful to “name” our ec2 instance. Since lots of us are going to be creating instances, please click <strong>Add Tag</strong> add a <code class="docutils literal notranslate"><span class="pre">Name</span></code> tag with a value of something unique and relevant to you, example <code class="docutils literal notranslate"><span class="pre">blakes-ec2-walkthrough</span></code>.</p>
 <p>Screen shot demonstrating an empty Add Tags screen and the Add Tag button</p>
 <blockquote>
-<div><img alt="../../_images/add-tags-screen-v3.png" src="../../_images/add-tags-screen-v3.png" />
+<div><img alt="Screen shot demonstrating an empty Add Tags screen and the Add Tag button" src="../../_images/add-tags-screen-v3.png" />
+</div></blockquote>
+<p>Next click <strong>Configure Security Group</strong></p>
+<blockquote>
+<div><img alt="Screen shot showing arrow pointing to button &quot;Next: Configure Security Group&quot;" src="../../_images/click-configure-security-group.png" />
 </div></blockquote>
 </div>
 <div class="section" id="security-groups">
 <h3>Security Groups<a class="headerlink" href="#security-groups" title="Permalink to this headline">¶</a></h3>
-<p>Configuring the security groups for your server is critical for protecting your instance from unauthorized remote access. You are liable for the work and costs generated by your instance, well in this case LaunchCode is ;). An openly-accessible instance can risk your infrastructure security and accumulate great costs to your organization if it were to be compromised.</p>
-<ul class="simple">
+<p>The Security Group controls network traffic in and out of the server you are creating. You can create rules for different kinds of traffic on different ports. Examples: <code class="docutils literal notranslate"><span class="pre">SSH</span></code>, <code class="docutils literal notranslate"><span class="pre">HTTP</span></code>, <code class="docutils literal notranslate"><span class="pre">port</span> <span class="pre">8080</span></code>.</p>
+<p>Configuring the security groups for your server is critical for protecting your instance from unauthorized remote access.
+The organization or indiviaul who created the AWS account is liable for the costs generated by any instances that are setup, in this case LaunchCode is that origanization.
+An openly-accessible instance can risk your infrastructure security and accumulate great costs to your organization if it were to be compromised.</p>
+<ol class="arabic simple">
 <li>Create a new security group for your instance with a unique name</li>
 <li>Add a useful description for the security group so you know its purpose in the future</li>
 <li>Change the existing rule’s source to “My IP”<ul>
@@ -409,25 +444,35 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 <li>NOTE: This is your IP at the time of configuration. Later on if your IP changes for some reason you will NOT be able to login until you adjust the security group to look for your new IP.</li>
 </ul>
 </li>
-<li>Continue to <strong>Review and Launch</strong></li>
-</ul>
+</ol>
 <p>Screen shot showing Create Security Group page with My IP circled in red to highlight the selection</p>
 <blockquote>
-<div><img alt="../../_images/security-group-setup.png" src="../../_images/security-group-setup.png" />
+<div><img alt="Screen shot showing Create Security Group page with My IP circled in red to highlight the selection" src="../../_images/security-group-setup.png" />
 </div></blockquote>
+<p>Next click <strong>Review and Launch</strong> button in the bottom right</p>
 </div>
 <div class="section" id="review-screen">
 <h3>Review Screen<a class="headerlink" href="#review-screen" title="Permalink to this headline">¶</a></h3>
-<p>This screen gives you a final chance to review and change the settings you chose for this instance. Open the dropdowns on the screen and when you’re ready, click <strong>Launch</strong>.</p>
+<p>This screen gives you a final chance to review and change the settings you chose for this instance.</p>
+<ul class="simple">
+<li>Each section is collapsable and expandle by clicking on the section Title</li>
+<li>When you’re done reviewing, click <strong>Launch</strong></li>
+</ul>
 </div>
 <div class="section" id="setting-up-a-keypair">
 <h3>Setting up a KeyPair<a class="headerlink" href="#setting-up-a-keypair" title="Permalink to this headline">¶</a></h3>
-<p>This will open a popup on the screen that allows you to configure a key pair for the instance. This will generate the key necessary to SSH into the instance and without this you will not be able to access your instance. In an enterprise environment, there will likely already be multiple key pairs set up that you would use here. For the purpose of this project, create a new key pair:</p>
+<p>This will open a popup on the screen that allows you to configure a key pair for the instance. This will generate the key necessary to SSH into the instance and without this you will not be able to access your instance.
+In an enterprise environment, there will likely already be multiple key pairs set up that you would use here. For the purpose of this project, create a new key pair:</p>
 <ul class="simple">
-<li>Select “Create a new key pair” in the first select box</li>
+<li>Select <strong>Create a new key pair</strong> in the first select box</li>
 <li>Give your key pair a good name, possibly the same name you gave your security group</li>
-<li>Click “Download Key Pair”</li>
-<li>Store this <code class="docutils literal notranslate"><span class="pre">*.pem</span></code> file in a good location and do not lose it</li>
+<li>Click <strong>Download Key Pair</strong></li>
+<li>Choose <strong>Save File</strong> to your computer</li>
+<li>Store this <code class="docutils literal notranslate"><span class="pre">*.pem</span></code> file in a good location and do not lose it. A suggestion is to put them in <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder.<ul>
+<li>You can move your newly downloaded file there by running:</li>
+<li><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">~/Downloads/your-keypair.pem</span> <span class="pre">~/.ssh</span></code></li>
+</ul>
+</li>
 <li>Click <strong>Launch Instances</strong></li>
 </ul>
 </div>
@@ -436,7 +481,7 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 <p>AWS will now begin launching your instance. After Launching your instance will be availabe in the list of EC2 Instances. You can click the identifier for your instance to monitor it as it starts up. This will take you back to the Instances dashboard. In the <strong>Description</strong> tab of your instance you can see important properties such as <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">DNS</span></code>, <code class="docutils literal notranslate"><span class="pre">IP</span></code>, <code class="docutils literal notranslate"><span class="pre">running</span> <span class="pre">state</span></code>, <code class="docutils literal notranslate"><span class="pre">instance</span> <span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">links</span> <span class="pre">to</span> <span class="pre">security</span> <span class="pre">group(s)</span></code>, <code class="docutils literal notranslate"><span class="pre">key</span> <span class="pre">pair</span></code>, etc.</p>
 <p>Screen shot showing Instances dashboard and a running instance. A red circle is around the Public DNS entry.</p>
 <blockquote>
-<div><img alt="../../_images/instances-dashboard-launching.png" src="../../_images/instances-dashboard-launching.png" />
+<div><img alt="Screen shot showing Instances dashboard and a running instance. A red circle is around the Public DNS entr" src="../../_images/instances-dashboard-launching.png" />
 </div></blockquote>
 </div>
 <div class="section" id="set-up-ssh">
@@ -475,7 +520,7 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 </ul>
 <p>Screen shot of terminal showing successful SSH connection to AWS instance</p>
 <blockquote>
-<div><img alt="../../_images/ssh-to-instance.png" src="../../_images/ssh-to-instance.png" />
+<div><img alt="Screen shot of terminal showing successful SSH connection to AWS instance" src="../../_images/ssh-to-instance.png" />
 </div></blockquote>
 <p>Congratulations! You have successfully created and connected to an instance running in the cloud.</p>
 </div>
@@ -611,14 +656,14 @@ $ journalctl -f -u airwaze.service
 </ul>
 <p>Screen shot of the AWS sidebar with a red circle around Security Groups</p>
 <blockquote>
-<div><img alt="../../_images/security-groups-list.png" src="../../_images/security-groups-list.png" />
+<div><img alt="Screen shot of the AWS sidebar with a red circle around Security Groups" src="../../_images/security-groups-list.png" />
 </div></blockquote>
 <ul class="simple">
 <li>Select the security group with the name you used before</li>
 </ul>
 <p>Screen shot of the security group list with the demonstration security group selected</p>
 <blockquote>
-<div><img alt="_static/images/select-your-security-group.png" src="_static/images/select-your-security-group.png" />
+<div><img alt="Screen shot of the security group list with the demonstration security group selected" src="_static/images/select-your-security-group.png" />
 </div></blockquote>
 <ul class="simple">
 <li>Click the <code class="docutils literal notranslate"><span class="pre">Inbound</span></code> tab and <code class="docutils literal notranslate"><span class="pre">Edit</span></code> the inbound traffic list</li>
@@ -632,7 +677,7 @@ $ journalctl -f -u airwaze.service
 </ul>
 <p>Screen shot of Edit inbound rules display with a new rule of 8080 to “My IP” added with red circles around the 8080 port and “My IP”</p>
 <blockquote>
-<div><img alt="../../_images/add-web-to-security-group.png" src="../../_images/add-web-to-security-group.png" />
+<div><img alt="Screen shot of Edit inbound rules display with a new rule of 8080 to &quot;My IP&quot; added with red circles around the 8080 port and &quot;My IP&quot;" src="../../_images/add-web-to-security-group.png" />
 </div></blockquote>
 <ul class="simple">
 <li>Click <code class="docutils literal notranslate"><span class="pre">Save</span></code>. This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.</li>
