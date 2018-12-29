@@ -189,8 +189,8 @@ Screen shot showing Instances dashboard and a running instance. A red circle is 
   .. image:: /_static/images/instances-dashboard-launching.png
      :alt: Screen shot showing Instances dashboard and a running instance. A red circle is around the Public DNS entr
 
-What Next?
-==========
+Configure and Setup Airwaze Application on Cloud Server
+=======================================================
 
 At this point we have created a server in the cloud, but at this point it's just a server. We haven't deployed our application to it yet. In the next steps we will deploy the Airwaze application to our new server.
 
@@ -212,7 +212,7 @@ Set up SSH
 
 * Using the Public DNS you noted before and your \*.pem file, access your AWS instance:::
 
-  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@insert-public-DNS-here
+  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLID-DNS-OF-SERVER-HERE
 
 .. note::
 
@@ -228,44 +228,53 @@ Screen shot of terminal showing successful SSH connection to AWS instance
 
 Congratulations! You have successfully created and connected to an instance running in the cloud.
 
-Running Your Application In the Cloud
--------------------------------------
+Setup Linux Server to Run the App
+---------------------------------
 
 Now that you have a server running in the cloud, you need to use it to do some work. Let's prepare the server to run our application.
 
 Create Application User
 -----------------------
 
-First, you don't want the application running under your system account, so we need to create a new user with a password:::
+First, you don't want the application running under your system account, so we need to create a new user:::
 
   (On remote server)
-  $ sudo adduser airwaze
+  ubuntu$ sudo adduser --system airwaze
 
 
 Secure Copy Files to Server
 ---------------------------
 
-Next, go to a terminal prompt for **your local machine**, upload the Airwaze Studio jar to the server. We'll use scp to securely transmit the file to our server. We will copy the jar file and the csv files.::
+* Leave your ``ssh`` session open and open a new terminal prompt for **your local machine**
+* You can do this by hitting keys ``Command + T`` while in your terminal
+* We are going to upload our app jar file and the two csv files to the server
+* We'll use ``scp`` to securely transmit the file to our server
 
-  (On local computer)
+::
+
+  (On local computer, NOT in ssh session)
   $ scp -i ~/.ssh/name-of-pem.pem /path/to/local/app.jar ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/app.jar
-  $ scp -i ~/.ssh/name-of-pem.pem /path/to/local/routes.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
-  $ scp -i ~/.ssh/name-of-pem.pem /path/to/local/Airports.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/Airports.csv
+  $ scp -i ~/.ssh/name-of-pem.pem /path/to/local/*.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
 
-Now log in to the server (if you don't still have an open connection):::
 
-  (On local computer)
-  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com
+
+
+
+Ubuntu Doesn't Have Everything We Need?
+---------------------------------------
+
+The remotes servers will not come with everything we need already isntalled. However it does come with a tool that makes it easy to install software.
+`apt-get <https://help.ubuntu.com/community/AptGet/Howto>`_ is the "Package Manager" that comes with Ubuntu. We will use it to install the JDK and other tools we need.
 
 Install JDK on Server
 ---------------------
 
-The remotes servers will not come with everything we need already isntalled.  We need Java to be to run our app.::
+We need Java to run our app, we will install it using ``apt-get``::
 
   (On remote server)
-  $ sudo apt-get update
-  $ sudo apt-get install openjdk-8-jdk
-  $ java -version
+  ubuntu$ sudo apt-get update
+  ubuntu$ sudo apt-get install openjdk-8-jdk
+  ubuntu$ java -version
 
 Copy Files to App User Folder
 -----------------------------
@@ -273,14 +282,12 @@ Copy Files to App User Folder
 Now, on the server, move the file to the airwaze home directory, and make it owned and executable by that user. Notice the changes in ``ls -l`` after the owner and permissions calls are made.::
 
   (On remote server)
-  $ sudo mv ~/app.jar /home/airwaze/app.jar
-  $ sudo mv ~/*.csv /home/airwaze
-  $ cd /home/airwaze
-  $ ls -l
-  $ sudo chown -R airwaze:airwaze /home/airwaze
-  $ ls -l
-  $ sudo chmod 500 /home/airwaze/app.jar
-  $ ls -l
+  ubuntu$ sudo mv ~/app.jar /home/airwaze/app.jar
+  ubuntu$ sudo mv ~/*.csv /home/airwaze
+  ubuntu$ cd /home/airwaze
+  ubuntu$ ls -l
+  ubuntu$ sudo chmod 500 /home/airwaze/app.jar
+  ubuntu$ ls -l
 
 Now the airwaze user can execute app.jar.::
 
@@ -291,32 +298,65 @@ Now the airwaze user can execute app.jar.::
 Install Postgis
 ---------------
 
-Before trying to start the application, we'll install ``postgres`` locally so we can start Airwaze Studio. **This is something you would *never* do in a real cloud instance**, but we'll do it just for this demonstration so our app will start.::
+Before trying to start the application, we'll install ``postgres`` locally so we can start Airwaze Studio. 
+Normally you would install the database on it's own server. Installing the database on the same cloud server ** is something you would *never* do in a real cloud instance**. 
+We are doing it here to get practice working with cloud servers, we will learn how to use postgresql differently later this week.::
 
   (On remote server)
   $ sudo apt-get update
   $ sudo apt-get install postgresql postgresql-contrib postgis
-  $ sudo -u postgres createuser --pwprompt airwaze_app_user # give password ``somethingsensible``
-  $ sudo -u postgres createdb -O airwaze_app_user airwaze
-  $ sudo vim /etc/postgresql/9.5/main/pg_hba.conf
+  
+Edit Postgresql Config File
+---------------------------
 
-When the configuration file comes up, you'll see that almost all of the lines are commented out.  Towards the bottom you find lines that are not commented out.  Press ``i`` to get into Insert mode, and change the line with ``local all all peer`` to ``local all all md5``.  When you're done, press ``escape`` to get out of insert mode.  Press ``:`` to bring up a prompt, then press ``w`` (for 'write') and ``q`` (for 'quit'), followed by ``return``.::
+::
 
+  (on remote server)
+  ubuntu$ psql -U postgres
+
+* The above should throw an error like ``psql: FATAL:  Peer authentication failed for user "postgres"``
+* We need to edit a postgresql config file. You can do that in ``nano`` or ``vi``
+
+::
+
+  (On remote server)
+  ubuntu$ sudo nano /etc/postgresql/9.5/main/pg_hba.conf
+
+* In the configuration filr, you'll see that almost all of the lines are commented out with ``#``
+* Find the section that matches the text in the red box
+* Change the text ``peer`` to be ``md5``. Be careful to change the correct line
+* Save your changes to the file
+
+.. image:: /_static/images/edit-psql-hba-conf.png 
+
+::
+  
+  (Section in red box shoud look like this after editing it)
   # "local" is for Unix domain socket connections only
   local   all             all                                     md5
 
-Install Postgis Extentions
---------------------------
+Now Create User and Database
+-------------------------------------
 
 ::
-  (On remote server)
-  $ sudo /etc/init.d/postgresql restart
-  $ sudo -u postgres psql airwaze
-  CREATE EXTENSION postgis;
-  CREATE EXTENSION postgis_topology;
-  CREATE EXTENSION fuzzystrmatch;
-  CREATE EXTENSION postgis_tiger_geocoder;
-  ALTER USER airwaze_app_user SUPERUSER;
+
+  (on remote server)
+  (restart postgresql)
+  ubuntu$ sudo /etc/init.d/postgresql restart
+
+  (when prompted provide password of your choice, but be sure to remember it)
+  ubuntu$ sudo -u postgres createuser --pwprompt --superuser airwaze_db_user
+
+  (now open a psql# shell)
+  ubuntu$ psql -U airwaze_db_user -d postgres
+  postgres=# CREATE DATABASE airwaze;
+  
+  (install postgis extensions in airwaze database)
+  postgres=# \c airwaze;
+  airwaze=# CREATE EXTENSION postgis;
+  airwaze=# CREATE EXTENSION postgis_topology;
+  airwaze=# CREATE EXTENSION fuzzystrmatch;
+  airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 
 Setup Service for App
 ---------------------
@@ -326,7 +366,7 @@ Now that the app is on the cloud server and the database is ready, we can set up
 In order to use ``systemd``, we have to make a script in ``/etc/systemd/system`` to tell the service how to run our app.::
 
   (On remote server)
-  $ sudo vim /etc/systemd/system/airwaze.service
+  ubuntu$ sudo vim /etc/systemd/system/airwaze.service
 
 Press ``i`` to start inserting text into the file and paste the following:::
 
@@ -345,13 +385,13 @@ Press ``i`` to start inserting text into the file and paste the following:::
 Once this service definition is in place, set the service to start automatically on boot with systemd using the ``systemctl`` utility and also start now::
 
   (On remote server)
-  $ sudo systemctl enable airwaze
-  $ sudo systemctl start airwaze
+  ubuntu$ sudo systemctl enable airwaze
+  ubuntu$ sudo systemctl start airwaze
 
 And you can view the logs for the service with ``journalctl``.::
 
   (On remote server)
-  $ journalctl -f -u airwaze.service
+  ubuntu$ journalctl -f -u airwaze.service
 
 
 Configure Security Group
