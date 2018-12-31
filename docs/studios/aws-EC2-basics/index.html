@@ -286,10 +286,14 @@
 <li><a class="reference internal" href="#edit-postgresql-config-file">Edit Postgresql Config File</a></li>
 <li><a class="reference internal" href="#now-create-user-and-database">Now Create User and Database</a></li>
 <li><a class="reference internal" href="#setup-service-for-app">Setup Service for App</a></li>
+<li><a class="reference internal" href="#did-it-work">Did it Work?</a></li>
 <li><a class="reference internal" href="#configure-security-group">Configure Security Group</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a><ul>
+<li><a class="reference internal" href="#how-to-stop-and-re-run-airwaze-app">How to Stop and Re-Run Airwaze App</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 </ul>
 </li>
@@ -515,7 +519,7 @@ In an enterprise environment, there will likely already be multiple key pairs se
 </div>
 </li>
 <li><p class="first">Using the Public DNS you noted before and your *.pem file, access your AWS instance::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLID-DNS-OF-SERVER-HERE
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLIC-DNS-OF-SERVER
 </pre></div>
 </div>
 </li>
@@ -555,8 +559,8 @@ ubuntu$ sudo adduser --system airwaze
 <li>We’ll use <code class="docutils literal notranslate"><span class="pre">scp</span></code> to securely transmit the file to our server</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(On local computer, NOT in ssh session)
-$ scp -i ~/.ssh/name-of-pem.pem /path/to/local/app.jar ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/app.jar
-$ scp -i ~/.ssh/name-of-pem.pem /path/to/local/*.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
+$ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/build/libs/app-0.0.1-SNAPSHOT.jar ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/app-0.0.1-SNAPSHOT.jar
+$ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
 </pre></div>
 </div>
 </div>
@@ -579,17 +583,22 @@ ubuntu$ java -version
 <h3>Copy Files to App User Folder<a class="headerlink" href="#copy-files-to-app-user-folder" title="Permalink to this headline">¶</a></h3>
 <p>Now, on the server, move the file to the airwaze home directory, and make it owned and executable by that user. Notice the changes in <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> after the owner and permissions calls are made.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(On remote server)
-ubuntu$ sudo mv ~/app.jar /home/airwaze/app.jar
+(move files to airwaze home)
+ubuntu$ sudo mv ~/app-0.0.1-SNAPSHOT.jar /home/airwaze/app-0.0.1-SNAPSHOT.jar
 ubuntu$ sudo mv ~/*.csv /home/airwaze
 ubuntu$ cd /home/airwaze
 ubuntu$ ls -l
-ubuntu$ sudo chmod 500 /home/airwaze/app.jar
+
+(change it so that the owner can execute the file)
+ubuntu$ sudo chmod 500 /home/airwaze/app-0.0.1-SNAPSHOT.jar
+(change the owner to airwaze user)
+ubuntu$ sudo chown airwaze:ubuntu app-0.0.1-SNAPSHOT.jar
 ubuntu$ ls -l
 </pre></div>
 </div>
-<p>Now the airwaze user can execute app.jar.:</p>
+<p>Now the airwaze user can execute app-0.0.1-SNAPSHOT.jar.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 airwaze airwaze   881432 May 20 01:23 Airports.csv
--r-x------ 1 airwaze airwaze 46309179 May 20 01:22 app.jar
+-r-x------ 1 airwaze airwaze 46309179 May 20 01:22 app-0.0.1-SNAPSHOT.jar
 -rw-r--r-- 1 airwaze airwaze  6464492 May 20 01:23 routes.csv
 </pre></div>
 </div>
@@ -656,21 +665,22 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 </div>
 <div class="section" id="setup-service-for-app">
 <h3>Setup Service for App<a class="headerlink" href="#setup-service-for-app" title="Permalink to this headline">¶</a></h3>
-<p>Now that the app is on the cloud server and the database is ready, we can set up <code class="docutils literal notranslate"><span class="pre">systemd</span></code> to run this app as a service.</p>
-<p>In order to use <code class="docutils literal notranslate"><span class="pre">systemd</span></code>, we have to make a script in <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system</span></code> to tell the service how to run our app.:</p>
+<p>Now that the app is on the cloud server and the database is ready, we can set up <code class="docutils literal notranslate"><span class="pre">systemd</span></code> to run this app as a service. <code class="docutils literal notranslate"><span class="pre">systemd</span></code> is used to configure
+and run services on linux. More info in this <a class="reference external" href="https://www.linux.com/learn/understanding-and-using-systemd">linux.com article</a> and this <a class="reference external" href="https://en.wikipedia.org/wiki/Systemd">systemd wiki page</a>.</p>
+<p>In order to use <code class="docutils literal notranslate"><span class="pre">systemd</span></code>, we have to make a script in <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system</span></code> to tell the service how to run our app.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(On remote server)
-ubuntu$ sudo vim /etc/systemd/system/airwaze.service
+ubuntu$ sudo nano /etc/systemd/system/airwaze.service
 </pre></div>
 </div>
-<p>Press <code class="docutils literal notranslate"><span class="pre">i</span></code> to start inserting text into the file and paste the following::</p>
+<p>Copy and paste this text into the file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[Unit]
 Description=Airwaze Studio
 After=syslog.target
 
 [Service]
 User=airwaze
-ExecStart=/usr/bin/java -jar /home/airwaze/app.jar SuccessExitStatus=143
-Restart=always
+ExecStart=/usr/bin/java -jar /home/airwaze/app-0.0.1-SNAPSHOT.jar SuccessExitStatus=143
+Restart=no
 
 [Install]
 WantedBy=multi-user.target
@@ -685,6 +695,35 @@ ubuntu$ sudo systemctl start airwaze
 <p>And you can view the logs for the service with <code class="docutils literal notranslate"><span class="pre">journalctl</span></code>.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(On remote server)
 ubuntu$ journalctl -f -u airwaze.service
+</pre></div>
+</div>
+</div>
+<div class="section" id="did-it-work">
+<h3>Did it Work?<a class="headerlink" href="#did-it-work" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>In a web browser go to <a class="reference external" href="http://PUBLIC-DNS-OF-SERVER:8080">http://PUBLIC-DNS-OF-SERVER:8080</a><ul>
+<li>You should have got a connection refused, unless you worked ahead ;</li>
+<li>Why can’t we connect from our local computer to the server over <code class="docutils literal notranslate"><span class="pre">http</span></code>?</li>
+<li>We can connect to the server via <code class="docutils literal notranslate"><span class="pre">ssh</span></code>….</li>
+</ul>
+</li>
+<li>Let’s see what <strong>is</strong> working</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
+(to see if there are any clues/errors)
+ubuntu$ journalctl -f -u airwaze
+
+(to see if anything is listening to port 8080 on the server)
+telnet PUBLIC-DNS-OF-SERVER 8080
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on local computer)
+
+(check to see if you connect to server from your local computer via http)
+$ telnet localhost 8080
+
+(if you got an error about telnet being a command, then install it and try again)
+$ brew install telnet
 </pre></div>
 </div>
 </div>
@@ -734,8 +773,18 @@ ubuntu$ journalctl -f -u airwaze.service
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
-<p>Your map is currently showing up on the screen; however, the map is not showing any airports.  Troubleshoot the application and figure out why the airports are not showing up.  Be sure to use your browser’s developer tools.</p>
+<p>Your is currently showing up on the screen; however, the map may not be showing any airports.  Troubleshoot the application and figure out why the airports are not showing up.  Be sure to use your browser’s developer tools.</p>
 <p>When you have found the problem, build a new copy of your jar and deploy it on your server.</p>
+<div class="section" id="how-to-stop-and-re-run-airwaze-app">
+<h3>How to Stop and Re-Run Airwaze App<a class="headerlink" href="#how-to-stop-and-re-run-airwaze-app" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Fix code in Intellij and build with <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">scp</span></code> the updated jar file to the server</li>
+<li>Stop the current service <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">stop</span> <span class="pre">airwaze</span></code></li>
+<li>Disable the service <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">disable</span> <span class="pre">airwaze</span></code></li>
+<li>Enable and then restart the service again (see instructions above)</li>
+</ol>
+</div>
 </div>
 <div class="section" id="bonus-mission">
 <h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>

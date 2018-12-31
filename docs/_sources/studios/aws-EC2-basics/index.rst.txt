@@ -212,7 +212,7 @@ Set up SSH
 
 * Using the Public DNS you noted before and your \*.pem file, access your AWS instance:::
 
-  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLID-DNS-OF-SERVER-HERE
+  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLIC-DNS-OF-SERVER
 
 .. note::
 
@@ -253,8 +253,8 @@ Secure Copy Files to Server
 ::
 
   (On local computer, NOT in ssh session)
-  $ scp -i ~/.ssh/name-of-pem.pem /path/to/local/app.jar ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/app.jar
-  $ scp -i ~/.ssh/name-of-pem.pem /path/to/local/*.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
+  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/build/libs/app-0.0.1-SNAPSHOT.jar ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/app-0.0.1-SNAPSHOT.jar
+  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
 
 
 
@@ -282,17 +282,22 @@ Copy Files to App User Folder
 Now, on the server, move the file to the airwaze home directory, and make it owned and executable by that user. Notice the changes in ``ls -l`` after the owner and permissions calls are made.::
 
   (On remote server)
-  ubuntu$ sudo mv ~/app.jar /home/airwaze/app.jar
+  (move files to airwaze home)
+  ubuntu$ sudo mv ~/app-0.0.1-SNAPSHOT.jar /home/airwaze/app-0.0.1-SNAPSHOT.jar
   ubuntu$ sudo mv ~/*.csv /home/airwaze
   ubuntu$ cd /home/airwaze
   ubuntu$ ls -l
-  ubuntu$ sudo chmod 500 /home/airwaze/app.jar
+
+  (change it so that the owner can execute the file)
+  ubuntu$ sudo chmod 500 /home/airwaze/app-0.0.1-SNAPSHOT.jar
+  (change the owner to airwaze user)
+  ubuntu$ sudo chown airwaze:ubuntu app-0.0.1-SNAPSHOT.jar
   ubuntu$ ls -l
 
-Now the airwaze user can execute app.jar.::
+Now the airwaze user can execute app-0.0.1-SNAPSHOT.jar.::
 
   -rw-r--r-- 1 airwaze airwaze   881432 May 20 01:23 Airports.csv
-  -r-x------ 1 airwaze airwaze 46309179 May 20 01:22 app.jar
+  -r-x------ 1 airwaze airwaze 46309179 May 20 01:22 app-0.0.1-SNAPSHOT.jar
   -rw-r--r-- 1 airwaze airwaze  6464492 May 20 01:23 routes.csv
 
 Install Postgis
@@ -361,14 +366,17 @@ Now Create User and Database
 Setup Service for App
 ---------------------
 
-Now that the app is on the cloud server and the database is ready, we can set up ``systemd`` to run this app as a service.
+Now that the app is on the cloud server and the database is ready, we can set up ``systemd`` to run this app as a service. ``systemd`` is used to configure 
+and run services on linux. More info in this `linux.com article <https://www.linux.com/learn/understanding-and-using-systemd>`_ and this `systemd wiki page <https://en.wikipedia.org/wiki/Systemd>`_.
 
-In order to use ``systemd``, we have to make a script in ``/etc/systemd/system`` to tell the service how to run our app.::
+In order to use ``systemd``, we have to make a script in ``/etc/systemd/system`` to tell the service how to run our app.
+
+::
 
   (On remote server)
-  ubuntu$ sudo vim /etc/systemd/system/airwaze.service
+  ubuntu$ sudo nano /etc/systemd/system/airwaze.service
 
-Press ``i`` to start inserting text into the file and paste the following:::
+Copy and paste this text into the file: ::
 
   [Unit]
   Description=Airwaze Studio
@@ -376,8 +384,8 @@ Press ``i`` to start inserting text into the file and paste the following:::
 
   [Service]
   User=airwaze
-  ExecStart=/usr/bin/java -jar /home/airwaze/app.jar SuccessExitStatus=143
-  Restart=always
+  ExecStart=/usr/bin/java -jar /home/airwaze/app-0.0.1-SNAPSHOT.jar SuccessExitStatus=143
+  Restart=no
 
   [Install]
   WantedBy=multi-user.target
@@ -393,6 +401,34 @@ And you can view the logs for the service with ``journalctl``.::
   (On remote server)
   ubuntu$ journalctl -f -u airwaze.service
 
+Did it Work?
+------------
+* In a web browser go to http://PUBLIC-DNS-OF-SERVER:8080
+
+  * You should have got a connection refused, unless you worked ahead ;
+  * Why can't we connect from our local computer to the server over ``http``?
+  * We can connect to the server via ``ssh``....
+
+* Let's see what **is** working
+
+::
+
+  (on remote server)
+  (to see if there are any clues/errors)
+  ubuntu$ journalctl -f -u airwaze
+
+  (to see if anything is listening to port 8080 on the server)
+  telnet PUBLIC-DNS-OF-SERVER 8080
+
+::
+
+  (on local computer)
+  
+  (check to see if you connect to server from your local computer via http)
+  $ telnet localhost 8080
+
+  (if you got an error about telnet being a command, then install it and try again)
+  $ brew install telnet
 
 Configure Security Group
 ------------------------
@@ -442,9 +478,17 @@ Congratulations! You now have your own application in the cloud!
 Next Steps
 ==========
 
-Your map is currently showing up on the screen; however, the map is not showing any airports.  Troubleshoot the application and figure out why the airports are not showing up.  Be sure to use your browser's developer tools.
+Your is currently showing up on the screen; however, the map may not be showing any airports.  Troubleshoot the application and figure out why the airports are not showing up.  Be sure to use your browser's developer tools.
 
 When you have found the problem, build a new copy of your jar and deploy it on your server.
+
+How to Stop and Re-Run Airwaze App
+----------------------------------
+1. Fix code in Intellij and build with ``bootRepackage``
+2. ``scp`` the updated jar file to the server
+3. Stop the current service ``sudo systemctl stop airwaze``
+4. Disable the service ``sudo systemctl disable airwaze``
+5. Enable and then restart the service again (see instructions above)
 
 Bonus Mission
 =============
