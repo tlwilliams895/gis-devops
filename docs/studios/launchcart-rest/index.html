@@ -283,7 +283,11 @@
 <p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">project/repository</a> that you used previously, make sure you are in the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch that you used earlier today.</p>
 <p>If you don’t have the walkthrough code, you can fetch changes from the remote and check out the <code class="docutils literal notranslate"><span class="pre">rest-studio</span></code> branch.</p>
 <p>Create a story branch:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ git checkout -b rest-studio-solution
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(switch to the rest-studio branch)
+$ git checkout rest-studio
+
+(-b will create a branch and then checkout that new branch)
+$ git checkout -b rest-studio-solution
 </pre></div>
 </div>
 <p>Write integration tests before coding each controller method below. In doing so, you may find the documentation for <a class="reference external" href="https://goessner.net/articles/JsonPath/">JsonPath</a> to be useful. Also, refer to existing tests in <code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code>.</p>
