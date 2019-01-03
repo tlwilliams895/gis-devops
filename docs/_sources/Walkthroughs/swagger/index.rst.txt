@@ -14,19 +14,6 @@ Getting Started
 The same Launchcart project and repo you used for the REST studio.
 Create and checkout a new branch named ``add-swagger`` with this command ``git checkout -b add-swagger``
 
-Setup IntelliJ
---------------
-
-Since we are going to be writing the ``swagger.yaml`` in IntelliJ, let's get a plugin to help out.
-
-Click the magnifying glass in the upper right hand corner and type "Plugin". Select "Plugins" from the menu. Then select "Browse repositories...".
-
-1. Click the magnifying glass in the upper right hand corder and type "Plugin".
-2. Select "Plugins" from the menu.
-3. Then select "Browse repositories...".
-4. Search for "Swagger" in the search bar and install the "Swagger" plugin (there may be mutiple results; install the one with the most stars .
-5. Restart Intellij after the plugin has installed.
-
 Add SwaggerUI to the Project
 ----------------------------
 

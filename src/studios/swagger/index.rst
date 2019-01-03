@@ -13,7 +13,7 @@ Getting Started
 
 Create a ``add-springfox`` branch off of your ``launchcart/rest-studio-solution`` branch.
 
-.. warning:: Do *not* create the branch off of the walkthrough studio, since we manually created Swagger docs in that branch.
+.. warning:: Do *not* create the branch off of the walkthrough branch (``add-swagger``), since we manually created Swagger docs in that branch.
 
 .. warning::
 
