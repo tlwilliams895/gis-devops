@@ -261,14 +261,17 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: Intro to AWS</a><ul>
+<li><a class="reference internal" href="#log-in-to-aws-console">Log in to AWS Console</a></li>
 <li><a class="reference internal" href="#look-around-aws-console">Look Around AWS Console</a><ul>
 <li><a class="reference internal" href="#top-menu">Top Menu</a></li>
 <li><a class="reference internal" href="#regions">Regions</a></li>
+<li><a class="reference internal" href="#aws-regions">AWS Regions</a></li>
 <li><a class="reference internal" href="#services-search-bar-and-menu">Services Search Bar and Menu</a></li>
+<li><a class="reference internal" href="#what-is-ec2">What is EC2?</a></li>
+<li><a class="reference internal" href="#aws-services">AWS Services</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#setup-you-aws-account">Setup You AWS Account</a><ul>
-<li><a class="reference internal" href="#logging-into-aws">Logging into AWS</a></li>
+<li><a class="reference internal" href="#secure-your-aws-account">Secure Your AWS Account</a><ul>
 <li><a class="reference internal" href="#add-two-factor-authentication">Add Two Factor Authentication</a></li>
 </ul>
 </li>
@@ -283,21 +286,31 @@
   <div class="section" id="walkthrough-intro-to-aws">
 <span id="aws-intro-walkthrough"></span><h1>Walkthrough: Intro to AWS<a class="headerlink" href="#walkthrough-intro-to-aws" title="Permalink to this headline">¶</a></h1>
 <p>We will walkthrough getting signed into AWS console and then have a look around</p>
+<div class="section" id="log-in-to-aws-console">
+<h2>Log in to AWS Console<a class="headerlink" href="#log-in-to-aws-console" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>You should have received a aws console login link in your email</li>
+<li>Please login to the AWS Console using that link</li>
+</ul>
+</div>
 <div class="section" id="look-around-aws-console">
 <h2>Look Around AWS Console<a class="headerlink" href="#look-around-aws-console" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="top-menu">
 <h3>Top Menu<a class="headerlink" href="#top-menu" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Has drop down menu for your account</li>
-<li>Has drop down menu for the current Region</li>
-<li>Support Menu for getting help or finding docs</li>
+<li>Services Menu for finding available AWS services (top left)</li>
+<li>Has drop down menu for your account (top right)</li>
+<li>Has drop down menu for the current Region (top right)</li>
+<li>Support Menu for getting help or finding docs (top right)</li>
 </ul>
 </div>
 <div class="section" id="regions">
 <h3>Regions<a class="headerlink" href="#regions" title="Permalink to this headline">¶</a></h3>
-<p>Regions are seperate geographic locations where you can deploy AWS services. Everything in the AWS UI is based off of
-Region, so if you don’t see a instance you created you are probably in the wrong Region. More about Regions and Availability Zones <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html</a></p>
-<p>AWS Regions</p>
+<p>Regions are seperate geographic locations where you can deploy AWS services. <strong>Everything in the AWS UI is based off of
+Region</strong>, so if you don’t see a instance you created you are probably in the wrong Region. More about Regions and Availability Zones <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html</a></p>
+</div>
+<div class="section" id="aws-regions">
+<h3>AWS Regions<a class="headerlink" href="#aws-regions" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="../../_images/regions.png" src="../../_images/regions.png" />
 </div></blockquote>
@@ -307,21 +320,34 @@ Region, so if you don’t see a instance you created you are probably in the wro
 <p>This is where AWS can get a little overwhelming because there are so many services available. We are only to look at a
 few in the class.  On your own time, please read about all the new terms/tools you see listed here. You may want to use
 them some day. Our focus today is <code class="docutils literal notranslate"><span class="pre">EC2</span></code>.</p>
-<p>AWS Services</p>
+</div>
+<div class="section" id="what-is-ec2">
+<h3>What is EC2?<a class="headerlink" href="#what-is-ec2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>EC2 = Elastic Cloud Compute<ul>
+<li><strong>NOTE:</strong> This use of Elastic != ElasticSearch</li>
+<li>EC2 and ElasticSearch are two different things</li>
+<li>We will eventually install and run ElasticSearch on an EC2 server</li>
+</ul>
+</li>
+<li>EC2 is a virtual server you can configure, run, login to, restart, shut down, and destroy<ul>
+<li>You can install and run anything you want on the servers you create</li>
+<li>The only limitation is the amount of money you want to pay Amazon for running the servers $$$</li>
+</ul>
+</li>
+<li>EC2 servers run in Amazon’s AWS cloud</li>
+</ul>
+</div>
+<div class="section" id="aws-services">
+<h3>AWS Services<a class="headerlink" href="#aws-services" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><img alt="../../_images/services.png" src="../../_images/services.png" />
 </div></blockquote>
 </div>
 </div>
-<div class="section" id="setup-you-aws-account">
-<h2>Setup You AWS Account<a class="headerlink" href="#setup-you-aws-account" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="logging-into-aws">
-<h3>Logging into AWS<a class="headerlink" href="#logging-into-aws" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Please check your email for an invite to AWS Console from your instructor</li>
-<li>Reset Password</li>
-</ul>
-</div>
+<div class="section" id="secure-your-aws-account">
+<h2>Secure Your AWS Account<a class="headerlink" href="#secure-your-aws-account" title="Permalink to this headline">¶</a></h2>
+<p>We want to make sure our AWS accounts are secure. To do that we are going to setup Two Factor Authentication. AWS is a very powerful tool and we want to make sure our accounts are only used by us.</p>
 <div class="section" id="add-two-factor-authentication">
 <h3>Add Two Factor Authentication<a class="headerlink" href="#add-two-factor-authentication" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
@@ -331,10 +357,14 @@ them some day. Our focus today is <code class="docutils literal notranslate"><sp
 <li>Click <strong>Security credentials</strong> tab</li>
 <li>Click the pencil for <strong>Assigned MFA device</strong></li>
 <li>Download an Authenticator such as Google Authenticator on your phone</li>
-<li>Open the Authenticator app</li>
-<li>Now connection your Authenticator app by entering informatin provided by AWS</li>
-<li>Now you have to enter a key from your Auth app into AWS and then wait for it to expire and enter the next key that appears</li>
-<li>Now log out and see if works. Fingers crossed.</li>
+<li>Open the Authenticator app on your phone</li>
+<li>Now connect your AWS Account to the Authenticator app by entering informatin provided by AWS<ul>
+<li>You can use the provided barcode</li>
+<li>Or you can enter the provided informatin</li>
+</ul>
+</li>
+<li>Next enter a key from your Auth app into AWS and then wait for it to expire and enter the next key that appears</li>
+<li>Next log out and see if works. Fingers crossed. Don’t worry your instructor can unlock you account if needed.</li>
 </ol>
 </div>
 </div>

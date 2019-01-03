@@ -17,6 +17,10 @@ If you don't have the walkthrough code, you can fetch changes from the remote an
 
 Create a story branch::
 
+    (switch to the rest-studio branch)
+    $ git checkout rest-studio
+
+    (-b will create a branch and then checkout that new branch)
     $ git checkout -b rest-studio-solution
 
 Write integration tests before coding each controller method below. In doing so, you may find the documentation for `JsonPath <https://goessner.net/articles/JsonPath/>`_ to be useful. Also, refer to existing tests in ``ItemRestControllerTests``.
