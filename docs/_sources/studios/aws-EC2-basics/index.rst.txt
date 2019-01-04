@@ -14,6 +14,7 @@ Your goal is to deploy a Spring Boot project to a remote server and verify its e
 1) Set Up Project
 =================
 
+* Verify that your ``application.properties`` file is using tokens like ``${APP_DB_NAME}``, if not change it to use them
 * Build your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio or check out and build the ``elasticsearch-starter`` branch.
 * Change ``src/main/resources/import.sql`` to:
 
