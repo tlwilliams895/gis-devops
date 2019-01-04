@@ -328,19 +328,20 @@
 </div>
 <div class="section" id="set-up-project">
 <h2>1) Set Up Project<a class="headerlink" href="#set-up-project" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
+<ol class="arabic simple">
+<li>Checkout your latest branch of Airwaze Studio project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">https://gitlab.com/LaunchCodeTraining/airwaze-studio</a> or check out and build the <code class="docutils literal notranslate"><span class="pre">elasticsearch-starter</span></code> branch.</li>
 <li>Verify that your <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file is using tokens like <code class="docutils literal notranslate"><span class="pre">${APP_DB_NAME}</span></code>, if not change it to use them</li>
-<li>Build your latest branch of Airwaze Studio project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">https://gitlab.com/LaunchCodeTraining/airwaze-studio</a> or check out and build the <code class="docutils literal notranslate"><span class="pre">elasticsearch-starter</span></code> branch.</li>
-<li>Change <code class="docutils literal notranslate"><span class="pre">src/main/resources/import.sql</span></code> to:</li>
-</ul>
+<li>Make sure the code compiles and the project builds, you can also run <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> to make sure everything is working</li>
+<li>After making sure your code works locally, change <code class="docutils literal notranslate"><span class="pre">src/main/resources/import.sql</span></code> to:</li>
+</ol>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>COPY route(src, src_id, dst, dst_id, airline, route_geom) from &#39;/home/airwaze/routes.csv&#39; DELIMITER &#39;,&#39; CSV HEADER;
 COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from &#39;/home/airwaze/Airports.csv&#39; DELIMITER &#39;,&#39; CSV HEADER;
 </pre></div>
 </div>
-<ul class="simple">
+<ol class="arabic simple" start="5">
 <li>Go into IntelliJ’s Gradle tool window, and click on <code class="docutils literal notranslate"><span class="pre">Tasks</span> <span class="pre">&gt;</span> <span class="pre">build</span> <span class="pre">&gt;</span> <span class="pre">bootRepackage</span></code></li>
 <li>Verify the jar appears here <code class="docutils literal notranslate"><span class="pre">/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar</span></code></li>
-</ul>
+</ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The file name <code class="docutils literal notranslate"><span class="pre">app-0.0.1-SNAPSHOT.jar</span></code> comes from the <code class="docutils literal notranslate"><span class="pre">jar</span></code> property in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>.</p>
@@ -489,18 +490,20 @@ An openly-accessible instance can risk your infrastructure security and accumula
 <h3>Setting up a KeyPair<a class="headerlink" href="#setting-up-a-keypair" title="Permalink to this headline">¶</a></h3>
 <p>This will open a popup on the screen that allows you to configure a key pair for the instance. This will generate the key necessary to SSH into the instance and without this you will not be able to access your instance.
 In an enterprise environment, there will likely already be multiple key pairs set up that you would use here. For the purpose of this project, create a new key pair:</p>
-<ul class="simple">
+<ol class="arabic simple">
 <li>Select <strong>Create a new key pair</strong> in the first select box</li>
 <li>Give your key pair a good name, possibly the same name you gave your security group</li>
 <li>Click <strong>Download Key Pair</strong></li>
 <li>Choose <strong>Save File</strong> to your computer</li>
-<li>Store this <code class="docutils literal notranslate"><span class="pre">*.pem</span></code> file in a good location and do not lose it. A suggestion is to put them in <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder.<ul>
-<li>You can move your newly downloaded file there by running:</li>
+<li>Store this <code class="docutils literal notranslate"><span class="pre">*.pem</span></code> file in a good location and do not lose it. A suggestion is to put them in <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder.</li>
+<li>Move your newly downloaded file there by running:<ul>
 <li><code class="docutils literal notranslate"><span class="pre">mv</span> <span class="pre">~/Downloads/your-keypair.pem</span> <span class="pre">~/.ssh</span></code></li>
 </ul>
 </li>
+</ol>
+<ol class="arabic simple" start="6">
 <li>Click <strong>Launch Instances</strong></li>
-</ul>
+</ol>
 </div>
 <div class="section" id="your-instance-details">
 <h3>Your Instance Details<a class="headerlink" href="#your-instance-details" title="Permalink to this headline">¶</a></h3>
@@ -516,37 +519,26 @@ In an enterprise environment, there will likely already be multiple key pairs se
 <p>At this point we have created a server in the cloud, but at this point it’s just a server. We haven’t deployed our application to it yet. In the next steps we will deploy the Airwaze application to our new server.</p>
 <div class="section" id="set-up-ssh">
 <h3>Set up SSH<a class="headerlink" href="#set-up-ssh" title="Permalink to this headline">¶</a></h3>
-<ul>
-<li><p class="first">Open the terminal.</p>
-</li>
-<li><p class="first">Navigate to your user’s ssh configuration folder::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ cd ~/.ssh
-</pre></div>
-</div>
-</li>
-<li><p class="first">Copy your instance’s *.pem file to your .ssh folder(If you haven’t already)::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ cp /path/to/*.pem .
-</pre></div>
-</div>
-</li>
-<li><p class="first">Change the permissions for this file to read-only by your user::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ chmod 400 name-of-pem.pem
-</pre></div>
-</div>
-</li>
-<li><p class="first">Using the Public DNS you noted before and your *.pem file, access your AWS instance::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLIC-DNS-OF-SERVER.compute.amazonaws.com
-</pre></div>
-</div>
-</li>
+<ol class="arabic simple">
+<li>Go to your local terminal</li>
+<li>Change the permissions for the <code class="docutils literal notranslate"><span class="pre">.pem</span></code> file to be read-only by your user:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">chmod</span> <span class="pre">400</span> <span class="pre">name-of-pem.pem</span></code></li>
 </ul>
+</li>
+</ol>
+<ol class="arabic simple" start="5">
+<li>Using the Public DNS you noted before and your *.pem file, access your AWS instance:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">~/.ssh/name-of-pem.pem</span> <span class="pre">ubuntu&#64;PUBLIC-DNS-OF-SERVER.compute.amazonaws.com</span></code></li>
+</ul>
+</li>
+</ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Note the <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> part of the above command is the user/role you are attempting to connect with on the remote computer.</p>
 </div>
 <ul class="simple">
 <li>The ssh program will likely warn that the authenticity of your host can’t be established since it’s not seen it before. Respond “yes” to continue connecting. It will add it to the list of known hosts and continue the connection process.</li>
-<li>The remote terminal will appear</li>
+<li>The remote terminal will appear and look like the below screen shot</li>
 </ul>
 <p>Screen shot of terminal showing successful SSH connection to AWS instance</p>
 <blockquote>
@@ -568,11 +560,9 @@ ubuntu$ sudo adduser --system airwaze
 </div>
 <div class="section" id="secure-copy-files-to-server">
 <h3>Secure Copy Files to Server<a class="headerlink" href="#secure-copy-files-to-server" title="Permalink to this headline">¶</a></h3>
+<p>We are going to upload our app jar file and the two csv files to the server. We’ll use <code class="docutils literal notranslate"><span class="pre">scp</span></code> to securely transmit the file to our server.</p>
 <ul class="simple">
-<li>Leave your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session open and open a new terminal prompt for <strong>your local machine</strong></li>
-<li>You can do this by hitting keys <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">+</span> <span class="pre">T</span></code> while in your terminal</li>
-<li>We are going to upload our app jar file and the two csv files to the server</li>
-<li>We’ll use <code class="docutils literal notranslate"><span class="pre">scp</span></code> to securely transmit the file to our server</li>
+<li>Leave your <code class="docutils literal notranslate"><span class="pre">ssh</span></code> session open, but open a new terminal on your cmoputer by hitting <code class="docutils literal notranslate"><span class="pre">Command</span> <span class="pre">+</span> <span class="pre">T</span></code> while in your terminal</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(On local computer, NOT in ssh session)
 $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/build/libs/app-0.0.1-SNAPSHOT.jar ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu/app-0.0.1-SNAPSHOT.jar
@@ -787,35 +777,32 @@ $ brew install telnet
 <h2>11) Configure Security Group to Make it Work<a class="headerlink" href="#configure-security-group-to-make-it-work" title="Permalink to this headline">¶</a></h2>
 <p>We can’t load the airwaze app in the browser because the server is currently only configured to allow inboud traffic on port 22 (the <code class="docutils literal notranslate"><span class="pre">ssh</span></code> port).
 We need to add a new configuration that will allow inboud traffic on port <code class="docutils literal notranslate"><span class="pre">8080</span></code>.</p>
-<ul>
-<li><p class="first">Go to the AWS console</p>
-</li>
-<li><p class="first">Go to the EC2 instances</p>
-</li>
-<li><p class="first">Search for your instance and click on it</p>
-<img alt="../../_images/find-your-instance.png" src="../../_images/find-your-instance.png" />
-</li>
-<li><p class="first">Click the <code class="docutils literal notranslate"><span class="pre">Inbound</span></code> tab and <code class="docutils literal notranslate"><span class="pre">Edit</span></code> the inbound traffic list</p>
-</li>
-</ul>
+<ol class="arabic simple">
+<li>Go to the AWS console</li>
+<li>Go to the EC2 instances</li>
+<li>Search for your instance and click on it</li>
+</ol>
+<blockquote>
+<div><img alt="../../_images/find-your-instance.png" src="../../_images/find-your-instance.png" />
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Click the <code class="docutils literal notranslate"><span class="pre">Inbound</span></code> tab and <code class="docutils literal notranslate"><span class="pre">Edit</span></code> the inbound traffic list</li>
+</ol>
 <p>Screen shot of the security group settings with a red circle around the selected Inbound tab</p>
 <blockquote>
 <div><img alt="../../_images/security-group-inbound-tab.png" src="../../_images/security-group-inbound-tab.png" />
 </div></blockquote>
-<ul class="simple">
+<ol class="arabic simple" start="5">
 <li>Add a new <code class="docutils literal notranslate"><span class="pre">Custom</span> <span class="pre">TCP</span></code> rule for port 8080 and select <code class="docutils literal notranslate"><span class="pre">My</span> <span class="pre">IP</span></code> for the source</li>
-</ul>
+</ol>
 <p>Screen shot of Edit inbound rules display with a new rule of 8080 to “My IP” added with red circles around the 8080 port and “My IP”</p>
 <blockquote>
 <div><img alt="Screen shot of Edit inbound rules display with a new rule of 8080 to &quot;My IP&quot; added with red circles around the 8080 port and &quot;My IP&quot;" src="../../_images/add-web-to-security-group.png" />
 </div></blockquote>
-<ul class="simple">
+<ol class="arabic simple" start="6">
 <li>Click <code class="docutils literal notranslate"><span class="pre">Save</span></code>. This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.</li>
-<li>Open your browser<ul>
-<li>Go to <a class="reference external" href="http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080">http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080</a></li>
-</ul>
-</li>
-</ul>
+<li>Open your browser and go to <a class="reference external" href="http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080">http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080</a></li>
+</ol>
 <p>If you kept <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> running from before, you should see the logs progress as your browser communicates with the app.</p>
 <p>Congratulations! You now have your own application in the cloud!</p>
 </div>
@@ -837,7 +824,6 @@ We need to add a new configuration that will allow inboud traffic on port <code 
 <div class="section" id="bonus-mission">
 <h2>13) Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Use Environment Variables to dynamically change the port that your application is served on.</li>
 <li>Using the instructions above, deploy another one of your SpringBoot application to AWS.  Consider using the LaunchCart Project.</li>
 </ul>
 </div>

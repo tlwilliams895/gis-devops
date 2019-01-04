@@ -14,17 +14,18 @@ Your goal is to deploy a Spring Boot project to a remote server and verify its e
 1) Set Up Project
 =================
 
-* Verify that your ``application.properties`` file is using tokens like ``${APP_DB_NAME}``, if not change it to use them
-* Build your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio or check out and build the ``elasticsearch-starter`` branch.
-* Change ``src/main/resources/import.sql`` to:
+1. Checkout your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio or check out and build the ``elasticsearch-starter`` branch.
+2. Verify that your ``application.properties`` file is using tokens like ``${APP_DB_NAME}``, if not change it to use them
+3. Make sure the code compiles and the project builds, you can also run ``bootRun`` to make sure everything is working
+4. After making sure your code works locally, change ``src/main/resources/import.sql`` to:
 
 ::
 
   COPY route(src, src_id, dst, dst_id, airline, route_geom) from '/home/airwaze/routes.csv' DELIMITER ',' CSV HEADER;
   COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from '/home/airwaze/Airports.csv' DELIMITER ',' CSV HEADER;
 
-* Go into IntelliJ's Gradle tool window, and click on ``Tasks > build > bootRepackage``
-* Verify the jar appears here ``/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar``
+5. Go into IntelliJ's Gradle tool window, and click on ``Tasks > build > bootRepackage``
+6. Verify the jar appears here ``/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar``
 
 .. note::
 
@@ -167,16 +168,16 @@ Setting up a KeyPair
 This will open a popup on the screen that allows you to configure a key pair for the instance. This will generate the key necessary to SSH into the instance and without this you will not be able to access your instance. 
 In an enterprise environment, there will likely already be multiple key pairs set up that you would use here. For the purpose of this project, create a new key pair:
 
-* Select **Create a new key pair** in the first select box
-* Give your key pair a good name, possibly the same name you gave your security group
-* Click **Download Key Pair**
-* Choose **Save File** to your computer
-* Store this ``*.pem`` file in a good location and do not lose it. A suggestion is to put them in ``~/.ssh`` folder.
-  
-  * You can move your newly downloaded file there by running:
-  * ``mv ~/Downloads/your-keypair.pem ~/.ssh``
+1. Select **Create a new key pair** in the first select box
+2. Give your key pair a good name, possibly the same name you gave your security group
+3. Click **Download Key Pair**
+4. Choose **Save File** to your computer
+5. Store this ``*.pem`` file in a good location and do not lose it. A suggestion is to put them in ``~/.ssh`` folder.
+6. Move your newly downloaded file there by running:
 
-* Click **Launch Instances**
+   * ``mv ~/Downloads/your-keypair.pem ~/.ssh``
+
+6. Click **Launch Instances**
 
 Your Instance Details
 ---------------------
@@ -194,31 +195,23 @@ Screen shot showing Instances dashboard and a running instance. A red circle is 
 At this point we have created a server in the cloud, but at this point it's just a server. We haven't deployed our application to it yet. In the next steps we will deploy the Airwaze application to our new server.
 
 Set up SSH
--------------
+----------
 
-* Open the terminal.
-* Navigate to your user's ssh configuration folder:::
+1. Go to your local terminal
+2. Change the permissions for the ``.pem`` file to be read-only by your user:
 
-  $ cd ~/.ssh
+   * ``$ chmod 400 name-of-pem.pem``
 
-* Copy your instance's \*.pem file to your .ssh folder(If you haven't already):::
+5. Using the Public DNS you noted before and your \*.pem file, access your AWS instance:
 
-  $ cp /path/to/*.pem .
-
-* Change the permissions for this file to read-only by your user:::
-
-  $ chmod 400 name-of-pem.pem
-
-* Using the Public DNS you noted before and your \*.pem file, access your AWS instance:::
-
-  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLIC-DNS-OF-SERVER.compute.amazonaws.com
+   * ``$ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLIC-DNS-OF-SERVER.compute.amazonaws.com``
 
 .. note::
 
   Note the ``ubuntu`` part of the above command is the user/role you are attempting to connect with on the remote computer.
 
 * The ssh program will likely warn that the authenticity of your host can't be established since it's not seen it before. Respond "yes" to continue connecting. It will add it to the list of known hosts and continue the connection process.
-* The remote terminal will appear
+* The remote terminal will appear and look like the below screen shot
 
 Screen shot of terminal showing successful SSH connection to AWS instance
 
@@ -243,11 +236,9 @@ First, you don't want the application running under your system account, so we n
 
 Secure Copy Files to Server
 ---------------------------
+We are going to upload our app jar file and the two csv files to the server. We'll use ``scp`` to securely transmit the file to our server.
 
-* Leave your ``ssh`` session open and open a new terminal prompt for **your local machine**
-* You can do this by hitting keys ``Command + T`` while in your terminal
-* We are going to upload our app jar file and the two csv files to the server
-* We'll use ``scp`` to securely transmit the file to our server
+* Leave your ``ssh`` session open, but open a new terminal on your cmoputer by hitting ``Command + T`` while in your terminal
 
 ::
 
@@ -468,31 +459,29 @@ From your computer(outside the server), Use Telnet to check on remote Tomcat Ser
 We can't load the airwaze app in the browser because the server is currently only configured to allow inboud traffic on port 22 (the ``ssh`` port).
 We need to add a new configuration that will allow inboud traffic on port ``8080``.
 
-* Go to the AWS console
-* Go to the EC2 instances
-* Search for your instance and click on it
+1. Go to the AWS console
+2. Go to the EC2 instances
+3. Search for your instance and click on it
 
 
   .. image:: /_static/images/find-your-instance.png
 
-* Click the ``Inbound`` tab and ``Edit`` the inbound traffic list
+4. Click the ``Inbound`` tab and ``Edit`` the inbound traffic list
 
 Screen shot of the security group settings with a red circle around the selected Inbound tab
 
   .. image:: /_static/images/security-group-inbound-tab.png
 
-* Add a new ``Custom TCP`` rule for port 8080 and select ``My IP`` for the source
+5. Add a new ``Custom TCP`` rule for port 8080 and select ``My IP`` for the source
 
 Screen shot of Edit inbound rules display with a new rule of 8080 to "My IP" added with red circles around the 8080 port and "My IP"
 
   .. image:: /_static/images/add-web-to-security-group.png
      :alt: Screen shot of Edit inbound rules display with a new rule of 8080 to "My IP" added with red circles around the 8080 port and "My IP"
 
-* Click ``Save``. This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.
+6. Click ``Save``. This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.
 
-* Open your browser
-
-  * Go to http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080
+7. Open your browser and go to http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080
 
 
 If you kept ``journalctl`` running from before, you should see the logs progress as your browser communicates with the app.
@@ -516,7 +505,5 @@ How to Stop and Re-Run Airwaze App
 
 13) Bonus Mission
 =================
-
-* Use Environment Variables to dynamically change the port that your application is served on.
 
 * Using the instructions above, deploy another one of your SpringBoot application to AWS.  Consider using the LaunchCart Project.
