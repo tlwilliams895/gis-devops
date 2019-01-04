@@ -5,15 +5,14 @@
 =========================
 Studio: AWS Devops Basics
 =========================
-x
 
 Overview
 ========
 
 Your goal is to deploy a Spring Boot project to a remote server and verify its execution. This will establish the basics for working in a cloud environment.
 
-Set Up Project
-==============
+1) Set Up Project
+=================
 
 * Build your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio or check out and build the ``elasticsearch-starter`` branch.
 * Change ``src/main/resources/import.sql`` to:
@@ -25,14 +24,13 @@ Set Up Project
 
 * Go into IntelliJ's Gradle tool window, and click on ``Tasks > build > bootRepackage``
 * Verify the jar appears here ``/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar``
-* We are going to deploy the ``.jar`` file to a cloud server
 
 .. note::
 
   The file name ``app-0.0.1-SNAPSHOT.jar`` comes from the ``jar`` property in ``build.gradle``.
 
-Start an Instance on AWS
-========================
+2) Start an Instance on AWS
+===========================
 
 1. Go and login to the aws console login link for this class.
 
@@ -71,8 +69,8 @@ Screen shot of AWS console with a red circle around the Launch Instance button
   .. image:: /_static/images/launch-instance-button.png
      :alt: Screen shot of AWS console with a red circle around the Launch Instance button
 
-Starting an AWS Instance
-========================
+3) Starting an AWS Instance
+===========================
 
 When creating a new instance, Amazon provides multiple free **Amazon Machine Images** (AMIs) to choose from. This is a pre-configured operating system installation with multiple tools ready for use. For this exercise, we want to use the **Ubuntu Server 16.04 LTS** AMI. Locate it in the list of "Quick Start" images and click its ``Select`` button.
 
@@ -189,13 +187,13 @@ Screen shot showing Instances dashboard and a running instance. A red circle is 
   .. image:: /_static/images/instances-dashboard-launching.png
      :alt: Screen shot showing Instances dashboard and a running instance. A red circle is around the Public DNS entr
 
-Configure and Setup Airwaze Application on Cloud Server
-=======================================================
+4) Configure and Setup Airwaze Application on Cloud Server
+==========================================================
 
 At this point we have created a server in the cloud, but at this point it's just a server. We haven't deployed our application to it yet. In the next steps we will deploy the Airwaze application to our new server.
 
 Set up SSH
-----------
+-------------
 
 * Open the terminal.
 * Navigate to your user's ssh configuration folder:::
@@ -212,7 +210,7 @@ Set up SSH
 
 * Using the Public DNS you noted before and your \*.pem file, access your AWS instance:::
 
-  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLIC-DNS-OF-SERVER
+  $ ssh -i ~/.ssh/name-of-pem.pem ubuntu@PUBLIC-DNS-OF-SERVER.compute.amazonaws.com
 
 .. note::
 
@@ -228,8 +226,8 @@ Screen shot of terminal showing successful SSH connection to AWS instance
 
 Congratulations! You have successfully created and connected to an instance running in the cloud.
 
-Setup Linux Server to Run the App
----------------------------------
+5) Setup Linux Server to Run the App
+====================================
 
 Now that you have a server running in the cloud, you need to use it to do some work. Let's prepare the server to run our application.
 
@@ -253,11 +251,8 @@ Secure Copy Files to Server
 ::
 
   (On local computer, NOT in ssh session)
-  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/build/libs/app-0.0.1-SNAPSHOT.jar ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/app-0.0.1-SNAPSHOT.jar
-  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@ec2-public-dns.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
-
-
-
+  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/build/libs/app-0.0.1-SNAPSHOT.jar ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu/app-0.0.1-SNAPSHOT.jar
+  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
 
 
 Ubuntu Doesn't Have Everything We Need?
@@ -276,8 +271,8 @@ We need Java to run our app, we will install it using ``apt-get``::
   ubuntu$ sudo apt-get install openjdk-8-jdk
   ubuntu$ java -version
 
-Copy Files to App User Folder
------------------------------
+6) Copy Files to App User Folder
+================================
 
 Now, on the server, move the file to the airwaze home directory, and make it owned and executable by that user. Notice the changes in ``ls -l`` after the owner and permissions calls are made.::
 
@@ -300,8 +295,8 @@ Now the airwaze user can execute app-0.0.1-SNAPSHOT.jar.::
   -r-x------ 1 airwaze airwaze 46309179 May 20 01:22 app-0.0.1-SNAPSHOT.jar
   -rw-r--r-- 1 airwaze airwaze  6464492 May 20 01:23 routes.csv
 
-Install Postgis
----------------
+7) Install Postgis
+==================
 
 Before trying to start the application, we'll install ``postgres`` locally so we can start Airwaze Studio. 
 Normally you would install the database on it's own server. Installing the database on the same cloud server ** is something you would *never* do in a real cloud instance**. 
@@ -340,8 +335,11 @@ Edit Postgresql Config File
   # "local" is for Unix domain socket connections only
   local   all             all                                     md5
 
-Now Create User and Database
--------------------------------------
+8) Setup Database
+=================
+
+Create User and Database
+------------------------
 
 ::
 
@@ -363,20 +361,23 @@ Now Create User and Database
   airwaze=# CREATE EXTENSION fuzzystrmatch;
   airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 
-Setup Service for App
----------------------
+9) Setup Linux Service to run App
+=================================
 
 Now that the app is on the cloud server and the database is ready, we can set up ``systemd`` to run this app as a service. ``systemd`` is used to configure 
 and run services on linux. More info in this `linux.com article <https://www.linux.com/learn/understanding-and-using-systemd>`_ and this `systemd wiki page <https://en.wikipedia.org/wiki/Systemd>`_.
 
 In order to use ``systemd``, we have to make a script in ``/etc/systemd/system`` to tell the service how to run our app.
 
+Create airwaze.service
+----------------------
+
 ::
 
   (On remote server)
   ubuntu$ sudo nano /etc/systemd/system/airwaze.service
 
-Copy and paste this text into the file: ::
+Copy and paste this text into the ``airwaze.service`` file and then save it: ::
 
   [Unit]
   Description=Airwaze Studio
@@ -386,10 +387,33 @@ Copy and paste this text into the file: ::
   User=airwaze
   ExecStart=/usr/bin/java -jar /home/airwaze/app-0.0.1-SNAPSHOT.jar SuccessExitStatus=143
   Restart=no
+  EnvironmentFile=/home/airwaze/airwaze-env-variables.config
 
   [Install]
   WantedBy=multi-user.target
 
+Create airwaze-env-variables.config
+-----------------------------------
+As we have stated many times, we do not want to hardcode usernames and passwords into our code. We need a way to configure the 
+environment variables that are referenced in ``application.properties``. We will create a new file named ``airwaze-env-variables.config`` that will set the environment variables 
+when the airwaze service runs. Notice that the ``EnvironmentFile`` property in the ``airwaze.server`` tells the service where to look for 
+environment variables. 
+
+::
+
+  (On remote server)
+  ubuntu$ sudo nano /home/airwaze/airwaze-env-variables.config
+
+Copy and paste this text into the ``airwaze-env-variables.config`` file and then save it: ::
+
+  APP_DB_HOST=localhost
+  APP_DB_PORT=5432
+  APP_DB_NAME=airwaze
+  APP_DB_USER=airwaze_db_user
+  APP_DB_PASS=your-db-password (that you set in section 8)
+
+Enable and Start airwaze Service
+--------------------------------
 Once this service definition is in place, set the service to start automatically on boot with systemd using the ``systemctl`` utility and also start now::
 
   (On remote server)
@@ -401,54 +425,54 @@ And you can view the logs for the service with ``journalctl``.::
   (On remote server)
   ubuntu$ journalctl -f -u airwaze.service
 
-Did it Work?
-------------
-* In a web browser go to http://PUBLIC-DNS-OF-SERVER:8080
+10) Did it Work?
+================
+
+* In a web browser go to http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080
 
   * You should have got a connection refused, unless you worked ahead ;
   * Why can't we connect from our local computer to the server over ``http``?
   * We can connect to the server via ``ssh``....
 
-* Let's see what **is** working
-
+Check for Errors in Log
+-----------------------
 ::
 
   (on remote server)
   (to see if there are any clues/errors)
   ubuntu$ journalctl -f -u airwaze
 
-  (to see if anything is listening to port 8080 on the server)
-  telnet PUBLIC-DNS-OF-SERVER 8080
+From inside the Server, Use Telnet to check on Tomcat Server
+------------------------------------------------------------
+::
 
+  (on remote server)
+  (to see if anything is listening to port 8080 on the server)
+  ubuntu$ telnet localhost 8080
+
+From your computer(outside the server), Use Telnet to check on remote Tomcat Server
+-----------------------------------------------------------------------------------
 ::
 
   (on local computer)
   
   (check to see if you connect to server from your local computer via http)
-  $ telnet localhost 8080
+  $ telnet PUBLIC-DNS-OF-SERVER.compute.amazonaws.com 8080
 
-  (if you got an error about telnet being a command, then install it and try again)
+  (if you got an error about telnet not being a command, then install it and try again)
   $ brew install telnet
 
-Configure Security Group
-------------------------
+11) Configure Security Group to Make it Work
+============================================
+We can't load the airwaze app in the browser because the server is currently only configured to allow inboud traffic on port 22 (the ``ssh`` port).
+We need to add a new configuration that will allow inboud traffic on port ``8080``.
 
-Now that your application is running, open up a new port in our Security Group from before to allow for web communications.
+* Go to the AWS console
+* Go to the EC2 instances
+* Search for your instance and click on it
 
-* Return to the AWS web console
-* Click ``Security Groups`` in the sidebar
 
-Screen shot of the AWS sidebar with a red circle around Security Groups
-
-  .. image:: /_static/images/security-groups-list.png
-     :alt: Screen shot of the AWS sidebar with a red circle around Security Groups
-
-* Select the security group with the name you used before
-
-Screen shot of the security group list with the demonstration security group selected
-
-  .. image:: /_static/images/select-your-security-group.png
-     :alt: Screen shot of the security group list with the demonstration security group selected
+  .. image:: /_static/images/find-your-instance.png
 
 * Click the ``Inbound`` tab and ``Edit`` the inbound traffic list
 
@@ -466,17 +490,16 @@ Screen shot of Edit inbound rules display with a new rule of 8080 to "My IP" add
 * Click ``Save``. This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.
 
 * Open your browser
-* Go to your server on port 8080:
 
-  * http://ec2-public-dns.us-east-2.compute.amazonaws.com:8080
+  * Go to http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080
 
 
 If you kept ``journalctl`` running from before, you should see the logs progress as your browser communicates with the app.
 
 Congratulations! You now have your own application in the cloud!
 
-Next Steps
-==========
+12) Next Steps
+==============
 
 Your is currently showing up on the screen; however, the map may not be showing any airports.  Troubleshoot the application and figure out why the airports are not showing up.  Be sure to use your browser's developer tools.
 
@@ -490,9 +513,9 @@ How to Stop and Re-Run Airwaze App
 4. Disable the service ``sudo systemctl disable airwaze``
 5. Enable and then restart the service again (see instructions above)
 
-Bonus Mission
-=============
+13) Bonus Mission
+=================
 
 * Use Environment Variables to dynamically change the port that your application is served on.
 
-* Using the instructions above, deploy another one of your SpringBoot application to AWS.  Consider using the LaunchCart Project https://gitlab.com/LaunchCodeTraining/launchcart/tree/rest-studio.
+* Using the instructions above, deploy another one of your SpringBoot application to AWS.  Consider using the LaunchCart Project.
