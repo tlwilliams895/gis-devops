@@ -6,7 +6,16 @@
 Scaling horizontally AutoScaling Group
 ======================================
 
+Overview
+========
+
 The ability to scale horizontally is very important in building Cloud Native applications.  In this studio, you will be extending your `Airwaze App <https://gitlab.com/LaunchCodeTraining/airwaze-studio>`_ to scale horizontally as traffic on the server increases.
+
+New Topics
+----------
+* Cloud Formation Script for VPC
+* S3 Bucket
+* Auto Scaling
 
 Setup
 =====

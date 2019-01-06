@@ -2,90 +2,132 @@
 
 .. _studio-AWS-RDS-VPC:
 
-===========================
-Studio: Load Balanced Cloud
-===========================
+===================
+Studio: AWS RDS VPC
+===================
 
 
 Overview
 ========
 
-This studio will expand on what was learned in the AWS basics unit. Your goal is create a load-balanced cloud-based application using good AWS Dev Ops practices.
+This studio will expand on what was learned in the AWS basics unit. Your goal is to deploy the Airwaze app using load-balanced, cloud-based, and modern Dev Ops practices.
+
+New Topics
+----------
+* AWS RDS
+* VPC
+* Custom Snapshot
+* Creating Instance with User Data Script
+* Load Balancer
 
 Getting Started
 ===============
 
-* Start with the corrected code you finished with in the last studio.
-* Open the ``application.properties`` file. Find and change the following lines:::
+1. Checkout the Airwaze branch that you deployed to AWS for Week 5 Day 1 Studio
+2. In Intellij look at ``application.properties``.
+   
+   * Make sure your app is using tokens for db settings
+   * Set the ``ddl-auto`` value to ``update``, we do NOT want Spring Data to run the ``import.sql`` file
 
-    spring.datasource.url=jdbc:postgresql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}
-    spring.datasource.username=${APP_DB_USER}
-    spring.datasource.password=${APP_DB_PASS}
-    spring.jpa.hibernate.ddl-auto = update
+::
 
-* Go into IntelliJ's Gradle tool window, and click on **Tasks > build > bootRepackage**.
-* Verify that the jar appears in ``build/libs``.
+  spring.datasource.url=jdbc:postgresql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}
+  spring.datasource.username=${APP_DB_USER}
+  spring.datasource.password=${APP_DB_PASS}
+  spring.jpa.hibernate.ddl-auto=update
 
-Provision a VPC
-===============
+3. Go into IntelliJ's Gradle tool window, and click on **Tasks > build > bootRepackage** 
+4. Verify that the jar appears in ``build/libs``
 
-In order to isolate your application instances from other instances in AWS, you need to create a Virtal Private Cloud (VPC). This gives you your own little private network in the cloud which can help when establishing access controls as well as keeping your instances private from the rest of AWS. Typically, you'll have a few of these in an enterprise environment to keep strict boundaries between unrelated services.
+Create a VPC
+============
 
-* Click "Services" in the header and locate "VPC" under "Networking & Content Delivery."
+In order to isolate your application instances from other instances in AWS and the open internet, you need to create a Virtal Private Cloud (VPC). This gives you your own little private network in the cloud which can help when establishing access controls as well as keeping your instances private from the rest of AWS. Typically, you'll have a few of these in an enterprise environment to keep strict boundaries between unrelated services.
+
+A VPC is a way to coordinate and configure how multiple servers will work together and how those servers can be accessed.
+
+1. Click **Services** in the header and locate **VPC** under **Networking & Content Delivery**
 
 Screen shot with red arrow pointing to VPC in the Services list
 
   .. image:: /_static/images/lb-cloud/1-vpc-in-header.png
 
-* When you arrive on the VPC dashboard, click "Start VPC Wizard"
+2. Click **Launch VPC Wizard**
 
-Screen shot with red circle around the Start VPC Wizard button
+Screen shot with red circle around the Start VPC Wizard button (image is out of date)
 
   .. image:: /_static/images/lb-cloud/2-start-vpc-wizard.png
 
-* For this studio, select the simplest VPC configurationa single public subnet. This allows your instances to connect to the internet without an intermediary.
-  
-  * Some VPCs will have private subnets that require a Network Address Translator (NAT) instance to serve as a gateway for private services to connect to the internet and outside services.
-  * Other configurations allow (or require) a VPN connection and can serve as an extension of a private data center.
+3. Select the **Single Public Subnet**
+
+   * This allows your instances to connect to the internet without an intermediary.
+   * Some VPCs will have private subnets that require a Network Address Translator (NAT) instance to serve as a gateway for private services to connect to the internet and outside services.
+   * Other configurations allow (or require) a VPN connection and can serve as an extension of a private data center.  
 
 Screen shot with red circle around the VPC with a Single Public Subnet tab
 
   .. image:: /_static/images/lb-cloud/3-vpc-public-subnet.png
 
-* When creating the VPC, the defaults are sufficient for your needs. Provide a useful VPC name to help identify this VPC among the others.
-* Note the IPv4 CIDR block. This defines the IP addresses that will be available in your VPC. (See `Wikipedia's CIDR table.) <https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks A `x.x.x.x/16>`_ block will include 65,536 addresses.
-* The Public subnet's IPv4 CIDR will be ``x.x.x.x/24``, which includes 256 addresses. This is the subnet where you'll put your public-facing instances (such as your Airwaze app).
+4. Set Name of the VPC
 
-Screen shot of the "VPC with a Single Public Subnet" configuration window
+   * Provide a useful VPC name to help identify this VPC among the others (example: sallys-vpc-day2)
+
+Screen shot of the **VPC with a Single Public Subnet** configuration window
 
   .. image:: /_static/images/lb-cloud/4-create-vpc.png
+  
+5. Review the IPv4 CIDR Block Settings
 
-* After creating the VPC, make sure to note the ``VPC ID`` of your VPC as that name will appear everywhere you will select it later.
-* Not every AWS web interface includes the descriptive name you gave before.
+   * This defines the IP addresses that will be available in your VPC. 
+   * A ``x.x.x.x/16`` block will include 65,536 possible addresses* 
+   * See `Wikipedia's CIDR table. <https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks>`_ 
+   * Don't worry if these don't make sense instantly
+   * The Public subnet's IPv4 CIDR will be ``x.x.x.x/24``, which includes 256 addresses
+   * This is the subnet where you'll put your public-facing instances (such as your Airwaze app).
+
+6. Create the VPC
+
+   * Click **Create VPC** button
+   * Make sure to note the ``VPC ID`` of your VPC
+   
+     * That id/name will appear everywhere you will select it later
+
+   * Not every AWS web interface includes the descriptive name you gave before
 
 Screen shot of the VPC Dashboard with a red circle around the VPC ID
 
   .. image:: /_static/images/lb-cloud/5-vpc-dashboard.png
 
-* Next, you need to create two private subnets for your RDS instance. Select "Subnets" in the VPC Dashboard sidebar.
+Create RDS Subnets
+==================
+
+1. Select **Subnets** in the VPC Dashboard sidebar
+
+   * These are going to be for the RDS that we haven't created yet
 
 Screen shot of the Virtual Private Cloud sidebar with a red arrow pointing to Subnets
 
   .. image:: /_static/images/lb-cloud/5.1-subnets.png
 
-* On the Subnet dashboard page, click the "Create Subnet" button.
+2. Click **Create Subnet**
 
 Screen shot with a red circle around the Create Subnet button
 
   .. image:: /_static/images/lb-cloud/5.2-create-subnet.png
 
-* To create the subnet, give it a descriptive name to help identify it later.
-* Select your VPC from the VPC select list.
-* Select one of the availablity zones for your region.
-* Create a new CIDR block for this private subnet.
-  * Remember, if you use a ``x.x.x.x/24`` subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.
+3. Give the subnet descriptive name to help identify it later. (example: sallys-d2-rds-1)
+4. Select your VPC from the VPC select list
+5. Select one of the availablity zones for your region
+6. Create a new CIDR block for this private subnet
+   
+   * CIDR block: ``10.0.1.0/24``
+   * Remember, if you use a ``x.x.x.x/24`` subnet, that will contain 256 addresses, so increase the third number by one from the previously created subnet.
 
-* Do this twice, with a different availability zone and CIDR block for both subnets.
+7. Create a second Subnet, with a **different availability zone** and **CIDR block** for both subnets.
+
+   * Example name: sallsy-day2-rds-2
+   * Availability zone: us-east-1f
+   * CIDR block: ``10.0.2.0/24``
 
 Screen shot of the Create Subnet configuration window
 
@@ -96,7 +138,7 @@ Set Up RDS
 
 Now that the VPC is set up and ready for use, you need to create your database server. In the last studio, you installed a PostgreSQL server on your instance. This time, you'll use AWS's Relational Database Service (RDS) to host and manage our DB instance.
 
-* Click "Services" in the header and select "Relational Database Service."
+1. Click **Services** in the header and select **Relational Database Service.**
 
 Screen shot with red arrow pointing to Relational Database Serivce in the Services list
 
@@ -104,28 +146,28 @@ Screen shot with red arrow pointing to Relational Database Serivce in the Servic
 
 Before creating any instances, you need to create a DB Subnet Group so AWS knows where to place your instance.
 
-* Select "Subnet groups" in the RDS Dashboard sidebar
-* Click the "Create DB Subnet Group" button
+* Select **Subnet groups** in the RDS Dashboard sidebar
+* Click the **Create DB Subnet Group** button
 
-Screen shot of the RDS sidebar with a red arrow pointing to "Subnet groups"
+Screen shot of the RDS sidebar with a red arrow pointing to **Subnet groups**
 
   .. image:: /_static/images/lb-cloud/6.1-db-subnet-group.png
 
 * Enter a useful subnet group name and description
 * Select your VPC
 
-Screen shot of the "Subnet group details" configuration window
+Screen shot of the **Subnet group details** configuration window
 
   .. image:: /_static/images/lb-cloud/6.3-subnet-group-details.png
 
 
 * Select an availability zone you used above and select a subnet you created in that zone
-* Click "Add subnet"
+* Click **Add subnet**
 * Do this for both subnets you created above
-* Click the "Create" button
+* Click the **Create** button
 
 
-Screen shot of the "Add subnets" configuration window
+Screen shot of the **Add subnets** configuration window
 
   .. image:: /_static/images/lb-cloud/6.4-select-subnets.png
 
@@ -133,24 +175,24 @@ Now that you've created the database subnets, you need to create a database inst
 
 
 * Return to the RDS Dashboard
-* Scroll down and click the "Launch a DB instance" button
+* Scroll down and click the **Create Database** button (image below is out of date)
 * For Airwaze, you will use a PostgreSQL database
 * Select PostgreSQL
-* Click "Next"
+* Click **Next**
 
-Screen shot of the "Engine options" window
+Screen shot of the **Engine options** window
 
   .. image:: /_static/images/lb-cloud/8-select-postgres.png
 
-* AWS will next ask you how you plan to use the database. Production-ready databases will have multiple availability zone redundancy and higher-speed storage options, but are also more expensive. Select "Dev/Test" to access the lower-powered options then click "Next."
+* AWS will next ask you how you plan to use the database. Production-ready databases will have multiple availability zone redundancy and higher-speed storage options, but are also more expensive. Select **Dev/Test** to access the lower-powered options then click **Next.**
 
-Screen shot of the "Use case" window
+Screen shot of the **Use case** window
 
   .. image:: /_static/images/lb-cloud/9-select-dev-test.png
 
 * Make sure the DB engine version matches the version of PostgreSQL you need to use.
 * Select ``db.t2.micro`` instance class. This is the smallest, slowest, and least-expensive instance option for RDS.
-* For this studio, select "No" for a Multi-AZ deployment. In a production environment, this is an important option to ensure the database is always accessible. For this studio, you do not need this.
+* For this studio, select **No** for a Multi-AZ deployment. In a production environment, this is an important option to ensure the database is always accessible. For this studio, you do not need this.
 * The studio database is very small. Use the smallest storage option.
 
 Screen shot of the instance class configuration window for RDS
@@ -162,9 +204,9 @@ Next, you'll set up the instance's identifier and master user account. Do not se
 * Give your DB instance a useful name in the ``DB instance identifier`` field.
 * Make a master username that is difficult to guess, but easy for you to remember.
 * Use a secure password for your master user.
-* Click "Next."
+* Click **Next.**
 
-Screen shot of the RDS instance "Settings" configuration window
+Screen shot of the RDS instance **Settings** configuration window
 
   .. image:: /_static/images/lb-cloud/11-db-instance-settings.png
 
@@ -174,36 +216,42 @@ Here you'll indicate where RDS should place your instance and how to secure it.
 * Select the DB Subnet Group you made above.
 * Do not make your DB publicly accessible. For security, you should limit the services that can be accessed from outside your VPC.
 
-Screen shot of the RDS instance "Network & Security" configuration window
+Screen shot of the RDS instance **Network & Security** configuration window
 
   .. image:: /_static/images/lb-cloud/12-db-instance-vpc.png
 
 * Set up your desired database name and port.
 * Keep the default DB parameter group.
 
-* Click "Launch DB instance".
+* Click **Launch DB instance**.
 
 
-Screen shot of the RDS instance "Database options" configuration window
+Screen shot of the RDS instance **Database options** configuration window
 
   .. image:: /_static/images/lb-cloud/13-db-options.png
 
-RDS will start creating a DB instance, security groups, and your master user and database. Return to the RDS Instances dashboard and select your instance. Scroll down to the "Connect" section. Your Endpoint will appear here when the instance is ready. Note this endpoint address.
+* RDS will start creating a DB instance, security groups, and your master user and database. 
+* Return to the RDS Instances dashboard and select your instance. 
+* Scroll down to the **Connect** section. 
+* Your Endpoint will appear here when the instance is ready
+
+  * It may take 5-7 minutes for the end point URL to appear
+  * Note this endpoint address
 
 You'll also see the security group inbound and outbound rules set up. If the inbound rule doesn't match your VPC's subnet CIDR, change that by clicking the gear icon to the right of ``Security group rules``.
 
 
-Screen shot of the RDS Dashboard "Connect" sub-window with a red circle around the instance endpoint
+Screen shot of the RDS Dashboard **Connect** sub-window with a red circle around the instance endpoint
 
   .. image:: /_static/images/lb-cloud/15-db-instance-dns.png
 
 
-* Select the "Inbound" rules tab
-* Click "Edit"
+* Select the **Inbound** rules tab
+* Click **Edit**
 * Find the PostgreSQL port line
 * Change its Source to your VPC subnet CIDR
 * This will allow traffic from all instances in your VPC, but not from the outside world.
-* Click "Save"
+* Click **Save**
 
 
 Screen shot of the PostgreSQL inbound rules with a red circle around the VPC's subnet CIDR
@@ -211,24 +259,24 @@ Screen shot of the PostgreSQL inbound rules with a red circle around the VPC's s
   .. image:: /_static/images/lb-cloud/allow-db-internal-only.png
 
 
-Make a Custom Snapshot
-======================
+Create EC2 Instance with User Data Script 
+=========================================
 
 Now that you have created your database, you need to create an instance to connect to it as our template. If you need review on creating an EC2 instance, please see the previous lesson and studio.
 
 You'll follow the same steps as before, with a few changes that are described here.
 
-* On the "Configure Instance Details" screen while creating your instance:
-* Select your VPC in the "Network" selection.
+* On the **Configure Instance Details** screen while creating your instance:
+* Select your VPC in the **Network** selection.
 * Select your Public subnet.
 * Enable auto-assigning a Public IP.
 
-Screen shot of the "Configure INstnace Details" screen
+Screen shot of the **Configure Instnace Details** screen
 
   .. image:: /_static/images/lb-cloud/16-select-your-vpc-and-public-subnet.png
 
-* At the bottom of the "Configure Instance Details" screen is a collapsed area called "Advanced Details." Click the text "Advanced Details" to expand this.
-* You will see a "User data" section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
+* At the bottom of the **Configure Instance Details** screen is a collapsed area called **Advanced Details.** Click the text **Advanced Details** to expand this.
+* You will see a **User data** section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
   - Installs Java
   - Creates the ``airwaze`` system user
   - Creates the application and configuration directories
@@ -237,9 +285,9 @@ Screen shot of the "Configure INstnace Details" screen
   - Prepares the service for execution
 
 * This script is run as ``root``, so ``sudo`` is not needed for these commands. That also means you must be careful when crafting a script to run here.
-* Copy this script in the "User data" section and adjust the ``APP_DB_HOST`` to your RDS instance's endpoint.
+* Copy this script in the **User data** section and adjust the ``APP_DB_HOST`` to your RDS instance's endpoint.
 
-Screen shot of the "Advanced Details" section of the "Configure Instance Details" screen
+Screen shot of the **Advanced Details** section of the **Configure Instance Details** screen
 
   .. image:: /_static/images/lb-cloud/add-user-data-script-to-instance.png
 
@@ -258,7 +306,7 @@ Screen shot of the "Advanced Details" section of the "Configure Instance Details
 
   # Write Airwaze config file
   cat << EOF > /etc/opt/airwaze/airwaze.config
-  APP_DB_HOST=rds-instance.us-east-2.rds.amazonaws.com
+  APP_DB_HOST=APP_DB_HOST=CHANGE TO YOUR RDS ENDPOINT URL (example: rds-instance.us-east-2.rds.amazonaws.com)
   APP_DB_PORT=5432
   APP_DB_NAME=airwaze_db
   APP_DB_USER=airwaze_user
@@ -275,7 +323,7 @@ Screen shot of the "Advanced Details" section of the "Configure Instance Details
   User=airwaze
   EnvironmentFile=/etc/opt/airwaze/airwaze.config
   ExecStart=/usr/bin/java -jar /opt/airwaze/app.jar SuccessExitStatus=143
-  Restart=always
+  Restart=no
 
   [Install]
   WantedBy=multi-user.target
@@ -376,19 +424,22 @@ Configure the Security Group
 Now that your instance and service are running, return to the EC2 Security Group dashboard. Here you need to enable web access and remove SSH access. This will make your application usable to the world and decrease the risk of unintended access.
 
 * Find and select your instance's security group
-* Select the "Inbound" traffic tab
-* Click "Edit"
-* Change to "Custom TCP Rule"
+* Select the **Inbound** traffic tab
+* Click **Edit**
+* Change to **Custom TCP Rule**
 * Enter port 8080
-* Select "My IP" for Source
+* Select **My IP** for Source
 
   * This is where you would typically make the port accessible to the world, but only you need to access the studio instance for now.
 
-* Click "Save."
+* Click **Save.**
 
 Screen shot of the inbound rules for the instance security group
 
   .. image:: /_static/images/lb-cloud/swap-web-for-ssh.png
+
+Did it Work?
+------------
 
 You may now try to access your application at http://ec2-instance.us-east-2.compute.amazonaws.com:8080 in your browser.
 
@@ -402,7 +453,7 @@ To facilitate spinning up more instances, you can take an image of your current 
 
 * Return to the EC2 Instances Dashboard
 * Select your instance
-* Click "Actions", then "Image", then "Create Image"
+* Click **Actions**, then **Image**, then **Create Image**
 
 Screen shot of the EC2 Instances dashboard with the Actions menu open
 
@@ -410,13 +461,13 @@ Screen shot of the EC2 Instances dashboard with the Actions menu open
 
 * Give your image a useful name so you can find it again later.
 * Give your image a helpful description.
-* Ensure "No reboot" is **not** selected.
+* Ensure **No reboot** is **not** selected.
 
-  * Taking an image of a running instance is risky as it may catch it in the middle of writing to a file. Just leave this as "No reboot" unless there's a valid reason to not.
+  * Taking an image of a running instance is risky as it may catch it in the middle of writing to a file. Just leave this as **No reboot** unless there's a valid reason to not.
 
-* Click "Create Image."
+* Click **Create Image.**
 
-Screen shot of the "Create Image" configuration window
+Screen shot of the **Create Image** configuration window
 
   .. image:: /_static/images/lb-cloud/create-image-popup.png
 
@@ -429,13 +480,13 @@ Screen shot of the Create Image success dialog with a red line below the pending
 Once the image creation is complete, you can launch new instances with this image.
 
 * Select your Amazon Machine Image (AMI)
-* Click "Launch"
+* Click **Launch**
 
-Screen shot of the AMIs dashboard with a red circle around "Launch"
+Screen shot of the AMIs dashboard with a red circle around **Launch**
 
   .. image:: /_static/images/lb-cloud/launch-instance-from-image.png
 
-This will start the familiar instance creation process, but with your image rather than the "standard" Ubuntu image you've been using. As before, on "Configure Instance Details", select your VPC, public subnet, and assign a Public IP. This time, **do not** provide a User data script since this image already has the full configuration run.
+This will start the familiar instance creation process, but with your image rather than the **standard** Ubuntu image you've been using. As before, on **Configure Instance Details**, select your VPC, public subnet, and assign a Public IP. This time, **do not** provide a User data script since this image already has the full configuration run.
 
 After creating the instance, return to the EC2 Instances dashboard. Select your new instance and you'll see it was created from the image you created rather than the Ubuntu AMI used to create the previous one.
 
@@ -448,30 +499,30 @@ Set Up Load Balancing
 
 In order to connect a load balancer (LB), you need to have two public subnets in different availability zones. Return to the VPC Subnet dashboard.
 
-* Click "Create Subnet"
+* Click **Create Subnet**
 * Provide a useful name for the new subnet
 * Select your VPC
 * Pick a different availability zone than your other public subnet
 * Pick a new CIDR block
-* Click "Yes, Create"
+* Click **Yes, Create**
 
-Screen shot of the "Create Subnet" window
+Screen shot of the **Create Subnet** window
 
   .. image:: /_static/images/lb-cloud/lb/lb-create-public-subnet.png
 
 This new subnet is originally created as a private subnet, so you'll have to change its route table to allow connections with the internet.
 
-* Click the "Route Table" tab
-* Click "Edit"
+* Click the **Route Table** tab
+* Click **Edit**
 
-Screen shot of the "Route Table" tab on the new subnet
+Screen shot of the **Route Table** tab on the new subnet
 
   .. image:: /_static/images/lb-cloud/lb/public-subnet-route-table.png
 
 * Change the Route Table selection to one with a target that starts with ``igw``. This is your VPC's internet gateway.
   * An Internet Gateway allows communication between instances in your VPC and the internet.
 
-* Click "Save"
+* Click **Save**
 
 Screen shot showing a route table that includes an internet gateway
 
@@ -480,17 +531,17 @@ Screen shot showing a route table that includes an internet gateway
 With the new public subnet in place, you can now create your LB.
 
 * Return to the EC2 Dashboard
-* Select "Load Balancers" in the sidebar
-* Click "Create Load Balancer"
+* Select **Load Balancers** in the sidebar
+* Click **Create Load Balancer**
 
 Screen shot of the EC2 Dashboard with a red arrow pointing to Load Balancers
 
   .. image:: /_static/images/lb-cloud/lb/load-balancers-sidebar.png
 
 * Find the Application Load Balancer
-* Click "Create"
+* Click **Create**
 
-Screen shot of the "Select load balancer type" selection screen
+Screen shot of the **Select load balancer type** selection screen
 
   .. image:: /_static/images/lb-cloud/lb/application-load-balancer.png
 
@@ -498,20 +549,20 @@ Screen shot of the "Select load balancer type" selection screen
 * Select an internet-facing LB
 * Set your LB protocol to ``HTTP`` and port to ``80``
 
-Screen shot of the "Configure Load Balancer" window
+Screen shot of the **Configure Load Balancer** window
 
   .. image:: /_static/images/lb-cloud/lb/basic-lb-configuration.png
 
 
-* Under "Availability Zones" select your VPC
+* Under **Availability Zones** select your VPC
 * Select the two public subnets you created
-* Click "Next: Configure Security Settings"
+* Click **Next: Configure Security Settings**
 
-Screen shot of the Load Balancer "Availability Zones" window
+Screen shot of the Load Balancer **Availability Zones** window
 
   .. image:: /_static/images/lb-cloud/lb/lb-availability-zones.png
 
-The "Configure Security Settings" screen will likely encourage you to improve the LB's security. This is because you opted to only allow HTTP connections. This is sufficient for the studio, but you should enable HTTPS for every service that can support it in an enterprise environment. Click "Next: Configure Security Groups".
+The **Configure Security Settings** screen will likely encourage you to improve the LB's security. This is because you opted to only allow HTTP connections. This is sufficient for the studio, but you should enable HTTPS for every service that can support it in an enterprise environment. Click **Next: Configure Security Groups**.
 
 You will be presented with a screen similar to one you used when creating your instances. This will allow you to configure the firewall to manage access to your LB.
 
@@ -522,32 +573,32 @@ You will be presented with a screen similar to one you used when creating your i
 
   * This allows for all IPv4 and IPv6 sources to connect through this LB
 
-* Click "Next: Configure Routing"
+* Click **Next: Configure Routing**
 
-Screen shot of the Load Balancer "Configure Security Groups" window
+Screen shot of the Load Balancer **Configure Security Groups** window
 
   .. image:: /_static/images/lb-cloud/lb/new-lb-security-group.png
 
 The next screen allows you to define a target group for the routing behavior of the LB. This will determine what protocol and internal port it uses to communicate with your application servers.
 
-* Select "New target group"
+* Select **New target group**
 * Give your new target group a useful name
 * Select port ``8080`` since that is the port Airwaze set up for listening
 * Select ``instance`` target type
-* Click "Next: Register Targets"
+* Click **Next: Register Targets**
 
-Screen shot of the Load Balancer "Target group" configuration window
+Screen shot of the Load Balancer **Target group** configuration window
 
   .. image:: /_static/images/lb-cloud/lb/configure-lb-routing.png
 
 Now, you need to register your application instances to your LB so it can route traffic correctly.
 
-* Select your instances in the "Instances" section
+* Select your instances in the **Instances** section
 * Verify they are set to register for port 8080
-* Click "Add to registered" to add them to the LB
-* Click "Save"
+* Click **Add to registered** to add them to the LB
+* Click **Save**
 
-Screen shot of the Load Balancer "Target Instances" configuration window
+Screen shot of the Load Balancer **Target Instances** configuration window
 
   .. image:: /_static/images/lb-cloud/lb/register-instances-to-lb.png
 
@@ -563,7 +614,7 @@ While the LB is starting up, you can configure your application instances to sto
 * Find your instance security group
 * Remove the SSH rule
 * Change the Source for the 8080 rule to listen only to your internal subnet
-* Click "Save"
+* Click **Save**
 
 Screen shot of the inbound rules for the application instances
 
@@ -578,12 +629,12 @@ The real power in a load balancer is it can route traffic away from unhealthy in
 * Return to the EC2 Instances Dashboard
 * Locate your application instances
 * Select one instance
-* Click "Actions" -> "Instance State" -> "Stop"
+* Click **Actions** -> **Instance State** -> **Stop**
 * Wait for the instance state to switch to Stop
 * Refresh the browser and see the application still works
 * Stop your other instance
 * Refresh the browser and see the application no longer works
-* Click "Actions" -> "Instance State" -> "Start" to restart one of your instances
+* Click **Actions** -> **Instance State** -> **Start** to restart one of your instances
 * Refresh the browser and see the application return to a working state
   * This step may take a while as the instance has to return to a good state and the LB has to verify the instance is healthy again before routing traffic
 
