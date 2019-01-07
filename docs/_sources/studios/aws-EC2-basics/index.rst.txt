@@ -17,12 +17,15 @@ Your goal is to deploy a Spring Boot project to a remote server and verify its e
 **Get Airwaze Running locally**
 
 1. Checkout your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio
+
+   * Your working code may be in your ``master`` or in a ``day5-solution`` branch
+
 2. Verify that your ``application.properties`` file is using tokens like ``${APP_DB_NAME}``, if not change it to use them
 3. Run the Airwaze app by running ``bootRun``
 4. Go to http://localhost:8080 in your browser
 
    * You should see Aiports and Routes on the map
-   * If you don't check for errors in the JS console and in your Intellij console
+   * If it's not working, check for errors in the JS console and in your Intellij console
    * If you can't get your branch working, you can check out this branch ``elasticsearch-starter`` branch
 
      * ONLY DO THIS IF YOUR BRANCH ISN'T WORKING
