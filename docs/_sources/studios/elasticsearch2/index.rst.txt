@@ -34,7 +34,7 @@ Carry out each of the following tasks. Once you have a successful query for each
 3. Reindex ``twitter`` into ``twitter_geo``.
 4. Find all tweets with between 5 and 10 likes, inclusive of those endpoints.
 5. Find all tweets by Mary Jones that have at least 2 likes.
-6. Find all tweets that contain the text "Elasticsearch", including mispellings up to distance of 3 away.
+6. Find all tweets that contain the text "Elasticsearch", including mispellings up to distance of 2 away.
 7. Find all tweets that have a location (Hint: Try the exists query https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html)
 8. Find all tweets that do not have a location
 9. Find the average number of likes for tweets that have a location
