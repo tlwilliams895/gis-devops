@@ -118,7 +118,7 @@ Following TDD, let's write an integration test for the desired behavior.
             mockMvc.perform(post("/api/items/")
                     .content(json)
                     .contentType(contentType));
-            mockMvc.perform(get("/api/items/search?q={term}", "agn"))
+            mockMvc.perform(get("/api/items/search?q={term}", "agan"))
                     .andDo(print())
                     .andExpect(status().isOk())
                     .andExpect(content().contentType(contentType))
@@ -253,8 +253,6 @@ Create ``ItemDocumentController`` and implement the ``search`` method
         @Autowired
         private ItemDocumentRepository itemDocumentRepository;
 
-        private static final Integer fuzziness = 3;
-
         @GetMapping(value = "search")
         public List<ItemDocument> search(@RequestParam String q) {
             FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("name", q);
@@ -281,7 +279,7 @@ Create ``EsController`` and ``EsUtils`` to enable admin-oriented interactions wi
     /*
      * src/main/java/org/launchcode/launchcart/controllers/es/EsController.java
      */
-    @Controller
+    @RestController
     @RequestMapping(value = "/api/es")
     public class EsController {
 
@@ -321,6 +319,28 @@ Create ``EsController`` and ``EsUtils`` to enable admin-oriented interactions wi
             itemDocumentRepository.save(itemDocuments);
         }
     }
+
+Saving ItemDocuments
+====================
+
+While we have code in place to carry out searches in Elasticsearch via our API, there are not any documents in ES yet.
+
+Within ``ItemController`` and ``ItemRestController``, let's save a new ``ItemDocument`` every time we create a new ``Item``.
+
+.. code-block:: java
+
+    itemDocumentRepository.save(new ItemDocument(item));
+
+.. note:: We should also update or delete an ``ItemDocument`` whenever the corresponding ``Item`` is updated or deleted. We leave this exercises to you.
+
+Reindex
+=======
+
+Finally, we want to make sure that existing items are in Elasticsearch. To do this, we can use our special endpoint for reindexing. Start up your application, and make a request to this endpoint:
+
+::
+
+    $ curl -XPOST localhost:8080/api/es/refresh/
 
 Your Tasks
 ==========

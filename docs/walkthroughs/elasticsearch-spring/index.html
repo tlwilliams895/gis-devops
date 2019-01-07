@@ -270,6 +270,8 @@
 <li><a class="reference internal" href="#es-controller">ES Controller</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#saving-itemdocuments">Saving ItemDocuments</a></li>
+<li><a class="reference internal" href="#reindex">Reindex</a></li>
 <li><a class="reference internal" href="#your-tasks">Your Tasks</a></li>
 <li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
@@ -374,7 +376,7 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
         <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">&quot;/api/items/&quot;</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">content</span><span class="o">(</span><span class="n">json</span><span class="o">)</span>
                 <span class="o">.</span><span class="na">contentType</span><span class="o">(</span><span class="n">contentType</span><span class="o">));</span>
-        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">&quot;/api/items/search?q={term}&quot;</span><span class="o">,</span> <span class="s">&quot;agn&quot;</span><span class="o">))</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">get</span><span class="o">(</span><span class="s">&quot;/api/items/search?q={term}&quot;</span><span class="o">,</span> <span class="s">&quot;agan&quot;</span><span class="o">))</span>
                 <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
                 <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">isOk</span><span class="o">())</span>
                 <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">content</span><span class="o">().</span><span class="na">contentType</span><span class="o">(</span><span class="n">contentType</span><span class="o">))</span>
@@ -495,8 +497,6 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
     <span class="nd">@Autowired</span>
     <span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="o">;</span>
 
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">Integer</span> <span class="n">fuzziness</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
-
     <span class="nd">@GetMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;search&quot;</span><span class="o">)</span>
     <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="nf">search</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">FuzzyQueryBuilder</span> <span class="n">fuzzyQueryBuilder</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="o">.</span><span class="na">fuzzyQuery</span><span class="o">(</span><span class="s">&quot;name&quot;</span><span class="o">,</span> <span class="n">q</span><span class="o">);</span>
@@ -521,7 +521,7 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm"> * src/main/java/org/launchcode/launchcart/controllers/es/EsController.java</span>
 <span class="cm"> */</span>
-<span class="nd">@Controller</span>
+<span class="nd">@RestController</span>
 <span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/api/es&quot;</span><span class="o">)</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsController</span> <span class="o">{</span>
 
@@ -563,6 +563,25 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 <span class="o">}</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="saving-itemdocuments">
+<h2>Saving ItemDocuments<a class="headerlink" href="#saving-itemdocuments" title="Permalink to this headline">¶</a></h2>
+<p>While we have code in place to carry out searches in Elasticsearch via our API, there are not any documents in ES yet.</p>
+<p>Within <code class="docutils literal notranslate"><span class="pre">ItemController</span></code> and <code class="docutils literal notranslate"><span class="pre">ItemRestController</span></code>, let’s save a new <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> every time we create a new <code class="docutils literal notranslate"><span class="pre">Item</span></code>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">itemDocumentRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="n">ItemDocument</span><span class="o">(</span><span class="n">item</span><span class="o">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We should also update or delete an <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> whenever the corresponding <code class="docutils literal notranslate"><span class="pre">Item</span></code> is updated or deleted. We leave this exercises to you.</p>
+</div>
+</div>
+<div class="section" id="reindex">
+<h2>Reindex<a class="headerlink" href="#reindex" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we want to make sure that existing items are in Elasticsearch. To do this, we can use our special endpoint for reindexing. Start up your application, and make a request to this endpoint:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST localhost:8080/api/es/refresh/
+</pre></div>
 </div>
 </div>
 <div class="section" id="your-tasks">
