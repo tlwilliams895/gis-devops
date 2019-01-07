@@ -14,18 +14,34 @@ Your goal is to deploy a Spring Boot project to a remote server and verify its e
 1) Set Up Project
 =================
 
-1. Checkout your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio or check out and build the ``elasticsearch-starter`` branch.
+**Get Airwaze Running locally**
+
+1. Checkout your latest branch of Airwaze Studio project https://gitlab.com/LaunchCodeTraining/airwaze-studio
 2. Verify that your ``application.properties`` file is using tokens like ``${APP_DB_NAME}``, if not change it to use them
-3. Make sure the code compiles and the project builds, you can also run ``bootRun`` to make sure everything is working
-4. After making sure your code works locally, change ``src/main/resources/import.sql`` to:
+3. Run the Airwaze app by running ``bootRun``
+4. Go to http://localhost:8080 in your browser
+
+   * You should see Aiports and Routes on the map
+   * If you don't check for errors in the JS console and in your Intellij console
+   * If you can't get your branch working, you can check out this branch ``elasticsearch-starter`` branch
+
+     * ONLY DO THIS IF YOUR BRANCH ISN'T WORKING
+
+**Get Airwaze Ready for the Cloud**
+
+1. Stop your local Airwaze application by clicking the red square
+2. In Intellij change ``src/main/resources/import.sql``
+
+   * We need to change the path for the csv files
+   * The path to those files will be different on the linux server
 
 ::
 
   COPY route(src, src_id, dst, dst_id, airline, route_geom) from '/home/airwaze/routes.csv' DELIMITER ',' CSV HEADER;
   COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from '/home/airwaze/Airports.csv' DELIMITER ',' CSV HEADER;
 
-5. Go into IntelliJ's Gradle tool window, and click on ``Tasks > build > bootRepackage``
-6. Verify the jar appears here ``/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar``
+4. Go into IntelliJ's Gradle tool window, and click on ``Tasks > build > bootRepackage``
+5. Verify the jar appears here ``/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar``
 
 .. note::
 
@@ -244,7 +260,7 @@ We are going to upload our app jar file and the two csv files to the server. We'
 
   (On local computer, NOT in ssh session)
   $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/build/libs/app-0.0.1-SNAPSHOT.jar ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu/app-0.0.1-SNAPSHOT.jar
-  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
+  $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu
 
 
 Ubuntu Doesn't Have Everything We Need?
@@ -283,9 +299,9 @@ Now, on the server, move the file to the airwaze home directory, and make it own
 
 Now the airwaze user can execute app-0.0.1-SNAPSHOT.jar.::
 
-  -rw-r--r-- 1 airwaze airwaze   881432 May 20 01:23 Airports.csv
-  -r-x------ 1 airwaze airwaze 46309179 May 20 01:22 app-0.0.1-SNAPSHOT.jar
-  -rw-r--r-- 1 airwaze airwaze  6464492 May 20 01:23 routes.csv
+  -rw-r--r-- 1 airwaze ubuntu   881432 May 20 01:23 Airports.csv
+  -r-x------ 1 airwaze ubuntu 46309179 May 20 01:22 app-0.0.1-SNAPSHOT.jar
+  -rw-r--r-- 1 airwaze ubuntu  6464492 May 20 01:23 routes.csv
 
 7) Install Postgis
 ==================

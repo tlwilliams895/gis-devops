@@ -328,17 +328,35 @@
 </div>
 <div class="section" id="set-up-project">
 <h2>1) Set Up Project<a class="headerlink" href="#set-up-project" title="Permalink to this headline">¶</a></h2>
+<p><strong>Get Airwaze Running locally</strong></p>
 <ol class="arabic simple">
-<li>Checkout your latest branch of Airwaze Studio project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">https://gitlab.com/LaunchCodeTraining/airwaze-studio</a> or check out and build the <code class="docutils literal notranslate"><span class="pre">elasticsearch-starter</span></code> branch.</li>
+<li>Checkout your latest branch of Airwaze Studio project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">https://gitlab.com/LaunchCodeTraining/airwaze-studio</a></li>
 <li>Verify that your <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file is using tokens like <code class="docutils literal notranslate"><span class="pre">${APP_DB_NAME}</span></code>, if not change it to use them</li>
-<li>Make sure the code compiles and the project builds, you can also run <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> to make sure everything is working</li>
-<li>After making sure your code works locally, change <code class="docutils literal notranslate"><span class="pre">src/main/resources/import.sql</span></code> to:</li>
+<li>Run the Airwaze app by running <code class="docutils literal notranslate"><span class="pre">bootRun</span></code></li>
+<li>Go to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> in your browser<ul>
+<li>You should see Aiports and Routes on the map</li>
+<li>If you don’t check for errors in the JS console and in your Intellij console</li>
+<li>If you can’t get your branch working, you can check out this branch <code class="docutils literal notranslate"><span class="pre">elasticsearch-starter</span></code> branch<ul>
+<li>ONLY DO THIS IF YOUR BRANCH ISN’T WORKING</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Get Airwaze Ready for the Cloud</strong></p>
+<ol class="arabic simple">
+<li>Stop your local Airwaze application by clicking the red square</li>
+<li>In Intellij change <code class="docutils literal notranslate"><span class="pre">src/main/resources/import.sql</span></code><ul>
+<li>We need to change the path for the csv files</li>
+<li>The path to those files will be different on the linux server</li>
+</ul>
+</li>
 </ol>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>COPY route(src, src_id, dst, dst_id, airline, route_geom) from &#39;/home/airwaze/routes.csv&#39; DELIMITER &#39;,&#39; CSV HEADER;
 COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from &#39;/home/airwaze/Airports.csv&#39; DELIMITER &#39;,&#39; CSV HEADER;
 </pre></div>
 </div>
-<ol class="arabic simple" start="5">
+<ol class="arabic simple" start="4">
 <li>Go into IntelliJ’s Gradle tool window, and click on <code class="docutils literal notranslate"><span class="pre">Tasks</span> <span class="pre">&gt;</span> <span class="pre">build</span> <span class="pre">&gt;</span> <span class="pre">bootRepackage</span></code></li>
 <li>Verify the jar appears here <code class="docutils literal notranslate"><span class="pre">/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar</span></code></li>
 </ol>
@@ -566,7 +584,7 @@ ubuntu$ sudo adduser --system airwaze
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(On local computer, NOT in ssh session)
 $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/build/libs/app-0.0.1-SNAPSHOT.jar ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu/app-0.0.1-SNAPSHOT.jar
-$ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
+$ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@PUBLIC-DNS-OF-SERVER.us-east-2.compute.amazonaws.com:/home/ubuntu
 </pre></div>
 </div>
 </div>
@@ -604,9 +622,9 @@ ubuntu$ ls -l
 </pre></div>
 </div>
 <p>Now the airwaze user can execute app-0.0.1-SNAPSHOT.jar.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 airwaze airwaze   881432 May 20 01:23 Airports.csv
--r-x------ 1 airwaze airwaze 46309179 May 20 01:22 app-0.0.1-SNAPSHOT.jar
--rw-r--r-- 1 airwaze airwaze  6464492 May 20 01:23 routes.csv
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-rw-r--r-- 1 airwaze ubuntu   881432 May 20 01:23 Airports.csv
+-r-x------ 1 airwaze ubuntu 46309179 May 20 01:22 app-0.0.1-SNAPSHOT.jar
+-rw-r--r-- 1 airwaze ubuntu  6464492 May 20 01:23 routes.csv
 </pre></div>
 </div>
 </div>
