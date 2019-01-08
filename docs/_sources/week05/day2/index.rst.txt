@@ -11,11 +11,6 @@ Lesson Content
 
 * `AWS Features and Services <https://education.launchcode.org/gis-devops-slides/week5/intro-to-aws.html>`_
 
-Walkthrough
-===========
-
-* AWS, RDS, VPC Walkthrough :ref:`walkthrough-AWS-RDS-VPC`
-
 Studio
 ======
 
@@ -25,3 +20,4 @@ Resources
 =========
 
 * `Using Journalctl <https://www.digitalocean.com/community/tutorials/how-to-use-journalctl-to-view-and-manipulate-systemd-logs>`_
+* `IPv4 and CIDR Blocks <https://www.digitalocean.com/community/tutorials/understanding-ip-addresses-subnets-and-cidr-notation-for-networking>`_

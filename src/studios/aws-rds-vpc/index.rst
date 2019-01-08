@@ -20,8 +20,8 @@ New Topics
 * Creating Instance with User Data Script
 * Load Balancer
 
-Getting Started
-===============
+Setup
+=====
 
 1. Checkout the Airwaze branch that you deployed to AWS for Week 5 Day 1 Studio
 2. In Intellij look at ``application.properties``.
@@ -39,8 +39,8 @@ Getting Started
 3. Go into IntelliJ's Gradle tool window, and click on **Tasks > build > bootRepackage** 
 4. Verify that the jar appears in ``build/libs``
 
-Create a VPC
-============
+1) Create a VPC
+===============
 
 In order to isolate your application instances from other instances in AWS and the open internet, you need to create a Virtal Private Cloud (VPC). This gives you your own little private network in the cloud which can help when establishing access controls as well as keeping your instances private from the rest of AWS. Typically, you'll have a few of these in an enterprise environment to keep strict boundaries between unrelated services.
 
@@ -98,8 +98,8 @@ Screen shot of the VPC Dashboard with a red circle around the VPC ID
 
   .. image:: /_static/images/lb-cloud/5-vpc-dashboard.png
 
-Create RDS Subnets
-==================
+2) Create RDS Subnets
+=====================
 
 1. Select **Subnets** in the VPC Dashboard sidebar
 
@@ -133,8 +133,8 @@ Screen shot of the Create Subnet configuration window
 
   .. image:: /_static/images/lb-cloud/5.3-creating-subnet.png
 
-Set Up RDS
-==========
+3) Set Up RDS
+=============
 
 Now that the VPC is set up and ready for use, you need to create your database server. In the last studio, you installed a PostgreSQL server on your instance. This time, you'll use AWS's Relational Database Service (RDS) to host and manage our DB instance.
 
@@ -259,33 +259,43 @@ Screen shot of the PostgreSQL inbound rules with a red circle around the VPC's s
   .. image:: /_static/images/lb-cloud/allow-db-internal-only.png
 
 
-Create EC2 Instance with User Data Script 
-=========================================
+4) Create EC2 Instance with User Data Script 
+============================================
 
 Now that you have created your database, you need to create an instance to connect to it as our template. If you need review on creating an EC2 instance, please see the previous lesson and studio.
 
 You'll follow the same steps as before, with a few changes that are described here.
 
-* On the **Configure Instance Details** screen while creating your instance:
-* Select your VPC in the **Network** selection.
-* Select your Public subnet.
-* Enable auto-assigning a Public IP.
+1. On the **Configure Instance Details** screen while creating your instance:
+
+   * Select your VPC in the **Network** selection.
+   * Select your Public subnet.
+   * Enable auto-assigning a Public IP.
 
 Screen shot of the **Configure Instnace Details** screen
 
   .. image:: /_static/images/lb-cloud/16-select-your-vpc-and-public-subnet.png
 
-* At the bottom of the **Configure Instance Details** screen is a collapsed area called **Advanced Details.** Click the text **Advanced Details** to expand this.
-* You will see a **User data** section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
-  - Installs Java
-  - Creates the ``airwaze`` system user
-  - Creates the application and configuration directories
-  - Writes the airwaze configuration file, which includes the environment variables for the application
-  - Writes the ``systemd`` service file
-  - Prepares the service for execution
+2. Setup User Data Script to Install and Configure EC2
 
-* This script is run as ``root``, so ``sudo`` is not needed for these commands. That also means you must be careful when crafting a script to run here.
-* Copy this script in the **User data** section and adjust the ``APP_DB_HOST`` to your RDS instance's endpoint.
+   * At the bottom of the **Configure Instance Details** screen is a collapsed area called **Advanced Details.** 
+   * Click the text **Advanced Details** to expand that section (you may have to scroll down to see it).
+   * You will see a **User data** section.
+   
+     * This is an area to specify extra configuration AWS should perform when launching your instance. 
+     * We will call it the **User Data Script** and our script will...
+
+       * Installs Java
+       * Creates the ``airwaze`` system user
+       * Creates the application and configuration directories
+       * Writes the airwaze configuration file, which includes the env variables for the application
+       * Writes the ``systemd`` service file
+       * Prepares the service for execution
+
+     * This script is run as ``root``, so ``sudo`` is not needed for these commands. That also means you must be careful when crafting a script to run here.
+     * Paste this script into the **User data** section and adjust
+        
+       * Be sure to adjust the ``APP_DB_HOST`` value to be your RDS instance's endpoint.
 
 Screen shot of the **Advanced Details** section of the **Configure Instance Details** screen
 
@@ -331,37 +341,50 @@ Screen shot of the **Advanced Details** section of the **Configure Instance Deta
 
   systemctl enable airwaze.service
 
-* Continue through the steps to create the instance that you learned in the last lesson and studio.
-* Once the instance is online, copy the Airwaze application jar and database initialization CSV files to the server.
-* SSH to the instance and set the appropriate permissions on the jar.
+5) Setup App and Data on the EC2 Instance
+=========================================
+
+1. Copy Over .jar and .csv Files to EC2 Instance
+
+   * The new EC2 instance has some software installed for us by the User Data Script, but it doesn't have our .jar file yet
+   * Copy over the .jar file and .csv files to the new EC2 instace
 
 ::
 
-  $ scp -i ~/.ssh/aws-ssh-key.pem airwaze-application.jar ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar
-  $ scp -i ~/.ssh/aws-ssh-key.pem routes.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
-  $ scp -i ~/.ssh/aws-ssh-key.pem Airports.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/Airports.csv
-  $ ssh -i ~/.ssh/aws-ssh-key.pem ubuntu@ec2-instance.us-east-2.compute.amazonaws.com
-  $ chmod 555 /opt/airwaze/app.jar
+  (on local computer)
+  $ scp -i ~/.ssh/aws-ssh-key.pem app-0.0.1-SNAPSHOT.jar ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar
+  $ scp -i ~/.ssh/aws-ssh-key.pem *.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/
+  
+::
 
+  (remote server)
+  ubuntu$ chmod 555 /opt/airwaze/app.jar
 
+We Need a One Time Setup of the Database
+----------------------------------------
 Now that you have your instance set up and ready, you need to log into the server to prepare your database and start the service. During development of the Airwaze studio application, it was set to reload the database on every start of the service. This is not something you want happening in your cloud environment. Instead, you'll create everything your application needs in your instance by hand.
 
-* SSH to your instance, then install the ``postgresql`` client package.
-* Connect to your RDS instance using the master account you created before.
+* Copy and Paste in theInstall the ``postgresql`` client package on your EC2 instance
+
+::
+  
+  (on remote server)
+  ubuntu$ sudo apt-get update
+  ubuntu$ sudo apt-get install postgresql
+
+* Connect to your RDS instance from your remote server
 
 ::
 
-  $ sudo apt-get update
-  $ sudo apt-get install postgresql
-  $ psql -h rds-instance.us-east-2.rds.amazonaws.com -p 5432 -U rds_master_user airwaze_db
+  (on remote server)
+  ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -p 5432 -U rds_master_user airwaze_db
 
-* In the ``psql`` console, create:
+* Copy and Paste the below sql into your psql shell. The script will...
 
   * The application's DB user
   * The postgis extensions
   * The data tables
-
-* Then set your tables to be owned by your application's DB user.
+  * Then set your tables to be owned by your application's DB user.
 
 ::
 
@@ -403,23 +426,24 @@ Now that the tables are created, you need to fill them with data.
 * Run the following commands to copy from your CSV files into the database. (You'll find the password along with the user you just created above).
 
 ::
+  (on remote server)
+  ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c "\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/routes.csv
 
-  $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c "\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/routes.csv
-
-  $ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c "\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/Airports.csv
+  ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c "\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/Airports.csv
 
 
 At this point, everything is ready to go on this instance. You no longer need (or want) to connect to the database directly so uninstall the ``postgresql`` client package. Then you may start the Airwaze service.
 
 ::
 
-  $ sudo apt-get remove postgresql
-  $ sudo systemctl start airwaze.service
+  (on remote server)
+  ubuntu$ sudo apt-get remove postgresql
+  ubuntu$ sudo systemctl start airwaze.service
 
 You can run ``journalctl`` as you learned in the previous studio to check the logs for your running service.
 
-Configure the Security Group
-============================
+6) Configure the Security Group
+===============================
 
 Now that your instance and service are running, return to the EC2 Security Group dashboard. Here you need to enable web access and remove SSH access. This will make your application usable to the world and decrease the risk of unintended access.
 
@@ -443,8 +467,8 @@ Did it Work?
 
 You may now try to access your application at http://ec2-instance.us-east-2.compute.amazonaws.com:8080 in your browser.
 
-Take a Snapshot
-===============
+7) Take a Snapshot of your EC2 Instance
+=======================================
 
 The benefit of the cloud is more than just having an application running on a single server in the cloud. You can make your application more resilient by having it run on multiple servers with a load balancer transferring traffic to the least-used server.
 
@@ -494,8 +518,8 @@ Screen shot of the EC2 Instances dashboard with a red line under the AMI ID of t
 
   .. image:: /_static/images/lb-cloud/new-ami-id.png
 
-Set Up Load Balancing
-=====================
+8) Set Up Load Balancing
+========================
 
 In order to connect a load balancer (LB), you need to have two public subnets in different availability zones. Return to the VPC Subnet dashboard.
 

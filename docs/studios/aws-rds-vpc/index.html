@@ -168,7 +168,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../week05/day2/index.html">Week 5 - Day 2: More with AWS</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#lesson-content">Lesson Content</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#walkthrough">Walkthrough</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#studio">Studio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#resources">Resources</a></li>
 </ul>
@@ -265,17 +264,21 @@
 <li><a class="reference internal" href="#new-topics">New Topics</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
-<li><a class="reference internal" href="#create-a-vpc">Create a VPC</a></li>
-<li><a class="reference internal" href="#create-rds-subnets">Create RDS Subnets</a></li>
-<li><a class="reference internal" href="#set-up-rds">Set Up RDS</a></li>
-<li><a class="reference internal" href="#create-ec2-instance-with-user-data-script">Create EC2 Instance with User Data Script</a></li>
-<li><a class="reference internal" href="#configure-the-security-group">Configure the Security Group</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#create-a-vpc">1) Create a VPC</a></li>
+<li><a class="reference internal" href="#create-rds-subnets">2) Create RDS Subnets</a></li>
+<li><a class="reference internal" href="#set-up-rds">3) Set Up RDS</a></li>
+<li><a class="reference internal" href="#create-ec2-instance-with-user-data-script">4) Create EC2 Instance with User Data Script</a></li>
+<li><a class="reference internal" href="#setup-app-and-data-on-the-ec2-instance">5) Setup App and Data on the EC2 Instance</a><ul>
+<li><a class="reference internal" href="#we-need-a-one-time-setup-of-the-database">We Need a One Time Setup of the Database</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#configure-the-security-group">6) Configure the Security Group</a><ul>
 <li><a class="reference internal" href="#did-it-work">Did it Work?</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#take-a-snapshot">Take a Snapshot</a></li>
-<li><a class="reference internal" href="#set-up-load-balancing">Set Up Load Balancing</a></li>
+<li><a class="reference internal" href="#take-a-snapshot-of-your-ec2-instance">7) Take a Snapshot of your EC2 Instance</a></li>
+<li><a class="reference internal" href="#set-up-load-balancing">8) Set Up Load Balancing</a></li>
 <li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 </ul>
 </li>
@@ -301,8 +304,8 @@
 </ul>
 </div>
 </div>
-<div class="section" id="getting-started">
-<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Checkout the Airwaze branch that you deployed to AWS for Week 5 Day 1 Studio</li>
 <li>In Intellij look at <code class="docutils literal notranslate"><span class="pre">application.properties</span></code>.<ul>
@@ -323,7 +326,7 @@ spring.jpa.hibernate.ddl-auto=update
 </ol>
 </div>
 <div class="section" id="create-a-vpc">
-<h2>Create a VPC<a class="headerlink" href="#create-a-vpc" title="Permalink to this headline">¶</a></h2>
+<h2>1) Create a VPC<a class="headerlink" href="#create-a-vpc" title="Permalink to this headline">¶</a></h2>
 <p>In order to isolate your application instances from other instances in AWS and the open internet, you need to create a Virtal Private Cloud (VPC). This gives you your own little private network in the cloud which can help when establishing access controls as well as keeping your instances private from the rest of AWS. Typically, you’ll have a few of these in an enterprise environment to keep strict boundaries between unrelated services.</p>
 <p>A VPC is a way to coordinate and configure how multiple servers will work together and how those servers can be accessed.</p>
 <ol class="arabic simple">
@@ -388,7 +391,7 @@ spring.jpa.hibernate.ddl-auto=update
 </div></blockquote>
 </div>
 <div class="section" id="create-rds-subnets">
-<h2>Create RDS Subnets<a class="headerlink" href="#create-rds-subnets" title="Permalink to this headline">¶</a></h2>
+<h2>2) Create RDS Subnets<a class="headerlink" href="#create-rds-subnets" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Select <strong>Subnets</strong> in the VPC Dashboard sidebar<ul>
 <li>These are going to be for the RDS that we haven’t created yet</li>
@@ -428,7 +431,7 @@ spring.jpa.hibernate.ddl-auto=update
 </div></blockquote>
 </div>
 <div class="section" id="set-up-rds">
-<h2>Set Up RDS<a class="headerlink" href="#set-up-rds" title="Permalink to this headline">¶</a></h2>
+<h2>3) Set Up RDS<a class="headerlink" href="#set-up-rds" title="Permalink to this headline">¶</a></h2>
 <p>Now that the VPC is set up and ready for use, you need to create your database server. In the last studio, you installed a PostgreSQL server on your instance. This time, you’ll use AWS’s Relational Database Service (RDS) to host and manage our DB instance.</p>
 <ol class="arabic simple">
 <li>Click <strong>Services</strong> in the header and select <strong>Relational Database Service.</strong></li>
@@ -552,31 +555,46 @@ spring.jpa.hibernate.ddl-auto=update
 </div></blockquote>
 </div>
 <div class="section" id="create-ec2-instance-with-user-data-script">
-<h2>Create EC2 Instance with User Data Script<a class="headerlink" href="#create-ec2-instance-with-user-data-script" title="Permalink to this headline">¶</a></h2>
+<h2>4) Create EC2 Instance with User Data Script<a class="headerlink" href="#create-ec2-instance-with-user-data-script" title="Permalink to this headline">¶</a></h2>
 <p>Now that you have created your database, you need to create an instance to connect to it as our template. If you need review on creating an EC2 instance, please see the previous lesson and studio.</p>
 <p>You’ll follow the same steps as before, with a few changes that are described here.</p>
-<ul class="simple">
-<li>On the <strong>Configure Instance Details</strong> screen while creating your instance:</li>
+<ol class="arabic simple">
+<li>On the <strong>Configure Instance Details</strong> screen while creating your instance:<ul>
 <li>Select your VPC in the <strong>Network</strong> selection.</li>
 <li>Select your Public subnet.</li>
 <li>Enable auto-assigning a Public IP.</li>
 </ul>
+</li>
+</ol>
 <p>Screen shot of the <strong>Configure Instnace Details</strong> screen</p>
 <blockquote>
 <div><img alt="../../_images/16-select-your-vpc-and-public-subnet.png" src="../../_images/16-select-your-vpc-and-public-subnet.png" />
 </div></blockquote>
-<ul class="simple">
-<li>At the bottom of the <strong>Configure Instance Details</strong> screen is a collapsed area called <strong>Advanced Details.</strong> Click the text <strong>Advanced Details</strong> to expand this.</li>
-<li>You will see a <strong>User data</strong> section. This is an area to specify extra configuration AWS should perform when launching your instance. Below is a script to configure many things for your application:
-- Installs Java
-- Creates the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> system user
-- Creates the application and configuration directories
-- Writes the airwaze configuration file, which includes the environment variables for the application
-- Writes the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> service file
-- Prepares the service for execution</li>
-<li>This script is run as <code class="docutils literal notranslate"><span class="pre">root</span></code>, so <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is not needed for these commands. That also means you must be careful when crafting a script to run here.</li>
-<li>Copy this script in the <strong>User data</strong> section and adjust the <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> to your RDS instance’s endpoint.</li>
+<ol class="arabic simple" start="2">
+<li>Setup User Data Script to Install and Configure EC2<ul>
+<li>At the bottom of the <strong>Configure Instance Details</strong> screen is a collapsed area called <strong>Advanced Details.</strong></li>
+<li>Click the text <strong>Advanced Details</strong> to expand that section (you may have to scroll down to see it).</li>
+<li>You will see a <strong>User data</strong> section.<ul>
+<li>This is an area to specify extra configuration AWS should perform when launching your instance.</li>
+<li>We will call it the <strong>User Data Script</strong> and our script will…<ul>
+<li>Installs Java</li>
+<li>Creates the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> system user</li>
+<li>Creates the application and configuration directories</li>
+<li>Writes the airwaze configuration file, which includes the env variables for the application</li>
+<li>Writes the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> service file</li>
+<li>Prepares the service for execution</li>
 </ul>
+</li>
+<li>This script is run as <code class="docutils literal notranslate"><span class="pre">root</span></code>, so <code class="docutils literal notranslate"><span class="pre">sudo</span></code> is not needed for these commands. That also means you must be careful when crafting a script to run here.</li>
+<li>Paste this script into the <strong>User data</strong> section and adjust<ul>
+<li>Be sure to adjust the <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> value to be your RDS instance’s endpoint.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
 <p>Screen shot of the <strong>Advanced Details</strong> section of the <strong>Configure Instance Details</strong> screen</p>
 <blockquote>
 <div><img alt="../../_images/add-user-data-script-to-instance.png" src="../../_images/add-user-data-script-to-instance.png" />
@@ -620,36 +638,51 @@ EOF
 systemctl enable airwaze.service
 </pre></div>
 </div>
-<ul class="simple">
-<li>Continue through the steps to create the instance that you learned in the last lesson and studio.</li>
-<li>Once the instance is online, copy the Airwaze application jar and database initialization CSV files to the server.</li>
-<li>SSH to the instance and set the appropriate permissions on the jar.</li>
+</div>
+<div class="section" id="setup-app-and-data-on-the-ec2-instance">
+<h2>5) Setup App and Data on the EC2 Instance<a class="headerlink" href="#setup-app-and-data-on-the-ec2-instance" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Copy Over .jar and .csv Files to EC2 Instance<ul>
+<li>The new EC2 instance has some software installed for us by the User Data Script, but it doesn’t have our .jar file yet</li>
+<li>Copy over the .jar file and .csv files to the new EC2 instace</li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ scp -i ~/.ssh/aws-ssh-key.pem airwaze-application.jar ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar
-$ scp -i ~/.ssh/aws-ssh-key.pem routes.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/routes.csv
-$ scp -i ~/.ssh/aws-ssh-key.pem Airports.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/Airports.csv
-$ ssh -i ~/.ssh/aws-ssh-key.pem ubuntu@ec2-instance.us-east-2.compute.amazonaws.com
-$ chmod 555 /opt/airwaze/app.jar
+</li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on local computer)
+$ scp -i ~/.ssh/aws-ssh-key.pem app-0.0.1-SNAPSHOT.jar ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar
+$ scp -i ~/.ssh/aws-ssh-key.pem *.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/
 </pre></div>
 </div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(remote server)
+ubuntu$ chmod 555 /opt/airwaze/app.jar
+</pre></div>
+</div>
+<div class="section" id="we-need-a-one-time-setup-of-the-database">
+<h3>We Need a One Time Setup of the Database<a class="headerlink" href="#we-need-a-one-time-setup-of-the-database" title="Permalink to this headline">¶</a></h3>
 <p>Now that you have your instance set up and ready, you need to log into the server to prepare your database and start the service. During development of the Airwaze studio application, it was set to reload the database on every start of the service. This is not something you want happening in your cloud environment. Instead, you’ll create everything your application needs in your instance by hand.</p>
 <ul class="simple">
-<li>SSH to your instance, then install the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package.</li>
-<li>Connect to your RDS instance using the master account you created before.</li>
+<li>Copy and Paste in theInstall the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package on your EC2 instance</li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
-$ sudo apt-get install postgresql
-$ psql -h rds-instance.us-east-2.rds.amazonaws.com -p 5432 -U rds_master_user airwaze_db
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
+ubuntu$ sudo apt-get update
+ubuntu$ sudo apt-get install postgresql
 </pre></div>
 </div>
 <ul class="simple">
-<li>In the <code class="docutils literal notranslate"><span class="pre">psql</span></code> console, create:<ul>
+<li>Connect to your RDS instance from your remote server</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
+ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -p 5432 -U rds_master_user airwaze_db
+</pre></div>
+</div>
+<ul class="simple">
+<li>Copy and Paste the below sql into your psql shell. The script will…<ul>
 <li>The application’s DB user</li>
 <li>The postgis extensions</li>
 <li>The data tables</li>
+<li>Then set your tables to be owned by your application’s DB user.</li>
 </ul>
 </li>
-<li>Then set your tables to be owned by your application’s DB user.</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CREATE USER airwaze_user WITH PASSWORD &#39;verysecurepassword&#39;;
 CREATE EXTENSION postgis;
@@ -688,20 +721,24 @@ ALTER TABLE route OWNER to airwaze_user;
 <ul class="simple">
 <li>Run the following commands to copy from your CSV files into the database. (You’ll find the password along with the user you just created above).</li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c &quot;\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/routes.csv
-
-$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c &quot;\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/Airports.csv
-</pre></div>
-</div>
+<dl class="docutils">
+<dt>::</dt>
+<dd><p class="first">(on remote server)
+ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/routes.csv</p>
+<p class="last">ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/Airports.csv</p>
+</dd>
+</dl>
 <p>At this point, everything is ready to go on this instance. You no longer need (or want) to connect to the database directly so uninstall the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package. Then you may start the Airwaze service.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get remove postgresql
-$ sudo systemctl start airwaze.service
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
+ubuntu$ sudo apt-get remove postgresql
+ubuntu$ sudo systemctl start airwaze.service
 </pre></div>
 </div>
 <p>You can run <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> as you learned in the previous studio to check the logs for your running service.</p>
 </div>
+</div>
 <div class="section" id="configure-the-security-group">
-<h2>Configure the Security Group<a class="headerlink" href="#configure-the-security-group" title="Permalink to this headline">¶</a></h2>
+<h2>6) Configure the Security Group<a class="headerlink" href="#configure-the-security-group" title="Permalink to this headline">¶</a></h2>
 <p>Now that your instance and service are running, return to the EC2 Security Group dashboard. Here you need to enable web access and remove SSH access. This will make your application usable to the world and decrease the risk of unintended access.</p>
 <ul class="simple">
 <li>Find and select your instance’s security group</li>
@@ -724,8 +761,8 @@ $ sudo systemctl start airwaze.service
 <p>You may now try to access your application at <a class="reference external" href="http://ec2-instance.us-east-2.compute.amazonaws.com:8080">http://ec2-instance.us-east-2.compute.amazonaws.com:8080</a> in your browser.</p>
 </div>
 </div>
-<div class="section" id="take-a-snapshot">
-<h2>Take a Snapshot<a class="headerlink" href="#take-a-snapshot" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="take-a-snapshot-of-your-ec2-instance">
+<h2>7) Take a Snapshot of your EC2 Instance<a class="headerlink" href="#take-a-snapshot-of-your-ec2-instance" title="Permalink to this headline">¶</a></h2>
 <p>The benefit of the cloud is more than just having an application running on a single server in the cloud. You can make your application more resilient by having it run on multiple servers with a load balancer transferring traffic to the least-used server.</p>
 <p>To facilitate spinning up more instances, you can take an image of your current instance to start others.</p>
 <ul class="simple">
@@ -772,7 +809,7 @@ $ sudo systemctl start airwaze.service
 </div></blockquote>
 </div>
 <div class="section" id="set-up-load-balancing">
-<h2>Set Up Load Balancing<a class="headerlink" href="#set-up-load-balancing" title="Permalink to this headline">¶</a></h2>
+<h2>8) Set Up Load Balancing<a class="headerlink" href="#set-up-load-balancing" title="Permalink to this headline">¶</a></h2>
 <p>In order to connect a load balancer (LB), you need to have two public subnets in different availability zones. Return to the VPC Subnet dashboard.</p>
 <ul class="simple">
 <li>Click <strong>Create Subnet</strong></li>
