@@ -612,7 +612,7 @@ chmod 777 /opt/airwaze
 
 # Write Airwaze config file
 cat &lt;&lt; EOF &gt; /etc/opt/airwaze/airwaze.config
-APP_DB_HOST=APP_DB_HOST=CHANGE TO YOUR RDS ENDPOINT URL (example: rds-instance.us-east-2.rds.amazonaws.com)
+APP_DB_HOST=CHANGE TO YOUR RDS ENDPOINT URL (example: rds-instance.us-east-2.rds.amazonaws.com)
 APP_DB_PORT=5432
 APP_DB_NAME=airwaze_db
 APP_DB_USER=airwaze_user
@@ -721,13 +721,12 @@ ALTER TABLE route OWNER to airwaze_user;
 <ul class="simple">
 <li>Run the following commands to copy from your CSV files into the database. (You’ll find the password along with the user you just created above).</li>
 </ul>
-<dl class="docutils">
-<dt>::</dt>
-<dd><p class="first">(on remote server)
-ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/routes.csv</p>
-<p class="last">ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c “copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ‘,’ CSV HEADER” &lt; /home/ubuntu/Airports.csv</p>
-</dd>
-</dl>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
+ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c &quot;\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/routes.csv
+
+ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c &quot;\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/Airports.csv
+</pre></div>
+</div>
 <p>At this point, everything is ready to go on this instance. You no longer need (or want) to connect to the database directly so uninstall the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package. Then you may start the Airwaze service.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
 ubuntu$ sudo apt-get remove postgresql

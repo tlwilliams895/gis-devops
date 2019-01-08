@@ -316,7 +316,7 @@ Screen shot of the **Advanced Details** section of the **Configure Instance Deta
 
   # Write Airwaze config file
   cat << EOF > /etc/opt/airwaze/airwaze.config
-  APP_DB_HOST=APP_DB_HOST=CHANGE TO YOUR RDS ENDPOINT URL (example: rds-instance.us-east-2.rds.amazonaws.com)
+  APP_DB_HOST=CHANGE TO YOUR RDS ENDPOINT URL (example: rds-instance.us-east-2.rds.amazonaws.com)
   APP_DB_PORT=5432
   APP_DB_NAME=airwaze_db
   APP_DB_USER=airwaze_user
@@ -354,7 +354,7 @@ Screen shot of the **Advanced Details** section of the **Configure Instance Deta
   (on local computer)
   $ scp -i ~/.ssh/aws-ssh-key.pem app-0.0.1-SNAPSHOT.jar ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/opt/airwaze/app.jar
   $ scp -i ~/.ssh/aws-ssh-key.pem *.csv ubuntu@ec2-instance.us-east-2.compute.amazonaws.com:/home/ubuntu/
-  
+
 ::
 
   (remote server)
@@ -426,6 +426,7 @@ Now that the tables are created, you need to fill them with data.
 * Run the following commands to copy from your CSV files into the database. (You'll find the password along with the user you just created above).
 
 ::
+
   (on remote server)
   ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c "\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/routes.csv
 
