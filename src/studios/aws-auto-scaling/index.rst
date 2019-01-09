@@ -40,8 +40,8 @@ Create a KeyPair for the Region
 6. Copy the key to your ``~/.ssh`` folder
 7. Make it so that only the owner can read and write to the file ``$chmod 400 yourname-useast-key.pem``
 
-AWS CLI
-=======
+1) AWS CLI
+==========
 
 We will be using the `AWS CLI tool <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html>`_ for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.
 
@@ -116,8 +116,8 @@ Take a look around by looking at the help pages for a couple of commands:::
 
 The ``aws help`` command is a quick alternative to looking up information about the tool on line.
 
-Configure your VPC via CloudFormation
-=====================================
+2) Configure your VPC via CloudFormation
+========================================
 
 You are going to use `Amazon CloudFormation <https://aws.amazon.com/cloudformation/>`_ to create your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.
 
@@ -174,20 +174,24 @@ Screenshot of Stack parameters
 * Click Create on the "Review Screen"
 
 It will take CloudFormations about 15 minutes to create and run your VPC.  The "Events" tab will give you continuous updates on the progress of the job.
+Be sure to note the name and VPC ID of the VPC that is created.
 
-Configure Buckets
------------------
+3) Configure Buckets
+====================
 
-Since you will be scaling machines horizontally, you won't be able to ``scp`` a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they start.  The servers will download a copy of the application from S3.
+Since you will be scaling machines horizontally, you **WON'T** be able to manually ``scp`` a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they start.  The servers will download a copy of your application jar from S3.
 
-First create a new bucket in S3.  Remember **EVERY** bucket in S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.::
+First create a new bucket in S3.  Remember **EVERY** bucket name for S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.::
 
   $ aws s3 mb s3://launchcode-gisdevops-c1-yourname/
 
 
 Run ``aws s3 ls`` to make sure that the bucket was created properly.
 
-Go ahead and build a new executable jar file using the Gradle ``bootRepackage`` command.  When it is finished building rename the file to ``app.jar`` and upload the jar to S3 using the following command:::
+Put your .jar in the Bucket
+----------------------------
+
+Locate a ``.jar`` for Airwaze that you deployed for Day 2 Studio. Rename it to ``app.jar`` and upload the jar to S3 using the following command:::
 
   $ aws s3 cp build/libs/app.jar s3://launchcode-gisdevops-c1-yourname/
   $ aws s3 ls s3://launchcode-gisdevops-c1-yourname/ # check to make sure it uploaded
@@ -198,23 +202,34 @@ When we run our initialization script later, the script will pull down the ``app
   $ aws s3 sync s3://launchcode-gisdevops-c1-yourname/ /opt/airwaze
 
 
-You should also check out S3 in the console:
-https://s3.console.aws.amazon.com/s3/home?region=us-east-1
+You can also go to **Services > S3** and find your S3 bucket and look at it's contents
 
 
-Configure the database
-----------------------
+4) Create an EC2 to Populate the Database
+=========================================
 
-You'll also need to do some initial database setup.
+You are going to create an EC2 do some initial database setup. This EC2 will not be used for anything else. Please name it ``your-name-day3-db-setup``
 
-* Create an EC2 instance in the ``SubnetWebAppPublic`` subnet.
-* Once it is up, SSH into the server and run the following commands:
+* Create an EC2 instance of the same type as previous days
+  
+  * Select the VPC that was just crated by the CloudFormation
+  * Select ``{yourname}-airwaze-SubnetWebAppPublic`` as the subnet
+
+.. image:: /_static/images/ec2-vpc-subnet.png
+
+
+* Once the server is up, SSH into the server and run the following commands:
 
 ::
 
-  $ sudo apt-get update
-  $ sudo apt-get install postgresql
-  $ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -p 5432 -U masterUser airwaze
+  (on remote server)
+  ubuntu$ sudo apt-get update
+  ubuntu$ sudo apt-get install postgresql
+  ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -p 5432 -U masterUser airwaze
+
+::
+   
+  (paste this sql into psql shell)
   CREATE USER airwaze_user WITH PASSWORD 'verysecurepassword';
   CREATE EXTENSION postgis;
   CREATE EXTENSION postgis_topology;
@@ -250,24 +265,32 @@ You'll also need to do some initial database setup.
 
 Also, send up the ``routes.csv`` file and the ``Airports.csv`` file and get those in the database.::
 
+  (on local computer)
   $ scp -i ~/.ssh/mikes-keys.pem routes.csv  ubuntu@35.170.78.180:/home/ubuntu
   $ scp -i ~/.ssh/mikes-keys.pem Airports.csv  ubuntu@35.170.78.180:/home/ubuntu
-  $ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c "\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/routes.csv
-  $ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c "\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/Airports.csv
+
+Then after the csv files have been copied to the server you can populate the database by running these commands.
+
+::
+
+  (remote server)
+  ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c "\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/routes.csv
+  ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c "\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/Airports.csv
 
 
-Create the Launch Configuration
-===============================
+5) Create the Launch Configuration
+==================================
 
 You now have all of the pieces set up to begin Auto Scaling EC2 machines.
 
-Navigate to `AutoScaling Page <https://console.aws.amazon.com/ec2/autoscaling/home>`_ on the sidebar of EC2.  Click "Create Auto Scaling Group".
+* Navigate to `AutoScaling Page <https://console.aws.amazon.com/ec2/autoscaling/home>`_ on the sidebar of EC2
+* Click **Create Auto Scaling Group**.
 
 Screenshot of AutoScale Start
 
   .. image:: /_static/images/day3/create_auto_scaling_group.png
 
-A LaunchConfiguration is essentially creating a template for all of the EC2 instances that will be spun up automatically via Auto Scale.
+A LaunchConfiguration is essentially creating a template for all of the EC2 instances that will be created automatically via Auto Scale.
 
 * You are going to create a new Launch Configuration.
 
@@ -289,15 +312,15 @@ Screenshot of Auto Scale instance size
 
   .. image:: /_static/images/day3/auto_scale_instance_size.png
 
-There are several important configurations that have to be made on the "Configure Details" screen.
+There are several important configurations that have to be made on the **Configure Details** screen.
 
-The moist important is the User data.  The "User data" is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.
+The moist important is the User data.  The **User data** is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.
 
-There are two pieces of data to change in the "User data" script:
+There are two pieces of data to change in the **User data** script:
 
-1. Set ``APP_DB_HOST`` to the endpoint of your RDS database.
-2. Change the ``aws s3 c s3://launchcode-gisdevops-c1-yourbucket/app.jar /opt/airwaze/app.jar`` command to point to the bucket that you created earlier in the studio.
-
+* Copy the **User Data script** that is provided below and paste it into an editor
+* Set ``APP_DB_HOST`` to the endpoint of your RDS database.
+* Change the ``aws s3 c s3://launchcode-gisdevops-c1-yourbucket/app.jar /opt/airwaze/app.jar`` command to point to the bucket that you created earlier in the studio.
 * Paste your updated script in the "User data" field.
 * Set "IAM role" to "EC2_to_S3_readonly". When the machine is starting, the startup script will need to reach out to S3.  The "IAM role" gives the startup script the proper credentials to be authenticated to access S3.
 * Set the name of the configuration to ``airwaze-{your name}-config``.
@@ -312,6 +335,8 @@ Screenshot of Auto Scale configuration
 * Click "Review"
 * Click "Create Launch configuration"
 
+User Data Script (remember to change certain parts)
+---------------------------------------------------
 ::
 
   #!/bin/bash
@@ -358,10 +383,10 @@ Screenshot of Auto Scale security groups
 
   .. image:: /_static/images/day3/auto_scale_security_groups.png
 
-Create the Auto Scale Group
-===========================
+6) Create the Auto Scale Group
+==============================
 
-The Auto Scale Group is the piece of configuration responsible for how and when new machines are spun up (and spun down).
+The Auto Scale Group is the piece of configuration responsible for how and when new machines are spun up (and spun down). Spun up = created and started. Spun down = stopped and possibly deleted.
 
 The first step is configuring where the machines will be spun up.
 
@@ -418,8 +443,8 @@ Screenshot of Target Groups select target
 
   .. image:: /_static/images/day3/target_groups_set_target.png
 
-Placing Load on your App
-========================
+7) Placing Load on your App
+===========================
 
 Next, you want to test that your autoscaling is working properly.
 

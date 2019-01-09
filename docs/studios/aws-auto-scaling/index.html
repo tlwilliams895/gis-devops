@@ -268,23 +268,29 @@
 <li><a class="reference internal" href="#create-a-keypair-for-the-region">Create a KeyPair for the Region</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#aws-cli">AWS CLI</a><ul>
+<li><a class="reference internal" href="#aws-cli">1) AWS CLI</a><ul>
 <li><a class="reference internal" href="#install-aws-cli">Install AWS CLI</a></li>
 <li><a class="reference internal" href="#aws-cli-credentials">AWS CLI Credentials</a></li>
 <li><a class="reference internal" href="#enter-your-credentials-into-aws-cli">Enter Your Credentials into AWS CLI</a></li>
 <li><a class="reference internal" href="#run-aws-cli-commands">Run AWS CLI Commands</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#configure-your-vpc-via-cloudformation">Configure your VPC via CloudFormation</a><ul>
+<li><a class="reference internal" href="#configure-your-vpc-via-cloudformation">2) Configure your VPC via CloudFormation</a><ul>
 <li><a class="reference internal" href="#download-and-review-the-cloudformation-script">Download and Review the CloudFormation Script</a></li>
 <li><a class="reference internal" href="#create-vpc-with-cloudformation-script">Create VPC with CloudFormation Script</a></li>
-<li><a class="reference internal" href="#configure-buckets">Configure Buckets</a></li>
-<li><a class="reference internal" href="#configure-the-database">Configure the database</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#create-the-launch-configuration">Create the Launch Configuration</a></li>
-<li><a class="reference internal" href="#create-the-auto-scale-group">Create the Auto Scale Group</a></li>
-<li><a class="reference internal" href="#placing-load-on-your-app">Placing Load on your App</a></li>
+<li><a class="reference internal" href="#configure-buckets">3) Configure Buckets</a><ul>
+<li><a class="reference internal" href="#put-your-jar-in-the-bucket">Put your .jar in the Bucket</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-an-ec2-to-populate-the-database">4) Create an EC2 to Populate the Database</a></li>
+<li><a class="reference internal" href="#create-the-launch-configuration">5) Create the Launch Configuration</a><ul>
+<li><a class="reference internal" href="#user-data-script-remember-to-change-certain-parts">User Data Script (remember to change certain parts)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-the-auto-scale-group">6) Create the Auto Scale Group</a></li>
+<li><a class="reference internal" href="#placing-load-on-your-app">7) Placing Load on your App</a></li>
 </ul>
 </li>
 </ul>
@@ -333,7 +339,7 @@
 </div>
 </div>
 <div class="section" id="aws-cli">
-<h2>AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h2>
+<h2>1) AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h2>
 <p>We will be using the <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">AWS CLI tool</a> for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.</p>
 <div class="section" id="install-aws-cli">
 <h3>Install AWS CLI<a class="headerlink" href="#install-aws-cli" title="Permalink to this headline">¶</a></h3>
@@ -402,7 +408,7 @@ $ aws s3 sync help
 </div>
 </div>
 <div class="section" id="configure-your-vpc-via-cloudformation">
-<h2>Configure your VPC via CloudFormation<a class="headerlink" href="#configure-your-vpc-via-cloudformation" title="Permalink to this headline">¶</a></h2>
+<h2>2) Configure your VPC via CloudFormation<a class="headerlink" href="#configure-your-vpc-via-cloudformation" title="Permalink to this headline">¶</a></h2>
 <p>You are going to use <a class="reference external" href="https://aws.amazon.com/cloudformation/">Amazon CloudFormation</a> to create your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.</p>
 <p>You’ll be using a CloudFormation template that adds:</p>
 <ul class="simple">
@@ -456,17 +462,21 @@ $ cd ~/s3-sync/cloud
 <li>Click Next on the “Options Screen”</li>
 <li>Click Create on the “Review Screen”</li>
 </ul>
-<p>It will take CloudFormations about 15 minutes to create and run your VPC.  The “Events” tab will give you continuous updates on the progress of the job.</p>
+<p>It will take CloudFormations about 15 minutes to create and run your VPC.  The “Events” tab will give you continuous updates on the progress of the job.
+Be sure to note the name and VPC ID of the VPC that is created.</p>
+</div>
 </div>
 <div class="section" id="configure-buckets">
-<h3>Configure Buckets<a class="headerlink" href="#configure-buckets" title="Permalink to this headline">¶</a></h3>
-<p>Since you will be scaling machines horizontally, you won’t be able to <code class="docutils literal notranslate"><span class="pre">scp</span></code> a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they start.  The servers will download a copy of the application from S3.</p>
-<p>First create a new bucket in S3.  Remember <strong>EVERY</strong> bucket in S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.:</p>
+<h2>3) Configure Buckets<a class="headerlink" href="#configure-buckets" title="Permalink to this headline">¶</a></h2>
+<p>Since you will be scaling machines horizontally, you <strong>WON’T</strong> be able to manually <code class="docutils literal notranslate"><span class="pre">scp</span></code> a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they start.  The servers will download a copy of your application jar from S3.</p>
+<p>First create a new bucket in S3.  Remember <strong>EVERY</strong> bucket name for S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 mb s3://launchcode-gisdevops-c1-yourname/
 </pre></div>
 </div>
 <p>Run <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span></code> to make sure that the bucket was created properly.</p>
-<p>Go ahead and build a new executable jar file using the Gradle <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code> command.  When it is finished building rename the file to <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> and upload the jar to S3 using the following command::</p>
+<div class="section" id="put-your-jar-in-the-bucket">
+<h3>Put your .jar in the Bucket<a class="headerlink" href="#put-your-jar-in-the-bucket" title="Permalink to this headline">¶</a></h3>
+<p>Locate a <code class="docutils literal notranslate"><span class="pre">.jar</span></code> for Airwaze that you deployed for Day 2 Studio. Rename it to <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> and upload the jar to S3 using the following command::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 cp build/libs/app.jar s3://launchcode-gisdevops-c1-yourname/
 $ aws s3 ls s3://launchcode-gisdevops-c1-yourname/ # check to make sure it uploaded
 </pre></div>
@@ -475,19 +485,30 @@ $ aws s3 ls s3://launchcode-gisdevops-c1-yourname/ # check to make sure it uploa
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 sync s3://launchcode-gisdevops-c1-yourname/ /opt/airwaze
 </pre></div>
 </div>
-<p>You should also check out S3 in the console:
-<a class="reference external" href="https://s3.console.aws.amazon.com/s3/home?region=us-east-1">https://s3.console.aws.amazon.com/s3/home?region=us-east-1</a></p>
+<p>You can also go to <strong>Services &gt; S3</strong> and find your S3 bucket and look at it’s contents</p>
 </div>
-<div class="section" id="configure-the-database">
-<h3>Configure the database<a class="headerlink" href="#configure-the-database" title="Permalink to this headline">¶</a></h3>
-<p>You’ll also need to do some initial database setup.</p>
+</div>
+<div class="section" id="create-an-ec2-to-populate-the-database">
+<h2>4) Create an EC2 to Populate the Database<a class="headerlink" href="#create-an-ec2-to-populate-the-database" title="Permalink to this headline">¶</a></h2>
+<p>You are going to create an EC2 do some initial database setup. This EC2 will not be used for anything else. Please name it <code class="docutils literal notranslate"><span class="pre">your-name-day3-db-setup</span></code></p>
 <ul class="simple">
-<li>Create an EC2 instance in the <code class="docutils literal notranslate"><span class="pre">SubnetWebAppPublic</span></code> subnet.</li>
-<li>Once it is up, SSH into the server and run the following commands:</li>
+<li>Create an EC2 instance of the same type as previous days<ul>
+<li>Select the VPC that was just crated by the CloudFormation</li>
+<li>Select <code class="docutils literal notranslate"><span class="pre">{yourname}-airwaze-SubnetWebAppPublic</span></code> as the subnet</li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
-$ sudo apt-get install postgresql
-$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -p 5432 -U masterUser airwaze
+</li>
+</ul>
+<img alt="../../_images/ec2-vpc-subnet.png" src="../../_images/ec2-vpc-subnet.png" />
+<ul class="simple">
+<li>Once the server is up, SSH into the server and run the following commands:</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
+ubuntu$ sudo apt-get update
+ubuntu$ sudo apt-get install postgresql
+ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -p 5432 -U masterUser airwaze
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(paste this sql into psql shell)
 CREATE USER airwaze_user WITH PASSWORD &#39;verysecurepassword&#39;;
 CREATE EXTENSION postgis;
 CREATE EXTENSION postgis_topology;
@@ -522,23 +543,30 @@ ALTER TABLE route OWNER to airwaze_user;
 </pre></div>
 </div>
 <p>Also, send up the <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> file and the <code class="docutils literal notranslate"><span class="pre">Airports.csv</span></code> file and get those in the database.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ scp -i ~/.ssh/mikes-keys.pem routes.csv  ubuntu@35.170.78.180:/home/ubuntu
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on local computer)
+$ scp -i ~/.ssh/mikes-keys.pem routes.csv  ubuntu@35.170.78.180:/home/ubuntu
 $ scp -i ~/.ssh/mikes-keys.pem Airports.csv  ubuntu@35.170.78.180:/home/ubuntu
-$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c &quot;\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/routes.csv
-$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c &quot;\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/Airports.csv
+</pre></div>
+</div>
+<p>Then after the csv files have been copied to the server you can populate the database by running these commands.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(remote server)
+ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c &quot;\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/routes.csv
+ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U airwaze_user -c &quot;\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/Airports.csv
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="create-the-launch-configuration">
-<h2>Create the Launch Configuration<a class="headerlink" href="#create-the-launch-configuration" title="Permalink to this headline">¶</a></h2>
+<h2>5) Create the Launch Configuration<a class="headerlink" href="#create-the-launch-configuration" title="Permalink to this headline">¶</a></h2>
 <p>You now have all of the pieces set up to begin Auto Scaling EC2 machines.</p>
-<p>Navigate to <a class="reference external" href="https://console.aws.amazon.com/ec2/autoscaling/home">AutoScaling Page</a> on the sidebar of EC2.  Click “Create Auto Scaling Group”.</p>
+<ul class="simple">
+<li>Navigate to <a class="reference external" href="https://console.aws.amazon.com/ec2/autoscaling/home">AutoScaling Page</a> on the sidebar of EC2</li>
+<li>Click <strong>Create Auto Scaling Group</strong>.</li>
+</ul>
 <p>Screenshot of AutoScale Start</p>
 <blockquote>
 <div><img alt="../../_images/create_auto_scaling_group.png" src="../../_images/create_auto_scaling_group.png" />
 </div></blockquote>
-<p>A LaunchConfiguration is essentially creating a template for all of the EC2 instances that will be spun up automatically via Auto Scale.</p>
+<p>A LaunchConfiguration is essentially creating a template for all of the EC2 instances that will be created automatically via Auto Scale.</p>
 <ul class="simple">
 <li>You are going to create a new Launch Configuration.</li>
 </ul>
@@ -561,14 +589,13 @@ $ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U
 <blockquote>
 <div><img alt="../../_images/auto_scale_instance_size.png" src="../../_images/auto_scale_instance_size.png" />
 </div></blockquote>
-<p>There are several important configurations that have to be made on the “Configure Details” screen.</p>
-<p>The moist important is the User data.  The “User data” is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.</p>
-<p>There are two pieces of data to change in the “User data” script:</p>
-<ol class="arabic simple">
+<p>There are several important configurations that have to be made on the <strong>Configure Details</strong> screen.</p>
+<p>The moist important is the User data.  The <strong>User data</strong> is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.</p>
+<p>There are two pieces of data to change in the <strong>User data</strong> script:</p>
+<ul class="simple">
+<li>Copy the <strong>User Data script</strong> that is provided below and paste it into an editor</li>
 <li>Set <code class="docutils literal notranslate"><span class="pre">APP_DB_HOST</span></code> to the endpoint of your RDS database.</li>
 <li>Change the <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">c</span> <span class="pre">s3://launchcode-gisdevops-c1-yourbucket/app.jar</span> <span class="pre">/opt/airwaze/app.jar</span></code> command to point to the bucket that you created earlier in the studio.</li>
-</ol>
-<ul class="simple">
 <li>Paste your updated script in the “User data” field.</li>
 <li>Set “IAM role” to “EC2_to_S3_readonly”. When the machine is starting, the startup script will need to reach out to S3.  The “IAM role” gives the startup script the proper credentials to be authenticated to access S3.</li>
 <li>Set the name of the configuration to <code class="docutils literal notranslate"><span class="pre">airwaze-{your</span> <span class="pre">name}-config</span></code>.</li>
@@ -584,6 +611,8 @@ $ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U
 <li>Click “Review”</li>
 <li>Click “Create Launch configuration”</li>
 </ul>
+<div class="section" id="user-data-script-remember-to-change-certain-parts">
+<h3>User Data Script (remember to change certain parts)<a class="headerlink" href="#user-data-script-remember-to-change-certain-parts" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
 # Install Java
 apt-get update -y &amp;&amp; apt-get install -y openjdk-8-jdk awscli
@@ -630,9 +659,10 @@ systemctl start airwaze.service
 <div><img alt="../../_images/auto_scale_security_groups.png" src="../../_images/auto_scale_security_groups.png" />
 </div></blockquote>
 </div>
+</div>
 <div class="section" id="create-the-auto-scale-group">
-<h2>Create the Auto Scale Group<a class="headerlink" href="#create-the-auto-scale-group" title="Permalink to this headline">¶</a></h2>
-<p>The Auto Scale Group is the piece of configuration responsible for how and when new machines are spun up (and spun down).</p>
+<h2>6) Create the Auto Scale Group<a class="headerlink" href="#create-the-auto-scale-group" title="Permalink to this headline">¶</a></h2>
+<p>The Auto Scale Group is the piece of configuration responsible for how and when new machines are spun up (and spun down). Spun up = created and started. Spun down = stopped and possibly deleted.</p>
 <p>The first step is configuring where the machines will be spun up.</p>
 <ul class="simple">
 <li>For “Group name”, provide a name similiar to <code class="docutils literal notranslate"><span class="pre">airwaze-{your</span> <span class="pre">name}</span></code> (replace {your name} of course…)</li>
@@ -690,7 +720,7 @@ systemctl start airwaze.service
 </div></blockquote>
 </div>
 <div class="section" id="placing-load-on-your-app">
-<h2>Placing Load on your App<a class="headerlink" href="#placing-load-on-your-app" title="Permalink to this headline">¶</a></h2>
+<h2>7) Placing Load on your App<a class="headerlink" href="#placing-load-on-your-app" title="Permalink to this headline">¶</a></h2>
 <p>Next, you want to test that your autoscaling is working properly.</p>
 <p>You are going to be using a Node library called <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a>.
 Loadtest measures the average latency time of a concurrent requests to a server.</p>
