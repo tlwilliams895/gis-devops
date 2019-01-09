@@ -11,10 +11,18 @@ Summary
 
 Today we begin our journey with Elasticsearch, focusing on basic concepts and queries.
 
+We will also discuss how to properly secure stored data.
+
 Lesson Content
 ==============
 
-`Intro to Elasticsearch slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch1.html>`_
+* `Intro to Elasticsearch slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch1.html>`_
+* `Security - Sensitive Data slides <https://education.launchcode.org/gis-devops-slides/security/hashing-salting.html#1>`_
+
+Walkthrough
+===========
+
+:ref:`walkthrough-hashing-salting`
 
 Studio
 ======
