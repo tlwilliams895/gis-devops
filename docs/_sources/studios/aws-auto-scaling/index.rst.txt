@@ -211,7 +211,7 @@ You are going to create an EC2 do some initial database setup. This EC2 will not
   * Select the VPC that was just crated by the CloudFormation
   * Select ``{yourname}-airwaze-SubnetWebAppPublic`` as the subnet
 
-.. image:: /_static/images/ec2-vpc-subnet.png
+.. image:: /_static/images/ec2-vpc-subnet2.png
 
 
 * Once the server is up, SSH into the server and run the following commands:
