@@ -192,15 +192,6 @@ Locate a ``.jar`` for Airwaze that you deployed for Day 2 Studio. Rename it to `
   $ aws s3 cp build/libs/app.jar s3://launchcode-gisdevops-c1-yourname/
   $ aws s3 ls s3://launchcode-gisdevops-c1-yourname/ # check to make sure it uploaded
 
-
-When we run our initialization script later, the script will pull down the ``app.jar`` file with this command:::
-
-  $ aws s3 sync s3://launchcode-gisdevops-c1-yourname/ /opt/airwaze
-
-
-You can also go to **Services > S3** and find your S3 bucket and look at it's contents
-
-
 4) Create an EC2 to Populate the Database
 =========================================
 
@@ -310,7 +301,7 @@ Screenshot of Auto Scale instance size
 
 There are several important configurations that have to be made on the **Configure Details** screen.
 
-The moist important is the User data.  The **User data** is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.
+The most important configuration is the User data in Advanced Details.  The **User data** is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.
 
 There are two pieces of data to change in the **User data** script:
 
