@@ -21,14 +21,10 @@ New Topics
 Setup
 =====
 
-* Perform this Studio in a **different  US Region** (N.Virginia, Ohio, N. California, Oregon) than you completed the Day 2 Studio in
-* As always it's a good idea to include your name and the Studio day number in all things you create
+You can do this studio in any **US Region** that has not reached it's VPC limit. N.Virginia and Oregon have the highest VPC limit.
 
-  * blake-wk5-d3-loadbalance
-  * sally day3 subnet group
-
-Create a KeyPair for the Region
--------------------------------
+Create a KeyPair for the Region (if in new Region)
+--------------------------------------------------
 
 **IF** you are in a new Region, you will need to create a new KeyPair. 
 
