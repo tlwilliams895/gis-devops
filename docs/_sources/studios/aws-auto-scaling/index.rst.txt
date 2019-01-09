@@ -15,46 +15,92 @@ New Topics
 ----------
 * Cloud Formation Script for VPC
 * S3 Bucket
+* AWS CLI
 * Auto Scaling
 
 Setup
 =====
 
-.. note::
+* Perform this Studio in a **different  US Region** (N.Virginia, Ohio, N. California, Oregon) than you completed the Day 2 Studio in
+* As always it's a good idea to include your name and the Studio day number in all things you create
 
-  Note!  You will be working in the **Northern Virginia** region.
+  * blake-wk5-d3-loadbalance
+  * sally day3 subnet group
 
+Create a KeyPair for the Region
+-------------------------------
+
+**IF** you are in a new Region, you will need to create a new KeyPair. 
+
+1. Make sure you are in the new region
+2. Go to EC2 in the services menu
+3. Click **Key Pairs** in the left menu in the **NETWORK & SECURITY** section
+4. Enter a name like ``yourname-region-name-key``
+5. Download key
+6. Copy the key to your ``~/.ssh`` folder
+7. Make it so that only the owner can read and write to the file ``$chmod 400 yourname-useast-key.pem``
 
 AWS CLI
--------
+=======
 
 We will be using the `AWS CLI tool <https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html>`_ for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.
 
-To install the AWS CLI tool run the following commands:::
+Install AWS CLI
+---------------
 
+To install the AWS CLI tool run the following commands in your terminal:
+
+::
+
+  (on local computer)
   $ brew install awscli
-  $ echo 'complete -C aws_completer aws' >> ~/.bashrc
   $ aws --version
 
+AWS CLI Credentials
+-------------------
 
-Next configure the AWS CLI tool with your credentials.  These credentials can be found in IAM > Users > You. Click "Create Access Key".
+Create AWS CLI credentials
+
+1. Go to **Services > IAM > Users**
+2. Click on **yourself** in the list
+3. Click **Security credentails** tab
+
 Screenshot of IAM credentails
 
   .. image:: /_static/images/day3/iam_get_credentials.png
 
+4. Click **Create Access Key**
+5. Copy or write down the **Secret Key**
+  
+   * **WARNING**: You will not be able to see the secret code after closing the new key window
+   * If you do close the window before copying the key, you can remove the key and create a new one
+
+Screenshot of Create Access Key
+
+  .. image:: /_static/images/aws-cli-key.png  
+
+
 .. note::
 
-  It is very important that you keep the ``AWS Secret Access Key`` private.  Access to that key allows anyone to programmatically spin up infrastructure on the AWS account.
+  It is very important that you keep the ``AWS Secret Access Key`` **private**.  Keep it secret, Keep it safe!
+  Access to that key allows anyone to programmatically create infrastructure(servers, rds, etc) on the AWS account.
 
+Enter Your Credentials into AWS CLI
+-----------------------------------
 
-Next configure your the AWS CLI tool.  Use the "Default region name" or ``us-east-1``:::
+Next run the below command and configure your the AWS CLI tool.  Use the "Default region name" or ``us-east-1``:
 
+::
+
+  (on local computer)
   $ aws configure
   AWS Access Key ID [None]: AK-------------------
   AWS Secret Access Key [None]: r4------------------
-  Default region name [None]: us-east-1
-  Default output format [None]:
+  Default region name [None]: (just hit enter)
+  Default output format [None]: (just hit enter)
 
+Run AWS CLI Commands
+----------------------
 
 You should now be able to run commands against AWS.  For example, you should now be able to list all of the buckets in S3:::
 
@@ -70,54 +116,55 @@ Take a look around by looking at the help pages for a couple of commands:::
 
 The ``aws help`` command is a quick alternative to looking up information about the tool on line.
 
-Create a KeyPair for the Region
--------------------------------
-
-Since you are in a new Region, you will need to create a new KeyPair.
-
-1. Make sure you are in region ``U.S. East (N.Virginia)``
-2. Go to EC2 in the services menu
-3. Click **Key Pairs** in the left menu in the **NETWORK & SECURITY** section
-4. Enter a name like ``yourname-useast-key``
-5. Download key
-6. Copy the key to your ``~/.ssh`` folder
-7. Make it so that only the owner can read and write to the file ``$chmod 400 yourname-useast-key.pem``
-
 Configure your VPC via CloudFormation
 =====================================
 
-You are going to use `Amazon CloudFormation <https://aws.amazon.com/cloudformation/>`_ to spin up your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.
+You are going to use `Amazon CloudFormation <https://aws.amazon.com/cloudformation/>`_ to create your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.
 
-You'll be using a CloudFormation template that adds 4 Subnets, 3 Security Groups, and 1 RDS.  AWS CloudFormation will pull the template from S3.
+You'll be using a CloudFormation template that adds:
 
-Review the CloudFormation Script
---------------------------------
+* 4 Subnets
+* 3 Security Groups
+* 1 RDS
 
-Take a look at the template by downloading it with the ``aws-cli`` tool. Then open ``airwaze_cloudformation.json`` in your favorite editor. You should recognize the names and properties listed from previous studios, the only new thing is seeing them in this format.::
+Finally AWS CloudFormation will pull the template from an S3 bucket.
 
-  $ mkdir ~/s3-sync
-  $ aws s3 sync s3://launchcode-gisdevops-cloudformation ~/s3-sync
+Download and Review the CloudFormation Script
+---------------------------------------------
+
+* Take a look at the template by downloading it with the ``aws-cli`` tool (command shown below)
+* Then open ``airwaze_cloudformation.json`` in your favorite editor
+* You should recognize the names and properties listed from previous studios
+
+  * The only new thing is seeing them in this format.
+  
+::
+
+  $ mkdir ~/s3-sync/cloud
+  $ aws s3 sync s3://launchcode-gisdevops-cloudformation ~/s3-sync/cloud
+  $ cd ~/s3-sync/cloud
+  (then open the airwaze_cloudformation.json file)
 
 
-Using the CloudFormation Script
--------------------------------
+Create VPC with CloudFormation Script
+-------------------------------------
 
-To run CloudFormation, navigate to the CloudFormation page via the search bar.  Click "Create Stack".
+1. Go to services menu
+2. Enter "CloudFormation" into the search bar
+3. Click on **Cloud Formation** search result 
+4. Click blue **Create Stack** button
+5. Choose **Specify an Amazon S3 template URL** and paste in https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json
+6. Click **Next**
 
-Now we tell CloudFormation what JSON template to use when building the infrastructure.  We're going to give it the URL of the JSON template that we looked at with the ``aws s3 sync ...`` command.
-
-* Choose "Specify an Amazon S3 template URL" and paste in https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json.
-* Click "Next" when you are done.
-
-Screenshot of CF Screen 1
+Screenshot of CloudFormation Screen 1
 
   .. image:: /_static/images/day3/stack_screen_1.png
 
 Next we need to give your stack a name and pass along a few parameters to customize the VPC.
 
-* Fill in Stack Name with "airwaze-{your name}".
-* Fill in DatabasePassword with "verysecurepassword".
-* Fill in KeyName with with the name of your access key for this region. (use the one you created above)
+7. Fill in **Stack Name** with "airwaze-{your name}".
+8. Fill in **DatabasePassword** with "verysecurepassword" (not this exact password, something you want).
+9. For **KeyName** select your Key Pair(.pem file) for this Region
 
 Screenshot of Stack parameters
 
@@ -126,12 +173,12 @@ Screenshot of Stack parameters
 * Click Next on the "Options Screen"
 * Click Create on the "Review Screen"
 
-It will take CloudFormations about 15 minutes to spin up your VPC.  The "Events" tab will give you continuous updates on the progress of the job.
+It will take CloudFormations about 15 minutes to create and run your VPC.  The "Events" tab will give you continuous updates on the progress of the job.
 
 Configure Buckets
 -----------------
 
-Since you will be scaling machines horizontally, you won't be able to ``scp`` a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they spin up.  The servers will download a copy of the application from S3.
+Since you will be scaling machines horizontally, you won't be able to ``scp`` a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they start.  The servers will download a copy of the application from S3.
 
 First create a new bucket in S3.  Remember **EVERY** bucket in S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.::
 
@@ -252,7 +299,7 @@ There are two pieces of data to change in the "User data" script:
 2. Change the ``aws s3 c s3://launchcode-gisdevops-c1-yourbucket/app.jar /opt/airwaze/app.jar`` command to point to the bucket that you created earlier in the studio.
 
 * Paste your updated script in the "User data" field.
-* Set "IAM role" to "EC2_to_S3_readonly". When the machine is spinning up, the startup script will need to reach out to S3.  The "IAM role" gives the startup script the proper credentials to be authenticated to access S3.
+* Set "IAM role" to "EC2_to_S3_readonly". When the machine is starting, the startup script will need to reach out to S3.  The "IAM role" gives the startup script the proper credentials to be authenticated to access S3.
 * Set the name of the configuration to ``airwaze-{your name}-config``.
 * Change the "IP Address Type" to be ``Assign a public IP address to every instance``.
 
@@ -333,7 +380,7 @@ The next screen configures how an app scales up.
 * Mark that the app can scale up to 5 machines.
 * Change the name to ``Scale Fast!``.
 * Set the "Target value" to 5.  "Target value" is the percentage of CPU that triggers another machine to be provisioned.
-* Set the "Instances need" to 40 seconds.  Since Spring Boot packages the web server in the jar, your application doesn't need as much spin up time as other machines.
+* Set the "Instances need" to 40 seconds.  Since Spring Boot packages the web server in the jar, your application doesn't need as much start time as other machines.
 * Click "Next: Configure Notifications"
 
 Screenshot of Auto Scale configuration

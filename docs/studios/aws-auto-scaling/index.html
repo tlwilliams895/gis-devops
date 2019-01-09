@@ -265,13 +265,19 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#setup">Setup</a><ul>
-<li><a class="reference internal" href="#aws-cli">AWS CLI</a></li>
 <li><a class="reference internal" href="#create-a-keypair-for-the-region">Create a KeyPair for the Region</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#aws-cli">AWS CLI</a><ul>
+<li><a class="reference internal" href="#install-aws-cli">Install AWS CLI</a></li>
+<li><a class="reference internal" href="#aws-cli-credentials">AWS CLI Credentials</a></li>
+<li><a class="reference internal" href="#enter-your-credentials-into-aws-cli">Enter Your Credentials into AWS CLI</a></li>
+<li><a class="reference internal" href="#run-aws-cli-commands">Run AWS CLI Commands</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#configure-your-vpc-via-cloudformation">Configure your VPC via CloudFormation</a><ul>
-<li><a class="reference internal" href="#review-the-cloudformation-script">Review the CloudFormation Script</a></li>
-<li><a class="reference internal" href="#using-the-cloudformation-script">Using the CloudFormation Script</a></li>
+<li><a class="reference internal" href="#download-and-review-the-cloudformation-script">Download and Review the CloudFormation Script</a></li>
+<li><a class="reference internal" href="#create-vpc-with-cloudformation-script">Create VPC with CloudFormation Script</a></li>
 <li><a class="reference internal" href="#configure-buckets">Configure Buckets</a></li>
 <li><a class="reference internal" href="#configure-the-database">Configure the database</a></li>
 </ul>
@@ -297,42 +303,91 @@
 <ul class="simple">
 <li>Cloud Formation Script for VPC</li>
 <li>S3 Bucket</li>
+<li>AWS CLI</li>
 <li>Auto Scaling</li>
 </ul>
 </div>
 </div>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Note!  You will be working in the <strong>Northern Virginia</strong> region.</p>
+<ul class="simple">
+<li>Perform this Studio in a <strong>different  US Region</strong> (N.Virginia, Ohio, N. California, Oregon) than you completed the Day 2 Studio in</li>
+<li>As always it’s a good idea to include your name and the Studio day number in all things you create<ul>
+<li>blake-wk5-d3-loadbalance</li>
+<li>sally day3 subnet group</li>
+</ul>
+</li>
+</ul>
+<div class="section" id="create-a-keypair-for-the-region">
+<h3>Create a KeyPair for the Region<a class="headerlink" href="#create-a-keypair-for-the-region" title="Permalink to this headline">¶</a></h3>
+<p><strong>IF</strong> you are in a new Region, you will need to create a new KeyPair.</p>
+<ol class="arabic simple">
+<li>Make sure you are in the new region</li>
+<li>Go to EC2 in the services menu</li>
+<li>Click <strong>Key Pairs</strong> in the left menu in the <strong>NETWORK &amp; SECURITY</strong> section</li>
+<li>Enter a name like <code class="docutils literal notranslate"><span class="pre">yourname-region-name-key</span></code></li>
+<li>Download key</li>
+<li>Copy the key to your <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder</li>
+<li>Make it so that only the owner can read and write to the file <code class="docutils literal notranslate"><span class="pre">$chmod</span> <span class="pre">400</span> <span class="pre">yourname-useast-key.pem</span></code></li>
+</ol>
+</div>
 </div>
 <div class="section" id="aws-cli">
-<h3>AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h3>
+<h2>AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h2>
 <p>We will be using the <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">AWS CLI tool</a> for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.</p>
-<p>To install the AWS CLI tool run the following commands::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew install awscli
-$ echo &#39;complete -C aws_completer aws&#39; &gt;&gt; ~/.bashrc
+<div class="section" id="install-aws-cli">
+<h3>Install AWS CLI<a class="headerlink" href="#install-aws-cli" title="Permalink to this headline">¶</a></h3>
+<p>To install the AWS CLI tool run the following commands in your terminal:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on local computer)
+$ brew install awscli
 $ aws --version
 </pre></div>
 </div>
-<p>Next configure the AWS CLI tool with your credentials.  These credentials can be found in IAM &gt; Users &gt; You. Click “Create Access Key”.
-Screenshot of IAM credentails</p>
+</div>
+<div class="section" id="aws-cli-credentials">
+<h3>AWS CLI Credentials<a class="headerlink" href="#aws-cli-credentials" title="Permalink to this headline">¶</a></h3>
+<p>Create AWS CLI credentials</p>
+<ol class="arabic simple">
+<li>Go to <strong>Services &gt; IAM &gt; Users</strong></li>
+<li>Click on <strong>yourself</strong> in the list</li>
+<li>Click <strong>Security credentails</strong> tab</li>
+</ol>
+<p>Screenshot of IAM credentails</p>
 <blockquote>
 <div><img alt="../../_images/iam_get_credentials.png" src="../../_images/iam_get_credentials.png" />
 </div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Click <strong>Create Access Key</strong></li>
+<li>Copy or write down the <strong>Secret Key</strong><ul>
+<li><strong>WARNING</strong>: You will not be able to see the secret code after closing the new key window</li>
+<li>If you do close the window before copying the key, you can remove the key and create a new one</li>
+</ul>
+</li>
+</ol>
+<p>Screenshot of Create Access Key</p>
+<blockquote>
+<div><img alt="../../_images/aws-cli-key.png" src="../../_images/aws-cli-key.png" />
+</div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">It is very important that you keep the <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span></code> private.  Access to that key allows anyone to programmatically spin up infrastructure on the AWS account.</p>
+<p class="last">It is very important that you keep the <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span></code> <strong>private</strong>.  Keep it secret, Keep it safe!
+Access to that key allows anyone to programmatically create infrastructure(servers, rds, etc) on the AWS account.</p>
 </div>
-<p>Next configure your the AWS CLI tool.  Use the “Default region name” or <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws configure
+</div>
+<div class="section" id="enter-your-credentials-into-aws-cli">
+<h3>Enter Your Credentials into AWS CLI<a class="headerlink" href="#enter-your-credentials-into-aws-cli" title="Permalink to this headline">¶</a></h3>
+<p>Next run the below command and configure your the AWS CLI tool.  Use the “Default region name” or <code class="docutils literal notranslate"><span class="pre">us-east-1</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on local computer)
+$ aws configure
 AWS Access Key ID [None]: AK-------------------
 AWS Secret Access Key [None]: r4------------------
-Default region name [None]: us-east-1
-Default output format [None]:
+Default region name [None]: (just hit enter)
+Default output format [None]: (just hit enter)
 </pre></div>
 </div>
+</div>
+<div class="section" id="run-aws-cli-commands">
+<h3>Run AWS CLI Commands<a class="headerlink" href="#run-aws-cli-commands" title="Permalink to this headline">¶</a></h3>
 <p>You should now be able to run commands against AWS.  For example, you should now be able to list all of the buckets in S3::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 ls
 </pre></div>
@@ -345,50 +400,54 @@ $ aws s3 sync help
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">help</span></code> command is a quick alternative to looking up information about the tool on line.</p>
 </div>
-<div class="section" id="create-a-keypair-for-the-region">
-<h3>Create a KeyPair for the Region<a class="headerlink" href="#create-a-keypair-for-the-region" title="Permalink to this headline">¶</a></h3>
-<p>Since you are in a new Region, you will need to create a new KeyPair.</p>
-<ol class="arabic simple">
-<li>Make sure you are in region <code class="docutils literal notranslate"><span class="pre">U.S.</span> <span class="pre">East</span> <span class="pre">(N.Virginia)</span></code></li>
-<li>Go to EC2 in the services menu</li>
-<li>Click <strong>Key Pairs</strong> in the left menu in the <strong>NETWORK &amp; SECURITY</strong> section</li>
-<li>Enter a name like <code class="docutils literal notranslate"><span class="pre">yourname-useast-key</span></code></li>
-<li>Download key</li>
-<li>Copy the key to your <code class="docutils literal notranslate"><span class="pre">~/.ssh</span></code> folder</li>
-<li>Make it so that only the owner can read and write to the file <code class="docutils literal notranslate"><span class="pre">$chmod</span> <span class="pre">400</span> <span class="pre">yourname-useast-key.pem</span></code></li>
-</ol>
-</div>
 </div>
 <div class="section" id="configure-your-vpc-via-cloudformation">
 <h2>Configure your VPC via CloudFormation<a class="headerlink" href="#configure-your-vpc-via-cloudformation" title="Permalink to this headline">¶</a></h2>
-<p>You are going to use <a class="reference external" href="https://aws.amazon.com/cloudformation/">Amazon CloudFormation</a> to spin up your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.</p>
-<p>You’ll be using a CloudFormation template that adds 4 Subnets, 3 Security Groups, and 1 RDS.  AWS CloudFormation will pull the template from S3.</p>
-<div class="section" id="review-the-cloudformation-script">
-<h3>Review the CloudFormation Script<a class="headerlink" href="#review-the-cloudformation-script" title="Permalink to this headline">¶</a></h3>
-<p>Take a look at the template by downloading it with the <code class="docutils literal notranslate"><span class="pre">aws-cli</span></code> tool. Then open <code class="docutils literal notranslate"><span class="pre">airwaze_cloudformation.json</span></code> in your favorite editor. You should recognize the names and properties listed from previous studios, the only new thing is seeing them in this format.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/s3-sync
-$ aws s3 sync s3://launchcode-gisdevops-cloudformation ~/s3-sync
+<p>You are going to use <a class="reference external" href="https://aws.amazon.com/cloudformation/">Amazon CloudFormation</a> to create your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.</p>
+<p>You’ll be using a CloudFormation template that adds:</p>
+<ul class="simple">
+<li>4 Subnets</li>
+<li>3 Security Groups</li>
+<li>1 RDS</li>
+</ul>
+<p>Finally AWS CloudFormation will pull the template from an S3 bucket.</p>
+<div class="section" id="download-and-review-the-cloudformation-script">
+<h3>Download and Review the CloudFormation Script<a class="headerlink" href="#download-and-review-the-cloudformation-script" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Take a look at the template by downloading it with the <code class="docutils literal notranslate"><span class="pre">aws-cli</span></code> tool (command shown below)</li>
+<li>Then open <code class="docutils literal notranslate"><span class="pre">airwaze_cloudformation.json</span></code> in your favorite editor</li>
+<li>You should recognize the names and properties listed from previous studios<ul>
+<li>The only new thing is seeing them in this format.</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/s3-sync/cloud
+$ aws s3 sync s3://launchcode-gisdevops-cloudformation ~/s3-sync/cloud
+$ cd ~/s3-sync/cloud
+(then open the airwaze_cloudformation.json file)
 </pre></div>
 </div>
 </div>
-<div class="section" id="using-the-cloudformation-script">
-<h3>Using the CloudFormation Script<a class="headerlink" href="#using-the-cloudformation-script" title="Permalink to this headline">¶</a></h3>
-<p>To run CloudFormation, navigate to the CloudFormation page via the search bar.  Click “Create Stack”.</p>
-<p>Now we tell CloudFormation what JSON template to use when building the infrastructure.  We’re going to give it the URL of the JSON template that we looked at with the <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">sync</span> <span class="pre">...</span></code> command.</p>
-<ul class="simple">
-<li>Choose “Specify an Amazon S3 template URL” and paste in <a class="reference external" href="https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json">https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json</a>.</li>
-<li>Click “Next” when you are done.</li>
-</ul>
-<p>Screenshot of CF Screen 1</p>
+<div class="section" id="create-vpc-with-cloudformation-script">
+<h3>Create VPC with CloudFormation Script<a class="headerlink" href="#create-vpc-with-cloudformation-script" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to services menu</li>
+<li>Enter “CloudFormation” into the search bar</li>
+<li>Click on <strong>Cloud Formation</strong> search result</li>
+<li>Click blue <strong>Create Stack</strong> button</li>
+<li>Choose <strong>Specify an Amazon S3 template URL</strong> and paste in <a class="reference external" href="https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json">https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json</a></li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p>Screenshot of CloudFormation Screen 1</p>
 <blockquote>
 <div><img alt="../../_images/stack_screen_1.png" src="../../_images/stack_screen_1.png" />
 </div></blockquote>
 <p>Next we need to give your stack a name and pass along a few parameters to customize the VPC.</p>
-<ul class="simple">
-<li>Fill in Stack Name with “airwaze-{your name}”.</li>
-<li>Fill in DatabasePassword with “verysecurepassword”.</li>
-<li>Fill in KeyName with with the name of your access key for this region. (use the one you created above)</li>
-</ul>
+<ol class="arabic simple" start="7">
+<li>Fill in <strong>Stack Name</strong> with “airwaze-{your name}”.</li>
+<li>Fill in <strong>DatabasePassword</strong> with “verysecurepassword” (not this exact password, something you want).</li>
+<li>For <strong>KeyName</strong> select your Key Pair(.pem file) for this Region</li>
+</ol>
 <p>Screenshot of Stack parameters</p>
 <blockquote>
 <div><img alt="../../_images/stack-parameters2.png" src="../../_images/stack-parameters2.png" />
@@ -397,11 +456,11 @@ $ aws s3 sync s3://launchcode-gisdevops-cloudformation ~/s3-sync
 <li>Click Next on the “Options Screen”</li>
 <li>Click Create on the “Review Screen”</li>
 </ul>
-<p>It will take CloudFormations about 15 minutes to spin up your VPC.  The “Events” tab will give you continuous updates on the progress of the job.</p>
+<p>It will take CloudFormations about 15 minutes to create and run your VPC.  The “Events” tab will give you continuous updates on the progress of the job.</p>
 </div>
 <div class="section" id="configure-buckets">
 <h3>Configure Buckets<a class="headerlink" href="#configure-buckets" title="Permalink to this headline">¶</a></h3>
-<p>Since you will be scaling machines horizontally, you won’t be able to <code class="docutils literal notranslate"><span class="pre">scp</span></code> a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they spin up.  The servers will download a copy of the application from S3.</p>
+<p>Since you will be scaling machines horizontally, you won’t be able to <code class="docutils literal notranslate"><span class="pre">scp</span></code> a jar to each machine.  Instead, the machines will reach out and grab a copy of the jar when they start.  The servers will download a copy of the application from S3.</p>
 <p>First create a new bucket in S3.  Remember <strong>EVERY</strong> bucket in S3 in the whole wide world has to be unique.  Use the pattern below to get a unique name.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 mb s3://launchcode-gisdevops-c1-yourname/
 </pre></div>
@@ -511,7 +570,7 @@ $ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airwaze -U
 </ol>
 <ul class="simple">
 <li>Paste your updated script in the “User data” field.</li>
-<li>Set “IAM role” to “EC2_to_S3_readonly”. When the machine is spinning up, the startup script will need to reach out to S3.  The “IAM role” gives the startup script the proper credentials to be authenticated to access S3.</li>
+<li>Set “IAM role” to “EC2_to_S3_readonly”. When the machine is starting, the startup script will need to reach out to S3.  The “IAM role” gives the startup script the proper credentials to be authenticated to access S3.</li>
 <li>Set the name of the configuration to <code class="docutils literal notranslate"><span class="pre">airwaze-{your</span> <span class="pre">name}-config</span></code>.</li>
 <li>Change the “IP Address Type” to be <code class="docutils literal notranslate"><span class="pre">Assign</span> <span class="pre">a</span> <span class="pre">public</span> <span class="pre">IP</span> <span class="pre">address</span> <span class="pre">to</span> <span class="pre">every</span> <span class="pre">instance</span></code>.</li>
 </ul>
@@ -591,7 +650,7 @@ systemctl start airwaze.service
 <li>Mark that the app can scale up to 5 machines.</li>
 <li>Change the name to <code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">Fast!</span></code>.</li>
 <li>Set the “Target value” to 5.  “Target value” is the percentage of CPU that triggers another machine to be provisioned.</li>
-<li>Set the “Instances need” to 40 seconds.  Since Spring Boot packages the web server in the jar, your application doesn’t need as much spin up time as other machines.</li>
+<li>Set the “Instances need” to 40 seconds.  Since Spring Boot packages the web server in the jar, your application doesn’t need as much start time as other machines.</li>
 <li>Click “Next: Configure Notifications”</li>
 </ul>
 <p>Screenshot of Auto Scale configuration</p>
