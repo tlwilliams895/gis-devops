@@ -342,8 +342,6 @@ Week 8
 
 - Use the skills learned in the previous week to integrate GeoServer with a Spring Boot + OpenLayers application, both locally and on AWS
 
-.. _week09-day-1-2-objectives:
-
 Week 9
 ======
 

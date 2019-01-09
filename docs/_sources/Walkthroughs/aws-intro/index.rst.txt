@@ -44,9 +44,10 @@ few in the class.  On your own time, please read about all the new terms/tools y
 them some day. Our focus today is ``EC2``.
 
 What is EC2?
------------
+------------
+
 * EC2 = Elastic Cloud Compute
- 
+
   * **NOTE:** This use of Elastic != ElasticSearch
   * EC2 and ElasticSearch are two different things
   * We will eventually install and run ElasticSearch on an EC2 server
@@ -64,7 +65,7 @@ AWS Services
   .. image:: /_static/images/services.png
 
 Secure Your AWS Account
-=====================
+=======================
 
 We want to make sure our AWS accounts are secure. To do that we are going to setup Two Factor Authentication. AWS is a very powerful tool and we want to make sure our accounts are only used by us.
 
@@ -79,7 +80,7 @@ Add Two Factor Authentication
 6. Download an Authenticator such as Google Authenticator on your phone
 7. Open the Authenticator app on your phone
 8. Now connect your AWS Account to the Authenticator app by entering informatin provided by AWS
-   
+
    * You can use the provided barcode
    * Or you can enter the provided informatin
 

@@ -9,15 +9,13 @@ Learning objectives for :ref:`week03-day1-objectives`
 Lesson Content
 ==============
 
-* `Security - Sensitive Data slides <https://education.launchcode.org/gis-devops-slides/security/hashing-salting.html#1>`_
-* `REST lesson slides <https://education.launchcode.org/gis-devops-slides/week3/rest.html#1>`_
+`REST lesson slides <https://education.launchcode.org/gis-devops-slides/week3/rest.html#1>`_
 
 
-Walkthroughs
-=============
+Walkthrough
+===========
 
-* :ref:`walkthrough-hashing-salting`
-* :ref:`walkthrough-launchcart-rest`
+:ref:`walkthrough-launchcart-rest`
 
 Studio
 ======

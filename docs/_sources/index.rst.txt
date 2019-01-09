@@ -70,6 +70,7 @@ Week 9:
 
 
 * Week 9 - Days 1-2: Pivotal Training
+
 .. toctree::
   :maxdepth: 1
 
