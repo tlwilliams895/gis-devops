@@ -393,13 +393,14 @@ $ mv ~/Downloads/jenkins.war ~/jenkins
 <h3>Configure the Compile Project<a class="headerlink" href="#configure-the-compile-project" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>In <strong>Source Code Management</strong> click <strong>Git</strong></li>
-<li>Post your SSH gitlab repo url into <strong>Repository URL</strong>. Example: <a class="reference external" href="mailto:git&#37;&#52;&#48;gitlab&#46;com">git<span>&#64;</span>gitlab<span>&#46;</span>com</a>:welzie/zika-cdc-dashboard.git</li>
+<li>Post your SSH gitlab repo url into <strong>Repository URL</strong>. Example: <a class="reference external" href="mailto:git&#37;&#52;&#48;gitlab&#46;com">git<span>&#64;</span>gitlab<span>&#46;</span>com</a>:welzie/airwaze-studio.git</li>
 <li>Make sure you the branch you want to compile is in the <strong>Branch Specifier</strong> field</li>
 <li>Go to the <strong>Build Triggers</strong> section</li>
 <li>Select <strong>Poll SCM</strong> and enter <code class="docutils literal notranslate"><span class="pre">H/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> into the <strong>Schedule</strong> input</li>
 <li>Go to the <strong>Build</strong> section</li>
 <li>Click <strong>Add build step</strong></li>
 <li>Click <strong>Invoke Gradle script</strong></li>
+<li>Select <strong>Use Graddle Wrapper</strong></li>
 <li>Enter <code class="docutils literal notranslate"><span class="pre">clean</span> <span class="pre">compileJava</span></code> into the <strong>Tasks</strong> input</li>
 <li>Click <strong>Save</strong><ul>
 <li>You will be taken to the <strong>Project Airwaze Compile</strong> page</li>
@@ -478,6 +479,8 @@ $ mv ~/Downloads/jenkins.war ~/jenkins
 <ul>
 <li><p class="first">Navigate to project <code class="docutils literal notranslate"><span class="pre">http://localhost:9090/job/Airwaze%20Test/</span></code></p>
 </li>
+<li><p class="first">Click <strong>Configure</strong></p>
+</li>
 <li><p class="first">In <strong>General</strong> select <strong>This project is parameterized</strong>
 String Parameter</p>
 <img alt="../../_images/parameter-project-1.png" src="../../_images/parameter-project-1.png" />
@@ -500,7 +503,8 @@ String Parameter</p>
 <ul class="simple">
 <li>Go to the <strong>Build</strong> section</li>
 <li>Click <strong>Add build step</strong></li>
-<li>Click <strong>Invode Gradle script</strong></li>
+<li>Click <strong>Invoke Gradle script</strong></li>
+<li>Select <strong>Use Graddle Wrapper</strong></li>
 <li>Enter <code class="docutils literal notranslate"><span class="pre">clean</span> <span class="pre">test</span></code> into the <strong>Tasks</strong> input</li>
 </ul>
 <p>Now we need to kick off the <strong>CreateJar Project</strong></p>
@@ -516,7 +520,12 @@ String Parameter</p>
 <div class="section" id="run-the-compile-project-which-runs-the-test-project">
 <h3>Run the Compile Project, which runs the Test Project<a class="headerlink" href="#run-the-compile-project-which-runs-the-test-project" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Run the Compile Project</li>
+<li>Run the Compile Project<ul>
+<li>Go to the <strong>Dashboard</strong></li>
+<li>Click the <strong>Compile Project</strong></li>
+<li>Click <strong>Build Now</strong></li>
+</ul>
+</li>
 <li>After both the Compile Project and Test Project have finished</li>
 <li>You can view the tests by finding the test results in the project work space</li>
 <li>Naviage to project works space by clicking <strong>Work Space</strong> in the left menu of a project. Example: <a class="reference external" href="http://localhost:9090/job/Airwaze%20Test/ws/">http://localhost:9090/job/Airwaze%20Test/ws/</a></li>
@@ -539,10 +548,16 @@ String Parameter</p>
 <h3>Configure CreateJar Project<a class="headerlink" href="#configure-createjar-project" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Same configuration as the <strong>Test Project</strong>, with these exceptions</li>
-<li>In the <strong>Build</strong> section run this gradle command <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code></li>
-<li>In <strong>Post Build Actions</strong> project to build enter <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code></li>
-<li>Se the same post build parameters as Test Project</li>
-<li>Do not have the test results copied as we did with the <strong>Test Project</strong></li>
+<li>In the <strong>Build</strong> section</li>
+<li>Enter this gradle command <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code> into <strong>Tasks</strong> input</li>
+<li>Select <strong>Use Graddle Wrapper</strong></li>
+<li>Go to <strong>Post Build Actions</strong></li>
+<li>Select <strong>Trigger parameterized build on other projects</strong> from the select box</li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code> as the project to build</li>
+<li>Click <strong>Add Parameters</strong> and select <strong>Build on the same node</strong></li>
+<li>Click <strong>Add Parameters</strong> again and select <strong>Predefined parameters</strong></li>
+<li>Enter this <code class="docutils literal notranslate"><span class="pre">AIRWAZE_WORKSPACE=${WORKSPACE}</span></code> into input</li>
+<li>Click save</li>
 </ul>
 </div>
 <div class="section" id="setup-s3-bucket-needed-so-we-can-configure-the-next-project">

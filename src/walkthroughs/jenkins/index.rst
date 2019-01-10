@@ -98,13 +98,14 @@ Configure the Compile Project
 -----------------------------
 
 * In **Source Code Management** click **Git**
-* Post your SSH gitlab repo url into **Repository URL**. Example: git@gitlab.com:welzie/zika-cdc-dashboard.git
+* Post your SSH gitlab repo url into **Repository URL**. Example: git@gitlab.com:welzie/airwaze-studio.git
 * Make sure you the branch you want to compile is in the **Branch Specifier** field
 * Go to the **Build Triggers** section
 * Select **Poll SCM** and enter ``H/5 * * * *`` into the **Schedule** input
 * Go to the **Build** section
 * Click **Add build step**
 * Click **Invoke Gradle script**
+* Select **Use Graddle Wrapper**
 * Enter ``clean compileJava`` into the **Tasks** input
 * Click **Save**
 
@@ -175,6 +176,7 @@ Configure Test Project
 ----------------------
 
 * Navigate to project ``http://localhost:9090/job/Airwaze%20Test/``
+* Click **Configure**
 * In **General** select **This project is parameterized**
   String Parameter
 
@@ -195,7 +197,8 @@ Custom Workspace Direstory
 
 * Go to the **Build** section
 * Click **Add build step**
-* Click **Invode Gradle script**
+* Click **Invoke Gradle script**
+* Select **Use Graddle Wrapper**
 * Enter ``clean test`` into the **Tasks** input
 
 Now we need to kick off the **CreateJar Project**
@@ -211,6 +214,11 @@ Run the Compile Project, which runs the Test Project
 ----------------------------------------------------
 
 * Run the Compile Project
+
+  * Go to the **Dashboard**
+  * Click the **Compile Project**
+  * Click **Build Now**
+  
 * After both the Compile Project and Test Project have finished
 * You can view the tests by finding the test results in the project work space
 * Naviage to project works space by clicking **Work Space** in the left menu of a project. Example: http://localhost:9090/job/Airwaze%20Test/ws/
@@ -231,10 +239,16 @@ Configure CreateJar Project
 ---------------------------
 
 * Same configuration as the **Test Project**, with these exceptions
-* In the **Build** section run this gradle command ``bootRepackage``
-* In **Post Build Actions** project to build enter ``Airwaze Deliver``
-* Se the same post build parameters as Test Project
-* Do not have the test results copied as we did with the **Test Project**
+* In the **Build** section 
+* Enter this gradle command ``bootRepackage`` into **Tasks** input
+* Select **Use Graddle Wrapper**
+* Go to **Post Build Actions**
+* Select **Trigger parameterized build on other projects** from the select box
+* Enter ``Airwaze Deliver`` as the project to build
+* Click **Add Parameters** and select **Build on the same node**
+* Click **Add Parameters** again and select **Predefined parameters**
+* Enter this ``AIRWAZE_WORKSPACE=${WORKSPACE}`` into input
+* Click save
 
 Setup S3 Bucket (Needed so we can configure the next project)
 -------------------------------------------------------------
