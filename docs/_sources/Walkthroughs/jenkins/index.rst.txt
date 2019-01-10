@@ -12,19 +12,26 @@ Our Continous Integration Goals
 ===============================
 
 After a branch/story is merged into our ``master`` branch. We want...
-1. Make sure the code compiles
-2. Makes sure the tests pass
+
+1. Make sure the master branch still compiles after the merge
+2. Make sure the tests still pass
 3. Deliver a ``.jar`` file that is ready to be deployed
 
 Install and Configure Jenkins
 =============================
 
-* Download jenkins war from `jenkins home page <https://jenkins.io/download/>`_ by clicking **Generic Java War**  (note: scroll to the bottom of the page)
-Download Jenkins * Generic War
+* Go to `jenkins home page <https://jenkins.io/download/>`_
+* Download jenkins war from  by clicking **Generic Java War**  (note: scroll to the bottom of the page)
 
    .. image:: /_static/images/download-jenkins.png
 
-* Copy the ``jenkins.war`` file the folder to ``~/jenkins``
+* Move ``jenkins.war`` to folder ``~/jenkins``
+
+::
+
+  $ mkdir ~/jenkins
+  $ mv ~/Downloads/jenkins.war ~/jenkins
+
 * Now start jenkins via terminal
 
 ::
@@ -40,9 +47,13 @@ Download Jenkins * Generic War
 Configure Jenkins
 -----------------
 
+* Access the file listed in the terminal and copy the key inside it
+
+.. image:: /_static/images/jenkins-password.png
+
+
 * Go to `http://localhost:9090 <http://localhost:9090>`_
 * You should see screen asking for an admin key
-* Access the file listed in the terminal and copy the key inside it
 * Paste that key into the input box
 
 Install Plugins
