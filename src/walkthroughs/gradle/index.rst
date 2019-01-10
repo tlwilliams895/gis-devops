@@ -16,13 +16,26 @@ Create a project directory:::
     $ mkdir gradle-walkthrough
     $ cd gradle-walkthrough
 
+Check if the gradle command is installed by running: ::
+
+    $ gradle -version
+
+    (if command not found)
+    $ brew update
+    $ brew install gradle
+
 Initialize the project as a Gradle project using the Java application template:::
 
     $ gradle init --type java-application
 
+Screenshot of questions asked by `java init`. Note this may look different if your version of Gradle is different.
+
+.. image:: /_static/images/gradle-java-init.png
+
 
 Open the project in an editor and have a look around to see what Gradle created for you:::
 
+    (this will open the current folder in the Visual Studio Code app, if code is on your path)
     $ code .
 
 **Answer these questions:**
