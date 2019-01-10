@@ -8,6 +8,14 @@ Walkthrough: Jenkins
 
 Follow along with the instructor as we configure Jenkins.
 
+Setup
+=====
+
+For this to work your Airwaze tests need to pass.
+
+* Open your Airwaze project and run the tests
+* If they don't pass, then fix them ;)
+
 Our Continous Integration Goals
 ===============================
 
@@ -66,6 +74,17 @@ Create a Jenkins User
 
 * This will be how you login to jenkins going forward
 * Be sure to remember the username and password
+* All fields are required
+* Click **Save and Continue**
+* Click **Save**
+* Click **Start using Jenkins**
+
+  * You may have to stop Jenkins and restart it
+
+Login to Jenkins
+----------------
+
+* Enter the username and password you just created
 
 Create Project to Compile Airwaze
 =================================
@@ -87,34 +106,62 @@ Configure the Compile Project
 * Click **Add build step**
 * Click **Invoke Gradle script**
 * Enter ``clean compileJava`` into the **Tasks** input
+* Click **Save**
 
-Now test out the build by clicking **Build Now**
+  * You will be taken to the **Project Airwaze Compile** page
+
+Let's Build It and See What Happens
+-----------------------------------
+
+* Can we build it? Yes we can!
+* Click **Build Now** in the left menu
+
+  * The #1 build can be seen running in the build window
+
+* Click on the **#1** in the **Build History** when the build has finished
+
+  * You will be taken to the **Build #1** page
+  * This page has all the details for what happened on this build
+
+* Click on **Console Output** in the left menu
+
+  * Here you can see exactly what commands were executed
+
+* Click **Airwaze Compile** in the top menu under the Jenkins logo
+
+  * This will take you back to the Project page
+  * On the project page you can run another build or see the history for other builds
 
 We Need to Install a Plugin
 ---------------------------
 
-* Go to your jenkins home page ``http://localhost:9090``
+* Click **Jenkins** in the top menu, the menu below the Jenkins logo
 * Click **Manage Jenkins** on the left
 * Click **Manage Plugins** on the right
 * Click **Available**
 * Enter **Parameterized Trigger** in search box
-* Install **Parameterized Trigger plugin** without restarting
+* Check the checkbox next to the one result that matches
+* Click Install **Parameterized Trigger plugin** without restarting
+* Click **Back to Dashboard**
 
-Create Test, CreateJar, and DeployToS3 Projects
+Create Test, CreateJar, and Deliver Projects
 ===============================================
 
 * Create three more **Freestyle** projects
 * ``Airwaze Test``
 * ``Airwaze CreateJar``
 * ``Airwaze Deliver``
-* Don't do anything but give these a name. We will configure them next.
+* Don't do anything but give these a name and click **Save**
+
+  * We will configure them next
 
 Edit the Compile Project
 ========================
 
 We need the **Compile Project** to kick off the **Test Project** when it's done. We also want the two projects to share the same work space, so that the repo doesn't have to be checked out again.
 
-* Navigate to project ``http://localhost:9090/job/Airwaze%20Compile/``
+* Go back to the **Dashboard**
+* Click the **Airwaze Compile** Project
 * Click **Configure**
 * Go to **Post Build Actions**
 * Select **Trigger parameterized build on other projects** from the select box
@@ -186,14 +233,20 @@ Configure CreateJar Project
 * Same configuration as the **Test Project**, with these exceptions
 * In the **Build** section run this gradle command ``bootRepackage``
 * In **Post Build Actions** project to build enter ``Airwaze Deliver``
+* Se the same post build parameters as Test Project
 * Do not have the test results copied as we did with the **Test Project**
 
 Setup S3 Bucket (Needed so we can configure the next project)
 -------------------------------------------------------------
 
 * If you haven't already, you need to install ``awscli``. Instructions can be found in the `AWS3 Studio <https://education.launchcode.org/gis-devops/studios/AWS3/>`_
-* Create a new S3 bucket that will used for the ``.jar`` files your jenkins builds produce
-* Be sure to create the new bucket with **VERSIONING** enabled
+* Create a new S3 bucket that will be used for the ``.jar`` files your jenkins builds produce
+
+::
+
+  $ aws s3 mb s3://launchcode-gis-c3-blake-airwaze
+
+* Go to the AWS website and enable **VERSIONING**
 
 Make sure your s3 bucket shows up when you run this command in terminal::
 
