@@ -415,10 +415,11 @@ Screenshot of the Instances tab
 
   .. image:: /_static/images/day3/auto_scaling_instances_tab.png
 
-Next you need to hook a load balancer up to your Auto Scaling Group.  We'll need to configure the Target Groups of the Elastic Load Balancer.
+Next you need to hook a load balancer up to your Auto Scaling Group.
 
-* Navigate to the `Target Groups Page <https://console.aws.amazon.com/ec2/v2/home?&region=us-east-1#TargetGroups:sort=targetGroupName>`_ and select the Target Group in your VPC.
-* Click "Edit"
+* Go to **EC2 Dashboard > Auto Scaling Group
+* Find your Auto Scaling Group
+* Click Edit
 
 Screenshot of Target Groups Edit
 
