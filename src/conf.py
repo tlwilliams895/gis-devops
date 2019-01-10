@@ -11,7 +11,7 @@ site_theme_options = {
     'bootswatch_theme': 'launchcode',
 }
 
-project = 'LaunchCode Curriculum Docs'
+project = 'LaunchCode: GIS DevOps'
 
 # -- Project information -----------------------------------------------------
 
