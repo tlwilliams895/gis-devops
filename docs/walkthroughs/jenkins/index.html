@@ -261,19 +261,22 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: Jenkins</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#our-continous-integration-goals">Our Continous Integration Goals</a></li>
 <li><a class="reference internal" href="#install-and-configure-jenkins">Install and Configure Jenkins</a><ul>
 <li><a class="reference internal" href="#configure-jenkins">Configure Jenkins</a></li>
 <li><a class="reference internal" href="#install-plugins">Install Plugins</a></li>
 <li><a class="reference internal" href="#create-a-jenkins-user">Create a Jenkins User</a></li>
+<li><a class="reference internal" href="#login-to-jenkins">Login to Jenkins</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#create-project-to-compile-airwaze">Create Project to Compile Airwaze</a><ul>
 <li><a class="reference internal" href="#configure-the-compile-project">Configure the Compile Project</a></li>
+<li><a class="reference internal" href="#let-s-build-it-and-see-what-happens">Let’s Build It and See What Happens</a></li>
 <li><a class="reference internal" href="#we-need-to-install-a-plugin">We Need to Install a Plugin</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#create-test-createjar-and-deploytos3-projects">Create Test, CreateJar, and DeployToS3 Projects</a></li>
+<li><a class="reference internal" href="#create-test-createjar-and-deliver-projects">Create Test, CreateJar, and Deliver Projects</a></li>
 <li><a class="reference internal" href="#edit-the-compile-project">Edit the Compile Project</a><ul>
 <li><a class="reference internal" href="#configure-test-project">Configure Test Project</a></li>
 <li><a class="reference internal" href="#run-the-compile-project-which-runs-the-test-project">Run the Compile Project, which runs the Test Project</a></li>
@@ -295,24 +298,41 @@
   <div class="section" id="walkthrough-jenkins">
 <span id="id1"></span><h1>Walkthrough: Jenkins<a class="headerlink" href="#walkthrough-jenkins" title="Permalink to this headline">¶</a></h1>
 <p>Follow along with the instructor as we configure Jenkins.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>For this to work your Airwaze tests need to pass.</p>
+<ul class="simple">
+<li>Open your Airwaze project and run the tests</li>
+<li>If they don’t pass, then fix them ;)</li>
+</ul>
+</div>
 <div class="section" id="our-continous-integration-goals">
 <h2>Our Continous Integration Goals<a class="headerlink" href="#our-continous-integration-goals" title="Permalink to this headline">¶</a></h2>
-<p>After a branch/story is merged into our <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. We want…
-1. Make sure the code compiles
-2. Makes sure the tests pass
-3. Deliver a <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file that is ready to be deployed</p>
+<p>After a branch/story is merged into our <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. We want…</p>
+<ol class="arabic simple">
+<li>Make sure the master branch still compiles after the merge</li>
+<li>Make sure the tests still pass</li>
+<li>Deliver a <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file that is ready to be deployed</li>
+</ol>
 </div>
 <div class="section" id="install-and-configure-jenkins">
 <h2>Install and Configure Jenkins<a class="headerlink" href="#install-and-configure-jenkins" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Download jenkins war from <a class="reference external" href="https://jenkins.io/download/">jenkins home page</a> by clicking <strong>Generic Java War</strong>  (note: scroll to the bottom of the page)</li>
-</ul>
-<p>Download Jenkins * Generic War</p>
+<ul>
+<li><p class="first">Go to <a class="reference external" href="https://jenkins.io/download/">jenkins home page</a></p>
+</li>
+<li><p class="first">Download jenkins war from  by clicking <strong>Generic Java War</strong>  (note: scroll to the bottom of the page)</p>
 <blockquote>
 <div><img alt="../../_images/download-jenkins.png" src="../../_images/download-jenkins.png" />
 </div></blockquote>
+</li>
+<li><p class="first">Move <code class="docutils literal notranslate"><span class="pre">jenkins.war</span></code> to folder <code class="docutils literal notranslate"><span class="pre">~/jenkins</span></code></p>
+</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ mkdir ~/jenkins
+$ mv ~/Downloads/jenkins.war ~/jenkins
+</pre></div>
+</div>
 <ul class="simple">
-<li>Copy the <code class="docutils literal notranslate"><span class="pre">jenkins.war</span></code> file the folder to <code class="docutils literal notranslate"><span class="pre">~/jenkins</span></code></li>
 <li>Now start jenkins via terminal</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ java -jar ~/jenkins/jenkins.war --httpPort=9090
@@ -325,9 +345,12 @@
 <div class="section" id="configure-jenkins">
 <h3>Configure Jenkins<a class="headerlink" href="#configure-jenkins" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li>Copy the password or access the file listed in the terminal and copy the password inside it</li>
+</ul>
+<img alt="../../_images/jenkins-password.png" src="../../_images/jenkins-password.png" />
+<ul class="simple">
 <li>Go to <a class="reference external" href="http://localhost:9090">http://localhost:9090</a></li>
 <li>You should see screen asking for an admin key</li>
-<li>Access the file listed in the terminal and copy the key inside it</li>
 <li>Paste that key into the input box</li>
 </ul>
 </div>
@@ -342,6 +365,19 @@
 <ul class="simple">
 <li>This will be how you login to jenkins going forward</li>
 <li>Be sure to remember the username and password</li>
+<li>All fields are required</li>
+<li>Click <strong>Save and Continue</strong></li>
+<li>Click <strong>Save</strong></li>
+<li>Click <strong>Start using Jenkins</strong><ul>
+<li>You may have to stop Jenkins and restart it</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="login-to-jenkins">
+<h3>Login to Jenkins<a class="headerlink" href="#login-to-jenkins" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Enter the username and password you just created</li>
 </ul>
 </div>
 </div>
@@ -365,36 +401,69 @@
 <li>Click <strong>Add build step</strong></li>
 <li>Click <strong>Invoke Gradle script</strong></li>
 <li>Enter <code class="docutils literal notranslate"><span class="pre">clean</span> <span class="pre">compileJava</span></code> into the <strong>Tasks</strong> input</li>
+<li>Click <strong>Save</strong><ul>
+<li>You will be taken to the <strong>Project Airwaze Compile</strong> page</li>
 </ul>
-<p>Now test out the build by clicking <strong>Build Now</strong></p>
+</li>
+</ul>
+</div>
+<div class="section" id="let-s-build-it-and-see-what-happens">
+<h3>Let’s Build It and See What Happens<a class="headerlink" href="#let-s-build-it-and-see-what-happens" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Can we build it? Yes we can!</li>
+<li>Click <strong>Build Now</strong> in the left menu<ul>
+<li>The #1 build can be seen running in the build window</li>
+</ul>
+</li>
+<li>Click on the <strong>#1</strong> in the <strong>Build History</strong> when the build has finished<ul>
+<li>You will be taken to the <strong>Build #1</strong> page</li>
+<li>This page has all the details for what happened on this build</li>
+</ul>
+</li>
+<li>Click on <strong>Console Output</strong> in the left menu<ul>
+<li>Here you can see exactly what commands were executed</li>
+</ul>
+</li>
+<li>Click <strong>Airwaze Compile</strong> in the top menu under the Jenkins logo<ul>
+<li>This will take you back to the Project page</li>
+<li>On the project page you can run another build or see the history for other builds</li>
+</ul>
+</li>
+</ul>
 </div>
 <div class="section" id="we-need-to-install-a-plugin">
 <h3>We Need to Install a Plugin<a class="headerlink" href="#we-need-to-install-a-plugin" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Go to your jenkins home page <code class="docutils literal notranslate"><span class="pre">http://localhost:9090</span></code></li>
+<li>Click <strong>Jenkins</strong> in the top menu, the menu below the Jenkins logo</li>
 <li>Click <strong>Manage Jenkins</strong> on the left</li>
 <li>Click <strong>Manage Plugins</strong> on the right</li>
 <li>Click <strong>Available</strong></li>
 <li>Enter <strong>Parameterized Trigger</strong> in search box</li>
-<li>Install <strong>Parameterized Trigger plugin</strong> without restarting</li>
+<li>Check the checkbox next to the one result that matches</li>
+<li>Click Install <strong>Parameterized Trigger plugin</strong> without restarting</li>
+<li>Click <strong>Back to Dashboard</strong></li>
 </ul>
 </div>
 </div>
-<div class="section" id="create-test-createjar-and-deploytos3-projects">
-<h2>Create Test, CreateJar, and DeployToS3 Projects<a class="headerlink" href="#create-test-createjar-and-deploytos3-projects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-test-createjar-and-deliver-projects">
+<h2>Create Test, CreateJar, and Deliver Projects<a class="headerlink" href="#create-test-createjar-and-deliver-projects" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Create three more <strong>Freestyle</strong> projects</li>
 <li><code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code></li>
-<li>Don’t do anything but give these a name. We will configure them next.</li>
+<li>Don’t do anything but give these a name and click <strong>Save</strong><ul>
+<li>We will configure them next</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="edit-the-compile-project">
 <h2>Edit the Compile Project<a class="headerlink" href="#edit-the-compile-project" title="Permalink to this headline">¶</a></h2>
 <p>We need the <strong>Compile Project</strong> to kick off the <strong>Test Project</strong> when it’s done. We also want the two projects to share the same work space, so that the repo doesn’t have to be checked out again.</p>
 <ul class="simple">
-<li>Navigate to project <code class="docutils literal notranslate"><span class="pre">http://localhost:9090/job/Airwaze%20Compile/</span></code></li>
+<li>Go back to the <strong>Dashboard</strong></li>
+<li>Click the <strong>Airwaze Compile</strong> Project</li>
 <li>Click <strong>Configure</strong></li>
 <li>Go to <strong>Post Build Actions</strong></li>
 <li>Select <strong>Trigger parameterized build on other projects</strong> from the select box</li>
@@ -472,6 +541,7 @@ String Parameter</p>
 <li>Same configuration as the <strong>Test Project</strong>, with these exceptions</li>
 <li>In the <strong>Build</strong> section run this gradle command <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code></li>
 <li>In <strong>Post Build Actions</strong> project to build enter <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code></li>
+<li>Se the same post build parameters as Test Project</li>
 <li>Do not have the test results copied as we did with the <strong>Test Project</strong></li>
 </ul>
 </div>
@@ -479,8 +549,13 @@ String Parameter</p>
 <h3>Setup S3 Bucket (Needed so we can configure the next project)<a class="headerlink" href="#setup-s3-bucket-needed-so-we-can-configure-the-next-project" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>If you haven’t already, you need to install <code class="docutils literal notranslate"><span class="pre">awscli</span></code>. Instructions can be found in the <a class="reference external" href="https://education.launchcode.org/gis-devops/studios/AWS3/">AWS3 Studio</a></li>
-<li>Create a new S3 bucket that will used for the <code class="docutils literal notranslate"><span class="pre">.jar</span></code> files your jenkins builds produce</li>
-<li>Be sure to create the new bucket with <strong>VERSIONING</strong> enabled</li>
+<li>Create a new S3 bucket that will be used for the <code class="docutils literal notranslate"><span class="pre">.jar</span></code> files your jenkins builds produce</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 mb s3://launchcode-gis-c3-blake-airwaze
+</pre></div>
+</div>
+<ul class="simple">
+<li>Go to the AWS website and enable <strong>VERSIONING</strong></li>
 </ul>
 <p>Make sure your s3 bucket shows up when you run this command in terminal:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 ls

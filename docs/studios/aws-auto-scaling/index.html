@@ -475,11 +475,6 @@ Be sure to note the name and VPC ID of the VPC that is created.</p>
 $ aws s3 ls s3://launchcode-gisdevops-c1-yourname/ # check to make sure it uploaded
 </pre></div>
 </div>
-<p>When we run our initialization script later, the script will pull down the <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> file with this command::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 sync s3://launchcode-gisdevops-c1-yourname/ /opt/airwaze
-</pre></div>
-</div>
-<p>You can also go to <strong>Services &gt; S3</strong> and find your S3 bucket and look at it’s contents</p>
 </div>
 </div>
 <div class="section" id="create-an-ec2-to-populate-the-database">
@@ -492,7 +487,7 @@ $ aws s3 ls s3://launchcode-gisdevops-c1-yourname/ # check to make sure it uploa
 </ul>
 </li>
 </ul>
-<img alt="../../_images/ec2-vpc-subnet.png" src="../../_images/ec2-vpc-subnet.png" />
+<img alt="../../_images/ec2-vpc-subnet2.png" src="../../_images/ec2-vpc-subnet2.png" />
 <ul class="simple">
 <li>Once the server is up, SSH into the server and run the following commands:</li>
 </ul>
@@ -584,7 +579,7 @@ ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airw
 <div><img alt="../../_images/auto_scale_instance_size.png" src="../../_images/auto_scale_instance_size.png" />
 </div></blockquote>
 <p>There are several important configurations that have to be made on the <strong>Configure Details</strong> screen.</p>
-<p>The moist important is the User data.  The <strong>User data</strong> is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.</p>
+<p>The most important configuration is the User data in Advanced Details.  The <strong>User data</strong> is the script that runs as the server starts up.  This script creates the proper directories, configures systemd, and launches the app. Additionally, the app pulls down a copy of the jar file from S3.</p>
 <p>There are two pieces of data to change in the <strong>User data</strong> script:</p>
 <ul class="simple">
 <li>Copy the <strong>User Data script</strong> that is provided below and paste it into an editor</li>
@@ -696,10 +691,11 @@ systemctl start airwaze.service
 <blockquote>
 <div><img alt="../../_images/auto_scaling_instances_tab.png" src="../../_images/auto_scaling_instances_tab.png" />
 </div></blockquote>
-<p>Next you need to hook a load balancer up to your Auto Scaling Group.  We’ll need to configure the Target Groups of the Elastic Load Balancer.</p>
+<p>Next you need to hook a load balancer up to your Auto Scaling Group.</p>
 <ul class="simple">
-<li>Navigate to the <a class="reference external" href="https://console.aws.amazon.com/ec2/v2/home?&amp;region=us-east-1#TargetGroups:sort=targetGroupName">Target Groups Page</a> and select the Target Group in your VPC.</li>
-<li>Click “Edit”</li>
+<li>Go to <a href="#id1"><span class="problematic" id="id2">**</span></a>EC2 Dashboard &gt; Auto Scaling Group</li>
+<li>Find your Auto Scaling Group</li>
+<li>Click Edit</li>
 </ul>
 <p>Screenshot of Target Groups Edit</p>
 <blockquote>

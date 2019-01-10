@@ -282,12 +282,23 @@
 $ cd gradle-walkthrough
 </pre></div>
 </div>
+<p>Check if the gradle command is installed by running:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ gradle -version
+
+(if command not found)
+$ brew update
+$ brew install gradle
+</pre></div>
+</div>
 <p>Initialize the project as a Gradle project using the Java application template::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ gradle init --type java-application
 </pre></div>
 </div>
+<p>Screenshot of questions asked by <cite>java init</cite>. Note this may look different if your version of Gradle is different.</p>
+<img alt="../../_images/gradle-java-init.png" src="../../_images/gradle-java-init.png" />
 <p>Open the project in an editor and have a look around to see what Gradle created for you::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ code .
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(this will open the current folder in the Visual Studio Code app, if code is on your path)
+$ code .
 </pre></div>
 </div>
 <p><strong>Answer these questions:</strong></p>
