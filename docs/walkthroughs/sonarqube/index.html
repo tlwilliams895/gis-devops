@@ -296,28 +296,28 @@ keep our code consistent between developers and hopefully more secure and stable
 <li>Go to <a class="reference external" href="https://www.sonarqube.org">https://www.sonarqube.org</a></li>
 <li>Click <strong>Download</strong></li>
 <li>Choose the <strong>LTS Release</strong></li>
-<li>Unzip the downloaded file to <code class="docutils literal notranslate"><span class="pre">~/sonarqube-6.7.1</span></code>. (Note your version may vary)</li>
-<li>Open a terminal and run this command <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">~/sonarqube-6.7.1/bin/macosx-universal-64/sonar.sh</span> <span class="pre">start</span></code></li>
+<li>Unzip the downloaded file to <code class="docutils literal notranslate"><span class="pre">~/sonarqube-7.5</span></code>. (Note your version may vary)</li>
+<li>Open a terminal and run this command <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">~/sonarqube-7.5/bin/macosx-universal-64/sonar.sh</span> <span class="pre">start</span></code></li>
 <li>Now go to this address in your browser: <code class="docutils literal notranslate"><span class="pre">http:localhost:9000</span></code></li>
-<li>Login with default user. username: admin password: admin</li>
+<li>Login with default user. username: admin password: admin (&lt;- example of not changing defaults. very bad!)</li>
 <li>Enter <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> as the project key</li>
 </ul>
 </div>
 <div class="section" id="configure-your-java-project">
 <h2>Configure your Java Project<a class="headerlink" href="#configure-your-java-project" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Add both of these to your <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
+<li>Add this line to <code class="docutils literal notranslate"><span class="pre">plubins</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
 </ul>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">plugins</span> <span class="p">{</span>
-    <span class="nx">id</span> <span class="s2">&quot;org.sonarqube&quot;</span> <span class="nx">version</span> <span class="s2">&quot;2.5&quot;</span>
-<span class="p">}</span>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id &quot;org.sonarqube&quot; version &quot;2.6&quot;
 </pre></div>
 </div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">sonarqube</span> <span class="p">{</span>
-    <span class="nx">properties</span> <span class="p">{</span>
-    <span class="nx">property</span> <span class="s2">&quot;sonar.projectKey&quot;</span><span class="p">,</span> <span class="s2">&quot;airwaze-studio&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<ul class="simple">
+<li>Will look like this after</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plugins {
+      id &quot;com.github.sgnewson.gradle-jenkins-test&quot; version &quot;0.5&quot;
+      id &quot;org.sonarqube&quot; version &quot;2.6&quot;
+}
 </pre></div>
 </div>
 </div>
