@@ -24,7 +24,7 @@ Spring Boot 2 requires Gradle version 4.4 or newer.
 
 Open the file ``gradle/wrapper/gradle-wrapper.properties`` and find the line that defines ``distributionUrl``. If URL references an older version of Gradle, update it: ::
 
-	distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-bin.zip
+    distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-bin.zip
 
 .. tip:: You can check your work up to this point by opening the *Gradle* pane in IntelliJ and hitting the *Refresh All Gradle Builds* button (at top-left). Then open the *Build* pane and make sure there are now errors.
 
@@ -60,7 +60,7 @@ Previously, ``JpaRepository.findOne`` would return ``null`` when given the ID of
 
 With the new Spring Data release, ``JpaRepository.findOne`` was renamed ``JpaRepository.getOne``, and the new method has the behavior that it throws an exception if an item with the given ID does not exist.
 
-In situations where ``JpaRepository.findOne`` was used in conjunction with a ``null`` check (such as ``ItemRestControllerTests.testDeleteItem`` and the ``DELETE`` method of ``ItemRestController``), update your code to use ``existsById``.
+In situations where ``JpaRepository.findOne`` was used in conjunction with a ``null`` check (such as ``ItemRestControllerTests.testDeleteItem`` and the ``DELETE`` method of ``ItemRestController``), update your code to use the new ``existsById`` method.
 
 .. tip:: To check your work up to this point, re-run the ``build`` task to ensure the build successfully completes.
 
