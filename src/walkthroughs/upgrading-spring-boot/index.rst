@@ -26,7 +26,7 @@ Open the file ``gradle/wrapper/gradle-wrapper.properties`` and find the line tha
 
     distributionUrl=https\://services.gradle.org/distributions/gradle-4.4-bin.zip
 
-.. tip:: You can check your work up to this point by opening the *Gradle* pane in IntelliJ and hitting the *Refresh All Gradle Builds* button (at top-left). Then open the *Build* pane and make sure there are now errors.
+.. tip:: You can check your work up to this point by opening the *Gradle* pane in IntelliJ and hitting the *Refresh All Gradle Builds* button (at top-left). Then open the *Build* pane and make sure there are no errors.
 
 Using New Repository Methods
 ===============================
