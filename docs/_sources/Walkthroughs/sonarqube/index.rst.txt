@@ -30,7 +30,7 @@ Install and Configure Sonarqube
 
 * Go to `https://www.sonarqube.org <https://www.sonarqube.org>`_
 * Click **Download**
-* Choose the **LTS Release**
+* Choose the latest vesion **Community Edition 7.5**
 * Unzip the downloaded file to ``~/sonarqube-7.5``. (Note your version may vary)
 * Open a terminal and run this command ``$ ~/sonarqube-7.5/bin/macosx-universal-64/sonar.sh start``
 * Now go to this address in your browser: ``http:localhost:9000``
