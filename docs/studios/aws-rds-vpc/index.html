@@ -272,6 +272,7 @@
 <li><a class="reference internal" href="#create-ec2-instance-with-user-data-script">4) Create EC2 Instance with User Data Script</a></li>
 <li><a class="reference internal" href="#setup-app-and-data-on-the-ec2-instance">5) Setup App and Data on the EC2 Instance</a><ul>
 <li><a class="reference internal" href="#we-need-a-one-time-setup-of-the-database">We Need a One Time Setup of the Database</a></li>
+<li><a class="reference internal" href="#start-the-airwaze-service">Start the Airwaze Service</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#configure-the-security-group">6) Configure the Security Group</a><ul>
@@ -721,6 +722,7 @@ ALTER TABLE route OWNER to airwaze_user;
 <p>Now that the tables are created, you need to fill them with data.</p>
 <ul class="simple">
 <li>Run the following commands to copy from your CSV files into the database. (You’ll find the password along with the user you just created above).</li>
+<li>TIP: Copy these statement to a code editor and adjust them to work with your RDS</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
 ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c &quot;\copy route(src, src_id, dst, dst_id, airline, route_geom) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/routes.csv
@@ -728,6 +730,9 @@ ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaz
 ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c &quot;\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER &#39;,&#39; CSV HEADER&quot; &lt; /home/ubuntu/Airports.csv
 </pre></div>
 </div>
+</div>
+<div class="section" id="start-the-airwaze-service">
+<h3>Start the Airwaze Service<a class="headerlink" href="#start-the-airwaze-service" title="Permalink to this headline">¶</a></h3>
 <p>At this point, everything is ready to go on this instance. You no longer need (or want) to connect to the database directly so uninstall the <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> client package. Then you may start the Airwaze service.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(on remote server)
 ubuntu$ sudo apt-get remove postgresql
@@ -735,6 +740,14 @@ ubuntu$ sudo systemctl start airwaze.service
 </pre></div>
 </div>
 <p>You can run <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> as you learned in the previous studio to check the logs for your running service.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(keeps the log open and shows you any new entries, that&#39;s what the -f does)
+ubuntu$ journalctl -f -u airwaze
+
+(opens the entire log, starting at the top. you can go forward and back with ctrl f and ctrl b)
+(note to see the latest issue with your service you will need to go to the END of the log file)
+ubuntu$ journalctl -u airwaze
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="configure-the-security-group">

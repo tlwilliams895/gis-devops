@@ -424,6 +424,7 @@ Now that you have your instance set up and ready, you need to log into the serve
 Now that the tables are created, you need to fill them with data.
 
 * Run the following commands to copy from your CSV files into the database. (You'll find the password along with the user you just created above).
+* TIP: Copy these statement to a code editor and adjust them to work with your RDS
 
 ::
 
@@ -432,6 +433,8 @@ Now that the tables are created, you need to fill them with data.
 
   ubuntu$ psql -h rds-instance.us-east-2.rds.amazonaws.com -d airwaze_db -U airwaze_user -c "\copy airport(airport_id, name, city, country, faa_code, icao, altitude, time_zone, airport_lat_long) from STDIN DELIMITER ',' CSV HEADER" < /home/ubuntu/Airports.csv
 
+Start the Airwaze Service
+-------------------------
 
 At this point, everything is ready to go on this instance. You no longer need (or want) to connect to the database directly so uninstall the ``postgresql`` client package. Then you may start the Airwaze service.
 
@@ -442,6 +445,15 @@ At this point, everything is ready to go on this instance. You no longer need (o
   ubuntu$ sudo systemctl start airwaze.service
 
 You can run ``journalctl`` as you learned in the previous studio to check the logs for your running service.
+
+::
+
+  (keeps the log open and shows you any new entries, that's what the -f does)
+  ubuntu$ journalctl -f -u airwaze
+
+  (opens the entire log, starting at the top. you can go forward and back with ctrl f and ctrl b)
+  (note to see the latest issue with your service you will need to go to the END of the log file)
+  ubuntu$ journalctl -u airwaze
 
 6) Configure the Security Group
 ===============================
