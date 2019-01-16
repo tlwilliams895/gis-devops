@@ -318,7 +318,7 @@ Screenshot of Auto Scale configuration
   .. image:: /_static/images/day3/auto_scale_config.png
 
 * Click "Next: Configure Security Group"
-* On the Security Group screen, choose the ``WebAppSecurityGroup`` from your VPC.  The key is that you want to have ports 22 and 80 open on the machines that you are running.
+* On the Security Group screen, choose the ``WebAppSecurityGroup`` from your VPC.  The key is that you want to have ports 22 and 8080 open on the machines that you are running.
 * Click "Review"
 * Click "Create Launch configuration"
 
