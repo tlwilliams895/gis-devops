@@ -291,7 +291,10 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#create-the-auto-scale-group">6) Create the Auto Scale Group</a></li>
-<li><a class="reference internal" href="#placing-load-on-your-app">7) Placing Load on your App</a></li>
+<li><a class="reference internal" href="#placing-load-on-your-app">7) Placing Load on your App</a><ul>
+<li><a class="reference internal" href="#beware-of-the-load-test-tool">Beware of the Load Test Tool</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -645,7 +648,7 @@ systemctl start airwaze.service
 </div>
 <p>Screenshot of Auto Scale security groups</p>
 <blockquote>
-<div><img alt="../../_images/auto_scale_security_groups.png" src="../../_images/auto_scale_security_groups.png" />
+<div><img alt="../../_images/auto_scale_security_groupsv3.png" src="../../_images/auto_scale_security_groupsv3.png" />
 </div></blockquote>
 </div>
 </div>
@@ -712,7 +715,10 @@ systemctl start airwaze.service
 <div class="section" id="placing-load-on-your-app">
 <h2>7) Placing Load on your App<a class="headerlink" href="#placing-load-on-your-app" title="Permalink to this headline">¶</a></h2>
 <p>Next, you want to test that your autoscaling is working properly.</p>
-<p>You are going to be using a Node library called <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a>.
+<p>Go to the public DNS of your ELB and hit refresh many times. You can even go to that address in multiple browsers at the same time. You are trying to send as many requests as possible to your ELB.</p>
+<div class="section" id="beware-of-the-load-test-tool">
+<h3>Beware of the Load Test Tool<a class="headerlink" href="#beware-of-the-load-test-tool" title="Permalink to this headline">¶</a></h3>
+<p>You can <strong>optionally</strong> use a Node library called <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a>.
 Loadtest measures the average latency time of a concurrent requests to a server.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -724,11 +730,12 @@ Loadtest measures the average latency time of a concurrent requests to a server.
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo npm install -g loadtest
 </pre></div>
 </div>
-<p>Next, you can run a command to put load on the server. The following command runs 200 requests per second sending 10 concurrent results to the server at a time.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>loadtest -c 10 --rps 200 http://internal-airwa-WebAp-1CT34V4AX36U0-774969334.us-east-1.elb.amazonaws.com
+<p>Next, you can run a command to put load on the server. The following command runs 3 requests per second sending 3 concurrent results to the server at a time.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(this starts 3 threads and sends 3 requests a second, don&#39;t run this for very long!)
+loadtest -c 3 --rps 3 http://internal-airwa-WebAp-1CT34V4AX36U0-774969334.us-east-1.elb.amazonaws.com
 </pre></div>
 </div>
-<p>How many auto scaling servers does it take to accomodate a load of 200 requests per second?</p>
+</div>
 </div>
 </div>
 

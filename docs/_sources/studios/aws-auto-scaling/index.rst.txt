@@ -368,7 +368,7 @@ User Data Script (remember to change certain parts)
 
 Screenshot of Auto Scale security groups
 
-  .. image:: /_static/images/day3/auto_scale_security_groups.png
+  .. image:: /_static/images/day3/auto_scale_security_groupsv3.png
 
 6) Create the Auto Scale Group
 ==============================
@@ -436,7 +436,13 @@ Screenshot of Target Groups select target
 
 Next, you want to test that your autoscaling is working properly.
 
-You are going to be using a Node library called `loadtest <https://www.npmjs.com/package/loadtest>`_.
+Go to the public DNS of your ELB and hit refresh many times. You can even go to that address in multiple browsers at the same time. You are trying to send as many requests as possible to your ELB.
+
+
+Beware of the Load Test Tool
+----------------------------
+
+You can **optionally** use a Node library called `loadtest <https://www.npmjs.com/package/loadtest>`_.
 Loadtest measures the average latency time of a concurrent requests to a server.
 
 .. note::
@@ -450,8 +456,9 @@ To install `loadtest <https://www.npmjs.com/package/loadtest>`_ install the foll
   $ sudo npm install -g loadtest
 
 
-Next, you can run a command to put load on the server. The following command runs 200 requests per second sending 10 concurrent results to the server at a time.::
+Next, you can run a command to put load on the server. The following command runs 3 requests per second sending 3 concurrent results to the server at a time.::
 
-  loadtest -c 10 --rps 200 http://internal-airwa-WebAp-1CT34V4AX36U0-774969334.us-east-1.elb.amazonaws.com
+  (this starts 3 threads and sends 3 requests a second, don't run this for very long!)
+  loadtest -c 3 --rps 3 http://internal-airwa-WebAp-1CT34V4AX36U0-774969334.us-east-1.elb.amazonaws.com
 
-How many auto scaling servers does it take to accomodate a load of 200 requests per second?
+
