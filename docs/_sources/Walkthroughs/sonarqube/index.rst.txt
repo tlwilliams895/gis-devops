@@ -33,27 +33,32 @@ Install and Configure Sonarqube
 * Choose the latest vesion **Community Edition 7.5**
 * Unzip the downloaded file to ``~/sonarqube-7.5``. (Note your version may vary)
 * Open a terminal and run this command ``$ ~/sonarqube-7.5/bin/macosx-universal-64/sonar.sh start``
-* Now go to this address in your browser: ``http:localhost:9000``
+* Now go to this address in your browser: ``http://localhost:9000``
 * Login with default user. username: admin password: admin (<- example of not changing defaults. very bad!)
 * Enter ``airwaze`` as the project key
 
 Configure your Java Project
 ===========================
 
-* Add this line to ``plubins`` in ``build.gradle`` file
+* Add this line to ``plugins`` in ``build.gradle`` file
 
 ::
 
     id "org.sonarqube" version "2.6"
 
-* Will look like this after
+* Will look like this after. Be sure to add the ``plugins`` section above the ``apply plugins`` section.
 
 ::
 
   plugins {
-	id "com.github.sgnewson.gradle-jenkins-test" version "0.5"
-	id "org.sonarqube" version "2.6"
+    (note you may not have this first plugin)
+    id "com.github.sgnewson.gradle-jenkins-test" version "0.5"
+    id "org.sonarqube" version "2.6"
   }
+
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  apply plugin: 'org.springframework.boot'
 
 Run Sonarqube Gradle Task
 =========================

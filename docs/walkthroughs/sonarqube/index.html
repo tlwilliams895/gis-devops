@@ -298,7 +298,7 @@ keep our code consistent between developers and hopefully more secure and stable
 <li>Choose the latest vesion <strong>Community Edition 7.5</strong></li>
 <li>Unzip the downloaded file to <code class="docutils literal notranslate"><span class="pre">~/sonarqube-7.5</span></code>. (Note your version may vary)</li>
 <li>Open a terminal and run this command <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">~/sonarqube-7.5/bin/macosx-universal-64/sonar.sh</span> <span class="pre">start</span></code></li>
-<li>Now go to this address in your browser: <code class="docutils literal notranslate"><span class="pre">http:localhost:9000</span></code></li>
+<li>Now go to this address in your browser: <code class="docutils literal notranslate"><span class="pre">http://localhost:9000</span></code></li>
 <li>Login with default user. username: admin password: admin (&lt;- example of not changing defaults. very bad!)</li>
 <li>Enter <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> as the project key</li>
 </ul>
@@ -306,18 +306,23 @@ keep our code consistent between developers and hopefully more secure and stable
 <div class="section" id="configure-your-java-project">
 <h2>Configure your Java Project<a class="headerlink" href="#configure-your-java-project" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Add this line to <code class="docutils literal notranslate"><span class="pre">plubins</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
+<li>Add this line to <code class="docutils literal notranslate"><span class="pre">plugins</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id &quot;org.sonarqube&quot; version &quot;2.6&quot;
 </pre></div>
 </div>
 <ul class="simple">
-<li>Will look like this after</li>
+<li>Will look like this after. Be sure to add the <code class="docutils literal notranslate"><span class="pre">plugins</span></code> section above the <code class="docutils literal notranslate"><span class="pre">apply</span> <span class="pre">plugins</span></code> section.</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plugins {
-      id &quot;com.github.sgnewson.gradle-jenkins-test&quot; version &quot;0.5&quot;
-      id &quot;org.sonarqube&quot; version &quot;2.6&quot;
+  (note you may not have this first plugin)
+  id &quot;com.github.sgnewson.gradle-jenkins-test&quot; version &quot;0.5&quot;
+  id &quot;org.sonarqube&quot; version &quot;2.6&quot;
 }
+
+apply plugin: &#39;java&#39;
+apply plugin: &#39;eclipse&#39;
+apply plugin: &#39;org.springframework.boot&#39;
 </pre></div>
 </div>
 </div>
