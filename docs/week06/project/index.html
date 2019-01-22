@@ -344,10 +344,10 @@
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Be sure to stop your home brew Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">stop</span> <span class="pre">Elasticsearch</span></code></p>
+<p class="last">Be sure to stop your home brew Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">stop</span> <span class="pre">elasticsearch</span></code></p>
 </div>
 <p>Create the container (NOTE: An id will be returned):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker create -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot;  -e &quot;xpack.security.enabled=false&quot; docker.elastic.co/Elasticsearch/Elasticsearch:5.6.0
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker create -p 9200:9200 -p 9300:9300 -e &quot;discovery.type=single-node&quot;  -e &quot;xpack.security.enabled=false&quot; docker.elastic.co/elasticsearch/elasticsearch:5.6.0
 63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8 &lt;----- this is returned after the above command, it&#39;s id of the container that is created COPY THIS SOMEHWERE
 </pre></div>
 </div>

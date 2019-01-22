@@ -62,12 +62,12 @@ To run Elasticsearch locally, we are going to be using Docker:
 
 .. note::
 
-  Be sure to stop your home brew Elasticsearch by running ``brew services stop Elasticsearch``
+  Be sure to stop your home brew Elasticsearch by running ``brew services stop elasticsearch``
 
 
 Create the container (NOTE: An id will be returned)::
 
-  $ docker create -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  -e "xpack.security.enabled=false" docker.elastic.co/Elasticsearch/Elasticsearch:5.6.0
+  $ docker create -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node"  -e "xpack.security.enabled=false" docker.elastic.co/elasticsearch/elasticsearch:5.6.0
   63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8 <----- this is returned after the above command, it's id of the container that is created COPY THIS SOMEHWERE
 
 Start the container::
