@@ -57,8 +57,8 @@ We need two new dependencies in order to connect ES with Spring Boot.
 
 ::
 
-    compile('org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE')
-	compile('net.java.dev.jna:jna')
+   compile('org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE')
+   compile('net.java.dev.jna:jna')
 
 
 .. warning::
