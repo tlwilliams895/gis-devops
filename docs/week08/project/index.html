@@ -7,9 +7,9 @@
     <title>Week 8 - Project Week: Zika Mission Control Part 4 &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
-    <link rel="stylesheet" type="text/css" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
+    <link rel="stylesheet" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" type="text/css" />
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -210,7 +210,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#new-stuff">New Stuff</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setup-locally">Setup Locally</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-in-the-cloud">Setup in the Cloud</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-to-aws">Deploying to AWS</a></li>
 </ul>
 </li>
 </ul>
@@ -271,7 +271,7 @@
 </li>
 <li><a class="reference internal" href="#setup-locally">Setup Locally</a><ul>
 <li><a class="reference internal" href="#docker-commands">Docker Commands</a></li>
-<li><a class="reference internal" href="#create-postgis-container">Create Postgis Container</a></li>
+<li><a class="reference internal" href="#create-postgis-container">Create PostGIS Container</a></li>
 <li><a class="reference internal" href="#create-geoserver-container">Create GeoServer Container</a></li>
 <li><a class="reference internal" href="#create-elasticsearch-container">Create Elasticsearch Container</a></li>
 <li><a class="reference internal" href="#enable-cors-in-geoserver">Enable CORS in GeoServer</a></li>
@@ -284,7 +284,7 @@
 <li><a class="reference internal" href="#update-report-post-endpoint">Update Report POST Endpoint</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#setup-in-the-cloud">Setup in the Cloud</a><ul>
+<li><a class="reference internal" href="#deploying-to-aws">Deploying to AWS</a><ul>
 <li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 </ul>
 </li>
@@ -300,16 +300,16 @@
 <span id="week8-project"></span><h1>Week 8 - Project Week: Zika Mission Control Part 4<a class="headerlink" href="#week-8-project-week-zika-mission-control-part-4" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>Read Mission Briefing 4 : <a class="reference external" href="../../_static/images/zika_mission_briefing_4.pdf">pdf</a></p>
+<p><a class="reference external" href="../../_static/images/zika_mission_briefing_4.pdf">Read Mission Briefing 4</a></p>
 <p>You will be adding GeoServer to your local and deployed application. This will require several steps, including setting up a GeoServer instance, connecting it to a PostGIS store, and creating a new layer from existing data.</p>
 <p>After you have this new system fully set up, you’ll be able to add additional layers in GeoServer and show them using OpenLayers.</p>
 </div>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Use GeoServer to display the report features</li>
-<li>You have incorporated additional layers using external data (examples: elevation, temperature, natural earth)</li>
-<li>You have deployed your application to AWS, including a EC2 instance running GeoServer</li>
+<li>Use GeoServer to display the report features.</li>
+<li>Incorporate additional layers using external data (e.g. elevation, temperature, natural earth).</li>
+<li>Deploy your application to AWS, including a EC2 instance running GeoServer.</li>
 </ol>
 </div>
 <div class="section" id="new-stuff">
@@ -317,26 +317,26 @@
 <p>There are a few differences in this project compared to <code class="docutils literal notranslate"><span class="pre">week6-starter</span></code>.  You may want to copy over certain changes instead of merging.</p>
 <ul class="simple">
 <li><a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/tree/week8-starter">Week 8 Starter</a></li>
-<li><a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/compare/week6-starter...week8-starter">Week8-starer compared to Week6-starter</a></li>
+<li><a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/compare/week6-starter...week8-starter">week8-starer / week6-starter diff</a></li>
 </ul>
 <div class="section" id="specific-changes">
 <h3>Specific Changes<a class="headerlink" href="#specific-changes" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>Using three docker containers locally<ul>
 <li>GeoServer container</li>
-<li>Postgis container</li>
+<li>PostGIS container</li>
 <li>Elasticsearch container</li>
 </ul>
 </li>
-<li>Partially normalized repot data<ul>
+<li>Partially normalized report data<ul>
 <li>Relationship between <code class="docutils literal notranslate"><span class="pre">Report</span></code> and <code class="docutils literal notranslate"><span class="pre">Location</span></code> via <code class="docutils literal notranslate"><span class="pre">Report.state</span></code></li>
-<li>Setup by hibernate relationship</li>
-<li>Populated by <code class="docutils literal notranslate"><span class="pre">POST``ing</span> <span class="pre">to</span> <span class="pre">endpoint</span> <span class="pre">``/report/assignStates</span></code></li>
+<li>Setup by Hibernate relationship</li>
+<li>Populated by making a <code class="docutils literal notranslate"><span class="pre">POST</span></code> request to endpoint <code class="docutils literal notranslate"><span class="pre">/report/assignStates</span></code></li>
 </ul>
 </li>
 <li><code class="docutils literal notranslate"><span class="pre">cloud/geoserver_userdata.sh</span></code> is provided to create a GeoServer instance in AWS</li>
-<li>Running Tomcat on a different port locally by adding <cite>server.port={SERVER_PORT}</cite> to <code class="docutils literal notranslate"><span class="pre">application.properties</span></code><ul>
-<li>Then set env variable <code class="docutils literal notranslate"><span class="pre">SERVER_PORT=9090</span></code></li>
+<li>Running Tomcat on a different port locally by adding <code class="docutils literal notranslate"><span class="pre">server.port={SERVER_PORT}</span></code> to <code class="docutils literal notranslate"><span class="pre">application.properties</span></code><ul>
+<li>Then set the environment variable <code class="docutils literal notranslate"><span class="pre">SERVER_PORT=9090</span></code></li>
 </ul>
 </li>
 </ol>
@@ -344,7 +344,7 @@
 </div>
 <div class="section" id="setup-locally">
 <h2>Setup Locally<a class="headerlink" href="#setup-locally" title="Permalink to this headline">¶</a></h2>
-<p>Before getting started, be sure you <strong>DON’T</strong> have your Boundless virtual machine running. We’ll be using the same ports as the VM, so if it is running there will be conflicts. It is not enough to pause the VM; you must shut it down completely or select <strong>Save State</strong>.</p>
+<p>Before getting started, <strong>be sure that your Boundless virtual machine is not running</strong>. We will be using the same port as the VM with one of our Docker containers, so if it is running there will be conflicts. It is not enough to pause the VM; you must shut it down completely or select <em>Save State</em>.</p>
 <div class="section" id="docker-commands">
 <h3>Docker Commands<a class="headerlink" href="#docker-commands" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -362,13 +362,15 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">If your containers start crashing with exit code 137, it’s because they are out of memory. You need to incrase the memory given to Docker by going to Peferences, Advanced. See screen shot below.</p>
 </div>
-<p>Docker Memory Configuration</p>
+<div class="figure" id="id1">
 <img alt="../../_images/docker-memory.png" src="../../_images/docker-memory.png" />
+<p class="caption"><span class="caption-text">Docker Memory Configuration</span></p>
+</div>
 </div>
 <div class="section" id="create-postgis-container">
-<h3>Create Postgis Container<a class="headerlink" href="#create-postgis-container" title="Permalink to this headline">¶</a></h3>
+<h3>Create PostGIS Container<a class="headerlink" href="#create-postgis-container" title="Permalink to this headline">¶</a></h3>
 <p>First create a file <code class="docutils literal notranslate"><span class="pre">env.list</span></code> in the root of your <code class="docutils literal notranslate"><span class="pre">zika-cdc-dashboard</span></code> project folder, with the same contents as <a class="reference external" href="https://gist.github.com/chrisbay/d74442a8e8707111472a742832d76796">our envlist file</a>.</p>
-<p>Next run this command to create a postgis container referencing <code class="docutils literal notranslate"><span class="pre">env.list</span></code> from above.  We have to use a docker instance of Postgis so that our GeoServer docker instance and our local web application can both connect to Postgis.:</p>
+<p>Next run this command to create a postgis container referencing <code class="docutils literal notranslate"><span class="pre">env.list</span></code> from above. We have to use a docker instance of Postgis so that our GeoServer docker instance and our local web application can both connect to Postgis.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker run --name &quot;postgis&quot; -p 5432:5432 -d -t --env-file ./env.list kartoza/postgis:9.4-2.1
 </pre></div>
 </div>
@@ -376,11 +378,11 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">In <code class="docutils literal notranslate"><span class="pre">env.list</span></code> you’ll see that the <code class="docutils literal notranslate"><span class="pre">POSTGRES_DBNAME</span></code> environment variable is set to <code class="docutils literal notranslate"><span class="pre">zika</span></code>. This variable is supposed to set the name of our PostGIS-enabled database within the container to be <code class="docutils literal notranslate"><span class="pre">zika</span></code>. However, a bug in the Dockerfile for this image ignores the name, creating a database named <code class="docutils literal notranslate"><span class="pre">gis</span></code>.</p>
 </div>
-<p>Verify that the container is running by running <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code></p>
+<p>Verify that the container is running by running <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code>.</p>
 </div>
 <div class="section" id="create-geoserver-container">
 <h3>Create GeoServer Container<a class="headerlink" href="#create-geoserver-container" title="Permalink to this headline">¶</a></h3>
-<p>We are going to “link” the postgis and geoserver containers. That tells docker that these containers need to be able to communicate.:</p>
+<p>We are going to link the PostGIS and GeoServer containers. That tells docker that these containers need to be able to communicate.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker run --name &quot;geoserver&quot; --link postgis:postgis -p 8080:8080 -d -t kartoza/geoserver
 </pre></div>
 </div>
@@ -388,7 +390,7 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">If the <code class="docutils literal notranslate"><span class="pre">postgis</span></code> docker image is not running when starting the geoserver, the link will fail.</p>
 </div>
-<p>When it’s container is running, you can access this GeoServer instance the same way in which you previously accessed GeoServer locally when running the Boundless virtual machine. It will be running on port 8080 (try <a class="reference external" href="http://localhost:8080/geoserver">http://localhost:8080/geoserver</a>) with credientials <strong>admin / geoserver</strong>.</p>
+<p>When its container is running, you can access this GeoServer instance the same way in which you previously accessed GeoServer locally when running the Boundless virtual machine. It will be running on port 8080 (try <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/geoserver</span></code>) with credientials <strong>admin / geoserver</strong>.</p>
 </div>
 <div class="section" id="create-elasticsearch-container">
 <h3>Create Elasticsearch Container<a class="headerlink" href="#create-elasticsearch-container" title="Permalink to this headline">¶</a></h3>
@@ -397,13 +399,16 @@
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">If Docker has no more than 2G of memory allocated for container use, you may have issues with the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> container crashing due to lack of memory. If this happens, increase memorgy to at least 3G by going to <strong>Docker &gt; Preferences &gt; Advanced</strong>.</p>
+<p class="last">If Docker has no more than 2G of memory allocated for container use, you may have issues with the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> container crashing due to lack of memory. If this happens, increase memorgy to at least 3G by going to <em>Docker &gt; Preferences &gt; Advanced</em>.</p>
 </div>
 </div>
 <div class="section" id="enable-cors-in-geoserver">
 <h3>Enable CORS in GeoServer<a class="headerlink" href="#enable-cors-in-geoserver" title="Permalink to this headline">¶</a></h3>
-<p>You may want to wait until you actually see a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a> error in your browser’s JavaScript console before performing these steps. A short summary is that the GeoServer web server needs to be configured to allow requests to come from a certain client.</p>
 <p>You’ll be making requests to the GeoServer container from a port other than the one on which GeoServer is running, which means CORS will come into play. Let’s enable cross-origin requests within GeoServer.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">You may want to wait until you actually see a <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a> error in your browser’s JavaScript console before performing these steps.</p>
+</div>
 <p>Open a shell within the Docker container and install a text editor (you can also install <code class="docutils literal notranslate"><span class="pre">nano</span></code> instead of <code class="docutils literal notranslate"><span class="pre">vim</span></code> if you want)::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker exec -it geoserver bash
 root@2992f761f41e:/usr/local/tomcat# apt-get update
@@ -425,11 +430,11 @@ root@2992f761f41e:/usr/local/tomcat# apt-get install vim
 <span class="nt">&lt;/filter-mapping&gt;</span>
 </pre></div>
 </div>
-<p>Save the file and exit. Then exit the docker container shell.:</p>
+<p>Save the file and exit. Then exit the docker container shell.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>root@2992f761f41e:# exit
 </pre></div>
 </div>
-<p>Stop and start the <code class="docutils literal notranslate"><span class="pre">geoserver</span></code> container::</p>
+<p>Stop and start the <code class="docutils literal notranslate"><span class="pre">geoserver</span></code> container:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker stop geoserver
 $ docker start geoserver
 </pre></div>
@@ -438,7 +443,7 @@ $ docker start geoserver
 </div>
 <div class="section" id="populate-container-postgis-database">
 <h3>Populate Container PostGIS Database<a class="headerlink" href="#populate-container-postgis-database" title="Permalink to this headline">¶</a></h3>
-<p>We need to load the report and location data into the <strong>postgis</strong> docker container.  We will copy over the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files to the container and execute psql copy commands.</p>
+<p>We need to load the report and location data into the <code class="docutils literal notranslate"><span class="pre">postgis</span></code> docker container.  We will copy over the <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files to the container and execute psql copy commands.</p>
 <ul class="simple">
 <li>First, let’s change the paths referenced in the <code class="docutils literal notranslate"><span class="pre">/src/main/resources/data.sql</span></code> file to be <code class="docutils literal notranslate"><span class="pre">'/tmp/locations.csv'</span></code> and <code class="docutils literal notranslate"><span class="pre">'/tmp/all_reports.csv'</span></code></li>
 <li>Then copy the files to the <code class="docutils literal notranslate"><span class="pre">postgis</span></code> contianer:</li>
@@ -452,16 +457,16 @@ $ docker cp all_reports.csv postgis:/tmp
 </pre></div>
 </div>
 <p>Remember that <code class="docutils literal notranslate"><span class="pre">data.sql</span></code> makes use of the <code class="docutils literal notranslate"><span class="pre">unaccent</span></code> function, which is part of the <code class="docutils literal notranslate"><span class="pre">unaccent</span></code> Postgres extension. While our Docker image came with the PostGIS extension installed, the <code class="docutils literal notranslate"><span class="pre">unaccent</span></code> extention is <strong>not</strong> present. Let’s fix that.</p>
-<p>Also <code class="docutils literal notranslate"><span class="pre">data.sql</span></code> will not actually be executed by spring data. If you rename it to <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> and edit property <code class="docutils literal notranslate"><span class="pre">spring.jpa.hibernate.ddl-auto</span></code> in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code>. If <code class="docutils literal notranslate"><span class="pre">spring.jpa.hibernate.ddl-auto</span></code> is either <code class="docutils literal notranslate"><span class="pre">create</span></code> or <code class="docutils literal notranslate"><span class="pre">create-drop</span></code>, then <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> will run. After you database has been initialized you can change the value to <code class="docutils literal notranslate"><span class="pre">validate</span></code>. More here on <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html">Spring Data - Database Initialization</a></p>
+<p>Also <code class="docutils literal notranslate"><span class="pre">data.sql</span></code> will not actually be executed by Spring Data. If you rename it to <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> and edit property <code class="docutils literal notranslate"><span class="pre">spring.jpa.hibernate.ddl-auto</span></code> in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code>. If <code class="docutils literal notranslate"><span class="pre">spring.jpa.hibernate.ddl-auto</span></code> is either <code class="docutils literal notranslate"><span class="pre">create</span></code> or <code class="docutils literal notranslate"><span class="pre">create-drop</span></code>, then <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> will run. After you database has been initialized you can change the value to <code class="docutils literal notranslate"><span class="pre">validate</span></code>. More here on <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html">Spring Data - Database Initialization</a></p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Stop all instances of Postgres on your local machine. Stop the Postgress App in the top bar and stop the service being ran by brew. The only Postgres we want running is the one inside of docker. If you get an error below that the <code class="docutils literal notranslate"><span class="pre">gis</span></code> database doesn’t exist, then you are connected to a different local Postgres.</p>
+<p class="last">Stop all instances of Postgres on your local machine. Stop the Postgress App in the top bar and stop the service being managed by <code class="docutils literal notranslate"><span class="pre">brew</span></code>. The only Postgres we want running is the one inside of the Docker container. If you get an error below that the <code class="docutils literal notranslate"><span class="pre">gis</span></code> database doesn’t exist, then you are connected to the wrong Postgres instance.</p>
 </div>
-<p>Fire up <code class="docutils literal notranslate"><span class="pre">psql</span></code>, note the password for zika_app_user is “somethingsensible”::</p>
+<p>Fire up <code class="docutils literal notranslate"><span class="pre">psql</span></code>, note the password for <code class="docutils literal notranslate"><span class="pre">zika_app_user</span></code> is <code class="docutils literal notranslate"><span class="pre">somethingsensible</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ psql -h localhost -p 5432 -U zika_app_user -d gis
 </pre></div>
 </div>
-<p>And then install the extension::</p>
+<p>And then install the extension:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># create extension unaccent;
 </pre></div>
 </div>
@@ -494,7 +499,7 @@ $ docker cp all_reports.csv postgis:/tmp
 <div class="section" id="database-and-layer-setup">
 <h3>Database and Layer Setup<a class="headerlink" href="#database-and-layer-setup" title="Permalink to this headline">¶</a></h3>
 <p>These views will allow us to create a layer in GeoServer that will allow us to query location geometries with case totals by date.</p>
-<p>Using either <code class="docutils literal notranslate"><span class="pre">psql</span></code> or PSequel to connect to the containter PostGIS database (recall that it is accessible on port 5432 from your local environment). Create two views:</p>
+<p>Using either <code class="docutils literal notranslate"><span class="pre">psql</span></code> or a Posgrest graphical client to connect to the PostGIS database running inside the Docker container (recall that it is accessible on port 5432 from your local environment). Create two views:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">view</span> <span class="n">cases_by_state_and_date</span> <span class="k">AS</span>
   <span class="k">SELECT</span> <span class="n">state_id</span><span class="p">,</span><span class="n">report_date</span><span class="p">,</span><span class="k">sum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">cases</span> <span class="k">FROM</span> <span class="n">report</span>
   <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">state_id</span><span class="p">,</span><span class="n">report_date</span><span class="p">;</span>
@@ -534,9 +539,9 @@ $ docker cp all_reports.csv postgis:/tmp
 <p>There is a controller in <code class="docutils literal notranslate"><span class="pre">ReportController</span></code> called <code class="docutils literal notranslate"><span class="pre">saveNewReport</span></code> that saves creates a new report object and saves it in both data stores (Postgresql and Elasticsearch). Update this method so that it looks up and assigns the corresponding <code class="docutils literal notranslate"><span class="pre">Location</span></code> object (if one exists) for the given report.</p>
 </div>
 </div>
-<div class="section" id="setup-in-the-cloud">
-<h2>Setup in the Cloud<a class="headerlink" href="#setup-in-the-cloud" title="Permalink to this headline">¶</a></h2>
-<p>For deploying GeoServer on AWS you will be using a <code class="docutils literal notranslate"><span class="pre">t2.small</span></code> CentOS machine.</p>
+<div class="section" id="deploying-to-aws">
+<h2>Deploying to AWS<a class="headerlink" href="#deploying-to-aws" title="Permalink to this headline">¶</a></h2>
+<p>To deploy GeoServer on AWS you will be using a <code class="docutils literal notranslate"><span class="pre">t2.small</span></code> CentOS machine.</p>
 <p>Paste the contents of shell script <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week8-starter/cloud/geoserver_userdata.sh">geoserver_userdata.sh</a> into the “Advanced Details” details section of “Configure Instance” to create the instace.  The script installs Apache Tomcat, downloads the Boundless Suite WAR, and deploys the geoserver WAR the Apache Tomcat server.  The deployed geoserver can be reached on <code class="docutils literal notranslate"><span class="pre">http://{your</span> <span class="pre">IP}:8080/geoserver</span></code>.</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
@@ -544,7 +549,7 @@ $ docker cp all_reports.csv postgis:/tmp
 </div>
 <div class="section" id="bonus-mission">
 <h3>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h3>
-<p>When you complete all of these instructions, check out the <a class="reference external" href="https://github.com/ngageoint/elasticgeo">ElasticGeo Plugin</a>. is an Elasticsearch plugin that allows you to integrate Elasticsearch into Geoserver.  The great thing is that that you can do Elasticsearch queries directly through Geoserver via WFS calls.  Here are the setup instructions and instructions on how to make the calls. <a class="reference external" href="https://github.com/ngageoint/elasticgeo/blob/master/gs-web-elasticsearch/doc/index.rst">ElasticGeo Instructions</a></p>
+<p>When you complete all of these instructions, check out the <a class="reference external" href="https://github.com/ngageoint/elasticgeo">ElasticGeo Plugin</a>. It is an Elasticsearch plugin that allows you to integrate Elasticsearch into Geoserver. The great thing is that you can do Elasticsearch queries directly through Geoserver via WFS calls. Here are the setup instructions and instructions on how to make the calls: <a class="reference external" href="https://github.com/ngageoint/elasticgeo/blob/master/gs-web-elasticsearch/doc/index.rst">ElasticGeo Instructions</a></p>
 </div>
 </div>
 </div>

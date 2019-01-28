@@ -7,7 +7,7 @@ Week 8 - Project Week: Zika Mission Control Part 4
 Overview
 ========
 
-Read Mission Briefing 4 : `pdf <../../_static/images/zika_mission_briefing_4.pdf>`_
+`Read Mission Briefing 4 <../../_static/images/zika_mission_briefing_4.pdf>`_
 
 
 You will be adding GeoServer to your local and deployed application. This will require several steps, including setting up a GeoServer instance, connecting it to a PostGIS store, and creating a new layer from existing data.
@@ -17,9 +17,9 @@ After you have this new system fully set up, you'll be able to add additional la
 Requirements
 ============
 
-1. Use GeoServer to display the report features
-2. You have incorporated additional layers using external data (examples: elevation, temperature, natural earth)
-3. You have deployed your application to AWS, including a EC2 instance running GeoServer
+1. Use GeoServer to display the report features.
+2. Incorporate additional layers using external data (e.g. elevation, temperature, natural earth).
+3. Deploy your application to AWS, including a EC2 instance running GeoServer.
 
 New Stuff
 =========
@@ -27,7 +27,7 @@ New Stuff
 There are a few differences in this project compared to ``week6-starter``.  You may want to copy over certain changes instead of merging.
 
 * `Week 8 Starter <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/tree/week8-starter>`_
-* `Week8-starer compared to Week6-starter <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/compare/week6-starter...week8-starter>`_
+* `week8-starer / week6-starter diff <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/compare/week6-starter...week8-starter>`_
 
 Specific Changes
 ----------------
@@ -35,25 +35,25 @@ Specific Changes
 1. Using three docker containers locally
 
    * GeoServer container
-   * Postgis container
+   * PostGIS container
    * Elasticsearch container
 
-2. Partially normalized repot data
+2. Partially normalized report data
 
    * Relationship between ``Report`` and ``Location`` via ``Report.state``
-   * Setup by hibernate relationship
-   * Populated by ``POST``ing to endpoint ``/report/assignStates``
+   * Setup by Hibernate relationship
+   * Populated by making a ``POST`` request to endpoint ``/report/assignStates``
 
 3. ``cloud/geoserver_userdata.sh`` is provided to create a GeoServer instance in AWS
 
-4. Running Tomcat on a different port locally by adding `server.port={SERVER_PORT}` to ``application.properties``
+4. Running Tomcat on a different port locally by adding ``server.port={SERVER_PORT}`` to ``application.properties``
    
-   * Then set env variable ``SERVER_PORT=9090``
+   * Then set the environment variable ``SERVER_PORT=9090``
 
 Setup Locally
 =============
 
-Before getting started, be sure you **DON'T** have your Boundless virtual machine running. We'll be using the same ports as the VM, so if it is running there will be conflicts. It is not enough to pause the VM; you must shut it down completely or select **Save State**.
+Before getting started, **be sure that your Boundless virtual machine is not running**. We will be using the same port as the VM with one of our Docker containers, so if it is running there will be conflicts. It is not enough to pause the VM; you must shut it down completely or select *Save State*.
 
 Docker Commands
 ---------------
@@ -72,30 +72,29 @@ Docker Commands
 
   If your containers start crashing with exit code 137, it's because they are out of memory. You need to incrase the memory given to Docker by going to Peferences, Advanced. See screen shot below.
 
-Docker Memory Configuration
+.. figure:: /_static/images/docker-memory.png
 
-.. image:: /_static/images/docker-memory.png
+   Docker Memory Configuration
 
-Create Postgis Container
+Create PostGIS Container
 ------------------------
 
 First create a file ``env.list`` in the root of your ``zika-cdc-dashboard`` project folder, with the same contents as `our envlist file <https://gist.github.com/chrisbay/d74442a8e8707111472a742832d76796>`_.
 
-Next run this command to create a postgis container referencing ``env.list`` from above.  We have to use a docker instance of Postgis so that our GeoServer docker instance and our local web application can both connect to Postgis.::
+Next run this command to create a postgis container referencing ``env.list`` from above. We have to use a docker instance of Postgis so that our GeoServer docker instance and our local web application can both connect to Postgis. ::
 
   $ docker run --name "postgis" -p 5432:5432 -d -t --env-file ./env.list kartoza/postgis:9.4-2.1
-
 
 .. warning::
 
   In ``env.list`` you'll see that the ``POSTGRES_DBNAME`` environment variable is set to ``zika``. This variable is supposed to set the name of our PostGIS-enabled database within the container to be ``zika``. However, a bug in the Dockerfile for this image ignores the name, creating a database named ``gis``.
 
-Verify that the container is running by running ``docker ps``
+Verify that the container is running by running ``docker ps``.
 
 Create GeoServer Container
 --------------------------
 
-We are going to "link" the postgis and geoserver containers. That tells docker that these containers need to be able to communicate.::
+We are going to link the PostGIS and GeoServer containers. That tells docker that these containers need to be able to communicate.::
 
   $ docker run --name "geoserver" --link postgis:postgis -p 8080:8080 -d -t kartoza/geoserver
 
@@ -103,7 +102,7 @@ We are going to "link" the postgis and geoserver containers. That tells docker t
 
   If the ``postgis`` docker image is not running when starting the geoserver, the link will fail.
 
-When it's container is running, you can access this GeoServer instance the same way in which you previously accessed GeoServer locally when running the Boundless virtual machine. It will be running on port 8080 (try http://localhost:8080/geoserver) with credientials **admin / geoserver**.
+When its container is running, you can access this GeoServer instance the same way in which you previously accessed GeoServer locally when running the Boundless virtual machine. It will be running on port 8080 (try ``http://localhost:8080/geoserver``) with credientials **admin / geoserver**.
 
 
 Create Elasticsearch Container
@@ -115,14 +114,14 @@ Create Elasticsearch Container
 
 .. warning::
 
-  If Docker has no more than 2G of memory allocated for container use, you may have issues with the ``elasticsearch`` container crashing due to lack of memory. If this happens, increase memorgy to at least 3G by going to **Docker > Preferences > Advanced**.
+  If Docker has no more than 2G of memory allocated for container use, you may have issues with the ``elasticsearch`` container crashing due to lack of memory. If this happens, increase memorgy to at least 3G by going to *Docker > Preferences > Advanced*.
 
 Enable CORS in GeoServer
 ------------------------
 
-You may want to wait until you actually see a `CORS <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>`_ error in your browser's JavaScript console before performing these steps. A short summary is that the GeoServer web server needs to be configured to allow requests to come from a certain client.
-
 You'll be making requests to the GeoServer container from a port other than the one on which GeoServer is running, which means CORS will come into play. Let's enable cross-origin requests within GeoServer.
+
+.. tip:: You may want to wait until you actually see a `CORS <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>`_ error in your browser's JavaScript console before performing these steps.
 
 Open a shell within the Docker container and install a text editor (you can also install ``nano`` instead of ``vim`` if you want):::
 
@@ -147,11 +146,11 @@ Add the following XML just within the opening ``<web-app>`` tag:
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-Save the file and exit. Then exit the docker container shell.::
+Save the file and exit. Then exit the docker container shell. ::
 
   root@2992f761f41e:# exit
 
-Stop and start the ``geoserver`` container:::
+Stop and start the ``geoserver`` container: ::
 
   $ docker stop geoserver
   $ docker start geoserver
@@ -161,7 +160,7 @@ Now ``XHR``requests from your local zika app running on ``http://localhost:9090`
 Populate Container PostGIS Database
 -----------------------------------
 
-We need to load the report and location data into the **postgis** docker container.  We will copy over the ``.csv`` files to the container and execute psql copy commands.
+We need to load the report and location data into the ``postgis`` docker container.  We will copy over the ``.csv`` files to the container and execute psql copy commands.
 
 * First, let's change the paths referenced in the ``/src/main/resources/data.sql`` file to be ``'/tmp/locations.csv'`` and ``'/tmp/all_reports.csv'``
 * Then copy the files to the ``postgis`` contianer:
@@ -178,17 +177,17 @@ Verify that the files made it:::
 
 Remember that ``data.sql`` makes use of the ``unaccent`` function, which is part of the ``unaccent`` Postgres extension. While our Docker image came with the PostGIS extension installed, the ``unaccent`` extention is **not** present. Let's fix that.
 
-Also ``data.sql`` will not actually be executed by spring data. If you rename it to ``import.sql`` and edit property ``spring.jpa.hibernate.ddl-auto`` in ``application.properties``. If ``spring.jpa.hibernate.ddl-auto`` is either ``create`` or ``create-drop``, then ``import.sql`` will run. After you database has been initialized you can change the value to ``validate``. More here on `Spring Data - Database Initialization <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html>`_
+Also ``data.sql`` will not actually be executed by Spring Data. If you rename it to ``import.sql`` and edit property ``spring.jpa.hibernate.ddl-auto`` in ``application.properties``. If ``spring.jpa.hibernate.ddl-auto`` is either ``create`` or ``create-drop``, then ``import.sql`` will run. After you database has been initialized you can change the value to ``validate``. More here on `Spring Data - Database Initialization <https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html>`_
 
 .. warning::
 
-  Stop all instances of Postgres on your local machine. Stop the Postgress App in the top bar and stop the service being ran by brew. The only Postgres we want running is the one inside of docker. If you get an error below that the ``gis`` database doesn't exist, then you are connected to a different local Postgres.
+  Stop all instances of Postgres on your local machine. Stop the Postgress App in the top bar and stop the service being managed by ``brew``. The only Postgres we want running is the one inside of the Docker container. If you get an error below that the ``gis`` database doesn't exist, then you are connected to the wrong Postgres instance.
 
-Fire up ``psql``, note the password for zika_app_user is "somethingsensible":::
+Fire up ``psql``, note the password for ``zika_app_user`` is ``somethingsensible``: ::
 
   $ psql -h localhost -p 5432 -U zika_app_user -d gis
 
-And then install the extension:::
+And then install the extension: ::
 
   # create extension unaccent;
 
@@ -229,7 +228,7 @@ Database and Layer Setup
 
 These views will allow us to create a layer in GeoServer that will allow us to query location geometries with case totals by date.
 
-Using either ``psql`` or PSequel to connect to the containter PostGIS database (recall that it is accessible on port 5432 from your local environment). Create two views:
+Using either ``psql`` or a Posgrest graphical client to connect to the PostGIS database running inside the Docker container (recall that it is accessible on port 5432 from your local environment). Create two views:
 
 .. code-block:: sql
 
@@ -242,7 +241,6 @@ Using either ``psql`` or PSequel to connect to the containter PostGIS database (
 
   CREATE view states_with_cases_by_date AS
     SELECT * FROM location INNER JOIN cases_by_state_and_date ON location.id=cases_by_state_and_date.state_id;
-
 
 Create Data Store and Layers in GeoServer
 -----------------------------------------
@@ -273,10 +271,10 @@ Update Report POST Endpoint
 There is a controller in ``ReportController`` called ``saveNewReport`` that saves creates a new report object and saves it in both data stores (Postgresql and Elasticsearch). Update this method so that it looks up and assigns the corresponding ``Location`` object (if one exists) for the given report.
 
 
-Setup in the Cloud
-==================
+Deploying to AWS
+================
 
-For deploying GeoServer on AWS you will be using a ``t2.small`` CentOS machine.
+To deploy GeoServer on AWS you will be using a ``t2.small`` CentOS machine.
 
 Paste the contents of shell script `geoserver_userdata.sh <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/blob/week8-starter/cloud/geoserver_userdata.sh>`_ into the "Advanced Details" details section of "Configure Instance" to create the instace.  The script installs Apache Tomcat, downloads the Boundless Suite WAR, and deploys the geoserver WAR the Apache Tomcat server.  The deployed geoserver can be reached on ``http://{your IP}:8080/geoserver``.
 
@@ -287,4 +285,4 @@ Paste the contents of shell script `geoserver_userdata.sh <https://gitlab.com/La
 Bonus Mission
 -------------
 
-When you complete all of these instructions, check out the `ElasticGeo Plugin <https://github.com/ngageoint/elasticgeo>`_. is an Elasticsearch plugin that allows you to integrate Elasticsearch into Geoserver.  The great thing is that that you can do Elasticsearch queries directly through Geoserver via WFS calls.  Here are the setup instructions and instructions on how to make the calls. `ElasticGeo Instructions <https://github.com/ngageoint/elasticgeo/blob/master/gs-web-elasticsearch/doc/index.rst>`_
+When you complete all of these instructions, check out the `ElasticGeo Plugin <https://github.com/ngageoint/elasticgeo>`_. It is an Elasticsearch plugin that allows you to integrate Elasticsearch into Geoserver. The great thing is that you can do Elasticsearch queries directly through Geoserver via WFS calls. Here are the setup instructions and instructions on how to make the calls: `ElasticGeo Instructions <https://github.com/ngageoint/elasticgeo/blob/master/gs-web-elasticsearch/doc/index.rst>`_

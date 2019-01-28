@@ -417,7 +417,7 @@ Screenshot of the Instances tab
 
 Next you need to hook a load balancer up to your Auto Scaling Group.
 
-* Go to **EC2 Dashboard > Auto Scaling Group
+* Go to *EC2 Dashboard > Auto Scaling Group*
 * Find your Auto Scaling Group
 * Click Edit
 
