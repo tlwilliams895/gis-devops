@@ -280,7 +280,7 @@ Paste the contents of shell script `geoserver_userdata.sh <https://gitlab.com/La
 
 .. tip::
 
-  Remember the default username for Geoserver is ``admin`` and the default password is ``Geoserver``.
+  Remember the default username for Geoserver is ``admin`` and the default password is ``geoserver``.
 
 Bonus Mission
 -------------
