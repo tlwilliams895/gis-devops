@@ -425,6 +425,10 @@ $ docker stop 63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8
 <p>Now that we have installed, and created a new Docker container for our elasticsearch, we need to bring in the new changes that will configure our application to work with this new containerized version of Elasticsearch.</p>
 <p>There will be a few differences in this project compared to previous week’s studios/project.  You may want to copy over certain changes instead of merging <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/tree/week6-starter">Week 6 Starter</a>. NOTE that the starter branch only contains config, property, and aws scripts. The starter branch does not contain a solution for week 4.</p>
 <p>Review the changes by looking at this branch comparison: <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/compare/week4-starter...week6-starter">week4 compared to week6</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">One of the changes updates our spring plugin from version 1.5.2 to 2.0.2. This changes the gradlewrapper of our project, which is what defines the gradle commands we can run. Last week we used the gradle command bootRepackage to build our .jar file. This week we will be using the gradle command bootJar to build our .jar file.</p>
+</div>
 </div>
 <div class="section" id="update-new-envrionment-variables">
 <h4>4) Update new envrionment variables<a class="headerlink" href="#update-new-envrionment-variables" title="Permalink to this headline">¶</a></h4>
@@ -556,7 +560,10 @@ $ docker stop 63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8
 </ul>
 <p>CentOS Image</p>
 <img alt="../../_images/centos-image.png" src="../../_images/centos-image.png" />
-<p>After all of this, it is a great idea to ssh into your CentOS EC2, to make sure the configuration completed the steps listed above. If so run <cite>journalctl -u zika</cite> to see if the zika app started without any errors. At this point if you have errors, make sure your zika.config file matches the RDS, and EC2 information. Use telnet, and ssh to make sure the CentOS, Ubuntu, and RDS servers can all talk to each other.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">After all of this, it is a great idea to ssh into your CentOS EC2, to make sure the configuration completed the steps listed above. If so run <cite>journalctl -u zika</cite> to see if the zika app started without any errors. At this point if you have errors, make sure your zika.config file matches the RDS, and EC2 information. Use telnet, and ssh to make sure the CentOS, Ubuntu, and RDS servers can all talk to each other.</p>
+</div>
 </div>
 </div>
 <div class="section" id="milestone-3-access-your-application-via-a-live-url">
@@ -564,10 +571,10 @@ $ docker stop 63918ba7994482d94bdaf7bbc2005d91e0ac2f02a88039ebe2521ed9d9e8e8b8
 <ol class="arabic simple">
 <li>View base map at live url</li>
 <li>Add extensions to RDS (Postgres)</li>
+<li>Populate RDS (Postgres)</li>
+<li>Seed elasticsearch</li>
+<li>View fully functioning app</li>
 </ol>
-<p>3. Populate RDS (Postgres)
-3. Seed elasticsearch
-4. View fully functioning app</p>
 <div class="section" id="view-base-map-at-live-url">
 <h4>1) View base map at live url<a class="headerlink" href="#view-base-map-at-live-url" title="Permalink to this headline">¶</a></h4>
 <p>Now that we setup our VPC, and spun up an RDS, CentOS EC2, and Ubuntu EC2. Our application should run.</p>
@@ -626,24 +633,11 @@ $ psql -h YOUR-RDS-ENDPOINT -p 5432 -U YOUR-RDS-MASTER-USER -d YOUR-RDS-DB-NAME 
 <p>These two commands copy our all_reports.csv, and locations.csv file into the database on our RDS. We should make sure it copied everything correctly, let’s drop back into our RDS psqlcli.</p>
 <p>From the psqlcli inside your RDS:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ SELECT COUNT(*) FROM reports;
-
-
-$ curl http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count
+$ SELECT COUNT(*) FROM locations;
 </pre></div>
 </div>
-<p>) FROM locations;</p>
-<blockquote>
-<div><p>$ curl <a class="reference external" href="http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count">http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count</a></p>
-<p>$ curl <a class="reference external" href="http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count">http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count</a></p>
-</div></blockquote>
-<p>otal of 250 locations, and over 240000 reports. If you don’t see this number of reports, drop the report, and location tables, stop and start your zika service and check again.</p>
-<blockquote>
-<div><p>$ curl <a class="reference external" href="http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count">http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count</a></p>
-<p>$ curl <a class="reference external" href="http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count">http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count</a></p>
-</div></blockquote>
-<p>step to get our RDS Postgres database setup, we need to unaccent 2 columns on our location table. Our web app is expecting this column to be unaccented (not contain hyphens), so we need to add one final extension, and then update two columns.</p>
-<blockquote>
-<div>$ curl <a class="reference external" href="http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count">http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count</a></div></blockquote>
+<p>You should see a total of 250 locations, and over 240000 reports. If you don’t see this number of reports, drop the report, and location tables, stop and start your zika service, run the copy commands again and check again.</p>
+<p>We have one final thing we need to do for our database to work correctly. We need to unaccent two of the columns on our location table. Our web app is expecting location names to not contain hyphens, but our tables currently have locations with hyphens. We need to unaccent them!</p>
 <p>From the psqlcli inside your RDS (after your tables have been populated):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ CREATE EXTENSION unaccent;
 $ UPDATE location SET name_0_normalized = unaccent(name_0);

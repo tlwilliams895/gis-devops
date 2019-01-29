@@ -131,6 +131,10 @@ There will be a few differences in this project compared to previous week's stud
 
 Review the changes by looking at this branch comparison: `week4 compared to week6 <https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard/compare/week4-starter...week6-starter>`_
 
+.. note::
+
+  One of the changes updates our spring plugin from version 1.5.2 to 2.0.2. This changes the gradlewrapper of our project, which is what defines the gradle commands we can run. Last week we used the gradle command bootRepackage to build our .jar file. This week we will be using the gradle command bootJar to build our .jar file. 
+
 4) Update new envrionment variables
 ___________________________________
 
@@ -298,7 +302,7 @@ CentOS Image
 
 .. note::
 
-After all of this, it is a great idea to ssh into your CentOS EC2, to make sure the configuration completed the steps listed above. If so run `journalctl -u zika` to see if the zika app started without any errors. At this point if you have errors, make sure your zika.config file matches the RDS, and EC2 information. Use telnet, and ssh to make sure the CentOS, Ubuntu, and RDS servers can all talk to each other.
+  After all of this, it is a great idea to ssh into your CentOS EC2, to make sure the configuration completed the steps listed above. If so run `journalctl -u zika` to see if the zika app started without any errors. At this point if you have errors, make sure your zika.config file matches the RDS, and EC2 information. Use telnet, and ssh to make sure the CentOS, Ubuntu, and RDS servers can all talk to each other.
 
 Milestone 3 - Access your application via a live URL
 ----------------------------------------------------
@@ -306,8 +310,8 @@ Milestone 3 - Access your application via a live URL
 1. View base map at live url
 2. Add extensions to RDS (Postgres)
 3. Populate RDS (Postgres)
-3. Seed elasticsearch
-4. View fully functioning app
+4. Seed elasticsearch
+5. View fully functioning app
 
 1) View base map at live url
 ____________________________
@@ -382,29 +386,12 @@ These two commands copy our all_reports.csv, and locations.csv file into the dat
 From the psqlcli inside your RDS::
 
   $ SELECT COUNT(*) FROM reports;
+  $ SELECT COUNT(*) FROM locations;
 
 
-  $ curl http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count
-) FROM locations;
+You should see a total of 250 locations, and over 240000 reports. If you don't see this number of reports, drop the report, and location tables, stop and start your zika service, run the copy commands again and check again.
 
-
-  $ curl http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count
-
-
-
-  $ curl http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count
-otal of 250 locations, and over 240000 reports. If you don't see this number of reports, drop the report, and location tables, stop and start your zika service and check again.
-
-
-  $ curl http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count
-
-
-
-  $ curl http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count
-step to get our RDS Postgres database setup, we need to unaccent 2 columns on our location table. Our web app is expecting this column to be unaccented (not contain hyphens), so we need to add one final extension, and then update two columns.
-
-
-  $ curl http://YOUR-UBUNTU-PRIVATE-IP-ADDRESS:9200/report/_count
+We have one final thing we need to do for our database to work correctly. We need to unaccent two of the columns on our location table. Our web app is expecting location names to not contain hyphens, but our tables currently have locations with hyphens. We need to unaccent them!
 
 From the psqlcli inside your RDS (after your tables have been populated)::
 
