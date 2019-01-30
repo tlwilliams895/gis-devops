@@ -27,7 +27,7 @@ To complete this project, your app should meet the following requirements:
 3. Setup a LaunchConfiguration to spin up new Web App EC2 instances
 4. You setup a VPC for your Web app, RDS, and Elasticsearch
 5. Elasticsearch is hosted on an EC2 inside your VPC
-6. Your application can consistently handle 300 requests per second
+6. Your VPC can Auto Scale under load
 7. Jenkins watches your repo pushes a release to S3 if all of the following pass:
 
    * All tests pass
