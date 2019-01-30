@@ -7,9 +7,7 @@ Week 4 - Project Week: Zika Mission Control Part 2
 Project
 =======
 
-Mission Briefing 2 : `pdf <../../_static/images/zika_mission_briefing_2.pdf>`_
-
-
+ `Mission Briefing 2 <../../_static/images/zika_mission_briefing_2.pdf>`_
 
 Overview
 ========
@@ -21,7 +19,7 @@ Your goal is to extend the CDC Zika Dashboard that you built last week. The scie
 3. CDC scientists have the ability to perform fuzzy search across all of the data.
 
 .. note::
-  
+
   Remember, in Agile a story is just a "guaranteed conversation". Stories usually don't contain all of the details necessary to complete the task and that's why it is important to follow up with the client and talk through the exact needs of your customer.
 
 Getting the code
@@ -37,16 +35,15 @@ Getting the code
 
   If you decide to back out of a merge and try something else you can always reset your branch to it's previous state.
   The below command destroys all non committed changes in your local branch and reverts back to the previous commit. ``$ git reset --hard``
-  
 
 What's new in the code
 ======================
 
 * CSV files ``data/locations.csv`` and ``data/all_reports.csv``
-* ``src/main/resources/data.sql`` copies the csv data into Postgis when SpringBoot is ran
+* ``src/main/resources/import.sql`` copies the csv data into PostGIS when SpringBoot starts up (as long as `spring.jpa.hibernate.ddl-auto` is `create` or `create-drop` in `application.properties`)
 * Location data now contains multi-polygons instead of a single point
 * Elasticsearch dependencies and Repositories have been added
-* ``ESController`` contains an endpoint to populate Elasticsearch with all data in your Postgis db
+* ``ESController`` contains an endpoint to populate Elasticsearch with all data in your PostGIS db
 
 Requirements
 ============
@@ -55,8 +52,8 @@ Use TDD when implementing these requirements
 
 1. Build out a ``/api/report`` endpoint that accepts a POST containing Report JSON in the body.
 
-   * Store the Report created from JSON in PostGis
-   * Store the ReportDocument created from JSON in Elasticearch
+   * Store the Report created from JSON in PostGIS
+   * Store the ReportDocument created from JSON in Elasticsearch
 
 2. Show Zika report data for a certain date on a map via OpenLayers (reports grouped by state for a certain date)
 3. When a feature is clicked show the related report data (like in week 2 zika project)
@@ -83,12 +80,12 @@ Suggested Endpoints/Parameters
 
 .. note::
 
-    To index all of the reports in Postgis into Elasticsearch use the following command: ``$ curl -XPOST http://localhost:8080/api/_cluster/reindex``
+    To index all of the reports in PostGIS into Elasticsearch use the following command: ``$ curl -XPOST http://localhost:8080/api/_cluster/reindex``
 
 Database Setup
 ==============
 
-Install the following extension on your Postgis databases (don't forget your test db):::
+Install the following extension on your PostGIS databases (don't forget your test db):::
 
   # CREATE EXTENSION unaccent;
 

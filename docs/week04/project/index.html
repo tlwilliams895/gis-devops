@@ -7,13 +7,12 @@
     <title>Week 4 - Project Week: Zika Mission Control Part 2 &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
-    <link rel="stylesheet" type="text/css" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
+    <link rel="stylesheet" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" type="text/css" />
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -289,7 +288,8 @@
 <span id="week4-project"></span><h1>Week 4 - Project Week: Zika Mission Control Part 2<a class="headerlink" href="#week-4-project-week-zika-mission-control-part-2" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="project">
 <h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
-<p>Mission Briefing 2 : <a class="reference external" href="../../_static/images/zika_mission_briefing_2.pdf">pdf</a></p>
+<blockquote>
+<div><a class="reference external" href="../../_static/images/zika_mission_briefing_2.pdf">Mission Briefing 2</a></div></blockquote>
 </div>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
@@ -324,10 +324,10 @@ The below command destroys all non committed changes in your local branch and re
 <h2>What’s new in the code<a class="headerlink" href="#what-s-new-in-the-code" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>CSV files <code class="docutils literal notranslate"><span class="pre">data/locations.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">data/all_reports.csv</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">src/main/resources/data.sql</span></code> copies the csv data into Postgis when SpringBoot is ran</li>
+<li><code class="docutils literal notranslate"><span class="pre">src/main/resources/import.sql</span></code> copies the csv data into PostGIS when SpringBoot starts up (as long as <cite>spring.jpa.hibernate.ddl-auto</cite> is <cite>create</cite> or <cite>create-drop</cite> in <cite>application.properties</cite>)</li>
 <li>Location data now contains multi-polygons instead of a single point</li>
 <li>Elasticsearch dependencies and Repositories have been added</li>
-<li><code class="docutils literal notranslate"><span class="pre">ESController</span></code> contains an endpoint to populate Elasticsearch with all data in your Postgis db</li>
+<li><code class="docutils literal notranslate"><span class="pre">ESController</span></code> contains an endpoint to populate Elasticsearch with all data in your PostGIS db</li>
 </ul>
 </div>
 <div class="section" id="requirements">
@@ -335,8 +335,8 @@ The below command destroys all non committed changes in your local branch and re
 <p>Use TDD when implementing these requirements</p>
 <ol class="arabic simple">
 <li>Build out a <code class="docutils literal notranslate"><span class="pre">/api/report</span></code> endpoint that accepts a POST containing Report JSON in the body.<ul>
-<li>Store the Report created from JSON in PostGis</li>
-<li>Store the ReportDocument created from JSON in Elasticearch</li>
+<li>Store the Report created from JSON in PostGIS</li>
+<li>Store the ReportDocument created from JSON in Elasticsearch</li>
 </ul>
 </li>
 <li>Show Zika report data for a certain date on a map via OpenLayers (reports grouped by state for a certain date)</li>
@@ -365,12 +365,12 @@ The below command destroys all non committed changes in your local branch and re
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">To index all of the reports in Postgis into Elasticsearch use the following command: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XPOST</span> <span class="pre">http://localhost:8080/api/_cluster/reindex</span></code></p>
+<p class="last">To index all of the reports in PostGIS into Elasticsearch use the following command: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XPOST</span> <span class="pre">http://localhost:8080/api/_cluster/reindex</span></code></p>
 </div>
 </div>
 <div class="section" id="database-setup">
 <h2>Database Setup<a class="headerlink" href="#database-setup" title="Permalink to this headline">¶</a></h2>
-<p>Install the following extension on your Postgis databases (don’t forget your test db)::</p>
+<p>Install the following extension on your PostGIS databases (don’t forget your test db)::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># CREATE EXTENSION unaccent;
 </pre></div>
 </div>
