@@ -157,7 +157,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#database-setup">Database Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
 </ul>
 </li>
@@ -271,7 +270,6 @@
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 <li><a class="reference internal" href="#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
 <li><a class="reference internal" href="#database-setup">Database Setup</a></li>
-<li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
 <li><a class="reference internal" href="#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a><ul>
 <li><a class="reference internal" href="#adding-boundary-geometries">Adding Boundary Geometries</a></li>
 </ul>
@@ -347,9 +345,9 @@ The below command destroys all non committed changes in your local branch and re
 <li>And/Or Features present on map should change to be only those that match report date and fuzzy search term</li>
 </ul>
 </li>
-<li>Make sure you application is secure from sql injection attacks <a class="reference external" href="https://www.owasp.org/index.php/SQL_Injection">https://www.owasp.org/index.php/SQL_Injection</a> by validating the query parameters</li>
-<li>Create API docs with springfox and swagger</li>
-<li>Use Eslint and Airbnb ruleset to make sure your JS meets team standards</li>
+<li>Make sure you application is secure from <a class="reference external" href="https://www.owasp.org/index.php/SQL_Injection">SQL injection attacks</a> by validating the query parameters.</li>
+<li>Create API docs with Springfox.</li>
+<li>Use Eslint and Airbnb ruleset to make sure your JS meets team standards.</li>
 </ol>
 </div>
 <div class="section" id="suggested-endpoints-parameters">
@@ -360,8 +358,8 @@ The below command destroys all non committed changes in your local branch and re
 </ul>
 </li>
 <li><code class="docutils literal notranslate"><span class="pre">api/report?search=brzil</span></code> should return GeoJSON created from Elasticsearch filtered using fuzzy search</li>
-<li><code class="docutils literal notranslate"><span class="pre">api/report?search=brzil&amp;date=2016-05-14</span></code> should use both the <code class="docutils literal notranslate"><span class="pre">date</span></code> and <code class="docutils literal notranslate"><span class="pre">search</span></code> query parameters to limit the results3.</li>
-<li><code class="docutils literal notranslate"><span class="pre">api/report/unique-dates</span></code> returns json containing all unique report dates</li>
+<li><code class="docutils literal notranslate"><span class="pre">api/report?search=brzil&amp;date=2016-05-14</span></code> should use both the <code class="docutils literal notranslate"><span class="pre">date</span></code> and <code class="docutils literal notranslate"><span class="pre">search</span></code> query parameters to limit the results.</li>
+<li><code class="docutils literal notranslate"><span class="pre">api/report/unique-dates</span></code> returns JSON containing all unique report dates</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -370,27 +368,21 @@ The below command destroys all non committed changes in your local branch and re
 </div>
 <div class="section" id="database-setup">
 <h2>Database Setup<a class="headerlink" href="#database-setup" title="Permalink to this headline">¶</a></h2>
-<p>Install the following extension on your PostGIS databases (don’t forget your test db)::</p>
+<p>Install the following extension on your PostGIS databases (don’t forget to do the same in your test db)::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># CREATE EXTENSION unaccent;
 </pre></div>
 </div>
-</div>
-<div class="section" id="bonus-missions">
-<h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>No bonsuses. Do as much as you can this week. We will build on this project in all upcoming project weeks.</li>
-</ul>
 </div>
 <div class="section" id="walkthrough-on-creating-the-location-data">
 <h2>Walkthrough on Creating the Location Data<a class="headerlink" href="#walkthrough-on-creating-the-location-data" title="Permalink to this headline">¶</a></h2>
 <p>All the spatial data you need is already included in the starter branch. However before starting to code this project please go through this walkthrough to see how it was created.  This will provide some insight into creating and configuring spatial data such as country and state boundaries.</p>
 <div class="section" id="adding-boundary-geometries">
 <h3>Adding Boundary Geometries<a class="headerlink" href="#adding-boundary-geometries" title="Permalink to this headline">¶</a></h3>
-<p>The data that the scientists want to ingest is summarized in the CDC Zika Repository <a class="reference external" href="https://github.com/cdcepi/zika">https://github.com/cdcepi/zika</a>. If you open up the data for Argentina <a class="reference external" href="https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv">https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv</a>, you’ll notice that the data looks pretty similiar to last mission, except that there is no latitude or longitude to GeoCode each row; however, each row does have a location field. We should be able to indentify those locations to actual data points on a map.</p>
-<p>You Google for “political boundaries geojson” and you find gadm.org <a class="reference external" href="http://www.gadm.org/">http://www.gadm.org/</a>. country serves up geospatial data about administrative boundaries for each state. Go to the GADM Downloads Page <a class="reference external" href="http://www.gadm.org/country">http://www.gadm.org/country</a> to check out the data.</p>
+<p>The data that the scientists want to ingest is summarized in the <a class="reference external" href="https://github.com/cdcepi/zika">CDC Zika Repository</a>. If you open up the <a class="reference external" href="https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv">data for Argentina</a>, you’ll notice that the data looks pretty similiar to last mission, except that there is no latitude or longitude to geocode each row; however, each row does have a location field. We should be able to indentify those locations to actual areas on a map.</p>
+<p>Search for “political boundaries geojson” and find <a class="reference external" href="http://www.gadm.org/">gadm.org</a>. This site provides geospatial data about administrative boundaries for each state. Go to the <a class="reference external" href="http://www.gadm.org/country">GADM Downloads Page</a> to check out the data.</p>
 <img alt="../../_images/GADM_download_page.png" src="../../_images/GADM_download_page.png" />
-<p>Download the shapefile for Brazil <a class="reference external" href="http://biogeo.ucdavis.edu/data/gadm2.8/shp/BRA_adm_shp.zip">http://biogeo.ucdavis.edu/data/gadm2.8/shp/BRA_adm_shp.zip</a>.</p>
-<p>The file <code class="docutils literal notranslate"><span class="pre">BRA_adm_shp.zip</span></code> will download. Double click the file to unzip the file. You should see three shapefiles: <code class="docutils literal notranslate"><span class="pre">BRA_adm0.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm2.shp</span></code>. <code class="docutils literal notranslate"><span class="pre">BRA_adm3.shp</span></code>. Let’s take a look at these shapefiles. In order to look at a shapefile, you will need download QGIS <a class="reference external" href="https://qgis.org/en/site/">https://qgis.org/en/site/</a>, an open source desktop viewer for geospatial data. Click Here to Download QGIS <a class="reference external" href="https://connect.boundlessgeo.com/Downloads">https://connect.boundlessgeo.com/Downloads</a>. Double click the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file to install.</p>
+<p>Download the <a class="reference external" href="http://biogeo.ucdavis.edu/data/gadm2.8/shp/BRA_adm_shp.zip">shapefile for Brazil</a>.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">BRA_adm_shp.zip</span></code> will download. Double click the file to unzip the file. You should see three shapefiles: <code class="docutils literal notranslate"><span class="pre">BRA_adm0.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm2.shp</span></code>. <code class="docutils literal notranslate"><span class="pre">BRA_adm3.shp</span></code>. Let’s take a look at these shapefiles. In order to look at a shapefile, you will need download <a class="reference external" href="https://qgis.org/en/site/">QGIS</a>, an open source desktop viewer for geospatial data. QGIS can be downloaded via the <a class="reference external" href="https://connect.boundlessgeo.com/Downloads">Boundless site</a>. After downloading, double click the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file to install.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Note: Use your personal email to register on Boundless Connect to get access to the QGIS download.</p>
@@ -398,26 +390,26 @@ The below command destroys all non committed changes in your local branch and re
 <p>After QGIS is installed, drag the <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code> file into the QGIS window in order to import the file.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The zoom on the QGIS window is VERY sensitive. You may need to automatically zoom to the layer you would like to view. Right click on your layer in the <code class="docutils literal notranslate"><span class="pre">Layers</span> <span class="pre">Panel</span></code>, and select <code class="docutils literal notranslate"><span class="pre">Zoom</span> <span class="pre">to</span> <span class="pre">Layer</span></code>.</p>
+<p class="last">The zoom on the QGIS window is VERY sensitive. You may need to automatically zoom to the layer you would like to view. Right click on your layer in the <em>Layers Panel</em>, and select <em>Zoom to Layer</em>.</p>
 </div>
 <img alt="../../_images/QGIS_zoom_to_layer.png" src="../../_images/QGIS_zoom_to_layer.png" />
-<p>Great! That looks exactly like what we need. Let’s convert the file into GeoJSON so that we can serve it up from within our web application. We can use the <code class="docutils literal notranslate"><span class="pre">ogr2ogr</span></code> command.:</p>
+<p>Great! That looks exactly like what we need. Let’s convert the file into GeoJSON so that we can serve it up from within our web application. We can use the <code class="docutils literal notranslate"><span class="pre">ogr2ogr</span></code> command.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ogr2ogr -f &quot;GeoJSON&quot; brazil.geojson BRA_adm_shp/BRA_adm1.shp
 </pre></div>
 </div>
-<p>After the command completes, check out the <code class="docutils literal notranslate"><span class="pre">brazil.geojson</span></code> file. Yikes! The file seems pretty big. Let’s see how big::</p>
+<p>After the command completes, check out the <code class="docutils literal notranslate"><span class="pre">brazil.geojson</span></code> file. Yikes! The file seems pretty big. Let’s see how big:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls -lh brazil.geojson
 </pre></div>
 </div>
 <img alt="../../_images/CLI_check_file_size.png" src="../../_images/CLI_check_file_size.png" />
 <p>A 25M file is not going to work well in our web app. And that’s just Brazil!</p>
-<p>Fortunately, shapefiles can be compressed in size by reducing the amount of detail. In QGIS, select <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">&gt;</span> <span class="pre">Geometry</span> <span class="pre">Tools</span> <span class="pre">&gt;</span> <span class="pre">Simplify</span> <span class="pre">geometries</span></code> from the top menu. Select your Brazil Geometry <code class="docutils literal notranslate"><span class="pre">BRA_adm1</span></code> and set the tolerance to <code class="docutils literal notranslate"><span class="pre">0.05</span></code>. Hit Run.</p>
+<p>Fortunately, shapefiles can be compressed in size by reducing the amount of detail. In QGIS, select <em>Vector &gt; Geometry Tools &gt; Simplify geometries</em> from the top menu. Select your Brazil Geometry <code class="docutils literal notranslate"><span class="pre">BRA_adm1</span></code> and set the tolerance to <code class="docutils literal notranslate"><span class="pre">0.05</span></code>. Hit Run.</p>
 <img alt="../../_images/QGIS_simplify_geometries.png" src="../../_images/QGIS_simplify_geometries.png" />
 <p>QGIS should generate a new layer that looks pretty much the same as the last layer.</p>
-<p>Right click on the newly created layer and select <strong>Save As…</strong>. Save the file as GeoJSON with the name <code class="docutils literal notranslate"><span class="pre">brazil_compressed.geojson</span></code>. Be sure to type in the entire path of the file that you are creating.</p>
+<p>Right click on the newly created layer and select <em>Save As…</em>. Save the file as GeoJSON with the name <code class="docutils literal notranslate"><span class="pre">brazil_compressed.geojson</span></code>. Be sure to type in the entire path of the file that you are creating.</p>
 <img alt="../../_images/QGIS_save_as.png" src="../../_images/QGIS_save_as.png" />
 <p>Now if you check the size of the newly created <code class="docutils literal notranslate"><span class="pre">brazil_compressed.geojson</span></code>, you should see that it is much smaller!</p>
-<p>Run the command::</p>
+<p>Run the command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls -lh brazil_compressed.geojson
 </pre></div>
 </div>
@@ -426,7 +418,7 @@ The below command destroys all non committed changes in your local branch and re
 <p class="first admonition-title">Note</p>
 <p class="last">A file size of 331K isn’t great for a webapp; it’s still a bit large. In a few weeks, we’ll look at how some of the features of GeoServer allows you to display large amounts of data without a big download.</p>
 </div>
-<p>The last step is to join all of the GeoJSON files together. To do that, we can use a nice Node.js library from MapBox. Run the following commands::</p>
+<p>The last step is to join all of the GeoJSON files together. To do that, we can use a nice Node.js library from MapBox. Run the following commands:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ npm install -g @mapbox/geojson-merge
 $ geojson-merge argentina_compressed.geojson brazil_compressed.geojson columbia_compressed.geojson dominican_republic_compressed.geojson el_salvador_compressed.geojson equador_compressed.geojson guatamala_compressed.geojson haiti_compressed.geojson mexico_compressed.geojson
 nicaragua_compressed.geojson panama_compressed.geojson &gt; states.geojson
