@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Walkthrough: LaunchCart REST &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <link rel="stylesheet" type="text/css" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#slides">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Security, Test-driven development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Integration testing, dependency injection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: Postgres, Spring Data, JPA, Hibernate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: AJAX, Open Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week: Zika Mission Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-hints">Project Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-project">Setup Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: RESTful web services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2 Swagger REST framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Intro to Elasticsearch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: ES2015, ESLint, OpenLayers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week: Zika Mission Control Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#what-s-new-in-the-code">What’s new in the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#database-setup">Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day1/index.html">Week 5 - Day 1: Intro to DevOps/AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day2/index.html">Week 5 - Day 2: More with AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day3/index.html">Week 5 - Day 3: 12 Factor Apps and Auto Scaling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day4/index.html">Week 5 - Day 4: Gradle, Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day5/index.html">Week 5 - Day 5: Sonarqube</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week: Zika Mission Control Part 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#milestones">Milestones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#debrief">Debrief</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#bonus-missions">Bonus Missions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week: Zika Mission Control Part 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#normalizing-data">Normalizing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#integrating-geoserver">Integrating GeoServer</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day3/index.html">Week 9 - Day 3: Intro to Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day4/index.html">Week 9 - Day 4: OAuth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#lesson">Lesson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day5/index.html">Week 9 - Day 5: Certificates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Walkthrough: LaunchCart REST</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#what-s-new">What’s New</a></li>
+<li><a class="reference internal" href="#adding-a-rest-controller">Adding a REST Controller</a></li>
+<li><a class="reference internal" href="#our-tasks">Our Tasks</a></li>
+<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="walkthrough-launchcart-rest">
+<span id="id1"></span><h1>Walkthrough: LaunchCart REST<a class="headerlink" href="#walkthrough-launchcart-rest" title="Permalink to this headline">¶</a></h1>
+<p>In this walkthrough, the instructor will guide you through adding some RESTful endpoints to the LaunchCart application.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">project/repository</a>  that you used previously, check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch. Then create a story branch.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ git checkout rest-walkthrough
+$ git checkout -b rest-walkthrough-solution
+</pre></div>
+</div>
+<p>If you haven’t already, install the Rested browser plugin: <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rested/">Firefox</a> | <a class="reference external" href="https://chrome.google.com/webstore/detail/rested/eelcnbccaccipfolokglfhhmapdchbfg">Chrome</a>. We’ll use this to manually query our REST API. If you are familiar with <a class="reference external" href="https://curl.haxx.se/">cURL</a> then you may also use that tool to query the API.</p>
+</div>
+<div class="section" id="what-s-new">
+<h2>What’s New<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
+<p>This starter code has some functionality beyond what you added in  <a class="reference internal" href="../../studios/launchcart2/index.html#launchcart-part2"><span class="std std-ref">Studio: LaunchCart Part 2</span></a>. In particular, it has a <code class="docutils literal notranslate"><span class="pre">Customer</span></code> class, along with functionality for users to register and log in as customers.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>A good way to see what has been added in a branch is to you use the <strong>comparison</strong> feature of Gitlab.</p>
+<p>Example: View the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/branches">launchcart branches</a> and notice the <strong>Compare</strong> button next to each branch.</p>
+<p>This can also be done in the terminal using <cite>git</cite>:</p>
+<div class="last highlight-none notranslate"><div class="highlight"><pre><span></span>$ git diff launchcart2 rest-walkthrough
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="adding-a-rest-controller">
+<h2>Adding a REST Controller<a class="headerlink" href="#adding-a-rest-controller" title="Permalink to this headline">¶</a></h2>
+<p>Let’s complete a few setup steps before starting to code:</p>
+<ul class="simple">
+<li>Create a new package, <code class="docutils literal notranslate"><span class="pre">org.launchcode.launchcart.controllers.rest</span></code></li>
+<li>Create a new class in this package named <code class="docutils literal notranslate"><span class="pre">ItemRestController</span></code></li>
+<li>Annotate the class with <code class="docutils literal notranslate"><span class="pre">&#64;RestController</span></code></li>
+</ul>
+<p>In the <code class="docutils literal notranslate"><span class="pre">test</span></code> module, note that there are two new classes:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> contains a couple of utility methods to handle serializing Java objects for the purposes of testing.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code> extends <code class="docutils literal notranslate"><span class="pre">AbstractBaseRestIntegrationTest</span></code> and contains the integration tests for the functionality that we’ll be adding. We’ll review this code in class.</li>
+</ul>
+</div>
+<div class="section" id="our-tasks">
+<h2>Our Tasks<a class="headerlink" href="#our-tasks" title="Permalink to this headline">¶</a></h2>
+<p>We will now implement the Item resource in the following ways:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items</span></code> (with parameter <code class="docutils literal notranslate"><span class="pre">price</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items/{id}</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/api/items</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">PUT</span> <span class="pre">/api/items/{id}</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/api/items/{id}</span></code></li>
+</ul>
+</div>
+<div class="section" id="bonus-mission">
+<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
+<p>Enable XML as a resource format. To do this, add the following Gradle dependency:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(&#39;com.fasterxml.jackson.dataformat:jackson-dataformat-xml&#39;)
+</pre></div>
+</div>
+<p>Now annotate the <code class="docutils literal notranslate"><span class="pre">Item</span></code> class with <code class="docutils literal notranslate"><span class="pre">&#64;XmlRootElement</span></code>. Then add <code class="docutils literal notranslate"><span class="pre">&#64;XmlElement</span></code> to each field that should be included in the XML serialization as an XML element child of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&#64;XmlAttribute</span></code> to each field that should be included as an XML attribute of <code class="docutils literal notranslate"><span class="pre">&lt;Item&gt;</span></code>. Don’t forget about inherited fields.</p>
+<p>Spring Boot enables JSON formatting/serialization and makes it the default. If you wish XML to be the default format, you can set this up in <code class="docutils literal notranslate"><span class="pre">WebApplicationConfig</span></code> by adding:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">configureContentNegotiation</span><span class="o">(</span><span class="n">ContentNegotiationConfigurer</span> <span class="n">configurer</span><span class="o">){</span>
+    <span class="n">configurer</span><span class="o">.</span><span class="na">defaultContentType</span><span class="o">(</span><span class="n">MediaType</span><span class="o">.</span><span class="na">APPLICATION_XML</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/walkthroughs/launchcart-rest/index.rst.txt"
+     rel="nofollow">Page Source</a>
+</div>
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

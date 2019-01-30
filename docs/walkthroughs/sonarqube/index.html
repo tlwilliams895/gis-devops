@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Walkthrough: Sonarqube &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <link rel="stylesheet" type="text/css" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#slides">Slides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#exercises">Exercises</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Security, Test-driven development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Integration testing, dependency injection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: Postgres, Spring Data, JPA, Hibernate</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#walkthroughs">Walkthroughs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day4/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: AJAX, Open Layers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week01/day5/index.html#additional-resources">Additional Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week: Zika Mission Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-hints">Project Hints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-project">Setup Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: RESTful web services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day1/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2 Swagger REST framework</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Intro to Elasticsearch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day3/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: ES2015, ESLint, OpenLayers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#retro">Retro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day5/index.html#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/project/index.html">Week 4 - Project Week: Zika Mission Control Part 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#getting-the-code">Getting the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#what-s-new-in-the-code">What’s new in the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#suggested-endpoints-parameters">Suggested Endpoints/Parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#database-setup">Database Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week04/project/index.html#walkthrough-on-creating-the-location-data">Walkthrough on Creating the Location Data</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day1/index.html">Week 5 - Day 1: Intro to DevOps/AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day1/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day2/index.html">Week 5 - Day 2: More with AWS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#studio">Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day2/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day3/index.html">Week 5 - Day 3: 12 Factor Apps and Auto Scaling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day4/index.html">Week 5 - Day 4: Gradle, Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/day5/index.html">Week 5 - Day 5: Sonarqube</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week05/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/project/index.html">Week 6 - Project Week: Zika Mission Control Part 3</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#project">Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#new-stuff">New Stuff</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#milestones">Milestones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#debrief">Debrief</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week06/project/index.html#bonus-missions">Bonus Missions</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/project/index.html">Week 8 - Project Week: Zika Mission Control Part 4</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#normalizing-data">Normalizing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week08/project/index.html#integrating-geoserver">Integrating GeoServer</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day3/index.html">Week 9 - Day 3: Intro to Docker</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day3/index.html#studio">Studio</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day4/index.html">Week 9 - Day 4: OAuth2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#lesson">Lesson</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day4/index.html#resources">Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/day5/index.html">Week 9 - Day 5: Certificates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#walkthrough">Walkthrough</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week09/day5/index.html#retro">Retro</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Walkthrough: Sonarqube</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#continuous-inspection">Continuous Inspection</a></li>
+<li><a class="reference internal" href="#install-and-configure-sonarqube">Install and Configure Sonarqube</a></li>
+<li><a class="reference internal" href="#configure-your-java-project">Configure your Java Project</a></li>
+<li><a class="reference internal" href="#run-sonarqube-gradle-task">Run Sonarqube Gradle Task</a></li>
+<li><a class="reference internal" href="#view-the-results-in-sonarqube">View the Results in Sonarqube</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="walkthrough-sonarqube">
+<span id="id1"></span><h1>Walkthrough: Sonarqube<a class="headerlink" href="#walkthrough-sonarqube" title="Permalink to this headline">¶</a></h1>
+<p>Follow along with the instructor as we configure Sonarqube.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>Create a new story branch in your <code class="docutils literal notranslate"><span class="pre">airwaze-studio</span></code> repoo. Name it <code class="docutils literal notranslate"><span class="pre">add-sonarqube</span></code>.  When finished with this walkthrough you can merge it into your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p>
+</div>
+<div class="section" id="continuous-inspection">
+<h2>Continuous Inspection<a class="headerlink" href="#continuous-inspection" title="Permalink to this headline">¶</a></h2>
+<p>Sonarqube is an open source tool for continuous inspection of code quality including: bug detection, code smells, and security vulnerabilities.</p>
+<p>We will use Sonarqube to analyze our Java code. It will search for duplicate code, unused variables/parameters, code smells, and much more. Fixing the issues found by sonarqube helps to
+keep our code consistent between developers and hopefully more secure and stable. Consider sonarqube to be Eslint for Java, with more features. Note that sonarqube will analyze multiple language, however for this class we are only using it for Java.</p>
+<p>Sonarqube runs as a service. Project configuration and reports are viewable in your browser via web interface. Defaults to <code class="docutils literal notranslate"><span class="pre">http:localhost:9000</span></code> if installed locally.</p>
+<p>Sonarqube can integrate with other tools such as gradle and jenkins.</p>
+</div>
+<div class="section" id="install-and-configure-sonarqube">
+<h2>Install and Configure Sonarqube<a class="headerlink" href="#install-and-configure-sonarqube" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Go to <a class="reference external" href="https://www.sonarqube.org">https://www.sonarqube.org</a></li>
+<li>Click <strong>Download</strong></li>
+<li>Choose the latest vesion <strong>Community Edition 7.5</strong></li>
+<li>Unzip the downloaded file to <code class="docutils literal notranslate"><span class="pre">~/sonarqube-7.5</span></code>. (Note your version may vary)</li>
+<li>Open a terminal and run this command <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">~/sonarqube-7.5/bin/macosx-universal-64/sonar.sh</span> <span class="pre">start</span></code></li>
+<li>Now go to this address in your browser: <code class="docutils literal notranslate"><span class="pre">http://localhost:9000</span></code></li>
+<li>Login with default user. username: admin password: admin (&lt;- example of not changing defaults. very bad!)</li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> as the project key</li>
+</ul>
+</div>
+<div class="section" id="configure-your-java-project">
+<h2>Configure your Java Project<a class="headerlink" href="#configure-your-java-project" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Add this line to <code class="docutils literal notranslate"><span class="pre">plugins</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id &quot;org.sonarqube&quot; version &quot;2.6&quot;
+</pre></div>
+</div>
+<ul class="simple">
+<li>Will look like this after. Be sure to add the <code class="docutils literal notranslate"><span class="pre">plugins</span></code> section above the <code class="docutils literal notranslate"><span class="pre">apply</span> <span class="pre">plugins</span></code> section.</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plugins {
+  (note you may not have this first plugin)
+  id &quot;com.github.sgnewson.gradle-jenkins-test&quot; version &quot;0.5&quot;
+  id &quot;org.sonarqube&quot; version &quot;2.6&quot;
+}
+
+apply plugin: &#39;java&#39;
+apply plugin: &#39;eclipse&#39;
+apply plugin: &#39;org.springframework.boot&#39;
+</pre></div>
+</div>
+</div>
+<div class="section" id="run-sonarqube-gradle-task">
+<h2>Run Sonarqube Gradle Task<a class="headerlink" href="#run-sonarqube-gradle-task" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>In terminal or via the Gradle menu in Intellij, run the <code class="docutils literal notranslate"><span class="pre">sonarqube</span></code> gradle task (note it’s under <strong>other</strong> in intellij gradle menu)</li>
+<li>This gradle task runs other gradle tasks like <code class="docutils literal notranslate"><span class="pre">compileJava</span></code> and then creates a report that is viewable on the sonarqube web app</li>
+</ul>
+</div>
+<div class="section" id="view-the-results-in-sonarqube">
+<h2>View the Results in Sonarqube<a class="headerlink" href="#view-the-results-in-sonarqube" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:9000/projects</span></code></li>
+<li>Click on the project name</li>
+<li>On the project page, click on the numbers in each category to get a detailed report about that topic</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/walkthroughs/sonarqube/index.rst.txt"
+     rel="nofollow">Page Source</a>
+</div>
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
