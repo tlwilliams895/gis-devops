@@ -13,7 +13,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -266,7 +265,7 @@
 <li><a class="reference internal" href="#let-s-add-eslint">Let’s Add ESLint</a></li>
 <li><a class="reference internal" href="#override-the-airbnb-indentation-rule">Override the Airbnb indentation rule</a></li>
 <li><a class="reference internal" href="#let-s-do-some-linting">Let’s Do Some Linting!</a></li>
-<li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
+<li><a class="reference internal" href="#let-s-make-this-easier">Let’s Make this Easier</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
 </li>
@@ -301,7 +300,7 @@
 <li>js to display airports and routes</li>
 <li>enter to accept default</li>
 <li>test</li>
-<li>press enter for remaining to accept default</li>
+<li>press enter for remaining questions</li>
 </ol>
 </li>
 <li><p class="first">Review the <code class="docutils literal notranslate"><span class="pre">package.json</span></code> file that was just created</p>
@@ -316,11 +315,12 @@
 <li>Pick Airbnb</li>
 <li>NO to using React</li>
 <li>Pick JavaScript for config file type</li>
+<li>Yes to installing airbnb dependency</li>
 </ol>
 </li>
 <li><p class="first">Review the file that was just created <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code></p>
 </li>
-<li><p class="first">Add this to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code> file OR if <code class="docutils literal notranslate"><span class="pre">&quot;scripts&quot;</span></code> is already defined, simply update the value:</p>
+<li><p class="first">Update the <code class="docutils literal notranslate"><span class="pre">&quot;scripts&quot;</span></code> property in <code class="docutils literal notranslate"><span class="pre">package.json</span></code> to the below:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;scripts&quot;: {
     &quot;test&quot;: &quot;eslint static/js/script.js&quot;
 },
@@ -331,7 +331,8 @@
 </div>
 <div class="section" id="override-the-airbnb-indentation-rule">
 <h2>Override the Airbnb indentation rule<a class="headerlink" href="#override-the-airbnb-indentation-rule" title="Permalink to this headline">¶</a></h2>
-<p>Modify <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code> to look like this. If you don’t, you will get numerious <code class="docutils literal notranslate"><span class="pre">indent</span></code> errors because Airbnb lint rules detault to two spaces.:</p>
+<p>Modify <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code> to look like this. If you don’t, you will get numerious <code class="docutils literal notranslate"><span class="pre">indent</span></code> errors because Airbnb lint rules detault to two spaces. We are doing this because
+we want to use 4 space identation instead of the default 2 that the Airbnb ruleset defines. <a class="reference external" href="https://github.com/airbnb/javascript">See rules here</a></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
     &quot;extends&quot;: &quot;airbnb-base&quot;,
     &quot;rules&quot;: {
@@ -343,19 +344,50 @@
 </div>
 <div class="section" id="let-s-do-some-linting">
 <h2>Let’s Do Some Linting!<a class="headerlink" href="#let-s-do-some-linting" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">test</span></code> and cringe at the “errors” that are found</p>
 <ul class="simple">
-<li>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">test</span></code> and cringe at the “errors” that are found<ul>
 <li>Remember that errors in this case are lines of code that break an eslint rule</li>
+<li>If you are not sure what the error is about, then lookup what the rule means here <a class="reference external" href="https://eslint.org/docs/rules/">ESLint Rules</a><ul>
+<li>The rule name will be in the far right column. Example rule name <code class="docutils literal notranslate"><span class="pre">no-unused-vars</span></code></li>
 </ul>
 </li>
-<li>Alter a line, save your file, and run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">test</span></code> again</li>
-<li>It’s a good idea to check that your map still loads in the browser, before fixing too many linting errors at one time</li>
+</ul>
+</li>
+<li><p class="first">Fix one issue at a time, save your file, and run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">test</span></code> again</p>
+<ul class="simple">
+<li>You don’t want to change too many lines at once without making sure your code still works</li>
+<li>So save and reload your map in the browser to make sure your dots still show up</li>
+</ul>
+<img alt="../../_images/eslint-results.png" src="../../_images/eslint-results.png" />
+</li>
 </ul>
 </div>
-<div class="section" id="bonus-mission">
-<h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="let-s-make-this-easier">
+<h2>Let’s Make this Easier<a class="headerlink" href="#let-s-make-this-easier" title="Permalink to this headline">¶</a></h2>
+<p>It’s totally fine to view linting errors in the console, but we can also use editors to alert us of these issues as we write the code. We are going to setup VisualStudio Code to “auto lint” using our defined linting rules. After we set this up, we won’t have to save and re-run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">test</span></code>.</p>
+<ul>
+<li><p class="first">Open Visual Studio Code (if you don’t have it, you should use <code class="docutils literal notranslate"><span class="pre">$npm</span> <span class="pre">test</span></code> to lint your code)</p>
+</li>
+<li><p class="first">Open your Airwaze project</p>
 <ul class="simple">
-<li>Get VisualStudio Code to “auto lint” using our defined linting rules. You will not have to save and re-run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">npm</span> <span class="pre">test</span></code> if you enable the auto-linting feature.</li>
+<li>You only have to open the /airwaze-project/src/main/resources folder, because that is where the js and eslint files are</li>
+</ul>
+</li>
+<li><p class="first">Click on extensions (the squareish icon in the left menu)</p>
+</li>
+<li><p class="first">Enter eslint into the search box</p>
+</li>
+<li><p class="first">Click install</p>
+</li>
+<li><p class="first">Click reload</p>
+<img alt="../../_images/vs-code-eslint-plugin.png" src="../../_images/vs-code-eslint-plugin.png" />
+</li>
+<li><p class="first">Now go to your <code class="docutils literal notranslate"><span class="pre">script.js</span></code> files and look for red underlined code</p>
+</li>
+<li><p class="first">Hover over the code for an explanation of the error</p>
+<img alt="../../_images/vs-code-show-errors.png" src="../../_images/vs-code-show-errors.png" />
+</li>
 </ul>
 </div>
 <div class="section" id="resources">
