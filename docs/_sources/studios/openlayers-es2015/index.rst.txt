@@ -18,10 +18,12 @@ Your Tasks
 ==========
 
 You are going to follow a serious of instructions in an OpenLayers gitbook (link below), with a few differences
+
 * **DON'T DO IT**, when the instructions tell you to download the latest ``workshop release``
 * Instead you are going to use the repo you forked and cloned in the setup for this studio
 
 Go Through Each Example in the Instructions
+
 * Instructions -> OpenLayers Workshop `Instructions <https://openlayers.org/workshop/en/>`_
 * Take your time and read the examples and documentation
 * The example code does NOT pass our project's defined eslint rules
