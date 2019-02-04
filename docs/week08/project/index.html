@@ -276,7 +276,6 @@
 <li><a class="reference internal" href="#integrating-geoserver">Integrating GeoServer</a><ul>
 <li><a class="reference internal" href="#create-data-store-and-layers-in-geoserver">Create Data Store and Layers in GeoServer</a></li>
 <li><a class="reference internal" href="#updating-openlayers-code">Updating OpenLayers Code</a></li>
-<li><a class="reference internal" href="#update-report-post-endpoint">Update Report POST Endpoint</a></li>
 <li><a class="reference internal" href="#bonus-mission">Bonus Mission</a></li>
 </ul>
 </li>
@@ -331,14 +330,6 @@
 
     <span class="nd">@Autowired</span>
     <span class="kd">private</span> <span class="n">ReportDocumentRepository</span> <span class="n">reportDocumentRepository</span><span class="o">;</span>
-
-
-    <span class="nd">@PostMapping</span>
-    <span class="nd">@ResponseStatus</span><span class="o">(</span><span class="n">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">)</span>
-    <span class="kd">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">ReportDTO</span><span class="o">&gt;</span> <span class="nf">saveNewReport</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="n">ReportDTO</span> <span class="n">reportDTO</span><span class="o">)</span> <span class="o">{</span>
-
-        <span class="k">return</span> <span class="k">new</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">ReportDTO</span><span class="o">&gt;(</span><span class="n">reportDTO</span><span class="o">,</span> <span class="n">HttpStatus</span><span class="o">.</span><span class="na">CREATED</span><span class="o">);</span>
-    <span class="o">}</span>
 
     <span class="nd">@PostMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/assignStates&quot;</span><span class="o">)</span>
     <span class="kd">public</span> <span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="nf">assignStates</span><span class="o">()</span> <span class="o">{</span>
@@ -458,10 +449,6 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">For the geometries in your layer to be rendered properly on the map, the spatial reference systems (SRS) must match. You can control the SRS that is used to generate the returned features using the <code class="docutils literal notranslate"><span class="pre">srsName</span></code> parameter when create the request in OpenLayers.</p>
 </div>
-</div>
-<div class="section" id="update-report-post-endpoint">
-<h3>Update Report POST Endpoint<a class="headerlink" href="#update-report-post-endpoint" title="Permalink to this headline">¶</a></h3>
-<p>There is a controller in <code class="docutils literal notranslate"><span class="pre">ReportController</span></code> called <code class="docutils literal notranslate"><span class="pre">saveNewReport</span></code> that saves creates a new report object and saves it in both data stores (PostgreSQL and Elasticsearch). Update this method so that it looks up and assigns the corresponding <code class="docutils literal notranslate"><span class="pre">Location</span></code> object (if one exists) for the given report.</p>
 </div>
 <div class="section" id="bonus-mission">
 <h3>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h3>

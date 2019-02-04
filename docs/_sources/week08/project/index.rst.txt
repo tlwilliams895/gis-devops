@@ -59,14 +59,6 @@ Next, create a ``ReportController`` class with the following contents:
       @Autowired
       private ReportDocumentRepository reportDocumentRepository;
 
-
-      @PostMapping
-      @ResponseStatus(HttpStatus.OK)
-      public ResponseEntity<ReportDTO> saveNewReport(@RequestBody ReportDTO reportDTO) {
-
-          return new ResponseEntity<ReportDTO>(reportDTO, HttpStatus.CREATED);
-      }
-
       @PostMapping(value = "/assignStates")
       public ResponseEntity<String> assignStates() {
 
@@ -210,11 +202,6 @@ Following the `OpenLayers example <https://openlayers.org/en/latest/examples/vec
 .. warning::
 
   For the geometries in your layer to be rendered properly on the map, the spatial reference systems (SRS) must match. You can control the SRS that is used to generate the returned features using the ``srsName`` parameter when create the request in OpenLayers.
-
-Update Report POST Endpoint
----------------------------
-
-There is a controller in ``ReportController`` called ``saveNewReport`` that saves creates a new report object and saves it in both data stores (PostgreSQL and Elasticsearch). Update this method so that it looks up and assigns the corresponding ``Location`` object (if one exists) for the given report.
 
 Bonus Mission
 -------------
