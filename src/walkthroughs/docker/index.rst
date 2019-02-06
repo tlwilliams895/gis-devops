@@ -26,46 +26,32 @@ Docker Commands
 Setup
 =====
 
-First, make sure that you have Docker installed.  You can check the Docker installation by running::
+1. Make sure that you have Docker installed.  You can check the ``docker installation by running::
 
-  $ docker --version
+   $ docker --version
 
+2. Check if ``pip`` is installed (package manager for python)
 
-Also, make sure that you have Python and Redis installed. Mac OS X High Sierra should come with Python 2.7 installed right out of the box.  Double check by running:::
+::
 
-  $ python --version
+   $ pip --version
+   (If command not found then install using)
+   $ sudo easy_install pip
 
+3. Clone this repo `docker-flask-walkthrough <https://gitlab.com/LaunchCodeTraining/docker-flask-walkthrough>`_
 
-You will need to install ``pip``.  ``pip`` is how Python installs libraries.::
+4. cd into the folder of the repo you just clonded
 
-  $ sudo easy_install pip
+5. Install dependencies using pip by running:::
 
-Redis is a key value NoSQL database.  Install it with Homebrew.::
-
-  $ brew install redis
-  $ brew services start redis
-
-
-Double check that it is running on port ``6379``.::
-
-  $ telnet localhost 6379
-
+   $ pip install --user -r requirements.txt
 
 A simple Python web app
 =======================
 
-In this walkthrough we are going to stand up a simple Python web app.  The app uses Python Flask as a web server.  Flask may be new to you, but see if you see any similarities to Spring Boot.
+In this walkthrough we are going to run a simple Python web app.  The app uses Python Flask as a web server.  Flask may be new to you, but see if you see any similarities to Spring Boot.
 
-Setup
------
-
-Clone this repo `docker-flask-walkthrough <https://gitlab.com/LaunchCodeTraining/docker-flask-walkthrough>`_
-
-Install dependencies using pip by running:::
-
-  $ pip install --user -r requirements.txt
-
-
+In Visual Studio Code, or another general purpose editor, open the file ``simple_app.py``
 Review file ``simple_app.py``::
 
   import time
@@ -88,13 +74,16 @@ Run the simple web app by running the below command::
 
   $ python simple_app.py
 
-Navigate to ``http://localhost:5000``, it should show our simple message.  Please **stop** this process as we will next get this running via a Docker container.
+Navigate to ``http://localhost:5000``, it should show our simple message.
+
+Now **stop** this process in your terminal, using ``ctrl + c`` as we will next get this running via a Docker container.
 
 Create Dockerfile
 -----------------
-We need to create a ``Dockerfile`` for CentOS. Add the below content into ``/docker-flask-walkthrough/Dockerfile``. Don't just copy and paste it, review each line.
+We need to setup a ``Dockerfile`` that uses CentOS to run our webapp.
 
-``Dockerfile``
+
+Paste in the below text into file ``/docker-flask-walkthrough/Dockerfile`` (please review the content instead of only pasting it)
 
 ::
 
@@ -114,13 +103,46 @@ We need to create a ``Dockerfile`` for CentOS. Add the below content into ``/doc
   # Run the web app as the main process (there can only be one CMD per Dockerfile)
   CMD ["python", "/code/simple_app.py"]
 
-We need to build a Docker image that will run our simple web app. Run the below commands in the root of ``/docker-flask-walkthrough``::
+We need to build a Docker image that will run our simple web app. 
 
+* In terminal go to ``/docker-flask-walkthrough``
+* Run this command
+
+::
+
+  (this may take a few minutes)
   $ docker build --tag my-centos-simple .
+
+You Created a Docker Image
+++++++++++++++++++++++++++
+
+The ``Dockerfile`` in the previous section along with the command ``docker build`` created a new docker image that can be used to create containers with.
+
+View the list of docker images
+
+::
+
+  (your new image my-centos-simple should appear in the list)
+  $ docker images
+
+Create a Container
+++++++++++++++++++
+
+Run these commands to create a container that using the new image. Remember an images don't run, the are the OS and foundation used by running conatiners.
+
+::
+
   $ docker create -i -t -p 5000:5000 my-centos-simple
   $ docker start <container_name/id>
+  (to see list of conatiners)
+  $ docker ps -a
 
 Check the browser to see if the "Hello World" message shows up. ``http://localhost:5000``
+
+Now stop that docker container by running::
+
+  (the last number is the id for the docker container)
+  $ docker stop 8b54229210c9
 
 A more complex Python app
 -------------------------
@@ -159,77 +181,55 @@ Review ``counter_app.py``:::
   if __name__ == "__main__":
       app.run(host="0.0.0.0", debug=True)
 
-The code uses a Redis database to keep track of the number of visits to a particular page. Let's try and run to see the app in action:::
 
-  $ python counter_app.py
-
-If you hit the web page ``http://localhost:5000/counter`` you should see the following error message:::
-
-  Traceback (most recent call last`):
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1997, in __call__
-      return self.wsgi_app(environ, start_response)
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1985, in wsgi_app
-      response = self.handle_exception(e)
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1540, in handle_exception
-      reraise(exc_type, exc_value, tb)
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1982, in wsgi_app
-      response = self.full_dispatch_request()
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1614, in full_dispatch_request
-      rv = self.handle_user_exception(e)
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1517, in handle_user_exception
-      reraise(exc_type, exc_value, tb)
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1612, in full_dispatch_request
-      rv = self.dispatch_request()
-    File "/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py", line 1598, in dispatch_request
-      return self.view_functions[rule.endpoint](**req.view_args)
-    File "/Users/mikemenne/Code/LaunchCode/Examples/GisDevops/docker-flask-walkthrough/app.py", line 25, in hello
-      count = get_hit_count()
-    File "/Users/mikemenne/Code/LaunchCode/Examples/GisDevops/docker-flask-walkthrough/app.py", line 18, in get_hit_count
-      raise exc
-  ConnectionError: Error 61 connecting to redis:6379. Connection refused.
-
-It looks like the app is not able to connect to ``redis:6379``.  Let's do a ``telnet`` to check if the port is open and being listened to:::
-
-  $ telnet redis 6379
-  redis: nodename nor servname provided, or not known
-
-**OPE**... The host ``redis`` doesn't exist.  This can be fixed locally by changing ``host='redis'`` to ``host='127.0.0.1'`` in ``counter_app.py``.
-
-Then run the app again ``$ python counter_app.py`` and navigate to ``http://localhost:5000/counter`` and see "Hello World!!! I have been seen 19 times."
-
-Linking Containers
-------------------
+Create Redis Container
+----------------------
 
 We don't want our users to have to install redis on their own. We need to create a container that runs redis. Then we can link the ``redis`` and ``counter-app`` containers using ``docker-compose``. Sounds fun right?
 
-How to Find the Redis Image
+Find and Download the Redis Image
 
-Go to `Docker Hub <https://hub.docker.com/>`_ and search for ``redis``. Click on the official ``redis`` result. Click the **tags** tab. We are going to reference the ``redis:alpine`` tag. That refers to a specfic version of redis, details are available on the docker site.
+* Go to `Docker Hub <https://hub.docker.com/>`_ and search for ``redis``. 
+* Click on the official ``redis`` result. 
+* Click the **tags** tab.
+* We are going to use the ``redis:alpine`` tag. 
+  
+  * Tags refer to a specfic version of redis, details are available on the docker site.
 
-Pull in a copy of the ``redis:alpine`` image to your computer by running ``$ docker pull redis:alpine``
+* Pull in a copy of the ``redis:alpine`` image to your computer by running
+
+::
+
+  $ docker pull redis:alpine
 
 Create counter-app Image
 ------------------------
 
-1. Stop your local ``redis`` by running ``brew services stop redis``
-2. Change the last line in the ``Dockerfile`` to run the ``counter_app.py``. Change to this ``CMD ["python", "/code/counter_app.py"]``
-3. Set ``host='redis'`` in ``counter_app.py``
-4. Build the ``centos-counter-app`` image: ``$ docker build --tag centos-counter-app .``
+1. Change the last line in the ``Dockerfile`` to be::
 
-   * The above command takes a while to run. After it completes you will see the below message:
+    CMD ["python", "/code/counter_app.py"]
+
+2. Build the ``centos-counter-app`` image with this command::
+
+   $ docker build --tag centos-counter-app .
+
+.. note::
+
+  The above command takes a while to run. After it completes you will see the below message:
 
 ::
 
   Successfully built 8447bcee9c62
   Successfully tagged centos-counter-app:latest
 
-5. Verify it was built by viewing images ``$ docker images``
+3. Verify it was built by viewing docker images ``$ docker images``
 
 Docker Compose File
 -------------------
 
 We are going to bring this all together by creating  a ``docker-compose.yml`` file, that will allow the Flask app to reference the Redis container.
 
+Paste this text into ``docker-compose.yaml``
 ::
 
   version: '3'
@@ -241,20 +241,17 @@ We are going to bring this all together by creating  a ``docker-compose.yml`` fi
     redis:
       image: "redis:alpine"
 
-Use the following command2 to stand up and verify the two containers:
-1. Input the above YAML into ``docker-compose.yml``
-2. Run ``$ docker-compose up -d``
+Use the following command2 to stand up and verify the two containers
+
+1. Run ``$ docker-compose up -d``
 
 ::
 
   Creating docker-flask-walkthrough_redis_1 ... done
   Creating docker-flask-walkthrough_web_1   ... done
 
-3. Verify that the containers are running ``$ docker ps``
-4. Naviage to ``http://localhost:5000/counter``
-
-Remember that your local Redis is no longer running. There is a web app conatiner running that has a connection to the redis container.
-
+2. Verify that the containers are running ``$ docker ps``
+3. Navigate to ``http://localhost:5000/counter``
 
 Docker Logs
 -----------

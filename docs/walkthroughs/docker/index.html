@@ -7,9 +7,9 @@
     <title>An Introduction to Docker &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
-    <link rel="stylesheet" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" type="text/css" />
-    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <link rel="stylesheet" type="text/css" href="https://djwbyvgln9kts.cloudfront.net/launch_ed_style/custom.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -264,10 +264,13 @@
 <li><a class="reference internal" href="#docker-commands">Docker Commands</a></li>
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#a-simple-python-web-app">A simple Python web app</a><ul>
-<li><a class="reference internal" href="#id1">Setup</a></li>
-<li><a class="reference internal" href="#create-dockerfile">Create Dockerfile</a></li>
+<li><a class="reference internal" href="#create-dockerfile">Create Dockerfile</a><ul>
+<li><a class="reference internal" href="#you-created-a-docker-image">You Created a Docker Image</a></li>
+<li><a class="reference internal" href="#create-a-container">Create a Container</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#a-more-complex-python-app">A more complex Python app</a></li>
-<li><a class="reference internal" href="#linking-containers">Linking Containers</a></li>
+<li><a class="reference internal" href="#create-redis-container">Create Redis Container</a></li>
 <li><a class="reference internal" href="#create-counter-app-image">Create counter-app Image</a></li>
 <li><a class="reference internal" href="#docker-compose-file">Docker Compose File</a></li>
 <li><a class="reference internal" href="#docker-logs">Docker Logs</a></li>
@@ -302,39 +305,37 @@
 </div>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>First, make sure that you have Docker installed.  You can check the Docker installation by running:</p>
+<ol class="arabic">
+<li><p class="first">Make sure that you have Docker installed.  You can check the <a href="#id1"><span class="problematic" id="id2">``</span></a>docker installation by running:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker --version
 </pre></div>
 </div>
-<p>Also, make sure that you have Python and Redis installed. Mac OS X High Sierra should come with Python 2.7 installed right out of the box.  Double check by running::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python --version
+</li>
+<li><p class="first">Check if <code class="docutils literal notranslate"><span class="pre">pip</span></code> is installed (package manager for python)</p>
+</li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ pip --version
+(If command not found then install using)
+$ sudo easy_install pip
 </pre></div>
 </div>
-<p>You will need to install <code class="docutils literal notranslate"><span class="pre">pip</span></code>.  <code class="docutils literal notranslate"><span class="pre">pip</span></code> is how Python installs libraries.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo easy_install pip
-</pre></div>
-</div>
-<p>Redis is a key value NoSQL database.  Install it with Homebrew.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew install redis
-$ brew services start redis
-</pre></div>
-</div>
-<p>Double check that it is running on port <code class="docutils literal notranslate"><span class="pre">6379</span></code>.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ telnet localhost 6379
-</pre></div>
-</div>
-</div>
-<div class="section" id="a-simple-python-web-app">
-<h2>A simple Python web app<a class="headerlink" href="#a-simple-python-web-app" title="Permalink to this headline">¶</a></h2>
-<p>In this walkthrough we are going to stand up a simple Python web app.  The app uses Python Flask as a web server.  Flask may be new to you, but see if you see any similarities to Spring Boot.</p>
-<div class="section" id="id1">
-<h3>Setup<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>Clone this repo <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/docker-flask-walkthrough">docker-flask-walkthrough</a></p>
-<p>Install dependencies using pip by running::</p>
+<ol class="arabic" start="3">
+<li><p class="first">Clone this repo <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/docker-flask-walkthrough">docker-flask-walkthrough</a></p>
+</li>
+<li><p class="first">cd into the folder of the repo you just clonded</p>
+</li>
+<li><p class="first">Install dependencies using pip by running::</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ pip install --user -r requirements.txt
 </pre></div>
 </div>
-<p>Review file <code class="docutils literal notranslate"><span class="pre">simple_app.py</span></code>:</p>
+</li>
+</ol>
+</div>
+<div class="section" id="a-simple-python-web-app">
+<h2>A simple Python web app<a class="headerlink" href="#a-simple-python-web-app" title="Permalink to this headline">¶</a></h2>
+<p>In this walkthrough we are going to run a simple Python web app.  The app uses Python Flask as a web server.  Flask may be new to you, but see if you see any similarities to Spring Boot.</p>
+<p>In Visual Studio Code, or another general purpose editor, open the file <code class="docutils literal notranslate"><span class="pre">simple_app.py</span></code>
+Review file <code class="docutils literal notranslate"><span class="pre">simple_app.py</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>import time
 
 from flask import Flask
@@ -356,12 +357,12 @@ if __name__ == &quot;__main__&quot;:
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python simple_app.py
 </pre></div>
 </div>
-<p>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000</span></code>, it should show our simple message.  Please <strong>stop</strong> this process as we will next get this running via a Docker container.</p>
-</div>
+<p>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000</span></code>, it should show our simple message.</p>
+<p>Now <strong>stop</strong> this process in your terminal, using <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">c</span></code> as we will next get this running via a Docker container.</p>
 <div class="section" id="create-dockerfile">
 <h3>Create Dockerfile<a class="headerlink" href="#create-dockerfile" title="Permalink to this headline">¶</a></h3>
-<p>We need to create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> for CentOS. Add the below content into <code class="docutils literal notranslate"><span class="pre">/docker-flask-walkthrough/Dockerfile</span></code>. Don’t just copy and paste it, review each line.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code></p>
+<p>We need to setup a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> that uses CentOS to run our webapp.</p>
+<p>Paste in the below text into file <code class="docutils literal notranslate"><span class="pre">/docker-flask-walkthrough/Dockerfile</span></code> (please review the content instead of only pasting it)</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span># start with the centos 7 base image
 FROM centos:7
 
@@ -379,13 +380,40 @@ RUN pip install -r /code/requirements.txt
 CMD [&quot;python&quot;, &quot;/code/simple_app.py&quot;]
 </pre></div>
 </div>
-<p>We need to build a Docker image that will run our simple web app. Run the below commands in the root of <code class="docutils literal notranslate"><span class="pre">/docker-flask-walkthrough</span></code>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker build --tag my-centos-simple .
-$ docker create -i -t -p 5000:5000 my-centos-simple
+<p>We need to build a Docker image that will run our simple web app.</p>
+<ul class="simple">
+<li>In terminal go to <code class="docutils literal notranslate"><span class="pre">/docker-flask-walkthrough</span></code></li>
+<li>Run this command</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(this may take a few minutes)
+$ docker build --tag my-centos-simple .
+</pre></div>
+</div>
+<div class="section" id="you-created-a-docker-image">
+<h4>You Created a Docker Image<a class="headerlink" href="#you-created-a-docker-image" title="Permalink to this headline">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> in the previous section along with the command <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span></code> created a new docker image that can be used to create containers with.</p>
+<p>View the list of docker images</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(your new image my-centos-simple should appear in the list)
+$ docker images
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-container">
+<h4>Create a Container<a class="headerlink" href="#create-a-container" title="Permalink to this headline">¶</a></h4>
+<p>Run these commands to create a container that using the new image. Remember an images don’t run, the are the OS and foundation used by running conatiners.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker create -i -t -p 5000:5000 my-centos-simple
 $ docker start &lt;container_name/id&gt;
+(to see list of conatiners)
+$ docker ps -a
 </pre></div>
 </div>
 <p>Check the browser to see if the “Hello World” message shows up. <code class="docutils literal notranslate"><span class="pre">http://localhost:5000</span></code></p>
+<p>Now stop that docker container by running:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(the last number is the id for the docker container)
+$ docker stop 8b54229210c9
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="a-more-complex-python-app">
 <h3>A more complex Python app<a class="headerlink" href="#a-more-complex-python-app" title="Permalink to this headline">¶</a></h3>
@@ -422,72 +450,55 @@ if __name__ == &quot;__main__&quot;:
     app.run(host=&quot;0.0.0.0&quot;, debug=True)
 </pre></div>
 </div>
-<p>The code uses a Redis database to keep track of the number of visits to a particular page. Let’s try and run to see the app in action::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ python counter_app.py
-</pre></div>
 </div>
-<p>If you hit the web page <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/counter</span></code> you should see the following error message::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Traceback (most recent call last`):
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1997, in __call__
-    return self.wsgi_app(environ, start_response)
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1985, in wsgi_app
-    response = self.handle_exception(e)
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1540, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1982, in wsgi_app
-    response = self.full_dispatch_request()
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1614, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1517, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1612, in full_dispatch_request
-    rv = self.dispatch_request()
-  File &quot;/Users/mikemenne/Library/Python/2.7/lib/python/site-packages/flask/app.py&quot;, line 1598, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File &quot;/Users/mikemenne/Code/LaunchCode/Examples/GisDevops/docker-flask-walkthrough/app.py&quot;, line 25, in hello
-    count = get_hit_count()
-  File &quot;/Users/mikemenne/Code/LaunchCode/Examples/GisDevops/docker-flask-walkthrough/app.py&quot;, line 18, in get_hit_count
-    raise exc
-ConnectionError: Error 61 connecting to redis:6379. Connection refused.
-</pre></div>
-</div>
-<p>It looks like the app is not able to connect to <code class="docutils literal notranslate"><span class="pre">redis:6379</span></code>.  Let’s do a <code class="docutils literal notranslate"><span class="pre">telnet</span></code> to check if the port is open and being listened to::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ telnet redis 6379
-redis: nodename nor servname provided, or not known
-</pre></div>
-</div>
-<p><strong>OPE</strong>… The host <code class="docutils literal notranslate"><span class="pre">redis</span></code> doesn’t exist.  This can be fixed locally by changing <code class="docutils literal notranslate"><span class="pre">host='redis'</span></code> to <code class="docutils literal notranslate"><span class="pre">host='127.0.0.1'</span></code> in <code class="docutils literal notranslate"><span class="pre">counter_app.py</span></code>.</p>
-<p>Then run the app again <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">counter_app.py</span></code> and navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/counter</span></code> and see “Hello World!!! I have been seen 19 times.”</p>
-</div>
-<div class="section" id="linking-containers">
-<h3>Linking Containers<a class="headerlink" href="#linking-containers" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="create-redis-container">
+<h3>Create Redis Container<a class="headerlink" href="#create-redis-container" title="Permalink to this headline">¶</a></h3>
 <p>We don’t want our users to have to install redis on their own. We need to create a container that runs redis. Then we can link the <code class="docutils literal notranslate"><span class="pre">redis</span></code> and <code class="docutils literal notranslate"><span class="pre">counter-app</span></code> containers using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code>. Sounds fun right?</p>
-<p>How to Find the Redis Image</p>
-<p>Go to <a class="reference external" href="https://hub.docker.com/">Docker Hub</a> and search for <code class="docutils literal notranslate"><span class="pre">redis</span></code>. Click on the official <code class="docutils literal notranslate"><span class="pre">redis</span></code> result. Click the <strong>tags</strong> tab. We are going to reference the <code class="docutils literal notranslate"><span class="pre">redis:alpine</span></code> tag. That refers to a specfic version of redis, details are available on the docker site.</p>
-<p>Pull in a copy of the <code class="docutils literal notranslate"><span class="pre">redis:alpine</span></code> image to your computer by running <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">redis:alpine</span></code></p>
+<p>Find and Download the Redis Image</p>
+<ul class="simple">
+<li>Go to <a class="reference external" href="https://hub.docker.com/">Docker Hub</a> and search for <code class="docutils literal notranslate"><span class="pre">redis</span></code>.</li>
+<li>Click on the official <code class="docutils literal notranslate"><span class="pre">redis</span></code> result.</li>
+<li>Click the <strong>tags</strong> tab.</li>
+<li>We are going to use the <code class="docutils literal notranslate"><span class="pre">redis:alpine</span></code> tag.<ul>
+<li>Tags refer to a specfic version of redis, details are available on the docker site.</li>
+</ul>
+</li>
+<li>Pull in a copy of the <code class="docutils literal notranslate"><span class="pre">redis:alpine</span></code> image to your computer by running</li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker pull redis:alpine
+</pre></div>
+</div>
 </div>
 <div class="section" id="create-counter-app-image">
 <h3>Create counter-app Image<a class="headerlink" href="#create-counter-app-image" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic simple">
-<li>Stop your local <code class="docutils literal notranslate"><span class="pre">redis</span></code> by running <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">stop</span> <span class="pre">redis</span></code></li>
-<li>Change the last line in the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> to run the <code class="docutils literal notranslate"><span class="pre">counter_app.py</span></code>. Change to this <code class="docutils literal notranslate"><span class="pre">CMD</span> <span class="pre">[&quot;python&quot;,</span> <span class="pre">&quot;/code/counter_app.py&quot;]</span></code></li>
-<li>Set <code class="docutils literal notranslate"><span class="pre">host='redis'</span></code> in <code class="docutils literal notranslate"><span class="pre">counter_app.py</span></code></li>
-<li>Build the <code class="docutils literal notranslate"><span class="pre">centos-counter-app</span></code> image: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">build</span> <span class="pre">--tag</span> <span class="pre">centos-counter-app</span> <span class="pre">.</span></code><ul>
-<li>The above command takes a while to run. After it completes you will see the below message:</li>
-</ul>
+<ol class="arabic">
+<li><p class="first">Change the last line in the <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> to be:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>CMD [&quot;python&quot;, &quot;/code/counter_app.py&quot;]
+</pre></div>
+</div>
+</li>
+<li><p class="first">Build the <code class="docutils literal notranslate"><span class="pre">centos-counter-app</span></code> image with this command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker build --tag centos-counter-app .
+</pre></div>
+</div>
 </li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The above command takes a while to run. After it completes you will see the below message:</p>
+</div>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Successfully built 8447bcee9c62
 Successfully tagged centos-counter-app:latest
 </pre></div>
 </div>
-<ol class="arabic simple" start="5">
-<li>Verify it was built by viewing images <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">images</span></code></li>
+<ol class="arabic simple" start="3">
+<li>Verify it was built by viewing docker images <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">images</span></code></li>
 </ol>
 </div>
 <div class="section" id="docker-compose-file">
 <h3>Docker Compose File<a class="headerlink" href="#docker-compose-file" title="Permalink to this headline">¶</a></h3>
 <p>We are going to bring this all together by creating  a <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file, that will allow the Flask app to reference the Redis container.</p>
+<p>Paste this text into <code class="docutils literal notranslate"><span class="pre">docker-compose.yaml</span></code></p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>version: &#39;3&#39;
 services:
   web:
@@ -498,18 +509,18 @@ services:
     image: &quot;redis:alpine&quot;
 </pre></div>
 </div>
-<p>Use the following command2 to stand up and verify the two containers:
-1. Input the above YAML into <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>
-2. Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code></p>
+<p>Use the following command2 to stand up and verify the two containers</p>
+<ol class="arabic simple">
+<li>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code></li>
+</ol>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Creating docker-flask-walkthrough_redis_1 ... done
 Creating docker-flask-walkthrough_web_1   ... done
 </pre></div>
 </div>
-<ol class="arabic simple" start="3">
+<ol class="arabic simple" start="2">
 <li>Verify that the containers are running <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span></code></li>
-<li>Naviage to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/counter</span></code></li>
+<li>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:5000/counter</span></code></li>
 </ol>
-<p>Remember that your local Redis is no longer running. There is a web app conatiner running that has a connection to the redis container.</p>
 </div>
 <div class="section" id="docker-logs">
 <h3>Docker Logs<a class="headerlink" href="#docker-logs" title="Permalink to this headline">¶</a></h3>
