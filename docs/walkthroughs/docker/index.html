@@ -346,7 +346,6 @@ app = Flask(__name__)
 
 @app.route(&#39;/&#39;)
 def hello():
-    count = get_hit_count()
     return &#39;Hello World!&#39;
 
 if __name__ == &quot;__main__&quot;:

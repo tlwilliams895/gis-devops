@@ -64,7 +64,6 @@ Review file ``simple_app.py``::
 
   @app.route('/')
   def hello():
-      count = get_hit_count()
       return 'Hello World!'
 
   if __name__ == "__main__":
