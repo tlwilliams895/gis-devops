@@ -152,7 +152,7 @@ table.field-list {
 .bs-sidenav .nav > li > a {
   display: block;
   color: #354a5f;
-  padding: 5px 20px;
+  padding: 0px 0px;
 }
 .bs-sidenav .nav > li > a:hover,
 .bs-sidenav .nav > li > a:focus {
@@ -170,11 +170,11 @@ table.field-list {
 }
 
 .bs-sidenav .nav .nav > li > a {
-  padding-top:    3px;
-  padding-bottom: 3px;
-  padding-left: 30px;
+  padding: 0px 0px;
   font-size: 90%;
   color: #716b7a;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 
