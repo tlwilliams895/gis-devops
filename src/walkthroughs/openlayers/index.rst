@@ -180,7 +180,7 @@ Try out the ``get()`` method on ``ol.Feature`` by pasting this into ``js/script.
     });
 
 Example Report HTML
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 We want to add data about this report to our map dashboard. Here is an example of what we want to show:
 
@@ -204,7 +204,7 @@ We want to add data about this report to our map dashboard. Here is an example o
     </ul>
 
 JavaScript Template Literals
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 For the next feature we will need to use `Javascript Template Literals <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>`_. Template literals example below.
 
@@ -217,7 +217,7 @@ For the next feature we will need to use `Javascript Template Literals <https://
 
 
 Show Airport List when Map Clicked
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 Update the Map onclick code to display. For each feature at a certain pixel, we want to add that feature to the list below the map. OpenLayers will handle some of this work for us via ``map.forEachFeatureAtPixel()``. Remember that the features in this case are airports and we are styling them to be displayed as red circles:
 
@@ -238,7 +238,8 @@ Update the Map onclick code to display. For each feature at a certain pixel, we 
     });
 
 Click it!
-^^^^^^^^^
+---------
+
 Click on the city and be awed at your development skills.
 
 Troubleshooting
