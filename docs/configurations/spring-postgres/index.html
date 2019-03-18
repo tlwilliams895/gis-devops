@@ -262,6 +262,9 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Configuration: Spring &amp; Postgres</a><ul>
 <li><a class="reference internal" href="#add-spring-data-to-our-dependencies">Add Spring Data to our dependencies</a></li>
+<li><a class="reference internal" href="#configure-database-connections">Configure Database Connections</a></li>
+<li><a class="reference internal" href="#map-classes-to-tables">Map Classes to Tables</a></li>
+<li><a class="reference internal" href="#extend-jparepository">Extend JpaRepository</a></li>
 </ul>
 </li>
 </ul>
@@ -285,6 +288,53 @@
 <h2>Add Spring Data to our dependencies<a class="headerlink" href="#add-spring-data-to-our-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>Open your build.gradle file.</p>
 <img alt="../../_images/project-viewer-build-gradle.png" src="../../_images/project-viewer-build-gradle.png" />
+<p>Add the associated Postgres dependency to <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> as a compile-time dependency.
+Set the existing h2 dependency to be a <code class="docutils literal notranslate"><span class="pre">testCompile</span></code> dependency, since it will only be needed for running tests at this point.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dependencies {
+    compile(group: &#39;org.postgresql&#39;, name: &#39;postgresql&#39;, version: &#39;42.1.4&#39;)
+    testCompile(&#39;com.h2database:h2&#39;)
+}
+</pre></div>
+</div>
+<p>You will more than likely have additional dependencies listed, leave the ones you do have. We are simply adding these two new dependencies. The first is for Postgres it’s the library that contains all the tools we need to work with Postgres in our web applications. The second dependencies is H2 Database. It creates a temporary in memory datastore that behaves like Postgres. We can use this for testing purposes, and we won’t need to setup a new database for testing purposes. In some instances you may want to use an actual database for testing purposes.</p>
+</div>
+<div class="section" id="configure-database-connections">
+<h2>Configure Database Connections<a class="headerlink" href="#configure-database-connections" title="Permalink to this headline">¶</a></h2>
+<p>We have loaded in the tools we will need to work with our database, but we still need to configure them.</p>
+<p>Open, or create, <code class="docutils literal notranslate"><span class="pre">/src/main/resources/application.properties</span></code>. And add the following lines.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spring.datasource.driver-class-name=org.postgresql.Driver
+spring.datasource.url=jdbc:postgresql://127.0.0.1:5432/database_name
+spring.datasource.username=database_user
+spring.datasource.password=database_password
+spring.jpa.hibernate.ddl-auto=update
+</pre></div>
+</div>
+<p>You will need to subsitute database_name, database_user, and database_password with the information you used in your database.</p>
+<p>These five lines define the driver we will need to connect to Postgres, the URL for the database, the database user, the database password, and finally the Hibernate DDL-auto mode.</p>
+<p>Setting spring.jpa.hibernate.dll-auto=update means Hibernate will create tables for us if they are missing, but it won’t alter the database in any other way. The other two DDL-auto options we will use in this class are <code class="docutils literal notranslate"><span class="pre">create</span></code> and <code class="docutils literal notranslate"><span class="pre">create-drop</span></code>. Create will create any missing tables, and run a SQL script to load the intial database with records. Create-drop will create any missing tables, run a SQL script to load the intial database, and when the application is shutdown it will drop all the tables from the database.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Committing sensitive information about our database to our VCS is a bad idea. You should use IntelliJ <a class="reference external" href="../../configurations/environment-variables-intellij/">environment variables</a> to hide your sensitive data.</p>
+</div>
+</div>
+<div class="section" id="map-classes-to-tables">
+<h2>Map Classes to Tables<a class="headerlink" href="#map-classes-to-tables" title="Permalink to this headline">¶</a></h2>
+<p>Now we will need to use the <code class="docutils literal notranslate"><span class="pre">&#64;Entity</span></code> annotation to map our POJO Models to our PSQL Tables.</p>
+<p>Open the POJO you want mapped to the database, and add the <code class="docutils literal notranslate"><span class="pre">&#64;Entity</span></code> annotation above the class declaration.</p>
+<img alt="../../_images/entity-annotation.png" src="../../_images/entity-annotation.png" />
+<p>You will need to continue to add <code class="docutils literal notranslate"><span class="pre">&#64;Entity</span></code> annotations to each POJO that you want mapped to a PSQL table.</p>
+</div>
+<div class="section" id="extend-jparepository">
+<h2>Extend JpaRepository<a class="headerlink" href="#extend-jparepository" title="Permalink to this headline">¶</a></h2>
+<p>Finally to gain access to the records in a table, you will need to create a new JpaRepository that contains all the methods neccessary to create, read, update, and delete records.</p>
+<p>Although you can put these new JpaRepository anywhere in your project it’s a good idea to group them together in their own package.</p>
+<p>Add a new package named data.</p>
+<img alt="../../_images/data.png" src="../../_images/data.png" />
+<p>Inside of that new package add a new interface named after the Model/Table you will be accessing. In this example the file will be called <code class="docutils literal notranslate"><span class="pre">ItemRepository</span></code>.</p>
+<img alt="../../_images/item-repository.png" src="../../_images/item-repository.png" />
+<p>In that new file add an <code class="docutils literal notranslate"><span class="pre">&#64;Repository</span></code> annotation, and have this interface extend JpaRepository, noting which type of Object, and the index each record will be bound to.</p>
+<img alt="../../_images/item-repository-final.png" src="../../_images/item-repository-final.png" />
+<p>Your new file extends JpaRepository which provides you with built-in methods for getting all records, getting one record, and saving records. However, you can write your own methods and bind them to specific SQL statements.</p>
 </div>
 </div>
 

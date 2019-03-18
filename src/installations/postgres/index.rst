@@ -25,7 +25,7 @@ Installation Steps: Mac
 
 Add postgres to your $PATH
 --------------------------
-)
+
 * Open a terminal
 * Open your ``.bash_profile`` in an editor like nano::
 

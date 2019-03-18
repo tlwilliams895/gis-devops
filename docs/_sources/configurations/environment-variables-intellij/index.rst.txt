@@ -64,4 +64,5 @@ I am using the application.properties file to configure my database.
 
 In the first line we are configuring the JDBC (Java DataBase Connection). Defining it as a psql database, with an IP address of 127.0.0.1 (represented by the ${APP_DB_HOST} token), a port of 5432 (represented by the ${APP_PORT} token), and a database name of cars (represented by the ${APP_DB_NAME} token).
 
+In the next two lines we continue using environment variables. We set the database user name, and the database user password. All of these environment variables are stored for us inside of IntelliJ, and not a part of our project. This allows us to keep them separate, and not accidently commit them to git, and expose our Database URL, User, and password.
 
