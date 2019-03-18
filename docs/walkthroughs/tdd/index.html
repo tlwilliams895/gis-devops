@@ -7,11 +7,12 @@
     <title>Walkthrough: TDD &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -261,7 +262,14 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: TDD</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
-<li><a class="reference internal" href="#follow-along">Follow Along</a></li>
+<li><a class="reference internal" href="#follow-along">Follow Along</a><ul>
+<li><a class="reference internal" href="#discuss-requirements">Discuss Requirements</a></li>
+<li><a class="reference internal" href="#create-a-test-list">Create a Test List</a></li>
+<li><a class="reference internal" href="#write-the-tests">Write the Tests</a></li>
+<li><a class="reference internal" href="#make-them-pass">Make Them Pass</a></li>
+<li><a class="reference internal" href="#clean-up-code">Clean Up Code</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -277,6 +285,7 @@
 <ul class="simple">
 <li>We will use the same repo from Day 1</li>
 <li>Open the car unit tests project in Intellij <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter">https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter</a></li>
+<li>From your solution branch from yesterday create a new branch for today’s solution</li>
 </ul>
 </div>
 <div class="section" id="follow-along">
@@ -288,6 +297,57 @@
 <li>Make them pass</li>
 <li>Clean up the code if there are any code smells</li>
 </ol>
+<div class="section" id="discuss-requirements">
+<h3>Discuss Requirements<a class="headerlink" href="#discuss-requirements" title="Permalink to this headline">¶</a></h3>
+<p>Following TDD and the red-green-refactor workflow we need to understand our requirements before writing any code.</p>
+<p>Today we will be implementing Range, and Trip Meter functionality.</p>
+<p>The Range functionality will calculate how many more miles the car can drive before running out of gas. The output should be a Double reprsenting the miles the car can drive before needing to fuel up.</p>
+<p>The Trip Meter will be a separate resetable odometer. This will allow a user to track the number of miles travelled on a specific trip.</p>
+</div>
+<div class="section" id="create-a-test-list">
+<h3>Create a Test List<a class="headerlink" href="#create-a-test-list" title="Permalink to this headline">¶</a></h3>
+<p>Range</p>
+<ul class="simple">
+<li>testInitialValue</li>
+<li>testValueAfterDriving</li>
+<li>testValueAtEmpty</li>
+</ul>
+<p>Trip Meter</p>
+<ul class="simple">
+<li>testInitialValue</li>
+<li>testAfterDriving</li>
+<li>testResetAfterDriving</li>
+<li>testResetThenDrive</li>
+</ul>
+</div>
+<div class="section" id="write-the-tests">
+<h3>Write the Tests<a class="headerlink" href="#write-the-tests" title="Permalink to this headline">¶</a></h3>
+<p>Range</p>
+<img alt="../../_images/tdd-range-tests.png" src="../../_images/tdd-range-tests.png" />
+<p>Trip Meter</p>
+<img alt="../../_images/tdd-trip-meter-tests.png" src="../../_images/tdd-trip-meter-tests.png" />
+<p>Our tests won’t run yet, because our code won’t compile. We are calling a few methods that don’t exist. We will need to create these methods to get them to run.</p>
+<img alt="../../_images/tdd-additional-methods.png" src="../../_images/tdd-additional-methods.png" />
+</div>
+<div class="section" id="make-them-pass">
+<h3>Make Them Pass<a class="headerlink" href="#make-them-pass" title="Permalink to this headline">¶</a></h3>
+<p>Now upon running our tests, a couple of them pass. However we still need to update some code in our Car.java file to pass the rest of our tests.</p>
+<img alt="../../_images/tdd-some-passing-tests.png" src="../../_images/tdd-some-passing-tests.png" />
+<p>Our tests are currently failing every time our car drives. We need to add some code to our drive method so that it updates the TripMeter as well as the Odometer.</p>
+<img alt="../../_images/tdd-update-drive-method.png" src="../../_images/tdd-update-drive-method.png" />
+<p>Now when we run our tests, they all pass!</p>
+<img alt="../../_images/tdd-successful-tests.png" src="../../_images/tdd-successful-tests.png" />
+</div>
+<div class="section" id="clean-up-code">
+<h3>Clean Up Code<a class="headerlink" href="#clean-up-code" title="Permalink to this headline">¶</a></h3>
+<p>Now that are tests pass, it’s a good idea to clean up our code. Our project is pretty small still, but there are a lot of redundancies in our CarTest.java file. We should clean them up.</p>
+<p>We will use &#64;Before, and &#64;After to set some variables we can use in each of our tests, so we don’t have to declare a new object at the start of every test. This will cut down on our redundant code.</p>
+<img alt="../../_images/tdd-atbefore.png" src="../../_images/tdd-atbefore.png" />
+<p>Using the &#64;Before annotation allows us to run some code before every test method in this class. In this example we use the &#64;Before annotation at the top of our Class, and we are setting up a setup_car. We will then change our tests to test this car, instead of requiring each of our tests to create a new car object.</p>
+<img alt="../../_images/tdd-refactor-tests.png" src="../../_images/tdd-refactor-tests.png" />
+<p>We can now change our test methods to change, and make assert statements the setup_car. Look over your other tests, and see if they can benefit using the &#64;Before annotation.</p>
+<p>After refactoring your code, re-run your tests to make sure they all pass. If they don’t make the changes necessary so they will pass. Then it would be a great idea to push your work to your personal GitLab account.</p>
+</div>
 </div>
 </div>
 
