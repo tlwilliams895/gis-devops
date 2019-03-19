@@ -264,7 +264,8 @@
 <li><a class="reference internal" href="#installation-steps-mac">Installation Steps: Mac</a><ul>
 <li><a class="reference internal" href="#create-env-list">Create env.list</a></li>
 <li><a class="reference internal" href="#create-container">Create Container</a></li>
-<li><a class="reference internal" href="#connect-to-psql">Connect to psql</a></li>
+<li><a class="reference internal" href="#remove-env-list">Remove env.list</a></li>
+<li><a class="reference internal" href="#curl-elasticsearch-cluster">CURL Elasticsearch Cluster</a></li>
 </ul>
 </li>
 </ul>
@@ -282,46 +283,51 @@
 <ol class="arabic simple">
 <li>Create env.list</li>
 <li>Create container</li>
+<li>Remove env.list</li>
 <li>CURL elasticsearch cluster</li>
 </ol>
 <div class="section" id="create-env-list">
 <h3>Create env.list<a class="headerlink" href="#create-env-list" title="Permalink to this headline">¶</a></h3>
-<p>Before we create our container we first need to create a temporary file that will create our containers first user, and configure the container to listen for requests.</p>
+<p>Before we create our container we first need to create a temporary file that will configure the container’s discovery.type, and cluster.name.</p>
 <ul class="simple">
 <li>Create a new file in your terminal <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">nano</span> <span class="pre">env.list</span></code></li>
-<li>Add <code class="docutils literal notranslate"><span class="pre">POSTGRES_USER=psql_user</span></code> to env.list</li>
-<li>Add <code class="docutils literal notranslate"><span class="pre">ALLOW_IP_RANGE=&lt;0.0.0.0/0&gt;</span></code> to env.list</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">discovery.type=single-node</span></code> to env.list</li>
+<li>Add <code class="docutils literal notranslate"><span class="pre">cluster.name=elasticsearch</span></code> to env.list</li>
 <li>Save env.list</li>
 </ul>
 <p>This small file will have postgres create a new user named psql_user, and allow all IP addresses to make requests to the container.</p>
 </div>
 <div class="section" id="create-container">
 <h3>Create Container<a class="headerlink" href="#create-container" title="Permalink to this headline">¶</a></h3>
-<p>We can now create, and run our container with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;es&quot;</span> <span class="pre">-p</span> <span class="pre">9200:9200</span> <span class="pre">-p</span> <span class="pre">9300:9300</span> <span class="pre">-d</span> <span class="pre">-t</span> <span class="pre">--env-file</span> <span class="pre">./env.list</span> <span class="pre">elasticsearch:6.5.4</span></code></p>
+<p>We can now create, and run our container with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;es&quot;</span> <span class="pre">-p</span> <span class="pre">9200:9200</span> <span class="pre">-p</span> <span class="pre">9300:9300</span> <span class="pre">-t</span> <span class="pre">--env-file</span> <span class="pre">./env.list</span> <span class="pre">-d</span> <span class="pre">elasticsearch:6.5.4</span></code></p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> runs a command in a container (in this case it creates the container since it doesn’t already exist)</li>
-<li><code class="docutils literal notranslate"><span class="pre">--name</span></code> allows us to name our container (in this case we are naming our container “postgis”)</li>
-<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> allows us to <em>publish</em> a port (host_port:container_port in this case both are the psql default 5432)</li>
+<li><code class="docutils literal notranslate"><span class="pre">--name</span></code> allows us to name our container (in this case we are naming our container “es”)</li>
+<li><code class="docutils literal notranslate"><span class="pre">-p</span></code> allows us to <em>publish</em> a port (host_port:container_port in this case we are opening ports 9200 &amp; 9300)</li>
 <li><code class="docutils literal notranslate"><span class="pre">-d</span></code> starts our container in <em>detach</em> mode which means it will run in the background</li>
 <li><code class="docutils literal notranslate"><span class="pre">-t</span></code> allows us to run a terminal command (in this case adding the contents of our env.list file)</li>
 <li><code class="docutils literal notranslate"><span class="pre">--env-file</span> <span class="pre">./env.list</span></code> the type of file, and the file from our computers</li>
-<li><code class="docutils literal notranslate"><span class="pre">kartoza/postgis:9.4-2.1</span></code> the image of the container (in this case postgres version 9.4, with the postgis extension version 2.1)</li>
+<li><code class="docutils literal notranslate"><span class="pre">elasticsearch:6.5.4</span></code> the image of the container (in this case elasticsearch version 6.5.4)</li>
 </ul>
-<p>This command creates a container named “postgis” with the postgres:9.4 image, with postgis:2.1 that listens on port 5432, is detached from this command, and we are running a command to add the contents of env.list to our new “postgis” container.</p>
-<p>If you run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code> now you should see a new container named “postgres”.</p>
+<p>This command creates a container named “es” with the elasticsearch 6.5.4 image that listens on port 9200 and 9300, is detached from this command, and we are running a command to add the contents of env.list to our new “es” container.</p>
+<p>We have our container listen on both ports 9200 and 9300 because Elasticsearch typically communicates over port 9200, anytime we make a request using cURL, or Kibana it uses port 9200. However, when we communicate with Elasticsearch from inside our Spring applications we will be using port 9300 to make our requests. Our container needs to be listening on both ports.</p>
+<p>If you run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code> now you should see a new container named “es”.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You can pass in environment variables without using env.list. By using <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">&quot;discovery.type=single-node&quot;</span> <span class="pre">-e</span> <span class="pre">&quot;cluster.name=elasticsearch&quot;</span></code> you can set the same configuration variables we set with env.list and <code class="docutils literal notranslate"><span class="pre">-t</span> <span class="pre">--env-file</span> <span class="pre">./env.list</span></code></p>
 </div>
-<div class="section" id="connect-to-psql">
-<h3>Connect to psql<a class="headerlink" href="#connect-to-psql" title="Permalink to this headline">¶</a></h3>
-<p>Now we will want to connect to postgres to make sure it installed correctly. To do this you will need the psql interactive terminal installed on your computer. This comes with every installation of Postgres. You can check that you have this by typing <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">postgres</span> <span class="pre">--version</span></code> to verify postgres is installed on your computer.</p>
-<p>If it isn’t installed you will want to check out <a class="reference external" href="../../installations/postgres/">Postgres Installation</a> to install Postgres.</p>
-<p>Once you have Postgres installed on your local computer, and you have created the new “postgres” container we can connect to our “postgres” container by typing <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">127.0.0.1</span> <span class="pre">-p</span> <span class="pre">5432</span> <span class="pre">-U</span> <span class="pre">psql_user</span> <span class="pre">-d</span> <span class="pre">postgres</span></code> into our terminal. This command will drop you into psql.</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">psql</span></code> The command to access the PSQL Interactive Terminal</li>
-<li><code class="docutils literal notranslate"><span class="pre">-h</span> <span class="pre">127.0.0.1</span></code> The ip address of the host we are connecting to (in this case it’s localhost)</li>
-<li><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">5432</span></code> The port of the machine we are accessing (in this case the psql default)</li>
-<li><code class="docutils literal notranslate"><span class="pre">-U</span> <span class="pre">psql_user</span></code> The user that is requesting access to the database (in this case the user we added with the env.list file)</li>
-<li><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">postgres</span></code> The name of the database we want to access (in this case the default database created by postgres)</li>
-</ul>
+</div>
+<div class="section" id="remove-env-list">
+<h3>Remove env.list<a class="headerlink" href="#remove-env-list" title="Permalink to this headline">¶</a></h3>
+<p>We no longer need the temporary env.list we created. You may delete it: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">rm</span> <span class="pre">env.list</span></code>.</p>
+</div>
+<div class="section" id="curl-elasticsearch-cluster">
+<h3>CURL Elasticsearch Cluster<a class="headerlink" href="#curl-elasticsearch-cluster" title="Permalink to this headline">¶</a></h3>
+<p>Verify your Elasticseach cluster is running with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>.</p>
+<p>If the container exists, but it’s status is anything except <code class="docutils literal notranslate"><span class="pre">Up</span></code> start the container with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">start</span> <span class="pre">es</span></code>.</p>
+<p>We can communicate with Elasticsearch in various ways throughout this class: HTTP, Spring Data, and Kibana. In this article we will use HTTP.</p>
+<p>We can make HTTP requests using the cURL command line tool. Open a terminal and type: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">127.0.0.1:9200</span></code>. Making a request to the root of elasticsearch provides you with information about this elasticsearch instance: name, cluster_name, cluster_uuid, version etc. This is an indicator that our container was installed, and configured correctly, and that we can communicate with the container.</p>
+<p>Finally let’s check the health of our cluster: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">127.0.0.1:9200/_cluster/health</span></code>. It should be yellow, or green.</p>
 </div>
 </div>
 </div>
