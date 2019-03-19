@@ -91,7 +91,7 @@ Part 2 - Instructor Steps
 .. image:: /_static/images/gitlab/gitlab-roster-merged.png
 
 
-Part 2 - Student Steps
+Part 3 - Student Steps
 ----------------------
 
 1. Get the updated code by pulling in master `git pull origin master`
