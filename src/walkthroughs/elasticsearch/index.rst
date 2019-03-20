@@ -91,20 +91,29 @@ We don't have any! We will have to create one.
 Create
 ------
 
-Before we create documents, we will have to create an index for our records.
+Before we create documents, we will have to create an index for our documents. Let's create a new index called teams.
 
-~~~
-$ curl -XPUT localhost:9200/twitter -H 'Content-Type: application/json' -d '
-{
-    "settings": {
-    "index": {
-        "number_of_shards": 2,
-        "number_of_replicas": 1
-    }
-    }
-}'
+.. sourcecode:: console
+   :caption: PUT /teams
 
-~~~
+   $ curl -XPUT 127.0.0.1:9200/teams -H 'Content-Type: application/json' -d '
+   > { 
+   >     "settings": {
+   >     "index": {
+   >         "number_of_shards": 2,
+   >         "number_of_replicas": 1
+   >     }
+   >     }
+   > }'
+
+Now let's add some MLB teams to the /teams index.
+
+.. sourcecode:: console
+   :caption: POST /teams/1
+
+   $ curl -XPOST 127.0.0.1:9200/teams/1 -H 'Content-Type: application/json' -d '
+   > {
+   >
 
 Read
 ----

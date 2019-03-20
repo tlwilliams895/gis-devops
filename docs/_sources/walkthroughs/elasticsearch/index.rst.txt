@@ -93,18 +93,18 @@ Create
 
 Before we create documents, we will have to create an index for our records.
 
-~~~
-$ curl -XPUT localhost:9200/twitter -H 'Content-Type: application/json' -d '
-{
-    "settings": {
-    "index": {
-        "number_of_shards": 2,
-        "number_of_replicas": 1
-    }
-    }
-}'
+.. sourcecode:: console
+   :caption: PUT /teams
 
-~~~
+   $ curl -XPUT localhost:9200/teams -H 'Content-Type: application/json' -d '
+   > {
+   >     "settings": {
+   >     "index": {
+   >         "number_of_shards": 2,
+   >         "number_of_replicas": 1
+   >     }
+   >     }
+   > }'
 
 Read
 ----

@@ -365,18 +365,20 @@ Document</p>
 <div class="section" id="create">
 <h3>Create<a class="headerlink" href="#create" title="Permalink to this headline">¶</a></h3>
 <p>Before we create documents, we will have to create an index for our records.</p>
-<p>~~~
-$ curl -XPUT localhost:9200/twitter -H ‘Content-Type: application/json’ -d ‘
-{</p>
-<blockquote>
-<div><p>“settings”: {
-“index”: {</p>
-<blockquote>
-<div>“number_of_shards”: 2,
-“number_of_replicas”: 1</div></blockquote>
-</div></blockquote>
-<p>}’</p>
-<p>~~~</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">PUT /teams</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPUT localhost:9200/teams -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
+<span class="gp">&gt;</span><span class="s1"> {</span>
+<span class="gp">&gt;</span><span class="s1">     &quot;settings&quot;: {</span>
+<span class="gp">&gt;</span><span class="s1">     &quot;index&quot;: {</span>
+<span class="gp">&gt;</span><span class="s1">         &quot;number_of_shards&quot;: 2,</span>
+<span class="gp">&gt;</span><span class="s1">         &quot;number_of_replicas&quot;: 1</span>
+<span class="gp">&gt;</span><span class="s1">     }</span>
+<span class="gp">&gt;</span><span class="s1">     }</span>
+<span class="gp">&gt;</span><span class="s1"> }&#39;</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="read">
 <h3>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h3>
