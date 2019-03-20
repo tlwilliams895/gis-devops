@@ -280,7 +280,7 @@
 <span id="walkthrough-unittest"></span><h1>Walkthrough: Unit Tests<a class="headerlink" href="#walkthrough-unit-tests" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="concept-unit-testing">
 <h2>Concept: Unit Testing<a class="headerlink" href="#concept-unit-testing" title="Permalink to this headline">¶</a></h2>
-<p>A unit is a single, clearly state behavior. In many cases it will be one funciton, or method.</p>
+<p>A unit is a single, clearly stated behavior. In many cases it will be one funciton, or method.</p>
 <p>A unit test is an automated test that verifies that one unit behaves correctly.</p>
 <p>We will be writing unit tests using JUnit 4 in IntelliJ. Some example code has been provided for us. We will be writing unit tests for the code that currently exists.</p>
 </div>
@@ -351,12 +351,12 @@
 </ul>
 <img alt="../../_images/completed-tests.png" src="../../_images/completed-tests.png" />
 <p>Our first three tests are very similar to one another. They each have a test_car object, and are checking that the gas tank level is correct after instantiating the car, driving the car within the range, and driving the car exceeding the range.</p>
-<p>The assertEquals() method takes three parameters: The value we want to test, What it’s value should be, and the delta (how much the actual, and expected values can differ and still return true).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">assertEquals()</span></code> method takes three parameters: The value we want to test, What it’s value should be, and the delta (how much the actual, and expected values can differ and still return true).</p>
 <p>Our fourth test is a little different. We are going to perform an action to our car object, and we are expecting the object to throw an error. In this case we are going to attempt to add gas to our car that exceeds the gas tank size.</p>
 <img alt="../../_images/test-expected-exception.png" src="../../_images/test-expected-exception.png" />
 <p>We are able to expect an exception to be thrown by adding (expected = IllegalArgumentException.class) after our &#64;Test annotation. This is our way of telling Junit 4 that this test should pass if an IllegalArgumentException is thrown at any point during this test.</p>
 <p>We also are calling the addGas method which has not yet been added to the Car class, we will need to add this functionality to run our test.</p>
-<p>The fail() message will be displayed if the test fails. We have to import the fail method into this class to use it.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">fail()</span></code> message will be displayed if the test fails. We have to import the fail method into this class to use it.</p>
 <p>Let’s add the addGas method to our Car class so we can finish this final test.</p>
 <ul class="simple">
 <li>Add the addGas method to Car.java</li>
@@ -366,7 +366,7 @@
 <li>Run your tests</li>
 </ul>
 <img alt="../../_images/failed-car-test.png" src="../../_images/failed-car-test.png" />
-<p>My new test failed! In the output I got an unexpected exception. This test was expecting an IllegalArgumentException, but it got an AssertionError execption. This caused my test to fail. Further down in the output log we can see that our fail() statement printed out the statement about not being able to add more gas to the gastank than is possible.</p>
+<p>My new test failed! In the output I got an unexpected exception. This test was expecting an IllegalArgumentException, but it got an AssertionError execption. This caused my test to fail. Further down in the output log we can see that our <code class="docutils literal notranslate"><span class="pre">fail()</span></code> statement printed out the statement about not being able to add more gas to the gastank than is possible.</p>
 <ul class="simple">
 <li>Refactor our Car class to throw an exception when too much gas is added to the gas tank</li>
 </ul>
