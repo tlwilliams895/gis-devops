@@ -1,0 +1,163 @@
+:orphan:
+
+.. _elasticsearch-walkthrough:
+
+==========================
+Walkthrough: Elasticsearch
+==========================
+
+Elasticsearch is a non-relational database. It stores information as documents, a collection of key-value pairs that describe the object. It is very similar to JSON.
+
+Unlike a relational database, we will not use SQL to communicate with our data, instead we will be using HTTP Requests, and JSON to communicate with our data. It is a RESTful API and therefore we will predominately be using GET, POST, PUT, and DELETE HTTP methods, and will be receiving JSON as a response.
+
+A non-relational database has certain advantages, and disadvantages in comparison to a relational database.
+
+Advantages:
+    - Full text search
+    - Real time search
+    - Distributed workers
+    - Fast search
+    - Fuzzy search
+
+Disadvantages:
+    - Data loss & data corruption
+    - Slow index times
+    - Memory intensive
+
+hello:
+* Test
+* test21
+
+Throughout this class we will be leveraging Elasticsearch's fast, full, and fuzzy searches, but will never use it as a primary datastore. We will be using it as a secondary datastore.
+
+Getting Ready
+=============
+
+To use Elasticsearch we need to first install it.
+
+We will be running elasticsearch as a docker container. You can check if you have docker installed with: ``$ docker -v``, if it's installed it will print out the version installed. Check out the `docker installation <../../installations/docker/>`_ if you need to install docker.
+
+After docker is installed you can check your containers with: ``$ docker ps -a``, if you don't have an elasticsearch container, you can get one by following the `elasticsearch installation instructions <../../installations/docker-elasticsearch/>`_.
+
+Elasticsearch Terms
+===================
+
+Cluster
+Node
+Index
+Shard
+Replica
+Document
+
+Elasticsearch Basics
+====================
+
+Now that we have Elasticsearch installed on our machines we can learn the basics. We will focus on CRUD functionality.
+
+We will be passing JSON back and forth with Elasticsearch, and using HTTP as the means of communication.
+
+To do this on Unix based systems we will use the cURL terminal tool.
+
+From the terminal a cURL command looks like: ``$ curl -X<HTTP_VERB> '<URL>' -H 'Content-type:application/json' -d '<BODY>'``
+
+Let's break that command down:
+    - -X<HTTP_VERB>: The HTTP verb we want to use (GET, POST, PUT, DELETE)
+    - <URL>: The URL of the elasticsearch cluster and the path of the index we are requesting
+    - -H: HTTP Header in this case we are setting the Content Type to application/json this allows us to include JSON with our request
+    - -d: The Body of the request in this case it's where we would include our JSON
+
+Let's make a request to view data about our elasticsearch cluster: ``$ curl -XGET 'http://127.0.0.1:9200/'``
+
+.. image:: /_static/images/elasticsearch/cluster-data.png
+
+Another useful request is to the _cat endpoint. It gives us more information about how to query even more resources.
+
+``$ curl -XGET 'http://127.0.0.1:9200/_cat/'``
+
+.. image:: /_static/images/elasticsearch/cat.png
+
+Let's check the nodes associated with this cluster: ``$ curl -XGET 'http://127.0.0.1:9200/_cat/nodes'``
+
+.. image:: /_static/images/elasticsearch/cat-nodes.png
+
+We have one node. The location of the node on my machine is 172.17.0.2, that happens to be the internal IP address of the docker container where my elasticsearch cluster lives. Your IP Address will probably be different.
+
+Now let's check the indices associated with our cluster: ``$ curl -XGET 'http://127.0.0.1:9200/_cat/indices'``.
+
+.. image:: /_static/images/elasticsearch/cat-indices-empty.png
+
+We don't have any! We will have to create one.
+
+Create
+------
+
+Before we create documents, we will have to create an index for our records.
+
+~~~
+$ curl -XPUT localhost:9200/twitter -H 'Content-Type: application/json' -d '
+{
+    "settings": {
+    "index": {
+        "number_of_shards": 2,
+        "number_of_replicas": 1
+    }
+    }
+}'
+
+~~~
+
+Read
+----
+
+Update
+------
+
+Delete
+------
+
+Elasticsearch Fuzzy Search
+==========================
+
+Add Gradle dependencies
+-----------------------
+
+
+Configuring Spring Boot for ES
+------------------------------
+
+Write A Test
+------------
+
+Model and Repository
+--------------------
+
+Controller
+----------
+
+Elasticsearch Controller
+------------------------
+
+Saving ItemDocuments
+====================
+
+Testing
+=======
+
+Refresh the Index
+==================
+
+Your Tasks
+==========
+
+Bonus Missions
+==============
+
+Resources
+=========
+
+* `Spring Data Elasticsearch <http://www.baeldung.com/spring-data-elasticsearch-tutorial>`_
+* `ElasticsearchRepository <https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html>`_
+* `TransportClient <https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html>`_
+* `QueryBuilders <https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html>`_
+* `Spring Data Elasticsearch Queries <http://www.baeldung.com/spring-data-elasticsearch-queries>`_
+* `The @Value annotation <http://www.baeldung.com/spring-value-annotation>`_
