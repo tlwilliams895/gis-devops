@@ -10,7 +10,7 @@ Walkthrough: Unit Tests
 Concept: Unit Testing
 ---------------------
 
-A unit is a single, clearly state behavior. In many cases it will be one funciton, or method.
+A unit is a single, clearly stated behavior. In many cases it will be one funciton, or method.
 
 A unit test is an automated test that verifies that one unit behaves correctly.
 
@@ -83,7 +83,7 @@ Write and Run our Unit Tests
 
 Our first three tests are very similar to one another. They each have a test_car object, and are checking that the gas tank level is correct after instantiating the car, driving the car within the range, and driving the car exceeding the range.
 
-The assertEquals() method takes three parameters: The value we want to test, What it's value should be, and the delta (how much the actual, and expected values can differ and still return true).
+The ``assertEquals()`` method takes three parameters: The value we want to test, What it's value should be, and the delta (how much the actual, and expected values can differ and still return true).
 
 Our fourth test is a little different. We are going to perform an action to our car object, and we are expecting the object to throw an error. In this case we are going to attempt to add gas to our car that exceeds the gas tank size.
 
@@ -93,7 +93,7 @@ We are able to expect an exception to be thrown by adding (expected = IllegalArg
 
 We also are calling the addGas method which has not yet been added to the Car class, we will need to add this functionality to run our test.
 
-The fail() message will be displayed if the test fails. We have to import the fail method into this class to use it.
+The ``fail()`` message will be displayed if the test fails. We have to import the fail method into this class to use it.
 
 Let's add the addGas method to our Car class so we can finish this final test.
 
@@ -105,7 +105,7 @@ Let's add the addGas method to our Car class so we can finish this final test.
 
 .. image:: /_static/images/unit-tests/failed-car-test.png
 
-My new test failed! In the output I got an unexpected exception. This test was expecting an IllegalArgumentException, but it got an AssertionError execption. This caused my test to fail. Further down in the output log we can see that our fail() statement printed out the statement about not being able to add more gas to the gastank than is possible.
+My new test failed! In the output I got an unexpected exception. This test was expecting an IllegalArgumentException, but it got an AssertionError execption. This caused my test to fail. Further down in the output log we can see that our ``fail()`` statement printed out the statement about not being able to add more gas to the gastank than is possible.
 
 * Refactor our Car class to throw an exception when too much gas is added to the gas tank
 

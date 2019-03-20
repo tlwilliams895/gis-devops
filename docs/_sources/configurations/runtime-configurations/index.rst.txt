@@ -1,6 +1,6 @@
 :orphan:
 
-.. _intellij:
+.. _runtime-configurations:
 
 ===============================================
 Configuration: IntelliJ - Runtime Configuration
