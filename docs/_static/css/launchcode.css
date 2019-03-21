@@ -117,10 +117,9 @@ div.admonition {
     padding-top: 1em;
     border-radius: 2px;
     margin: 2em;
-    /*border: 1px solid #eee;*/
-    box-shadow: 0 4px 10px 0 #eee;
+    border: 1px solid #354a5f;
+    /*box-shadow: 0 4px 10px 0 #eee;*/
     background-color: #fff;
-    border: none;
     color: rgb(52, 74, 95);
 }
 
@@ -132,7 +131,7 @@ div.admonition {
     padding-right: 1em;
     font-family: "Nexa Black";
     color: rgb(54, 74, 95);
-    border-bottom: 1px solid #eee;
+    /*border-bottom: 1px solid #eee;*/
     display: inline-block;
 }
 
@@ -209,14 +208,19 @@ pre {
     overflow-x: auto;
     padding: 1.5rem;
     -webkit-text-size-adjust: none;
-    color: #777;
+    color: #ffffff;
     border: 1px solid #777;
     border-radius: 4px;
+    background-color: #354a5f;
+}
+
+blockquote {
+    padding: 30px 45px;
+    border: none;
+    font-style: italic;
 }
 
 blockquote div {
-    color: #aaa;
-    font-size: 16px;
     padding-top: 0;
 }
 
@@ -287,6 +291,32 @@ div.contents a:hover {
     font-size: 16px;
     margin: 2px 0;
 }
+
+.admonition .highlight {
+    padding-top: 10px;
+}
+
+.highlight .sa { color: #00d288 } /* Literal.String.Affix */
+.highlight .sb { color: #00d288 } /* Literal.String.Backtick */
+.highlight .sc { color: #00d288 } /* Literal.String.Char */
+.highlight .dl { color: #00d288 } /* Literal.String.Delimiter */
+.highlight .sd { color: #00d288 } /* Literal.String.Doc */
+.highlight .s2 { color: #00d288 } /* Literal.String.Double */
+.highlight .se { color: #00d288 } /* Literal.String.Escape */
+.highlight .sh { color: #00d288 } /* Literal.String.Heredoc */
+.highlight .si { color: #00d288 } /* Literal.String.Interpol */
+.highlight .sx { color: #00d288 } /* Literal.String.Other */
+.highlight .sr { color: #00d288 } /* Literal.String.Regex */
+.highlight .s1 { color: #00d288 } /* Literal.String.Single */
+.highlight .ss { color: #00d288 } /* Literal.String.Symbol */
+
+.highlight .mb { color: #fb660a; font-weight: bold } /* Literal.Number.Bin */
+.highlight .mf { color: #fb660a; font-weight: bold } /* Literal.Number.Float */
+.highlight .mh { color: #fb660a; font-weight: bold } /* Literal.Number.Hex */
+.highlight .mi { color: #fb660a; font-weight: bold } /* Literal.Number.Integer */
+.highlight .mo { color: #fb660a; font-weight: bold } /* Literal.Number.Oct */
+
+.highlight .s { color: #00d288 } /* Literal.String */
 
 /* TODO - Remove these after updating shared ed styles(custom.css?) */
 
