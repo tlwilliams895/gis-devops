@@ -364,10 +364,10 @@ Document</p>
 <p>We don’t have any! We will have to create one.</p>
 <div class="section" id="create">
 <h3>Create<a class="headerlink" href="#create" title="Permalink to this headline">¶</a></h3>
-<p>Before we create documents, we will have to create an index for our records.</p>
+<p>Before we create documents, we will have to create an index for our documents. Let’s create a new index called teams.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">PUT /teams</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPUT localhost:9200/teams -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPUT <span class="m">127</span>.0.0.1:9200/teams -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
 <span class="gp">&gt;</span><span class="s1"> {</span>
 <span class="gp">&gt;</span><span class="s1">     &quot;settings&quot;: {</span>
 <span class="gp">&gt;</span><span class="s1">     &quot;index&quot;: {</span>
@@ -379,9 +379,45 @@ Document</p>
 </pre></div>
 </div>
 </div>
+<p>Now let’s add some MLB teams to the /teams index.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/1</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPOST <span class="m">127</span>.0.0.1:9200/teams/_doc/1 -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
+<span class="gp">&gt;</span><span class="s1"> {</span>
+<span class="gp">&gt;</span><span class="s1">   &quot;city&quot;: &quot;St. Louis&quot;,</span>
+<span class="gp">&gt;</span><span class="s1">   &quot;name&quot;: &quot;Cardinals&quot;,</span>
+<span class="gp">&gt;</span><span class="s1">   &quot;league&quot;: &quot;National&quot;</span>
+<span class="gp">&gt;</span><span class="s1"> }&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/2</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPOST <span class="m">127</span>.0.0.1:9200/teams/_doc/2 -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
+<span class="gp">&gt;</span><span class="s1"> {</span>
+<span class="gp">&gt;</span><span class="s1">   &quot;city&quot;: &quot;Washington&quot;,</span>
+<span class="gp">&gt;</span><span class="s1">   &quot;name&quot;: &quot;Nationals&quot;,</span>
+<span class="gp">&gt;</span><span class="s1">   &quot;league&quot;: &quot;National&quot;</span>
+<span class="gp">&gt;</span><span class="s1"> }&#39;</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="read">
 <h3>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h3>
+<p>Let’s read these documents from Elasticsearch.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/1</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XGET <span class="m">127</span>.0.0.1:9200/teams/_doc/1
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XGET <span class="m">127</span>.0.0.1:9200/teams/_doc/2
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="update">
 <h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>

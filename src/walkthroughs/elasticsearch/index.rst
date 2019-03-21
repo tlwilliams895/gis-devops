@@ -109,14 +109,39 @@ Before we create documents, we will have to create an index for our documents. L
 Now let's add some MLB teams to the /teams index.
 
 .. sourcecode:: console
-   :caption: POST /teams/1
+   :caption: POST /teams/_doc/1
 
-   $ curl -XPOST 127.0.0.1:9200/teams/1 -H 'Content-Type: application/json' -d '
+   $ curl -XPOST 127.0.0.1:9200/teams/_doc/1 -H 'Content-Type: application/json' -d '
    > {
-   >
+   >   "city": "St. Louis",
+   >   "name": "Cardinals",
+   >   "league": "National"
+   > }'
+
+.. sourcecode:: console
+   :caption: POST /teams/_doc/2
+
+   $ curl -XPOST 127.0.0.1:9200/teams/_doc/2 -H 'Content-Type: application/json' -d '
+   > {
+   >   "city": "Washington",
+   >   "name": "Nationals",
+   >   "league": "National"
+   > }'
 
 Read
 ----
+
+Let's read these documents from Elasticsearch.
+
+.. sourcecode:: console
+   :caption: GET /teams/_doc/1
+
+   $ curl -XGET 127.0.0.1:9200/teams/_doc/1
+
+.. sourcecode:: console
+   :caption: GET /teams/_doc/2
+
+   $ curl -XGET 127.0.0.1:9200/teams/_doc/2
 
 Update
 ------
