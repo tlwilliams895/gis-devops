@@ -13,20 +13,16 @@ Unlike a relational database, we will not use SQL to communicate with our data, 
 A non-relational database has certain advantages, and disadvantages in comparison to a relational database.
 
 Advantages:
+    - Fast search
     - Full text search
     - Real time search
-    - Distributed workers
-    - Fast search
     - Fuzzy search
-
+    - Distributed workers
+    
 Disadvantages:
     - Data loss & data corruption
-    - Slow index times
+    - Reindex for every document creation, or update
     - Memory intensive
-
-hello:
-* Test
-* test21
 
 Throughout this class we will be leveraging Elasticsearch's fast, full, and fuzzy searches, but will never use it as a primary datastore. We will be using it as a secondary datastore.
 
@@ -43,10 +39,15 @@ Elasticsearch Terms
 ===================
 
 Cluster
+
 Node
+
 Index
+
 Shard
+
 Replica
+
 Document
 
 Elasticsearch Basics
@@ -96,95 +97,150 @@ Before we create documents, we will have to create an index for our documents. L
 .. sourcecode:: console
    :caption: PUT /teams
 
-   $ curl -XPUT 127.0.0.1:9200/teams -H 'Content-Type: application/json' -d '
-   > { 
-   >     "settings": {
-   >     "index": {
-   >         "number_of_shards": 2,
-   >         "number_of_replicas": 1
-   >     }
-   >     }
-   > }'
+   curl -XPUT 127.0.0.1:9200/teams -H 'Content-Type: application/json' -d '
+   { 
+      "settings": {
+        "index": {
+          "number_of_shards": 2,
+          "number_of_replicas": 1
+        }
+      }
+   }'
 
-Now let's add some MLB teams to the /teams index.
+When you add a document to an index it's called indexing a document. Indexing is slightly different than creating a record in a relational database. Indexing creates the document, and makes it fully searchable, which is more memory intensive, and slower than simply creating a record in a database. This allows the document in Elasticsearch to be searched fully, and very quickly.
+
+Now let's index some MLB teams as documents on the ``/teams`` index.
+
+First the St. Louis Cardinals.
 
 .. sourcecode:: console
    :caption: POST /teams/_doc/1
 
-   $ curl -XPOST 127.0.0.1:9200/teams/_doc/1 -H 'Content-Type: application/json' -d '
-   > {
-   >   "city": "St. Louis",
-   >   "name": "Cardinals",
-   >   "league": "National"
-   > }'
+   curl -XPOST 127.0.0.1:9200/teams/_doc/1 -H 'Content-Type: application/json' -d '
+   {
+      "city": "St. Louis",
+      "name": "Cardinals",
+      "league": "National"
+   }'
+
+The Washington Nationals.
 
 .. sourcecode:: console
    :caption: POST /teams/_doc/2
 
-   $ curl -XPOST 127.0.0.1:9200/teams/_doc/2 -H 'Content-Type: application/json' -d '
-   > {
-   >   "city": "Washington",
-   >   "name": "Nationals",
-   >   "league": "National"
-   > }'
+   curl -XPOST 127.0.0.1:9200/teams/_doc/2 -H 'Content-Type: application/json' -d '
+   {
+      "city": "Washington",
+      "name": "Nationals",
+      "league": "National"
+   }'
+
+Finally, the Chicago Cubs.
+
+.. sourcecode:: console
+   :caption: POST /teams/_doc/3
+
+   curl -XPOST 127.0.0.1:9200/teams/_doc/3 -H 'Content-Type: application/json' -d '
+   {
+       "city": "Chicago",
+       "name": "Cubs",
+       "league": "National"
+   }'
 
 Read
 ----
+
+Let's rerun that command from earlier to check on the indices associated with this cluster.
+
+.. sourcecode:: console
+   :caption: GET /_cat/indices
+
+   curl -XGET 127.0.0.1:9200/_cat/indices
 
 Let's read these documents from Elasticsearch.
 
 .. sourcecode:: console
    :caption: GET /teams/_doc/1
 
-   $ curl -XGET 127.0.0.1:9200/teams/_doc/1
+   curl -XGET 127.0.0.1:9200/teams/_doc/1?pretty=true
 
 .. sourcecode:: console
    :caption: GET /teams/_doc/2
 
-   $ curl -XGET 127.0.0.1:9200/teams/_doc/2
+   curl -XGET 127.0.0.1:9200/teams/_doc/2?pretty=true
+
+.. sourcecode:: console
+   :caption: GET /teams/_doc/3
+
+   curl -XGET 127.0.0.1:9200/teams/_doc/3?pretty=true
+
+.. note::
+   
+   In the case of these cURL requests we are passing the pretty option, and setting it as true. This makes our queries a little easier to read. This option can be passed to any elasticsearch query, and the results will come back nicer. `Learn more about Elasticsearch 6.5 options <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/common-options.html>`_ 
 
 Update
 ------
 
+Let's update one of these documents. The ``"city"`` key for our 2nd document currently is valued as ``"Washington"``. This can cause confusion for people that don't know the Washington Nationals are in Washington D.C. Let's update this record with a new ``"city"`` name.
+
+.. sourcecode:: console
+   :caption: POST /teams/_doc/2/_update
+
+   curl -XPOST 127.0.0.1:9200/teams/_doc/2/_update -H 'Content-Type: application/json' -d '
+   {
+       "doc": {
+           "city": "Washington D.C."
+       }
+   }'
+
+One of the differences between a relational database (PSQL) and a non-relational database (Elasticsearch) is how records/documents are updated. In a relational database the field is simply changed. In a non-relational database the entire document is deleted, and reindexed. This makes every update far more resource intensive than an update in a relational database.
+
+Let's see this change.
+
+.. sourcecode:: console
+   :caption: GET /teams/_doc/2
+
+   curl -XGET 127.0.0.1:9200/teams/_doc/2?pretty=true
+
+.. image:: /_static/images/elasticsearch/update-city.png
+
 Delete
 ------
 
+Let's delete a document.
+
+.. sourcecode:: console
+   :caption: DELETE /teams/_doc/3
+
+   curl -XDELETE 127.0.0.1:9200/teams/_doc/3
+
+Let's query that document again to make sure it's gone.
+
+.. sourcecode:: console
+   :caption: GET /teams/_doc/3
+
+   curl -XGET 127.0.0.1:9200/teams/_doc/3?pretty=true
+
+.. image:: /_static/images/elasticsearch/delete.png
+
+I think we all feel better now that the Cubs have been deleted!
+
+Elasticsearch Search API
+========================
+
+So far Elasticsearch functions very similarly to PSQL. How do we leverage some the advantages of Elasticsearch?
+
+We do this through the Elasticsearch Search API!
+
+We will be writing our NoSQL queries like this: ``curl -XGET 127.0.0.1:9200/teams/_search``
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true
+
 Elasticsearch Fuzzy Search
 ==========================
-
-Add Gradle dependencies
------------------------
-
-
-Configuring Spring Boot for ES
-------------------------------
-
-Write A Test
-------------
-
-Model and Repository
---------------------
-
-Controller
-----------
-
-Elasticsearch Controller
-------------------------
-
-Saving ItemDocuments
-====================
-
-Testing
-=======
-
-Refresh the Index
-==================
-
-Your Tasks
-==========
-
-Bonus Missions
-==============
 
 Resources
 =========

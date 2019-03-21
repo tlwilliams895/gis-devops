@@ -270,20 +270,8 @@
 <li><a class="reference internal" href="#delete">Delete</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#elasticsearch-fuzzy-search">Elasticsearch Fuzzy Search</a><ul>
-<li><a class="reference internal" href="#add-gradle-dependencies">Add Gradle dependencies</a></li>
-<li><a class="reference internal" href="#configuring-spring-boot-for-es">Configuring Spring Boot for ES</a></li>
-<li><a class="reference internal" href="#write-a-test">Write A Test</a></li>
-<li><a class="reference internal" href="#model-and-repository">Model and Repository</a></li>
-<li><a class="reference internal" href="#controller">Controller</a></li>
-<li><a class="reference internal" href="#elasticsearch-controller">Elasticsearch Controller</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#saving-itemdocuments">Saving ItemDocuments</a></li>
-<li><a class="reference internal" href="#testing">Testing</a></li>
-<li><a class="reference internal" href="#refresh-the-index">Refresh the Index</a></li>
-<li><a class="reference internal" href="#your-tasks">Your Tasks</a></li>
-<li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
+<li><a class="reference internal" href="#elasticsearch-search-api">Elasticsearch Search API</a></li>
+<li><a class="reference internal" href="#elasticsearch-fuzzy-search">Elasticsearch Fuzzy Search</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
 </li>
@@ -301,24 +289,21 @@
 <dl class="docutils">
 <dt>Advantages:</dt>
 <dd><ul class="first last simple">
+<li>Fast search</li>
 <li>Full text search</li>
 <li>Real time search</li>
-<li>Distributed workers</li>
-<li>Fast search</li>
 <li>Fuzzy search</li>
+<li>Distributed workers</li>
 </ul>
 </dd>
 <dt>Disadvantages:</dt>
 <dd><ul class="first last simple">
 <li>Data loss &amp; data corruption</li>
-<li>Slow index times</li>
+<li>Reindex for every document creation, or update</li>
 <li>Memory intensive</li>
 </ul>
 </dd>
 </dl>
-<p>hello:
-* Test
-* test21</p>
 <p>Throughout this class we will be leveraging Elasticsearch’s fast, full, and fuzzy searches, but will never use it as a primary datastore. We will be using it as a secondary datastore.</p>
 <div class="section" id="getting-ready">
 <h2>Getting Ready<a class="headerlink" href="#getting-ready" title="Permalink to this headline">¶</a></h2>
@@ -328,12 +313,12 @@
 </div>
 <div class="section" id="elasticsearch-terms">
 <h2>Elasticsearch Terms<a class="headerlink" href="#elasticsearch-terms" title="Permalink to this headline">¶</a></h2>
-<p>Cluster
-Node
-Index
-Shard
-Replica
-Document</p>
+<p>Cluster</p>
+<p>Node</p>
+<p>Index</p>
+<p>Shard</p>
+<p>Replica</p>
+<p>Document</p>
 </div>
 <div class="section" id="elasticsearch-basics">
 <h2>Elasticsearch Basics<a class="headerlink" href="#elasticsearch-basics" title="Permalink to this headline">¶</a></h2>
@@ -367,100 +352,148 @@ Document</p>
 <p>Before we create documents, we will have to create an index for our documents. Let’s create a new index called teams.</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">PUT /teams</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPUT <span class="m">127</span>.0.0.1:9200/teams -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
-<span class="gp">&gt;</span><span class="s1"> {</span>
-<span class="gp">&gt;</span><span class="s1">     &quot;settings&quot;: {</span>
-<span class="gp">&gt;</span><span class="s1">     &quot;index&quot;: {</span>
-<span class="gp">&gt;</span><span class="s1">         &quot;number_of_shards&quot;: 2,</span>
-<span class="gp">&gt;</span><span class="s1">         &quot;number_of_replicas&quot;: 1</span>
-<span class="gp">&gt;</span><span class="s1">     }</span>
-<span class="gp">&gt;</span><span class="s1">     }</span>
-<span class="gp">&gt;</span><span class="s1"> }&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPUT 127.0.0.1:9200/teams -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">   &quot;settings&quot;: {</span>
+<span class="go">     &quot;index&quot;: {</span>
+<span class="go">       &quot;number_of_shards&quot;: 2,</span>
+<span class="go">       &quot;number_of_replicas&quot;: 1</span>
+<span class="go">     }</span>
+<span class="go">   }</span>
+<span class="go">}&#39;</span>
 </pre></div>
 </div>
 </div>
-<p>Now let’s add some MLB teams to the /teams index.</p>
+<p>When you add a document to an index it’s called indexing a document. Indexing is slightly different than creating a record in a relational database. Indexing creates the document, and makes it fully searchable, which is more memory intensive, and slower than simply creating a record in a database. This allows the document in Elasticsearch to be searched fully, and very quickly.</p>
+<p>Now let’s index some MLB teams as documents on the <code class="docutils literal notranslate"><span class="pre">/teams</span></code> index.</p>
+<p>First the St. Louis Cardinals.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">POST /teams/_doc/1</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPOST <span class="m">127</span>.0.0.1:9200/teams/_doc/1 -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
-<span class="gp">&gt;</span><span class="s1"> {</span>
-<span class="gp">&gt;</span><span class="s1">   &quot;city&quot;: &quot;St. Louis&quot;,</span>
-<span class="gp">&gt;</span><span class="s1">   &quot;name&quot;: &quot;Cardinals&quot;,</span>
-<span class="gp">&gt;</span><span class="s1">   &quot;league&quot;: &quot;National&quot;</span>
-<span class="gp">&gt;</span><span class="s1"> }&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/1 -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">   &quot;city&quot;: &quot;St. Louis&quot;,</span>
+<span class="go">   &quot;name&quot;: &quot;Cardinals&quot;,</span>
+<span class="go">   &quot;league&quot;: &quot;National&quot;</span>
+<span class="go">}&#39;</span>
 </pre></div>
 </div>
 </div>
+<p>The Washington Nationals.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text">POST /teams/_doc/2</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XPOST <span class="m">127</span>.0.0.1:9200/teams/_doc/2 -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;</span>
-<span class="gp">&gt;</span><span class="s1"> {</span>
-<span class="gp">&gt;</span><span class="s1">   &quot;city&quot;: &quot;Washington&quot;,</span>
-<span class="gp">&gt;</span><span class="s1">   &quot;name&quot;: &quot;Nationals&quot;,</span>
-<span class="gp">&gt;</span><span class="s1">   &quot;league&quot;: &quot;National&quot;</span>
-<span class="gp">&gt;</span><span class="s1"> }&#39;</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/2 -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">   &quot;city&quot;: &quot;Washington&quot;,</span>
+<span class="go">   &quot;name&quot;: &quot;Nationals&quot;,</span>
+<span class="go">   &quot;league&quot;: &quot;National&quot;</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>Finally, the Chicago Cubs.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/3</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/3 -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;city&quot;: &quot;Chicago&quot;,</span>
+<span class="go">    &quot;name&quot;: &quot;Cubs&quot;,</span>
+<span class="go">    &quot;league&quot;: &quot;National&quot;</span>
+<span class="go">}&#39;</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="read">
 <h3>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h3>
-<p>Let’s read these documents from Elasticsearch.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/1</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XGET <span class="m">127</span>.0.0.1:9200/teams/_doc/1
-</pre></div>
-</div>
-</div>
+<p>Let’s rerun that command from earlier to check on the indices associated with this cluster.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> curl -XGET <span class="m">127</span>.0.0.1:9200/teams/_doc/2
+<div class="code-block-caption"><span class="caption-text">GET /_cat/indices</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/_cat/indices</span>
 </pre></div>
 </div>
+</div>
+<p>Let’s read these documents from Elasticsearch.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/1</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/1?pretty=true</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/2?pretty=true</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/3</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/3?pretty=true</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In the case of these cURL requests we are passing the pretty option, and setting it as true. This makes our queries a little easier to read. This option can be passed to any elasticsearch query, and the results will come back nicer. <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/common-options.html">Learn more about Elasticsearch 6.5 options</a></p>
 </div>
 </div>
 <div class="section" id="update">
 <h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
+<p>Let’s update one of these documents. The <code class="docutils literal notranslate"><span class="pre">&quot;city&quot;</span></code> key for our 2nd document currently is valued as <code class="docutils literal notranslate"><span class="pre">&quot;Washington&quot;</span></code>. This can cause confusion for people that don’t know the Washington Nationals are in Washington D.C. Let’s update this record with a new <code class="docutils literal notranslate"><span class="pre">&quot;city&quot;</span></code> name.</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/2/_update</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/2/_update -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;doc&quot;: {</span>
+<span class="go">        &quot;city&quot;: &quot;Washington D.C.&quot;</span>
+<span class="go">    }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>One of the differences between a relational database (PSQL) and a non-relational database (Elasticsearch) is how records/documents are updated. In a relational database the field is simply changed. In a non-relational database the entire document is deleted, and reindexed. This makes every update far more resource intensive than an update in a relational database.</p>
+<p>Let’s see this change.</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/2?pretty=true</span>
+</pre></div>
+</div>
+</div>
+<img alt="../../_images/update-city.png" src="../../_images/update-city.png" />
 </div>
 <div class="section" id="delete">
 <h3>Delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
+<p>Let’s delete a document.</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">DELETE /teams/_doc/3</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XDELETE 127.0.0.1:9200/teams/_doc/3</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s query that document again to make sure it’s gone.</p>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/3</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/3?pretty=true</span>
+</pre></div>
+</div>
+</div>
+<img alt="../../_images/delete.png" src="../../_images/delete.png" />
+<p>I think we all feel better now that the Cubs have been deleted!</p>
+</div>
+</div>
+<div class="section" id="elasticsearch-search-api">
+<h2>Elasticsearch Search API<a class="headerlink" href="#elasticsearch-search-api" title="Permalink to this headline">¶</a></h2>
+<p>So far Elasticsearch functions very similarly to PSQL. How do we leverage some the advantages of Elasticsearch?</p>
+<p>We do this through the Elasticsearch Search API!</p>
+<p>We will be writing our NoSQL queries like this: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">127.0.0.1:9200/teams/_search?q=&lt;search_field&gt;:&lt;search_term&gt;</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search?q=name:cardinals</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?q=name:cardinals?pretty=true</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="elasticsearch-fuzzy-search">
 <h2>Elasticsearch Fuzzy Search<a class="headerlink" href="#elasticsearch-fuzzy-search" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="add-gradle-dependencies">
-<h3>Add Gradle dependencies<a class="headerlink" href="#add-gradle-dependencies" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="configuring-spring-boot-for-es">
-<h3>Configuring Spring Boot for ES<a class="headerlink" href="#configuring-spring-boot-for-es" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="write-a-test">
-<h3>Write A Test<a class="headerlink" href="#write-a-test" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="model-and-repository">
-<h3>Model and Repository<a class="headerlink" href="#model-and-repository" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="controller">
-<h3>Controller<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="elasticsearch-controller">
-<h3>Elasticsearch Controller<a class="headerlink" href="#elasticsearch-controller" title="Permalink to this headline">¶</a></h3>
-</div>
-</div>
-<div class="section" id="saving-itemdocuments">
-<h2>Saving ItemDocuments<a class="headerlink" href="#saving-itemdocuments" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="testing">
-<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="refresh-the-index">
-<h2>Refresh the Index<a class="headerlink" href="#refresh-the-index" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="your-tasks">
-<h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="bonus-missions">
-<h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
