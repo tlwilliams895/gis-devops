@@ -15,9 +15,9 @@ Setup
 
 If you are missing any of the three things above please fix them before we continue with the walkthrough.
 
-* `Postgres installation steps <../../installations/postgres/>`_
-* `Docker installation steps <../../installations/docker/>`_
-* `Creating a PSQL docker container <../../installations/docker-psql/>`_
+* :ref:`postgres`
+* :ref:`docker`
+* :ref:`docker-psql`
 
 Concepts
 --------
@@ -36,7 +36,7 @@ Let's Run Some Postgres Commands
 * Connect to PSQL interactive terminal ``psql -h IP_ADDRESS -p PORT -U USER_NAME -d DATABASE_NAME``
 
 Create a Database
-+++++++++++++++++
+^^^^^^^^^^^^^^^^^
 
 A database is a collection of schemas and tables. A database may have any number of schemas, and those schemas may have any number of tables. Tables may, or may not have various relationships with other tables. One database will not have any relationship with any other database. In essence databases are isolated. One database cannot communicate with any other databases.
 
@@ -45,7 +45,7 @@ A database is a collection of schemas and tables. A database may have any number
 * ``\c sports`` -- command to connect to the new sports database
 
 Create a Schema
-+++++++++++++++
+^^^^^^^^^^^^^^^
 
 A schema is a collection of tables, relationships, data types, functions, and operators. Schemas are not isolated like databases are. One schema can reference other schemas in the same database.
 
@@ -59,9 +59,9 @@ Let's create a schema, and view it.
     * ``\dn`` -- command to list all schemas on the currently connected database
 
 Create a Table
-++++++++++++++
+^^^^^^^^^^^^^^
 
-A table has columns that contain a column name, and a data type. Some columns have constraints which allow us to add some additional rules to our table. Not null, Unique, Primary Key, and Foreign Key are examples of constraints. Using the Not null constraint requires that column must contain data when a record is being inserted into the table. 
+A table has columns that contain a column name, and a data type. Some columns have constraints which allow us to add some additional rules to our table. ``Not null``, ``Unique``, ``Primary Key``, and ``Foreign Key`` are examples of constraints. Using the ``Not null`` constraint requires that column must contain data when a record is being inserted into the table. 
 
 Each individual piece of data added to a table is called a record. 
 
@@ -71,7 +71,7 @@ Each individual piece of data added to a table is called a record.
 We are using the PRIMARY KEY constraint on the id column. A **primary key** is the unique identifier for a record. In this example our Primary Key is the SERIAL type. The SERIAL type is incrementing integers starting at 1. Every time a new record is added to this table, the next integer will be assigned as it's primary key.
 
 Create Record - Insert Into
-+++++++++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We can create records, by inserting them into a table.
 
@@ -83,7 +83,7 @@ We can insert as many records as we want with one INSERT INTO statement.
 * ``INSERT INTO baseball.teams(name, league) VALUES ('Washington Nationals', 'National'), ('Chicago Cubs', 'National'), ('New York Mets', 'National'), ('New York Yankees', 'American');``
 
 Read Record - Select
-++++++++++++++++++++
+^^^^^^^^^^^^^^^^^^^^
 
 * ``SELECT * FROM baseball.teams;`` -- SELECT all the columns from all the teams
 * ``SELECT name FROM baseball.teams;`` -- SELECT only the name column from all the teams
@@ -91,7 +91,7 @@ Read Record - Select
 * ``SELECT name FROM baseball.teams WHERE league='National';`` -- SELECT only the name column from teams in the 'National' league
 
 Alter Table
-+++++++++++
+^^^^^^^^^^^
 
 A table can be changed. We can add, or drop columns, or change constraints.
 
@@ -103,7 +103,7 @@ A table can be changed. We can add, or drop columns, or change constraints.
 * ``SELECT * FROM baseball.teams;``
 
 Update Record(s)
-++++++++++++++++
+^^^^^^^^^^^^^^^^
 
 We can update the individual records in our table with the UPDATE statement. Each UPDATE statement must contain a SET statement which defines which column(s) will be updated, and a WHERE clause which defines which records will be updated.
 
@@ -119,7 +119,7 @@ We can update the individual records in our table with the UPDATE statement. Eac
   Any record that matches the WHERE clause will be updated!
 
 Delete Record(s)
-++++++++++++++++
+^^^^^^^^^^^^^^^^
 
 We can also delete individual records. Before we do let's add a team that no longer plays in the MLB, so we can delete them.
 
@@ -133,7 +133,7 @@ We can also delete individual records. Before we do let's add a team that no lon
     Any record that matches the WHERE clause will be deleted! Since we deleted by the id, which is a primary key we are ensuring that only 1 record is affected.
 
 Foreign Key
-+++++++++++
+^^^^^^^^^^^
 
 We recently learned that a Primary Key is the unique identifier for one record in a table. A Foreign Key is a reference to another record on another table.
 
@@ -152,14 +152,14 @@ Now we can join these tables together, and view it all at the same time.
 * ``SELECT * FROM baseball.players, baseball.teams WHERE baseball.players.team_id=baseball.teams.id;`` -- view player info first
 * ``SELECT * FROM baseball.players, baseball.teams WHERE baseball.players.team_id=baseball.teams.id AND baseball.players.team_id=1;`` -- only select players on the St. Louis Cardinals
 
-Albert Pujols signed with the Los Angeles Angels after playing for the St. Louis Cardinals, so we need to change his team_id.
+Albert Pujols signed with the Los Angeles Angels after playing for the St. Louis Cardinals, so we need to change his ``team_id``.
 
 * ``INSERT INTO baseball.teams(name, league, division) VALUES ('Los Angeles Angels', 'American', 'West');``
 * ``SELECT id from baseball.teams WHERE name='Los Angeles Angels';``
 * ``SELECT id from baseball.players WHERE first_name='Albert' AND last_name='Pujols';``
 * ``UPDATE baseball.players SET team_id=7 WHERE id=1;``
 
-Now when we select all the players on the Cardinals roster we don't see Albert Pujols, because his team_id changed.
+Now when we select all the players on the Cardinals roster we don't see Albert Pujols, because his ``team_id`` changed.
 
 * ``SELECT * FROM baseball.players, baseball.teams WHERE baseball.players.team_id=baseball.teams.id AND baseball.players.team_id=1;``
 
@@ -167,7 +167,7 @@ When we look at all players with team info we can see the data associated with A
 
 * ``SELECT * FROM baseball.players, baseball.teams WHERE baseball.players.team_id=baseball.teams.id;``
 
-When a column references another tables PRIMARY KEY we call it a FOREIGN KEY. In the example we have worked on so far team_id on the baseball.players table is a Foreign Key that references the Primary Key on the baseball.teams table.
+When a column references another tables PRIMARY KEY we call it a FOREIGN KEY. In the example we have worked on so far ``team_id`` on the baseball.players table is a Foreign Key that references the Primary Key on the baseball.teams table.
 
 Resources
 ---------
