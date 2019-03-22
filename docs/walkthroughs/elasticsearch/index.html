@@ -273,11 +273,17 @@
 <li><a class="reference internal" href="#elasticsearch-search-api">Elasticsearch Search API</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#match-all-documents-in-index">Match All Documents in Index</a></li>
-<li><a class="reference internal" href="#match-documents-by-field">Match Documents by Field</a></li>
+<li><a class="reference internal" href="#match-documents-by-field">Match Documents by Field</a><ul>
+<li><a class="reference internal" href="#match-string">Match String</a></li>
+<li><a class="reference internal" href="#match-phrase">Match Phrase</a></li>
+<li><a class="reference internal" href="#match-or">Match Or</a></li>
+<li><a class="reference internal" href="#match-and">Match And</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a class="reference internal" href="#elasticsearch-fuzzy-search">Elasticsearch Fuzzy Search</a></li>
-<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
 </ul>
@@ -318,12 +324,13 @@
 </div>
 <div class="section" id="elasticsearch-terms">
 <h2>Elasticsearch Terms<a class="headerlink" href="#elasticsearch-terms" title="Permalink to this headline">¶</a></h2>
-<p>Cluster</p>
-<p>Node</p>
-<p>Index</p>
-<p>Shard</p>
-<p>Replica</p>
-<p>Document</p>
+<p><strong>Cluster</strong> - A collection of Nodes, that holds all the data, and manages Requests, and Responses.</p>
+<p><strong>Node</strong> - A single server inside the cluster. It stores pieces of the data, and performs indexing, and searching. The Node is the worker that performs the actions in Elasticsearch.</p>
+<p><strong>Index</strong> - A collection of documents that have somewhat similar characteristics.</p>
+<p><strong>Shard</strong> - A single piece of an index. It stores some documents, but not necessairly all the documents for a specific Index. The data of an Index is spread out amongst many Shards.</p>
+<p><strong>Replica</strong> - A copy of a shard. If a shard is corrupted, or goes offline, the Replica can be used to re-create the Shard, or can be used in the Shards place. A replica cannot be housed on the same Node as the Shard it was created from.</p>
+<p><strong>Document</strong> - A record of data. A basic unit of information that can be indexed.</p>
+<p>Read more about these specific terms from the Elasticsearch documentation <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/getting-started-concepts.html">basic concepts</a>.</p>
 </div>
 <div class="section" id="elasticsearch-basics">
 <h2>Elasticsearch Basics<a class="headerlink" href="#elasticsearch-basics" title="Permalink to this headline">¶</a></h2>
@@ -522,7 +529,7 @@
 </pre></div>
 </div>
 </div>
-<p>These queries only return 10 results. Looking at the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/search-request-from-size.html">Elasticsearch documentation</a> to learn about Pagination.</p>
+<p>These queries only return 10 results. Looking at the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/search-request-from-size.html">documentation for From/Size</a> to learn about Pagination.</p>
 <p>We can configure how many results are returned with the From, and Size request parameters.</p>
 <div class="literal-block-wrapper docutils container" id="id15">
 <div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
@@ -552,18 +559,11 @@
 <div class="section" id="match-documents-by-field">
 <h3>Match Documents by Field<a class="headerlink" href="#match-documents-by-field" title="Permalink to this headline">¶</a></h3>
 <p>Elasticsearch gives us even more control of our seaches with the <code class="docutils literal notranslate"><span class="pre">&quot;match&quot;</span></code> query.</p>
+<div class="section" id="match-string">
+<h4>Match String<a class="headerlink" href="#match-string" title="Permalink to this headline">¶</a></h4>
+<p>Let’s match all the teams in the National league.</p>
 <div class="literal-block-wrapper docutils container" id="id17">
 <div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
-<span class="go">{</span>
-<span class="go">    &quot;query&quot;: { &quot;match&quot;: { &quot;city&quot;: &quot;St. Louis&quot; } }</span>
-<span class="go">}&#39;</span>
-</pre></div>
-</div>
-</div>
-<p>Let’s match all the teams in the National league.</p>
-<div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;from&quot;: 0,</span>
@@ -574,20 +574,144 @@
 </div>
 </div>
 </div>
+<div class="section" id="match-phrase">
+<h4>Match Phrase<a class="headerlink" href="#match-phrase" title="Permalink to this headline">¶</a></h4>
+<p>Let’s match all teams in the city “St. Louis”</p>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: { &quot;match_phrase&quot;: { &quot;city&quot;: &quot;St. Louis&quot; } }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="match-or">
+<h4>Match Or<a class="headerlink" href="#match-or" title="Permalink to this headline">¶</a></h4>
+<p>Let’s match all teams in state “Illinois” or “Missouri”</p>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search/?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: { &quot;match&quot;: { &quot;state&quot;: &quot;Illinois Missouri&quot; } }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>When we use <code class="docutils literal notranslate"><span class="pre">match</span></code> instead of <code class="docutils literal notranslate"><span class="pre">match_phrase</span></code> Elasticsearch searches for both indivdual words and returns any document that matches either term.</p>
+<p>This can be a little ambiguous, you can create a more explicit query by creating a <code class="docutils literal notranslate"><span class="pre">boolQuery</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: {</span>
+<span class="go">        &quot;bool&quot;: {</span>
+<span class="go">            &quot;should&quot;: [</span>
+<span class="go">                { &quot;match&quot;: { &quot;state&quot;: &quot;Illinois&quot; } },</span>
+<span class="go">                { &quot;match&quot;: { &quot;state&quot;: &quot;Missouri&quot; } }</span>
+<span class="go">            ]</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="match-and">
+<h4>Match And<a class="headerlink" href="#match-and" title="Permalink to this headline">¶</a></h4>
+<p>Let’s match all teams in “Florida” and in “Miami”. We will do this by creating another <code class="docutils literal notranslate"><span class="pre">boolQuery</span></code>.</p>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: {</span>
+<span class="go">        &quot;bool&quot;: {</span>
+<span class="go">            &quot;must&quot;: [</span>
+<span class="go">                { &quot;match&quot;: { &quot;state&quot;: &quot;Florida&quot; } },</span>
+<span class="go">                { &quot;match&quot;: { &quot;city&quot;: &quot;Miami&quot; } }</span>
+<span class="go">            ]</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>In this case the <code class="docutils literal notranslate"><span class="pre">boolQuery</span></code> has a <code class="docutils literal notranslate"><span class="pre">&quot;must&quot;</span></code> statement which operates like an AND statement in SQL. The previous examples used a <code class="docutils literal notranslate"><span class="pre">&quot;should&quot;</span></code> statement which operates like an OR statement in SQL.</p>
+<p>A  <code class="docutils literal notranslate"><span class="pre">boolQuery</span></code> can be include as many <code class="docutils literal notranslate"><span class="pre">&quot;must&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;should&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;match&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;match_phrase&quot;</span></code>, etc as is necessary for the query.</p>
+</div>
+</div>
 </div>
 <div class="section" id="elasticsearch-fuzzy-search">
 <h2>Elasticsearch Fuzzy Search<a class="headerlink" href="#elasticsearch-fuzzy-search" title="Permalink to this headline">¶</a></h2>
+<p>A key way we will be using Elasticsearch in this class is by leveraging Elasticsearch’s fuzzy search. This gives us the abiltiy to set the fuzziness factor, and Elasticsearch will match words, or phrases that are within the fuzziness factor of the query term.</p>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id22" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: {</span>
+<span class="go">        &quot;fuzzy&quot;: { &quot;name&quot;: &quot;Damondbacks&quot; }</span>
+<span class="go">    }</span>
+<span class="go">}&#39;</span>
+</pre></div>
 </div>
-<div class="section" id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-tutorial">Spring Data Elasticsearch</a></li>
-<li><a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html">ElasticsearchRepository</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html">TransportClient</a></li>
-<li><a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html">QueryBuilders</a></li>
-<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries">Spring Data Elasticsearch Queries</a></li>
-<li><a class="reference external" href="http://www.baeldung.com/spring-value-annotation">The &#64;Value annotation</a></li>
-</ul>
+</div>
+<p>Despite ommitting a letter from “Diamondbacks” fuzzy search was still able to make the match happen!</p>
+<p>We can manually set the fuzziness factor in a fuzzy search, from 0 edits, to 2 edits.</p>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id23" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: {</span>
+<span class="go">        &quot;fuzzy&quot;: {</span>
+<span class="go">            &quot;name&quot;: {</span>
+<span class="go">                &quot;value&quot;: &quot;Damondbacks&quot;,</span>
+<span class="go">                &quot;fuzziness&quot;: 0</span>
+<span class="go">            }</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id24" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: {</span>
+<span class="go">        &quot;fuzzy&quot;: {</span>
+<span class="go">            &quot;name&quot;: {</span>
+<span class="go">                &quot;value&quot;: &quot;Diamandbacks&quot;,</span>
+<span class="go">                &quot;fuzziness&quot;: 1</span>
+<span class="go">            }</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id25" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: {</span>
+<span class="go">        &quot;fuzzy&quot;: {</span>
+<span class="go">            &quot;name&quot;: {</span>
+<span class="go">                &quot;value&quot;: &quot;Damondbacks&quot;,</span>
+<span class="go">                &quot;fuzziness&quot;: 2</span>
+<span class="go">            }</span>
+<span class="go">        }</span>
+<span class="go">    }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>Elasticsearch is a powerful data storage system. Although Elasticsearch has some disadvantages that make it an unlikely candidate for a primary data storage solution, it’s highly flexible, fast, and configurable searches make it an ideal choice as a secondary data storage solution.</p>
+<p>We have only scratched the surface on what Elasticsearch can do. In our next class we will learn how to work with Elasticsearch from within our Spring web applications.</p>
+<p>To learn more check out the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/index.html">Elasticsearch documentation</a>.</p>
 </div>
 </div>
 

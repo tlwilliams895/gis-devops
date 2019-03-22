@@ -38,17 +38,19 @@ After docker is installed you can check your containers with: ``$ docker ps -a``
 Elasticsearch Terms
 ===================
 
-Cluster
+**Cluster** - A collection of Nodes, that holds all the data, and manages Requests, and Responses.
 
-Node
+**Node** - A single server inside the cluster. It stores pieces of the data, and performs indexing, and searching. The Node is the worker that performs the actions in Elasticsearch.
 
-Index
+**Index** - A collection of documents that have somewhat similar characteristics.
 
-Shard
+**Shard** - A single piece of an index. It stores some documents, but not necessairly all the documents for a specific Index. The data of an Index is spread out amongst many Shards.
 
-Replica
+**Replica** - A copy of a shard. If a shard is corrupted, or goes offline, the Replica can be used to re-create the Shard, or can be used in the Shards place. A replica cannot be housed on the same Node as the Shard it was created from.
 
-Document
+**Document** - A record of data. A basic unit of information that can be indexed.
+
+Read more about these specific terms from the Elasticsearch documentation `basic concepts <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/getting-started-concepts.html>`_.
 
 Elasticsearch Basics
 ====================
@@ -264,7 +266,7 @@ Match All Documents in Index
        "query": { "match_all": {} }
    }'
 
-These queries only return 10 results. Looking at the `Elasticsearch documentation <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/search-request-from-size.html>`_ to learn about Pagination.
+These queries only return 10 results. Looking at the `documentation for From/Size <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/search-request-from-size.html>`_ to learn about Pagination.
 
 We can configure how many results are returned with the From, and Size request parameters.
 
@@ -296,13 +298,8 @@ Match Documents by Field
 
 Elasticsearch gives us even more control of our seaches with the ``"match"`` query.
 
-.. sourcecode:: console
-   :caption: GET /teams/_search
-
-   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
-   {
-       "query": { "match": { "city": "St. Louis" } }
-   }'
+Match String
+^^^^^^^^^^^^
 
 Let's match all the teams in the National league.
 
@@ -316,17 +313,144 @@ Let's match all the teams in the National league.
        "query": { "match": { "league": "National" } }
    }'
 
+Match Phrase
+^^^^^^^^^^^^
 
+Let's match all teams in the city "St. Louis"
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": { "match_phrase": { "city": "St. Louis" } }
+   }'
+
+Match Or
+^^^^^^^^
+
+Let's match all teams in state "Illinois" or "Missouri"
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search/?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": { "match": { "state": "Illinois Missouri" } }
+   }'
+
+When we use ``match`` instead of ``match_phrase`` Elasticsearch searches for both indivdual words and returns any document that matches either term.
+
+This can be a little ambiguous, you can create a more explicit query by creating a ``boolQuery``.
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": {
+           "bool": {
+               "should": [
+                   { "match": { "state": "Illinois" } },
+                   { "match": { "state": "Missouri" } }
+               ]
+           }
+       }
+   }'
+
+Match And
+^^^^^^^^^
+
+Let's match all teams in "Florida" and in "Miami". We will do this by creating another ``boolQuery``.
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": {
+           "bool": {
+               "must": [
+                   { "match": { "state": "Florida" } },
+                   { "match": { "city": "Miami" } }
+               ]
+           }
+       }
+   }'
+
+In this case the ``boolQuery`` has a ``"must"`` statement which operates like an AND statement in SQL. The previous examples used a ``"should"`` statement which operates like an OR statement in SQL.
+
+A  ``boolQuery`` can be include as many ``"must"``, ``"should"``, ``"match"``, ``"match_phrase"``, etc as is necessary for the query.
 
 Elasticsearch Fuzzy Search
 ==========================
 
-Resources
-=========
+A key way we will be using Elasticsearch in this class is by leveraging Elasticsearch's fuzzy search. This gives us the abiltiy to set the fuzziness factor, and Elasticsearch will match words, or phrases that are within the fuzziness factor of the query term.
 
-* `Spring Data Elasticsearch <http://www.baeldung.com/spring-data-elasticsearch-tutorial>`_
-* `ElasticsearchRepository <https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html>`_
-* `TransportClient <https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html>`_
-* `QueryBuilders <https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html>`_
-* `Spring Data Elasticsearch Queries <http://www.baeldung.com/spring-data-elasticsearch-queries>`_
-* `The @Value annotation <http://www.baeldung.com/spring-value-annotation>`_
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": {
+           "fuzzy": { "name": "Damondbacks" }
+       }
+   }'
+
+Despite ommitting a letter from "Diamondbacks" fuzzy search was still able to make the match happen!
+
+We can manually set the fuzziness factor in a fuzzy search, from 0 edits, to 2 edits.
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": {
+           "fuzzy": {
+               "name": {
+                   "value": "Damondbacks",
+                   "fuzziness": 0
+               }
+           }
+       }
+   }'
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": {
+           "fuzzy": {
+               "name": {
+                   "value": "Diamandbacks",
+                   "fuzziness": 1
+               }
+           }
+       }
+   }'
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": {
+           "fuzzy": {
+               "name": {
+                   "value": "Damondbacks",
+                   "fuzziness": 2
+               }
+           }
+       }
+   }'
+
+Conclusion
+==========
+
+Elasticsearch is a powerful data storage system. Although Elasticsearch has some disadvantages that make it an unlikely candidate for a primary data storage solution, it's highly flexible, fast, and configurable searches make it an ideal choice as a secondary data storage solution.
+
+We have only scratched the surface on what Elasticsearch can do. In our next class we will learn how to work with Elasticsearch from within our Spring web applications.
+
+To learn more check out the `Elasticsearch documentation <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/index.html>`_.
