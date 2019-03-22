@@ -293,7 +293,7 @@
     <div class="col-md-9 content">
       
   <div class="section" id="walkthrough-elasticsearch">
-<span id="elasticsearch-walkthrough"></span><h1>Walkthrough: Elasticsearch<a class="headerlink" href="#walkthrough-elasticsearch" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>Walkthrough: Elasticsearch<a class="headerlink" href="#walkthrough-elasticsearch" title="Permalink to this headline">¶</a></h1>
 <p>Elasticsearch is a non-relational database. It stores information as documents, a collection of key-value pairs that describe the object. A document’s format is very similar to JSON.</p>
 <p>Unlike a relational database, we will not use SQL to communicate with our data, instead we will be using HTTP Requests, and JSON to communicate with our data. It is a RESTful API and therefore we will predominately be using GET, POST, PUT, and DELETE HTTP methods, and will be receiving JSON as a response.</p>
 <p>A non-relational database has certain advantages, and disadvantages in comparison to a relational database.</p>
@@ -319,8 +319,8 @@
 <div class="section" id="getting-ready">
 <h2>Getting Ready<a class="headerlink" href="#getting-ready" title="Permalink to this headline">¶</a></h2>
 <p>To use Elasticsearch we need to first install it.</p>
-<p>We will be running elasticsearch as a docker container. You can check if you have docker installed with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">-v</span></code>, if it’s installed it will print out the version installed. Check out the <a class="reference external" href="../../installations/docker/">docker installation</a> if you need to install docker.</p>
-<p>After docker is installed you can check your containers with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>, if you don’t have an elasticsearch container, you can get one by following the <a class="reference external" href="../../installations/docker-elasticsearch/">elasticsearch installation instructions</a>.</p>
+<p>We will be running Elasticsearch as a docker container. You can check if you have docker installed with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">-v</span></code>, if it’s installed it will print out the version installed. Check out the <a class="reference external" href="../../installations/docker/">docker installation</a> if you need to install docker.</p>
+<p>After docker is installed you can check your containers with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>, if you don’t have an elasticsearch container, you can get one by following the <a class="reference external" href="../../installations/docker-elasticsearch/">Elasticsearch installation instructions</a>.</p>
 </div>
 <div class="section" id="elasticsearch-terms">
 <h2>Elasticsearch Terms<a class="headerlink" href="#elasticsearch-terms" title="Permalink to this headline">¶</a></h2>
@@ -342,28 +342,28 @@
 <dt>Let’s break that command down:</dt>
 <dd><ul class="first last simple">
 <li>-X&lt;HTTP_VERB&gt;: The HTTP verb we want to use (GET, POST, PUT, DELETE)</li>
-<li>&lt;URL&gt;: The URL of the elasticsearch cluster and the path of the index we are requesting</li>
+<li>&lt;URL&gt;: The URL of the Elasticsearch cluster and the path of the index we are requesting</li>
 <li>-H: HTTP Header in this case we are setting the Content Type to application/json this allows us to include JSON with our request</li>
 <li>-d: The Body of the request in this case it’s where we would include our JSON</li>
 </ul>
 </dd>
 </dl>
-<p>Let’s make a request to view data about our elasticsearch cluster: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">'http://127.0.0.1:9200/'</span></code></p>
+<p>Let’s make a request to view data about our Elasticsearch cluster: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">'http://127.0.0.1:9200/'</span></code></p>
 <img alt="../../_images/cluster-data.png" src="../../_images/cluster-data.png" />
 <p>Another useful request is to the _cat endpoint. It gives us more information about how to query even more resources.</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">'http://127.0.0.1:9200/_cat/'</span></code></p>
 <img alt="../../_images/cat.png" src="../../_images/cat.png" />
 <p>Let’s check the nodes associated with this cluster: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">'http://127.0.0.1:9200/_cat/nodes'</span></code></p>
 <img alt="../../_images/cat-nodes.png" src="../../_images/cat-nodes.png" />
-<p>We have one node. The location of the node on my machine is 172.17.0.2, that happens to be the internal IP address of the docker container where my elasticsearch cluster lives. Your IP Address will probably be different.</p>
+<p>We have one node. The location of the node on my machine is 172.17.0.2, that happens to be the internal IP address of the docker container where my Elasticsearch cluster lives. Your IP Address will probably be different.</p>
 <p>Now let’s check the indices associated with our cluster: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">'http://127.0.0.1:9200/_cat/indices'</span></code>.</p>
 <img alt="../../_images/cat-indices-empty.png" src="../../_images/cat-indices-empty.png" />
 <p>We don’t have any! We will have to create one.</p>
 <div class="section" id="create">
 <h3>Create<a class="headerlink" href="#create" title="Permalink to this headline">¶</a></h3>
 <p>Before we create documents, we will have to create an index for our documents. Let’s create a new index called teams.</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">PUT /teams</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">PUT /teams</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPUT 127.0.0.1:9200/teams -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">   &quot;settings&quot;: {</span>
@@ -379,8 +379,8 @@
 <p>When you add a document to an index it’s called indexing a document. Indexing is slightly different than creating a record in a relational database. Indexing creates the document, and makes it fully searchable, which is more memory intensive, and slower than simply creating a record in a database. This allows the document in Elasticsearch to be searched fully, and very quickly. Elasticsearch is Near Realtime which means when we index a new document, it is searchable almost immediately.</p>
 <p>Now let’s index some MLB teams as documents on the <code class="docutils literal notranslate"><span class="pre">/teams</span></code> index.</p>
 <p>First the St. Louis Cardinals.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/1</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/1</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/1 -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">   &quot;city&quot;: &quot;St. Louis&quot;,</span>
@@ -391,8 +391,8 @@
 </div>
 </div>
 <p>The Washington Nationals.</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/2</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/2</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/2 -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">   &quot;city&quot;: &quot;Washington&quot;,</span>
@@ -403,8 +403,8 @@
 </div>
 </div>
 <p>Finally, the Chicago Cubs.</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/3</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/3</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/3 -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;city&quot;: &quot;Chicago&quot;,</span>
@@ -418,41 +418,41 @@
 <div class="section" id="read">
 <h3>Read<a class="headerlink" href="#read" title="Permalink to this headline">¶</a></h3>
 <p>Let’s rerun that command from earlier to check on the indices associated with this cluster.</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">GET /_cat/indices</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">GET /_cat/indices</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/_cat/indices</span>
 </pre></div>
 </div>
 </div>
 <p>Let’s read these documents from Elasticsearch.</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/1</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/1</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/1?pretty=true</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/2?pretty=true</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/3</span><a class="headerlink" href="#id8" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/3</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/3?pretty=true</span>
 </pre></div>
 </div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">In the case of these cURL requests we are passing the pretty option, and setting it as true. This makes our queries a little easier to read. This option can be passed to any elasticsearch query, and the results will come back nicer. <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/common-options.html">Learn more about Elasticsearch 6.5 options</a></p>
+<p class="last">In the case of these cURL requests we are passing the pretty option, and setting it as true. This makes our queries a little easier to read. This option can be passed to any Elasticsearch query, and the results will come back nicer. <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/common-options.html">Learn more about Elasticsearch 6.5 options</a></p>
 </div>
 </div>
 <div class="section" id="update">
 <h3>Update<a class="headerlink" href="#update" title="Permalink to this headline">¶</a></h3>
 <p>Let’s update one of these documents. The <code class="docutils literal notranslate"><span class="pre">&quot;city&quot;</span></code> key for our 2nd document currently is valued as <code class="docutils literal notranslate"><span class="pre">&quot;Washington&quot;</span></code>. This can cause confusion for people that don’t know the Washington Nationals are in Washington D.C. Let’s update this record with a new <code class="docutils literal notranslate"><span class="pre">&quot;city&quot;</span></code> name.</p>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/2/_update</span><a class="headerlink" href="#id9" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">POST /teams/_doc/2/_update</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPOST 127.0.0.1:9200/teams/_doc/2/_update -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;doc&quot;: {</span>
@@ -464,8 +464,8 @@
 </div>
 <p>One of the differences between a relational database (PSQL) and a non-relational database (Elasticsearch) is how records/documents are updated. In a relational database the field is simply changed. In a non-relational database the entire document is deleted, and reindexed. This makes every update far more resource intensive than an update in a relational database.</p>
 <p>Let’s see this change.</p>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id10" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/2</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/2?pretty=true</span>
 </pre></div>
 </div>
@@ -475,15 +475,15 @@
 <div class="section" id="delete">
 <h3>Delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h3>
 <p>Let’s delete a document.</p>
-<div class="literal-block-wrapper docutils container" id="id11">
-<div class="code-block-caption"><span class="caption-text">DELETE /teams/_doc/3</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">DELETE /teams/_doc/3</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XDELETE 127.0.0.1:9200/teams/_doc/3</span>
 </pre></div>
 </div>
 </div>
 <p>Let’s query that document again to make sure it’s gone.</p>
-<div class="literal-block-wrapper docutils container" id="id12">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/3</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_doc/3</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_doc/3?pretty=true</span>
 </pre></div>
 </div>
@@ -514,14 +514,14 @@
 </div>
 <div class="section" id="match-all-documents-in-index">
 <h3>Match All Documents in Index<a class="headerlink" href="#match-all-documents-in-index" title="Permalink to this headline">¶</a></h3>
-<div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true</span>
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id14">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: { &quot;match_all&quot;: {} }</span>
@@ -531,8 +531,8 @@
 </div>
 <p>These queries only return 10 results. Looking at the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/search-request-from-size.html">documentation for From/Size</a> to learn about Pagination.</p>
 <p>We can configure how many results are returned with the From, and Size request parameters.</p>
-<div class="literal-block-wrapper docutils container" id="id15">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;from&quot;: 0,</span>
@@ -543,8 +543,8 @@
 </div>
 </div>
 <p>We can also control the results of the document source. For example if we only wanted the city, and name from each document:</p>
-<div class="literal-block-wrapper docutils container" id="id16">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;from&quot;: 0,</span>
@@ -562,8 +562,8 @@
 <div class="section" id="match-string">
 <h4>Match String<a class="headerlink" href="#match-string" title="Permalink to this headline">¶</a></h4>
 <p>Let’s match all the teams in the National league.</p>
-<div class="literal-block-wrapper docutils container" id="id17">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;from&quot;: 0,</span>
@@ -577,8 +577,8 @@
 <div class="section" id="match-phrase">
 <h4>Match Phrase<a class="headerlink" href="#match-phrase" title="Permalink to this headline">¶</a></h4>
 <p>Let’s match all teams in the city “St. Louis”</p>
-<div class="literal-block-wrapper docutils container" id="id18">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: { &quot;match_phrase&quot;: { &quot;city&quot;: &quot;St. Louis&quot; } }</span>
@@ -590,8 +590,8 @@
 <div class="section" id="match-or">
 <h4>Match Or<a class="headerlink" href="#match-or" title="Permalink to this headline">¶</a></h4>
 <p>Let’s match all teams in state “Illinois” or “Missouri”</p>
-<div class="literal-block-wrapper docutils container" id="id19">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id19" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search/?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: { &quot;match&quot;: { &quot;state&quot;: &quot;Illinois Missouri&quot; } }</span>
@@ -601,8 +601,8 @@
 </div>
 <p>When we use <code class="docutils literal notranslate"><span class="pre">match</span></code> instead of <code class="docutils literal notranslate"><span class="pre">match_phrase</span></code> Elasticsearch searches for both indivdual words and returns any document that matches either term.</p>
 <p>This can be a little ambiguous, you can create a more explicit query by creating a <code class="docutils literal notranslate"><span class="pre">boolQuery</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id20">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id20" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: {</span>
@@ -621,8 +621,8 @@
 <div class="section" id="match-and">
 <h4>Match And<a class="headerlink" href="#match-and" title="Permalink to this headline">¶</a></h4>
 <p>Let’s match all teams in “Florida” and in “Miami”. We will do this by creating another <code class="docutils literal notranslate"><span class="pre">boolQuery</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id21">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id22" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: {</span>
@@ -645,8 +645,8 @@
 <div class="section" id="elasticsearch-fuzzy-search">
 <h2>Elasticsearch Fuzzy Search<a class="headerlink" href="#elasticsearch-fuzzy-search" title="Permalink to this headline">¶</a></h2>
 <p>A key way we will be using Elasticsearch in this class is by leveraging Elasticsearch’s fuzzy search. This gives us the abiltiy to set the fuzziness factor, and Elasticsearch will match words, or phrases that are within the fuzziness factor of the query term.</p>
-<div class="literal-block-wrapper docutils container" id="id22">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id22" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id23" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: {</span>
@@ -658,8 +658,8 @@
 </div>
 <p>Despite ommitting a letter from “Diamondbacks” fuzzy search was still able to make the match happen!</p>
 <p>We can manually set the fuzziness factor in a fuzzy search, from 0 edits, to 2 edits.</p>
-<div class="literal-block-wrapper docutils container" id="id23">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id23" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id24" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: {</span>
@@ -674,8 +674,8 @@
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id24">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id24" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id25" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: {</span>
@@ -690,8 +690,8 @@
 </pre></div>
 </div>
 </div>
-<div class="literal-block-wrapper docutils container" id="id25">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id25" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id26">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id26" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
 <span class="go">{</span>
 <span class="go">    &quot;query&quot;: {</span>
@@ -710,7 +710,7 @@
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>Elasticsearch is a powerful data storage system. Although Elasticsearch has some disadvantages that make it an unlikely candidate for a primary data storage solution, it’s highly flexible, fast, and configurable searches make it an ideal choice as a secondary data storage solution.</p>
-<p>We have only scratched the surface on what Elasticsearch can do. In our next class we will learn how to work with Elasticsearch from within our Spring web applications.</p>
+<p>We have only scratched the surface on what Elasticsearch can do. In our next class we will continue learning about Elasticsearch, and how to configure our Spring web applications to use Elasticsearch.</p>
 <p>To learn more check out the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/index.html">Elasticsearch documentation</a>.</p>
 </div>
 </div>

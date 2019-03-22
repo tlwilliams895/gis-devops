@@ -48,7 +48,7 @@ _______
 Create Container
 ++++++++++++++++
 
-We can create, and run our container with ``$ docker run --name "kibana" -p 5601:5601 -e "ELASTICSEARCH_URL=http://<ES_CONTAINER_IP>" -d kibana:6.5.4``
+We can create, and run our container with ``$ docker run --name "kibana" -p 5601:5601 -e "ELASTICSEARCH_URL=http://<ES_CONTAINER_IP>:<ES_CONTAINER_PORT>" -d kibana:6.5.4``
 
 * ``docker run`` runs a command in a container (in this case it creates the container since it doesn't already exist)
 * ``--name`` allows us to name our container (in this case we are naming our container "kibana")
@@ -68,7 +68,7 @@ If you run ``$ docker ps -a`` now you should see a new container named "kibana".
 Example
 _______
 
-- Create and run a new container: ``$ docker run --name "kibana" -p 5601:5601 -e "ELASTICSEARCH_URL=http://172.17.0.2" -d kibana:6.5.4``
+- Create and run a new container: ``$ docker run --name "kibana" -p 5601:5601 -e "ELASTICSEARCH_URL=http://172.17.0.2:9200" -d kibana:6.5.4``
 
     .. image:: /_static/images/docker-kibana/create-container.png
 

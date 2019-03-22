@@ -1,6 +1,6 @@
 :orphan:
 
-.. _elasticsearch-walkthrough:
+.. _walkthrough-elasticsearch:
 
 ==========================
 Walkthrough: Elasticsearch
@@ -31,9 +31,9 @@ Getting Ready
 
 To use Elasticsearch we need to first install it.
 
-We will be running elasticsearch as a docker container. You can check if you have docker installed with: ``$ docker -v``, if it's installed it will print out the version installed. Check out the `docker installation <../../installations/docker/>`_ if you need to install docker.
+We will be running Elasticsearch as a docker container. You can check if you have docker installed with: ``$ docker -v``, if it's installed it will print out the version installed. Check out the `docker installation <../../installations/docker/>`_ if you need to install docker.
 
-After docker is installed you can check your containers with: ``$ docker ps -a``, if you don't have an elasticsearch container, you can get one by following the `elasticsearch installation instructions <../../installations/docker-elasticsearch/>`_.
+After docker is installed you can check your containers with: ``$ docker ps -a``, if you don't have an elasticsearch container, you can get one by following the `Elasticsearch installation instructions <../../installations/docker-elasticsearch/>`_.
 
 Elasticsearch Terms
 ===================
@@ -65,11 +65,11 @@ From the terminal a cURL command looks like: ``$ curl -X<HTTP_VERB> '<URL>' -H '
 
 Let's break that command down:
     - -X<HTTP_VERB>: The HTTP verb we want to use (GET, POST, PUT, DELETE)
-    - <URL>: The URL of the elasticsearch cluster and the path of the index we are requesting
+    - <URL>: The URL of the Elasticsearch cluster and the path of the index we are requesting
     - -H: HTTP Header in this case we are setting the Content Type to application/json this allows us to include JSON with our request
     - -d: The Body of the request in this case it's where we would include our JSON
 
-Let's make a request to view data about our elasticsearch cluster: ``$ curl -XGET 'http://127.0.0.1:9200/'``
+Let's make a request to view data about our Elasticsearch cluster: ``$ curl -XGET 'http://127.0.0.1:9200/'``
 
 .. image:: /_static/images/elasticsearch/cluster-data.png
 
@@ -83,7 +83,7 @@ Let's check the nodes associated with this cluster: ``$ curl -XGET 'http://127.0
 
 .. image:: /_static/images/elasticsearch/cat-nodes.png
 
-We have one node. The location of the node on my machine is 172.17.0.2, that happens to be the internal IP address of the docker container where my elasticsearch cluster lives. Your IP Address will probably be different.
+We have one node. The location of the node on my machine is 172.17.0.2, that happens to be the internal IP address of the docker container where my Elasticsearch cluster lives. Your IP Address will probably be different.
 
 Now let's check the indices associated with our cluster: ``$ curl -XGET 'http://127.0.0.1:9200/_cat/indices'``.
 
@@ -178,7 +178,7 @@ Let's read these documents from Elasticsearch.
 
 .. note::
    
-   In the case of these cURL requests we are passing the pretty option, and setting it as true. This makes our queries a little easier to read. This option can be passed to any elasticsearch query, and the results will come back nicer. `Learn more about Elasticsearch 6.5 options <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/common-options.html>`_ 
+   In the case of these cURL requests we are passing the pretty option, and setting it as true. This makes our queries a little easier to read. This option can be passed to any Elasticsearch query, and the results will come back nicer. `Learn more about Elasticsearch 6.5 options <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/common-options.html>`_ 
 
 Update
 ------
@@ -451,6 +451,6 @@ Conclusion
 
 Elasticsearch is a powerful data storage system. Although Elasticsearch has some disadvantages that make it an unlikely candidate for a primary data storage solution, it's highly flexible, fast, and configurable searches make it an ideal choice as a secondary data storage solution.
 
-We have only scratched the surface on what Elasticsearch can do. In our next class we will learn how to work with Elasticsearch from within our Spring web applications.
+We have only scratched the surface on what Elasticsearch can do. In our next class we will continue learning about Elasticsearch, and how to configure our Spring web applications to use Elasticsearch.
 
 To learn more check out the `Elasticsearch documentation <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/index.html>`_.

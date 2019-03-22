@@ -322,7 +322,7 @@
 </div>
 <div class="section" id="create-container">
 <h3>Create Container<a class="headerlink" href="#create-container" title="Permalink to this headline">¶</a></h3>
-<p>We can create, and run our container with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;kibana&quot;</span> <span class="pre">-p</span> <span class="pre">5601:5601</span> <span class="pre">-e</span> <span class="pre">&quot;ELASTICSEARCH_URL=http://&lt;ES_CONTAINER_IP&gt;&quot;</span> <span class="pre">-d</span> <span class="pre">kibana:6.5.4</span></code></p>
+<p>We can create, and run our container with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;kibana&quot;</span> <span class="pre">-p</span> <span class="pre">5601:5601</span> <span class="pre">-e</span> <span class="pre">&quot;ELASTICSEARCH_URL=http://&lt;ES_CONTAINER_IP&gt;:&lt;ES_CONTAINER_PORT&gt;&quot;</span> <span class="pre">-d</span> <span class="pre">kibana:6.5.4</span></code></p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> runs a command in a container (in this case it creates the container since it doesn’t already exist)</li>
 <li><code class="docutils literal notranslate"><span class="pre">--name</span></code> allows us to name our container (in this case we are naming our container “kibana”)</li>
@@ -340,7 +340,7 @@
 <div class="section" id="id1">
 <h4>Example<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <ul>
-<li><p class="first">Create and run a new container: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;kibana&quot;</span> <span class="pre">-p</span> <span class="pre">5601:5601</span> <span class="pre">-e</span> <span class="pre">&quot;ELASTICSEARCH_URL=http://172.17.0.2&quot;</span> <span class="pre">-d</span> <span class="pre">kibana:6.5.4</span></code></p>
+<li><p class="first">Create and run a new container: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&quot;kibana&quot;</span> <span class="pre">-p</span> <span class="pre">5601:5601</span> <span class="pre">-e</span> <span class="pre">&quot;ELASTICSEARCH_URL=http://172.17.0.2:9200&quot;</span> <span class="pre">-d</span> <span class="pre">kibana:6.5.4</span></code></p>
 <blockquote>
 <div><img alt="../../_images/create-container.png" src="../../_images/create-container.png" />
 </div></blockquote>
