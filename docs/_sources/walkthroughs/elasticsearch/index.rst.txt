@@ -6,7 +6,7 @@
 Walkthrough: Elasticsearch
 ==========================
 
-Elasticsearch is a non-relational database. It stores information as documents, a collection of key-value pairs that describe the object. It is very similar to JSON.
+Elasticsearch is a non-relational database. It stores information as documents, a collection of key-value pairs that describe the object. A document's format is very similar to JSON.
 
 Unlike a relational database, we will not use SQL to communicate with our data, instead we will be using HTTP Requests, and JSON to communicate with our data. It is a RESTful API and therefore we will predominately be using GET, POST, PUT, and DELETE HTTP methods, and will be receiving JSON as a response.
 
@@ -109,7 +109,7 @@ Before we create documents, we will have to create an index for our documents. L
       }
    }'
 
-When you add a document to an index it's called indexing a document. Indexing is slightly different than creating a record in a relational database. Indexing creates the document, and makes it fully searchable, which is more memory intensive, and slower than simply creating a record in a database. This allows the document in Elasticsearch to be searched fully, and very quickly.
+When you add a document to an index it's called indexing a document. Indexing is slightly different than creating a record in a relational database. Indexing creates the document, and makes it fully searchable, which is more memory intensive, and slower than simply creating a record in a database. This allows the document in Elasticsearch to be searched fully, and very quickly. Elasticsearch is Near Realtime which means when we index a new document, it is searchable almost immediately.
 
 Now let's index some MLB teams as documents on the ``/teams`` index.
 
