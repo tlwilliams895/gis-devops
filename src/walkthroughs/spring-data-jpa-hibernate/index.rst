@@ -6,7 +6,7 @@
 Walkthrough: Cars Demo - Spring Data, JPA, Hibernate
 ====================================================
 
-In this walkthrough, we revisit the `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter>`_ that we worked on in yesterday's walkthrough :ref:`SIT-walkthrough`. We'll refactor the app to use Postgres and Hiberante.
+In this walkthrough, we revisit the `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter>`_ that we worked on in yesterday's walkthrough :ref:`SIT-walkthrough`. We'll refactor the app to use Postgres and Hibernate.
 
 Setup
 -----
@@ -37,9 +37,9 @@ To configure our Spring application to run with Postgres we will need to:
     - Mark our models with the ``@Entity`` annotation
     - Create new interfaces that extend JpaRepository
 
-Check out the `Spring Postgres article <../../configurations/spring-postgres/>`_ to learn how to configure our Spring app to work with Postgres.
+Check out the :ref:`spring-postgres` to learn how to configure our Spring app to work with Postgres.
 
-We also will be working with sensitive information, and it would be a good idea to learn how IntelliJ `environment variables <../../configurations/environment-variables/>`_ work
+We also will be working with sensitive information, and it would be a good idea to read :ref:`environment-variables-intellij`.
 
 In that article we:
     - Created an application.properties file

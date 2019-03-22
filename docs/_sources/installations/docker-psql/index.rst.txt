@@ -3,7 +3,7 @@
 .. _docker-psql:
 
 ===================================
-Docker Installation: PSQL Container
+Installation: Docker PSQL Container
 ===================================
 
 Installation Steps: Mac

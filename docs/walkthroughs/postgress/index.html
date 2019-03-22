@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -295,9 +294,9 @@
 </ul>
 <p>If you are missing any of the three things above please fix them before we continue with the walkthrough.</p>
 <ul class="simple">
-<li><a class="reference external" href="../../installations/postgres/">Postgres installation steps</a></li>
-<li><a class="reference external" href="../../installations/docker/">Docker installation steps</a></li>
-<li><a class="reference external" href="../../installations/docker-psql/">Creating a PSQL docker container</a></li>
+<li><a class="reference internal" href="../../installations/postgres/index.html#postgres"><span class="std std-ref">Installation: PostgreSQL</span></a></li>
+<li><a class="reference internal" href="../../installations/docker/index.html#docker"><span class="std std-ref">Installation: Docker</span></a></li>
+<li><a class="reference internal" href="../../installations/docker-psql/index.html#docker-psql"><span class="std std-ref">Installation: Docker PSQL Container</span></a></li>
 </ul>
 </div>
 <div class="section" id="concepts">
@@ -347,7 +346,7 @@
 </div>
 <div class="section" id="create-a-table">
 <h3>Create a Table<a class="headerlink" href="#create-a-table" title="Permalink to this headline">¶</a></h3>
-<p>A table has columns that contain a column name, and a data type. Some columns have constraints which allow us to add some additional rules to our table. Not null, Unique, Primary Key, and Foreign Key are examples of constraints. Using the Not null constraint requires that column must contain data when a record is being inserted into the table.</p>
+<p>A table has columns that contain a column name, and a data type. Some columns have constraints which allow us to add some additional rules to our table. <code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">null</span></code>, <code class="docutils literal notranslate"><span class="pre">Unique</span></code>, <code class="docutils literal notranslate"><span class="pre">Primary</span> <span class="pre">Key</span></code>, and <code class="docutils literal notranslate"><span class="pre">Foreign</span> <span class="pre">Key</span></code> are examples of constraints. Using the <code class="docutils literal notranslate"><span class="pre">Not</span> <span class="pre">null</span></code> constraint requires that column must contain data when a record is being inserted into the table.</p>
 <p>Each individual piece of data added to a table is called a record.</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">baseball.teams</span> <span class="pre">(id</span> <span class="pre">SERIAL,</span> <span class="pre">name</span> <span class="pre">varchar(50),</span> <span class="pre">league</span> <span class="pre">varchar(25),</span> <span class="pre">PRIMARY</span> <span class="pre">KEY</span> <span class="pre">(id));</span></code> – create a new table on the baseball schema with three columns: id, name, and league</li>
@@ -435,14 +434,14 @@
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">baseball.players,</span> <span class="pre">baseball.teams</span> <span class="pre">WHERE</span> <span class="pre">baseball.players.team_id=baseball.teams.id;</span></code> – view player info first</li>
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">baseball.players,</span> <span class="pre">baseball.teams</span> <span class="pre">WHERE</span> <span class="pre">baseball.players.team_id=baseball.teams.id</span> <span class="pre">AND</span> <span class="pre">baseball.players.team_id=1;</span></code> – only select players on the St. Louis Cardinals</li>
 </ul>
-<p>Albert Pujols signed with the Los Angeles Angels after playing for the St. Louis Cardinals, so we need to change his team_id.</p>
+<p>Albert Pujols signed with the Los Angeles Angels after playing for the St. Louis Cardinals, so we need to change his <code class="docutils literal notranslate"><span class="pre">team_id</span></code>.</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">baseball.teams(name,</span> <span class="pre">league,</span> <span class="pre">division)</span> <span class="pre">VALUES</span> <span class="pre">('Los</span> <span class="pre">Angeles</span> <span class="pre">Angels',</span> <span class="pre">'American',</span> <span class="pre">'West');</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">id</span> <span class="pre">from</span> <span class="pre">baseball.teams</span> <span class="pre">WHERE</span> <span class="pre">name='Los</span> <span class="pre">Angeles</span> <span class="pre">Angels';</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">id</span> <span class="pre">from</span> <span class="pre">baseball.players</span> <span class="pre">WHERE</span> <span class="pre">first_name='Albert'</span> <span class="pre">AND</span> <span class="pre">last_name='Pujols';</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">UPDATE</span> <span class="pre">baseball.players</span> <span class="pre">SET</span> <span class="pre">team_id=7</span> <span class="pre">WHERE</span> <span class="pre">id=1;</span></code></li>
 </ul>
-<p>Now when we select all the players on the Cardinals roster we don’t see Albert Pujols, because his team_id changed.</p>
+<p>Now when we select all the players on the Cardinals roster we don’t see Albert Pujols, because his <code class="docutils literal notranslate"><span class="pre">team_id</span></code> changed.</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">baseball.players,</span> <span class="pre">baseball.teams</span> <span class="pre">WHERE</span> <span class="pre">baseball.players.team_id=baseball.teams.id</span> <span class="pre">AND</span> <span class="pre">baseball.players.team_id=1;</span></code></li>
 </ul>
@@ -450,7 +449,7 @@
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">baseball.players,</span> <span class="pre">baseball.teams</span> <span class="pre">WHERE</span> <span class="pre">baseball.players.team_id=baseball.teams.id;</span></code></li>
 </ul>
-<p>When a column references another tables PRIMARY KEY we call it a FOREIGN KEY. In the example we have worked on so far team_id on the baseball.players table is a Foreign Key that references the Primary Key on the baseball.teams table.</p>
+<p>When a column references another tables PRIMARY KEY we call it a FOREIGN KEY. In the example we have worked on so far <code class="docutils literal notranslate"><span class="pre">team_id</span></code> on the baseball.players table is a Foreign Key that references the Primary Key on the baseball.teams table.</p>
 </div>
 </div>
 <div class="section" id="resources">
