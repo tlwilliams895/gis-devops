@@ -7,7 +7,7 @@
     <title>Walkthrough: Cars Demo - Spring Data, JPA, Hibernate &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/css/launchcode.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
@@ -264,8 +264,6 @@
 <li><a class="reference internal" href="#our-tasks">Our Tasks</a><ul>
 <li><a class="reference internal" href="#set-up-a-postgres-db">Set Up A Postgres DB</a></li>
 <li><a class="reference internal" href="#configure-the-app-to-use-the-database">Configure the App to use the Database</a></li>
-<li><a class="reference internal" href="#intellij-run-configurations">Intellij Run Configurations</a></li>
-<li><a class="reference internal" href="#update-gradle-dependencies">Update Gradle Dependencies</a></li>
 <li><a class="reference internal" href="#add-annotations-to-car-model">Add Annotations to Car Model</a></li>
 <li><a class="reference internal" href="#add-carrepository">Add CarRepository</a></li>
 <li><a class="reference internal" href="#autowire-repositories-into-controllers">Autowire Repositories into Controllers</a></li>
@@ -284,13 +282,13 @@
       
   <div class="section" id="walkthrough-cars-demo-spring-data-jpa-hibernate">
 <span id="spring-data-jpa-hibernate-walkthrough"></span><h1>Walkthrough: Cars Demo - Spring Data, JPA, Hibernate<a class="headerlink" href="#walkthrough-cars-demo-spring-data-jpa-hibernate" title="Permalink to this headline">¶</a></h1>
-<p>In this walkthrough, we revisit the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/car-integration-test-starter">Car Integration Tests</a> that we worked on in yesterday’s walkthrough <a class="reference internal" href="../spring-integration-testing/index.html#sit-walkthrough"><span class="std std-ref">Walkthrough: Spring Integration Tests</span></a>. We’ll refactor the app to use Postgres and Hiberante.</p>
+<p>In this walkthrough, we revisit the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/car-integration-test-starter">Car Integration Tests</a> that we worked on in yesterday’s walkthrough <a class="reference internal" href="../spring-integration-testing/index.html#sit-walkthrough"><span class="std std-ref">Walkthrough: Spring Integration Tests</span></a>. We’ll refactor the app to use Postgres and Hibernate.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>In the terminal go to project folder for <strong>Car Integration Tests</strong></li>
-<li>Checkout the branch that contains the solution for the Day 3 walkthrough. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code> or <code class="docutils literal notranslate"><span class="pre">$git</span> <span class="pre">checkout</span> <span class="pre">solution</span></code></li>
-<li>Create a new branch for today’s work: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">get</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">day4-add-hibernate</span></code></li>
+<li>Checkout the branch that contains the solution for the Day 3 walkthrough. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">master</span></code> or <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">solution</span></code></li>
+<li>Create a new branch for today’s work: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">day4-add-hibernate</span></code></li>
 </ol>
 </div>
 <div class="section" id="our-tasks">
@@ -306,37 +304,31 @@
 </div>
 <div class="section" id="configure-the-app-to-use-the-database">
 <h3>Configure the App to use the Database<a class="headerlink" href="#configure-the-app-to-use-the-database" title="Permalink to this headline">¶</a></h3>
-<p>In intellij, open <code class="docutils literal notranslate"><span class="pre">/car-integration-tests/src/main/resources/application.properties</span></code> then set each of these values:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spring.datasource.url=jdbc:postgresql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}
-spring.datasource.username=${APP_DB_USER}
-spring.datasource.password=${APP_DB_PASS}
-spring.jpa.hibernate.ddl-auto=update
-</pre></div>
-</div>
+<dl class="docutils">
+<dt>To configure our Spring application to run with Postgres we will need to:</dt>
+<dd><ul class="first last simple">
+<li>Update our gradle dependencies</li>
+<li>Configure our database configurations in application.properties</li>
+<li>Mark our models with the <code class="docutils literal notranslate"><span class="pre">&#64;Entity</span></code> annotation</li>
+<li>Create new interfaces that extend JpaRepository</li>
+</ul>
+</dd>
+</dl>
+<p>Check out the <a class="reference internal" href="../../configurations/spring-postgres/index.html#spring-postgres"><span class="std std-ref">Configuration: Spring &amp; Postgres</span></a> to learn how to configure our Spring app to work with Postgres.</p>
+<p>We also will be working with sensitive information, and it would be a good idea to read <a class="reference internal" href="../../configurations/environment-variables-intellij/index.html#environment-variables-intellij"><span class="std std-ref">Configuration: Environment Variables - IntelliJ</span></a>.</p>
+<dl class="docutils">
+<dt>In that article we:</dt>
+<dd><ul class="first last simple">
+<li>Created an application.properties file</li>
+<li>Added configurations about our database to the file</li>
+<li>Used environment variable tokens to keep our database information secure</li>
+<li>Added environment variables to our runtime configuration</li>
+</ul>
+</dd>
+</dl>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Committing passwords to source control is a BAD idea. We are using a spring data feature that searches for and uses enviroment variables. <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config">Read more about Spring Boot/Data configuration.</a></p>
-</div>
-</div>
-<div class="section" id="intellij-run-configurations">
-<h3>Intellij Run Configurations<a class="headerlink" href="#intellij-run-configurations" title="Permalink to this headline">¶</a></h3>
-<p>We will use <strong>Run Configurations</strong> to set the <strong>Environment Variables</strong>.</p>
-<img alt="../../_images/run-configurations.png" src="../../_images/run-configurations.png" />
-</div>
-<div class="section" id="update-gradle-dependencies">
-<h3>Update Gradle Dependencies<a class="headerlink" href="#update-gradle-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>Add the associated Postgres dependency to <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> as a compile-time dependency.
-Set the existing h2 dependency to be a <code class="docutils literal notranslate"><span class="pre">testCompile</span></code> dependency, since it will only be needed for running tests at this point.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dependencies {
-    runtime(&#39;org.springframework.boot:spring-boot-devtools&#39;)
-    compile(&#39;org.springframework.boot:spring-boot-starter-data-jpa&#39;)
-    compile(&#39;org.springframework.boot:spring-boot-starter-thymeleaf&#39;)
-    compile(&#39;org.springframework.boot:spring-boot-starter-web&#39;)
-    compile(group: &#39;org.postgresql&#39;, name: &#39;postgresql&#39;, version: &#39;42.1.4&#39;)
-    testCompile(&#39;com.h2database:h2&#39;)
-    testCompile(&#39;org.springframework.boot:spring-boot-starter-test&#39;)
-}
-</pre></div>
 </div>
 </div>
 <div class="section" id="add-annotations-to-car-model">
