@@ -265,12 +265,13 @@
 <li><a class="reference internal" href="#getting-started">Getting Started</a></li>
 <li><a class="reference internal" href="#tasks">Tasks</a><ul>
 <li><a class="reference internal" href="#add-swaggerui-to-the-project">Add SwaggerUI to the Project</a><ul>
-<li><a class="reference internal" href="#setup-swagger-yaml-file">Setup Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File</a></li>
+<li><a class="reference internal" href="#create-swagger-yaml-file">Create Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File</a></li>
+<li><a class="reference internal" href="#edit-swagger-index-html">Edit swagger/index.html</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a class="reference internal" href="#writing-the-swagger-yaml">Writing the Swagger YAML</a><ul>
+<li><a class="reference internal" href="#edit-swagger-yaml">Edit Swagger YAML</a><ul>
 <li><a class="reference internal" href="#outline">Outline</a></li>
 <li><a class="reference internal" href="#tags">Tags</a></li>
 <li><a class="reference internal" href="#paths">Paths</a></li>
@@ -303,14 +304,19 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Add SwaggerUI to our project</li>
+<li>Add SwaggerUI to our project<ul>
 <li>Create swagger.yaml</li>
 <li>Edit swagger/index.html to point to our swagger.yaml file</li>
-<li>Edit swagger: info</li>
-<li>Edit swagger: tags</li>
-<li>Edit swagger: paths</li>
-<li>Edit swagger: definitions</li>
-<li>Add parameters to a swagger path</li>
+</ul>
+</li>
+<li>Edit Swagger YAML<ul>
+<li>Outline</li>
+<li>Tags</li>
+<li>Paths</li>
+<li>Definitions</li>
+<li>Parameters</li>
+</ul>
+</li>
 </ol>
 <div class="section" id="add-swaggerui-to-the-project">
 <h3>Add SwaggerUI to the Project<a class="headerlink" href="#add-swaggerui-to-the-project" title="Permalink to this headline">¶</a></h3>
@@ -325,9 +331,12 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <li>Navigate into the repo that you just cloned.</li>
 <li>Copy the <em>contents</em> of <code class="docutils literal notranslate"><span class="pre">swagger-ui/dist</span></code> directory into <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger/</span></code> directory. The <code class="docutils literal notranslate"><span class="pre">dist/</span></code> directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document</li>
 </ol>
-<div class="section" id="setup-swagger-yaml-file">
-<h4>Setup Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File<a class="headerlink" href="#setup-swagger-yaml-file" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="create-swagger-yaml-file">
+<h4>Create Swagger <code class="docutils literal notranslate"><span class="pre">.yaml</span></code> File<a class="headerlink" href="#create-swagger-yaml-file" title="Permalink to this headline">¶</a></h4>
 <p>In the folder <code class="docutils literal notranslate"><span class="pre">launchcart/src/main/resources/static/swagger</span></code>, create a <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> file. You can do this via IntelliJ, or by running <code class="docutils literal notranslate"><span class="pre">touch</span> <span class="pre">swagger.yaml</span></code> from the directory.</p>
+</div>
+<div class="section" id="edit-swagger-index-html">
+<h4>Edit swagger/index.html<a class="headerlink" href="#edit-swagger-index-html" title="Permalink to this headline">¶</a></h4>
 <p>Open <code class="docutils literal notranslate"><span class="pre">swagger/index.html</span></code> and locate the script block, the top of which should look like this:</p>
 <div class="code highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;script type=&quot;text/javascript&quot;&gt;
   $(function () {
@@ -356,8 +365,8 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 </div>
 </div>
 </div>
-<div class="section" id="writing-the-swagger-yaml">
-<h2>Writing the Swagger YAML<a class="headerlink" href="#writing-the-swagger-yaml" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="edit-swagger-yaml">
+<h2>Edit Swagger YAML<a class="headerlink" href="#edit-swagger-yaml" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="outline">
 <h3>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h3>
 <p>Next we need to begin writing the Swagger YAML file. Copy the following code into your <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code>.</p>

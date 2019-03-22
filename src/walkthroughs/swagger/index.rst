@@ -27,13 +27,17 @@ Tasks
 =====
 
 #. Add SwaggerUI to our project
-#. Create swagger.yaml
-#. Edit swagger/index.html to point to our swagger.yaml file
-#. Edit swagger: info
-#. Edit swagger: tags
-#. Edit swagger: paths
-#. Edit swagger: definitions
-#. Add parameters to a swagger path
+
+   - Create swagger.yaml
+   - Edit swagger/index.html to point to our swagger.yaml file
+
+#. Edit Swagger YAML
+
+   - Outline
+   - Tags
+   - Paths
+   - Definitions
+   - Parameters
 
 Add SwaggerUI to the Project
 ----------------------------
@@ -48,10 +52,13 @@ To add the SwaggerUI files to your project:
 2. Navigate into the repo that you just cloned.
 3. Copy the *contents* of ``swagger-ui/dist`` directory into ``launchcart/src/main/resources/static/swagger/`` directory. The ``dist/`` directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
 
-Setup Swagger ``.yaml`` File
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Create Swagger ``.yaml`` File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the folder ``launchcart/src/main/resources/static/swagger``, create a ``swagger.yaml`` file. You can do this via IntelliJ, or by running ``touch swagger.yaml`` from the directory.
+
+Edit swagger/index.html
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Open ``swagger/index.html`` and locate the script block, the top of which should look like this:
 
@@ -82,8 +89,8 @@ Edit the ``var url = ...`` line so that it points to our ``swagger.yaml`` file, 
         highlightSizeThreshold: 5000
       });
 
-Writing the Swagger YAML
-========================
+Edit Swagger YAML
+=================
 
 Outline
 -------
