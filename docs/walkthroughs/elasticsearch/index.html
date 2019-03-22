@@ -270,7 +270,12 @@
 <li><a class="reference internal" href="#delete">Delete</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#elasticsearch-search-api">Elasticsearch Search API</a></li>
+<li><a class="reference internal" href="#elasticsearch-search-api">Elasticsearch Search API</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#match-all-documents-in-index">Match All Documents in Index</a></li>
+<li><a class="reference internal" href="#match-documents-by-field">Match Documents by Field</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#elasticsearch-fuzzy-search">Elasticsearch Fuzzy Search</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
@@ -482,13 +487,91 @@
 </div>
 <div class="section" id="elasticsearch-search-api">
 <h2>Elasticsearch Search API<a class="headerlink" href="#elasticsearch-search-api" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="setup">
+<h3>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Before we can start utilizing the Search API, we need more data:</dt>
+<dd><ol class="first last arabic simple">
+<li>Copy <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/elasticsearch-practice/blob/master/baseball-teams.sh">baseball.sh</a> to your local machine as baseball.sh.</li>
+<li>Make the script file excutable from the terminal: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">chmod</span> <span class="pre">500</span> <span class="pre">baseball.sh</span></code></li>
+<li>Run the script: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">./baseball.sh</span></code></li>
+</ol>
+</dd>
+</dl>
+<p>To make sure our Elasticsearch cluster was seeded from the shell script correctly from the terminal: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">127.0.0.1:9200/teams/_count</span></code>.</p>
+<p>We should have a total of 30 documents stored within the <code class="docutils literal notranslate"><span class="pre">/teams</span></code> index.</p>
 <p>So far Elasticsearch functions very similarly to PSQL. How do we leverage some the advantages of Elasticsearch?</p>
 <p>We do this through the Elasticsearch Search API!</p>
-<p>We will be writing our NoSQL queries like this: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">127.0.0.1:9200/teams/_search?q=&lt;search_field&gt;:&lt;search_term&gt;</span></code></p>
+<p>We will be writing our Elasticsearch queries by making GET requests: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">127.0.0.1:9200/teams/_search</span></code></p>
+<p>We can access the _search API by using query parameters, or by including JSON that describes the query to be made.</p>
+</div>
+<div class="section" id="match-all-documents-in-index">
+<h3>Match All Documents in Index<a class="headerlink" href="#match-all-documents-in-index" title="Permalink to this headline">¶</a></h3>
 <div class="literal-block-wrapper docutils container" id="id13">
-<div class="code-block-caption"><span class="caption-text">GET /teams/_search?q=name:cardinals</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?q=name:cardinals?pretty=true</span>
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true</span>
 </pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id14" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: { &quot;match_all&quot;: {} }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>These queries only return 10 results. Looking at the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/search-request-from-size.html">Elasticsearch documentation</a> to learn about Pagination.</p>
+<p>We can configure how many results are returned with the From, and Size request parameters.</p>
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id15" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;from&quot;: 0,</span>
+<span class="go">    &quot;size&quot;: 30,</span>
+<span class="go">    &quot;query&quot;: { &quot;match_all&quot;: {} }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>We can also control the results of the document source. For example if we only wanted the city, and name from each document:</p>
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id16" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;from&quot;: 0,</span>
+<span class="go">    &quot;size&quot;: 30,</span>
+<span class="go">    &quot;_source&quot;: [&quot;city&quot;, &quot;name&quot;],</span>
+<span class="go">    &quot;query&quot;: { &quot;match_all&quot;: {} }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="match-documents-by-field">
+<h3>Match Documents by Field<a class="headerlink" href="#match-documents-by-field" title="Permalink to this headline">¶</a></h3>
+<p>Elasticsearch gives us even more control of our seaches with the <code class="docutils literal notranslate"><span class="pre">&quot;match&quot;</span></code> query.</p>
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id17" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;query&quot;: { &quot;match&quot;: { &quot;city&quot;: &quot;St. Louis&quot; } }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
+</div>
+<p>Let’s match all the teams in the National league.</p>
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">GET /teams/_search</span><a class="headerlink" href="#id18" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
+<span class="go">{</span>
+<span class="go">    &quot;from&quot;: 0,</span>
+<span class="go">    &quot;size&quot;: 15,</span>
+<span class="go">    &quot;query&quot;: { &quot;match&quot;: { &quot;league&quot;: &quot;National&quot; } }</span>
+<span class="go">}&#39;</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

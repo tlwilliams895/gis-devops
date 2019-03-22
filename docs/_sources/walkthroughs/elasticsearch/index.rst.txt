@@ -228,16 +228,95 @@ I think we all feel better now that the Cubs have been deleted!
 Elasticsearch Search API
 ========================
 
+Setup
+-----
+
+Before we can start utilizing the Search API, we need more data:
+    #. Copy `baseball.sh <https://gitlab.com/LaunchCodeTraining/elasticsearch-practice/blob/master/baseball-teams.sh>`_ to your local machine as baseball.sh.
+    #. Make the script file excutable from the terminal: ``$ chmod 500 baseball.sh``
+    #. Run the script: ``$ ./baseball.sh``
+
+To make sure our Elasticsearch cluster was seeded from the shell script correctly from the terminal: ``$ curl -XGET 127.0.0.1:9200/teams/_count``.
+
+We should have a total of 30 documents stored within the ``/teams`` index.
+
 So far Elasticsearch functions very similarly to PSQL. How do we leverage some the advantages of Elasticsearch?
 
 We do this through the Elasticsearch Search API!
 
-We will be writing our NoSQL queries like this: ``curl -XGET 127.0.0.1:9200/teams/_search?q=<search_field>:<search_term>``
+We will be writing our Elasticsearch queries by making GET requests: ``curl -XGET 127.0.0.1:9200/teams/_search``
+
+We can access the _search API by using query parameters, or by including JSON that describes the query to be made.
+
+Match All Documents in Index
+----------------------------
 
 .. sourcecode:: console
-   :caption: GET /teams/_search?q=name:cardinals
+   :caption: GET /teams/_search
 
-   curl -XGET 127.0.0.1:9200/teams/_search?q=name:cardinals?pretty=true
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": { "match_all": {} }
+   }'
+
+These queries only return 10 results. Looking at the `Elasticsearch documentation <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/search-request-from-size.html>`_ to learn about Pagination.
+
+We can configure how many results are returned with the From, and Size request parameters.
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "from": 0,
+       "size": 30,
+       "query": { "match_all": {} }
+   }'
+
+We can also control the results of the document source. For example if we only wanted the city, and name from each document:
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "from": 0,
+       "size": 30,
+       "_source": ["city", "name"],
+       "query": { "match_all": {} }
+   }'
+
+Match Documents by Field
+------------------------
+
+Elasticsearch gives us even more control of our seaches with the ``"match"`` query.
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "query": { "match": { "city": "St. Louis" } }
+   }'
+
+Let's match all the teams in the National league.
+
+.. sourcecode:: console
+   :caption: GET /teams/_search
+
+   curl -XGET 127.0.0.1:9200/teams/_search?pretty=true -H 'Content-Type: application/json' -d '
+   {
+       "from": 0,
+       "size": 15,
+       "query": { "match": { "league": "National" } }
+   }'
+
+
 
 Elasticsearch Fuzzy Search
 ==========================
