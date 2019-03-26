@@ -16,17 +16,21 @@ Lesson Content
 
 `ES Filtering Slides <https://education.launchcode.org/gis-devops-slides/week3/elasticsearch2.html>`_
 
+Walkthroughs
+============
+
+In the morning we will continue to practice with Elasticsearch.
+
+:ref:`walkthrough-elasticsearch2`
+
+In the afternoon we will learn how to integrate Elasticsearch with Spring.
+
+:ref:`walkthrough-elasticsearch-spring`
+
 Studio
 ======
 
 :ref:`elasticsearch2-studio`
-
-Walkthrough
-===========
-
-In the afternoon, we'll look at how to integrate Elasticsearch with Spring.
-
-Follow along with :ref:`elasticsearch-spring-walkthrough`
 
 Resources
 =========

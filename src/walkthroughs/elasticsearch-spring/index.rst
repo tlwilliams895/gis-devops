@@ -1,6 +1,6 @@
 :orphan:
 
-.. _elasticsearch-spring-walkthrough:
+.. _walkthrough-elasticsearch-spring:
 
 ====================================
 Walkthrough: Elasticsearch in Spring
