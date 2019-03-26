@@ -386,7 +386,7 @@ Elasticsearch supports all sorts of aggregations based around GEOINT.
 Geo Distance
 ------------
 
-Let's find the baseball stadiums within 20km of the LaunchCode Mentor Center ("lat": 38.651522, "lon": -90.259495).
+Let's find the baseball stadiums within 20km of the LaunchCode Mentor Center (`"lat": 38.651522, "lon": -90.259495 <https://www.google.com/maps/place/38%C2%B039'05.5%22N+90%C2%B015'34.2%22W/@38.6515262,-90.2616837,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d38.651522!4d-90.259495>`_).
 
 .. sourcecode:: console
    :caption: geo_distance 20km
@@ -496,7 +496,7 @@ Instead of calculating the area of all of our stadiums, a more benefical calcula
        }
    }'
 
-We have found the centroid of all the stadiums in the MLB. At "lat": 38.17771242745221 "lon" : -92.48515307530761. Pulling this point up on a map shows us south central Missouri, just east of the Lake of the Ozarks.
+We have found the centroid of all the stadiums in the MLB. At "lat": 38.17771242745221 "lon" : -92.48515307530761. Pulling this `point <https://www.google.com/maps/place/38%C2%B010'39.8%22N+92%C2%B029'06.6%22W/@38.175995,-92.6250644,11z/data=!4m5!3m4!1s0x0:0x0!8m2!3d38.1777124!4d-92.4851531>`_ up on a map shows us south central Missouri, just east of the Lake of the Ozarks.
 
 What about the centroid for just American League East Division?
 
@@ -522,7 +522,7 @@ What about the centroid for just American League East Division?
        }
    }'
 
-This time our centroid is in southern Maryland, slightly south east of Washington D.C., and south of Baltimore.
+This time our centroid is in `southern Maryland <https://www.google.com/maps/place/38%C2%B046'26.6%22N+76%C2%B044'15.2%22W/@38.7741692,-77.017703,10z/data=!4m5!3m4!1s0x0:0x0!8m2!3d38.7740536!4d-76.7375409>`_, east and slightly south of Washington D.C.
 
 Other Features
 ==============
