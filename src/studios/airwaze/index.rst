@@ -22,7 +22,7 @@ What is PostGIS?
 Install PostGIS Container
 =========================
 
-If you don't already have a PostGIS container installed checkout the `installation guide <../../installations/docker-postgis/>`_
+If you don't already have a PostGIS container installed checkout the :ref:`docker-postgis`.
 
 Create a Database for the Airwaze Data
 ======================================

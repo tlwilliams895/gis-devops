@@ -11,9 +11,12 @@ Follow along with the instructor as we get started with jQuery and OpenLayers.
 Setup
 =====
 
-* Fork and clone the JQuery OpenLayers Starter https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter repo.
+* Fork and clone the `JQuery OpenLayers Starter repo <https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter>`_
 * Create a story branch named ``day5-solution``
-* Open this folder with any editor you choose. We suggest Visual Studio Code since this project is only JavaScript and HTML.
+* Open the repository folder with any editor you choose
+
+  * `Visual Studio Code <https://code.visualstudio.com/>`_ works well because this project is JavaScript, CSS, and HTML
+  * The Community Edition(free version) of Intellij IDEA doesn't handle JavaScript, CSS, and HTML very well
 
 Review the code
 ===============
