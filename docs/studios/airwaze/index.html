@@ -305,7 +305,7 @@
 </div>
 <div class="section" id="install-postgis-container">
 <h2>Install PostGIS Container<a class="headerlink" href="#install-postgis-container" title="Permalink to this headline">¶</a></h2>
-<p>If you don’t already have a PostGIS container installed checkout the <a class="reference external" href="../../installations/docker-postgis/">installation guide</a></p>
+<p>If you don’t already have a PostGIS container installed checkout the <a class="reference internal" href="../../installations/docker-postgis/index.html#docker-postgis"><span class="std std-ref">Docker Installation: PostGIS</span></a>.</p>
 </div>
 <div class="section" id="create-a-database-for-the-airwaze-data">
 <h2>Create a Database for the Airwaze Data<a class="headerlink" href="#create-a-database-for-the-airwaze-data" title="Permalink to this headline">¶</a></h2>
@@ -329,8 +329,12 @@
 <div class="section" id="enable-geospatial-extensions-in-the-airwaze-database">
 <h2>Enable Geospatial Extensions in the Airwaze Database<a class="headerlink" href="#enable-geospatial-extensions-in-the-airwaze-database" title="Permalink to this headline">¶</a></h2>
 <p>Now we want to install the geospatial extensions to Postgres for the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> db.</p>
-<p>From the PSQL CLI run <code class="docutils literal notranslate"><span class="pre">\c</span> <span class="pre">airwaze</span></code> to connect to the airwaze database:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>airwaze=# CREATE EXTENSION postgis;
+<p>From the PSQL CLI:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># CONNECT TO AIRWAZE DB
+postgres=# \c airwaze;
+
+# CREATE GEOSPATIAL EXTENSIONS
+airwaze=# CREATE EXTENSION postgis;
 airwaze=# CREATE EXTENSION postgis_topology;
 airwaze=# CREATE EXTENSION fuzzystrmatch;
 airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
@@ -378,8 +382,7 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">cp</span></code> command in docker stands for copy. We are copying the two CSV files into a directory called /tmp inside of our container.</p>
 <ul class="simple">
-<li>Be sure that the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> points to the copies of <code class="docutils literal notranslate"><span class="pre">airports.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> in your container.</li>
-<li>You shouldn’t need to change anything in the import.sql file. <code class="docutils literal notranslate"><span class="pre">/tmp/routes.csv</span></code></li>
+<li>Be sure that the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> points to the copies of <code class="docutils literal notranslate"><span class="pre">airports.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> in your container</li>
 <li>Open the <code class="docutils literal notranslate"><span class="pre">csv</span></code> files to see what data is being imported for routes and airports</li>
 </ul>
 </div>

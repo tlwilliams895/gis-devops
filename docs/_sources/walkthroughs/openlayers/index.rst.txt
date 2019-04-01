@@ -11,9 +11,12 @@ Follow along with the instructor as we get started with jQuery and OpenLayers.
 Setup
 =====
 
-* Fork and clone the JQuery OpenLayers Starter https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter repo.
+* Fork and clone the `JQuery OpenLayers Starter repo <https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter>`_
 * Create a story branch named ``day5-solution``
-* Open this folder with any editor you choose. We suggest Visual Studio Code since this project is only JavaScript and HTML.
+* Open the repository folder with any editor you choose
+
+  * `Visual Studio Code <https://code.visualstudio.com/>`_ works well because this project is JavaScript, CSS, and HTML
+  * The Community Edition(free version) of Intellij IDEA doesn't handle JavaScript, CSS, and HTML very well
 
 Review the code
 ===============
@@ -22,7 +25,7 @@ Review the code
 * ``index.html`` has a ``<body>`` and ``<h2>`` but not much else
 * ``js/script.js`` contains code to instantiate a map
 * ``js/script.js`` defines styles
-* ``js/script.js`` uses OpenLayers Tile layer Layer Types https://openlayers.org/en/v4.6.4/apidoc/ol.source.html
+* ``js/script.js`` uses OpenLayers Tile layer Layer Types https://openlayers.org/en/v4.6.5/apidoc/ol.source.html
 * ``js/script.js`` sets the ``map.view`` attribute which allows us to position the map at a certain lat long and zoom level using an ``ol.View`` object
 
 Let's make a map show up

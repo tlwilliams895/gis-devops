@@ -25,7 +25,7 @@ Review the code
 * ``index.html`` has a ``<body>`` and ``<h2>`` but not much else
 * ``js/script.js`` contains code to instantiate a map
 * ``js/script.js`` defines styles
-* ``js/script.js`` uses OpenLayers Tile layer Layer Types https://openlayers.org/en/v4.6.4/apidoc/ol.source.html
+* ``js/script.js`` uses OpenLayers Tile layer Layer Types https://openlayers.org/en/v4.6.5/apidoc/ol.source.html
 * ``js/script.js`` sets the ``map.view`` attribute which allows us to position the map at a certain lat long and zoom level using an ``ol.View`` object
 
 Let's make a map show up

@@ -21,6 +21,7 @@ Before we create our container we first need to create a temporary file that wil
 
 * Create a new file in your terminal ``$ nano env.list``
 * Add ``POSTGRES_USER=psql_user`` to env.list
+* Add ``POSTGRES_PASS=psqlpass`` to env.list
 * Add ``ALLOW_IP_RANGE=<0.0.0.0/0>`` to env.list
 * Save env.list
 
