@@ -263,10 +263,22 @@
 <li><a class="reference internal" href="#">Walkthrough: Git and Gitlab</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#follow-along-as-we">Follow Along as we…</a></li>
+<<<<<<< HEAD
 <li><a class="reference internal" href="#part-1-instructor-steps">Part 1 - Instructor Steps</a></li>
 <li><a class="reference internal" href="#part-1-student-steps">Part 1 - Student Steps</a></li>
 <li><a class="reference internal" href="#part-2-instructor-steps">Part 2 - Instructor Steps</a></li>
 <li><a class="reference internal" href="#part-3-student-steps">Part 3 - Student Steps</a></li>
+=======
+<li><a class="reference internal" href="#part-1">Part 1</a></li>
+<li><a class="reference internal" href="#part-2">Part 2</a></li>
+<li><a class="reference internal" href="#git-reference">Git Reference</a><ul>
+<li><a class="reference internal" href="#switch-to-an-existing-branch">Switch to an Existing Branch</a></li>
+<li><a class="reference internal" href="#create-a-new-branch">Create a New Branch</a></li>
+<li><a class="reference internal" href="#commit-and-push">Commit and Push</a></li>
+<li><a class="reference internal" href="#other-helpful-commands">Other Helpful Commands</a></li>
+</ul>
+</li>
+>>>>>>> master
 </ul>
 </li>
 </ul>
@@ -352,6 +364,43 @@
 <li>Run <cite>git add roster.txt</cite> to mark the conflict as resolved</li>
 <li>After resolving your conflicts you can push your changes to origin</li>
 </ol>
+</div>
+<div class="section" id="git-reference">
+<span id="id1"></span><h2>Git Reference<a class="headerlink" href="#git-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="switch-to-an-existing-branch">
+<h3>Switch to an Existing Branch<a class="headerlink" href="#switch-to-an-existing-branch" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> to make sure you have an updated list of branches</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span> <span class="pre">-a</span></code> show a list of all existing branches</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">BRANCH-NAME</span></code> will checkout the branch BRANCH-NAME</li>
+</ol>
+</div>
+<div class="section" id="create-a-new-branch">
+<h3>Create a New Branch<a class="headerlink" href="#create-a-new-branch" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to make sure you are on the branch you want to make a branch from</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">NEW-BRANCH-NAME</span></code> creates branch NEW-BRANCH-NAME and switches to it</li>
+</ol>
+</div>
+<div class="section" id="commit-and-push">
+<h3>Commit and Push<a class="headerlink" href="#commit-and-push" title="Permalink to this headline">¶</a></h3>
+<p>How to commit and push your changes to a remote repo.</p>
+<ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code> to review branch and files that have changed</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span> <span class="pre">.</span></code> stage your changes</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">-m</span> <span class="pre">&quot;a</span> <span class="pre">short</span> <span class="pre">message</span> <span class="pre">about</span> <span class="pre">what</span> <span class="pre">you</span> <span class="pre">changed&quot;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code> push commit to remote repo</li>
+</ol>
+</div>
+<div class="section" id="other-helpful-commands">
+<h3>Other Helpful Commands<a class="headerlink" href="#other-helpful-commands" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">log</span></code> see list of commits on your current branch</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code> pull in the latest changes for your current branch from origin</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> make your local repo aware of any new changes on origin</li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span></code> WARNING!! Removes all local changes that have NOT been committed</li>
+</ul>
+</div>
 </div>
 </div>
 
