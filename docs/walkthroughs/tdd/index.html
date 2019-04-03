@@ -263,9 +263,12 @@
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#follow-along">Follow Along</a><ul>
 <li><a class="reference internal" href="#discuss-requirements">Discuss Requirements</a></li>
-<li><a class="reference internal" href="#create-a-test-list">Create a Test List</a></li>
-<li><a class="reference internal" href="#write-the-tests">Write the Tests</a></li>
-<li><a class="reference internal" href="#make-them-pass">Make Them Pass</a></li>
+<li><a class="reference internal" href="#create-a-test-list-range-feature">Create a Test List - Range Feature</a></li>
+<li><a class="reference internal" href="#write-the-tests-range-feature">Write the Tests - Range Feature</a></li>
+<li><a class="reference internal" href="#make-them-pass-range-feature">Make Them Pass - Range Feature</a></li>
+<li><a class="reference internal" href="#create-a-test-list-trip-meter-feature">Create a Test List - Trip Meter Feature</a></li>
+<li><a class="reference internal" href="#write-the-tests-trip-meter-feature">Write the Tests - Trip Meter Feature</a></li>
+<li><a class="reference internal" href="#make-them-pass-trip-meter-feature">Make Them Pass - Trip Meter Feature</a></li>
 <li><a class="reference internal" href="#clean-up-code">Clean Up Code</a></li>
 </ul>
 </li>
@@ -303,34 +306,51 @@
 <p>The Range functionality will calculate how many more miles the car can drive before running out of gas. The output should be a Double reprsenting the miles the car can drive before needing to fuel up.</p>
 <p>The Trip Meter will be a separate resetable odometer. This will allow a user to track the number of miles travelled on a specific trip.</p>
 </div>
-<div class="section" id="create-a-test-list">
-<h3>Create a Test List<a class="headerlink" href="#create-a-test-list" title="Permalink to this headline">¶</a></h3>
-<p>Range</p>
+<div class="section" id="create-a-test-list-range-feature">
+<h3>Create a Test List - Range Feature<a class="headerlink" href="#create-a-test-list-range-feature" title="Permalink to this headline">¶</a></h3>
+<p>Based on the requirements we need to create three tests</p>
 <ul class="simple">
-<li>testInitialValue</li>
-<li>testValueAfterDriving</li>
-<li>testValueAtEmpty</li>
-</ul>
-<p>Trip Meter</p>
-<ul class="simple">
-<li>testInitialValue</li>
-<li>testAfterDriving</li>
-<li>testResetAfterDriving</li>
-<li>testResetThenDrive</li>
+<li>testInitialValue - create a car and check range</li>
+<li>testValueAfterDriving - drive a car and verify remaining range</li>
+<li>testValueAtEmpty - verify the range for a car with an empty tank</li>
 </ul>
 </div>
-<div class="section" id="write-the-tests">
-<h3>Write the Tests<a class="headerlink" href="#write-the-tests" title="Permalink to this headline">¶</a></h3>
-<p>Range</p>
+<div class="section" id="write-the-tests-range-feature">
+<h3>Write the Tests - Range Feature<a class="headerlink" href="#write-the-tests-range-feature" title="Permalink to this headline">¶</a></h3>
 <img alt="../../_images/tdd-range-tests.png" src="../../_images/tdd-range-tests.png" />
-<p>Trip Meter</p>
-<img alt="../../_images/tdd-trip-meter-tests.png" src="../../_images/tdd-trip-meter-tests.png" />
-<p>Our tests won’t run yet, because our code won’t compile. We are calling a few methods that don’t exist. We will need to create these methods to get them to run.</p>
-<img alt="../../_images/tdd-additional-methods.png" src="../../_images/tdd-additional-methods.png" />
+<p>What happens when you run the tests?</p>
+<p>Well the tests won’t run yet, because our code won’t compile.
+We are calling a few methods that don’t exist. We will need to create these methods to get them to run.</p>
 </div>
-<div class="section" id="make-them-pass">
-<h3>Make Them Pass<a class="headerlink" href="#make-them-pass" title="Permalink to this headline">¶</a></h3>
-<p>Now upon running our tests, a couple of them pass. However we still need to update some code in our Car.java file to pass the rest of our tests.</p>
+<div class="section" id="make-them-pass-range-feature">
+<h3>Make Them Pass - Range Feature<a class="headerlink" href="#make-them-pass-range-feature" title="Permalink to this headline">¶</a></h3>
+<p>We need to add <code class="docutils literal notranslate"><span class="pre">getRange()</span></code> to <code class="docutils literal notranslate"><span class="pre">Car.java</span></code>.</p>
+<img alt="../../_images/tdd-range-code.png" src="../../_images/tdd-range-code.png" />
+<p>After adding the below code, run the tests again. All tests should be passing at this point.</p>
+<img alt="../../_images/tdd-range-tests-pass.png" src="../../_images/tdd-range-tests-pass.png" />
+</div>
+<div class="section" id="create-a-test-list-trip-meter-feature">
+<h3>Create a Test List - Trip Meter Feature<a class="headerlink" href="#create-a-test-list-trip-meter-feature" title="Permalink to this headline">¶</a></h3>
+<p>Based on the requirements we need to create three tests</p>
+<ul class="simple">
+<li>testInitialValue - create a car and verify initial trip value is 0</li>
+<li>testAfterDriving - drive a car and verify trip value is driven amount</li>
+<li>testResetAfterDriving - drive a car, reset trip, then verify trip is 0</li>
+<li>testResetThenDrive - drive, reset the trip, drive again, verify trip value is driven amount</li>
+</ul>
+</div>
+<div class="section" id="write-the-tests-trip-meter-feature">
+<h3>Write the Tests - Trip Meter Feature<a class="headerlink" href="#write-the-tests-trip-meter-feature" title="Permalink to this headline">¶</a></h3>
+<img alt="../../_images/tdd-trip-tests.png" src="../../_images/tdd-trip-tests.png" />
+<p>What happens when you run the tests?</p>
+<p>Well the tests won’t run yet, because our code won’t compile. We are calling a few methods that don’t exist. We will need to create these methods to get them to run.</p>
+</div>
+<div class="section" id="make-them-pass-trip-meter-feature">
+<h3>Make Them Pass - Trip Meter Feature<a class="headerlink" href="#make-them-pass-trip-meter-feature" title="Permalink to this headline">¶</a></h3>
+<p>We need to add a property <code class="docutils literal notranslate"><span class="pre">tripMeter</span></code> and two functions <code class="docutils literal notranslate"><span class="pre">getTripMeter()</span></code> and <code class="docutils literal notranslate"><span class="pre">resetTripMeter()</span></code> to <code class="docutils literal notranslate"><span class="pre">Car.java</span></code></p>
+<img alt="../../_images/tdd-trip-code1.png" src="../../_images/tdd-trip-code1.png" />
+<img alt="../../_images/tdd-trip-code2.png" src="../../_images/tdd-trip-code2.png" />
+<p>Run the tests again. You will find that the code is compilling, but not all tests are passing.</p>
 <img alt="../../_images/tdd-some-passing-tests.png" src="../../_images/tdd-some-passing-tests.png" />
 <p>Our tests are currently failing every time our car drives. We need to add some code to our drive method so that it updates the TripMeter as well as the Odometer.</p>
 <img alt="../../_images/tdd-update-drive-method.png" src="../../_images/tdd-update-drive-method.png" />

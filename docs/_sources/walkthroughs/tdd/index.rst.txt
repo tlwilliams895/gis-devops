@@ -34,41 +34,66 @@ The Range functionality will calculate how many more miles the car can drive bef
 
 The Trip Meter will be a separate resetable odometer. This will allow a user to track the number of miles travelled on a specific trip.
 
-Create a Test List
-____________________
+Create a Test List - Range Feature
+__________________________________
 
-Range
+Based on the requirements we need to create three tests
 
-* testInitialValue
-* testValueAfterDriving
-* testValueAtEmpty
+* testInitialValue - create a car and check range
+* testValueAfterDriving - drive a car and verify remaining range
+* testValueAtEmpty - verify the range for a car with an empty tank
 
-Trip Meter
-
-* testInitialValue
-* testAfterDriving
-* testResetAfterDriving
-* testResetThenDrive
-
-Write the Tests
-_______________
-
-Range
+Write the Tests - Range Feature
+_______________________________
 
 .. image:: /_static/images/tdd/tdd-range-tests.png
 
-Trip Meter
+What happens when you run the tests?
 
-.. image:: /_static/images/tdd/tdd-trip-meter-tests.png
+Well the tests won't run yet, because our code won't compile.
+We are calling a few methods that don't exist. We will need to create these methods to get them to run.
 
-Our tests won't run yet, because our code won't compile. We are calling a few methods that don't exist. We will need to create these methods to get them to run.
+Make Them Pass - Range Feature
+______________________________
 
-.. image:: /_static/images/tdd/tdd-additional-methods.png
+We need to add ``getRange()`` to ``Car.java``.
 
-Make Them Pass
-______________
+.. image:: /_static/images/tdd/tdd-range-code.png
 
-Now upon running our tests, a couple of them pass. However we still need to update some code in our Car.java file to pass the rest of our tests.
+After adding the below code, run the tests again. All tests should be passing at this point.
+
+.. image:: /_static/images/tdd/tdd-range-tests-pass.png
+
+Create a Test List - Trip Meter Feature
+_______________________________________
+
+Based on the requirements we need to create three tests
+
+* testInitialValue - create a car and verify initial trip value is 0
+* testAfterDriving - drive a car and verify trip value is driven amount
+* testResetAfterDriving - drive a car, reset trip, then verify trip is 0
+* testResetThenDrive - drive, reset the trip, drive again, verify trip value is driven amount
+
+Write the Tests - Trip Meter Feature
+____________________________________
+
+.. image:: /_static/images/tdd/tdd-trip-tests.png
+
+What happens when you run the tests?
+
+Well the tests won’t run yet, because our code won’t compile. We are calling a few methods that don’t exist. We will need to create these methods to get them to run.
+
+
+Make Them Pass - Trip Meter Feature
+___________________________________
+
+We need to add a property ``tripMeter`` and two functions ``getTripMeter()`` and ``resetTripMeter()`` to ``Car.java``
+
+.. image:: /_static/images/tdd/tdd-trip-code1.png
+
+.. image:: /_static/images/tdd/tdd-trip-code2.png
+
+Run the tests again. You will find that the code is compilling, but not all tests are passing.
 
 .. image:: /_static/images/tdd/tdd-some-passing-tests.png
 
@@ -79,6 +104,7 @@ Our tests are currently failing every time our car drives. We need to add some c
 Now when we run our tests, they all pass!
 
 .. image:: /_static/images/tdd/tdd-successful-tests.png
+
 
 Clean Up Code
 _____________
