@@ -262,7 +262,7 @@
 <li><a class="reference internal" href="#">Studio: LaunchCart Part 2</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#your-tasks">Your Tasks</a><ul>
-<li><a class="reference internal" href="#refactor-to-use-hiberante-keep-existing-functionality">Refactor to Use Hiberante (Keep Existing Functionality)</a></li>
+<li><a class="reference internal" href="#refactor-to-use-hibernate-keep-existing-functionality">Refactor to Use Hibernate (Keep Existing Functionality)</a></li>
 <li><a class="reference internal" href="#add-newitem-to-item-model">Add newItem to Item Model</a></li>
 </ul>
 </li>
@@ -294,25 +294,50 @@
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
 <p>Each section outlines one task or group of tasks you need to complete.</p>
-<div class="section" id="refactor-to-use-hiberante-keep-existing-functionality">
-<h3>Refactor to Use Hiberante (Keep Existing Functionality)<a class="headerlink" href="#refactor-to-use-hiberante-keep-existing-functionality" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="refactor-to-use-hibernate-keep-existing-functionality">
+<h3>Refactor to Use Hibernate (Keep Existing Functionality)<a class="headerlink" href="#refactor-to-use-hibernate-keep-existing-functionality" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li>Set Up A Postgres DB</li>
-<li>Configure the App To Use the Database (controllers, entities, repositories, tests)</li>
-<li>Get the tests to pass</li>
-<li>Commit your changes</li>
+<li><a class="reference external" href="../../installations/docker-psql/">Set Up A Postgres DB</a></li>
+<li><a class="reference external" href="../../walkthroughs/spring-data-jpa-hibernate/">Configure the App To Use the Database</a> (controllers, entities, repositories, tests)</li>
+<li><dl class="first docutils">
+<dt>Get the tests to pass</dt>
+<dd><ul class="first last">
+<li>Did you add JPA, and PSQL dependencies to <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>?</li>
+<li>Did you add an <code class="docutils literal notranslate"><span class="pre">application.properties</span></code>, and <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code>?</li>
+<li>Did you create the appropriate databases, and users in Postgres?</li>
+<li>Did you create IntelliJ environment variables for your runtime configurations?</li>
+<li>Did you update your Models?</li>
+<li>Did you set <code class="docutils literal notranslate"><span class="pre">&#64;Id</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;GeneratedValue</span></code>?</li>
+<li>Did you change your memory repositories to <code class="docutils literal notranslate"><span class="pre">JpaRepositories</span></code>?</li>
+<li>Did you autowire your new <code class="docutils literal notranslate"><span class="pre">JpaRepositories</span></code> into your controller files, and test files?</li>
+<li>Did you update <code class="docutils literal notranslate"><span class="pre">IntegrationTestConfig.java</span></code>?</li>
+<li>Did you update <code class="docutils literal notranslate"><span class="pre">LaunchCartApplicationTests.java</span></code>?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li>Commit your changes (For help see <a class="reference internal" href="../../walkthroughs/gitLab/index.html#git-reference"><span class="std std-ref">Git Reference</span></a>)</li>
 </ol>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You may have some tests that are unnecessary with our new changes. Are there tests, or testfiles we can remove?</p>
+</div>
 </div>
 <div class="section" id="add-newitem-to-item-model">
 <h3>Add newItem to Item Model<a class="headerlink" href="#add-newitem-to-item-model" title="Permalink to this headline">¶</a></h3>
-<p>Let’s add a new boolean property to <code class="docutils literal notranslate"><span class="pre">Item</span></code> to keep track of whether or not an item is new.</p>
+<p>Let’s add a new boolean property to <code class="docutils literal notranslate"><span class="pre">Item</span></code> to keep track of whether or not an item is new. Following TDD let’s write our test first.</p>
+<ul class="simple">
+<li>Create a <code class="docutils literal notranslate"><span class="pre">TestItem.java</span></code> file if it doesn’t already exist.</li>
+<li>Add a test to <code class="docutils literal notranslate"><span class="pre">TestItem.java</span></code> that creates a new Item, sets its newItem field to true, and then assertTrue that property.</li>
+<li>Modify the <code class="docutils literal notranslate"><span class="pre">testNewItemFormCreatesItemAndRedirects</span></code> test within <code class="docutils literal notranslate"><span class="pre">ItemControllerTests</span></code> to post an additional parameter, <code class="docutils literal notranslate"><span class="pre">newItem</span></code>, with value <code class="docutils literal notranslate"><span class="pre">&quot;true&quot;</span></code>.</li>
+</ul>
+<p>Our new test fails because we haven’t made the changes to the Item class to reflect our new tests. Let’s fix that.</p>
+<ul class="simple">
+<li>Add a boolean field <code class="docutils literal notranslate"><span class="pre">newItem</span></code> to <code class="docutils literal notranslate"><span class="pre">Item</span></code>, along with a getter and setter. Add <code class="docutils literal notranslate"><span class="pre">&#64;NotNull</span></code> to the field.</li>
+<li>Run all of the tests to ensure that they pass</li>
+</ul>
+<p>Let’s do a little manual (eye) testing as well.</p>
 <ul>
-<li><p class="first">Modify the <code class="docutils literal notranslate"><span class="pre">testNewItemFormCreatesItemAndRedirects</span></code> test within <code class="docutils literal notranslate"><span class="pre">ItemControllerTests</span></code> to post an additional parameter, <code class="docutils literal notranslate"><span class="pre">newItem</span></code>, with value <code class="docutils literal notranslate"><span class="pre">&quot;true&quot;</span></code>. (TDD FTW)</p>
-</li>
-<li><p class="first">Add a boolean field <code class="docutils literal notranslate"><span class="pre">newItem</span></code> to <code class="docutils literal notranslate"><span class="pre">Item</span></code>, along with a getter and setter. Add <code class="docutils literal notranslate"><span class="pre">&#64;NotNull</span></code> to the field.</p>
-</li>
-<li><p class="first">Run all of the tests to ensure that they pass</p>
-</li>
 <li><p class="first">Add a checkbox to <code class="docutils literal notranslate"><span class="pre">templates/item/new.html</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;div class=&quot;form-group&quot;&gt;
     &lt;input type=&quot;checkbox&quot; id=&quot;newItem&quot;
@@ -322,9 +347,9 @@
 </pre></div>
 </div>
 </li>
-<li><p class="first">Run the app and ensure the New Item form submits, and that the chosen value is properly set in the database.</p>
+<li><p class="first">Run the app (bootRun, make sure you have environment variables) and ensure the New Item form submits, and that the chosen value is properly set in the database.</p>
 </li>
-<li><p class="first">Commit!</p>
+<li><p class="first">Commit your changes (For help see <a class="reference internal" href="../../walkthroughs/gitLab/index.html#git-reference"><span class="std std-ref">Git Reference</span></a>)</p>
 </li>
 </ul>
 </div>
@@ -354,7 +379,7 @@
 <h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
 <p>If you don’t complete each of the tasks, turn in as much as you have completed by the end of the day.</p>
 <ul class="simple">
-<li>Commit and push your work to GitLab</li>
+<li>Commit and push your work to GitLab (For help see <a class="reference internal" href="../../walkthroughs/gitLab/index.html#git-reference"><span class="std std-ref">Git Reference</span></a>)</li>
 <li>Create a Merge Request and have the teacher and classmates review your changes</li>
 </ul>
 </div>

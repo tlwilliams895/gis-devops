@@ -6,14 +6,14 @@
 Walkthrough: Cars Demo - Spring Data, JPA, Hibernate
 ====================================================
 
-In this walkthrough, we revisit the `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter>`_ that we worked on in yesterday's walkthrough :ref:`SIT-walkthrough`. We'll refactor the app to use Postgres and Hiberante.
+In this walkthrough, we revisit the `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter>`_ that we worked on in yesterday's walkthrough :ref:`SIT-walkthrough`. We'll refactor the app to use Postgres and Hibernate.
 
 Setup
 -----
 
 1. In the terminal go to project folder for **Car Integration Tests**
-2. Checkout the branch that contains the solution for the Day 3 walkthrough. Example: ``$ git checkout master`` or ``$git checkout solution``
-3. Create a new branch for today's work: ``$ get checkout -b day4-add-hibernate``
+2. Checkout the branch that contains the solution for the Day 3 walkthrough. Example: ``$ git checkout master`` or ``$ git checkout solution``
+3. Create a new branch for today's work: ``$ git checkout -b day4-add-hibernate``
 
 Our Tasks
 ---------
@@ -31,42 +31,26 @@ Set Up A Postgres DB
 Configure the App to use the Database
 =====================================
 
-In intellij, open ``/car-integration-tests/src/main/resources/application.properties`` then set each of these values::
+To configure our Spring application to run with Postgres we will need to:
+    - Update our gradle dependencies
+    - Configure our database configurations in application.properties
+    - Mark our models with the ``@Entity`` annotation
+    - Create new interfaces that extend JpaRepository
 
-    spring.datasource.url=jdbc:postgresql://${APP_DB_HOST}:${APP_DB_PORT}/${APP_DB_NAME}
-    spring.datasource.username=${APP_DB_USER}
-    spring.datasource.password=${APP_DB_PASS}
-    spring.jpa.hibernate.ddl-auto=update
+Check out the :ref:`spring-postgres` to learn how to configure our Spring app to work with Postgres.
 
+We also will be working with sensitive information, and it would be a good idea to read :ref:`environment-variables-intellij`.
+
+In that article we:
+    - Created an application.properties file
+    - Added configurations about our database to the file
+    - Used environment variable tokens to keep our database information secure
+    - Added environment variables to our runtime configuration
 
 .. note::
 
-  Committing passwords to source control is a BAD idea. We are using a spring data feature that searches for and uses enviroment variables. `Read more about Spring Boot/Data configuration. <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config>`_
-
-Intellij Run Configurations
-===========================
-We will use **Run Configurations** to set the **Environment Variables**.
-
-.. image:: /_static/images/run-configurations.png
-
-
-Update Gradle Dependencies
-==========================
-
-Add the associated Postgres dependency to ``build.gradle`` as a compile-time dependency.
-Set the existing h2 dependency to be a ``testCompile`` dependency, since it will only be needed for running tests at this point.::
-
-    dependencies {
-        runtime('org.springframework.boot:spring-boot-devtools')
-        compile('org.springframework.boot:spring-boot-starter-data-jpa')
-        compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-        compile('org.springframework.boot:spring-boot-starter-web')
-        compile(group: 'org.postgresql', name: 'postgresql', version: '42.1.4')
-        testCompile('com.h2database:h2')
-        testCompile('org.springframework.boot:spring-boot-starter-test')
-    }
-
-
+   Committing passwords to source control is a BAD idea. We are using a spring data feature that searches for and uses enviroment variables. `Read more about Spring Boot/Data configuration. <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config>`_
+   
 Add Annotations to Car Model
 ============================
 
