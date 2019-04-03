@@ -115,10 +115,10 @@ We will use ``@Before``, and ``@After`` to set some variables we can use in each
 
 .. image:: /_static/images/tdd/tdd-atbefore.png
 
-Using the ``@Before`` annotation allows us to run some code before every test method in this class. In this example we use the ``@Before`` annotation at the top of our Class, and we are setting up a setup_car. We will then change our tests to test this car, instead of requiring each of our tests to create a new car object.
+Using the ``@Before`` annotation allows us to run some code before every test method in this class. In this example we use the ``@Before`` annotation at the top of our Class, and we are setting up a ``car``. We will then change our tests to test this car, instead of requiring each of our tests to create a new car object.
 
 .. image:: /_static/images/tdd/tdd-refactor-tests.png
 
-We can now change our test methods to change, and make assert statements the ``setup_car``. Look over your other tests, and see if they can benefit using the ``@Before`` annotation.
+We can now change our test methods to change, and make assert statements reference the ``car`` created in the setup method. Look over your other tests, and see if they can benefit using the ``@Before`` annotation.
 
 After refactoring your code, re-run your tests to make sure they all pass. If they don't make the changes necessary so they will pass. Then it would be a great idea to push your work to your personal GitLab account.
