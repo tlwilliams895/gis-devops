@@ -11,7 +11,7 @@ Setup
 -----
 
 * We will use the same repo from Day 1
-* Open the car unit tests project in Intellij https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter
+* Open `the car unit tests project <https://gitlab.com/LaunchCodeTraining/car-unit-tests-starter>`_ in Intellij
 * From your solution branch from yesterday create a new branch for today's solution
 
 Follow Along
@@ -85,14 +85,14 @@ _____________
 
 Now that are tests pass, it's a good idea to clean up our code. Our project is pretty small still, but there are a lot of redundancies in our CarTest.java file. We should clean them up.
 
-We will use @Before, and @After to set some variables we can use in each of our tests, so we don't have to declare a new object at the start of every test. This will cut down on our redundant code.
+We will use ``@Before``, and ``@After`` to set some variables we can use in each of our tests, so we don't have to declare a new object at the start of every test. This will cut down on our redundant code.
 
 .. image:: /_static/images/tdd/tdd-atbefore.png
 
-Using the @Before annotation allows us to run some code before every test method in this class. In this example we use the @Before annotation at the top of our Class, and we are setting up a setup_car. We will then change our tests to test this car, instead of requiring each of our tests to create a new car object.
+Using the ``@Before`` annotation allows us to run some code before every test method in this class. In this example we use the ``@Before`` annotation at the top of our Class, and we are setting up a setup_car. We will then change our tests to test this car, instead of requiring each of our tests to create a new car object.
 
 .. image:: /_static/images/tdd/tdd-refactor-tests.png
 
-We can now change our test methods to change, and make assert statements the setup_car. Look over your other tests, and see if they can benefit using the @Before annotation.
+We can now change our test methods to change, and make assert statements the ``setup_car``. Look over your other tests, and see if they can benefit using the ``@Before`` annotation.
 
 After refactoring your code, re-run your tests to make sure they all pass. If they don't make the changes necessary so they will pass. Then it would be a great idea to push your work to your personal GitLab account.
