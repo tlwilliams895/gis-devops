@@ -11,9 +11,12 @@ Follow along with the instructor as we get started with jQuery and OpenLayers.
 Setup
 =====
 
-* Fork and clone the JQuery OpenLayers Starter https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter repo.
+* Fork and clone the `JQuery OpenLayers Starter repo <https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter>`_
 * Create a story branch named ``day5-solution``
-* Open this folder with any editor you choose. We suggest Visual Studio Code since this project is only JavaScript and HTML.
+* Open the repository folder with any editor you choose
+
+  * `Visual Studio Code <https://code.visualstudio.com/>`_ works well because this project is JavaScript, CSS, and HTML
+  * The Community Edition(free version) of Intellij IDEA doesn't handle JavaScript, CSS, and HTML very well
 
 Review the code
 ===============
@@ -22,7 +25,7 @@ Review the code
 * ``index.html`` has a ``<body>`` and ``<h2>`` but not much else
 * ``js/script.js`` contains code to instantiate a map
 * ``js/script.js`` defines styles
-* ``js/script.js`` uses OpenLayers Tile layer Layer Types https://openlayers.org/en/v4.6.4/apidoc/ol.source.html
+* ``js/script.js`` uses OpenLayers Tile layer Layer Types https://openlayers.org/en/v4.6.5/apidoc/ol.source.html
 * ``js/script.js`` sets the ``map.view`` attribute which allows us to position the map at a certain lat long and zoom level using an ``ol.View`` object
 
 Let's make a map show up
@@ -180,7 +183,7 @@ Try out the ``get()`` method on ``ol.Feature`` by pasting this into ``js/script.
     });
 
 Example Report HTML
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 We want to add data about this report to our map dashboard. Here is an example of what we want to show:
 
@@ -203,8 +206,16 @@ We want to add data about this report to our map dashboard. Here is an example o
         </li>
     </ul>
 
+For starters let's add an empty <ul></ul> tag to our index.html file.
+
+.. code-block:: html
+
+    <ul id="airports">
+    </ul>
+
+
 JavaScript Template Literals
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 For the next feature we will need to use `Javascript Template Literals <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>`_. Template literals example below.
 
@@ -217,16 +228,16 @@ For the next feature we will need to use `Javascript Template Literals <https://
 
 
 Show Airport List when Map Clicked
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 Update the Map onclick code to display. For each feature at a certain pixel, we want to add that feature to the list below the map. OpenLayers will handle some of this work for us via ``map.forEachFeatureAtPixel()``. Remember that the features in this case are airports and we are styling them to be displayed as red circles:
 
 .. code-block:: javascript
 
     map.on('click', function(event) {
-        $('#airport-list').empty();
+        $('#airports').empty();
         map.forEachFeatureAtPixel(event.pixel, function(feature,layer) {
-            $('#airport-list').append(`
+            $('#airports').append(`
                 <li>
                     <h3>${feature.get('locationType')}</h3>
                     <p>ICAO: ${feature.get('icao')}</p><p>Location: ${feature.get('dataField')}, ${feature.get('country')}</p>
@@ -238,7 +249,8 @@ Update the Map onclick code to display. For each feature at a certain pixel, we 
     });
 
 Click it!
-^^^^^^^^^
+---------
+
 Click on the city and be awed at your development skills.
 
 Troubleshooting
