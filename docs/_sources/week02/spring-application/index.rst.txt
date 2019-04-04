@@ -233,3 +233,5 @@ Commit
 ------
 
 After everything has been configured it would be a good idea to add, commit, and push your work to GitLab.
+
+`Back to week2! <../project/>`_
