@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -294,22 +293,22 @@
 </div>
 <div class="section" id="intergrationtestconfig">
 <h3>IntergrationTestConfig<a class="headerlink" href="#intergrationtestconfig" title="Permalink to this headline">¶</a></h3>
-<p>In order to run our Integration Tests within Spring we need to configure a few tools. In your project you have been provided with an IntegrationTestConfig.java file. This file only does a few things, but is necessary for writing our integration tests.</p>
+<p>In order to run our Integration Tests within Spring we need to configure a few tools. In your project you have been provided with an <code class="docutils literal notranslate"><span class="pre">IntegrationTestConfig.java</span></code> file. This file only does a few things, but is necessary for writing our integration tests.</p>
 <img alt="../../_images/IntegrationTestConfig.png" src="../../_images/IntegrationTestConfig.png" />
-<p>If you are looking for more information you should look up what these different annotations do. The most important to writing our Integration Tests is &#64;AutoConfigureMockMvc. This is Dependency Injection. We are injecting the MockMvc into this interface, and when we inject this interface into our Controller Test we will have access to MockMvc.</p>
+<p>If you are looking for more information you should look up what these different annotations do. The most important annotation for writing our Integration Tests is <code class="docutils literal notranslate"><span class="pre">&#64;AutoConfigureMockMvc</span></code>, it handles Dependency Injection. We are injecting the MockMvc into this interface, and when we inject this interface into our Controller Test we will have access to MockMvc.</p>
 </div>
 <div class="section" id="mockmvc">
 <h3>MockMvc<a class="headerlink" href="#mockmvc" title="Permalink to this headline">¶</a></h3>
 <p>To write these tests we will be working with a new library inside of the Spring testing framework: <strong>MockMvc</strong>.</p>
 <p>The MockMvc library will allow us to make HTTP Requests, and then make assert statements against the returned HTTP Response.</p>
 <img alt="../../_images/integration-test-mockmvc.png" src="../../_images/integration-test-mockmvc.png" />
-<p>In the example picture above. We are using mockMvc to make an HTTP get request to the /car endpoint. Then we are expecting the resulting HTTP Response to have a status code of 200, and the content (HTML/JSON/XML, etc) to contain the string “Mustang”, and contain the string “Camry”. If all three of these conditions are true, this test will pass. If any of those conditions are false, this test will fail.</p>
+<p>In the example picture above. We are using mockMvc to make an HTTP get request to the /car endpoint. Then we are expecting the resulting HTTP Response to have a status code of 200, and the content (HTML/JSON/XML, etc) to contain the string <code class="docutils literal notranslate"><span class="pre">&quot;Mustang&quot;</span></code>, and contain the string <code class="docutils literal notranslate"><span class="pre">&quot;Camry&quot;</span></code>. If all three of these conditions are true, this test will pass. If any of those conditions are false, this test will fail.</p>
 </div>
 <div class="section" id="memoryrepository">
 <h3>MemoryRepository<a class="headerlink" href="#memoryrepository" title="Permalink to this headline">¶</a></h3>
 <p>In order to test that our technologies are working together correctly we will need access to the database, so we can fill it with data, and then check our HTTP Responses against that data.</p>
 <p>We will be using a <strong>JPA Repository</strong> to do this. We will talk about JPA Repositories in greater depth later this instruction week.</p>
-<p>What you need to know for today is that we will be using a JPA Repository to put dummy data into our database. Every time we create a POJO (Java Object) we will save it to the JPA Repository so it’s stored in our database. In today’s example we will be workign with CarMemoryRepository which is a class provided for you. You can find this Class in the data folder within your source.</p>
+<p>What you need to know for today is that we will be using a JPA Repository to put dummy data into our database. Every time we create a POJO (Java Object) we will save it to the JPA Repository so it’s stored in our database. In today’s example we will be working with <code class="docutils literal notranslate"><span class="pre">CarMemoryRepository</span></code> which is a class provided for you. You can find this Class in the data folder within your source.</p>
 <p>We will Autowire it into our test file.</p>
 <img alt="../../_images/integration-test-car-memory-repository.png" src="../../_images/integration-test-car-memory-repository.png" />
 </div>
@@ -318,7 +317,7 @@
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Fork this repo: <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/car-integration-test-starter/">Car Integration Tests</a></li>
-<li>Create a story branch <cite>$ git checkout -b walkthrough-solution</cite></li>
+<li>Create a story branch <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">walkthrough-solution</span></code></li>
 <li>Open project in Intellij by opening gradle.build file as a project</li>
 </ol>
 </div>
@@ -326,14 +325,14 @@
 <h2>Explore Provided Files<a class="headerlink" href="#explore-provided-files" title="Permalink to this headline">¶</a></h2>
 <p>You are provided with quite a few files already. This project extends the Unit Tests, and TDD tests we worked on in previous lessons. We will be making car objects, and testing them.</p>
 <p>In your test directory you have a models directory that holds a file that is full of unit tests.</p>
-<p>There is also an IntegrationTestConfig.java file, that configures the Integration Tests we will be writing, and there is a CarControllerTest.java file. This is where we will write any integration tests for our CarController. Inside of this file we have an empty test, and we setup MockMvc, and carRepository.</p>
-<p>Exploring our Main directory we have a controller directory, data directory, models directory, and our CarApplication.java file. This is where the logic of our MVC app lives.</p>
+<p>There is also an <code class="docutils literal notranslate"><span class="pre">IntegrationTestConfig.java</span></code> file, that configures the Integration Tests we will be writing, and there is a <code class="docutils literal notranslate"><span class="pre">CarControllerTest.java</span></code> file. This is where we will write any integration tests for our CarController. Inside of this file we have an empty test, and we setup MockMvc, and carRepository.</p>
+<p>Exploring our Main directory we have a controller directory, data directory, models directory, and our <code class="docutils literal notranslate"><span class="pre">CarApplication.java</span></code> file. This is where the logic of our MVC app lives.</p>
 <ul class="simple">
 <li>models - where our Car class lives</li>
 <li>data - where our JPA Repository lives</li>
 <li>controllers - where the controllers for HTTP Requests live</li>
 </ul>
-<p>Looking in our CarController.java file we are provided with 2 routes off of the car mapping.</p>
+<p>Looking in our <code class="docutils literal notranslate"><span class="pre">CarController.java</span></code> file we are provided with 2 routes off of the car mapping.</p>
 <ul class="simple">
 <li>/seedData - a route that allows us to put some data into the database</li>
 <li>/ - the index of our car route that simply returns a template found at “car/index” and adds all the cars found in the database.</li>
@@ -366,12 +365,12 @@
 <p>Let’s run our test.</p>
 <img alt="../../_images/integration-test-view-by-id-result1.png" src="../../_images/integration-test-view-by-id-result1.png" />
 <p>Our test failed. Luckily MockMvc gives us a lot of information when a test fails. It tells us the HTTP Request that was made, and the HTTP Response. Scroll through this output and read it. The image above shows why this test failed. The HTTP Response that was returned had a status code of 404, but our test is expecting a status code of 200. The resource was not found. This usually means the URL is incorrect. In our case it’s because we have not yet created the controller that will handle this endpoint. We will have to write some code for this endpoint.</p>
-<p>We will need to add new code to our CarController.java file to create a new RequestMapping.</p>
+<p>We will need to add new code to our <code class="docutils literal notranslate"><span class="pre">CarController.java</span></code> file to create a new RequestMapping.</p>
 <img alt="../../_images/integration-test-new-request-mapping.png" src="../../_images/integration-test-new-request-mapping.png" />
 <p>In this request mapping we are accessing a path variable. Each car will have a different, and unique ID. A user of this application can request information about a specific car by making an HTTP Request to /car/&lt;car.id&gt; and include in the path the ID number of the car they are requesting. We are using the builtin PathVariable annotation to do this. You will have to import this into the file to use it. Option+enter is the easiest way to do this on a Mac.</p>
 <p>We will use the ID number given to us in the PathVariable to look up the car in the database. Using the Car Repository we want to look up one car, with a specific ID number. The method we are calling doesn’t currently exist, so we will need to add it. In CarMemoryRepository we will need to add a little code.</p>
 <img alt="../../_images/integration-test-car-memory-repository-addition.png" src="../../_images/integration-test-car-memory-repository-addition.png" />
-<p>Now that the method exists, we now have access to this code in our CarController.java file. If you switch back to the file you should see the red text on findById() has changed to black text.</p>
+<p>Now that the method exists, we now have access to this code in our <code class="docutils literal notranslate"><span class="pre">CarController.java</span></code> file. If you switch back to the file you should see the red text on findById() has changed to black text.</p>
 <p>Let’s run our test.</p>
 <img alt="../../_images/integration-test-view-by-id-result2.png" src="../../_images/integration-test-view-by-id-result2.png" />
 <p>Our test failed again! However the output looks a little different. We are now getting an error in resolving our template: “car/view”, template might not exist. In the code we added to our controller we told it to return a template located in the car folder called view.html. Looking at our project structure we don’t have that file.</p>

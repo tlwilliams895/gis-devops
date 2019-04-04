@@ -17,11 +17,11 @@ With integration testing our objective is to ensure the technologies work togeth
 IntergrationTestConfig
 ^^^^^^^^^^^^^^^^^^^^^^
 
-In order to run our Integration Tests within Spring we need to configure a few tools. In your project you have been provided with an IntegrationTestConfig.java file. This file only does a few things, but is necessary for writing our integration tests.
+In order to run our Integration Tests within Spring we need to configure a few tools. In your project you have been provided with an ``IntegrationTestConfig.java`` file. This file only does a few things, but is necessary for writing our integration tests.
 
 .. image:: /_static/images/spring-integration-tests/IntegrationTestConfig.png
 
-If you are looking for more information you should look up what these different annotations do. The most important to writing our Integration Tests is @AutoConfigureMockMvc. This is Dependency Injection. We are injecting the MockMvc into this interface, and when we inject this interface into our Controller Test we will have access to MockMvc.
+If you are looking for more information you should look up what these different annotations do. The most important annotation for writing our Integration Tests is ``@AutoConfigureMockMvc``, it handles Dependency Injection. We are injecting the MockMvc into this interface, and when we inject this interface into our Controller Test we will have access to MockMvc.
 
 MockMvc
 ^^^^^^^
@@ -32,7 +32,7 @@ The MockMvc library will allow us to make HTTP Requests, and then make assert st
 
 .. image:: /_static/images/spring-integration-tests/integration-test-mockmvc.png
 
-In the example picture above. We are using mockMvc to make an HTTP get request to the /car endpoint. Then we are expecting the resulting HTTP Response to have a status code of 200, and the content (HTML/JSON/XML, etc) to contain the string "Mustang", and contain the string "Camry". If all three of these conditions are true, this test will pass. If any of those conditions are false, this test will fail.
+In the example picture above. We are using mockMvc to make an HTTP get request to the /car endpoint. Then we are expecting the resulting HTTP Response to have a status code of 200, and the content (HTML/JSON/XML, etc) to contain the string ``"Mustang"``, and contain the string ``"Camry"``. If all three of these conditions are true, this test will pass. If any of those conditions are false, this test will fail.
 
 MemoryRepository
 ^^^^^^^^^^^^^^^^
@@ -41,7 +41,7 @@ In order to test that our technologies are working together correctly we will ne
 
 We will be using a **JPA Repository** to do this. We will talk about JPA Repositories in greater depth later this instruction week.
 
-What you need to know for today is that we will be using a JPA Repository to put dummy data into our database. Every time we create a POJO (Java Object) we will save it to the JPA Repository so it's stored in our database. In today's example we will be workign with CarMemoryRepository which is a class provided for you. You can find this Class in the data folder within your source.
+What you need to know for today is that we will be using a JPA Repository to put dummy data into our database. Every time we create a POJO (Java Object) we will save it to the JPA Repository so it's stored in our database. In today's example we will be working with ``CarMemoryRepository`` which is a class provided for you. You can find this Class in the data folder within your source.
 
 We will Autowire it into our test file.
 
@@ -51,7 +51,7 @@ Setup
 -----
 
 1. Fork this repo: `Car Integration Tests <https://gitlab.com/LaunchCodeTraining/car-integration-test-starter/>`_
-2. Create a story branch `$ git checkout -b walkthrough-solution`
+2. Create a story branch ``$ git checkout -b walkthrough-solution``
 3. Open project in Intellij by opening gradle.build file as a project
 
 Explore Provided Files
@@ -61,15 +61,15 @@ You are provided with quite a few files already. This project extends the Unit T
 
 In your test directory you have a models directory that holds a file that is full of unit tests.
 
-There is also an IntegrationTestConfig.java file, that configures the Integration Tests we will be writing, and there is a CarControllerTest.java file. This is where we will write any integration tests for our CarController. Inside of this file we have an empty test, and we setup MockMvc, and carRepository.
+There is also an ``IntegrationTestConfig.java`` file, that configures the Integration Tests we will be writing, and there is a ``CarControllerTest.java`` file. This is where we will write any integration tests for our CarController. Inside of this file we have an empty test, and we setup MockMvc, and carRepository.
 
-Exploring our Main directory we have a controller directory, data directory, models directory, and our CarApplication.java file. This is where the logic of our MVC app lives.
+Exploring our Main directory we have a controller directory, data directory, models directory, and our ``CarApplication.java`` file. This is where the logic of our MVC app lives.
 
 * models - where our Car class lives
 * data - where our JPA Repository lives
 * controllers - where the controllers for HTTP Requests live
 
-Looking in our CarController.java file we are provided with 2 routes off of the car mapping.
+Looking in our ``CarController.java`` file we are provided with 2 routes off of the car mapping.
 
 * /seedData - a route that allows us to put some data into the database
 * / - the index of our car route that simply returns a template found at "car/index" and adds all the cars found in the database.
@@ -114,7 +114,7 @@ Let's run our test.
 
 Our test failed. Luckily MockMvc gives us a lot of information when a test fails. It tells us the HTTP Request that was made, and the HTTP Response. Scroll through this output and read it. The image above shows why this test failed. The HTTP Response that was returned had a status code of 404, but our test is expecting a status code of 200. The resource was not found. This usually means the URL is incorrect. In our case it's because we have not yet created the controller that will handle this endpoint. We will have to write some code for this endpoint.
 
-We will need to add new code to our CarController.java file to create a new RequestMapping.
+We will need to add new code to our ``CarController.java`` file to create a new RequestMapping.
 
 .. image:: /_static/images/spring-integration-tests/integration-test-new-request-mapping.png
 
@@ -124,7 +124,7 @@ We will use the ID number given to us in the PathVariable to look up the car in 
 
 .. image:: /_static/images/spring-integration-tests/integration-test-car-memory-repository-addition.png
 
-Now that the method exists, we now have access to this code in our CarController.java file. If you switch back to the file you should see the red text on findById() has changed to black text.
+Now that the method exists, we now have access to this code in our ``CarController.java`` file. If you switch back to the file you should see the red text on findById() has changed to black text.
 
 Let's run our test.
 
