@@ -4,6 +4,98 @@
 Week 2 - Project Week: Zika Mission Control
 ============================================
 
+Zika Mission Control
+====================
+
+Throughout this class we will build on the Zika Mission Control project every single project week.
+
+This project will be our chance to practice the concepts we learned in the previous instruction week.
+
+Each week we will have a list of requirements that we will need to build into our project.
+
+Project Overview
+================
+
+The Zika Mission Control dashboard will be a Spring web application. It will display an interactive map from OSM. The map will present a layer of features that represent an outbreak of Zika. Each representation of a Zika report will be clickable, and upon a click event the user will see more information about that specific report.
+
+Each week we will build on our currently existing project, so it is crucial to finish the primary objectives for each project week!
+
+Here is a mockup of the application you will be building.
+
+.. image:: /_static/images/cdc_zika_dashboard.png
+
+
+Project Requirements
+====================
+
+Following are the requirements from our stakeholders, and our tech team.
+
+Stakeholder Requirements
+------------------------
+
+- Zika Reports, that are currently stored in CSV files, need to be stored in a Relational Database.
+- Zika Reports need to be geographically displayed on an interactive map.
+- Zika Reports are clickable, upon clicking a report more information about that report is displayed.
+
+Technical Requirements
+----------------------
+
+- Code base is managed with Git, and a remote repository is managed with GitLab.
+- TDD: Tests are to be written before features are implemented.
+- Unit Testing: Individual Models needed to be tested.
+- Integration Testing: Controllers, and JpaRepositories need to be tested.
+- PSQL/PostGIS: need to be used as the primary data store for the Zika reports.
+- Spring: Spring will be used to handle the HTTP Requests, serve the HTTP Responses, and work with the database.
+- Javascript: Javascript, AJAX, and jQuery should be used to load the map, and work with the zika report data.
+- OpenLayers: An interactive map should be used from OSM, Zika reports should be loaded onto the map as a new Feature Layer.
+
+There are many ways we could go about building this project, but we must follow the provided requirements.
+
+Primary Objectives
+==================
+
+For your primary objectives articles have been provided to help you think about what needs to be completed to pass the objective.
+
+0. `Create a Spring application <../spring-application/>`_, setup Git, and GitLab, configure the DB, and prepare IntelliJ.
+1. `Display an interactive map <../display-map/>`_ from OSM in the browser.
+2. `Display Zika reports <../display-reports/>`_ on the map as red circles.
+3. When `Zika reports are clicked <../clickable-reports>`_ more information about the report is displayed.
+
+Secondary Objectives
+====================
+
+For your secondary objectives no guidance will be given to you. You will have to think about what needs to be completed to pass the objective.
+
+- Zika reports change color based on the sevirity of the outbreak.
+- Zika reports change size based on the sevirity of the outbreak.
+- Duplicate city/state/country names are not displayed if more than one report is selected.
+- Sensitive Database information has not been committed to our version control software.
+- Database is secure from SQL injection.
+
+Turning in Your Work
+====================
+
+Code Review
+-----------
+
+Let your instructor know When you complete the primary objectives. The instructor will need a link to your GitLab repo, and they will peform a code review, and leave you feedback.
+
+Objective Checklist
+-------------------
+
+As you work through the objectives for this week, keep track of them on your Checklist, your instructor will also confirm which objectives you completed in their code review. If you don't pass an objective the instructor will give you feedback on what you need to do to complete that objective.
+
+Presentation
+------------
+
+Friday afternoon, everyone will present their project to the class. At the end of this course, you will have to present your project to your coworkers at the NGA.
+
+This presentation is meant to be a celebration of your hard work throughout the week, and as a chance for you to share, and learn from the other students in the class.
+
+
+OLD
+===
+
 Learning objectives for this week :ref:`week02-objectives`
 
 Project

@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -94,13 +95,20 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Week 2 - Project Week: Zika Mission Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#zika-mission-control">Zika Mission Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-overview">Project Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-requirements">Project Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#primary-objectives">Primary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#secondary-objectives">Secondary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#turning-in-your-work">Turning in Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#old">OLD</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#project">Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#project-hints">Project Hints</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setup-project">Setup Project</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setup-postgres">Setup Postgres</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#turning-in-your-work">Turning In Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Turning In Your Work</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
@@ -262,13 +270,29 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Week 2 - Project Week: Zika Mission Control</a><ul>
+<li><a class="reference internal" href="#zika-mission-control">Zika Mission Control</a></li>
+<li><a class="reference internal" href="#project-overview">Project Overview</a></li>
+<li><a class="reference internal" href="#project-requirements">Project Requirements</a><ul>
+<li><a class="reference internal" href="#stakeholder-requirements">Stakeholder Requirements</a></li>
+<li><a class="reference internal" href="#technical-requirements">Technical Requirements</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#primary-objectives">Primary Objectives</a></li>
+<li><a class="reference internal" href="#secondary-objectives">Secondary Objectives</a></li>
+<li><a class="reference internal" href="#turning-in-your-work">Turning in Your Work</a><ul>
+<li><a class="reference internal" href="#code-review">Code Review</a></li>
+<li><a class="reference internal" href="#objective-checklist">Objective Checklist</a></li>
+<li><a class="reference internal" href="#presentation">Presentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#old">OLD</a></li>
 <li><a class="reference internal" href="#project">Project</a></li>
 <li><a class="reference internal" href="#overview">Overview</a></li>
 <li><a class="reference internal" href="#requirements">Requirements</a></li>
 <li><a class="reference internal" href="#project-hints">Project Hints</a></li>
 <li><a class="reference internal" href="#setup-project">Setup Project</a></li>
 <li><a class="reference internal" href="#setup-postgres">Setup Postgres</a></li>
-<li><a class="reference internal" href="#turning-in-your-work">Turning In Your Work</a></li>
+<li><a class="reference internal" href="#id1">Turning In Your Work</a></li>
 <li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
 <li><a class="reference internal" href="#resources">Resources</a></li>
 </ul>
@@ -281,7 +305,86 @@
       
   <div class="section" id="week-2-project-week-zika-mission-control">
 <span id="week2-project"></span><h1>Week 2 - Project Week: Zika Mission Control<a class="headerlink" href="#week-2-project-week-zika-mission-control" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="zika-mission-control">
+<h2>Zika Mission Control<a class="headerlink" href="#zika-mission-control" title="Permalink to this headline">¶</a></h2>
+<p>Throughout this class we will build on the Zika Mission Control project every single project week.</p>
+<p>This project will be our chance to practice the concepts we learned in the previous instruction week.</p>
+<p>Each week we will have a list of requirements that we will need to build into our project.</p>
+</div>
+<div class="section" id="project-overview">
+<h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h2>
+<p>The Zika Mission Control dashboard will be a Spring web application. It will display an interactive map from OSM. The map will present a layer of features that represent an outbreak of Zika. Each representation of a Zika report will be clickable, and upon a click event the user will see more information about that specific report.</p>
+<p>Each week we will build on our currently existing project, so it is crucial to finish the primary objectives for each project week!</p>
+<p>Here is a mockup of the application you will be building.</p>
+<img alt="../../_images/cdc_zika_dashboard.png" src="../../_images/cdc_zika_dashboard.png" />
+</div>
+<div class="section" id="project-requirements">
+<h2>Project Requirements<a class="headerlink" href="#project-requirements" title="Permalink to this headline">¶</a></h2>
+<p>Following are the requirements from our stakeholders, and our tech team.</p>
+<div class="section" id="stakeholder-requirements">
+<h3>Stakeholder Requirements<a class="headerlink" href="#stakeholder-requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Zika Reports, that are currently stored in CSV files, need to be stored in a Relational Database.</li>
+<li>Zika Reports need to be geographically displayed on an interactive map.</li>
+<li>Zika Reports are clickable, upon clicking a report more information about that report is displayed.</li>
+</ul>
+</div>
+<div class="section" id="technical-requirements">
+<h3>Technical Requirements<a class="headerlink" href="#technical-requirements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Code base is managed with Git, and a remote repository is managed with GitLab.</li>
+<li>TDD: Tests are to be written before features are implemented.</li>
+<li>Unit Testing: Individual Models needed to be tested.</li>
+<li>Integration Testing: Controllers, and JpaRepositories need to be tested.</li>
+<li>PSQL/PostGIS: need to be used as the primary data store for the Zika reports.</li>
+<li>Spring: Spring will be used to handle the HTTP Requests, serve the HTTP Responses, and work with the database.</li>
+<li>Javascript: Javascript, AJAX, and jQuery should be used to load the map, and work with the zika report data.</li>
+<li>OpenLayers: An interactive map should be used from OSM, Zika reports should be loaded onto the map as a new Feature Layer.</li>
+</ul>
+<p>There are many ways we could go about building this project, but we must follow the provided requirements.</p>
+</div>
+</div>
+<div class="section" id="primary-objectives">
+<h2>Primary Objectives<a class="headerlink" href="#primary-objectives" title="Permalink to this headline">¶</a></h2>
+<p>For your primary objectives articles have been provided to help you think about what needs to be completed to pass the objective.</p>
+<ol class="arabic simple" start="0">
+<li><a class="reference external" href="../spring-application/">Create a Spring application</a>, setup Git, and GitLab, configure the DB, and prepare IntelliJ.</li>
+<li><a class="reference external" href="../display-map/">Display an interactive map</a> from OSM in the browser.</li>
+<li><a class="reference external" href="../display-reports/">Display Zika reports</a> on the map as red circles.</li>
+<li>When <a class="reference external" href="../clickable-reports">Zika reports are clicked</a> more information about the report is displayed.</li>
+</ol>
+</div>
+<div class="section" id="secondary-objectives">
+<h2>Secondary Objectives<a class="headerlink" href="#secondary-objectives" title="Permalink to this headline">¶</a></h2>
+<p>For your secondary objectives no guidance will be given to you. You will have to think about what needs to be completed to pass the objective.</p>
+<ul class="simple">
+<li>Zika reports change color based on the sevirity of the outbreak.</li>
+<li>Zika reports change size based on the sevirity of the outbreak.</li>
+<li>Duplicate city/state/country names are not displayed if more than one report is selected.</li>
+<li>Sensitive Database information has not been committed to our version control software.</li>
+<li>Database is secure from SQL injection.</li>
+</ul>
+</div>
+<div class="section" id="turning-in-your-work">
+<h2>Turning in Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="code-review">
+<h3>Code Review<a class="headerlink" href="#code-review" title="Permalink to this headline">¶</a></h3>
+<p>Let your instructor know When you complete the primary objectives. The instructor will need a link to your GitLab repo, and they will peform a code review, and leave you feedback.</p>
+</div>
+<div class="section" id="objective-checklist">
+<h3>Objective Checklist<a class="headerlink" href="#objective-checklist" title="Permalink to this headline">¶</a></h3>
+<p>As you work through the objectives for this week, keep track of them on your Checklist, your instructor will also confirm which objectives you completed in their code review. If you don’t pass an objective the instructor will give you feedback on what you need to do to complete that objective.</p>
+</div>
+<div class="section" id="presentation">
+<h3>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h3>
+<p>Friday afternoon, everyone will present their project to the class. At the end of this course, you will have to present your project to your coworkers at the NGA.</p>
+<p>This presentation is meant to be a celebration of your hard work throughout the week, and as a chance for you to share, and learn from the other students in the class.</p>
+</div>
+</div>
+<div class="section" id="old">
+<h2>OLD<a class="headerlink" href="#old" title="Permalink to this headline">¶</a></h2>
 <p>Learning objectives for this week <a class="reference internal" href="../../objectives.html#week02-objectives"><span class="std std-ref">Week 2</span></a></p>
+</div>
 <div class="section" id="project">
 <h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -366,8 +469,8 @@ postgres=# ALTER ROLE zika_app_user WITH SUPERUSER;
 </pre></div>
 </div>
 </div>
-<div class="section" id="turning-in-your-work">
-<h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>Turning In Your Work<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Your goal is to have your project done by Friday morning.</p>
 <ul class="simple">
 <li>Commit and push your work to GitLab.</li>
