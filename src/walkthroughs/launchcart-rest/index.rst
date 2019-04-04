@@ -16,7 +16,9 @@ REST stands for:
     * State
     * Transfer
 
-Our web application has access to data, and we want to make that data accessible to the user. We are going to pass a *representation* of that data to the user. The user can make as many changes to their representation of the data as they'd like. If they want to save those changes, they will send back a new representation of their data that reflects their changes. Our web application will then be able to update our data store appropriately based on the new representation sent by the user.
+Our web application has access to data, and we want to make that data accessible to the user. We are going to pass a *representation* of that data to the user. The user can make as many changes to their representation of the data as they'd like. If they want to save those changes, they will send back a new representation of their data that reflects their changes. 
+Our web application will then be able to update our data store appropriately based on the new representation sent by the user. 
+The action to be taken by the server will depend on the HTTP method used.
 
 In this class we will use JSON as the representation of our data, but other ways of representing data include: XML, YAML, TOML, etc.
 
@@ -265,13 +267,13 @@ HTTP Response:
 Our Tasks
 =========
 
-We will mainly be writing code in ItemRestController.java, the file we created a little earlier. This is the controller that will handle every request made to the base endpoint: `/api/items`.
+We will mainly be writing code in ``ItemRestController.java``, the file we created a little earlier. This is the controller that will handle every request made to the base endpoint: `/api/items`.
 
 A typical ``@Controller`` annotation in Spring is expecting each endpoint handler (method) to return a string representation of the location of an HTML file, that will be rendered by a web browser.
 
 Our ``@RestController`` annotation in Spring is expecting each endpoint to return a representation of a resource, or at the very least an HTTP Response.
 
-All of our endpoints will be working with items in our datastore. So we will first need to configure this file to work with itemRepository. That's our JpaRepository we configured to work with PostgreSQL. 
+All of our endpoints will be working with items in our datastore. So we will first need to configure this file to work with ``itemRepository``. That's our JpaRepository we configured to work with PostgreSQL. 
 
 .. image:: /_static/images/rest/item-repository.png
 

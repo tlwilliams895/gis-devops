@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -308,7 +307,9 @@
 </ul>
 </dd>
 </dl>
-<p>Our web application has access to data, and we want to make that data accessible to the user. We are going to pass a <em>representation</em> of that data to the user. The user can make as many changes to their representation of the data as they’d like. If they want to save those changes, they will send back a new representation of their data that reflects their changes. Our web application will then be able to update our data store appropriately based on the new representation sent by the user.</p>
+<p>Our web application has access to data, and we want to make that data accessible to the user. We are going to pass a <em>representation</em> of that data to the user. The user can make as many changes to their representation of the data as they’d like. If they want to save those changes, they will send back a new representation of their data that reflects their changes.
+Our web application will then be able to update our data store appropriately based on the new representation sent by the user.
+The action to be taken by the server will depend on the HTTP method used.</p>
 <p>In this class we will use JSON as the representation of our data, but other ways of representing data include: XML, YAML, TOML, etc.</p>
 <p>We will be using HTTP to send these representational states back and forth as it’s the primary protocol used by web applications.</p>
 <dl class="docutils">
@@ -619,10 +620,10 @@ $ git checkout -b rest-walkthrough-starter-solution
 </div>
 <div class="section" id="our-tasks">
 <h2>Our Tasks<a class="headerlink" href="#our-tasks" title="Permalink to this headline">¶</a></h2>
-<p>We will mainly be writing code in ItemRestController.java, the file we created a little earlier. This is the controller that will handle every request made to the base endpoint: <cite>/api/items</cite>.</p>
+<p>We will mainly be writing code in <code class="docutils literal notranslate"><span class="pre">ItemRestController.java</span></code>, the file we created a little earlier. This is the controller that will handle every request made to the base endpoint: <cite>/api/items</cite>.</p>
 <p>A typical <code class="docutils literal notranslate"><span class="pre">&#64;Controller</span></code> annotation in Spring is expecting each endpoint handler (method) to return a string representation of the location of an HTML file, that will be rendered by a web browser.</p>
 <p>Our <code class="docutils literal notranslate"><span class="pre">&#64;RestController</span></code> annotation in Spring is expecting each endpoint to return a representation of a resource, or at the very least an HTTP Response.</p>
-<p>All of our endpoints will be working with items in our datastore. So we will first need to configure this file to work with itemRepository. That’s our JpaRepository we configured to work with PostgreSQL.</p>
+<p>All of our endpoints will be working with items in our datastore. So we will first need to configure this file to work with <code class="docutils literal notranslate"><span class="pre">itemRepository</span></code>. That’s our JpaRepository we configured to work with PostgreSQL.</p>
 <img alt="../../_images/item-repository.png" src="../../_images/item-repository.png" />
 <div class="section" id="getitems">
 <h3>getItems<a class="headerlink" href="#getitems" title="Permalink to this headline">¶</a></h3>
