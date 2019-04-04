@@ -330,7 +330,7 @@ spring.jpa.hibernate.ddl-auto=update
 <p>Add a new package named data.</p>
 <img alt="../../_images/data.png" src="../../_images/data.png" />
 <p>Inside of that new package add a new interface named after the Model/Table you will be accessing. In this example the file will be called <code class="docutils literal notranslate"><span class="pre">ItemRepository</span></code>.</p>
-<img alt="../../_images/item-repository.png" src="../../_images/item-repository.png" />
+<img alt="../../_images/item-repository1.png" src="../../_images/item-repository1.png" />
 <p>In that new file add an <code class="docutils literal notranslate"><span class="pre">&#64;Repository</span></code> annotation, and have this interface extend JpaRepository, noting which type of Object, and the index each record will be bound to.</p>
 <img alt="../../_images/item-repository-final.png" src="../../_images/item-repository-final.png" />
 <p>Your new file extends JpaRepository which provides you with built-in methods for getting all records, getting one record, and saving records. However, you can write your own methods and bind them to specific SQL statements.</p>
