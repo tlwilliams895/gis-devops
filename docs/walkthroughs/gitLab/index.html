@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -263,13 +262,10 @@
 <li><a class="reference internal" href="#">Walkthrough: Git and Gitlab</a><ul>
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#follow-along-as-we">Follow Along as we…</a></li>
-<<<<<<< HEAD
 <li><a class="reference internal" href="#part-1-instructor-steps">Part 1 - Instructor Steps</a></li>
 <li><a class="reference internal" href="#part-1-student-steps">Part 1 - Student Steps</a></li>
 <li><a class="reference internal" href="#part-2-instructor-steps">Part 2 - Instructor Steps</a></li>
 <li><a class="reference internal" href="#part-3-student-steps">Part 3 - Student Steps</a></li>
-=======
-<li><a class="reference internal" href="#part-1">Part 1</a></li>
 <li><a class="reference internal" href="#part-2">Part 2</a></li>
 <li><a class="reference internal" href="#git-reference">Git Reference</a><ul>
 <li><a class="reference internal" href="#switch-to-an-existing-branch">Switch to an Existing Branch</a></li>
@@ -278,7 +274,6 @@
 <li><a class="reference internal" href="#other-helpful-commands">Other Helpful Commands</a></li>
 </ul>
 </li>
->>>>>>> master
 </ul>
 </li>
 </ul>
@@ -303,9 +298,8 @@
 </div>
 <div class="section" id="part-1-instructor-steps">
 <h2>Part 1 - Instructor Steps<a class="headerlink" href="#part-1-instructor-steps" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>The instructor will create a new project on Gitlab for this walkthrough</li>
-</ol>
+<p>1. The instructor will create a new project on Gitlab for this walkthrough
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
 <img alt="../../_images/gitlab-create-new-project.png" src="../../_images/gitlab-create-new-project.png" />
 <img alt="../../_images/gitlab-create-new-project2.png" src="../../_images/gitlab-create-new-project2.png" />
 <ol class="arabic simple" start="2">
@@ -364,6 +358,41 @@
 <li>Run <cite>git add roster.txt</cite> to mark the conflict as resolved</li>
 <li>After resolving your conflicts you can push your changes to origin</li>
 </ol>
+<ol class="arabic simple" start="4">
+<li>Create a new branch. Example: blakes-branch</li>
+<li>Checkout the new branch</li>
+<li>Creat a new file that includes your name in the filename. Example: blake.txt</li>
+<li>Stage and commit your change</li>
+<li>Push your branch to origin</li>
+<li>Go to gitlab.com and create a Merge Request for your branch</li>
+<li>Have another student merge your Merge Request</li>
+<li>Checkout master locally</li>
+<li>Do a get pull to see your changes now in master</li>
+</ol>
+</div>
+<div class="section" id="part-2">
+<h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>The instructor will create a new branch that incluedes a roster.txt file</li>
+<li>That branch will be merge into master</li>
+<li>Everyone in the class should pull to get the commit containing that file</li>
+</ol>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Instructor should do these next steps first</p>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li>Create and switch to a new branch</li>
+<li>Add your name to the roster.txt file</li>
+<li>Stage, commit, and then push their changes</li>
+<li>You should get a merge conflict</li>
+<li>Resolve the conflict by editing the file that has the conflict</li>
+<li>Run git status in terminal</li>
+<li>Run git add roster.txt to mark the conflict as resolved</li>
+<li>After resolving your conflicts you can push your changes to origin</li>
+</ol>
 </div>
 <div class="section" id="git-reference">
 <span id="id1"></span><h2>Git Reference<a class="headerlink" href="#git-reference" title="Permalink to this headline">¶</a></h2>
@@ -400,6 +429,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span></code> make your local repo aware of any new changes on origin</li>
 <li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">reset</span> <span class="pre">--hard</span></code> WARNING!! Removes all local changes that have NOT been committed</li>
 </ul>
+<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; master</p>
 </div>
 </div>
 </div>
