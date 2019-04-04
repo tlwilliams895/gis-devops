@@ -53,7 +53,7 @@ Before you add code to the application, write a test to verify that item prices 
 
 After you have written your test and the corresponding code passes, run all of the tests and commit.
 
-A TODO is provided for you in ItemControllerTests.java, but ask yourself why does this test go in this file?
+A TODO is provided for you in ``ItemControllerTests.java``, but ask yourself why does this test go in this file?
 
 Add Total To Cart
 =================
@@ -62,13 +62,13 @@ The ``Cart`` class currently does not have the ability to produce a total cost o
 
 Add a ``computeTotal`` method to ``Cart``, writing a unit test to verify its behavior before adding any code to the class itself.
 
-A TODO is provided for you in CartTest.java, but ask yourself why does this test go in this file?
+A TODO is provided for you in ``CartTest.java``, but ask yourself why does this test go in this file?
 
 Display the cart total at ``/cart``. Before adding code to the controller and/or view, write an integration test to verify that the total is displayed properly.
 
 After you have written your test(s) and the corresponding code passes, run all of the tests and commit.
 
-A TODO is provided for you in CartControllerTests.java, but ask yourself why does this test go in this file?
+A TODO is provided for you in ``CartControllerTests.java``, but ask yourself why does this test go in this file?
 
 .. note::
 
@@ -89,7 +89,7 @@ No TODOs are provided for you. How many tests will you need? Where do those test
 Implement Unit Test for ItemMemoryRepositoryTests
 =================================================
 
-The previous programmer left a ``TODO`` in the unit test ``/launchcart/src/test/java/org/launchcode/launchcart/data/ItemMemoryRepositoryTests.java.testAddItems()```. Please write this test so that
+The previous programmer left a ``TODO`` in the unit test ``/launchcart/src/test/java/org/launchcode/launchcart/data/ItemMemoryRepositoryTests.java.testAddItems()``. Please write this test so that
 we can be sure our repository class correctly saves items.
 
 .. note::
