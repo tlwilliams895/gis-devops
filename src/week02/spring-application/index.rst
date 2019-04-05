@@ -225,7 +225,7 @@ Now that we have configured our project let's run our application. Select ``boot
 
 If you don't get any errors you should see the tomcat logs, if you scroll up in the logs you can see that Spring Data ran your import.sql script, and it created a new report table in the database.
 
-It would be a good idea to login to the PSQL CLI and make sure the report table was created successfully.
+It would be a good idea to login to the PSQL CLI and make sure the report table was created successfully. The table should exist, but only have one column called id, and it won't have any records yet.
 
 If you get errors in your log, or don't see the report table, read over these instructions again, talk to your fellow classmates, and ask the instructor for help.
 

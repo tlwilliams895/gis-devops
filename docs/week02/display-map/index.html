@@ -99,16 +99,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../project/index.html#primary-objectives">Primary Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../project/index.html#secondary-objectives">Secondary Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../project/index.html#turning-in-your-work">Turning in Your Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#old">OLD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#project">Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#project-hints">Project Hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#setup-project">Setup Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#setup-postgres">Setup Postgres</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#id1">Turning In Your Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#bonus-missions">Bonus Missions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../project/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../project/index.html#bonus-resources">Bonus Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -267,7 +258,15 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">Project Week2: Display an Interactive Map</a></li>
+<li><a class="reference internal" href="#">Project Week2: Display an Interactive Map</a><ul>
+<li><a class="reference internal" href="#create-templates-index-html">Create templates/index.html</a></li>
+<li><a class="reference internal" href="#create-static-js-script-js">Create static/js/script.js</a></li>
+<li><a class="reference internal" href="#create-controllers-indexcontroller-java">Create controllers/IndexController.java</a></li>
+<li><a class="reference internal" href="#create-tests-indexcontrollertests-java">Create tests/IndexControllerTests.java</a></li>
+<li><a class="reference internal" href="#verify-the-map-is-displayed">Verify the Map is displayed</a></li>
+<li><a class="reference internal" href="#commit">Commit!</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -276,6 +275,83 @@
       
   <div class="section" id="project-week2-display-an-interactive-map">
 <span id="week2-display-map"></span><h1>Project Week2: Display an Interactive Map<a class="headerlink" href="#project-week2-display-an-interactive-map" title="Permalink to this headline">¶</a></h1>
+<p>Now that our project is setup our first objective is to display the base map from OSM.</p>
+<dl class="docutils">
+<dt>Tasks:</dt>
+<dd><ul class="first last simple">
+<li>Create templates/index.html</li>
+<li>Create static/js/script.js</li>
+<li>Create controllers/IndexController.java</li>
+<li>Create tests/IndexControllerTests.java</li>
+<li>Commit!</li>
+</ul>
+</dd>
+</dl>
+<p>Completing these tasks should create an endpoint handler (IndexController.java) that serves a Thymeleaft template (index.html) that has some placeholder code that Javascript (script.js) puts a map from OSM into.</p>
+<p>Also we are creating a Controller, so we will need to create a test file to ensure that the controller behaves correctly.</p>
+<div class="section" id="create-templates-index-html">
+<h2>Create templates/index.html<a class="headerlink" href="#create-templates-index-html" title="Permalink to this headline">¶</a></h2>
+<p>Spring is configured to serve a Thymeleaf template from every endpoint handler inside of any Controller that includes the <code class="docutils literal notranslate"><span class="pre">&#64;Controller</span></code> annotation. We will need to create this <code class="docutils literal notranslate"><span class="pre">templates/index.html</span></code> file, add any JavaScript, or OpenLayers dependencies, and create some HTML tags that will hold our map.</p>
+<p>It’s tough to remember how we loaded all the dependencies into our index.html file, so look at how we did this in the <a class="reference external" href="../../walkthroughs/openlayers/">OpenLayers and jQuery walkthrough</a> to help yourself out.</p>
+<p>If you are struggling with adding empty HTML tags look over your solution to the <a class="reference external" href="../../studios/airwaze/">Airwaze studio</a>. It may be benefical to look at the solution you created for this studio instead of the Studio instructions.</p>
+</div>
+<div class="section" id="create-static-js-script-js">
+<h2>Create static/js/script.js<a class="headerlink" href="#create-static-js-script-js" title="Permalink to this headline">¶</a></h2>
+<p>We will be using Javascript to load the map from OSM, and to create new layers to add to that map. So we will need to create a <code class="docutils literal notranslate"><span class="pre">resources/js/script.js</span></code> that includes this information.</p>
+<p>Again looking at the <a class="reference external" href="../../walkthroughs/openlayers/">OpenLayers and jQuery walkthrough</a> or your solution to the <a class="reference external" href="../../studios/airwaze/">Airwaze studio</a> would be benefical in completing this task.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You will need to make sure the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file you created earlier links to this new <code class="docutils literal notranslate"><span class="pre">script.js</span></code> file.</p>
+</div>
+</div>
+<div class="section" id="create-controllers-indexcontroller-java">
+<h2>Create controllers/IndexController.java<a class="headerlink" href="#create-controllers-indexcontroller-java" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have a thymeleaf template, and a Javascript file that loads an OSM map, we will need to configure the backend of our application to listen for an HTTP request, and to serve up our new Thymeleaf template as an HTTP Response. We do this by creating a new Controller in Java, and using the <code class="docutils literal notranslate"><span class="pre">&#64;Controller</span></code> Spring annotation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since our Spring project came with Apache Tomcat as the web server which is configured to automatically serve an index.html file found in the resources folder, it is possible to forgo creating a Controller for the root of our project. However, this is not a best practice because we would be unable to test if Apache Tomcat is serving the file correctly!</p>
+</div>
+<p>We have not covered Spring Controllers in this class, as it was addressed in the prep-work. However, creating a Spring Controller is necessary to this project, so we will show you how to setup your IndexController.</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">IndexController.java</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// import statements not listed</span>
+
+<span class="nd">@Controller</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/&quot;</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">IndexController</span> <span class="o">{</span>
+
+    <span class="nd">@GetMapping</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getIndex</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="s">&quot;index&quot;</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>This controller is for the root of our project <code class="docutils literal notranslate"><span class="pre">localhost:8080/</span></code> or <code class="docutils literal notranslate"><span class="pre">localhost:8080</span></code>. The method <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code> is for HTTP GET requests made to the root. The only thing this method does is return a String which is a representation of location, and name of the Thymeleaf template to be returned as an HTTP Response.</p>
+<p>In this case <code class="docutils literal notranslate"><span class="pre">return</span> <span class="pre">&quot;index&quot;;</span></code> refers to a file named index.html in the templates folder of our Spring application.</p>
+</div>
+<div class="section" id="create-tests-indexcontrollertests-java">
+<h2>Create tests/IndexControllerTests.java<a class="headerlink" href="#create-tests-indexcontrollertests-java" title="Permalink to this headline">¶</a></h2>
+<p>Since we have created a new Controller file we need to test each method inside the file. In this case we need to test the <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code> method.</p>
+<p>To properly create this integration test we will need to create three new files: <code class="docutils literal notranslate"><span class="pre">IntegrationTestConfig.java</span></code>, <code class="docutils literal notranslate"><span class="pre">IndexControllerTests.java</span></code> and <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code>.</p>
+<p>Look over the <a class="reference external" href="../../walkthroughs/spring-integration-testing/">Integration Testing walkthrough</a> and your solution to the <a class="reference external" href="../../studios/launchcart1/">LaunchCart part 1 studio</a> for assistance in completing this task.</p>
+<p>You will want to make sure when a user makes an HTTP GET request to: <code class="docutils literal notranslate"><span class="pre">localhost:8080/</span></code> they get an HTTP Response of 200.</p>
+<p>You will want to look into the <code class="docutils literal notranslate"><span class="pre">&#64;TestPropertySource(locations</span> <span class="pre">=</span> <span class="pre">&quot;classpath:application-test.properties&quot;)</span></code> annotation. It let’s you use a different application.properties file. You will need to add this to add this to your <code class="docutils literal notranslate"><span class="pre">IntegrationTestConfig.java</span></code> file, and any other test files that need to work with the database.</p>
+<p>You will need to create and configure the <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code> file. You should model it after your current application.properties file, but configure your environment variables to point to the testing database you completed in the previous primary objective.</p>
+<p>After you have created the three files, create a new gradle task for <code class="docutils literal notranslate"><span class="pre">test</span></code>, and ensure your tests pass. Don’t forget to use environment variables in your <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code> file!</p>
+</div>
+<div class="section" id="verify-the-map-is-displayed">
+<h2>Verify the Map is displayed<a class="headerlink" href="#verify-the-map-is-displayed" title="Permalink to this headline">¶</a></h2>
+<p>Our test verifies the user receives an HTTP response of 200, but it doesn’t check that our map loaded correctly. You will need to manually check that.</p>
+<p>Run bootRun go to <code class="docutils literal notranslate"><span class="pre">localhost:8080/</span></code> in your browser and manually check that the Map is displayed in the browser.</p>
+<p>If you don’t see your map, check out the developer tools in your browser to determine what resources failed to load.</p>
+</div>
+<div class="section" id="commit">
+<h2>Commit!<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
+<p>Finally, commit your work after completing this primary objective!</p>
+<p><a class="reference external" href="../project/">Back to week2!</a></p>
+</div>
 </div>
 
 

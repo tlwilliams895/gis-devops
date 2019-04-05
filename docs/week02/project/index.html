@@ -101,16 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#primary-objectives">Primary Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#secondary-objectives">Secondary Objectives</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#turning-in-your-work">Turning in Your Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#old">OLD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#project">Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#project-hints">Project Hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-project">Setup Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#setup-postgres">Setup Postgres</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Turning In Your Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bonus-resources">Bonus Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -285,16 +276,7 @@
 <li><a class="reference internal" href="#presentation">Presentation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#old">OLD</a></li>
-<li><a class="reference internal" href="#project">Project</a></li>
-<li><a class="reference internal" href="#overview">Overview</a></li>
-<li><a class="reference internal" href="#requirements">Requirements</a></li>
-<li><a class="reference internal" href="#project-hints">Project Hints</a></li>
-<li><a class="reference internal" href="#setup-project">Setup Project</a></li>
-<li><a class="reference internal" href="#setup-postgres">Setup Postgres</a></li>
-<li><a class="reference internal" href="#id1">Turning In Your Work</a></li>
-<li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
-<li><a class="reference internal" href="#resources">Resources</a></li>
+<li><a class="reference internal" href="#bonus-resources">Bonus Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -314,7 +296,7 @@
 <div class="section" id="project-overview">
 <h2>Project Overview<a class="headerlink" href="#project-overview" title="Permalink to this headline">¶</a></h2>
 <p>The Zika Mission Control dashboard will be a Spring web application. It will display an interactive map from OSM. The map will present a layer of features that represent an outbreak of Zika. Each representation of a Zika report will be clickable, and upon a click event the user will see more information about that specific report.</p>
-<p>Each week we will build on our currently existing project, so it is crucial to finish the primary objectives for each project week!</p>
+<p>Each week we will build on our currently existing project, so <strong>it is crucial to finish the primary objectives</strong> for each project week!</p>
 <p>Here is a mockup of the application you will be building.</p>
 <img alt="../../_images/cdc_zika_dashboard.png" src="../../_images/cdc_zika_dashboard.png" />
 </div>
@@ -332,26 +314,29 @@
 <div class="section" id="technical-requirements">
 <h3>Technical Requirements<a class="headerlink" href="#technical-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Code base is managed with Git, and a remote repository is managed with GitLab.</li>
+<li>Version Control: Code base is managed with Git, and a remote repository is hosted on GitLab.</li>
 <li>TDD: Tests are to be written before features are implemented.</li>
-<li>Unit Testing: Individual Models needed to be tested.</li>
-<li>Integration Testing: Controllers, and JpaRepositories need to be tested.</li>
-<li>PSQL/PostGIS: need to be used as the primary data store for the Zika reports.</li>
-<li>Spring: Spring will be used to handle the HTTP Requests, serve the HTTP Responses, and work with the database.</li>
-<li>Javascript: Javascript, AJAX, and jQuery should be used to load the map, and work with the zika report data.</li>
-<li>OpenLayers: An interactive map should be used from OSM, Zika reports should be loaded onto the map as a new Feature Layer.</li>
+<li>Unit Testing: All Java Models needed to be tested.</li>
+<li>Integration Testing: All Spring Controllers, and JpaRepositories need to be tested.</li>
+<li>Datastore: PSQL/PostGIS need to be used as the primary data store for the Zika reports.</li>
+<li>Backend: Java and Spring will be used to handle the HTTP Requests, serve the HTTP Responses.</li>
+<li>Backend: Java, Spring Data, JPA, and Hibernate will be used to interact with the database.</li>
+<li>Frontend: HTML, CSS, Javascript, AJAX, and jQuery should be used to work with the zika report data.</li>
+<li>Frontend: OpenLayers should be used to load an interactive map from OSM.</li>
+<li>Frontend: Zika reports should be loaded onto the OpenLayers map as a new Feature Layer.</li>
 </ul>
 <p>There are many ways we could go about building this project, but we must follow the provided requirements.</p>
 </div>
 </div>
 <div class="section" id="primary-objectives">
 <h2>Primary Objectives<a class="headerlink" href="#primary-objectives" title="Permalink to this headline">¶</a></h2>
+<p>You should <strong>complete all primary objectives</strong> before working on any secondary objectives.</p>
 <p>For your primary objectives articles have been provided to help you think about what needs to be completed to pass the objective.</p>
 <ol class="arabic simple" start="0">
 <li><a class="reference external" href="../spring-application/">Create a Spring application</a>, setup Git, and GitLab, configure the DB, and prepare IntelliJ.</li>
 <li><a class="reference external" href="../display-map/">Display an interactive map</a> from OSM in the browser.</li>
 <li><a class="reference external" href="../display-reports/">Display Zika reports</a> on the map as red circles.</li>
-<li>When <a class="reference external" href="../clickable-reports">Zika reports are clicked</a> more information about the report is displayed.</li>
+<li><a class="reference external" href="../clickable-reports">Clicked Zika reports</a> display more information about the report.</li>
 </ol>
 </div>
 <div class="section" id="secondary-objectives">
@@ -377,114 +362,12 @@
 </div>
 <div class="section" id="presentation">
 <h3>Presentation<a class="headerlink" href="#presentation" title="Permalink to this headline">¶</a></h3>
-<p>Friday afternoon, everyone will present their project to the class. At the end of this course, you will have to present your project to your coworkers at the NGA.</p>
-<p>This presentation is meant to be a celebration of your hard work throughout the week, and as a chance for you to share, and learn from the other students in the class.</p>
+<p>Friday afternoon, everyone will present their project to the class. This presentation is meant to be a celebration of your hard work throughout the week, and as a chance for you to share, and learn from the other students in the class.</p>
+<p>At the end of this course, during your graduation ceremony you will be expected to present your final project to the attendees. Every project week we will have a presentation as a way for you to practice for this final presentation.</p>
 </div>
 </div>
-<div class="section" id="old">
-<h2>OLD<a class="headerlink" href="#old" title="Permalink to this headline">¶</a></h2>
-<p>Learning objectives for this week <a class="reference internal" href="../../objectives.html#week02-objectives"><span class="std std-ref">Week 2</span></a></p>
-</div>
-<div class="section" id="project">
-<h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Mission Briefing 1 : <a class="reference external" href="../../_static/images/zika_mission_briefing_1.pdf">pdf</a></li>
-</ul>
-</div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>Your goal is to build a web application to help CDC scientists visualize the reports of Zika infection in Central and South America. Using the concepts that you have learned from the past week, build a web application using Spring Boot that serves data to an OpenLayers map (starter code is provided below). Be sure that your web application is properly tested so that you can easily modify the application during the future weeks.</p>
-<p>Here are the user stories for your application.</p>
-<ol class="arabic simple">
-<li>Scientists need to be able to populate the database with Zika reports that are in a CSV format.</li>
-<li>Scientists need to be able to see geographically where these infections are occurring so that they can respond with the appropriate assistance.</li>
-<li>Since each country reports data slightly differently, scientists need to be able to drill down into the data to understand what each report is saying.</li>
-</ol>
-</div>
-<div class="section" id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Here is a mockup of the application you will be building.</p>
-<img alt="../../_images/cdc_zika_dashboard.png" src="../../_images/cdc_zika_dashboard.png" />
-<ul class="simple">
-<li>The database should be populated with Zika report data from Brazil, Mexico, Panama, and Haiti.</li>
-<li>The app should show a red circle for each location that has provided a Zika report.</li>
-<li>Upon clicking on a red dot, the location’s name and any reported data show up below the status bar. Remember, each location may report multiple statistics and every country does not report the same statistics.</li>
-<li>Only show unique location names once per listing(don’t repeat location names). See bonus screenshot for example.</li>
-<li>Also if one click happens to touch multiple reports, all locations should be shown. See bonus screenshot for example.</li>
-</ul>
-</div>
-<div class="section" id="project-hints">
-<h2>Project Hints<a class="headerlink" href="#project-hints" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Postgres allows you to import CSV files directly into the database if the columns on your CSV match the columns of in your target database table. Make sure that you have the full path to the file in the copy command.</li>
-</ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>COPY report(field1, field2, field3, field4) from
-&#39;/this/is/the/full/path/to/the/file&#39; DELIMITER &#39;,&#39; CSV HEADER;
-</pre></div>
-</div>
-<ul class="simple">
-<li>Every time Spring Boot starts up, it will run an <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file located in <code class="docutils literal notranslate"><span class="pre">src/main/resources</span></code>, if the <cite>ddl-auto</cite> property is set to <code class="docutils literal notranslate"><span class="pre">create</span></code> or <code class="docutils literal notranslate"><span class="pre">create-drop</span></code>. This is a convenient way to populate your database via CSV file.</li>
-<li>Remember, Spring Boot is set to recreate your database every time it starts up. That can be changed by adjusting the value of <cite>spring.jpa.hibernate.ddl-auto</cite> in application.properties.</li>
-</ul>
-</div>
-<div class="section" id="setup-project">
-<h2>Setup Project<a class="headerlink" href="#setup-project" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Fork and clone Zika CDC Dashboard <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard">https://gitlab.com/LaunchCodeTraining/zika-cdc-dashboard</a></li>
-<li>Then create a story branch <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">week2-solution</span></code></li>
-</ul>
-</div>
-<div class="section" id="setup-postgres">
-<h2>Setup Postgres<a class="headerlink" href="#setup-postgres" title="Permalink to this headline">¶</a></h2>
-<p>Run <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI by double clicking on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> database in the Postgresql App</p>
-<p>Open the Postgres UI and double click on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt.
-In terminal execute this to open a psql session:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ psql -p5432 -d postgres
-</pre></div>
-</div>
-<p>In a psql session run this to create the databases:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>postgres=# CREATE DATABASE zika;
-postgres=# CREATE DATABASE zika_test;
-</pre></div>
-</div>
-<p>In the psql session, connect to the zika db:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>postgres=# \c zika
-</pre></div>
-</div>
-<p>Execute these in the psql prompt:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>zika=# CREATE EXTENSION postgis;
-zika=# CREATE EXTENSION postgis_topology;
-zika=# CREATE EXTENSION fuzzystrmatch;
-zika=# CREATE EXTENSION postgis_tiger_geocoder;
-zika=# \c zika_test
-zika_test=# CREATE EXTENSION postgis;
-zika_test=# CREATE EXTENSION postgis_topology;
-zika_test=# CREATE EXTENSION fuzzystrmatch;
-zika_test=# CREATE EXTENSION postgis_tiger_geocoder;
-</pre></div>
-</div>
-<p>Create a new user for your application by opening Postgres UI and double clicking on the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt connected to the <code class="docutils literal notranslate"><span class="pre">zika</span></code> db.:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>postgres=# CREATE USER zika_app_user WITH PASSWORD &#39;somethingsensible&#39; CREATEDB;
-postgres=# ALTER ROLE zika_app_user WITH SUPERUSER;
-</pre></div>
-</div>
-</div>
-<div class="section" id="id1">
-<h2>Turning In Your Work<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<p>Your goal is to have your project done by Friday morning.</p>
-<ul class="simple">
-<li>Commit and push your work to GitLab.</li>
-<li>Create a Merge Request in Gitlab</li>
-<li>Ask your instructor and classmates to review your Merge Request</li>
-</ul>
-</div>
-<div class="section" id="bonus-missions">
-<h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
-<p>If you complete the assignment with time to spare, improve your app by providing context about the size of the Zika outbreak. Use this OpenLayers tutorial <a class="reference external" href="https://openlayers.org/en/latest/examples/kml-earthquakes.html">https://openlayers.org/en/latest/examples/kml-earthquakes.html</a> as a guide to change the size and color of the feature based on number of cases.</p>
-<img alt="../../_images/bonus_cdc_zika_dashboard.png" src="../../_images/bonus_cdc_zika_dashboard.png" />
-</div>
-<div class="section" id="resources">
-<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bonus-resources">
+<h2>Bonus Resources<a class="headerlink" href="#bonus-resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference external" href="https://www.w3schools.com/cssref/css_selectors.asp">CSS Selectors</a></li>
 <li><a class="reference external" href="https://jsonlint.com/">JSON Lint</a></li>
