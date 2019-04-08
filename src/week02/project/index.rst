@@ -96,6 +96,23 @@ Friday afternoon, everyone will present their project to the class. This present
 
 At the end of this course, during your graduation ceremony you will be expected to present your final project to the attendees. Every project week we will have a presentation as a way for you to practice for this final presentation.
 
+Check Your Knowledge
+====================
+
+We covered a lot of ground this week. 
+
+To reinforce your understanding of the concepts answer these questions to yourself:
+    - When did we have to make changes to a controller file?
+    - When did we have to make changes to a repository file?
+    - When did we have to make changes to the index.html file?
+    - When did we have to make changes to the script.js file?
+    - When did we have to make changes to our test files?
+    - How does our application communicate with the database?
+    - Our data starts as various CSV files. How is that data transformed throughout our project?
+    - How does our application convert a Java Object to GeoJSON?
+    - How do we create a new layer in OpenLayers?
+    - How do we add that layer to our map from OSM?
+
 Bonus Resources
 ===============
 
