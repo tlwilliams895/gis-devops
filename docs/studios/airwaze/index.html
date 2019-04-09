@@ -262,8 +262,9 @@
 <li><a class="reference internal" href="#">Studio: Airwaze</a><ul>
 <li><a class="reference internal" href="#set-up-project">Set Up Project</a></li>
 <li><a class="reference internal" href="#what-is-postgis">What is PostGIS?</a></li>
-<li><a class="reference internal" href="#install-postgis-on-your-computer">Install PostGIS on your Computer</a></li>
+<li><a class="reference internal" href="#install-postgis-container">Install PostGIS Container</a></li>
 <li><a class="reference internal" href="#create-a-database-for-the-airwaze-data">Create a Database for the Airwaze Data</a><ul>
+<li><a class="reference internal" href="#connect-to-the-postgis-container">Connect to the PostGIS Container</a></li>
 <li><a class="reference internal" href="#run-the-create-command">Run the Create Command</a></li>
 </ul>
 </li>
@@ -301,27 +302,17 @@
 <h2>What is PostGIS?<a class="headerlink" href="#what-is-postgis" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://postgis.net/">PostGIS</a> is a spatial database extension for PostgreSQL object-relational database. PostGIS adds support for geographic objects in Postgresql. This includes features such as georgraphic data types, location functions, and location based querying.</p>
 </div>
-<div class="section" id="install-postgis-on-your-computer">
-<h2>Install PostGIS on your Computer<a class="headerlink" href="#install-postgis-on-your-computer" title="Permalink to this headline">¶</a></h2>
-<ul>
-<li><p class="first">Make sure your Postgresql server is running. Remember we used <a class="reference external" href="https://postgresapp.com/">https://postgresapp.com/</a> to install Postgresql, which automatically created a service that we can start and stop via its UI in the menu bar.</p>
-</li>
-<li><p class="first">To install the PostGIS extension, run the below commands in terminal</p>
-<ul class="simple">
-<li>Note that this makes the extension available on your computer, but you will need to run additional commands to enable them in a specific database. More on that in the Enable Extension section.</li>
-</ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew update
-$ brew install postgis
-</pre></div>
-</div>
-</li>
-</ul>
+<div class="section" id="install-postgis-container">
+<h2>Install PostGIS Container<a class="headerlink" href="#install-postgis-container" title="Permalink to this headline">¶</a></h2>
+<p>If you don’t already have a PostGIS container installed checkout the <a class="reference internal" href="../../installations/docker-postgis/index.html#docker-postgis"><span class="std std-ref">Docker Installation: PostGIS</span></a>.</p>
 </div>
 <div class="section" id="create-a-database-for-the-airwaze-data">
 <h2>Create a Database for the Airwaze Data<a class="headerlink" href="#create-a-database-for-the-airwaze-data" title="Permalink to this headline">¶</a></h2>
-<p>Run <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI by double clicking on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> database in the Postgresql app.</p>
-<p>Open the Postgres UI and double click on the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt.</p>
-<img alt="../../_images/postgresapp-db-icon.png" src="../../_images/postgresapp-db-icon.png" />
+<p>Make sure the PostGIS container is the only container running that is listening on port 5432. You can check this with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code></p>
+<div class="section" id="connect-to-the-postgis-container">
+<h3>Connect to the PostGIS Container<a class="headerlink" href="#connect-to-the-postgis-container" title="Permalink to this headline">¶</a></h3>
+<p>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">psql</span> <span class="pre">-h</span> <span class="pre">127.0.0.1</span> <span class="pre">-U</span> <span class="pre">psq_user</span> <span class="pre">-d</span> <span class="pre">postgres</span></code> to access the PSQL CLI.</p>
+</div>
 <div class="section" id="run-the-create-command">
 <h3>Run the Create Command<a class="headerlink" href="#run-the-create-command" title="Permalink to this headline">¶</a></h3>
 <p>Then in the postgres termainl run this to create a new database:</p>
@@ -336,8 +327,13 @@ $ brew install postgis
 </div>
 <div class="section" id="enable-geospatial-extensions-in-the-airwaze-database">
 <h2>Enable Geospatial Extensions in the Airwaze Database<a class="headerlink" href="#enable-geospatial-extensions-in-the-airwaze-database" title="Permalink to this headline">¶</a></h2>
-<p>Now we want to install the geospatial extensions to Postgres for the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> db. Open the Postgres UI and double click on the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> db to open a <code class="docutils literal notranslate"><span class="pre">psql</span></code> command prompt connected to the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> db:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>airwaze=# CREATE EXTENSION postgis;
+<p>Now we want to install the geospatial extensions to Postgres for the <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> db.</p>
+<p>From the PSQL CLI:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># CONNECT TO AIRWAZE DB
+postgres=# \c airwaze;
+
+# CREATE GEOSPATIAL EXTENSIONS
+airwaze=# CREATE EXTENSION postgis;
 airwaze=# CREATE EXTENSION postgis_topology;
 airwaze=# CREATE EXTENSION fuzzystrmatch;
 airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
@@ -376,8 +372,16 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 <p>The <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file in this project contains SQL statements that import CSV data into SQL tables. Please take a minute to review <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> and the two <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files.</p>
 <ul class="simple">
 <li>Review the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file in the airwaze project</li>
-<li>Be sure that the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> points to <strong>your</strong> local copies of the <code class="docutils literal notranslate"><span class="pre">airports.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code>. It needs to be the “full path” to each file on your local computer.</li>
-<li>You will need to change the path value for both files listed. <code class="docutils literal notranslate"><span class="pre">/Users/YOUR-USERNAME/YOUR-PATH/airwaze-studio/routes.csv</span></code></li>
+</ul>
+<p>We are using a PostGIS docker container. Althought it is installed on our computer, docker is a virtualization/containerization tool, so our PostGIS container is unaware of any other files on our computer. We will need to COPY our CSV files to a location our PostGIS container can work with.</p>
+<p>Luckily docker gives us an easy way to do this.</p>
+<ul class="simple">
+<li>From the root directory of airwaze-studio run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">cp</span> <span class="pre">Airports.csv</span> <span class="pre">postgis:/tmp</span></code></li>
+<li>And also run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">cp</span> <span class="pre">routes.csv</span> <span class="pre">postgis:/tmp</span></code></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">cp</span></code> command in docker stands for copy. We are copying the two CSV files into a directory called /tmp inside of our container.</p>
+<ul class="simple">
+<li>Be sure that the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> points to the copies of <code class="docutils literal notranslate"><span class="pre">airports.csv</span></code> and <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> in your container</li>
 <li>Open the <code class="docutils literal notranslate"><span class="pre">csv</span></code> files to see what data is being imported for routes and airports</li>
 </ul>
 </div>
@@ -411,21 +415,40 @@ airwaze=# \d route
 </div>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
-<li>When the map is clicked, list all airports that are at that pixel<ul>
+<ol class="arabic">
+<li><p class="first"><strong>Understand provided tests and get them to pass</strong></p>
+<ul class="simple">
+<li>IntegrationTestConfig</li>
+<li>GeoJSONSerializerTest</li>
+<li>AirportControllerTest</li>
+<li>RouteControllerTest</li>
+<li>RouteRepositoryTest</li>
+</ul>
+<blockquote>
+<div><div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">To pass these tests you will need to create a new Repository, and a new Controller. Read the tests to figure out how to get them to pass.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>When the map is clicked, list all airports that are at that pixel</strong></p>
+<ul class="simple">
 <li>You will need to add more code to the function <code class="docutils literal notranslate"><span class="pre">map.forEachFeatureAtPixel(event.pixel,</span> <span class="pre">function(feature,layer)</span></code> in <code class="docutils literal notranslate"><span class="pre">resources/static/js/scripts.js</span></code></li>
 </ul>
 </li>
-<li>Create a route endpoint that returns routes for a certain srcId.<ul>
+<li><p class="first"><strong>Create a route endpoint that returns routes for a certain srcId</strong></p>
+<ul class="simple">
 <li>Example: <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/route/?srcId=12</span></code></li>
 </ul>
 </li>
-<li>When an airport feature is clicked on the map, show the routes for that airport<ul>
+<li><p class="first"><strong>When an airport feature is clicked on the map, show the routes for that airport</strong></p>
+<ul class="simple">
 <li>By adding a router layer that only contains routes connected to the clicked airport</li>
 <li>The data for the new layer will be provided by <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/route/?srcId=X</span></code>, where X will be the <code class="docutils literal notranslate"><span class="pre">airportId</span></code> from the feature</li>
 </ul>
 </li>
-<li>Write integration tests for <code class="docutils literal notranslate"><span class="pre">RouteController</span></code> use <code class="docutils literal notranslate"><span class="pre">AirportControllerTests</span></code> as a guide</li>
+<li><p class="first"><strong>Write integration tests for ``RouteController`` use ``AirportControllerTests`` as a guide</strong></p>
+</li>
 </ol>
 </div>
 <div class="section" id="bonus-missions">
