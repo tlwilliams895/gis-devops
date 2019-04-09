@@ -28,8 +28,8 @@ Tasks
 
 #. Add SwaggerUI to our project
 
-   - Create swagger.yaml
-   - Edit swagger/index.html to point to our swagger.yaml file
+   - Create ``swagger.yaml``
+   - Edit ``swagger/index.html`` to point to our ``swagger.yaml`` file
 
 #. Edit Swagger YAML
 
@@ -49,7 +49,7 @@ Clone the `SwaggerUI repository <https://github.com/swagger-api/swagger-ui/tree/
 To add the SwaggerUI files to your project:
 
 1. In IntelliJ, create the directory ``launchcart/src/main/resources/static/swagger``
-2. Navigate into the repo that you just cloned.
+2. Via terminal or file explorer navigate into the swagger-ui repo that you just cloned.
 3. Copy the *contents* of ``swagger-ui/dist`` directory into ``launchcart/src/main/resources/static/swagger/`` directory. The ``dist/`` directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
 
 Create Swagger ``.yaml`` File
