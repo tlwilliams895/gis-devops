@@ -624,7 +624,7 @@ $ git checkout -b rest-walkthrough-starter-solution
 <p>A typical <code class="docutils literal notranslate"><span class="pre">&#64;Controller</span></code> annotation in Spring is expecting each endpoint handler (method) to return a string representation of the location of an HTML file, that will be rendered by a web browser.</p>
 <p>Our <code class="docutils literal notranslate"><span class="pre">&#64;RestController</span></code> annotation in Spring is expecting each endpoint to return a representation of a resource, or at the very least an HTTP Response.</p>
 <p>All of our endpoints will be working with items in our datastore. So we will first need to configure this file to work with <code class="docutils literal notranslate"><span class="pre">itemRepository</span></code>. That’s our JpaRepository we configured to work with PostgreSQL.</p>
-<img alt="../../_images/item-repository.png" src="../../_images/item-repository.png" />
+<img alt="../../_images/item-repository1.png" src="../../_images/item-repository1.png" />
 <div class="section" id="getitems">
 <h3>getItems<a class="headerlink" href="#getitems" title="Permalink to this headline">¶</a></h3>
 <p>Spring also provides us with a class called ResponseEntity. It allows us to configure our own HTTP Responses, and include a representation of our resource as JSON if we want.</p>
