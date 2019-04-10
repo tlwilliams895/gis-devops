@@ -1,3 +1,5 @@
+:orphan:
+
 .. _week2_display-map:
 
 =========================================
@@ -13,7 +15,7 @@ Tasks:
     - Create tests/IndexControllerTests.java
     - Commit!
 
-Completing these tasks should create an endpoint handler (IndexController.java) that serves a Thymeleaft template (index.html) that has some placeholder code that Javascript (script.js) puts a map from OSM into.
+Completing these tasks should create an endpoint handler (IndexController.java) that serves a Thymeleaf template (index.html) that has some placeholder code that Javascript (script.js) puts a map from OSM into.
 
 Also we are creating a Controller, so we will need to create a test file to ensure that the controller behaves correctly.
 

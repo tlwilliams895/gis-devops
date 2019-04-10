@@ -306,11 +306,11 @@
 <div class="section" id="design-report-java-class">
 <h2>Design Report.java Class<a class="headerlink" href="#design-report-java-class" title="Permalink to this headline">¶</a></h2>
 <p>Before we display our report data as a layer on our map in OSM we will first have to transform our data into a state we can work with.</p>
-<p>Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data locked away in various CSV files.</p>
+<p>Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data is locked away in various CSV files.</p>
 <p>Let’s consider our data’s journey.</p>
-<p>It currently exists in CSV format, we will have to COPY our CSVs into a PostGIS table, our web application will convert records from PostGIS into a Java Object (POJO), our web app will convert Java Objects into GeoJSON (Feature), and will group multiple features together in a FeatureCollection. This FeatureCollection is the GeoJSON OpenLayers is expecting to make a new layer from.</p>
+<p>It currently exists in CSV format, we will have to COPY our CSVs into a PostGIS table as records, our web application will convert records from PostGIS into a Java Object, our web app will convert Java Objects into GeoJSON. The GeoJSON is what OpenLayers is expecting to make a new layer from.</p>
 <p>In order to COPY our CSVs into a PostGIS table, the table must exist, and it’s columns must match the SQL COPY statement. We have been using Hibernate to create our PostGIS tables for us, Spring scans our project for the &#64;Entity annotation, and automatically creates a table based on the properties of that class. In order to create our table we will first need to design our Report class!</p>
-<p>Look over the provided CSV files, look for their <strong>shared</strong> columns. These shared columns will be the columns in our table, and we need to create properties on our Report class to match these columns.</p>
+<p>Look over the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-data">provided CSV files</a>, look for their <strong>shared</strong> columns. These shared columns will be the columns in our table, and we need to create properties on our Report class to match these columns.</p>
 <p>Look at your solution to the <a class="reference external" href="../../studios/airwaze/">Airwaze Studio</a>. Take note of how the <code class="docutils literal notranslate"><span class="pre">Airports.csv</span></code> file matches up with the <code class="docutils literal notranslate"><span class="pre">models/Airport.java</span></code> file, and how the <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> file matches up with the <code class="docutils literal notranslate"><span class="pre">models/Route.java</span></code> file.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
@@ -342,6 +342,12 @@
 </dl>
 <p>We are using a PostGIS Docker container, so the path to your file will be <code class="docutils literal notranslate"><span class="pre">/tmp/filename.csv</span></code>. And you will have to copy the CSV files to this location.</p>
 <p>You can copy a file to your docker container from the command line with the following command.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Docker cp</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">docker cp &lt;file_to_copy&gt; &lt;container&gt;:/tmp</span>
+</pre></div>
+</div>
+</div>
 <p>This command will copy your file to the /tmp folder in your docker container. You will need to do this for each file you need to copy to the report table!</p>
 <p>After you are done with this, you should re-run <code class="docutils literal notranslate"><span class="pre">bootRun</span></code> to make sure it copies the records into the database correctly. It would also be a good time to review the options for <code class="docutils literal notranslate"><span class="pre">spring.jpa.hibernate.ddl-auto</span></code>. The final section of <a class="reference external" href="https://www.baeldung.com/spring-boot-data-sql-and-schema-sql">this Baeldung article</a> gives some information on the differences between the options.</p>
 </div>
@@ -393,6 +399,7 @@
 <div class="section" id="commit">
 <h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
 <p>After your tests pass, and you have manually checked your project commit and push your work!</p>
+<p><a class="reference external" href="../project/">Back to week2!</a></p>
 </div>
 </div>
 

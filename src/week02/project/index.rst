@@ -75,6 +75,7 @@ For your secondary objectives no guidance will be given to you. You will have to
 - Duplicate city/state/country names are not displayed if more than one report is selected.
 - Sensitive Database information has not been committed to our version control software.
 - Database is secure from SQL injection.
+- Add coordinate information to CSV files that are missing latitude, and longitude.
 
 Turning in Your Work
 ====================

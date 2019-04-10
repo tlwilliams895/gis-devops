@@ -1,3 +1,5 @@
+:orphan:
+
 .. _week2_display-reports:
 
 ==========================================
@@ -28,15 +30,15 @@ Design Report.java Class
 
 Before we display our report data as a layer on our map in OSM we will first have to transform our data into a state we can work with.
 
-Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data locked away in various CSV files.
+Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data is locked away in various CSV files.
 
 Let's consider our data's journey.
 
-It currently exists in CSV format, we will have to COPY our CSVs into a PostGIS table, our web application will convert records from PostGIS into a Java Object (POJO), our web app will convert Java Objects into GeoJSON (Feature), and will group multiple features together in a FeatureCollection. This FeatureCollection is the GeoJSON OpenLayers is expecting to make a new layer from.
+It currently exists in CSV format, we will have to COPY our CSVs into a PostGIS table as records, our web application will convert records from PostGIS into a Java Object, our web app will convert Java Objects into GeoJSON. The GeoJSON is what OpenLayers is expecting to make a new layer from.
 
 In order to COPY our CSVs into a PostGIS table, the table must exist, and it's columns must match the SQL COPY statement. We have been using Hibernate to create our PostGIS tables for us, Spring scans our project for the @Entity annotation, and automatically creates a table based on the properties of that class. In order to create our table we will first need to design our Report class!
 
-Look over the provided CSV files, look for their **shared** columns. These shared columns will be the columns in our table, and we need to create properties on our Report class to match these columns.
+Look over the `provided CSV files <https://gitlab.com/LaunchCodeTraining/zika-data>`_, look for their **shared** columns. These shared columns will be the columns in our table, and we need to create properties on our Report class to match these columns.
 
 Look at your solution to the `Airwaze Studio <../../studios/airwaze/>`_. Take note of how the ``Airports.csv`` file matches up with the ``models/Airport.java`` file, and how the ``routes.csv`` file matches up with the ``models/Route.java`` file.
 
@@ -75,7 +77,8 @@ We are using a PostGIS Docker container, so the path to your file will be ``/tmp
 You can copy a file to your docker container from the command line with the following command.
 
 .. sourcecode:: console
-   :caption:
+   :caption: Docker cp
+   
    docker cp <file_to_copy> <container>:/tmp
 
 This command will copy your file to the /tmp folder in your docker container. You will need to do this for each file you need to copy to the report table!
@@ -151,3 +154,5 @@ Commit
 ------
 
 After your tests pass, and you have manually checked your project commit and push your work!
+
+`Back to week2! <../project/>`_
