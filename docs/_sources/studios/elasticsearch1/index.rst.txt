@@ -17,14 +17,14 @@ We will need to verify:
 Elasticsearch Installation
 --------------------------
 
-We will be running Elasticsearch as a docker container. You can check if you have docker installed with: ``$ docker -v``, if it's installed it will print out the version installed. Check out the `docker installation <../../installations/docker/>`_ if you need to install docker.
+We will be running Elasticsearch as a docker container. You can check if you have docker installed with: ``$ docker -v``, if it's installed it will print out the version installed. Check out the :ref:`docker` if you need to install docker.
 
-After docker is installed you can check your containers with: ``$ docker ps -a``, if you don't have an Elasticsearch container, you can get one by following the `Elasticsearch installation instructions <../../installations/docker-elasticsearch/>`_.
+After docker is installed you can check your containers with: ``$ docker ps -a``, if you don't have an Elasticsearch container, you can get one by following the :ref:`docker-elasticsearch`.
 
 Kibana Installation
 -------------------
 
-We will be running Kibana as a docker container. If you don't already have a Kibana container, you can get one by following the `Kibana installation instructions <../../installations/docker-kibana>`_.
+We will be running Kibana as a docker container. If you don't already have a Kibana container, you can get one by following the :ref:`docker-kibana`.
 
 Seed Elasticsearch
 ------------------
@@ -39,7 +39,7 @@ Seed ``/tweets``:
 Kibana Introduction
 -------------------
 
-In the `Elasticsearch walkthrough <../../walkthroughs/elasticsearch>`_ we worked with Elasticsearch using cURL. An easier way to work with Elasticsearch is by using Kibana.
+In the :ref:`walkthrough-elasticsearch` we worked with Elasticsearch using cURL. An easier way to work with Elasticsearch is by using Kibana.
 
 To access Kibana go to ``localhost:5601`` in a web browser. After clicking through the splash screen, click Dev Tools from the Kibana menu.
 
@@ -67,7 +67,7 @@ Now you'll get some practice with Elasticsearch. Carry out each of the following
 7. Get all tweets by John Smith
 8. Get the average number of likes for all tweets
 
-The `Elasticsearch walkthrough <../../walkthroughs/elasticsearch>`_ prepared you for most of these tasks, however you may need to reference the `Elasticsearch documentation <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/index.html>`_, and work with your fellow classmates to answer all the questions!
+The :ref:`walkthrough-elasticsearch` prepared you for most of these tasks, however you may need to reference the `Elasticsearch documentation <https://www.elastic.co/guide/en/elasticsearch/reference/6.5/index.html>`_, and work with your fellow classmates to answer all the questions!
 
 Turning In Your Work
 ====================

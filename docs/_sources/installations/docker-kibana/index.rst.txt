@@ -20,7 +20,7 @@ Kibana is an open source data visualization tool for Elasticsearch. It is one of
 
 You will need to install Elasticsearch before installing Kibana. We will also need the URL of our Elasticsearch cluster so Kibana knows where to find the data it want to visualize.
 
-If you haven't already `install Elasticsearch <../docker-elasticsearch/>`_.
+If you haven't already see :ref:`docker`.
 
 We will also need the IP address of Elasticsearch. If you installed Elasticsearch as a docker container we can find it's IP address by typing: ``$ docker inspect <container name or container id>``.
 

@@ -293,7 +293,7 @@
 <h3>Get ElasticSearch Container IP<a class="headerlink" href="#get-elasticsearch-container-ip" title="Permalink to this headline">¶</a></h3>
 <p>Kibana is an open source data visualization tool for Elasticsearch. It is one of the ways we will interact with Elasticsearch, and provides us with a graphical UI rather than using cURL which is a CLI.</p>
 <p>You will need to install Elasticsearch before installing Kibana. We will also need the URL of our Elasticsearch cluster so Kibana knows where to find the data it want to visualize.</p>
-<p>If you haven’t already <a class="reference external" href="../docker-elasticsearch/">install Elasticsearch</a>.</p>
+<p>If you haven’t already see <a class="reference internal" href="../docker/index.html#docker"><span class="std std-ref">Installation: Docker</span></a>.</p>
 <p>We will also need the IP address of Elasticsearch. If you installed Elasticsearch as a docker container we can find it’s IP address by typing: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">&lt;container</span> <span class="pre">name</span> <span class="pre">or</span> <span class="pre">container</span> <span class="pre">id&gt;</span></code>.</p>
 <p>This command will print out a lot of information about the container including it’s internal IP address (“IPAddress”), or the address one container can use to talk to another container.</p>
 <p>Take note of this IP address as you will need it later when installing Kibana.</p>

@@ -31,9 +31,9 @@ Getting Ready
 
 To use Elasticsearch we need to first install it.
 
-We will be running Elasticsearch as a docker container. You can check if you have docker installed with: ``$ docker -v``, if it's installed it will print out the version installed. Check out the `docker installation <../../installations/docker/>`_ if you need to install docker.
+We will be running Elasticsearch as a docker container. You can check if you have docker installed with: ``$ docker -v``, if it's installed it will print out the version installed. Check out the :ref:`docker` if you need to install docker.
 
-After docker is installed you can check your containers with: ``$ docker ps -a``, if you don't have an elasticsearch container, you can get one by following the `Elasticsearch installation instructions <../../installations/docker-elasticsearch/>`_.
+After docker is installed you can check your containers with: ``$ docker ps -a``, if you don't have an elasticsearch container, you can get one by following the :ref:`docker-elasticsearch`.
 
 Elasticsearch Terms
 ===================
