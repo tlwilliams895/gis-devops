@@ -45,21 +45,7 @@ Exercises
 Studio
 ------
 
-Studio Setup
-++++++++++++
-* In Gitlab fork the `Studio Repository <https://gitlab.com/LaunchCodeTraining/junit-studio>`_
-* Then clone your fork to your local computer
-* Create a story branch for your work
-* Follow the instructions in the repo readme
-
-Turning in Studio
-+++++++++++++++++
-* If you don't complete each of the tasks, turn in as much as you have completed by the end of the day.
-* Commit and push your work to GitLab
-* Create a Merge Request for the branch you pushed (you do this on the GitLab website)
-* Ask your classmates and instructor to review your code
-* This can help with branching or Merge Request questions: `Branching and Merge Request Guidelines <https://docs.google.com/document/d/1Suneuf-NTohBP2Z5BFEkkCKopVbSDsAQga9ZMfPEb3o/edit>`_
-
+* :ref:`junit-studio`
 
 Resources
 ---------
