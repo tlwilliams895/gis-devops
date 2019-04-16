@@ -30,11 +30,14 @@ Design Report.java Class
 
 Before we display our report data as a layer on our map in OSM we will first have to transform our data into a state we can work with.
 
-Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data is locked away in various CSV files.
+Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data is locked away in various CSV files. You can find the files you will need in the `zika-data repository <https://gitlab.com/LaunchCodeTraining/zika-data>`_ on GitLab.
 
-Let's consider our data's journey.
-
-It currently exists in CSV format, we will have to COPY our CSVs into a PostGIS table as records, our web application will convert records from PostGIS into a Java Object, our web app will convert Java Objects into GeoJSON. The GeoJSON is what OpenLayers is expecting to make a new layer from.
+Let's consider the journey of our data.
+    1. Report data exists as 6 CSV files
+    2. CSV files are copied as records in a report table in a PostGIS database
+    3. JpaRepository loads records from PostGIS and stores them as Report objects
+    4. Report objects are converted into GeoJSON
+    5. OpenLayers consumes GeoJSON to create a visual layer on a map
 
 In order to COPY our CSVs into a PostGIS table, the table must exist, and it's columns must match the SQL COPY statement. We have been using Hibernate to create our PostGIS tables for us, Spring scans our project for the @Entity annotation, and automatically creates a table based on the properties of that class. In order to create our table we will first need to design our Report class!
 
@@ -44,9 +47,9 @@ Look at your solution to the `Airwaze Studio <../../studios/airwaze/>`_. Take no
 
 .. hint::
 
-   Hibernate uses the snake case naming strategy. You can explicitlly define a Column name by using the Spring Data @Column annotation. Above the property declaration you can include the @Column(name = "columnName") annotation and Hibernate will name the column based on the value mapped to the name variable.
+   Hibernate uses the `snake case <https://en.wikipedia.org/wiki/Snake_case>`_ naming strategy. You can explicitlly define a Column name by using the Spring Data @Column annotation. Above the property declaration you can include the @Column(name = "columnName") annotation and Hibernate will name the column based on the value mapped to the name variable.
 
-After you create your Report.java class re-run ``bootRun``, and then check your database. Your report table still won't have any records in it, but 
+After you create your Report.java class re-run ``bootRun``, and then check your database. Your report table still won't have any records in it, but you should see a report table with columns that match the properties of your Report class.
 
 Create ReportTests.java
 -----------------------
@@ -54,6 +57,12 @@ Create ReportTests.java
 When creating a new class in Java we should test this file.
 
 Create ``ReportTests.java`` in your tests directory. Look over the `Unit Testing walkthrough <../../walkthroughs/unit-tests/>`_ if you need help writing these tests.
+
+We advise creating a ``testReportConstructor()`` method that will create a new ``testReport`` object based on information  from one of the CSV files. This will allow you to perform ``assertEquals`` statements to verify the ``testReport`` object contains information that matches our CSV file. 
+
+.. note::
+   
+   In most cases people will not test constructors in Java, or any language. An object constructor is code handled by the team responsbile for the programming language itself, and you typically don't test code written by third parties. The purpose of this class is learning, and practice. So we will be creating a test case for our constructor.
 
 Populate Report table
 ---------------------
@@ -101,6 +110,8 @@ Create ReportRepositoryTests.java
 
 In creating a new JpaRepository we need to write some tests as well. Look at the ``AirportRepositoryTest.java`` file from the `airwaze studio <../../studios/airwaze/>`_ for help.
 
+We advise creating a ``testGetAllReports()`` method that uses ``reportRepository`` to load all reports into a list. You can then assert if the length of that list matches the number of records in your database. You can also pull out one of the reports and assert that the data matches.
+
 Create ReportController.java
 ----------------------------
 
@@ -131,6 +142,8 @@ Create ReportControllerTests.java
 ---------------------------------
 
 Since we are creating a new class we also need to test the class. Look at the ``AirportControllerTest.java`` file from the `airwaze studio <../../studios/airwaze/>`_ for help.
+
+We advise creating a ``testGetReports()`` method that will use MockMvc to perform a get request to the endpoint you created in your controller. You can expect the HTTP Status to be 200, and you should expect something about the number of reports, or something inside one of the reports.
 
 Amend script.js
 ---------------

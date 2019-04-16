@@ -16,7 +16,7 @@ Each week we will have a list of requirements that we will need to build into ou
 Project Overview
 ================
 
-The Zika Mission Control dashboard will be a Spring web application. It will display an interactive map from OSM. The map will present a layer of features that represent an outbreak of Zika. Each representation of a Zika report will be clickable, and upon a click event the user will see more information about that specific report.
+The Zika Mission Control dashboard will be a Spring web application. It will display an interactive map from `Open Street Maps <https://www.openstreetmap.org/#map=5/38.007/-95.844>`_ (OSM). The map will present a layer of features that represent an outbreak of Zika. Each representation of a Zika report will be clickable, and upon a click event the user will see more information about that specific report.
 
 Each week we will build on our currently existing project, so **it is crucial to finish the primary objectives** for each project week!
 

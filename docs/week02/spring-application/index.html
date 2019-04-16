@@ -299,7 +299,7 @@
 <h2>Create Spring Project<a class="headerlink" href="#create-spring-project" title="Permalink to this headline">¶</a></h2>
 <p>We will be creating a Spring project from scratch today! Luckily for us Pivotal, the owners of Spring, have tried to make it as easy as possible to create a new Spring project.</p>
 <p>In your browser navigate to <a class="reference external" href="https://start.spring.io">start.spring.io</a>.</p>
-<p>From the Spring Initalizr we have some options to create a ready to go spring application!</p>
+<p>From the Spring Initializr we have some options to create a ready to go spring application!</p>
 <dl class="docutils">
 <dt>You will need to select:</dt>
 <dd><ul class="first last simple">
@@ -320,9 +320,9 @@
 </ul>
 </dd>
 </dl>
-<p>Double check that you have filled out the informatoin correctly, and then click Generate Project. This will prompt your browser to download a file called zikaDashboard.zip, go ahead and download it, and take notice of where it is downloaded. Most machines default to a Download directory off of your Home directory.</p>
+<p>Double check that you have filled out the information correctly, and then click Generate Project. This will prompt your browser to download a file called zikaDashboard.zip, go ahead and download it, and take notice of where it is downloaded. Most machines default to a Download directory off of your Home directory.</p>
 <p>We will want to move the zikaDashboard.zip file to wherever you typically store your projects, and then unzip the file.</p>
-<p>You command will likely be different, but I will move my zikaDashboard.zip file to my projects folder with the following command.</p>
+<p>Your command will likely be different, but one example of moving the zikaDashboard.zip file to the projects folder can be completed with the following command.</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text">Move &amp; unzip zikaDashboard.zip</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> mv /home/paul/Downloads/zikaDashboard.zip /home/paul/projects/
@@ -331,7 +331,7 @@
 </pre></div>
 </div>
 </div>
-<p>Upon unzipping the file, I will have a new folder called zikaDashboard. Looking into the folder you will see a familiar project structure for Spring projects.</p>
+<p>Upon unzipping the file, we will have a new folder called zikaDashboard. Looking into the folder you will see a familiar project structure for Spring projects.</p>
 </div>
 <div class="section" id="open-project-in-intellij">
 <h2>Open Project in IntelliJ<a class="headerlink" href="#open-project-in-intellij" title="Permalink to this headline">¶</a></h2>
@@ -342,7 +342,7 @@
 <div class="section" id="configure-project-dependencies">
 <h2>Configure Project Dependencies<a class="headerlink" href="#configure-project-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>In creating our Spring project we added four dependencies directly from Spring: Web, Thymeleaf, JPA, and DevTools.</p>
-<p>However, we have 2 additional dependencies we will need: a PSQL Driver, and Hibernate. These two tools are not managed by Spring, and cannot be loaded through the Spring Intilizr, so we will have to manually include their dependencies.</p>
+<p>However, we have 2 additional dependencies we will need: a PSQL Driver, and Hibernate. These two tools are not managed by Spring, and cannot be loaded through the Spring Initializr, so we will have to manually include their dependencies.</p>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file in your new project. You will need to add two things.</p>
 <p>First we will have to configure a new buildscript section of this file, that will add our new dependencies to our classpath.</p>
 <p>At the top of your file add the following code block.</p>
@@ -374,11 +374,11 @@
 </div>
 </div>
 <p>After you add these statements you should notice IntelliJ displays a loading symbol as it dowloads, and installs these dependencies into your project. It should only take a second.</p>
-<p>You can see these files by looking into the External Libraries directory, and looking for <code class="docutils literal notranslate"><span class="pre">Gradle:org.hibernate:hibernate-spatial:5.1.0.FINAL</span></code>, and <code class="docutils literal notranslate"><span class="pre">Gradle:org.postgresql:postgresql:42.1.4</span></code>. They will be among the other dependencies we loaded from the Spring Intializir.</p>
+<p>You can see these files by looking into the External Libraries directory, and looking for <code class="docutils literal notranslate"><span class="pre">Gradle:org.hibernate:hibernate-spatial:5.1.0.FINAL</span></code>, and <code class="docutils literal notranslate"><span class="pre">Gradle:org.postgresql:postgresql:42.1.4</span></code>. They will be among the other dependencies we loaded from the Spring Initializr.</p>
 </div>
 <div class="section" id="intialize-a-new-git-repository">
 <h2>Intialize a New Git Repository<a class="headerlink" href="#intialize-a-new-git-repository" title="Permalink to this headline">¶</a></h2>
-<p>You may notice that Spring Intilizr created a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file for you. However, it is not able to intialize a new git directory for you.</p>
+<p>You may notice that Spring Initializr created a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file for you. However, it is not able to intialize a new git directory for you.</p>
 <p>You will need to intialize a new git directory with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">init</span></code>.</p>
 <p>Look over the .gitignore file and deterimine if there is anything else you may need to add to it.</p>
 </div>

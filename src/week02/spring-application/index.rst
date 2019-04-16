@@ -25,7 +25,7 @@ We will be creating a Spring project from scratch today! Luckily for us Pivotal,
 
 In your browser navigate to `start.spring.io <https://start.spring.io>`_.
 
-From the Spring Initalizr we have some options to create a ready to go spring application!
+From the Spring Initializr we have some options to create a ready to go spring application!
 
 You will need to select:
     - Project: *Gradle*
@@ -43,11 +43,11 @@ You will need to select:
     - Dependencies: *JPA*
     - Dependencies: *DevTools*
 
-Double check that you have filled out the informatoin correctly, and then click Generate Project. This will prompt your browser to download a file called zikaDashboard.zip, go ahead and download it, and take notice of where it is downloaded. Most machines default to a Download directory off of your Home directory.
+Double check that you have filled out the information correctly, and then click Generate Project. This will prompt your browser to download a file called zikaDashboard.zip, go ahead and download it, and take notice of where it is downloaded. Most machines default to a Download directory off of your Home directory.
 
 We will want to move the zikaDashboard.zip file to wherever you typically store your projects, and then unzip the file.
 
-You command will likely be different, but I will move my zikaDashboard.zip file to my projects folder with the following command.
+Your command will likely be different, but one example of moving the zikaDashboard.zip file to the projects folder can be completed with the following command.
 
 .. sourcecode:: console
    :caption: Move & unzip zikaDashboard.zip
@@ -56,7 +56,7 @@ You command will likely be different, but I will move my zikaDashboard.zip file 
    $ cd /home/paul/projects
    $ unzip zikaDashboard.zip
 
-Upon unzipping the file, I will have a new folder called zikaDashboard. Looking into the folder you will see a familiar project structure for Spring projects.
+Upon unzipping the file, we will have a new folder called zikaDashboard. Looking into the folder you will see a familiar project structure for Spring projects.
 
 Open Project in IntelliJ
 ------------------------
@@ -72,7 +72,7 @@ Configure Project Dependencies
 
 In creating our Spring project we added four dependencies directly from Spring: Web, Thymeleaf, JPA, and DevTools.
 
-However, we have 2 additional dependencies we will need: a PSQL Driver, and Hibernate. These two tools are not managed by Spring, and cannot be loaded through the Spring Intilizr, so we will have to manually include their dependencies.
+However, we have 2 additional dependencies we will need: a PSQL Driver, and Hibernate. These two tools are not managed by Spring, and cannot be loaded through the Spring Initializr, so we will have to manually include their dependencies.
 
 Open the ``build.gradle`` file in your new project. You will need to add two things.
 
@@ -110,12 +110,12 @@ We just want to add the following two statements.
 
 After you add these statements you should notice IntelliJ displays a loading symbol as it dowloads, and installs these dependencies into your project. It should only take a second.
 
-You can see these files by looking into the External Libraries directory, and looking for ``Gradle:org.hibernate:hibernate-spatial:5.1.0.FINAL``, and ``Gradle:org.postgresql:postgresql:42.1.4``. They will be among the other dependencies we loaded from the Spring Intializir.
+You can see these files by looking into the External Libraries directory, and looking for ``Gradle:org.hibernate:hibernate-spatial:5.1.0.FINAL``, and ``Gradle:org.postgresql:postgresql:42.1.4``. They will be among the other dependencies we loaded from the Spring Initializr.
 
 Intialize a New Git Repository
 ------------------------------
 
-You may notice that Spring Intilizr created a ``.gitignore`` file for you. However, it is not able to intialize a new git directory for you.
+You may notice that Spring Initializr created a ``.gitignore`` file for you. However, it is not able to intialize a new git directory for you.
 
 You will need to intialize a new git directory with ``$ git init``.
 
