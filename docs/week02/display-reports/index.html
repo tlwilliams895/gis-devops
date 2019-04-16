@@ -306,22 +306,36 @@
 <div class="section" id="design-report-java-class">
 <h2>Design Report.java Class<a class="headerlink" href="#design-report-java-class" title="Permalink to this headline">¶</a></h2>
 <p>Before we display our report data as a layer on our map in OSM we will first have to transform our data into a state we can work with.</p>
-<p>Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data is locked away in various CSV files.</p>
-<p>Let’s consider our data’s journey.</p>
-<p>It currently exists in CSV format, we will have to COPY our CSVs into a PostGIS table as records, our web application will convert records from PostGIS into a Java Object, our web app will convert Java Objects into GeoJSON. The GeoJSON is what OpenLayers is expecting to make a new layer from.</p>
+<p>Ultimately OpenLayers is expecting a source of data in a GeoJSON format. Right now our data is locked away in various CSV files. You can find the files you will need in the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-data">zika-data repository</a> on GitLab.</p>
+<dl class="docutils">
+<dt>Let’s consider the journey of our data.</dt>
+<dd><ol class="first last arabic simple">
+<li>Report data exists as 6 CSV files</li>
+<li>CSV files are copied as records in a report table in a PostGIS database</li>
+<li>JpaRepository loads records from PostGIS and stores them as Report objects</li>
+<li>Report objects are converted into GeoJSON</li>
+<li>OpenLayers consumes GeoJSON to create a visual layer on a map</li>
+</ol>
+</dd>
+</dl>
 <p>In order to COPY our CSVs into a PostGIS table, the table must exist, and it’s columns must match the SQL COPY statement. We have been using Hibernate to create our PostGIS tables for us, Spring scans our project for the &#64;Entity annotation, and automatically creates a table based on the properties of that class. In order to create our table we will first need to design our Report class!</p>
 <p>Look over the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/zika-data">provided CSV files</a>, look for their <strong>shared</strong> columns. These shared columns will be the columns in our table, and we need to create properties on our Report class to match these columns.</p>
 <p>Look at your solution to the <a class="reference external" href="../../studios/airwaze/">Airwaze Studio</a>. Take note of how the <code class="docutils literal notranslate"><span class="pre">Airports.csv</span></code> file matches up with the <code class="docutils literal notranslate"><span class="pre">models/Airport.java</span></code> file, and how the <code class="docutils literal notranslate"><span class="pre">routes.csv</span></code> file matches up with the <code class="docutils literal notranslate"><span class="pre">models/Route.java</span></code> file.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">Hibernate uses the snake case naming strategy. You can explicitlly define a Column name by using the Spring Data &#64;Column annotation. Above the property declaration you can include the &#64;Column(name = “columnName”) annotation and Hibernate will name the column based on the value mapped to the name variable.</p>
+<p class="last">Hibernate uses the <a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake case</a> naming strategy. You can explicitlly define a Column name by using the Spring Data &#64;Column annotation. Above the property declaration you can include the &#64;Column(name = “columnName”) annotation and Hibernate will name the column based on the value mapped to the name variable.</p>
 </div>
-<p>After you create your Report.java class re-run <code class="docutils literal notranslate"><span class="pre">bootRun</span></code>, and then check your database. Your report table still won’t have any records in it, but</p>
+<p>After you create your Report.java class re-run <code class="docutils literal notranslate"><span class="pre">bootRun</span></code>, and then check your database. Your report table still won’t have any records in it, but you should see a report table with columns that match the properties of your Report class.</p>
 </div>
 <div class="section" id="create-reporttests-java">
 <h2>Create ReportTests.java<a class="headerlink" href="#create-reporttests-java" title="Permalink to this headline">¶</a></h2>
 <p>When creating a new class in Java we should test this file.</p>
 <p>Create <code class="docutils literal notranslate"><span class="pre">ReportTests.java</span></code> in your tests directory. Look over the <a class="reference external" href="../../walkthroughs/unit-tests/">Unit Testing walkthrough</a> if you need help writing these tests.</p>
+<p>We advise creating a <code class="docutils literal notranslate"><span class="pre">testReportConstructor()</span></code> method that will create a new <code class="docutils literal notranslate"><span class="pre">testReport</span></code> object based on information  from one of the CSV files. This will allow you to perform <code class="docutils literal notranslate"><span class="pre">assertEquals</span></code> statements to verify the <code class="docutils literal notranslate"><span class="pre">testReport</span></code> object contains information that matches our CSV file.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">In most cases people will not test constructors in Java, or any language. An object constructor is code handled by the team responsbile for the programming language itself, and you typically don’t test code written by third parties. The purpose of this class is learning, and practice. So we will be creating a test case for our constructor.</p>
+</div>
 </div>
 <div class="section" id="populate-report-table">
 <h2>Populate Report table<a class="headerlink" href="#populate-report-table" title="Permalink to this headline">¶</a></h2>
@@ -361,6 +375,7 @@
 <div class="section" id="create-reportrepositorytests-java">
 <h2>Create ReportRepositoryTests.java<a class="headerlink" href="#create-reportrepositorytests-java" title="Permalink to this headline">¶</a></h2>
 <p>In creating a new JpaRepository we need to write some tests as well. Look at the <code class="docutils literal notranslate"><span class="pre">AirportRepositoryTest.java</span></code> file from the <a class="reference external" href="../../studios/airwaze/">airwaze studio</a> for help.</p>
+<p>We advise creating a <code class="docutils literal notranslate"><span class="pre">testGetAllReports()</span></code> method that uses <code class="docutils literal notranslate"><span class="pre">reportRepository</span></code> to load all reports into a list. You can then assert if the length of that list matches the number of records in your database. You can also pull out one of the reports and assert that the data matches.</p>
 </div>
 <div class="section" id="create-reportcontroller-java">
 <h2>Create ReportController.java<a class="headerlink" href="#create-reportcontroller-java" title="Permalink to this headline">¶</a></h2>
@@ -381,6 +396,7 @@
 <div class="section" id="create-reportcontrollertests-java">
 <h2>Create ReportControllerTests.java<a class="headerlink" href="#create-reportcontrollertests-java" title="Permalink to this headline">¶</a></h2>
 <p>Since we are creating a new class we also need to test the class. Look at the <code class="docutils literal notranslate"><span class="pre">AirportControllerTest.java</span></code> file from the <a class="reference external" href="../../studios/airwaze/">airwaze studio</a> for help.</p>
+<p>We advise creating a <code class="docutils literal notranslate"><span class="pre">testGetReports()</span></code> method that will use MockMvc to perform a get request to the endpoint you created in your controller. You can expect the HTTP Status to be 200, and you should expect something about the number of reports, or something inside one of the reports.</p>
 </div>
 <div class="section" id="amend-script-js">
 <h2>Amend script.js<a class="headerlink" href="#amend-script-js" title="Permalink to this headline">¶</a></h2>
