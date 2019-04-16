@@ -10,6 +10,8 @@ Walkthrough: Git and Gitlab
 
 Follow along with the instructor as we review Git and Gitlab.
 
+We will be using Git, and GitLab almost everyday throughout this class. This walkthrough will show you some of the basics. Primarily creating new projects, creating new branches, creating merge requests for branches, and resolving merge conflicts.
+
 Setup
 -----
 
@@ -19,8 +21,8 @@ Setup
 Follow Along as we...
 ---------------------
 
-Part 1
-------
+Part 1 - Instructor Steps
+-------------------------
 1. The instructor will create a new project on Gitlab for this walkthrough
 2. Instructor will add a file to the repo using a branch and a Merge Request
 3. In your terminal, clone that repo

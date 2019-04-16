@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -93,15 +92,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week: Zika Mission Control</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-hints">Project Hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-project">Setup Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#zika-mission-control">Zika Mission Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-overview">Project Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-requirements">Project Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#primary-objectives">Primary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#secondary-objectives">Secondary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning in Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#check-your-knowledge">Check Your Knowledge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-resources">Bonus Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -293,9 +291,13 @@
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Fork and clone the JQuery OpenLayers Starter <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter">https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter</a> repo.</li>
+<li>Fork and clone the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/jquery-open-layers-starter">JQuery OpenLayers Starter repo</a></li>
 <li>Create a story branch named <code class="docutils literal notranslate"><span class="pre">day5-solution</span></code></li>
-<li>Open this folder with any editor you choose. We suggest Visual Studio Code since this project is only JavaScript and HTML.</li>
+<li>Open the repository folder with any editor you choose<ul>
+<li><a class="reference external" href="https://code.visualstudio.com/">Visual Studio Code</a> works well because this project is JavaScript, CSS, and HTML</li>
+<li>The Community Edition(free version) of Intellij IDEA doesn’t handle JavaScript, CSS, and HTML very well</li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="review-the-code">
@@ -305,7 +307,7 @@
 <li><code class="docutils literal notranslate"><span class="pre">index.html</span></code> has a <code class="docutils literal notranslate"><span class="pre">&lt;body&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;h2&gt;</span></code> but not much else</li>
 <li><code class="docutils literal notranslate"><span class="pre">js/script.js</span></code> contains code to instantiate a map</li>
 <li><code class="docutils literal notranslate"><span class="pre">js/script.js</span></code> defines styles</li>
-<li><code class="docutils literal notranslate"><span class="pre">js/script.js</span></code> uses OpenLayers Tile layer Layer Types <a class="reference external" href="https://openlayers.org/en/v4.6.4/apidoc/ol.source.html">https://openlayers.org/en/v4.6.4/apidoc/ol.source.html</a></li>
+<li><code class="docutils literal notranslate"><span class="pre">js/script.js</span></code> uses OpenLayers Tile layer Layer Types <a class="reference external" href="https://openlayers.org/en/v4.6.5/apidoc/ol.source.html">https://openlayers.org/en/v4.6.5/apidoc/ol.source.html</a></li>
 <li><code class="docutils literal notranslate"><span class="pre">js/script.js</span></code> sets the <code class="docutils literal notranslate"><span class="pre">map.view</span></code> attribute which allows us to position the map at a certain lat long and zoom level using an <code class="docutils literal notranslate"><span class="pre">ol.View</span></code> object</li>
 </ul>
 </div>
@@ -467,6 +469,11 @@ the below code to <code class="docutils literal notranslate"><span class="pre">s
 <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
 </pre></div>
 </div>
+<p>For starters let’s add an empty &lt;ul&gt;&lt;/ul&gt; tag to our index.html file.</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">ul</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;airports&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="javascript-template-literals">
 <h3>JavaScript Template Literals<a class="headerlink" href="#javascript-template-literals" title="Permalink to this headline">¶</a></h3>
@@ -482,9 +489,9 @@ the below code to <code class="docutils literal notranslate"><span class="pre">s
 <h3>Show Airport List when Map Clicked<a class="headerlink" href="#show-airport-list-when-map-clicked" title="Permalink to this headline">¶</a></h3>
 <p>Update the Map onclick code to display. For each feature at a certain pixel, we want to add that feature to the list below the map. OpenLayers will handle some of this work for us via <code class="docutils literal notranslate"><span class="pre">map.forEachFeatureAtPixel()</span></code>. Remember that the features in this case are airports and we are styling them to be displayed as red circles:</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">map</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#airport-list&#39;</span><span class="p">).</span><span class="nx">empty</span><span class="p">();</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#airports&#39;</span><span class="p">).</span><span class="nx">empty</span><span class="p">();</span>
     <span class="nx">map</span><span class="p">.</span><span class="nx">forEachFeatureAtPixel</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">pixel</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">feature</span><span class="p">,</span><span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#airport-list&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="sb">`</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#airports&#39;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="sb">`</span>
 <span class="sb">            &lt;li&gt;</span>
 <span class="sb">                &lt;h3&gt;</span><span class="si">${</span><span class="nx">feature</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;locationType&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/h3&gt;</span>
 <span class="sb">                &lt;p&gt;ICAO: </span><span class="si">${</span><span class="nx">feature</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;icao&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/p&gt;&lt;p&gt;Location: </span><span class="si">${</span><span class="nx">feature</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;dataField&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">, </span><span class="si">${</span><span class="nx">feature</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;country&#39;</span><span class="p">)</span><span class="si">}</span><span class="sb">&lt;/p&gt;</span>

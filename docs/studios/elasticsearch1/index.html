@@ -12,7 +12,6 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
-    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -93,15 +92,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week: Zika Mission Control</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-hints">Project Hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-project">Setup Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#zika-mission-control">Zika Mission Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-overview">Project Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-requirements">Project Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#primary-objectives">Primary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#secondary-objectives">Secondary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning in Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#check-your-knowledge">Check Your Knowledge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-resources">Bonus Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -261,8 +259,13 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Elasticsearch Query Studio</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a><ul>
 <li><a class="reference internal" href="#elasticsearch-installation">Elasticsearch Installation</a></li>
-<li><a class="reference internal" href="#loading-data">Loading Data</a></li>
+<li><a class="reference internal" href="#kibana-installation">Kibana Installation</a></li>
+<li><a class="reference internal" href="#seed-elasticsearch">Seed Elasticsearch</a></li>
+<li><a class="reference internal" href="#kibana-introduction">Kibana Introduction</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#your-tasks">Your Tasks</a></li>
 <li><a class="reference internal" href="#turning-in-your-work">Turning In Your Work</a></li>
 </ul>
@@ -275,69 +278,48 @@
       
   <div class="section" id="elasticsearch-query-studio">
 <span id="elasticsearch1-studio"></span><h1>Elasticsearch Query Studio<a class="headerlink" href="#elasticsearch-query-studio" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="elasticsearch-installation">
-<h2>Elasticsearch Installation<a class="headerlink" href="#elasticsearch-installation" title="Permalink to this headline">¶</a></h2>
-<p>We need to install Elasticsearch and Kibana locally. Elasticsearch is built on Lucene, a Java library, so you may be prompted to install a particular version of Java that is a dependency of the current version of Elasticsearch.</p>
-<p>On Mac, use Homebrew:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew install elasticsearch
-$ brew install kibana
-</pre></div>
-</div>
-<p>And then, to start up the server:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew services start elasticsearch
-$ brew services start kibana
-</pre></div>
-</div>
-<p>In your browser, navigate to <a class="reference external" href="http://localhost:5601">http://localhost:5601</a> to access Kibana. Select the <em>Dev Tools</em> view from the left-hand pane.</p>
-<p>Check that the installation and starteup were successful by checking the cluster’s health:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>GET /_cat/health?v
-</pre></div>
-</div>
-<p>All being well, the output should look something like this:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>epoch      timestamp cluster              status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
-1516231703 17:28:23  elasticsearch_cheryl yellow          1         1      5   5    0    0        5             0                  -                 50.0%
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If you don’t receive something like the response above, restart the service using: <code class="docutils literal notranslate"><span class="pre">brew</span> <span class="pre">services</span> <span class="pre">restart</span> <span class="pre">SERVICE_NAME</span></code> (where <code class="docutils literal notranslate"><span class="pre">SERVICE_NAME</span></code> is either <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> or <code class="docutils literal notranslate"><span class="pre">kibana</span></code>.</p>
-</div>
-<p>Cluster health is expressed as the color green, yellow, or red.</p>
-<ul class="simple">
-<li><strong>Green</strong> - everything is good (cluster is fully functional)</li>
-<li><strong>Yellow</strong> - all data is available but some replicas are not yet allocated (cluster is fully functional, but more vulnerable to data loss/corruption)</li>
-<li><strong>Red</strong> - some data is not available for whatever reason (cluster is partially functional)</li>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>We will need to verify:</dt>
+<dd><ul class="first last simple">
+<li>Elasticsearch is installed</li>
+<li>Kibana is installed</li>
+<li>Elasticsearch is seeded with data</li>
 </ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">When a cluster is red, it will continue to serve search requests from the available shards but you will likely need to fix it ASAP since there are unassigned shards.</p>
+</dd>
+</dl>
+<div class="section" id="elasticsearch-installation">
+<h3>Elasticsearch Installation<a class="headerlink" href="#elasticsearch-installation" title="Permalink to this headline">¶</a></h3>
+<p>We will be running Elasticsearch as a docker container. You can check if you have docker installed with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">-v</span></code>, if it’s installed it will print out the version installed. Check out the <a class="reference internal" href="../../installations/docker/index.html#docker"><span class="std std-ref">Installation: Docker</span></a> if you need to install docker.</p>
+<p>After docker is installed you can check your containers with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code>, if you don’t have an Elasticsearch container, you can get one by following the <a class="reference internal" href="../../installations/docker-elasticsearch/index.html#docker-elasticsearch"><span class="std std-ref">Docker Installation: Elasticsearch</span></a>.</p>
 </div>
-<p>You can see from the output that we have 1 node and 0 shards (since there’s no data yet).
-Let’s confirm we don’t have any indices yet.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>GET /_cat/indices?v
-</pre></div>
+<div class="section" id="kibana-installation">
+<h3>Kibana Installation<a class="headerlink" href="#kibana-installation" title="Permalink to this headline">¶</a></h3>
+<p>We will be running Kibana as a docker container. If you don’t already have a Kibana container, you can get one by following the <a class="reference internal" href="../../installations/docker-kibana/index.html#docker-kibana"><span class="std std-ref">Docker Installation: Kibana</span></a>.</p>
 </div>
-<p>Your response should just show headers and no content:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>health status index                                    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
-</pre></div>
+<div class="section" id="seed-elasticsearch">
+<h3>Seed Elasticsearch<a class="headerlink" href="#seed-elasticsearch" title="Permalink to this headline">¶</a></h3>
+<p>Elasticsearch doesn’t have any data in it first, so we will first need to run a script to seed the data for our studio.</p>
+<dl class="docutils">
+<dt>Seed <code class="docutils literal notranslate"><span class="pre">/tweets</span></code>:</dt>
+<dd><ol class="first last arabic simple">
+<li>Copy <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/elasticsearch-practice/blob/master/tweets.sh">tweets.sh</a> to your local machine as baseball.sh.</li>
+<li>Make the script excutable from the terminal: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">chmod</span> <span class="pre">500</span> <span class="pre">tweets.sh</span></code></li>
+<li>Run the script: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">./tweets.sh</span></code></li>
+</ol>
+</dd>
+</dl>
 </div>
-</div>
-<div class="section" id="loading-data">
-<h2>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
-<p>Create a file <code class="docutils literal notranslate"><span class="pre">load_data.sh</span></code> and make it executable::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ touch load_data.sh
-$ chmod +x load_data.sh
-</pre></div>
-</div>
-<p>Open it in an editor and copy/paste the contents of this <a class="reference external" href="https://gist.github.com/chrisbay/415a961d3524fc7c91dbbf88513308d8">gist</a>.</p>
-<p>Run the script to create some documents::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ./load_data.sh
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>If an error occurs while running the script, delete the index. Get help from an instructor and then try again.</p>
-<p class="last">You can delete an index this way: <code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">/twitter/</span></code></p>
+<div class="section" id="kibana-introduction">
+<h3>Kibana Introduction<a class="headerlink" href="#kibana-introduction" title="Permalink to this headline">¶</a></h3>
+<p>In the <a class="reference internal" href="../../walkthroughs/elasticsearch/index.html#walkthrough-elasticsearch"><span class="std std-ref">Walkthrough: Elasticsearch</span></a> we worked with Elasticsearch using cURL. An easier way to work with Elasticsearch is by using Kibana.</p>
+<p>To access Kibana go to <code class="docutils literal notranslate"><span class="pre">localhost:5601</span></code> in a web browser. After clicking through the splash screen, click Dev Tools from the Kibana menu.</p>
+<img alt="../../_images/dev-tools.png" src="../../_images/dev-tools.png" />
+<p>This will take you to an area where you can make HTTP Requests, and view the Response in a more streamlined, and interactive environment. This will be a much nicer area to work than using cURL from the command line. However, when we start working with Elasticsearch in AWS you will need to continue working with cURL, so don’t completely forget about cURL.</p>
+<p>Let’s take a look at <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/teams/_search</span></code>.</p>
+<img alt="../../_images/teams-search.png" src="../../_images/teams-search.png" />
+<p>We can make the same HTTP Requests we would make from the terminal with cURL in Kibana. The syntax changes slightly since Kibana already knows the URL, and port for your Elasticsearch container. It also adds the JSON for us, and sets the HTTP Header to allow JSON. This simplifies our lives greatly. Try out Kibana during this studio.</p>
 </div>
 </div>
 <div class="section" id="your-tasks">
@@ -353,6 +335,7 @@ $ chmod +x load_data.sh
 <li>Get all tweets by John Smith</li>
 <li>Get the average number of likes for all tweets</li>
 </ol>
+<p>The <a class="reference internal" href="../../walkthroughs/elasticsearch/index.html#walkthrough-elasticsearch"><span class="std std-ref">Walkthrough: Elasticsearch</span></a> prepared you for most of these tasks, however you may need to reference the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/6.5/index.html">Elasticsearch documentation</a>, and work with your fellow classmates to answer all the questions!</p>
 </div>
 <div class="section" id="turning-in-your-work">
 <h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
