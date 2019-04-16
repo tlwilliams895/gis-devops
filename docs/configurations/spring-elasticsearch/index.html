@@ -304,7 +304,7 @@
 <h3>Elasticsearch<a class="headerlink" href="#elasticsearch" title="Permalink to this headline">¶</a></h3>
 <p>We can check our version of Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">127.0.0.1:9200</span></code>.</p>
 <p>We are looking for the <code class="docutils literal notranslate"><span class="pre">&quot;number&quot;</span></code> to be “6.5.4”.</p>
-<p>If you don’t have that version of Elasticsearch, or you don’t have a docker container for Elasticsearch checkout the <a class="reference external" href="../../installations/docker-elasticsearch/">Docker Elasticsearch Installation</a> article.</p>
+<p>If you don’t have that version of Elasticsearch, or you don’t have a docker container for Elasticsearch checkout the <a class="reference internal" href="../../installations/docker-elasticsearch/index.html#docker-elasticsearch"><span class="std std-ref">Docker Installation: Elasticsearch</span></a> article.</p>
 <p>You will also need to take note of <code class="docutils literal notranslate"><span class="pre">&quot;cluter_name&quot;</span></code>. Spring data will need the cluster name later. The default is <code class="docutils literal notranslate"><span class="pre">&quot;cluster_name&quot;:</span> <span class="pre">&quot;elasticsearch&quot;</span></code>, but yours may be named something else.</p>
 </div>
 <div class="section" id="springboot">
@@ -392,7 +392,7 @@
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>We have configured our Spring project to work with Elasticsearch. Moving forward from here will be different for each project. You will more than likely need to create Document models, Document Elasticsearch Repositories, Controllers, and possibly a Utilty file to reindex your Elasticsearch index.</p>
-<p>See the <a class="reference external" href="../../walkthroughs/elasticsearch-spring/">spring elasticsearch walkthrough</a> to see an example of how to use Elasticsearch within a Spring project.</p>
+<p>See the <a class="reference internal" href="../../walkthroughs/elasticsearch-spring/index.html#walkthrough-elasticsearch-spring"><span class="std std-ref">Walkthrough: Elasticsearch in Spring</span></a> to see an example of how to use Elasticsearch within a Spring project.</p>
 </div>
 </div>
 

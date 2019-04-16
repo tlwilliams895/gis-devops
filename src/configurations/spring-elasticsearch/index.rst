@@ -40,7 +40,7 @@ We can check our version of Elasticsearch by running ``$ curl -XGET 127.0.0.1:92
 
 We are looking for the ``"number"`` to be "6.5.4".
 
-If you don't have that version of Elasticsearch, or you don't have a docker container for Elasticsearch checkout the `Docker Elasticsearch Installation <../../installations/docker-elasticsearch/>`_ article.
+If you don't have that version of Elasticsearch, or you don't have a docker container for Elasticsearch checkout the :ref:`docker-elasticsearch` article.
 
 You will also need to take note of ``"cluter_name"``. Spring data will need the cluster name later. The default is ``"cluster_name": "elasticsearch"``, but yours may be named something else.
 
@@ -152,4 +152,4 @@ Conclusion
 
 We have configured our Spring project to work with Elasticsearch. Moving forward from here will be different for each project. You will more than likely need to create Document models, Document Elasticsearch Repositories, Controllers, and possibly a Utilty file to reindex your Elasticsearch index.
 
-See the `spring elasticsearch walkthrough <../../walkthroughs/elasticsearch-spring/>`_ to see an example of how to use Elasticsearch within a Spring project.
+See the :ref:`walkthrough-elasticsearch-spring` to see an example of how to use Elasticsearch within a Spring project.

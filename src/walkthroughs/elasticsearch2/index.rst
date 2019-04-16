@@ -6,7 +6,7 @@
 Walkthrough: Elasticsearch Part 2
 =================================
 
-In the previous `Elasticsearch walkthrough <../../walkthroughs/elasticsearch>`_ we learned about Elasticsearch terminology, CRUD functionality, Matching, Pagination, boolQuery, and Fuzzy searching.
+In the previous :ref:`walkthrough-elasticsearch` we learned about Elasticsearch terminology, CRUD functionality, Matching, Pagination, boolQuery, and Fuzzy searching.
 
 Today we will be expanding on Elasticsearch by learning about: Filtering, Aggregations, Mapping, and GeoAggregations.
 

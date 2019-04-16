@@ -20,7 +20,7 @@ Getting Ready
 Spring Elasticsearch Configuration
 ----------------------------------
 
-Checkout the `Spring Elasticsearch configuration <../../configurations/spring-elasticsearch/>`_ article to configure your project for Elasticsearch.
+Checkout the :ref:`spring-elasticsearch` article to configure your project for Elasticsearch.
 
 Write A Test
 ------------
