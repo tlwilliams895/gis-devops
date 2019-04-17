@@ -130,8 +130,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthroughs">Walkthroughs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studio">Studio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
 </ul>
 </li>
@@ -276,27 +276,15 @@
 <p>In this studio you will practice working with indices (deleting, reindexing) and mappings. You will also run some filtered and geo queries on Elasticsearch.</p>
 <div class="section" id="loading-data">
 <h2>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
-<p>First, let’s delete the data in the <code class="docutils literal notranslate"><span class="pre">twitter</span></code> index::</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>DELETE /twitter
-</pre></div>
-</div>
-<p>As we did yesterday, let’s load some data. Create a script:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ touch load_data_geo.sh
-$ chmod +x load_data_geo.sh
-</pre></div>
-</div>
-<p>Then copy/paste the contents of this <a class="reference external" href="https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4">gist</a>. Save and run the script:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ./load_data_geo.sh
-</pre></div>
-</div>
+<p>We will be working with the same data set as yesterday for <code class="docutils literal notranslate"><span class="pre">/tweets</span></code>. However, we are adding location data for our tweets. Use the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/elasticsearch-practice/blob/master/tweets-geo.sh">tweets-geo.sh script</a> to create a new index: <code class="docutils literal notranslate"><span class="pre">/tweets_geo</span></code>.</p>
+<p>Look over the script as it may help you with your tasks.</p>
 </div>
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
 <p>Carry out each of the following tasks. Once you have a successful query for each, save the command in a <code class="docutils literal notranslate"><span class="pre">.txt</span></code> file for submission.</p>
 <ol class="arabic simple">
-<li>What is the data type of the <code class="docutils literal notranslate"><span class="pre">location</span></code> field in the <code class="docutils literal notranslate"><span class="pre">twitter</span></code> index? What should it be?</li>
-<li>Fix the issue with <code class="docutils literal notranslate"><span class="pre">location</span></code> by creating a mapping for a new index <code class="docutils literal notranslate"><span class="pre">twitter_geo</span></code> that defines <code class="docutils literal notranslate"><span class="pre">location</span></code> as a <code class="docutils literal notranslate"><span class="pre">geo_point</span></code> field. <strong>Hint</strong>: To build the JSON that you’ll need to create the new mapping for <code class="docutils literal notranslate"><span class="pre">twitter_geo</span></code>, you can copy the reponse from fetching the mapping for <code class="docutils literal notranslate"><span class="pre">twitter</span></code> and modify it.</li>
-<li>Reindex <code class="docutils literal notranslate"><span class="pre">twitter</span></code> into <code class="docutils literal notranslate"><span class="pre">twitter_geo</span></code>.</li>
+<li>What is the data type of the <code class="docutils literal notranslate"><span class="pre">location</span></code> field in the <code class="docutils literal notranslate"><span class="pre">twitter_geo</span></code> index? What should it be?</li>
+<li>Fix the issue with <code class="docutils literal notranslate"><span class="pre">location</span></code> by editing tweets_geo.sh to explictlly map <code class="docutils literal notranslate"><span class="pre">location</span></code> as a <code class="docutils literal notranslate"><span class="pre">geo_point</span></code> field. <strong>Hint</strong>: To build the JSON that you’ll need to create the new mapping for <code class="docutils literal notranslate"><span class="pre">twitter_geo</span></code>, you can copy the reponse from fetching the mapping for <code class="docutils literal notranslate"><span class="pre">twitter</span></code> and modify it.</li>
 <li>Find all tweets with between 5 and 10 likes, inclusive of those endpoints.</li>
 <li>Find all tweets by Mary Jones that have at least 2 likes.</li>
 <li>Find all tweets that contain the text “Elasticsearch”, including mispellings up to distance of 2 away.</li>

@@ -130,8 +130,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthroughs">Walkthroughs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studio">Studio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
 </ul>
 </li>
@@ -261,13 +261,7 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Walkthrough: Elasticsearch in Spring</a><ul>
 <li><a class="reference internal" href="#getting-ready">Getting Ready</a><ul>
-<li><a class="reference internal" href="#upgrading-spring-boot">Upgrading Spring Boot</a></li>
-<li><a class="reference internal" href="#rename-your-cluster">Rename Your Cluster</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#integrating-elasticsearch">Integrating Elasticsearch</a><ul>
-<li><a class="reference internal" href="#add-gradle-dependencies">Add Gradle dependencies</a></li>
-<li><a class="reference internal" href="#configuring-spring-boot-for-es">Configuring Spring Boot for ES</a></li>
+<li><a class="reference internal" href="#spring-elasticsearch-configuration">Spring Elasticsearch Configuration</a></li>
 <li><a class="reference internal" href="#write-a-test">Write A Test</a></li>
 <li><a class="reference internal" href="#model-and-repository">Model and Repository</a></li>
 <li><a class="reference internal" href="#controller">Controller</a></li>
@@ -289,7 +283,7 @@
     <div class="col-md-9 content">
       
   <div class="section" id="walkthrough-elasticsearch-in-spring">
-<span id="elasticsearch-spring-walkthrough"></span><h1>Walkthrough: Elasticsearch in Spring<a class="headerlink" href="#walkthrough-elasticsearch-in-spring" title="Permalink to this headline">¶</a></h1>
+<span id="walkthrough-elasticsearch-spring"></span><h1>Walkthrough: Elasticsearch in Spring<a class="headerlink" href="#walkthrough-elasticsearch-in-spring" title="Permalink to this headline">¶</a></h1>
 <p>We’ll walk through the steps to integrate Elasticsearch with Spring, using the Launchcart application.</p>
 <p>The goal is to enable fuzzy searching for items via LaunchCart’s REST API. This will require:</p>
 <ol class="arabic simple">
@@ -297,98 +291,11 @@
 <li>Creating a Java representation of the item documents we want to store in Elasticsearch.</li>
 <li>Creating a REST endpoint that conducts a fuzzy search for item documents.</li>
 </ol>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This walkthrough was updated in January 2019. If you want to reference the previous version–which includes instructions for integrating with an embedded Elasticsearch instance using Spring Boot 1.x–you will find it here: <a class="reference internal" href="old.html#elasticsearch-spring-walkthrough-old"><span class="std std-ref">Walkthrough: Elasticsearch in Spring</span></a></p>
-</div>
 <div class="section" id="getting-ready">
 <h2>Getting Ready<a class="headerlink" href="#getting-ready" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="upgrading-spring-boot">
-<h3>Upgrading Spring Boot<a class="headerlink" href="#upgrading-spring-boot" title="Permalink to this headline">¶</a></h3>
-<p>This walkthrough assumes that you are using Spring Boot 2.x. You can check the version of Spring Boot that you are using for a given project by referring to the <code class="docutils literal notranslate"><span class="pre">springBootVersion</span></code> property near the top of <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>.</p>
-<p>If you need to update a Spring Boot app from 1.x to 2.x, follow the instructions here: <a class="reference internal" href="../upgrading-spring-boot/index.html#upgrading-spring-boot"><span class="std std-ref">Walkthrough: Upgrading to Spring Boot 2.x</span></a>.</p>
-</div>
-<div class="section" id="rename-your-cluster">
-<h3>Rename Your Cluster<a class="headerlink" href="#rename-your-cluster" title="Permalink to this headline">¶</a></h3>
-<p>We can view the name a local Elasticsearch cluster by querying it’s root endpoint, <code class="docutils literal notranslate"><span class="pre">localhost:9200</span></code> (use <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">localhost:9200</span></code> at the command line). If you installed ES via Homebrew on a Mac, your cluster is most likely named <code class="docutils literal notranslate"><span class="pre">elasticsearch_USERNAME</span></code>, where USERNAME is your macOS system user name. Spring Boot will look for a cluster named <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> by default, and since it’s easier to change the name of our cluster than it is to customize the Spring Boot configuration, we’ll do that.</p>
-<p>Open the ES configuration file, <code class="docutils literal notranslate"><span class="pre">/usr/local/etc/elasticsearch/elasticsearch.yml</span></code>, and change the <code class="docutils literal notranslate"><span class="pre">cluster.name</span></code> property to have the value <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code>. Save and close the file, then restart your cluster:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ brew services restart elasticsearch
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="integrating-elasticsearch">
-<h2>Integrating Elasticsearch<a class="headerlink" href="#integrating-elasticsearch" title="Permalink to this headline">¶</a></h2>
-<p>We will now walk through several steps needed to use Elasticsearch within Spring.</p>
-<div class="admonition tip">
-<p class="first admonition-title">Tip</p>
-<p>The code that we’ll look at is in the <code class="docutils literal notranslate"><span class="pre">elasticsearch-remote-transport</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">LaunchCodeTraining/launchcart</span></code> repository.</p>
-<p class="last">To view the specific changes, look at <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/62bc976eb25f65bf7fe2d083f370b6b8dfa4d166">this commit</a>.</p>
-</div>
-<div class="section" id="add-gradle-dependencies">
-<h3>Add Gradle dependencies<a class="headerlink" href="#add-gradle-dependencies" title="Permalink to this headline">¶</a></h3>
-<p>We need two new dependencies in order to connect ES with Spring Boot.</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>compile(&#39;org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE&#39;)
-compile(&#39;net.java.dev.jna:jna&#39;)
-</pre></div>
-</div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p>This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the <em>same major versions</em>.</p>
-<p class="last">Check your version of Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">localhost:9200</span></code>. The version of Elasticsearch supported by a given version of the <code class="docutils literal notranslate"><span class="pre">spring-data-elasticsearch</span></code> dependency is documented on <a class="reference external" href="https://github.com/spring-projects/spring-data-elasticsearch">that project’s GitHub README</a>.</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>The Spring Data project is in the process of replacing the transport client with a REST API client that will be version agnostic.</p>
-<p class="last">Read more about the state of the official <a class="reference external" href="https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients">Elasticsearch Java clients</a>.</p>
-</div>
-</div>
-<div class="section" id="configuring-spring-boot-for-es">
-<h3>Configuring Spring Boot for ES<a class="headerlink" href="#configuring-spring-boot-for-es" title="Permalink to this headline">¶</a></h3>
-<p>We need to do two things so that Spring Boot knows how to communicate with our cluster:</p>
-<ol class="arabic simple">
-<li>Provide the cluster location / URL.</li>
-<li>Define the index name(s) that we will use in both test and development contexts.</li>
-</ol>
-<p>In <code class="docutils literal notranslate"><span class="pre">application.properties</span></code>, add the following properties:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spring.data.elasticsearch.cluster-nodes=localhost:9300
-es.index-name=launchcart
-</pre></div>
-</div>
-<p>In <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code>, add similar property definitions (note the different index name here):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>spring.data.elasticsearch.cluster-nodes=localhost:9300
-es.index-name=launchcart_test
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">We use port 9300 rather than 9200 because we are configuring Spring to use Elasticsearch’s transport client, and not it’s REST API.</p>
-</div>
-<p>The first property informs the Spring Data Elasticsearch library of the location of our cluster.</p>
-<p>The second property is a custom property that we’ll use within our code. It is <em>not</em> a property supported by Spring Data Elasticsearch. We will have to manually in our code. While we won’t use the property quite yet, we need to do one more thing to make this property more easily referenced within our code.</p>
-<p>Create a class, <code class="docutils literal notranslate"><span class="pre">EsConfig</span></code>, at the root of your application and add the following code:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
- <span class="o">*</span> <span class="n">In</span> <span class="n">src</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">org</span><span class="o">/</span><span class="n">launchcode</span><span class="o">/</span><span class="n">launchcart</span><span class="o">/</span><span class="n">EsConfig</span><span class="o">.</span><span class="na">java</span>
- <span class="o">/*</span>
-<span class="nd">@Component</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsConfig</span> <span class="o">{</span>
-
-    <span class="nd">@Value</span><span class="o">(</span><span class="s">&quot;${es.index-name}&quot;</span><span class="o">)</span>
-    <span class="kd">private</span> <span class="n">String</span> <span class="n">indexName</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getIndexName</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="n">indexName</span><span class="o">;</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIndexName</span><span class="o">(</span><span class="n">String</span> <span class="n">indexName</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">indexName</span> <span class="o">=</span> <span class="n">indexName</span><span class="o">;</span>
-    <span class="o">}</span>
-
-<span class="o">}</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">&#64;Value</span></code> annotation tells Spring to read the <code class="docutils literal notranslate"><span class="pre">es.index-name</span></code> property from the properties file and store it in the field <code class="docutils literal notranslate"><span class="pre">indexName</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">&#64;Component</span></code> annotation tells Spring that this class is a bean that it should create and manage. The end result of setting up this class is that we can use <a class="reference external" href="https://docs.spring.io/spring-framework/docs/3.2.x/spring-framework-reference/html/expressions.html">Spring’s Expression Language</a> to dynamically insert the value of the <code class="docutils literal notranslate"><span class="pre">indexName</span></code> field in our code with the syntax <code class="docutils literal notranslate"><span class="pre">#{esConfig.indexName}</span></code>. We will do this when creating the model class to represent ES documents, but before we do that, let’s practice TDD.</p>
+<div class="section" id="spring-elasticsearch-configuration">
+<h3>Spring Elasticsearch Configuration<a class="headerlink" href="#spring-elasticsearch-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Checkout the <a class="reference internal" href="../../configurations/spring-elasticsearch/index.html#spring-elasticsearch"><span class="std std-ref">Configuration: Spring &amp; Elasticsearch</span></a> article to configure your project for Elasticsearch.</p>
 </div>
 <div class="section" id="write-a-test">
 <h3>Write A Test<a class="headerlink" href="#write-a-test" title="Permalink to this headline">¶</a></h3>
@@ -580,7 +487,7 @@ Actual   :400
 <span class="n">itemDocumentRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="n">ItemDocument</span><span class="o">(</span><span class="n">savedItem</span><span class="o">));</span>
 </pre></div>
 </div>
-<p>You will need to add an <code class="docutils literal notranslate"><span class="pre">&#64;Autowire</span></code>’d <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository</span></code> to each controller in which this change is made.</p>
+<p>You will need to <code class="docutils literal notranslate"><span class="pre">&#64;Autowire</span></code> a <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository</span></code> in each controller that needs access to Elasticsearch.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">We should also update or delete an <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> whenever the corresponding <code class="docutils literal notranslate"><span class="pre">Item</span></code> is updated or deleted. We leave this exercise to you.</p>
@@ -609,7 +516,7 @@ Actual   :400
 <div class="section" id="refresh-the-index">
 <h2>Refresh the Index<a class="headerlink" href="#refresh-the-index" title="Permalink to this headline">¶</a></h2>
 <p>While your tests are now passing, if you were to start up your application and try to conduct a fuzzy search (e.g. <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">localhost:8080/api/items/search?q=shoe</span></code>) you would not receive any hits. If the reason why isn’t obvious, it should become so after looking at the data in your <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> index in Elasticsearch.</p>
-<p>Since each of the items in our Postgres database was created <em>before</em> we added the Elasticsearch integration, the associate <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> objects were not created. We can retroactively create the objects and docuemnts using our special endpoint for refreshing the index. Start up your application, and make a request to this endpoint:</p>
+<p>Since each of the items in our Postgres database was created <em>before</em> we added the Elasticsearch integration, the associate <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> objects were not created. We can retroactively create the objects and documents using our special endpoint for refreshing the index. Start up your application, and make a request to this endpoint:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ curl -XPOST localhost:8080/api/es/refresh/
 </pre></div>
 </div>
@@ -624,7 +531,7 @@ Actual   :400
 <p>We looked at how to push a new item to Elasticsearch when creating it via the REST API. There are still several tasks that can be immediately carried out to fully integrate ES with the application. Try one more more of the following:</p>
 <ul class="simple">
 <li>We are currently creating and saving a new <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> whenever a new <code class="docutils literal notranslate"><span class="pre">Item</span></code> is created, however, we are not updating or deleting an <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> when the corresponding <code class="docutils literal notranslate"><span class="pre">Item</span></code> is updated or deleted. Add the code to do this.</li>
-<li>Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository.search</span></code>, or by creating a new controller method that passes fuzzy search results into a template.</li>
+<li>Add a search view that displays results of a fuzzy search. This may be done either by an AJAX request to <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository.search</span></code>, or by creating a new controller method that passes fuzzy search results into a template.</li>
 </ul>
 </div>
 <div class="section" id="resources">
