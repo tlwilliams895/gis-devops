@@ -258,7 +258,7 @@ Mapping
 
 From the `mapping documentation <https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html>`_: Mapping is the process of defining how a document, and the fields it contains, are stored and indexed. 
 
-We haven't learned about mapping yet because Elasticsearch dynamically maps indicies, however when you need more control over the data types of the fields within a mapping, or when you are working with GEOINT you need to explicitlly create an index's mapping.
+We haven't learned about mapping yet because Elasticsearch dynamically maps indicies, however when you need more control over the data types of the fields within a mapping, or when you are working with GEOINT you need to explicitly create an index's mapping.
 
 Let's look at the current mapping of the ``/teams`` index.
 
@@ -278,7 +278,7 @@ We currently have these properties:
 
 Pretty straightforward so far, but what if we wanted to add the property "stadium_location" a Geopoint that contains the Latitude and Longitude of the stadium?
 
-Since a Geopoint is a type of GEOINT we will have to explicitlly add this property to the mapping.
+Since a Geopoint is a type of GEOINT we will have to explicitly add this property to the mapping.
 
 .. sourcecode:: console
    :caption: PUT /teams ERROR
@@ -296,7 +296,7 @@ Since a Geopoint is a type of GEOINT we will have to explicitlly add this proper
        }
    }'
 
-When we run this cURL command we get an error. The resource already exists. This is one of the issues with Elasticsearch since documents are indexed immediately, you cannot update the mapping of an exising index. There are some exceptions, but in our case we may need to re-create our index.
+When we run this cURL command we get an error. The resource already exists. This is one of the issues with Elasticsearch since documents are indexed immediately, you cannot update the mapping of an exising index. There are some exceptions, but in our case we need to re-create our index.
 
 Let's clear out our current ``/teams`` index.
 
@@ -450,7 +450,7 @@ Geo Bounds
        }
    }'
 
-This gives us two points, we could use to draw a box around all of the stadiums. It's not very useful in this context because it's just a box covering the majority of the continental United States, and some of Canda. However, it could be more useful to visualize the area of each division.
+This gives us two points, we could use to draw a box around all of the stadiums. It's not very useful in this context because it's just a box covering the majority of the continental United States, and some of Canada. However, it could be more useful to visualize the area of each division.
 
 .. sourcecode:: console
    :caption: geobounds 
@@ -527,7 +527,7 @@ This time our centroid is in `southern Maryland <https://www.google.com/maps/pla
 Other Features
 ==============
 
-We have covered a lot of ground with Elasticsearch, and still have barely touched on the features of this technology. You will get more experience with Elasticsearch throughout this class, but mainly through our Spring web apps, and how we interface with Elasticsearch will change. However, it is still crucial to understand how Elasticsearch works, and what is going on.
+We have covered a lot of ground with Elasticsearch, and still have barely touched on the features of this technology. You will get more experience with Elasticsearch throughout this class, but mainly through our Spring web apps, and how we interface with Elasticsearch will change. However, it is still crucial to understand how Elasticsearch works and what is going on under the hood.
 
 If you are interested in learning more check out the following topics:
     - Boost

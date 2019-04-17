@@ -6,7 +6,7 @@
 Configuration: Spring & Elasticsearch
 =====================================
 
-One of the many benefits of Spring is that it contains a vast amount of tools we can leverage while building our web applicatoins. One of these tools is Spring Data JPA. Spring Data JPA has some code that will connect to our datastore, and perform basic operations by using methods attached to the JPA Repository.
+One of the many benefits of Spring is that it contains a vast amount of tools we can leverage while building our web applications. One of these tools is Spring Data JPA. Spring Data JPA has some code that will connect to our datastore, and perform basic operations by using methods attached to the JPA Repository.
 
 JPA Repositories make it very easy for us to work with various data stores including SQL data stores like Postgres, and NoSQL data stores like ElasticSearch.
 
@@ -42,7 +42,7 @@ We are looking for the ``"number"`` to be "6.5.4".
 
 If you don't have that version of Elasticsearch, or you don't have a docker container for Elasticsearch checkout the :ref:`docker-elasticsearch` article.
 
-You will also need to take note of ``"cluter_name"``. Spring data will need the cluster name later. The default is ``"cluster_name": "elasticsearch"``, but yours may be named something else.
+You will also need to take note of ``"cluster_name"``. Spring data will need the cluster name later. The default is ``"cluster_name": "elasticsearch"``, but yours may be named something else.
 
 Springboot
 ^^^^^^^^^^

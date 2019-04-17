@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -525,7 +526,7 @@
 <div class="section" id="mapping">
 <h2>Mapping<a class="headerlink" href="#mapping" title="Permalink to this headline">¶</a></h2>
 <p>From the <a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping.html">mapping documentation</a>: Mapping is the process of defining how a document, and the fields it contains, are stored and indexed.</p>
-<p>We haven’t learned about mapping yet because Elasticsearch dynamically maps indicies, however when you need more control over the data types of the fields within a mapping, or when you are working with GEOINT you need to explicitlly create an index’s mapping.</p>
+<p>We haven’t learned about mapping yet because Elasticsearch dynamically maps indicies, however when you need more control over the data types of the fields within a mapping, or when you are working with GEOINT you need to explicitly create an index’s mapping.</p>
 <p>Let’s look at the current mapping of the <code class="docutils literal notranslate"><span class="pre">/teams</span></code> index.</p>
 <div class="literal-block-wrapper docutils container" id="id11">
 <div class="code-block-caption"><span class="caption-text">GET /teams</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
@@ -547,7 +548,7 @@
 </dd>
 </dl>
 <p>Pretty straightforward so far, but what if we wanted to add the property “stadium_location” a Geopoint that contains the Latitude and Longitude of the stadium?</p>
-<p>Since a Geopoint is a type of GEOINT we will have to explicitlly add this property to the mapping.</p>
+<p>Since a Geopoint is a type of GEOINT we will have to explicitly add this property to the mapping.</p>
 <div class="literal-block-wrapper docutils container" id="id12">
 <div class="code-block-caption"><span class="caption-text">PUT /teams ERROR</span><a class="headerlink" href="#id12" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">curl -XPUT 127.0.0.1:9200/teams -H &#39;Content-Type: application/json&#39; -d &#39;</span>
@@ -565,7 +566,7 @@
 </pre></div>
 </div>
 </div>
-<p>When we run this cURL command we get an error. The resource already exists. This is one of the issues with Elasticsearch since documents are indexed immediately, you cannot update the mapping of an exising index. There are some exceptions, but in our case we may need to re-create our index.</p>
+<p>When we run this cURL command we get an error. The resource already exists. This is one of the issues with Elasticsearch since documents are indexed immediately, you cannot update the mapping of an exising index. There are some exceptions, but in our case we need to re-create our index.</p>
 <p>Let’s clear out our current <code class="docutils literal notranslate"><span class="pre">/teams</span></code> index.</p>
 <div class="literal-block-wrapper docutils container" id="id13">
 <div class="code-block-caption"><span class="caption-text">DELETE /teams</span><a class="headerlink" href="#id13" title="Permalink to this code">¶</a></div>
@@ -711,7 +712,7 @@
 </pre></div>
 </div>
 </div>
-<p>This gives us two points, we could use to draw a box around all of the stadiums. It’s not very useful in this context because it’s just a box covering the majority of the continental United States, and some of Canda. However, it could be more useful to visualize the area of each division.</p>
+<p>This gives us two points, we could use to draw a box around all of the stadiums. It’s not very useful in this context because it’s just a box covering the majority of the continental United States, and some of Canada. However, it could be more useful to visualize the area of each division.</p>
 <div class="literal-block-wrapper docutils container" id="id21">
 <div class="code-block-caption"><span class="caption-text">geobounds</span><a class="headerlink" href="#id21" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go"> curl 127.0.0.1:9200/teams/_search?pretty=true -H &#39;Content-Type: application/json&#39; -d &#39;</span>
@@ -786,7 +787,7 @@
 </div>
 <div class="section" id="other-features">
 <h2>Other Features<a class="headerlink" href="#other-features" title="Permalink to this headline">¶</a></h2>
-<p>We have covered a lot of ground with Elasticsearch, and still have barely touched on the features of this technology. You will get more experience with Elasticsearch throughout this class, but mainly through our Spring web apps, and how we interface with Elasticsearch will change. However, it is still crucial to understand how Elasticsearch works, and what is going on.</p>
+<p>We have covered a lot of ground with Elasticsearch, and still have barely touched on the features of this technology. You will get more experience with Elasticsearch throughout this class, but mainly through our Spring web apps, and how we interface with Elasticsearch will change. However, it is still crucial to understand how Elasticsearch works and what is going on under the hood.</p>
 <dl class="docutils">
 <dt>If you are interested in learning more check out the following topics:</dt>
 <dd><ul class="first last simple">

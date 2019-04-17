@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
@@ -280,7 +281,7 @@
       
   <div class="section" id="configuration-spring-elasticsearch">
 <span id="spring-elasticsearch"></span><h1>Configuration: Spring &amp; Elasticsearch<a class="headerlink" href="#configuration-spring-elasticsearch" title="Permalink to this headline">¶</a></h1>
-<p>One of the many benefits of Spring is that it contains a vast amount of tools we can leverage while building our web applicatoins. One of these tools is Spring Data JPA. Spring Data JPA has some code that will connect to our datastore, and perform basic operations by using methods attached to the JPA Repository.</p>
+<p>One of the many benefits of Spring is that it contains a vast amount of tools we can leverage while building our web applications. One of these tools is Spring Data JPA. Spring Data JPA has some code that will connect to our datastore, and perform basic operations by using methods attached to the JPA Repository.</p>
 <p>JPA Repositories make it very easy for us to work with various data stores including SQL data stores like Postgres, and NoSQL data stores like ElasticSearch.</p>
 <p>To get our web application to work with JPA Repository we need to do a couple of things.</p>
 <ol class="arabic simple">
@@ -305,7 +306,7 @@
 <p>We can check our version of Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">127.0.0.1:9200</span></code>.</p>
 <p>We are looking for the <code class="docutils literal notranslate"><span class="pre">&quot;number&quot;</span></code> to be “6.5.4”.</p>
 <p>If you don’t have that version of Elasticsearch, or you don’t have a docker container for Elasticsearch checkout the <a class="reference internal" href="../../installations/docker-elasticsearch/index.html#docker-elasticsearch"><span class="std std-ref">Docker Installation: Elasticsearch</span></a> article.</p>
-<p>You will also need to take note of <code class="docutils literal notranslate"><span class="pre">&quot;cluter_name&quot;</span></code>. Spring data will need the cluster name later. The default is <code class="docutils literal notranslate"><span class="pre">&quot;cluster_name&quot;:</span> <span class="pre">&quot;elasticsearch&quot;</span></code>, but yours may be named something else.</p>
+<p>You will also need to take note of <code class="docutils literal notranslate"><span class="pre">&quot;cluster_name&quot;</span></code>. Spring data will need the cluster name later. The default is <code class="docutils literal notranslate"><span class="pre">&quot;cluster_name&quot;:</span> <span class="pre">&quot;elasticsearch&quot;</span></code>, but yours may be named something else.</p>
 </div>
 <div class="section" id="springboot">
 <h3>Springboot<a class="headerlink" href="#springboot" title="Permalink to this headline">¶</a></h3>

@@ -234,7 +234,7 @@ Now, however, we must also save an ``ItemDocument`` for each newly-created item:
     Item savedItem = itemRepository.save(item);
     itemDocumentRepository.save(new ItemDocument(savedItem));
 
-You will need to add an ``@Autowire``'d ``ItemDocumentRepository`` to each controller in which this change is made.
+You will need to ``@Autowire`` a ``ItemDocumentRepository`` in each controller that needs access to Elasticsearch.
 
 .. note:: We should also update or delete an ``ItemDocument`` whenever the corresponding ``Item`` is updated or deleted. We leave this exercise to you.
 
@@ -269,7 +269,7 @@ Refresh the Index
 
 While your tests are now passing, if you were to start up your application and try to conduct a fuzzy search (e.g. ``curl localhost:8080/api/items/search?q=shoe``) you would not receive any hits. If the reason why isn't obvious, it should become so after looking at the data in your ``launchcart`` index in Elasticsearch.
 
-Since each of the items in our Postgres database was created *before* we added the Elasticsearch integration, the associate ``ItemDocument`` objects were not created. We can retroactively create the objects and docuemnts using our special endpoint for refreshing the index. Start up your application, and make a request to this endpoint:
+Since each of the items in our Postgres database was created *before* we added the Elasticsearch integration, the associate ``ItemDocument`` objects were not created. We can retroactively create the objects and documents using our special endpoint for refreshing the index. Start up your application, and make a request to this endpoint:
 
 ::
 
@@ -288,7 +288,7 @@ Bonus Missions
 We looked at how to push a new item to Elasticsearch when creating it via the REST API. There are still several tasks that can be immediately carried out to fully integrate ES with the application. Try one more more of the following:
 
 * We are currently creating and saving a new ``ItemDocument`` whenever a new ``Item`` is created, however, we are not updating or deleting an ``ItemDocument`` when the corresponding ``Item`` is updated or deleted. Add the code to do this.
-* Add a search view that displays results of a fuzzy search. This may be done either via an AJAX request to ``ItemDocumentRepository.search``, or by creating a new controller method that passes fuzzy search results into a template.
+* Add a search view that displays results of a fuzzy search. This may be done either by an AJAX request to ``ItemDocumentRepository.search``, or by creating a new controller method that passes fuzzy search results into a template.
 
 Resources
 =========
