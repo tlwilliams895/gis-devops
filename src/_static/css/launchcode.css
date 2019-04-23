@@ -38,6 +38,12 @@ code {
     margin-right: 10px;
 }
 
+.searchLabel {
+    color:white;
+    font-size: 1.4vw;
+    font-family: "Nexa Black";
+}
+
 /* Trick to prevent section headings from hiding behind the navbar */
 .section {
     margin-top: -60px;
@@ -72,31 +78,31 @@ aside::before {
 }
 
 .aside-note::before {
-    content: "✶ Note";
+    content: "Note";
 }
 
 .aside-warning::before {
-    content: "⚠️ Warning";
+    content: "Warning";
 }
 
 .aside-hint::before {
-    content: "🔎 Hint";
+    content: "Hint";
 }
 
 .aside-pro-tip::before {
-    content: "🎻 Pro Tip";
+    content: "Pro Tip";
 }
 
 .aside-example::before {
-    content: "💡 Example";
+    content: "Example";
 }
 
 .aside-question::before {
-    content: "🤔 Question";
+    content: "Question";
 }
 
 .aside-definition::before {
-    content: "📖 Definition";
+    content: "Definition";
 }
 
 .aside-custom::before {
@@ -129,6 +135,7 @@ div.admonition {
     /*top: -1em;*/
     padding: 0.5em;
     padding-right: 1em;
+    padding-left: 2em;
     font-family: "Nexa Black";
     color: rgb(54, 74, 95);
     /*border-bottom: 1px solid #eee;*/
@@ -139,6 +146,7 @@ div.admonition {
     margin-right: .25em;
 }
 
+/*
 .attention .admonition-title::before {
     content: "📢";
 }
@@ -178,6 +186,7 @@ div.admonition {
 .admonition-generic .admonition-title::before {
     content: "✱";
 }
+*/
 
 .content .admonition p.last {
     margin: 0;

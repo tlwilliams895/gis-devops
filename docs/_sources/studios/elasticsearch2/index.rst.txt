@@ -11,35 +11,25 @@ In this studio you will practice working with indices (deleting, reindexing) and
 Loading Data
 ============
 
-First, let's delete the data in the ``twitter`` index:::
+We will be working with the same data set as yesterday for ``/tweets``. However, we are adding location data for our tweets. Use the `tweets-geo.sh script <https://gitlab.com/LaunchCodeTraining/elasticsearch-practice/blob/master/tweets-geo.sh>`_ to create a new index: ``/tweets_geo``.
 
-  DELETE /twitter
-
-As we did yesterday, let's load some data. Create a script: ::
-
-  $ touch load_data_geo.sh
-  $ chmod +x load_data_geo.sh
-
-Then copy/paste the contents of this `gist <https://gist.github.com/chrisbay/8ef471ed1ac903c2bcaa2b82b49917a4>`_. Save and run the script: ::
-
-  $ ./load_data_geo.sh
+Look over the script as it may help you with your tasks.
 
 Your Tasks
 ==========
 
 Carry out each of the following tasks. Once you have a successful query for each, save the command in a ``.txt`` file for submission.
 
-1. What is the data type of the ``location`` field in the ``twitter`` index? What should it be?
-2. Fix the issue with ``location`` by creating a mapping for a new index ``twitter_geo`` that defines ``location`` as a ``geo_point`` field. **Hint**: To build the JSON that you'll need to create the new mapping for ``twitter_geo``, you can copy the reponse from fetching the mapping for ``twitter`` and modify it.
-3. Reindex ``twitter`` into ``twitter_geo``.
-4. Find all tweets with between 5 and 10 likes, inclusive of those endpoints.
-5. Find all tweets by Mary Jones that have at least 2 likes.
-6. Find all tweets that contain the text "Elasticsearch", including mispellings up to distance of 2 away.
-7. Find all tweets that have a location (Hint: Try the exists query https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html)
-8. Find all tweets that do not have a location
-9. Find the average number of likes for tweets that have a location
-10. Find the average number of likes for tweets that do not have a location
-11. Find all tweets with locations within 500km of Boise, ID
+#. What is the data type of the ``location`` field in the ``twitter_geo`` index? What should it be?
+#. Fix the issue with ``location`` by editing tweets_geo.sh to explictlly map ``location`` as a ``geo_point`` field. **Hint**: To build the JSON that you'll need to create the new mapping for ``twitter_geo``, you can copy the reponse from fetching the mapping for ``twitter`` and modify it.
+#. Find all tweets with between 5 and 10 likes, inclusive of those endpoints.
+#. Find all tweets by Mary Jones that have at least 2 likes.
+#. Find all tweets that contain the text "Elasticsearch", including mispellings up to distance of 2 away.
+#. Find all tweets that have a location (Hint: Try the exists query https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-exists-query.html)
+#. Find all tweets that do not have a location
+#. Find the average number of likes for tweets that have a location
+#. Find the average number of likes for tweets that do not have a location
+#. Find all tweets with locations within 500km of Boise, ID
 
 Turning In Your Work
 ====================

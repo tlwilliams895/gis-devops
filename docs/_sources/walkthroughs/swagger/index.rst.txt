@@ -8,11 +8,36 @@ Walkthrough: SwaggerUI
 
 In this walkthrough, the instructor will guide through adding API documentation using `SwaggerUI <https://swagger.io/swagger-ui/>`_.
 
+Concept
+=======
+
+REST allows us to programmatically utilize (Create, Read, Update, Delete) resources in a datastore. Anyone can make HTTP requests to our RESTful API to interact with our datastore, however how do we let them know which endpoints to access, and which HTTP verbs to use, and when to include query parameters, path variables, or JSON?
+
+Swagger to the rescue!
+
+Swagger is a documentation creation tool. Swagger is going to assist us in creating the documentation for our RESTful API. It will give users a webpage that contains all of the endpoints, which HTTP verbs they accept, if they take any additional information, and finally what happens when that HTTP request is made.
+
 Getting Started
 ===============
 
 The same Launchcart project and repo you used for the REST studio.
-Create and checkout a new branch named ``add-swagger`` with this command ``git checkout -b add-swagger``
+Create and checkout a new branch named ``my-rest-swagger-solution`` with this command ``git checkout -b my-rest-swagger-solution``
+
+Tasks
+=====
+
+#. Add SwaggerUI to our project
+
+   - Create ``swagger.yaml``
+   - Edit ``swagger/index.html`` to point to our ``swagger.yaml`` file
+
+#. Edit Swagger YAML
+
+   - Outline
+   - Tags
+   - Paths
+   - Definitions
+   - Parameters
 
 Add SwaggerUI to the Project
 ----------------------------
@@ -24,13 +49,16 @@ Clone the `SwaggerUI repository <https://github.com/swagger-api/swagger-ui/tree/
 To add the SwaggerUI files to your project:
 
 1. In IntelliJ, create the directory ``launchcart/src/main/resources/static/swagger``
-2. Navigate into the repo that you just cloned.
+2. Via terminal or file explorer navigate into the swagger-ui repo that you just cloned.
 3. Copy the *contents* of ``swagger-ui/dist`` directory into ``launchcart/src/main/resources/static/swagger/`` directory. The ``dist/`` directory contains all of the HTML, CSS, and JavaScript required to generate a Swagger document
 
-Setup Swagger ``.yaml`` File
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Create Swagger ``.yaml`` File
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 In the folder ``launchcart/src/main/resources/static/swagger``, create a ``swagger.yaml`` file. You can do this via IntelliJ, or by running ``touch swagger.yaml`` from the directory.
+
+Edit swagger/index.html
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Open ``swagger/index.html`` and locate the script block, the top of which should look like this:
 
@@ -61,8 +89,8 @@ Edit the ``var url = ...`` line so that it points to our ``swagger.yaml`` file, 
         highlightSizeThreshold: 5000
       });
 
-Writing the Swagger YAML
-========================
+Edit Swagger YAML
+=================
 
 Outline
 -------

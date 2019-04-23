@@ -92,15 +92,14 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../week02/project/index.html">Week 2 - Project Week: Zika Mission Control</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project">Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#overview">Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#requirements">Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-hints">Project Hints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-project">Setup Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#setup-postgres">Setup Postgres</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning In Your Work</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-missions">Bonus Missions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#resources">Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#zika-mission-control">Zika Mission Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-overview">Project Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#project-requirements">Project Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#primary-objectives">Primary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#secondary-objectives">Secondary Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#turning-in-your-work">Turning in Your Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#check-your-knowledge">Check Your Knowledge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week02/project/index.html#bonus-resources">Bonus Resources</a></li>
 </ul>
 </li>
 </ul>
@@ -130,8 +129,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: More Elasticsearch, Integrating ES with Spring</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#summary">Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#lesson-content">Lesson Content</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthroughs">Walkthroughs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#studio">Studio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#walkthrough">Walkthrough</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../week03/day4/index.html#resources">Resources</a></li>
 </ul>
 </li>
@@ -288,10 +287,10 @@
 <p>In this studio, we will be learning how to use Springfox to autogenerate the Swagger docs.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>Create a <code class="docutils literal notranslate"><span class="pre">add-springfox</span></code> branch off of your <code class="docutils literal notranslate"><span class="pre">launchcart/rest-studio-solution</span></code> branch.</p>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">rest-springfox-solution</span></code> branch off of your <code class="docutils literal notranslate"><span class="pre">launchcart/rest-studio-solution</span></code> branch.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p class="last">Do <em>not</em> create the branch off of the walkthrough branch (<code class="docutils literal notranslate"><span class="pre">add-swagger</span></code>), since we manually created Swagger docs in that branch.</p>
+<p class="last">Do <em>not</em> create the branch off of one of the walkthrough branches (<code class="docutils literal notranslate"><span class="pre">rest-swagger-starter</span></code> or <code class="docutils literal notranslate"><span class="pre">rest-swagger-solution</span></code>), since we manually created Swagger docs in that branch.</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -349,6 +348,7 @@ compile(group: &#39;io.springfox&#39;, name: &#39;springfox-swagger-ui&#39;, ver
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="bypassing-login">
 <h3>Bypassing Login<a class="headerlink" href="#bypassing-login" title="Permalink to this headline">¶</a></h3>
+<p>We provided a class for you called <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/blob/rest-springfox-starter/src/main/java/org/launchcode/launchcart/AuthenticationInterceptor.java">AuthenticationInterceptor</a> that handles what routes are allowed to users and non users alike. Take a look at the file to see what it is doing for you.</p>
 <p>Figure out how to change <code class="docutils literal notranslate"><span class="pre">AuthenticationInterceptor.preHandle</span></code> to allow the Swagger docs to load when you are NOT logged in.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
