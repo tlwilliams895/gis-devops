@@ -157,9 +157,9 @@ You need to point your "test" key to the relative location of your script.js fil
 Configure Airbnb Ruleset
 ------------------------
 
-As a final step before we run ESLint we should change one rule in the Airbnb ruleset. We have been using 4 spaces as whitespace in our JavaScript files thorughout this class, and Airbnb's ruleset only allows for 2 spaces as whitespace.
+As a final step before we run ESLint we should change one rule in the Airbnb ruleset. We have been using 4 spaces as whitespace in our JavaScript files throughout this class, and Airbnb's ruleset only allows for 2 spaces as whitespace.
 
-We need to override this rule, because our specific team uses a different rule. Luckly we can change our ruleset anyway we see fit.
+We need to override this rule, because our specific team uses a different rule. Luckily we can change our ruleset any way we see fit.
 
 Open the ``.eslintrc.js`` file. Near the bottom you should have an empty "rules" section. Modify that section so that it looks like this:
 
@@ -183,8 +183,8 @@ Errors, and warnings are lines of code that break one of our rules. You can read
 
 Fix one issue at a time, save your file, and run ``$ npm test`` again
 
-Gitignore & Commit
-==================
+.gitignore & Commit
+===================
 
 After you have fixed all of the errors we will want to commit our work. But before we do we need to update our ``.gitignore``.
 
