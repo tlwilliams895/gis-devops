@@ -103,9 +103,9 @@ From the same directory you initialized NPM in run the following commands:
     - ``$ npm install eslint --save-dev``
     - ``$ npm install eslint-plugin-import --save-dev``.
 
-The ``$ npm install`` command will create a new directory called ``npm_modules`` and will install the packages, and their dependencies into the ``npm_modules`` directory. This is the code that runs when we use ESLint. The ``--save-dev`` option saves the installed packages inside devDependencies indicating these packages are only needed while the project is being developed, and they are not needed in production.
+The ``$ npm install`` command will create a new directory called ``node_modules`` and will install the packages, and their dependencies into the ``node_modules`` directory. This is the code that runs when we use ESLint. The ``--save-dev`` option saves the installed packages inside devDependencies indicating these packages are only needed while the project is being developed, and they are not needed in production.
 
-You can change into the ``npm_modules`` directory, and see all of the code that is used to run ESLint.
+You can change into the ``node_modules`` directory, and see all of the code that is used to run ESLint.
 
 Initialize ESLint
 -----------------
@@ -197,7 +197,7 @@ Now stage, commit, and push your changes.
 Bonus
 =====
 
-Setup `ESLint in VisualStudioCode <../../installations/vscode-eslint/>`_.
+Setup VisualStudioCode to run ESLint for you. See :ref:`vscode-eslint`
 
 Resources
 =========
