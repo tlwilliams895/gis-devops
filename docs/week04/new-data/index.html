@@ -338,6 +338,8 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Don’t forget about <code class="docutils literal notranslate"><span class="pre">spring.jpa.hibernate.ddl-auto</span></code> inside your <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file! If you don’t have that property set correctly, the <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file won’t run!</p>
 </div>
+<p>At the bottom of this file before <code class="docutils literal notranslate"><span class="pre">COMMIT;</span></code> add 3 additional lines.</p>
+<p>These three lines load the unaccent extension to PostGIS, and then normalize the Country name, and State name of each report. Unaccent removes any diactrics, or symbols from letters. This will make our searches more effective in later objectives.</p>
 </div>
 <div class="section" id="check-our-database-for-records">
 <h2>Check our Database for Records<a class="headerlink" href="#check-our-database-for-records" title="Permalink to this headline">¶</a></h2>

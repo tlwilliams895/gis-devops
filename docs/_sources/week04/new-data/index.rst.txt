@@ -92,6 +92,16 @@ From last week this file is loading from the 5 CSV files into 1 table. Now we wa
    
    Don't forget about ``spring.jpa.hibernate.ddl-auto`` inside your ``application.properties`` file! If you don't have that property set correctly, the ``import.sql`` file won't run!
 
+At the bottom of this file before ``COMMIT;`` add 3 additional lines.
+
+.. sourcecode: SQL
+   
+   CREATE EXTENSION IF NOT EXISTS unaccent;
+   UPDATE location SET name_0_normalized = unaccent(name_0);
+   UPDATE location SET name_1_normalized = unaccent(name_1);
+
+These three lines load the unaccent extension to PostGIS, and then normalize the Country name, and State name of each report. Unaccent removes any diactrics, or symbols from letters. This will make our searches more effective in later objectives.
+
 Check our Database for Records
 ------------------------------
 
