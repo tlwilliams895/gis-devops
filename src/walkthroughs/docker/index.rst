@@ -26,7 +26,9 @@ Docker Commands
 Setup
 =====
 
-1. Make sure that you have Docker installed.  You can check the ``docker installation by running::
+1. Make sure that you have Docker installed. You can check the Docker installation by running
+
+::
 
    $ docker --version
 
@@ -35,24 +37,33 @@ Setup
 ::
 
    $ pip --version
-   (If command not found then install using)
+
+If ``pip`` is not found, install it. 
+
+::
+   
    $ sudo easy_install pip
 
 3. Clone this repo `docker-flask-walkthrough <https://gitlab.com/LaunchCodeTraining/docker-flask-walkthrough>`_
 
-4. cd into the folder of the repo you just clonded
+4. ``cd`` into the folder of the repo you just clonded
 
-5. Install dependencies using pip by running:::
+5. Install dependencies using pip by running:
+
+::
 
    $ pip install --user -r requirements.txt
 
 A simple Python web app
 =======================
 
-In this walkthrough we are going to run a simple Python web app.  The app uses Python Flask as a web server.  Flask may be new to you, but see if you see any similarities to Spring Boot.
+In this walkthrough we are going to run a simple Python web app. The app uses Python Flask as a web server. Flask may be new to you, but see if you see any similarities to Spring Boot.
 
 In Visual Studio Code, or another general purpose editor, open the file ``simple_app.py``
-Review file ``simple_app.py``::
+
+Review file ``simple_app.py``
+
+::
 
   import time
 
@@ -69,7 +80,9 @@ Review file ``simple_app.py``::
   if __name__ == "__main__":
       app.run(host="0.0.0.0", debug=True)
 
-Run the simple web app by running the below command::
+Run the simple web app by running the below command
+
+::
 
   $ python simple_app.py
 
@@ -79,6 +92,7 @@ Now **stop** this process in your terminal, using ``ctrl + c`` as we will next g
 
 Create Dockerfile
 -----------------
+
 We need to setup a ``Dockerfile`` that uses CentOS to run our webapp.
 
 
@@ -146,7 +160,7 @@ Now stop that docker container by running::
 A more complex Python app
 -------------------------
 
-In the next section of the walkthrough, we are going to stand up a more complex Flask app.  In this app, we are going to integrate the key-value database Redis.  In order to integrate Redis into the Flask web app, we will need to leverage Docker's network capabilities.
+In the next section of the walkthrough, we are going to stand up a more complex Flask app. In this app, we are going to integrate the key-value database Redis. In order to integrate Redis into the Flask web app, we will need to leverage Docker's network capabilities.
 
 Review ``counter_app.py``:::
 
@@ -255,10 +269,10 @@ Use the following command2 to stand up and verify the two containers
 Docker Logs
 -----------
 
-Let's look at these containers a bit more indepth.  ``docker logs {container name}`` will show all of the logs that have been written to STDOUT. (replace {container name} with the actual container name).::
+Let's look at these containers a bit more indepth. ``docker logs {container name}`` will show all of the logs that have been written to STDOUT. (replace {container name} with the actual container name).::
 
   $ docker logs {container name/id}
 
-Let's also take the container details.  ``docker inspect {container name/id}`` will show all of the details about the container including network information.::
+Let's also take the container details. ``docker inspect {container name/id}`` will show all of the details about the container including network information.::
 
   $ docker inspect {container name/id}

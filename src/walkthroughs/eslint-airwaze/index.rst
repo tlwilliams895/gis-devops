@@ -141,7 +141,7 @@ Inside ``package.json`` we have a "scripts" section that contains the type of "t
 
 Verify that your ``package.json`` file has the following "scripts" section:
 
-.. sourcecode:: json
+.. sourcecode:: javascript
    :caption: package.json
 
    "scripts": {

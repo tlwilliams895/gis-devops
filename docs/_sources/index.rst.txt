@@ -1,7 +1,8 @@
 GIS DevOps
 ==========
 
-Week 1:
+Week 1
+------
 
 .. toctree::
    :maxdepth: 1
@@ -12,14 +13,16 @@ Week 1:
    week01/day4/index
    week01/day5/index
 
-Week 2:
+Week 2
+------
 
 .. toctree::
    :maxdepth: 1
 
    week02/project/index
 
-Week 3:
+Week 3
+------
 
 .. toctree::
    :maxdepth: 1
@@ -30,14 +33,16 @@ Week 3:
    week03/day4/index
    week03/day5/index
 
-Week 4:
+Week 4
+------
 
 .. toctree::
    :maxdepth: 1
 
    week04/project/index
 
-Week 5:
+Week 5
+------
 
 .. toctree::
    :maxdepth: 1
@@ -48,26 +53,29 @@ Week 5:
    week05/day4/index
    week05/day5/index
 
-Week 6:
+Week 6
+------
 
 .. toctree::
   :maxdepth: 1
 
   week06/project/index
 
-Week 7:
+Week 7
+------
 
 * Week 7 - Days 1 - 5: Boundless PostGIS, Geoserver, and OpenLayers training
 
-Week 8:
+Week 8
+------
 
 .. toctree::
   :maxdepth: 1
 
   week08/project/index
 
-Week 9:
-
+Week 9
+------
 
 * Week 9 - Days 1-2: Pivotal Training
 
@@ -78,7 +86,8 @@ Week 9:
   week09/day4/index
   week09/day5/index
 
-Week 10:
+Week 10
+-------
 
 * Week 10 - Days 1-4: Final work on Zika Projects
 * Week 10 - Day 5: Project Presentation and Graduation
