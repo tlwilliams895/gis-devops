@@ -263,6 +263,7 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Installation: Docker PSQL Container</a><ul>
 <li><a class="reference internal" href="#installation-steps-mac">Installation Steps: Mac</a><ul>
+<li><a class="reference internal" href="#disable-psql-through-brew">Disable PSQL through brew</a></li>
 <li><a class="reference internal" href="#create-env-list">Create env.list</a></li>
 <li><a class="reference internal" href="#create-container">Create Container</a></li>
 <li><a class="reference internal" href="#connect-to-psql">Connect to psql</a></li>
@@ -280,11 +281,21 @@
 <span id="docker-psql"></span><h1>Installation: Docker PSQL Container<a class="headerlink" href="#installation-docker-psql-container" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="installation-steps-mac">
 <h2>Installation Steps: Mac<a class="headerlink" href="#installation-steps-mac" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic simple">
+<ol class="arabic simple" start="0">
+<li>Disable psql through brew (if necessary)</li>
 <li>Create an env.list file</li>
 <li>Create container</li>
 <li>Connect to psql</li>
 </ol>
+<div class="section" id="disable-psql-through-brew">
+<h3>Disable PSQL through brew<a class="headerlink" href="#disable-psql-through-brew" title="Permalink to this headline">¶</a></h3>
+<p>In the prep work for this class, or on your own, you may have installed PSQL through the MacOS package manager Homebrew.</p>
+<p>Before you can install PSQL in a new docker container you will need to disable any versions of PSQL that are currently running as a brew service.</p>
+<p>Check your current brew services by running <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">brew</span> <span class="pre">services</span> <span class="pre">list</span></code> from the terminal.</p>
+<p>If you see any services that are running with the name PSQL, or Postgres stop them with the brew services stop command <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">brew</span> <span class="pre">services</span> <span class="pre">stop</span> <span class="pre">PSQL</span></code>.</p>
+<p>After stopping all PSQL services in brew rerun <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">brew</span> <span class="pre">services</span> <span class="pre">list</span></code> to ensure they stopped correctly.</p>
+<p>After you have verified all versions of PSQL have stopped through brew, you may continue with the rest of the installation instructions.</p>
+</div>
 <div class="section" id="create-env-list">
 <h3>Create env.list<a class="headerlink" href="#create-env-list" title="Permalink to this headline">¶</a></h3>
 <p>Before we create our container we first need to create a temporary file that will create our containers first user, and configure the container to listen for requests.</p>

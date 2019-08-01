@@ -9,9 +9,25 @@ Installation: Docker PSQL Container
 Installation Steps: Mac
 -----------------------
 
+0. Disable psql through brew (if necessary)
 1. Create an env.list file
 2. Create container
 3. Connect to psql
+
+Disable PSQL through brew
++++++++++++++++++++++++++
+
+In the prep work for this class, or on your own, you may have installed PSQL through the MacOS package manager Homebrew.
+
+Before you can install PSQL in a new docker container you will need to disable any versions of PSQL that are currently running as a brew service.
+
+Check your current brew services by running ``$ brew services list`` from the terminal.
+
+If you see any services that are running with the name PSQL, or Postgres stop them with the brew services stop command ``$ brew services stop PSQL``.
+
+After stopping all PSQL services in brew rerun ``$ brew services list`` to ensure they stopped correctly.
+
+After you have verified all versions of PSQL have stopped through brew, you may continue with the rest of the installation instructions.
 
 Create env.list
 +++++++++++++++
