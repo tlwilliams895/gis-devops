@@ -24,10 +24,11 @@ Open your build.gradle file.
 
 .. image:: /_static/images/spring-postgres/project-viewer-build-gradle.png
 
-Add the associated Postgres dependency to ``build.gradle`` as a compile-time dependency.
+Add the associated Postgres and JPA dependencies to ``build.gradle`` as a compile-time dependency.
 Set the existing h2 dependency to be a ``testCompile`` dependency, since it will only be needed for running tests at this point.::
 
     dependencies {
+        compile('org.springframework.boot:spring-boot-starter-data-jpa')
         compile(group: 'org.postgresql', name: 'postgresql', version: '42.1.4')
         testCompile('com.h2database:h2')
     }
