@@ -7,6 +7,7 @@
     <title>Studio: AWS Devops Basics &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -326,13 +328,13 @@
 <h2>1) Set Up Project<a class="headerlink" href="#set-up-project" title="Permalink to this headline">¶</a></h2>
 <p><strong>Get Airwaze Running locally</strong></p>
 <ol class="arabic simple">
-<li>Checkout your latest branch of Airwaze Studio project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">https://gitlab.com/LaunchCodeTraining/airwaze-studio</a><ul>
+<li>Checkout your latest branch of Airwaze Studio project <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio" target="_blank">https://gitlab.com/LaunchCodeTraining/airwaze-studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a><ul>
 <li>Your working code may be in your <code class="docutils literal notranslate"><span class="pre">master</span></code> or in a <code class="docutils literal notranslate"><span class="pre">day5-solution</span></code> branch</li>
 </ul>
 </li>
 <li>Verify that your <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file is using tokens like <code class="docutils literal notranslate"><span class="pre">${APP_DB_NAME}</span></code>, if not change it to use them</li>
 <li>Run the Airwaze app by running <code class="docutils literal notranslate"><span class="pre">bootRun</span></code></li>
-<li>Go to <a class="reference external" href="http://localhost:8080">http://localhost:8080</a> in your browser<ul>
+<li>Go to <a class="reference external" href="http://localhost:8080" target="_blank">http://localhost:8080<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> in your browser<ul>
 <li>You should see Aiports and Routes on the map</li>
 <li>If it’s not working, check for errors in the JS console and in your Intellij console</li>
 <li>If you can’t get your branch working, you can check out this branch <code class="docutils literal notranslate"><span class="pre">elasticsearch-starter</span></code> branch<ul>
@@ -359,8 +361,8 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 <li>Go into IntelliJ’s Gradle tool window, and click on <code class="docutils literal notranslate"><span class="pre">Tasks</span> <span class="pre">&gt;</span> <span class="pre">build</span> <span class="pre">&gt;</span> <span class="pre">bootRepackage</span></code></li>
 <li>Verify the jar appears here <code class="docutils literal notranslate"><span class="pre">/YOUR-AIRWAZE-REPO/build/libs/app-0.0.1-SNAPSHOT.jar</span></code></li>
 </ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">The file name <code class="docutils literal notranslate"><span class="pre">app-0.0.1-SNAPSHOT.jar</span></code> comes from the <code class="docutils literal notranslate"><span class="pre">jar</span></code> property in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code>.</p>
 </div>
 </div>
@@ -368,7 +370,7 @@ COPY airport(airport_id, name, city, country, faa_code, icao, altitude, time_zon
 <h2>2) Start an Instance on AWS<a class="headerlink" href="#start-an-instance-on-aws" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Go and login to the aws console login link for this class.<ul>
-<li>The aws console link should look like this <a class="reference external" href="https://123456.signin.aws.amazon.com/console">https://123456.signin.aws.amazon.com/console</a></li>
+<li>The aws console link should look like this <a class="reference external" href="https://123456.signin.aws.amazon.com/console" target="_blank">https://123456.signin.aws.amazon.com/console<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 <li>The numbers at the front will be different for every user</li>
 </ul>
 </li>
@@ -549,8 +551,8 @@ In an enterprise environment, there will likely already be multiple key pairs se
 </ul>
 </li>
 </ol>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">Note the <code class="docutils literal notranslate"><span class="pre">ubuntu</span></code> part of the above command is the user/role you are attempting to connect with on the remote computer.</p>
 </div>
 <ul class="simple">
@@ -590,7 +592,7 @@ $ scp -i ~/.ssh/name-of-pem.pem /your-airwaze-repo/*.csv ubuntu@PUBLIC-DNS-OF-SE
 <div class="section" id="ubuntu-doesn-t-have-everything-we-need">
 <h3>Ubuntu Doesn’t Have Everything We Need?<a class="headerlink" href="#ubuntu-doesn-t-have-everything-we-need" title="Permalink to this headline">¶</a></h3>
 <p>The remotes servers will not come with everything we need already isntalled. However it does come with a tool that makes it easy to install software.
-<a class="reference external" href="https://help.ubuntu.com/community/AptGet/Howto">apt-get</a> is the “Package Manager” that comes with Ubuntu. We will use it to install the JDK and other tools we need.</p>
+<a class="reference external" href="https://help.ubuntu.com/community/AptGet/Howto" target="_blank">apt-get<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> is the “Package Manager” that comes with Ubuntu. We will use it to install the JDK and other tools we need.</p>
 </div>
 <div class="section" id="install-jdk-on-server">
 <h3>Install JDK on Server<a class="headerlink" href="#install-jdk-on-server" title="Permalink to this headline">¶</a></h3>
@@ -693,7 +695,7 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 <div class="section" id="setup-linux-service-to-run-app">
 <h2>9) Setup Linux Service to run App<a class="headerlink" href="#setup-linux-service-to-run-app" title="Permalink to this headline">¶</a></h2>
 <p>Now that the app is on the cloud server and the database is ready, we can set up <code class="docutils literal notranslate"><span class="pre">systemd</span></code> to run this app as a service. <code class="docutils literal notranslate"><span class="pre">systemd</span></code> is used to configure
-and run services on linux. More info in this <a class="reference external" href="https://www.linux.com/learn/understanding-and-using-systemd">linux.com article</a> and this <a class="reference external" href="https://en.wikipedia.org/wiki/Systemd">systemd wiki page</a>.</p>
+and run services on linux. More info in this <a class="reference external" href="https://www.linux.com/learn/understanding-and-using-systemd" target="_blank">linux.com article<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and this <a class="reference external" href="https://en.wikipedia.org/wiki/Systemd" target="_blank">systemd wiki page<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
 <p>In order to use <code class="docutils literal notranslate"><span class="pre">systemd</span></code>, we have to make a script in <code class="docutils literal notranslate"><span class="pre">/etc/systemd/system</span></code> to tell the service how to run our app.</p>
 <div class="section" id="create-airwaze-service">
 <h3>Create airwaze.service<a class="headerlink" href="#create-airwaze-service" title="Permalink to this headline">¶</a></h3>
@@ -754,7 +756,7 @@ ubuntu$ journalctl -f -u airwaze.service
 <div class="section" id="did-it-work">
 <h2>10) Did it Work?<a class="headerlink" href="#did-it-work" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>In a web browser go to <a class="reference external" href="http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080">http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080</a><ul>
+<li>In a web browser go to <a class="reference external" href="http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080" target="_blank">http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080<i class="fas fa-external-link-alt" aria-hidden="true"></i></a><ul>
 <li>You should have got a connection refused, unless you worked ahead ;</li>
 <li>Why can’t we connect from our local computer to the server over <code class="docutils literal notranslate"><span class="pre">http</span></code>?</li>
 <li>We can connect to the server via <code class="docutils literal notranslate"><span class="pre">ssh</span></code>….</li>
@@ -818,7 +820,7 @@ We need to add a new configuration that will allow inboud traffic on port <code 
 </div></blockquote>
 <ol class="arabic simple" start="6">
 <li>Click <code class="docutils literal notranslate"><span class="pre">Save</span></code>. This opens up a new port in the Security Group just for your IP. The Airwaze app is set up to listen to port 8080 and communicating with that port from your browser will allow you to communicate with the application.</li>
-<li>Open your browser and go to <a class="reference external" href="http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080">http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080</a></li>
+<li>Open your browser and go to <a class="reference external" href="http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080" target="_blank">http://PUBLIC-DNS-OF-SERVER.compute.amazonaws.com:8080<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 </ol>
 <p>If you kept <code class="docutils literal notranslate"><span class="pre">journalctl</span></code> running from before, you should see the logs progress as your browser communicates with the app.</p>
 <p>Congratulations! You now have your own application in the cloud!</p>

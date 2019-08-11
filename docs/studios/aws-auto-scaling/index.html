@@ -7,6 +7,7 @@
     <title>Scaling horizontally AutoScaling Group &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -303,7 +305,7 @@
 <span id="studio-aws-auto-scaling"></span><h1>Scaling horizontally AutoScaling Group<a class="headerlink" href="#scaling-horizontally-autoscaling-group" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The ability to scale horizontally is very important in building Cloud Native applications.  In this studio, you will be extending your <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">Airwaze App</a> to scale horizontally as traffic on the server increases.</p>
+<p>The ability to scale horizontally is very important in building Cloud Native applications.  In this studio, you will be extending your <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio" target="_blank">Airwaze App<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to scale horizontally as traffic on the server increases.</p>
 <div class="section" id="new-topics">
 <h3>New Topics<a class="headerlink" href="#new-topics" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -333,7 +335,7 @@
 </div>
 <div class="section" id="aws-cli">
 <h2>1) AWS CLI<a class="headerlink" href="#aws-cli" title="Permalink to this headline">¶</a></h2>
-<p>We will be using the <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html">AWS CLI tool</a> for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.</p>
+<p>We will be using the <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html" target="_blank">AWS CLI tool<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> for some parts of the studio.  The AWS CLI tool allows you to create and change infrastructure on the cloud via the command line.</p>
 <div class="section" id="install-aws-cli">
 <h3>Install AWS CLI<a class="headerlink" href="#install-aws-cli" title="Permalink to this headline">¶</a></h3>
 <p>To install the AWS CLI tool run the following commands in your terminal:</p>
@@ -367,8 +369,8 @@ $ aws --version
 <blockquote>
 <div><img alt="../../_images/aws-cli-key.png" src="../../_images/aws-cli-key.png" />
 </div></blockquote>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">It is very important that you keep the <code class="docutils literal notranslate"><span class="pre">AWS</span> <span class="pre">Secret</span> <span class="pre">Access</span> <span class="pre">Key</span></code> <strong>private</strong>.  Keep it secret, Keep it safe!
 Access to that key allows anyone to programmatically create infrastructure(servers, rds, etc) on the AWS account.</p>
 </div>
@@ -402,7 +404,7 @@ $ aws s3 sync help
 </div>
 <div class="section" id="configure-your-vpc-via-cloudformation">
 <h2>2) Configure your VPC via CloudFormation<a class="headerlink" href="#configure-your-vpc-via-cloudformation" title="Permalink to this headline">¶</a></h2>
-<p>You are going to use <a class="reference external" href="https://aws.amazon.com/cloudformation/">Amazon CloudFormation</a> to create your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.</p>
+<p>You are going to use <a class="reference external" href="https://aws.amazon.com/cloudformation/" target="_blank">Amazon CloudFormation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to create your VPC.  CloudFormation can create infrastructure on AWS based on a JSON template.  CloudFormation allows you to create consistent, reproducible AWS environments.</p>
 <p>You’ll be using a CloudFormation template that adds:</p>
 <ul class="simple">
 <li>4 Subnets</li>
@@ -434,7 +436,7 @@ $ cd ~/s3-sync/cloud
 <li>Enter “CloudFormation” into the search bar</li>
 <li>Click on <strong>Cloud Formation</strong> search result</li>
 <li>Click blue <strong>Create Stack</strong> button</li>
-<li>Choose <strong>Specify an Amazon S3 template URL</strong> and paste in <a class="reference external" href="https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json">https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json</a></li>
+<li>Choose <strong>Specify an Amazon S3 template URL</strong> and paste in <a class="reference external" href="https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json" target="_blank">https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 <li>Click <strong>Next</strong></li>
 </ol>
 <p>Screenshot of CloudFormation Screen 1</p>
@@ -547,7 +549,7 @@ ubuntu$ psql -h airwaze-example.cew68jaqkoek.us-east-1.rds.amazonaws.com -d airw
 <h2>5) Create the Launch Configuration<a class="headerlink" href="#create-the-launch-configuration" title="Permalink to this headline">¶</a></h2>
 <p>You now have all of the pieces set up to begin Auto Scaling EC2 machines.</p>
 <ul class="simple">
-<li>Navigate to <a class="reference external" href="https://console.aws.amazon.com/ec2/autoscaling/home">AutoScaling Page</a> on the sidebar of EC2</li>
+<li>Navigate to <a class="reference external" href="https://console.aws.amazon.com/ec2/autoscaling/home" target="_blank">AutoScaling Page<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> on the sidebar of EC2</li>
 <li>Click <strong>Create Auto Scaling Group</strong>.</li>
 </ul>
 <p>Screenshot of AutoScale Start</p>
@@ -714,15 +716,15 @@ systemctl start airwaze.service
 <p>Go to the public DNS of your ELB and hit refresh many times. You can even go to that address in multiple browsers at the same time. You are trying to send as many requests as possible to your ELB.</p>
 <div class="section" id="beware-of-the-load-test-tool">
 <h3>Beware of the Load Test Tool<a class="headerlink" href="#beware-of-the-load-test-tool" title="Permalink to this headline">¶</a></h3>
-<p>You can <strong>optionally</strong> use a Node library called <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a>.
+<p>You can <strong>optionally</strong> use a Node library called <a class="reference external" href="https://www.npmjs.com/package/loadtest" target="_blank">loadtest<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.
 Loadtest measures the average latency time of a concurrent requests to a server.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">Note: Tools like loadtest and Apache AB are like guns.  You don’t point them live things unless you want to kill it.  It’s fine to point a load test tool at your non production apps on AWS; in fact you need to make sure that it can handle load.  You would never want to point a load testing tool at a live site because:
 * It’s your live site (your staging environment should be similar enough to production to replicate the error).
 * Your production site will be sitting behind one or more layers like a CDN.  Your load test is going to look a lot like a denial of service attack. Services like your CDN are designed to recognize and block attacks at the fringe of your network.  Running a load test against a live site is a good way to get your IP address blocked.</p>
 </div>
-<p>To install <a class="reference external" href="https://www.npmjs.com/package/loadtest">loadtest</a> install the following npm package globally (<code class="docutils literal notranslate"><span class="pre">-g</span></code>):</p>
+<p>To install <a class="reference external" href="https://www.npmjs.com/package/loadtest" target="_blank">loadtest<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> install the following npm package globally (<code class="docutils literal notranslate"><span class="pre">-g</span></code>):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ sudo npm install -g loadtest
 </pre></div>
 </div>

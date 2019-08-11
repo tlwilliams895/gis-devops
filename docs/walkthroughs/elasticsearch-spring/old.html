@@ -7,6 +7,7 @@
     <title>Walkthrough: Elasticsearch in Spring &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -291,10 +293,9 @@
 <div class="section" id="integrating-elasticsearch">
 <h2>Integrating Elasticsearch<a class="headerlink" href="#integrating-elasticsearch" title="Permalink to this headline">¶</a></h2>
 <p>We’ll walk through several steps needed to use Elasticsearch within Spring.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>The code that we’ll look at is in the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">LaunchCodeTraining/launchcart</span></code> repository.</p>
-<p class="last">To view the specific changes, look at <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/commit/7e610e2604997fdd54c6ea49a7f1a9b275a93a89">this commit</a>.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">The code that we’ll look at is in the <code class="docutils literal notranslate"><span class="pre">elasticsearch</span></code> branch of the <code class="docutils literal notranslate"><span class="pre">LaunchCodeTraining/launchcart</span></code> repository.</p>
 </div>
 <div class="section" id="add-gradle-dependencies">
 <h3>Add Gradle dependencies<a class="headerlink" href="#add-gradle-dependencies" title="Permalink to this headline">¶</a></h3>
@@ -303,15 +304,13 @@
 compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, version: &#39;6.5.2&#39;)
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p>This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the <em>same major versions</em>.</p>
-<p class="last">Check your version of Elasticsearch by running <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">localhost:9200</span></code>.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">This approach uses the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> class to connect to a cluster over port 9300 via the transport protocol. This technique requires that the ES instance and the <code class="docutils literal notranslate"><span class="pre">TransportClient</span></code> have the <em>same major versions</em>.</p>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>The Spring Data project is in the process of replacing this client with a REST API client that will be version agnostic.</p>
-<p class="last">Read more about the state of the official <a class="reference external" href="https://www.elastic.co/blog/state-of-the-official-elasticsearch-java-clients">Elasticsearch Java clients</a>.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">The Spring Data project is in the process of replacing this client with a REST API client that will be version agnostic.</p>
 </div>
 </div>
 <div class="section" id="configuring-spring-boot-for-es">
@@ -346,10 +345,9 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>es.cluster-name=elasticsearch
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p>The Elasticsearch instance that will be used in this integration <strong>will not</strong> be the same instance that you installed previously. This integration method creates and embedded ES cluster that only accepts connections via the Transport Client.</p>
-<p class="last">This means that you can’t use the REST API to interact with it directly.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">The Elasticsearch instance that will be used in this integration <strong>will not</strong> be the same instance that you installed previously. This integration method creates and embedded ES cluster that only accepts connections via the Transport Client.</p>
 </div>
 </div>
 <div class="section" id="write-a-test">
@@ -568,8 +566,8 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">itemDocumentRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="k">new</span> <span class="n">ItemDocument</span><span class="o">(</span><span class="n">item</span><span class="o">));</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">We should also update or delete an <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> whenever the corresponding <code class="docutils literal notranslate"><span class="pre">Item</span></code> is updated or deleted. We leave this exercises to you.</p>
 </div>
 </div>
@@ -595,12 +593,12 @@ compile(group: &#39;org.elasticsearch.client&#39;, name: &#39;transport&#39;, ve
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-tutorial">Spring Data Elasticsearch</a></li>
-<li><a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html">ElasticsearchRepository</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html">TransportClient</a></li>
-<li><a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html">QueryBuilders</a></li>
-<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries">Spring Data Elasticsearch Queries</a></li>
-<li><a class="reference external" href="http://www.baeldung.com/spring-value-annotation">The &#64;Value annotation</a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-tutorial" target="_blank">Spring Data Elasticsearch<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html" target="_blank">ElasticsearchRepository<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html" target="_blank">TransportClient<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html" target="_blank">QueryBuilders<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries" target="_blank">Spring Data Elasticsearch Queries<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-value-annotation" target="_blank">The &#64;Value annotation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 </div>

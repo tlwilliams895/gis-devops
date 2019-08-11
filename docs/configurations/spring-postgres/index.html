@@ -7,6 +7,7 @@
     <title>Configuration: Spring &amp; Postgres &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -284,9 +286,10 @@
 <h2>Add Spring Data to our dependencies<a class="headerlink" href="#add-spring-data-to-our-dependencies" title="Permalink to this headline">¶</a></h2>
 <p>Open your build.gradle file.</p>
 <img alt="../../_images/project-viewer-build-gradle.png" src="../../_images/project-viewer-build-gradle.png" />
-<p>Add the associated Postgres dependency to <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> as a compile-time dependency.
+<p>Add the associated Postgres and JPA dependencies to <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> as a compile-time dependency.
 Set the existing h2 dependency to be a <code class="docutils literal notranslate"><span class="pre">testCompile</span></code> dependency, since it will only be needed for running tests at this point.:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>dependencies {
+    compile(&#39;org.springframework.boot:spring-boot-starter-data-jpa&#39;)
     compile(group: &#39;org.postgresql&#39;, name: &#39;postgresql&#39;, version: &#39;42.1.4&#39;)
     testCompile(&#39;com.h2database:h2&#39;)
 }
@@ -310,7 +313,7 @@ spring.jpa.hibernate.ddl-auto=update
 <p>Setting spring.jpa.hibernate.dll-auto=update means Hibernate will create tables for us if they are missing, but it won’t alter the database in any other way. The other two DDL-auto options we will use in this class are <code class="docutils literal notranslate"><span class="pre">create</span></code> and <code class="docutils literal notranslate"><span class="pre">create-drop</span></code>. Create will create any missing tables, and run a SQL script to load the intial database with records. Create-drop will create any missing tables, run a SQL script to load the intial database, and when the application is shutdown it will drop all the tables from the database.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">Committing sensitive information about our database to our VCS is a bad idea. You should use IntelliJ <a class="reference external" href="../../configurations/environment-variables-intellij/">environment variables</a> to hide your sensitive data.</p>
+<p class="last">Committing sensitive information about our database to our VCS is a bad idea. You should use IntelliJ <a class="reference external" href="../../configurations/environment-variables-intellij/" target="_blank">environment variables<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to hide your sensitive data.</p>
 </div>
 </div>
 <div class="section" id="map-classes-to-tables">

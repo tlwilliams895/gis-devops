@@ -7,6 +7,7 @@
     <title>Fuzzy Search for Report Keywords &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -293,8 +295,8 @@
 <p>Before we use Elasticsearch in our project we first need to setup Elasticsearch.</p>
 <p>Like with PostGIS it would be a good idea to create a new docker container specifically for our container. Giving us additional control over how Elasticsearch runs on our machine.</p>
 <p>Review <a class="reference internal" href="../../installations/docker-elasticsearch/index.html#docker-elasticsearch"><span class="std std-ref">Docker Installation: Elasticsearch</span></a> for help with creating your new Elasticsearch container.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">Remember to stop any running elastcisearch containers you may have running on your machine. It would also be a good idea to name your elasticsearch container for this week something unique like: <code class="docutils literal notranslate"><span class="pre">es-zika-week4</span></code>.</p>
 </div>
 </div>
@@ -310,8 +312,8 @@
 <p>We also added code to the <code class="docutils literal notranslate"><span class="pre">EsUtil.java</span></code> file that pulled everything out of our <code class="docutils literal notranslate"><span class="pre">itemRepository</span></code> and then saved it all to our <code class="docutils literal notranslate"><span class="pre">itemDocumentRepository</span></code>.</p>
 <p>We want to do a similar thing for our project. But instead of an <code class="docutils literal notranslate"><span class="pre">itemRepository</span></code> and <code class="docutils literal notranslate"><span class="pre">itemDocumentRepository</span></code> we want to use <code class="docutils literal notranslate"><span class="pre">reportRepository</span></code> and <code class="docutils literal notranslate"><span class="pre">reportDocumentRepository</span></code>.</p>
 <p>After creating this code you will have to make a POST request to the endpoint you defined to refresh your Elasticsearch cluster.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">This will probably take a few minutes. It is loading 240,000 records from our database, and then indexing them into our Elasticsearch cluster. Don’t panic if it looks like it isn’t doing anything for a few minutes.</p>
 </div>
 <p>Finally to check that Elasticsearch has been seeded correctly you can make a GET request to the new report index: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">curl</span> <span class="pre">-XGET</span> <span class="pre">127.0.0.1:9200/report/_count</span></code>. This request should give you over 240000 documents.</p>
@@ -327,7 +329,7 @@
 <h2>Add Search Box and Button to <code class="docutils literal notranslate"><span class="pre">index.html</span></code><a class="headerlink" href="#add-search-box-and-button-to-index-html" title="Permalink to this headline">¶</a></h2>
 <p>Our users will need a way to make a search. They will expect a search box, and search button.</p>
 <p>You will need to create these in your <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file, giving them specific ids so you can reference them in your <code class="docutils literal notranslate"><span class="pre">script.js</span></code> file.</p>
-<p>You may find the <a class="reference external" href="https://api.jquery.com/click/">jQuery click() documentation</a> useful, you may also want to reference the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text">MDN textbox documentation</a>.</p>
+<p>You may find the <a class="reference external" href="https://api.jquery.com/click/" target="_blank">jQuery click() documentation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> useful, you may also want to reference the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/text" target="_blank">MDN textbox documentation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
 </div>
 <div class="section" id="amend-script-js">
 <h2>Amend <code class="docutils literal notranslate"><span class="pre">script.js</span></code><a class="headerlink" href="#amend-script-js" title="Permalink to this headline">¶</a></h2>

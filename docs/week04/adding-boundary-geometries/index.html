@@ -7,6 +7,7 @@
     <title>Adding Boundary Geometries &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -265,18 +267,18 @@
       
   <div class="section" id="adding-boundary-geometries">
 <span id="week4-adding-boundary-geometries"></span><h1>Adding Boundary Geometries<a class="headerlink" href="#adding-boundary-geometries" title="Permalink to this headline">¶</a></h1>
-<p>The data that the scientists want to ingest is summarized in the <a class="reference external" href="https://github.com/cdcepi/zika">CDC Zika Repository</a>. If you open up the <a class="reference external" href="https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv">data for Argentina</a>, you’ll notice that the data looks pretty similiar to last mission, except that there is no latitude or longitude to geocode each row; however, each row does have a location field. We should be able to indentify those locations to actual areas on a map.</p>
-<p>Search for “political boundaries geojson” and find <a class="reference external" href="http://www.gadm.org/">gadm.org</a>. This site provides geospatial data about administrative boundaries for each state. Go to the <a class="reference external" href="http://www.gadm.org/country">GADM Downloads Page</a> to check out the data.</p>
+<p>The data that the scientists want to ingest is summarized in the <a class="reference external" href="https://github.com/cdcepi/zika" target="_blank">CDC Zika Repository<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. If you open up the <a class="reference external" href="https://github.com/cdcepi/zika/blob/master/Argentina/Surveillance_Bulletin/data/Surveillance_Bulletin_01_2017-01-12.csv" target="_blank">data for Argentina<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>, you’ll notice that the data looks pretty similiar to last mission, except that there is no latitude or longitude to geocode each row; however, each row does have a location field. We should be able to indentify those locations to actual areas on a map.</p>
+<p>Search for “political boundaries geojson” and find <a class="reference external" href="http://www.gadm.org/" target="_blank">gadm.org<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. This site provides geospatial data about administrative boundaries for each state. Go to the <a class="reference external" href="http://www.gadm.org/country" target="_blank">GADM Downloads Page<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to check out the data.</p>
 <img alt="../../_images/GADM_download_page.png" src="../../_images/GADM_download_page.png" />
-<p>Download the <a class="reference external" href="http://biogeo.ucdavis.edu/data/gadm2.8/shp/BRA_adm_shp.zip">shapefile for Brazil</a>.</p>
-<p>The file <code class="docutils literal notranslate"><span class="pre">BRA_adm_shp.zip</span></code> will download. Double click the file to unzip the file. You should see three shapefiles: <code class="docutils literal notranslate"><span class="pre">BRA_adm0.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm2.shp</span></code>. <code class="docutils literal notranslate"><span class="pre">BRA_adm3.shp</span></code>. Let’s take a look at these shapefiles. In order to look at a shapefile, you will need download <a class="reference external" href="https://qgis.org/en/site/">QGIS</a>, an open source desktop viewer for geospatial data. QGIS can be downloaded via the <a class="reference external" href="https://connect.boundlessgeo.com/Downloads">Boundless site</a>. After downloading, double click the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file to install.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p>Download the <a class="reference external" href="http://biogeo.ucdavis.edu/data/gadm2.8/shp/BRA_adm_shp.zip" target="_blank">shapefile for Brazil<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
+<p>The file <code class="docutils literal notranslate"><span class="pre">BRA_adm_shp.zip</span></code> will download. Double click the file to unzip the file. You should see three shapefiles: <code class="docutils literal notranslate"><span class="pre">BRA_adm0.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code>, <code class="docutils literal notranslate"><span class="pre">BRA_adm2.shp</span></code>. <code class="docutils literal notranslate"><span class="pre">BRA_adm3.shp</span></code>. Let’s take a look at these shapefiles. In order to look at a shapefile, you will need download <a class="reference external" href="https://qgis.org/en/site/" target="_blank">QGIS<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>, an open source desktop viewer for geospatial data. QGIS can be downloaded via the <a class="reference external" href="https://connect.boundlessgeo.com/Downloads" target="_blank">Boundless site<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. After downloading, double click the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file to install.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">Note: Use your personal email to register on Boundless Connect to get access to the QGIS download.</p>
 </div>
 <p>After QGIS is installed, drag the <code class="docutils literal notranslate"><span class="pre">BRA_adm1.shp</span></code> file into the QGIS window in order to import the file.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">The zoom on the QGIS window is VERY sensitive. You may need to automatically zoom to the layer you would like to view. Right click on your layer in the <em>Layers Panel</em>, and select <em>Zoom to Layer</em>.</p>
 </div>
 <img alt="../../_images/QGIS_zoom_to_layer.png" src="../../_images/QGIS_zoom_to_layer.png" />
@@ -301,8 +303,8 @@
 </pre></div>
 </div>
 <img alt="../../_images/CLI_check_compressed_file_size.png" src="../../_images/CLI_check_compressed_file_size.png" />
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">A file size of 331K isn’t great for a webapp; it’s still a bit large. In a few weeks, we’ll look at how some of the features of GeoServer allows you to display large amounts of data without a big download.</p>
 </div>
 <p>The last step is to join all of the GeoJSON files together. To do that, we can use a nice Node.js library from MapBox. Run the following commands:</p>

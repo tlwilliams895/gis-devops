@@ -7,6 +7,7 @@
     <title>Walkthrough: Cars Demo - Spring Data, JPA, Hibernate &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -279,7 +281,7 @@
       
   <div class="section" id="walkthrough-cars-demo-spring-data-jpa-hibernate">
 <span id="spring-data-jpa-hibernate-walkthrough"></span><h1>Walkthrough: Cars Demo - Spring Data, JPA, Hibernate<a class="headerlink" href="#walkthrough-cars-demo-spring-data-jpa-hibernate" title="Permalink to this headline">¶</a></h1>
-<p>In this walkthrough, we revisit the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/car-integration-test-starter">Car Integration Tests</a> that we worked on in yesterday’s walkthrough <a class="reference internal" href="../spring-integration-testing/index.html#sit-walkthrough"><span class="std std-ref">Walkthrough: Spring Integration Tests</span></a>. We’ll refactor the app to use Postgres and Hibernate.</p>
+<p>In this walkthrough, we revisit the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/car-integration-test-starter" target="_blank">Car Integration Tests<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> that we worked on in yesterday’s walkthrough <a class="reference internal" href="../spring-integration-testing/index.html#sit-walkthrough"><span class="std std-ref">Walkthrough: Spring Integration Tests</span></a>. We’ll refactor the app to use Postgres and Hibernate.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
@@ -323,9 +325,9 @@
 </ul>
 </dd>
 </dl>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Committing passwords to source control is a BAD idea. We are using a spring data feature that searches for and uses enviroment variables. <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config">Read more about Spring Boot/Data configuration.</a></p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Committing passwords to source control is a BAD idea. We are using a spring data feature that searches for and uses enviroment variables. <a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config" target="_blank">Read more about Spring Boot/Data configuration.<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
 </div>
 </div>
 <div class="section" id="add-annotations-to-car-model">

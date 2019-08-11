@@ -7,6 +7,7 @@
     <title>Docker Installation: Kibana &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -328,8 +330,8 @@
 <li><code class="docutils literal notranslate"><span class="pre">kibana:6.5.4</span></code> the image of the container (in this case kibana version 6.5.4)</li>
 </ul>
 <p>This command creates a container named “kibana” with the kibana 6.5.4 image that listens on port 5601, is detached from this command, and we are configuring the elasticsearch.url to match the IP Address of our elasticsearch container.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">The major versions of Elasticsearch, and Kibana <strong>must</strong> match. In tihs case both Kibana, and Elasticsearch are versions 6.5.X. The first two numbers of the version must be the same.</p>
 </div>
 <p>If you run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">ps</span> <span class="pre">-a</span></code> now you should see a new container named “kibana”.</p>
@@ -360,8 +362,8 @@
 <blockquote>
 <div><img alt="../../_images/kibana-dashboard.png" src="../../_images/kibana-dashboard.png" />
 </div></blockquote>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">If your browser returns a response of ‘Kibana Server is not ready yet’ give it a minute or so and try again! If this issue persists an error may have happened in creating our container. We can view the logs of our container with: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">docker</span> <span class="pre">logs</span> <span class="pre">kibana</span></code>.</p>
 </div>
 <p>We are ready to go with Kibana!</p>

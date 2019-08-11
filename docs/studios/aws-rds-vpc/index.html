@@ -7,6 +7,7 @@
     <title>Studio: AWS RDS VPC &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -367,7 +369,7 @@ spring.jpa.hibernate.ddl-auto=update
 <li>Review the IPv4 CIDR Block Settings<ul>
 <li>This defines the IP addresses that will be available in your VPC.</li>
 <li>A <code class="docutils literal notranslate"><span class="pre">x.x.x.x/16</span></code> block will include 65,536 possible addresses*</li>
-<li>See <a class="reference external" href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks">Wikipedia’s CIDR table.</a></li>
+<li>See <a class="reference external" href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks" target="_blank">Wikipedia’s CIDR table.<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 <li>Don’t worry if these don’t make sense instantly</li>
 <li>The Public subnet’s IPv4 CIDR will be <code class="docutils literal notranslate"><span class="pre">x.x.x.x/24</span></code>, which includes 256 addresses</li>
 <li>This is the subnet where you’ll put your public-facing instances (such as your Airwaze app).</li>
@@ -767,7 +769,7 @@ ubuntu$ journalctl -u airwaze
 </div></blockquote>
 <div class="section" id="did-it-work">
 <h3>Did it Work?<a class="headerlink" href="#did-it-work" title="Permalink to this headline">¶</a></h3>
-<p>You may now try to access your application at <a class="reference external" href="http://ec2-instance.us-east-2.compute.amazonaws.com:8080">http://ec2-instance.us-east-2.compute.amazonaws.com:8080</a> in your browser.</p>
+<p>You may now try to access your application at <a class="reference external" href="http://ec2-instance.us-east-2.compute.amazonaws.com:8080" target="_blank">http://ec2-instance.us-east-2.compute.amazonaws.com:8080<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> in your browser.</p>
 </div>
 </div>
 <div class="section" id="take-a-snapshot-of-your-ec2-instance">
@@ -943,7 +945,7 @@ ubuntu$ journalctl -u airwaze
 <div><img alt="../../_images/make-instance-sg-internal-only.png" src="../../_images/make-instance-sg-internal-only.png" />
 </div></blockquote>
 <p>Now it’s time to see the result of your hard work:</p>
-<p>Open <a class="reference external" href="http://demo-lb-instance.us-east-2.elb.amazonaws.com">http://demo-lb-instance.us-east-2.elb.amazonaws.com</a> in the browser and see the application running.</p>
+<p>Open <a class="reference external" href="http://demo-lb-instance.us-east-2.elb.amazonaws.com" target="_blank">http://demo-lb-instance.us-east-2.elb.amazonaws.com<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> in the browser and see the application running.</p>
 <p>The real power in a load balancer is it can route traffic away from unhealthy instances. Time to test that out.</p>
 <ul class="simple">
 <li>Return to the EC2 Instances Dashboard</li>

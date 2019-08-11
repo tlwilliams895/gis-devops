@@ -7,6 +7,7 @@
     <title>Studio: LaunchCart REST &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -277,7 +279,7 @@
 <p>In this studio, we’ll add additional RESTful endpoints to the LaunchCart application. It builds upon the changes we added in the <a class="reference internal" href="../../walkthroughs/launchcart-rest/index.html#walkthrough-launchcart-rest"><span class="std std-ref">Walkthrough: LaunchCart REST</span></a>.</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">project/repository</a> that you used previously, make sure you are in the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough-starter</span></code> branch that you used earlier today.</p>
+<p>From the same <code class="docutils literal notranslate"><span class="pre">launchcart</span></code> <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart" target="_blank">project/repository<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> that you used previously, make sure you are in the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough-starter</span></code> branch that you used earlier today.</p>
 <p>If you don’t have the walkthrough code, you can fetch changes from the remote and check out the <code class="docutils literal notranslate"><span class="pre">rest-studio-starter</span></code> branch.</p>
 <p>Create a story branch:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>(switch to the rest-studio branch)
@@ -287,7 +289,7 @@ $ git checkout rest-studio-starter
 $ git checkout -b rest-studio-solution
 </pre></div>
 </div>
-<p>Write integration tests before coding each controller method below. In doing so, you may find the documentation for <a class="reference external" href="https://goessner.net/articles/JsonPath/">JsonPath</a> to be useful. Also, refer to existing tests in <code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code>.</p>
+<p>Write integration tests before coding each controller method below. In doing so, you may find the documentation for <a class="reference external" href="https://goessner.net/articles/JsonPath/" target="_blank">JsonPath<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to be useful. Also, refer to existing tests in <code class="docutils literal notranslate"><span class="pre">ItemRestControllerTests</span></code>.</p>
 </div>
 <div class="section" id="tasks">
 <h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
@@ -303,7 +305,7 @@ $ git checkout -b rest-studio-solution
 <p>Add a <code class="docutils literal notranslate"><span class="pre">new</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/api/items</span></code> endpoint. Note that this should work <strong>in conjunction</strong> with the <code class="docutils literal notranslate"><span class="pre">price</span></code> parameter, so that one, both, or neither can be used when querying the resource.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last">You’ll need to create one or more new query methods in <cite>ItemRepository</cite>. You might find the documentation on Spring Data JPA <a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation">query creation</a> helpful for this.</p>
+<p class="last">You’ll need to create one or more new query methods in <cite>ItemRepository</cite>. You might find the documentation on Spring Data JPA <a class="reference external" href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.query-creation" target="_blank">query creation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> helpful for this.</p>
 </div>
 </div>
 <div class="section" id="add-api-customers-resources">
@@ -328,7 +330,7 @@ $ git checkout -b rest-studio-solution
 </div>
 <div class="section" id="bonus-mission">
 <h2>Bonus Mission<a class="headerlink" href="#bonus-mission" title="Permalink to this headline">¶</a></h2>
-<p>If you finish the primary studio tasks, try to enable HATEOAS for your REST controllers by referencing the Spring tutorial, <a class="reference external" href="https://spring.io/guides/gs/rest-hateoas/">Building a Hypermedia-Driven RESTful Web Service</a>. The sections titled “Create a resources representation class” and “Create a RestController” are most relevant.</p>
+<p>If you finish the primary studio tasks, try to enable HATEOAS for your REST controllers by referencing the Spring tutorial, <a class="reference external" href="https://spring.io/guides/gs/rest-hateoas/" target="_blank">Building a Hypermedia-Driven RESTful Web Service<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. The sections titled “Create a resources representation class” and “Create a RestController” are most relevant.</p>
 </div>
 <div class="section" id="turning-in-your-work">
 <h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>

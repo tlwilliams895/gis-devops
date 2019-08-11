@@ -7,6 +7,7 @@
     <title>Project Week2: Display an Interactive Map &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -290,13 +292,13 @@
 <div class="section" id="create-templates-index-html">
 <h2>Create templates/index.html<a class="headerlink" href="#create-templates-index-html" title="Permalink to this headline">¶</a></h2>
 <p>Spring is configured to serve a Thymeleaf template from every endpoint handler inside of any Controller that includes the <code class="docutils literal notranslate"><span class="pre">&#64;Controller</span></code> annotation. We will need to create this <code class="docutils literal notranslate"><span class="pre">templates/index.html</span></code> file, add any JavaScript, or OpenLayers dependencies, and create some HTML tags that will hold our map.</p>
-<p>It’s tough to remember how we loaded all the dependencies into our index.html file, so look at how we did this in the <a class="reference external" href="../../walkthroughs/openlayers/">OpenLayers and jQuery walkthrough</a> to help yourself out.</p>
-<p>If you are struggling with adding empty HTML tags look over your solution to the <a class="reference external" href="../../studios/airwaze/">Airwaze studio</a>. It may be benefical to look at the solution you created for this studio instead of the Studio instructions.</p>
+<p>It’s tough to remember how we loaded all the dependencies into our index.html file, so look at how we did this in the <a class="reference external" href="../../walkthroughs/openlayers/" target="_blank">OpenLayers and jQuery walkthrough<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to help yourself out.</p>
+<p>If you are struggling with adding empty HTML tags look over your solution to the <a class="reference external" href="../../studios/airwaze/" target="_blank">Airwaze studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. It may be benefical to look at the solution you created for this studio instead of the Studio instructions.</p>
 </div>
 <div class="section" id="create-static-js-script-js">
 <h2>Create static/js/script.js<a class="headerlink" href="#create-static-js-script-js" title="Permalink to this headline">¶</a></h2>
 <p>We will be using Javascript to load the map from OSM, and to create new layers to add to that map. So we will need to create a <code class="docutils literal notranslate"><span class="pre">resources/js/script.js</span></code> that includes this information.</p>
-<p>Again looking at the <a class="reference external" href="../../walkthroughs/openlayers/">OpenLayers and jQuery walkthrough</a> or your solution to the <a class="reference external" href="../../studios/airwaze/">Airwaze studio</a> would be benefical in completing this task.</p>
+<p>Again looking at the <a class="reference external" href="../../walkthroughs/openlayers/" target="_blank">OpenLayers and jQuery walkthrough<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> or your solution to the <a class="reference external" href="../../studios/airwaze/" target="_blank">Airwaze studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> would be benefical in completing this task.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p class="last">You will need to make sure the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file you created earlier links to this new <code class="docutils literal notranslate"><span class="pre">script.js</span></code> file.</p>
@@ -305,8 +307,8 @@
 <div class="section" id="create-controllers-indexcontroller-java">
 <h2>Create controllers/IndexController.java<a class="headerlink" href="#create-controllers-indexcontroller-java" title="Permalink to this headline">¶</a></h2>
 <p>Now that we have a thymeleaf template, and a Javascript file that loads an OSM map, we will need to configure the backend of our application to listen for an HTTP request, and to serve up our new Thymeleaf template as an HTTP Response. We do this by creating a new Controller in Java, and using the <code class="docutils literal notranslate"><span class="pre">&#64;Controller</span></code> Spring annotation.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">Since our Spring project came with Apache Tomcat as the web server which is configured to automatically serve an index.html file found in the resources folder, it is possible to forgo creating a Controller for the root of our project. However, this is not a best practice because we would be unable to test if Apache Tomcat is serving the file correctly!</p>
 </div>
 <p>We have not covered Spring Controllers in this class, as it was addressed in the prep-work. However, creating a Spring Controller is necessary to this project, so we will show you how to setup your IndexController.</p>
@@ -333,7 +335,7 @@
 <h2>Create tests/IndexControllerTests.java<a class="headerlink" href="#create-tests-indexcontrollertests-java" title="Permalink to this headline">¶</a></h2>
 <p>Since we have created a new Controller file we need to test each method inside the file. In this case we need to test the <code class="docutils literal notranslate"><span class="pre">getIndex()</span></code> method.</p>
 <p>To properly create this integration test we will need to create three new files: <code class="docutils literal notranslate"><span class="pre">IntegrationTestConfig.java</span></code>, <code class="docutils literal notranslate"><span class="pre">IndexControllerTests.java</span></code> and <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code>.</p>
-<p>Look over the <a class="reference external" href="../../walkthroughs/spring-integration-testing/">Integration Testing walkthrough</a> and your solution to the <a class="reference external" href="../../studios/launchcart1/">LaunchCart part 1 studio</a> for assistance in completing this task.</p>
+<p>Look over the <a class="reference external" href="../../walkthroughs/spring-integration-testing/" target="_blank">Integration Testing walkthrough<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and your solution to the <a class="reference external" href="../../studios/launchcart1/" target="_blank">LaunchCart part 1 studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> for assistance in completing this task.</p>
 <p>You will want to make sure when a user makes an HTTP GET request to: <code class="docutils literal notranslate"><span class="pre">localhost:8080/</span></code> they get an HTTP Response of 200.</p>
 <p>You will want to look into the <code class="docutils literal notranslate"><span class="pre">&#64;TestPropertySource(locations</span> <span class="pre">=</span> <span class="pre">&quot;classpath:application-test.properties&quot;)</span></code> annotation. It let’s you use a different application.properties file. You will need to add this to add this to your <code class="docutils literal notranslate"><span class="pre">IntegrationTestConfig.java</span></code> file, and any other test files that need to work with the database.</p>
 <p>You will need to create and configure the <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code> file. You should model it after your current application.properties file, but configure your environment variables to point to the testing database you completed in the previous primary objective.</p>
@@ -348,7 +350,7 @@
 <div class="section" id="commit">
 <h2>Commit!<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
 <p>Finally, commit your work after completing this primary objective!</p>
-<p><a class="reference external" href="../project/">Back to week2!</a></p>
+<p><a class="reference external" href="../project/" target="_blank">Back to week2!<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
 </div>
 </div>
 

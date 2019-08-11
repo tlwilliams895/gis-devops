@@ -7,6 +7,7 @@
     <title>Walkthrough: Hashing and Salting Passwords &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -277,7 +279,7 @@
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch of <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">LaunchCodeTraining/launchcart</a></li>
+<li>Check out the <code class="docutils literal notranslate"><span class="pre">rest-walkthrough</span></code> branch of <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart" target="_blank">LaunchCodeTraining/launchcart<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 <li>Create and checkout a <strong>story branch</strong> named <code class="docutils literal notranslate"><span class="pre">securely-hash-passwords</span></code> via <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">securely-hash-passwords</span></code></li>
 </ol>
 </div>
@@ -344,11 +346,11 @@
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet">OWASP Hashing Guidelines</a></li>
-<li><a class="reference external" href="https://docs.spring.io/spring-security/site/docs/5.0.7.RELEASE/reference/htmlsingle/#spring-security-crypto-passwordencoders">Spring Security - BCrypt documentation</a></li>
-<li><a class="reference external" href="https://github.com/spring-projects/spring-security/blob/5888a3f6b7e9f56e5d47ecbea3444209c713e3bf/crypto/src/main/java/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.java">Spring Security - BCrypt source code</a></li>
-<li><a class="reference external" href="https://crackstation.net/hashing-security.htm">In Depth Background and Guidance for Hashing</a></li>
-<li><a class="reference external" href="https://en.wikipedia.org/wiki/Bcrypt">Bcrypt</a></li>
+<li><a class="reference external" href="https://www.owasp.org/index.php/Password_Storage_Cheat_Sheet" target="_blank">OWASP Hashing Guidelines<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://docs.spring.io/spring-security/site/docs/5.0.7.RELEASE/reference/htmlsingle/#spring-security-crypto-passwordencoders" target="_blank">Spring Security - BCrypt documentation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://github.com/spring-projects/spring-security/blob/5888a3f6b7e9f56e5d47ecbea3444209c713e3bf/crypto/src/main/java/org/springframework/security/crypto/bcrypt/BCryptPasswordEncoder.java" target="_blank">Spring Security - BCrypt source code<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://crackstation.net/hashing-security.htm" target="_blank">In Depth Background and Guidance for Hashing<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/Bcrypt" target="_blank">Bcrypt<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 </div>

@@ -7,6 +7,7 @@
     <title>Display Report Data via a Hard Coded Date &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -303,15 +305,15 @@
 <p>Our JpaRepository classes give us CRUD functionality over our PostGIS database. We created a <code class="docutils literal notranslate"><span class="pre">ReportRepository.java</span></code> class last project week, to get reports from our database.</p>
 <p>We changed our underlying data, but our current <code class="docutils literal notranslate"><span class="pre">ReportRepository.java</span></code> class still works. However, we need to extend the functionality of this class. We need to only fetch records that match a specfic string date.</p>
 <p>You will need to add a method to this class to allow for this new functionality.</p>
-<p>Look over the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/blob/rest-walkthrough-solution/src/main/java/org/launchcode/launchcart/data/ItemRepository.java">ItemRepository.java class</a> from the LaunchCart application we worked on earlier this week for assistance.</p>
+<p>Look over the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart/blob/rest-walkthrough-solution/src/main/java/org/launchcode/launchcart/data/ItemRepository.java" target="_blank">ItemRepository.java class<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> from the LaunchCart application we worked on earlier this week for assistance.</p>
 </div>
 <div class="section" id="create-locationrepository-java">
 <h2>Create <code class="docutils literal notranslate"><span class="pre">LocationRepository.java</span></code><a class="headerlink" href="#create-locationrepository-java" title="Permalink to this headline">¶</a></h2>
 <p>Another difference this week is that we have separated our report, and location data. Before we could simply create a new FeatureCollection (GeoJSON) from our report data because it included the location data. Now we are going to have to manually join these things together.</p>
 <p>To do this we are going to need a new JpaRepository attached to the location table of our database. You can do this by creating <code class="docutils literal notranslate"><span class="pre">LocationRepository.java</span></code>. Model it after your <code class="docutils literal notranslate"><span class="pre">ReportRepository.java</span></code> class.</p>
 <p>We are going to need to extend the functionality of this class, to find locations based on something from our report data. If you aren’t sure yet on how to do that, feel free to move on and re-address it when you need it in the next section.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">We are creating a new JpaRepository, and creating a custom method. This is something we should test. Don’t forget to create a new test file for this repository. It may be difficult to create the test if you are still piecing together how this objective works. So feel free to come back to the test later if you need too.</p>
 </div>
 </div>

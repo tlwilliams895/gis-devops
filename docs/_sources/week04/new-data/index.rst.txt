@@ -109,6 +109,15 @@ After you amend ``import.sql`` re-run your project with ``bootRun`` make sure th
 
 You can count the number of records from inside PostGIS with ``SELECT COUNT(*) FROM report;`` and ``SELECT COUNT(*) FROM location;``.
 
+Fix Broken Tests
+----------------
+
+Since our data has changed, and how our application handles the data has changed our tests are no longer correct.
+
+Once you get to this point we should run our tests. Make sure to update your ``application-test.properties`` and ``import-test.sql`` files and then run your tests. You will notice that a large number of them fail. Since we have changed how our application handles the data, most of our tests are obsolete and will need to be refactored, or scrapped and re-written.
+
+Run your tests, and either fix, or delete them. If you delete them you will need to create new tests later as you work through the remaining objectives.
+
 Closing remarks & next steps
 ----------------------------
 

@@ -7,6 +7,7 @@
     <title>Walkthrough: Jenkins &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -314,7 +316,7 @@
 <div class="section" id="install-and-configure-jenkins">
 <h2>Install and Configure Jenkins<a class="headerlink" href="#install-and-configure-jenkins" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Go to <a class="reference external" href="https://jenkins.io/download/">jenkins home page</a></p>
+<li><p class="first">Go to <a class="reference external" href="https://jenkins.io/download/" target="_blank">jenkins home page<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
 </li>
 <li><p class="first">Download jenkins war from  by clicking <strong>Generic Java War</strong>  (note: scroll to the bottom of the page)</p>
 <blockquote>
@@ -334,8 +336,8 @@ $ mv ~/Downloads/jenkins.war ~/jenkins
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ java -jar ~/jenkins/jenkins.war --httpPort=9090
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">Normally you would not install jenkins on your dev machine. You would isntall it on a server that would be continsouly running so that it could react to a commit at anytime.</p>
 </div>
 <div class="section" id="configure-jenkins">
@@ -345,7 +347,7 @@ $ mv ~/Downloads/jenkins.war ~/jenkins
 </ul>
 <img alt="../../_images/jenkins-password.png" src="../../_images/jenkins-password.png" />
 <ul class="simple">
-<li>Go to <a class="reference external" href="http://localhost:9090">http://localhost:9090</a></li>
+<li>Go to <a class="reference external" href="http://localhost:9090" target="_blank">http://localhost:9090<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 <li>You should see screen asking for an admin key</li>
 <li>Paste that key into the input box</li>
 </ul>
@@ -389,7 +391,7 @@ $ mv ~/Downloads/jenkins.war ~/jenkins
 <h3>Configure the Compile Project<a class="headerlink" href="#configure-the-compile-project" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>In <strong>Source Code Management</strong> click <strong>Git</strong></li>
-<li>Post your SSH gitlab repo url into <strong>Repository URL</strong>. Example: <a class="reference external" href="mailto:git&#37;&#52;&#48;gitlab&#46;com">git<span>&#64;</span>gitlab<span>&#46;</span>com</a>:welzie/airwaze-studio.git</li>
+<li>Post your SSH gitlab repo url into <strong>Repository URL</strong>. Example: <a class="reference external" href="mailto:git&#37;&#52;&#48;gitlab&#46;com" target="_blank">git<span>&#64;</span>gitlab<span>&#46;</span>com<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>:welzie/airwaze-studio.git</li>
 <li>Make sure you the branch you want to compile is in the <strong>Branch Specifier</strong> field</li>
 <li>Go to the <strong>Build Triggers</strong> section</li>
 <li>Select <strong>Poll SCM</strong> and enter <code class="docutils literal notranslate"><span class="pre">H/5</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span> <span class="pre">*</span></code> into the <strong>Schedule</strong> input</li>
@@ -524,9 +526,9 @@ String Parameter</p>
 </li>
 <li>After both the Compile Project and Test Project have finished</li>
 <li>You can view the tests by finding the test results in the project work space</li>
-<li>Naviage to project works space by clicking <strong>Work Space</strong> in the left menu of a project. Example: <a class="reference external" href="http://localhost:9090/job/Airwaze%20Test/ws/">http://localhost:9090/job/Airwaze%20Test/ws/</a></li>
+<li>Naviage to project works space by clicking <strong>Work Space</strong> in the left menu of a project. Example: <a class="reference external" href="http://localhost:9090/job/Airwaze%20Test/ws/" target="_blank">http://localhost:9090/job/Airwaze%20Test/ws/<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 <li>Once on the <strong>Work Space</strong> page click on the folder names and navigate to <code class="docutils literal notranslate"><span class="pre">/build/reports/tests/test/index.html</span></code></li>
-<li>Clicking on <code class="docutils literal notranslate"><span class="pre">index.html</span></code> should open up the junit test results. Example: <a class="reference external" href="http://localhost:9090/job/Airwaze%20Test/ws/build/reports/tests/test/index.html">http://localhost:9090/job/Airwaze%20Test/ws/build/reports/tests/test/index.html</a></li>
+<li>Clicking on <code class="docutils literal notranslate"><span class="pre">index.html</span></code> should open up the junit test results. Example: <a class="reference external" href="http://localhost:9090/job/Airwaze%20Test/ws/build/reports/tests/test/index.html" target="_blank">http://localhost:9090/job/Airwaze%20Test/ws/build/reports/tests/test/index.html<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 <div class="section" id="configure-the-tests-results-to-be-published-automatically">
@@ -559,7 +561,7 @@ String Parameter</p>
 <div class="section" id="setup-s3-bucket-needed-so-we-can-configure-the-next-project">
 <h3>Setup S3 Bucket (Needed so we can configure the next project)<a class="headerlink" href="#setup-s3-bucket-needed-so-we-can-configure-the-next-project" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>If you haven’t already, you need to install <code class="docutils literal notranslate"><span class="pre">awscli</span></code>. Instructions can be found in the <a class="reference external" href="https://education.launchcode.org/gis-devops/studios/AWS3/">AWS3 Studio</a></li>
+<li>If you haven’t already, you need to install <code class="docutils literal notranslate"><span class="pre">awscli</span></code>. Instructions can be found in the <a class="reference external" href="https://education.launchcode.org/gis-devops/studios/AWS3/" target="_blank">AWS3 Studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 <li>Create a new S3 bucket that will be used for the <code class="docutils literal notranslate"><span class="pre">.jar</span></code> files your jenkins builds produce</li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 mb s3://launchcode-gis-c3-blake-airwaze

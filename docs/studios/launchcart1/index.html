@@ -7,6 +7,7 @@
     <title>Studio: LaunchCart Part 1 &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -307,10 +309,10 @@
 </ol>
 <div class="section" id="getting-started">
 <h3>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h3>
-<p>Fork the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart">LaunchCodeTraining/launchcart repo</a> and clone it to your laptop. For this project we will start with the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. After forking and cloning, it’s a good idea to make a <strong>story branch</strong> to contain your work.</p>
+<p>Fork the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/launchcart" target="_blank">LaunchCodeTraining/launchcart repo<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and clone it to your laptop. For this project we will start with the <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. After forking and cloning, it’s a good idea to make a <strong>story branch</strong> to contain your work.</p>
 <p>Example: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">launchcart1-studio-solution</span></code> creates a branch named <strong>launchcart1-studio-solution</strong> and checks it out at the same time.</p>
 <p>Import the project into IntelliJ by opening the build.gradle file as a project. Remember to check auto-import if it isn’t automatically selected for you.</p>
-<p>Create runtime configurations for your tests. Look back at the <a class="reference external" href="../../walkthroughs/unit-tests/">Unit Tests Walkthrough</a> for help with configuring a project for Java 8 and creating runtime configurations.</p>
+<p>Create runtime configurations for your tests. Look back at the <a class="reference external" href="../../walkthroughs/unit-tests/" target="_blank">Unit Tests Walkthrough<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> for help with configuring a project for Java 8 and creating runtime configurations.</p>
 <p>Finally, before writing your own tests you should make sure all the current tests pass. If they don’t, make the changes so the tests will pass.</p>
 </div>
 <div class="section" id="add-price-to-items-listing">
@@ -328,8 +330,8 @@
 <p>Display the cart total at <code class="docutils literal notranslate"><span class="pre">/cart</span></code>. Before adding code to the controller and/or view, write an integration test to verify that the total is displayed properly.</p>
 <p>After you have written your test(s) and the corresponding code passes, run all of the tests and commit.</p>
 <p>A TODO is provided for you in <code class="docutils literal notranslate"><span class="pre">CartControllerTests.java</span></code>, but ask yourself why does this test go in this file?</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">Don’t worry about formatting the total as currency (i.e. with exactly 2 decimal places) when displaying it in the view.</p>
 </div>
 </div>
@@ -344,8 +346,8 @@
 <h3>Implement Unit Test for ItemMemoryRepositoryTests<a class="headerlink" href="#implement-unit-test-for-itemmemoryrepositorytests" title="Permalink to this headline">¶</a></h3>
 <p>The previous programmer left a <code class="docutils literal notranslate"><span class="pre">TODO</span></code> in the unit test <code class="docutils literal notranslate"><span class="pre">/launchcart/src/test/java/org/launchcode/launchcart/data/ItemMemoryRepositoryTests.java.testAddItems()</span></code>. Please write this test so that
 we can be sure our repository class correctly saves items.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">This version of LaunchCart does not use an SQL database. Use this test as a way to get familair with how Items and Carts are persisted for this project.</p>
 </div>
 </div>

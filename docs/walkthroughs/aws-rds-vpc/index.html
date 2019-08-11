@@ -7,6 +7,7 @@
     <title>Walkthrough: Introduction to Amazon Web Services &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -272,7 +274,7 @@
 <p>Follow along with the instructor as we configure an app to run inside a VPC.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>This project uses the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/simple-map-app">Simple Map App</a></p>
+<p>This project uses the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/simple-map-app" target="_blank">Simple Map App<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
 <p>Remember, in order to connect to an EC2 in a VPC you need to have the following pieces configured:</p>
 <ol class="arabic simple">
 <li>Your EC2 instance should have been created with a public IP address.</li>
@@ -281,7 +283,7 @@
 <li>An Internet Gateway needs to be attached to your VPC.</li>
 <li>There needs to be a custom route directing traffic from <cite>0.0.0.0/0</cite> to your Internet Gateway.</li>
 </ol>
-<p>Refer to the <a class="reference external" href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/">AWS Article on Troubleshooting SSH connections</a> if you have any trouble.</p>
+<p>Refer to the <a class="reference external" href="https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-ssh-troubleshooting/" target="_blank">AWS Article on Troubleshooting SSH connections<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> if you have any trouble.</p>
 </div>
 <div class="section" id="goals">
 <h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>

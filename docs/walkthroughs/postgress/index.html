@@ -7,6 +7,7 @@
     <title>Walkthrough: PostgreSQL &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -395,8 +397,8 @@
 <li><code class="docutils literal notranslate"><span class="pre">UPDATE</span> <span class="pre">baseball.teams</span> <span class="pre">SET</span> <span class="pre">divison='Central'</span> <span class="pre">WHERE</span> <span class="pre">name='Chicago</span> <span class="pre">Cubs';</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">baseball.teams;</span></code></li>
 </ul>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
 <p class="last">Any record that matches the WHERE clause will be updated!</p>
 </div>
 </div>
@@ -409,8 +411,8 @@
 <li><code class="docutils literal notranslate"><span class="pre">DELETE</span> <span class="pre">FROM</span> <span class="pre">baseball.teams</span> <span class="pre">WHERE</span> <span class="pre">id=6;</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">baseball.teams;</span></code></li>
 </ul>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
 <p class="last">Any record that matches the WHERE clause will be deleted! Since we deleted by the id, which is a primary key we are ensuring that only 1 record is affected.</p>
 </div>
 </div>
@@ -451,7 +453,7 @@
 </div>
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
-<p>We have barely touched the surface of Postgres, or SQL. You can find more information by reading the <a class="reference external" href="https://www.postgresql.org/docs/">Postgres documentation</a></p>
+<p>We have barely touched the surface of Postgres, or SQL. You can find more information by reading the <a class="reference external" href="https://www.postgresql.org/docs/" target="_blank">Postgres documentation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
 <p>We have covered everything that you will need to know for this class, but if you are hungry for more you should research JOIN statements.</p>
 </div>
 </div>

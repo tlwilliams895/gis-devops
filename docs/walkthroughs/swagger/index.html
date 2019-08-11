@@ -7,6 +7,7 @@
     <title>Walkthrough: SwaggerUI &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -285,7 +287,7 @@
       
   <div class="section" id="walkthrough-swaggerui">
 <span id="walkthrough-swagger"></span><h1>Walkthrough: SwaggerUI<a class="headerlink" href="#walkthrough-swaggerui" title="Permalink to this headline">¶</a></h1>
-<p>In this walkthrough, the instructor will guide through adding API documentation using <a class="reference external" href="https://swagger.io/swagger-ui/">SwaggerUI</a>.</p>
+<p>In this walkthrough, the instructor will guide through adding API documentation using <a class="reference external" href="https://swagger.io/swagger-ui/" target="_blank">SwaggerUI<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
 <div class="section" id="concept">
 <h2>Concept<a class="headerlink" href="#concept" title="Permalink to this headline">¶</a></h2>
 <p>REST allows us to programmatically utilize (Create, Read, Update, Delete) resources in a datastore. Anyone can make HTTP requests to our RESTful API to interact with our datastore, however how do we let them know which endpoints to access, and which HTTP verbs to use, and when to include query parameters, path variables, or JSON?</p>
@@ -316,9 +318,9 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 </ol>
 <div class="section" id="add-swaggerui-to-the-project">
 <h3>Add SwaggerUI to the Project<a class="headerlink" href="#add-swaggerui-to-the-project" title="Permalink to this headline">¶</a></h3>
-<p>Clone the <a class="reference external" href="https://github.com/swagger-api/swagger-ui/tree/2.x">SwaggerUI repository</a> from Github. Alternatively, download the code as a zip file and unzip it.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p>Clone the <a class="reference external" href="https://github.com/swagger-api/swagger-ui/tree/2.x" target="_blank">SwaggerUI repository<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> from Github. Alternatively, download the code as a zip file and unzip it.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">We are downloading the SwaggerUI 2.x branch.</p>
 </div>
 <p>To add the SwaggerUI files to your project:</p>
@@ -382,10 +384,10 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 <span class="nt">definitions</span><span class="p">:</span>
 </pre></div>
 </div>
-<p>Start up SpringBoot and navigate to the url <a class="reference external" href="http://localhost:8080/swagger/index.html">http://localhost:8080/swagger/index.html</a>. You should see a SwaggerUI page displayed. It will look something like this:</p>
+<p>Start up SpringBoot and navigate to the url <a class="reference external" href="http://localhost:8080/swagger/index.html" target="_blank">http://localhost:8080/swagger/index.html<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. You should see a SwaggerUI page displayed. It will look something like this:</p>
 <img alt="../../_images/swagger-ui.png" src="../../_images/swagger-ui.png" />
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
 <p class="last">If your screen reports and error “failed to parse JSON/YAML response”, then check the format of <code class="docutils literal notranslate"><span class="pre">swagger.yaml</span></code> to make sure it is correct.</p>
 </div>
 <p>Now we can start adding info about our API endpoints. Let’s start with the <code class="docutils literal notranslate"><span class="pre">/api/carts</span></code> path.</p>
@@ -401,9 +403,9 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p>Refresh your browser to see the results.</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">YAML is white-spaced based. Be <em>very</em> careful with tabs and spaces. You may also find the <a class="reference external" href="http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html">YAML Reference</a> helpful.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">YAML is white-spaced based. Be <em>very</em> careful with tabs and spaces. You may also find the <a class="reference external" href="http://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html" target="_blank">YAML Reference<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> helpful.</p>
 </div>
 </div>
 <div class="section" id="paths">
@@ -489,10 +491,9 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p>Refresh your browser to see the updated info.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>Make sure that your whitespace is correct. There can only be a one tab indent for every map.</p>
-<p class="last">Incorrect indentation may cause your API endpoints not to show up or display errors.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Make sure that your whitespace is correct. There can only be a one tab indent for every map.</p>
 </div>
 </div>
 <div class="section" id="definitions">
@@ -540,9 +541,9 @@ Create and checkout a new branch named <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p>Again, reload your browser to see the new info displayed in SwaggerUI.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">There are two types of parameters: <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See the <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/">Swagger documentation</a> for more info about documenting parameters.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">There are two types of parameters: <code class="docutils literal notranslate"><span class="pre">query</span></code> and <code class="docutils literal notranslate"><span class="pre">path</span></code>.  See the <a class="reference external" href="https://swagger.io/docs/specification/describing-parameters/" target="_blank">Swagger documentation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> for more info about documenting parameters.</p>
 </div>
 <p>Let’s look at an example that uses path parameters.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">/api/items/{id}</span><span class="p p-Indicator">:</span>

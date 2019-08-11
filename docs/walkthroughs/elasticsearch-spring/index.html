@@ -7,6 +7,7 @@
     <title>Walkthrough: Elasticsearch in Spring &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -369,8 +371,8 @@ Actual   :400
 <span class="o">}</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">The <code class="docutils literal notranslate"><span class="pre">&#64;Id</span></code> annotation should come from the <code class="docutils literal notranslate"><span class="pre">javax.persistence</span></code> package, so be sure to select the correct import.</p>
 </div>
 <p>Review the fields and constructors for this class to make sure you understand what it represents. Each <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> object will be a “copy” of an <code class="docutils literal notranslate"><span class="pre">Item</span></code> that is suitable for storing in Elasticsearch, and which keeps track of the original item’s ID in the <code class="docutils literal notranslate"><span class="pre">itemUid</span></code> field.</p>
@@ -485,8 +487,8 @@ Actual   :400
 </pre></div>
 </div>
 <p>You will need to <code class="docutils literal notranslate"><span class="pre">&#64;Autowire</span></code> a <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository</span></code> in each controller that needs access to Elasticsearch.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
 <p class="last">We should also update or delete an <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> whenever the corresponding <code class="docutils literal notranslate"><span class="pre">Item</span></code> is updated or deleted. We leave this exercise to you.</p>
 </div>
 </div>
@@ -534,12 +536,12 @@ Actual   :400
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-tutorial">Spring Data Elasticsearch</a></li>
-<li><a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html">ElasticsearchRepository</a></li>
-<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html">TransportClient</a></li>
-<li><a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html">QueryBuilders</a></li>
-<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries">Spring Data Elasticsearch Queries</a></li>
-<li><a class="reference external" href="http://www.baeldung.com/spring-value-annotation">The &#64;Value annotation</a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-tutorial" target="_blank">Spring Data Elasticsearch<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html" target="_blank">ElasticsearchRepository<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html" target="_blank">TransportClient<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html" target="_blank">QueryBuilders<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries" target="_blank">Spring Data Elasticsearch Queries<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-value-annotation" target="_blank">The &#64;Value annotation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 </div>

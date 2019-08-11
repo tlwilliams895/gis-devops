@@ -7,6 +7,7 @@
     <title>Studio: Airwaze &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -290,14 +292,14 @@
 <div class="section" id="set-up-project">
 <h2>Set Up Project<a class="headerlink" href="#set-up-project" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Fork and clone this <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio">Gitlab project</a>.</li>
+<li>Fork and clone this <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-studio" target="_blank">Gitlab project<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</li>
 <li>Then open the project in IntelliJ</li>
 <li>Create a story branch <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">day5-solution</span></code></li>
 </ul>
 </div>
 <div class="section" id="what-is-postgis">
 <h2>What is PostGIS?<a class="headerlink" href="#what-is-postgis" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://postgis.net/">PostGIS</a> is a spatial database extension for PostgreSQL object-relational database. PostGIS adds support for geographic objects in Postgresql. This includes features such as georgraphic data types, location functions, and location based querying.</p>
+<p><a class="reference external" href="https://postgis.net/" target="_blank">PostGIS<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> is a spatial database extension for PostgreSQL object-relational database. PostGIS adds support for geographic objects in Postgresql. This includes features such as georgraphic data types, location functions, and location based querying.</p>
 </div>
 <div class="section" id="install-postgis-container">
 <h2>Install PostGIS Container<a class="headerlink" href="#install-postgis-container" title="Permalink to this headline">¶</a></h2>
@@ -364,7 +366,7 @@ airwaze=# CREATE EXTENSION postgis_tiger_geocoder;
 <p>This application uses Spring Boot and Spring Data.  When the project boots up, <strong>if</strong> you have a <code class="docutils literal notranslate"><span class="pre">src/main/resources/import.sql</span></code> file, it will automatically be executed against your database by hibernate.</p>
 <ul class="simple">
 <li><strong>NOTE</strong> <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> only runs if <code class="docutils literal notranslate"><span class="pre">ddl-auto=create</span> <span class="pre">or</span> <span class="pre">create-drop</span></code> in <code class="docutils literal notranslate"><span class="pre">application.properties</span></code></li>
-<li><a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-initialize-a-database-using-hibernate">More information on Spring Data initialization</a></li>
+<li><a class="reference external" href="https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-initialize-a-database-using-hibernate" target="_blank">More information on Spring Data initialization<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> file in this project contains SQL statements that import CSV data into SQL tables. Please take a minute to review <code class="docutils literal notranslate"><span class="pre">import.sql</span></code> and the two <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files.</p>
 <ul class="simple">
@@ -406,7 +408,7 @@ airwaze=# \d route
 <div class="section" id="review-airportcontroller">
 <h2>Review AirportController<a class="headerlink" href="#review-airportcontroller" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Visit this url in your browser: <a class="reference external" href="http://localhost:8080/airport/">http://localhost:8080/airport/</a>.  Note the trailing <code class="docutils literal notranslate"><span class="pre">/</span></code> is important.</li>
+<li>Visit this url in your browser: <a class="reference external" href="http://localhost:8080/airport/" target="_blank">http://localhost:8080/airport/<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.  Note the trailing <code class="docutils literal notranslate"><span class="pre">/</span></code> is important.</li>
 <li>Then look at the code that returns that data.</li>
 </ul>
 </div>
@@ -451,7 +453,7 @@ airwaze=# \d route
 <div class="section" id="bonus-missions">
 <h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Get this to work <strong>without</strong> jQuery. Hints: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch">fetch</a> and <code class="docutils literal notranslate"><span class="pre">document.findElementById</span></code></li>
+<li>Get this to work <strong>without</strong> jQuery. Hints: <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">fetch<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and <code class="docutils literal notranslate"><span class="pre">document.findElementById</span></code></li>
 <li>Change the style of the dots: color, size, fill in</li>
 <li>Sort airports by alpha order when they are displayed below the map</li>
 <li>Check what kind of feature was clicked when map.onclick runs</li>
@@ -466,12 +468,12 @@ airwaze=# \d route
 <div class="section" id="resources">
 <h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://macwright.org/2015/03/23/geojson-second-bite">Read about constructing GeoJSON</a></li>
-<li><a class="reference external" href="https://openlayers.org/en/latest/examples/">OpenLayers Examples</a></li>
-<li><a class="reference external" href="http://www.acuriousanimal.com/thebookofopenlayers3/chapter02_01_adding_removing_layers.html">Adding and Removing Layers with OpenLayers</a></li>
-<li><a class="reference external" href="http://geojson.io">Validate your GeoJSON!</a></li>
-<li><a class="reference external" href="http://openlayers.org/en/latest/examples/geojson.html">OpenLayers Drawing Examples</a></li>
-<li><a class="reference external" href="http://goessner.net/articles/JsonPath/">JSONPath</a></li>
+<li><a class="reference external" href="https://macwright.org/2015/03/23/geojson-second-bite" target="_blank">Read about constructing GeoJSON<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://openlayers.org/en/latest/examples/" target="_blank">OpenLayers Examples<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://www.acuriousanimal.com/thebookofopenlayers3/chapter02_01_adding_removing_layers.html" target="_blank">Adding and Removing Layers with OpenLayers<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://geojson.io" target="_blank">Validate your GeoJSON!<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://openlayers.org/en/latest/examples/geojson.html" target="_blank">OpenLayers Drawing Examples<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://goessner.net/articles/JsonPath/" target="_blank">JSONPath<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
 </ul>
 </div>
 </div>

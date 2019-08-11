@@ -24,7 +24,7 @@ Before we create our container we first need to create a temporary file that wil
 * Add ``cluster.name=elasticsearch`` to env.list
 * Save env.list
 
-This small file will have postgres create a new user named psql_user, and allow all IP addresses to make requests to the container.
+This file contains two environment variables and configures them within our Elasticsearch container. The file configures the discovery type, and cluster name of our elasticsearch container.
 
 Create Container
 ++++++++++++++++

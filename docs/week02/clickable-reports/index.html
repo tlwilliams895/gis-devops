@@ -7,6 +7,7 @@
     <title>Project Week2: Zika Reports are Clickable &#8212; LaunchCode: GIS DevOps  documentation</title>
     <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
@@ -35,7 +36,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-logo.svg" alt="LaunchCode logo"></span>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
           GIS DevOps</a>
         <span class="navbar-text navbar-version pull-left"><b></b></span>
       </div>
@@ -242,7 +243,8 @@
             
 <form class="navbar-form navbar-right" action="../../search.html" method="get">
  <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
  </div>
   <input type="hidden" name="check_keywords" value="yes" />
   <input type="hidden" name="area" value="default" />
@@ -284,18 +286,18 @@
 <div class="section" id="amend-index-html">
 <h2>Amend index.html<a class="headerlink" href="#amend-index-html" title="Permalink to this headline">¶</a></h2>
 <p>We are going to need some HTML structure to put this new Report information into.</p>
-<p>Look over the <a class="reference external" href="../../studios/airwaze/">airwaze studio</a> to see how they used the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file to create an empty section of HTML to put Zika Report data into.</p>
+<p>Look over the <a class="reference external" href="../../studios/airwaze/" target="_blank">airwaze studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to see how they used the <code class="docutils literal notranslate"><span class="pre">index.html</span></code> file to create an empty section of HTML to put Zika Report data into.</p>
 </div>
 <div class="section" id="amend-script-js">
 <h2>Amend script.js<a class="headerlink" href="#amend-script-js" title="Permalink to this headline">¶</a></h2>
 <p>We will have to add a click event handler to our map, which will have to loop through the features contained in the click event, and for each feature we will have to make a request to our new endpoint to get information we can display in our new HTML structure.</p>
 <p>Within the click event handler, we will need to loop through any features, and add information about the feature to the empty HTML structure we created above. Using JavaScript template literals is a great way to do this. Our Airwaze studio is an example of how to do this.</p>
-<p>Look over the <a class="reference external" href="../../studios/airwaze/">airwaze studio</a> to see how they created a new onclick event, and how they made calls to the new endpoint.</p>
+<p>Look over the <a class="reference external" href="../../studios/airwaze/" target="_blank">airwaze studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> to see how they created a new onclick event, and how they made calls to the new endpoint.</p>
 </div>
 <div class="section" id="commit">
 <h2>Commit<a class="headerlink" href="#commit" title="Permalink to this headline">¶</a></h2>
 <p>After re-running your tests, and visually checking your map, and new click events commit and push your code!</p>
-<p><a class="reference external" href="../project/">Back to week2!</a></p>
+<p><a class="reference external" href="../project/" target="_blank">Back to week2!<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
 </div>
 </div>
 
