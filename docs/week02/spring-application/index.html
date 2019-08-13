@@ -361,30 +361,31 @@
 </div>
 <p>Next we will have to add those dependencies to our project.</p>
 <p>Towards the bottom of your file you should find a separate dependencies section. It should already have implementation, runtimeOnly, and testImplementation statements, we don’t want to change those.</p>
-<p>We just want to add the following two statements.</p>
+<p>We just want to add the following three statements.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text">Add dependencies</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dependencies {</span>
 <span class="go">  ...</span>
 <span class="go">  compile(group: &#39;org.postgresql&#39;, name: &#39;postgresql&#39;, version: &#39;42.1.4&#39;)</span>
 <span class="go">  compile(group: &#39;org.hibernate&#39;, name: &#39;hibernate-spatial&#39;, version: &#39;5.1.0.Final&#39;)</span>
+<span class="go">  compile(group: &#39;com.bedatadriven&#39;, name: &#39;jackson-datatype-jts&#39;, version: &#39;2.4&#39;)</span>
 <span class="go">}</span>
 </pre></div>
 </div>
 </div>
-<p>After you add these statements you should notice IntelliJ displays a loading symbol as it dowloads, and installs these dependencies into your project. It should only take a second.</p>
+<p>After you add these statements you should notice IntelliJ displays a loading symbol as it downloads, and installs these dependencies into your project. It should only take a second.</p>
 <p>You can see these files by looking into the External Libraries directory, and looking for <code class="docutils literal notranslate"><span class="pre">Gradle:org.hibernate:hibernate-spatial:5.1.0.FINAL</span></code>, and <code class="docutils literal notranslate"><span class="pre">Gradle:org.postgresql:postgresql:42.1.4</span></code>. They will be among the other dependencies we loaded from the Spring Initializr.</p>
 </div>
 <div class="section" id="intialize-a-new-git-repository">
 <h2>Intialize a New Git Repository<a class="headerlink" href="#intialize-a-new-git-repository" title="Permalink to this headline">¶</a></h2>
-<p>You may notice that Spring Initializr created a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file for you. However, it is not able to intialize a new git directory for you.</p>
-<p>You will need to intialize a new git directory with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">init</span></code>.</p>
-<p>Look over the .gitignore file and deterimine if there is anything else you may need to add to it.</p>
+<p>You may notice that Spring Initializr created a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file for you. However, it is not able to initialize a new git directory for you.</p>
+<p>You will need to initialize a new git directory with <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">init</span></code>.</p>
+<p>Look over the .gitignore file and determine if there is anything else you may need to add to it.</p>
 </div>
 <div class="section" id="connect-to-a-remote-repository">
 <h2>Connect to a Remote Repository<a class="headerlink" href="#connect-to-a-remote-repository" title="Permalink to this headline">¶</a></h2>
 <p>You will want to connect your local git repository to a remote repository. To do this you will need to create a new project on your GitLab account. After doing that you can connect the two from your command line by typing <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">remote</span> <span class="pre">add</span> <span class="pre">origin</span> <span class="pre">&lt;url_to_remote_git_repo&gt;</span></code>.</p>
-<p>After you connect your local to your remote, you may want to stage, commit, and push. This will synchornize your local, and remote repositories so that your remote repository will contain your starter project.</p>
+<p>After you connect your local to your remote, you may want to stage, commit, and push. This will synchronize your local, and remote repositories so that your remote repository will contain your starter project.</p>
 </div>
 <div class="section" id="setup-postgis">
 <h2>Setup PostGIS<a class="headerlink" href="#setup-postgis" title="Permalink to this headline">¶</a></h2>

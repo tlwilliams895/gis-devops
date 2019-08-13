@@ -97,7 +97,7 @@ Next we will have to add those dependencies to our project.
 
 Towards the bottom of your file you should find a separate dependencies section. It should already have implementation, runtimeOnly, and testImplementation statements, we don't want to change those. 
 
-We just want to add the following two statements.
+We just want to add the following three statements.
 
 .. sourcecode:: console
    :caption: Add dependencies
@@ -106,27 +106,28 @@ We just want to add the following two statements.
      ...
      compile(group: 'org.postgresql', name: 'postgresql', version: '42.1.4')
      compile(group: 'org.hibernate', name: 'hibernate-spatial', version: '5.1.0.Final')
+     compile(group: 'com.bedatadriven', name: 'jackson-datatype-jts', version: '2.4')
    }
 
-After you add these statements you should notice IntelliJ displays a loading symbol as it dowloads, and installs these dependencies into your project. It should only take a second.
+After you add these statements you should notice IntelliJ displays a loading symbol as it downloads, and installs these dependencies into your project. It should only take a second.
 
 You can see these files by looking into the External Libraries directory, and looking for ``Gradle:org.hibernate:hibernate-spatial:5.1.0.FINAL``, and ``Gradle:org.postgresql:postgresql:42.1.4``. They will be among the other dependencies we loaded from the Spring Initializr.
 
 Intialize a New Git Repository
 ------------------------------
 
-You may notice that Spring Initializr created a ``.gitignore`` file for you. However, it is not able to intialize a new git directory for you.
+You may notice that Spring Initializr created a ``.gitignore`` file for you. However, it is not able to initialize a new git directory for you.
 
-You will need to intialize a new git directory with ``$ git init``.
+You will need to initialize a new git directory with ``$ git init``.
 
-Look over the .gitignore file and deterimine if there is anything else you may need to add to it.
+Look over the .gitignore file and determine if there is anything else you may need to add to it.
 
 Connect to a Remote Repository
 ------------------------------
 
 You will want to connect your local git repository to a remote repository. To do this you will need to create a new project on your GitLab account. After doing that you can connect the two from your command line by typing ``$ git remote add origin <url_to_remote_git_repo>``.
 
-After you connect your local to your remote, you may want to stage, commit, and push. This will synchornize your local, and remote repositories so that your remote repository will contain your starter project.
+After you connect your local to your remote, you may want to stage, commit, and push. This will synchronize your local, and remote repositories so that your remote repository will contain your starter project.
 
 Setup PostGIS
 -------------
