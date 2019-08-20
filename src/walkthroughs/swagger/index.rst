@@ -21,7 +21,7 @@ Getting Started
 ===============
 
 The same Launchcart project and repo you used for the REST studio.
-Create and checkout a new branch named ``my-rest-swagger-solution`` with this command ``git checkout -b my-rest-swagger-solution``
+Create and checkout a branch named ``my-rest-swagger-starter`` with this command ``git checkout -b my-rest-swagger-solution``
 
 Tasks
 =====
