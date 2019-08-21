@@ -101,7 +101,8 @@ We now need to use NPM to install ESLint, and ESLint-plugin-import.
 
 From the same directory you initialized NPM in run the following commands:
     - ``$ npm install eslint --save-dev``
-    - ``$ npm install eslint-plugin-import --save-dev``.
+    - ``$ npm install eslint-plugin-import --save-dev``
+    - ``$ npm install eslint-config-airbnb-base --save-dev``
 
 The ``$ npm install`` command will create a new directory called ``node_modules`` and will install the packages, and their dependencies into the ``node_modules`` directory. This is the code that runs when we use ESLint. The ``--save-dev`` option saves the installed packages inside devDependencies indicating these packages are only needed while the project is being developed, and they are not needed in production.
 
@@ -117,10 +118,7 @@ We do that by running ``$ ./node_modules/.bin/eslint --init`` and selecting:
   - What type of modules does your project use?: None of these
   - Which framework does your project use?: None of these
   - Where does your code run?: Browser
-  - How would you like to define a style for your project?: Use a popular style guide
-  - Which style guide would you like to follow?: Airbnb
   - What format do you want your config file to be in?: JavaScript
-  - Would you like to install them now?: Y
 
 Similarly to NPM init, ESLint init prompts us and based on our answers creates a file that holds our preferences, and is used when we use ESLint.
 
@@ -156,8 +154,16 @@ You need to point your "test" key to the relative location of your script.js fil
 
 Configure Airbnb Ruleset
 ------------------------
+You need to tell ESLint to use the Airbnb ruleset. Change the ``extends`` property to have the value ``airbnb-base``.
 
-As a final step before we run ESLint we should change one rule in the Airbnb ruleset. We have been using 4 spaces as whitespace in our JavaScript files throughout this class, and Airbnb's ruleset only allows for 2 spaces as whitespace.
+.. sourcecode:: javascript
+   :caption: .eslintrc.js
+
+   "extends": "airbnb-base",
+
+Override a Rule
+^^^^^^^^^^^^^^^
+As a final step before we run ESLint we should override one rule in the Airbnb ruleset. We have been using 4 spaces as whitespace in our JavaScript files throughout this class, and Airbnb's ruleset only allows for 2 spaces as whitespace.
 
 We need to override this rule, because our specific team uses a different rule. Luckily we can change our ruleset any way we see fit.
 
