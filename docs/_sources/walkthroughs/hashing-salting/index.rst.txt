@@ -9,7 +9,7 @@ Walkthrough: Hashing and Salting Passwords
 Setup
 #####
 
-1. Check out the ``rest-walkthrough`` branch of `LaunchCodeTraining/launchcart <https://gitlab.com/LaunchCodeTraining/launchcart>`_
+1. Check out the ``rest-walkthrough-solution`` branch of `LaunchCodeTraining/launchcart <https://gitlab.com/LaunchCodeTraining/launchcart>`_
 2. Create and checkout a **story branch** named ``securely-hash-passwords`` via ``$ git checkout -b securely-hash-passwords``
 
 Determine the Status of the Current Code
