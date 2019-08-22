@@ -270,7 +270,7 @@
 <li><a class="reference internal" href="#initialize-npm">Initialize NPM</a></li>
 <li><a class="reference internal" href="#install-eslint">Install ESLint</a></li>
 <li><a class="reference internal" href="#initialize-eslint">Initialize ESLint</a></li>
-<li><a class="reference internal" href="#configure-eslint">Configure ESLint</a></li>
+<li><a class="reference internal" href="#id1">Configure ESLint</a></li>
 <li><a class="reference internal" href="#configure-airbnb-ruleset">Configure Airbnb Ruleset</a><ul>
 <li><a class="reference internal" href="#override-a-rule">Override a Rule</a></li>
 </ul>
@@ -394,7 +394,7 @@
 <p>You can change into the <code class="docutils literal notranslate"><span class="pre">node_modules</span></code> directory, and see all of the code that is used to run ESLint.</p>
 </div>
 <div class="section" id="initialize-eslint">
-<h3>Initialize ESLint<a class="headerlink" href="#initialize-eslint" title="Permalink to this headline">¶</a></h3>
+<span id="configure-eslint"></span><h3>Initialize ESLint<a class="headerlink" href="#initialize-eslint" title="Permalink to this headline">¶</a></h3>
 <p>Now that ESLint is installed in this project, we still need to intialize ESLint for this project.</p>
 <dl class="docutils">
 <dt>We do that by running <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">./node_modules/.bin/eslint</span> <span class="pre">--init</span></code> and selecting:</dt>
@@ -410,16 +410,16 @@
 <p>Similarly to NPM init, ESLint init prompts us and based on our answers creates a file that holds our preferences, and is used when we use ESLint.</p>
 <p>The file created is a hidden file (it starts with a “.”), and is called <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code>. This file holds the information ESLint uses when Linting our code.</p>
 </div>
-<div class="section" id="configure-eslint">
-<h3>Configure ESLint<a class="headerlink" href="#configure-eslint" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h3>Configure ESLint<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>If you followed to this point you are almost done. However, let’s double check that we’ve configured NPM, and ESLint correctly.</p>
 <p>We have two files, and one directory we need to check <code class="docutils literal notranslate"><span class="pre">package.json</span></code>, <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code> are the files and <code class="docutils literal notranslate"><span class="pre">node_modules</span></code> is the directory.</p>
 <p><code class="docutils literal notranslate"><span class="pre">package.json</span></code> contains all the data NPM needs to function.</p>
 <p>Inside <code class="docutils literal notranslate"><span class="pre">package.json</span></code> we have a “scripts” section that contains the type of “tests” we are running: <code class="docutils literal notranslate"><span class="pre">eslint</span></code> and the file we are testing: <code class="docutils literal notranslate"><span class="pre">src/main/resources/static/scripts/js/script.js</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">package.json</span></code> defines what tool we are using for testing (ESLint), and the file we are testing (script.js).</p>
 <p>Verify that your <code class="docutils literal notranslate"><span class="pre">package.json</span></code> file has the following “scripts” section:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">package.json</span><a class="headerlink" href="#id1" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">package.json</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;scripts&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;test&quot;</span><span class="o">:</span> <span class="s2">&quot;eslint src/main/resources/static/js/script.js&quot;</span>
 <span class="p">}</span>
@@ -431,10 +431,10 @@
 <p><code class="docutils literal notranslate"><span class="pre">node_modules</span></code> contains all the actual code needed by ESLint to function. We don’t need to check anything in this folder, but it’s nice to know why it is here.</p>
 </div>
 <div class="section" id="configure-airbnb-ruleset">
-<h3>Configure Airbnb Ruleset<a class="headerlink" href="#configure-airbnb-ruleset" title="Permalink to this headline">¶</a></h3>
+<span id="id2"></span><h3>Configure Airbnb Ruleset<a class="headerlink" href="#configure-airbnb-ruleset" title="Permalink to this headline">¶</a></h3>
 <p>You need to tell ESLint to use the Airbnb ruleset. Change the <code class="docutils literal notranslate"><span class="pre">extends</span></code> property to have the value <code class="docutils literal notranslate"><span class="pre">airbnb-base</span></code>.</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">.eslintrc.js</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">.eslintrc.js</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;extends&quot;</span><span class="o">:</span> <span class="s2">&quot;airbnb-base&quot;</span><span class="p">,</span>
 </pre></div>
 </div>
@@ -444,8 +444,8 @@
 <p>As a final step before we run ESLint we should override one rule in the Airbnb ruleset. We have been using 4 spaces as whitespace in our JavaScript files throughout this class, and Airbnb’s ruleset only allows for 2 spaces as whitespace.</p>
 <p>We need to override this rule, because our specific team uses a different rule. Luckily we can change our ruleset any way we see fit.</p>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">.eslintrc.js</span></code> file. Near the bottom you should have an empty “rules” section. Modify that section so that it looks like this:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">.eslintrc.js</span><a class="headerlink" href="#id3" title="Permalink to this code">¶</a></div>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">.eslintrc.js</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
  <span class="s2">&quot;indent&quot;</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;error&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 <span class="p">},</span>

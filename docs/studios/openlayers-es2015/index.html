@@ -259,7 +259,13 @@
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Studio: OpenLayers ES2015 Workshop</a><ul>
-<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li><a class="reference internal" href="#download-project">Download Project</a></li>
+<li><a class="reference internal" href="#configure-npm-dependencies">Configure NPM Dependencies</a></li>
+<li><a class="reference internal" href="#configure-eslint-and-airbnb-ruleset">Configure ESLint and Airbnb Ruleset</a></li>
+<li><a class="reference internal" href="#make-sure-it-starts">Make Sure it Starts</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#your-tasks">Your Tasks</a></li>
 <li><a class="reference internal" href="#turning-in-your-work">Turning In Your Work</a></li>
 </ul>
@@ -275,38 +281,92 @@
 <p>This activity gives you practice with JavaScript, ES2015, Webpack, and OpenLayers</p>
 <div class="section" id="getting-started">
 <h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Fork the <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/openlayers-eslint-workshop-studio" target="_blank">LaunchCodeTraining/openlayers-eslint-workshop-studio<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and clone it to your laptop.</li>
-<li>Open the project in your favorite JavaScript editor (Visual Studio Code, Atom, Webstorm, or even Intellij if you have a JavaScript plugin installed)</li>
+<div class="section" id="download-project">
+<h3>Download Project<a class="headerlink" href="#download-project" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Open the <a class="reference external" href="https://openlayers.org/workshop/en/" target="_blank">OpenLayers gitbook<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> in your browser.</li>
+<li>Download latest version of the OpenLayers Workshop.<ul>
+<li>Example: v6.0.0-beta.en.2</li>
+<li>Download the zipped folder version (NOT the source files)</li>
 </ul>
+</li>
+<li>Extract the folder and move it to a folder where you normally keep your projects.</li>
+<li>In a terminal<ul>
+<li>Navigate to the OpenLayers Workshop folder you just extracted and moved</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">init</span></code> to setup a get repository (this will only be a local repo until you have connected it to a remote)</li>
+</ul>
+</li>
+<li>Add a <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file to the root of your project.<ul>
+<li>In that file add this: <code class="docutils literal notranslate"><span class="pre">**/node_modules</span></code></li>
+<li>This makes git ignore the node_modules folder</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-npm-dependencies">
+<h3>Configure NPM Dependencies<a class="headerlink" href="#configure-npm-dependencies" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Update <code class="docutils literal notranslate"><span class="pre">eslint</span></code> version in <code class="docutils literal notranslate"><span class="pre">devDependencies</span></code> in <code class="docutils literal notranslate"><span class="pre">package.json</span></code><ul>
+<li>Update to: <code class="docutils literal notranslate"><span class="pre">&quot;eslint&quot;:</span> <span class="pre">&quot;^6.2.1&quot;</span></code></li>
+</ul>
+</li>
+<li>Add these to <code class="docutils literal notranslate"><span class="pre">devDependencies</span></code> in <code class="docutils literal notranslate"><span class="pre">package.json</span></code><ul>
+<li><code class="docutils literal notranslate"><span class="pre">&quot;eslint-config-airbnb-base&quot;:</span> <span class="pre">&quot;^14.0.0&quot;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">&quot;eslint-plugin-import&quot;:</span> <span class="pre">&quot;^2.18.2&quot;</span></code></li>
+</ul>
+</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">install</span></code><ul>
+<li>For the sake of this example, ignore the “npm audit warnings”.</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="configure-eslint-and-airbnb-ruleset">
+<h3>Configure ESLint and Airbnb Ruleset<a class="headerlink" href="#configure-eslint-and-airbnb-ruleset" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Follow the <a class="reference internal" href="../../walkthroughs/eslint-airwaze/index.html#configure-eslint"><span class="std std-ref">ESLint initialization and config instructions.</span></a><ul>
+<li>One key difference is that <code class="docutils literal notranslate"><span class="pre">test</span></code> command should be changed to only “lint” <code class="docutils literal notranslate"><span class="pre">main.js</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">&quot;test&quot;:</span> <span class="pre">&quot;eslint</span> <span class="pre">main.js&quot;</span></code></li>
+</ul>
+</li>
+<li>Follow the <a class="reference internal" href="../../walkthroughs/eslint-airwaze/index.html#configure-airbnb-ruleset"><span class="std std-ref">Airbnb ruleset config instructions</span></a></li>
+</ol>
+</div>
+<div class="section" id="make-sure-it-starts">
+<h3>Make Sure it Starts<a class="headerlink" href="#make-sure-it-starts" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">start</span></code></li>
+<li>View site at <code class="docutils literal notranslate"><span class="pre">http://localhost:3000</span></code></li>
+</ol>
+</div>
 </div>
 <div class="section" id="your-tasks">
 <h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
-<p>You are going to follow a serious of instructions in an OpenLayers gitbook (link below), with a few differences</p>
-<ul class="simple">
-<li><strong>DON’T DO IT</strong>, when the instructions tell you to download the latest <code class="docutils literal notranslate"><span class="pre">workshop</span> <span class="pre">release</span></code></li>
-<li>Instead you are going to use the repo you forked and cloned in the setup for this studio</li>
+<p>Follow a serious of instructions in the <a class="reference external" href="https://openlayers.org/workshop/en/" target="_blank">OpenLayers gitbook<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. The OpenLayers Workshop has a series of
+examples. Your task is to get the examples working locally and then make them pass the Airbnb ESLint ruleset.</p>
+<ol class="arabic simple">
+<li>Start with the “Basics” section in the left menu and continue down.</li>
+<li>Get each example to work locally, by reviewing and copying the code.
+* Each example will require you to edit <code class="docutils literal notranslate"><span class="pre">main.js</span></code> and <code class="docutils literal notranslate"><span class="pre">index.html</span></code>
+* You can commit your work in between each example or you can create different branches</li>
+<li>Make the example code pass the Airbnb ruleset.<ul>
+<li>Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">test</span></code> in terminal or use the visual linting provided by Visual Studio Code.</li>
+<li>Update the code to pass the ruleset.</li>
+<li>Make sure the example code still works after you make your edits. It’s better to check frequently instead of after a large number of changes.</li>
 </ul>
-<p>Go Through Each Example in the Instructions</p>
-<ul class="simple">
-<li>Instructions -&gt; OpenLayers Workshop <a class="reference external" href="https://openlayers.org/workshop/en/" target="_blank">Instructions<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
-<li>Take your time and read the examples and documentation</li>
-<li>The example code does NOT pass our project’s defined eslint rules</li>
-<li>After copying or retyping the examples, make the code pass the eslint rules</li>
-<li>You can do this all in one branch. Please commit after each main section <code class="docutils literal notranslate"><span class="pre">Basics</span></code>, <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">Data</span></code>, <code class="docutils literal notranslate"><span class="pre">Vector</span> <span class="pre">Tiles</span></code>, <code class="docutils literal notranslate"><span class="pre">Raster</span> <span class="pre">Operations</span></code></li>
-</ul>
-<div class="admonition">
-<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
-<p class="last"><strong>If</strong> you have <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">start</span></code> running in a terminal. The ESLint rules will run automatically each time you save a <code class="docutils literal notranslate"><span class="pre">*.js</span></code> file. Also your <code class="docutils literal notranslate"><span class="pre">index.html</span></code> will refresh automatically in your browser, no need to manually refresh.</p>
-</div>
+</li>
+</ol>
 </div>
 <div class="section" id="turning-in-your-work">
 <h2>Turning In Your Work<a class="headerlink" href="#turning-in-your-work" title="Permalink to this headline">¶</a></h2>
-<p>If you don’t complete each of the tasks, turn in as much as you have completed by the end of the day. <strong>You should make sure you have working code committed to your fork.</strong></p>
+<p>If you don’t complete each of the tasks, turn in as much as you have completed by the end of the day.</p>
 <ul class="simple">
 <li>Commit and push your work to GitLab</li>
-<li>Create a MergeRequest and post it to slack for others to review</li>
-<li>If your repo isn’t public, be sure to add your instructor and other members of the class to your project</li>
+<li>This will require that you creat a new repository in your GitLab account<ul>
+<li>Then you will have to add the URL for that new repository as a remote to your local repository</li>
+<li>Finally you will be able to push your code up to your new remote repository</li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

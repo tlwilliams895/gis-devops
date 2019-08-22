@@ -108,6 +108,8 @@ The ``$ npm install`` command will create a new directory called ``node_modules`
 
 You can change into the ``node_modules`` directory, and see all of the code that is used to run ESLint.
 
+.. _configure_eslint:
+
 Initialize ESLint
 -----------------
 
@@ -151,6 +153,8 @@ You need to point your "test" key to the relative location of your script.js fil
 ``.eslintrc.js`` contains all the data ESLint needs to function, the version of JavaScript (es6), that code is being run in the browser, the ruleset being used (airbnb-base), and more.
 
 ``node_modules`` contains all the actual code needed by ESLint to function. We don't need to check anything in this folder, but it's nice to know why it is here.
+
+.. _configure_airbnb_ruleset:
 
 Configure Airbnb Ruleset
 ------------------------
