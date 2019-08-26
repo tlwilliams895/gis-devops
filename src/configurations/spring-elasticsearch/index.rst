@@ -114,6 +114,10 @@ You will also want to add this to your ``application-test.properties`` file.
    
    It would be a good idea to use environment variables for your Elasticsearch information. So that your elasticsearch information won't be posted to Gitlab, and to make this project easier to deploy in the future. You can use environment variables by using tokens that look like this: ``${ES_CLUSTER_URL}:${ES_CLUSTER_PORT}``. You would then need to add the environment variable to your runtime configuration.
 
+.. note::
+
+   Based on the versions of PSQL, and Spring data you are using you may get a mysterious error when running your project for the first time. The error message will stop your application from running, and will mention something about Clob, or ClobContext issues. If you run into this issue, you need to add ``spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true`` to your application.properties, and application-test.properties files.
+
 EsConfig.java
 --------------------
 
