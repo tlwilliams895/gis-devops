@@ -299,7 +299,7 @@
 <div class="section" id="technical-requirements">
 <h3>Technical Requirements<a class="headerlink" href="#technical-requirements" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Data changes: The underlying CSVs that drive our web app have changed. The database will need to be altered to accomidate this different data.</li>
+<li>Data changes: The underlying CSVs that drive our web app have changed. The database will need to be altered to accommodate this different data.</li>
 <li>Rest: Users READ, and ADD report data via a Rest Controller.</li>
 <li>Rest Documentation: Swagger/Springfox used to create Rest API Endpoint documentation.</li>
 <li>Datastore: Elasticsearch needs to be used as the secondary data store for report data. Elasticsearch fuzzy search should be implemented to allow for flexible keyword searching.</li>
@@ -324,9 +324,10 @@
 <li>Refactor so all report data is served from elasticsearch</li>
 <li>Refactor so ReSTful Endpoints are used any time data is touched</li>
 <li>Allow users to POST new report data – save it both to the PostGIS and Elasticsearch</li>
+<li>Write some of your own elasticsearch queries with the &#64;Query annotation</li>
 <li>Create Swagger documentation for your ReSTful API endpoints</li>
-<li>Learn how the multipolygos were created: <a class="reference internal" href="../adding-boundary-geometries/index.html#week4-adding-boundary-geometries"><span class="std std-ref">Adding Boundary Geometries</span></a></li>
 <li>Increase test coverage by adding tests for all Controllers, and DataRepositories</li>
+<li>Learn how the multi-polygons were created: <a class="reference internal" href="../adding-boundary-geometries/index.html#week4-adding-boundary-geometries"><span class="std std-ref">Adding Boundary Geometries</span></a></li>
 </ul>
 </div>
 <div class="section" id="turning-in-your-work">
@@ -359,7 +360,7 @@
 <li>How did we convert our PostGIS records into our Elasticsearch cluster?</li>
 <li>How do we change our report layer?</li>
 <li>Are there any other ways to change the report layer?</li>
-<li>What’s the differnece between a GeoPoint and a MultiPolygon?</li>
+<li>What’s the difference between a GeoPoint and a MultiPolygon?</li>
 <li>What is a FeatureCollection and what is it’s relationship to GeoJSON?</li>
 <li>What makes GeoJSON different from JSON?</li>
 </ul>

@@ -19,7 +19,7 @@ Stakeholder Requirements
 Technical Requirements
 ----------------------
 
-- Data changes: The underlying CSVs that drive our web app have changed. The database will need to be altered to accomidate this different data.
+- Data changes: The underlying CSVs that drive our web app have changed. The database will need to be altered to accommodate this different data.
 - Rest: Users READ, and ADD report data via a Rest Controller.
 - Rest Documentation: Swagger/Springfox used to create Rest API Endpoint documentation.
 - Datastore: Elasticsearch needs to be used as the secondary data store for report data. Elasticsearch fuzzy search should be implemented to allow for flexible keyword searching.
@@ -44,9 +44,10 @@ We have already done a fair amount this week, and we want everyone to at least c
 - Refactor so all report data is served from elasticsearch
 - Refactor so ReSTful Endpoints are used any time data is touched
 - Allow users to POST new report data -- save it both to the PostGIS and Elasticsearch
+- Write some of your own elasticsearch queries with the @Query annotation
 - Create Swagger documentation for your ReSTful API endpoints
-- Learn how the multipolygos were created: :ref:`week4-adding-boundary-geometries`
 - Increase test coverage by adding tests for all Controllers, and DataRepositories
+- Learn how the multi-polygons were created: :ref:`week4-adding-boundary-geometries`
 
 Turning in Your Work
 ====================
@@ -81,6 +82,6 @@ To reinforce your understanding of the concepts answer these questions to yourse
     - How did we convert our PostGIS records into our Elasticsearch cluster?
     - How do we change our report layer?
     - Are there any other ways to change the report layer?
-    - What's the differnece between a GeoPoint and a MultiPolygon?
+    - What's the difference between a GeoPoint and a MultiPolygon?
     - What is a FeatureCollection and what is it's relationship to GeoJSON?
     - What makes GeoJSON different from JSON?
