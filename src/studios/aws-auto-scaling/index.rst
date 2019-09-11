@@ -148,7 +148,7 @@ Create VPC with CloudFormation Script
 1. Go to services menu
 2. Enter "CloudFormation" into the search bar
 3. Click on **Cloud Formation** search result 
-4. Click blue **Create Stack** button
+4. Click orange **Create Stack** button
 5. Choose **Specify an Amazon S3 template URL** and paste in https://s3.amazonaws.com/launchcode-gisdevops-cloudformation/airwaze_cloudformation.json
 6. Click **Next**
 
