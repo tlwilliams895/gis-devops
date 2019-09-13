@@ -28,7 +28,7 @@ Sonarqube can integrate with other tools such as gradle and jenkins.
 Install and Configure Sonarqube
 ===============================
 
-* Install sonarqube as a Docker container with: ``docker run --name sonarqube -p 9000:9000 sonarqube
+* Install sonarqube as a Docker container with: ``docker run --name sonarqube -p 9000:9000 sonarqube``
 * Now go to this address in your browser: ``http://localhost:9000``
 * Login with default user. username: admin password: admin (<- example of not changing defaults. very bad!)
 * Click ``Create new project`` button
