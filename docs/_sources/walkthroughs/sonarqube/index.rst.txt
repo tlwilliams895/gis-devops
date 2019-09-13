@@ -11,7 +11,7 @@ Follow along with the instructor as we configure Sonarqube.
 Setup
 =====
 
-Create a new story branch in your ``airwaze-studio`` repoo. Name it ``add-sonarqube``.  When finished with this walkthrough you can merge it into your ``master`` branch.
+We will be setting up Sonarqube in our airwaze project. You can try it out on any of your current branches.
 
 Continuous Inspection
 =====================
@@ -28,48 +28,19 @@ Sonarqube can integrate with other tools such as gradle and jenkins.
 Install and Configure Sonarqube
 ===============================
 
-* Go to `https://www.sonarqube.org <https://www.sonarqube.org>`_
-* Click **Download**
-* Choose the latest vesion **Community Edition 7.5**
-* Unzip the downloaded file to ``~/sonarqube-7.5``. (Note your version may vary)
-* Open a terminal and run this command ``$ ~/sonarqube-7.5/bin/macosx-universal-64/sonar.sh start``
+* Install sonarqube as a Docker container with: ``docker run --name sonarqube -p 9000:9000 sonarqube
 * Now go to this address in your browser: ``http://localhost:9000``
 * Login with default user. username: admin password: admin (<- example of not changing defaults. very bad!)
-* Enter ``airwaze`` as the project key
+* Click ``Create new project`` button
+* Enter ``airwaze`` as the project key & click ``Set up``.
+* Enter ``airwaze`` as the name for your token & click ``Generate``.
+* Click ``Continue``
+* Select ``Java``
+* Select ``Gradle``
+* Add the provided snippet to your ``build.gradle`` file
+* Run the provided gradlew command in your terminal from the root of your airwaze project
+* Navigate to ``http://localhost:9000/projects`` to see your project analysis.
 
-Configure your Java Project
-===========================
+This gives you an overview of your code analysis. It will provide you with information on how much code coverage you have, how clean your code is, known vulnerabilities, and more.
 
-* Add this line to ``plugins`` in ``build.gradle`` file
-
-::
-
-    id "org.sonarqube" version "2.6"
-
-* Will look like this after. Be sure to add the ``plugins`` section above the ``apply plugins`` section.
-
-::
-
-  plugins {
-    (note you may not have this first plugin)
-    id "com.github.sgnewson.gradle-jenkins-test" version "0.5"
-    id "org.sonarqube" version "2.6"
-  }
-
-  apply plugin: 'java'
-  apply plugin: 'eclipse'
-  apply plugin: 'org.springframework.boot'
-
-Run Sonarqube Gradle Task
-=========================
-
-* In terminal or via the Gradle menu in Intellij, run the ``sonarqube`` gradle task (note it's under **other** in intellij gradle menu)
-* This gradle task runs other gradle tasks like ``compileJava`` and then creates a report that is viewable on the sonarqube web app
-
-
-View the Results in Sonarqube
-=============================
-
-* Navigate to ``http://localhost:9000/projects``
-* Click on the project name
-* On the project page, click on the numbers in each category to get a detailed report about that topic
+This is another tool we can use to improve the quality of our code.

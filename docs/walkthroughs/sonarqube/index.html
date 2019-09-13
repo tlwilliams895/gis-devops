@@ -262,9 +262,6 @@
 <li><a class="reference internal" href="#setup">Setup</a></li>
 <li><a class="reference internal" href="#continuous-inspection">Continuous Inspection</a></li>
 <li><a class="reference internal" href="#install-and-configure-sonarqube">Install and Configure Sonarqube</a></li>
-<li><a class="reference internal" href="#configure-your-java-project">Configure your Java Project</a></li>
-<li><a class="reference internal" href="#run-sonarqube-gradle-task">Run Sonarqube Gradle Task</a></li>
-<li><a class="reference internal" href="#view-the-results-in-sonarqube">View the Results in Sonarqube</a></li>
 </ul>
 </li>
 </ul>
@@ -278,7 +275,7 @@
 <p>Follow along with the instructor as we configure Sonarqube.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
-<p>Create a new story branch in your <code class="docutils literal notranslate"><span class="pre">airwaze-studio</span></code> repoo. Name it <code class="docutils literal notranslate"><span class="pre">add-sonarqube</span></code>.  When finished with this walkthrough you can merge it into your <code class="docutils literal notranslate"><span class="pre">master</span></code> branch.</p>
+<p>We will be setting up Sonarqube in our airwaze project. You can try it out on any of your current branches.</p>
 </div>
 <div class="section" id="continuous-inspection">
 <h2>Continuous Inspection<a class="headerlink" href="#continuous-inspection" title="Permalink to this headline">¶</a></h2>
@@ -291,53 +288,21 @@ keep our code consistent between developers and hopefully more secure and stable
 <div class="section" id="install-and-configure-sonarqube">
 <h2>Install and Configure Sonarqube<a class="headerlink" href="#install-and-configure-sonarqube" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Go to <a class="reference external" href="https://www.sonarqube.org" target="_blank">https://www.sonarqube.org<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
-<li>Click <strong>Download</strong></li>
-<li>Choose the latest vesion <strong>Community Edition 7.5</strong></li>
-<li>Unzip the downloaded file to <code class="docutils literal notranslate"><span class="pre">~/sonarqube-7.5</span></code>. (Note your version may vary)</li>
-<li>Open a terminal and run this command <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">~/sonarqube-7.5/bin/macosx-universal-64/sonar.sh</span> <span class="pre">start</span></code></li>
+<li>Install sonarqube as a Docker container with: <a href="#id2"><span class="problematic" id="id3">``</span></a>docker run –name sonarqube -p 9000:9000 sonarqube</li>
 <li>Now go to this address in your browser: <code class="docutils literal notranslate"><span class="pre">http://localhost:9000</span></code></li>
 <li>Login with default user. username: admin password: admin (&lt;- example of not changing defaults. very bad!)</li>
-<li>Enter <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> as the project key</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">new</span> <span class="pre">project</span></code> button</li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> as the project key &amp; click <code class="docutils literal notranslate"><span class="pre">Set</span> <span class="pre">up</span></code>.</li>
+<li>Enter <code class="docutils literal notranslate"><span class="pre">airwaze</span></code> as the name for your token &amp; click <code class="docutils literal notranslate"><span class="pre">Generate</span></code>.</li>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Continue</span></code></li>
+<li>Select <code class="docutils literal notranslate"><span class="pre">Java</span></code></li>
+<li>Select <code class="docutils literal notranslate"><span class="pre">Gradle</span></code></li>
+<li>Add the provided snippet to your <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
+<li>Run the provided gradlew command in your terminal from the root of your airwaze project</li>
+<li>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:9000/projects</span></code> to see your project analysis.</li>
 </ul>
-</div>
-<div class="section" id="configure-your-java-project">
-<h2>Configure your Java Project<a class="headerlink" href="#configure-your-java-project" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Add this line to <code class="docutils literal notranslate"><span class="pre">plugins</span></code> in <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file</li>
-</ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>id &quot;org.sonarqube&quot; version &quot;2.6&quot;
-</pre></div>
-</div>
-<ul class="simple">
-<li>Will look like this after. Be sure to add the <code class="docutils literal notranslate"><span class="pre">plugins</span></code> section above the <code class="docutils literal notranslate"><span class="pre">apply</span> <span class="pre">plugins</span></code> section.</li>
-</ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plugins {
-  (note you may not have this first plugin)
-  id &quot;com.github.sgnewson.gradle-jenkins-test&quot; version &quot;0.5&quot;
-  id &quot;org.sonarqube&quot; version &quot;2.6&quot;
-}
-
-apply plugin: &#39;java&#39;
-apply plugin: &#39;eclipse&#39;
-apply plugin: &#39;org.springframework.boot&#39;
-</pre></div>
-</div>
-</div>
-<div class="section" id="run-sonarqube-gradle-task">
-<h2>Run Sonarqube Gradle Task<a class="headerlink" href="#run-sonarqube-gradle-task" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>In terminal or via the Gradle menu in Intellij, run the <code class="docutils literal notranslate"><span class="pre">sonarqube</span></code> gradle task (note it’s under <strong>other</strong> in intellij gradle menu)</li>
-<li>This gradle task runs other gradle tasks like <code class="docutils literal notranslate"><span class="pre">compileJava</span></code> and then creates a report that is viewable on the sonarqube web app</li>
-</ul>
-</div>
-<div class="section" id="view-the-results-in-sonarqube">
-<h2>View the Results in Sonarqube<a class="headerlink" href="#view-the-results-in-sonarqube" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Navigate to <code class="docutils literal notranslate"><span class="pre">http://localhost:9000/projects</span></code></li>
-<li>Click on the project name</li>
-<li>On the project page, click on the numbers in each category to get a detailed report about that topic</li>
-</ul>
+<p>This gives you an overview of your code analysis. It will provide you with information on how much code coverage you have, how clean your code is, known vulnerabilities, and more.</p>
+<p>This is another tool we can use to improve the quality of our code.</p>
 </div>
 </div>
 
