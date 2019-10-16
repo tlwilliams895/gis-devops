@@ -4,6 +4,13 @@ GIS DevOps
 Weeks 1-3 (Prep Work)
 ---------------------
 
+.. toctree::
+   :maxdepth: 1
+
+   week01/index
+   week02/index
+   week03/index
+
 Week 4
 ------
 
