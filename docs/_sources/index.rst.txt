@@ -80,7 +80,7 @@ Week 11
 Week 12
 -------
 
-* Week 9 - Days 1-2: Pivotal Training
+* Week 12 - Days 1-2: Pivotal Training & ESRI Training
 
 .. toctree::
   :maxdepth: 1
