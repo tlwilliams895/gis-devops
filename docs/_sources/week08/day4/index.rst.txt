@@ -1,7 +1,7 @@
 .. _week5_day4:
 
 ==============================================
-Week 5 - Day 4: Gradle, Continuous Integration
+Week 8 - Day 4: Gradle, Continuous Integration
 ==============================================
 
 Learning objectives for this module :ref:`week05-day4-objectives`
