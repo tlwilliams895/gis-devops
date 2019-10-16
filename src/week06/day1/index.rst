@@ -1,7 +1,7 @@
 .. _week3_day1:
 
 ====================================
-Week 3 - Day 1: RESTful web services
+Week 6 - Day 1: RESTful web services
 ====================================
 
 Learning objectives for :ref:`week03-day1-objectives`

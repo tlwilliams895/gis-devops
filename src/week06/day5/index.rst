@@ -1,7 +1,7 @@
 .. _week3_day5:
 
 ==========================================
-Week 3 - Day 5: ES2015, ESLint, OpenLayers
+Week 6 - Day 5: ES2015, ESLint, OpenLayers
 ==========================================
 
 Summary
