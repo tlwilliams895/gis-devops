@@ -1,7 +1,7 @@
 .. _week4_project:
 
 ===================================================
-Week 4 - Project Week: Zika Mission Control Part 2
+Week 7 - Project Week: Zika Mission Control Part 2
 ===================================================
 
 Project Requirements
