@@ -1,7 +1,7 @@
 .. _week2_project:
 
 ============================================
-Week 2 - Project Week: Zika Mission Control
+Week 5 - Project Week: Zika Mission Control
 ============================================
 
 Zika Mission Control
