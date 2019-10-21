@@ -9,3 +9,4 @@ pdf/
 
 # Paul's build script
 build-serve.sh
+docs/
