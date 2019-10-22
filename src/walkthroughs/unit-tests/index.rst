@@ -10,7 +10,7 @@ Walkthrough: Unit Tests
 Concept: Unit Testing
 ---------------------
 
-A unit is a single, clearly stated behavior. In many cases it will be one funciton, or method.
+A unit is a single, clearly stated behavior. In many cases it will be one function, or method.
 
 A unit test is an automated test that verifies that one unit behaves correctly.
 
