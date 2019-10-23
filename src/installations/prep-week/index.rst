@@ -1,3 +1,5 @@
+.. _prep-week-installation:
+
 :orphan:
 
 =======
