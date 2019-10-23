@@ -57,17 +57,15 @@ Tools of the Trade
 Installing JDK 8
 ----------
 
-- Download the JDK 8 installer from Oracle [Java SE Development Kit 8 - Downloads](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- Download the `JDK 8 installer from Oracle <https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>`_
   
   - Select the Mac OSX x64 version (about halfway down the list)
-  - [Here is a direct link to jdk-8u231-macosx-x64.dmg](https://download.oracle.com/otn/java/jdk/8u231-b11/5b13a193868b4bf28bcb45c792fce896/jdk-8u231-macosx-x64.dmg) that may work (if not refer to the general downloads page above)
 
 - Open (double click) the ``.dmg`` file to display the installer application
-
 - Open (double click) the ``.pkg`` icon that appears to run the installer
   
   - Follow all instructions during installation and accept all the defaults
-  - If you are confused at any point call over your instructor or refer to the [JDK 8 Installation for OS X](https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html) documents
+  - If you are confused at any point call over your instructor or refer to the `JDK 8 Installation for OS X documentation <https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html>`_
 
 - Go to your desktop and right click the disk image of the installer to unmount it
   
@@ -88,22 +86,28 @@ Installing JDK 8
 .. code-block:: bash
 
   $ which java
+..
 
-* should output: ``/usr/bin/java``
+  should output: ``/usr/bin/java``
 
 .. code-block:: bash
 
   $ java -version
+..
 
-* should output: ``java version "1.8.X" (X can be anything)``
+  should output: ``java version "1.8.X" (X can be anything)``
 
-Installing IntelliJ IDEA CE (Community Edition)
+Installing IntelliJ
 ----------
 
-- Download the installer [Download IntelliJ IDEA: The Java IDE for Professional Developers by JetBrains](https://www.jetbrains.com/idea/download/#section=mac)
-- Open (double click) the `.dmg` file
+- Installs the Intellij IDEA CE (Community Edition) Java IDE
+- `Download the installer <https://www.jetbrains.com/idea/download/#section=mac>`_
+- Open (double click) the ``.dmg`` file
 - Drag the Intellij IDEA icon into your Applications folder
-- Go to your desktop and right click the disk image of the installer to remove it (you can also discard the `.dmg` file at this point)
+- Go to your desktop and right click the disk image of the installer to remove it
+
+  - You can discard the ``.dmg`` file at this point
+
 - Confirm the installation was successful by opening the Intellij IDEA app
 
   - You can find it under Finder (file explorer) > Applications > Intellij IDEA CE
