@@ -13,7 +13,7 @@ Morning
 - Welcome
 - Course Content / Structure
 - Introductions
-- Tooling Setup
+- :ref:`prep-week-installation`
 
 
 Afternoon
