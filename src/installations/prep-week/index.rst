@@ -1,17 +1,17 @@
-.. _prep-week-installation:
-
 :orphan:
 
-=======
+.. _prep-week-installation:
+
+====================================
 Tooling Installation & Configuration
-=======
+====================================
 
 Before we begin learning we have to establish a common technological ground across all our machines. It’s important for everyone to have **parity** across machines so that nobody is left behind or delayed by inconsistent behaviors during lectures and project building.
 
 In these instructions we will install and configure the following tools. Note that some of these tools will not be used until later in the course. But they are important to install, configure, and test against so that any incompatibilities can be discovered and resolved sooner rather than later.
 
 Tools of the Trade
------
+------------------
 
 - **JDK 8: the Java Development Kit (version 8) includes all of the tools we need to write and execute Java code on our machine**
 
@@ -57,7 +57,7 @@ Tools of the Trade
   - It can also be used to execute SQL commands directly from the command line
 
 Installing JDK 8
-----------
+----------------
 
 - Download the `JDK 8 installer from Oracle <https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>`_
   
@@ -100,7 +100,7 @@ Installing JDK 8
   should output: ``java version "1.8.X" (X can be anything)``
 
 Installing IntelliJ
-----------
+-------------------
 
 - Installs the Intellij IDEA CE (Community Edition) Java IDE
 - `Download the installer <https://www.jetbrains.com/idea/download/#section=mac>`_
