@@ -114,3 +114,6 @@ Installing IntelliJ
 
   - You can find it under Finder (file explorer) > Applications > Intellij IDEA CE
   - Once opened right click the icon in your dock and select ``options > keep in dock`` for easy access later 
+
+
+.. TODO: For docker after users install Docker for Mac, have them change the default Docker behavior to utilize more RAM, and CPU cores. This can be found in the the docker for mac menu, under preference, have them increase RAM to at least 5gb, and cores to at least 3.
