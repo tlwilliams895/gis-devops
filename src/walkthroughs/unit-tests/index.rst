@@ -127,4 +127,4 @@ This time our test passed, and nothing was printed out to the output log! We hav
 Resources
 ---------
 * `JUnit 4 Site <http://junit.org/junit4/>`_
-* `Examples of Assertions <ttps://github.com/junit-team/junit4/wiki/Assertions>`_
+* `Examples of Assertions <https://github.com/junit-team/junit4/wiki/Assertions>`_

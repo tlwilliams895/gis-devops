@@ -20,7 +20,7 @@ project = 'LaunchCode: GIS DevOps'
 # -- Project information -----------------------------------------------------
 
 
-copyright = '2018, LaunchCode'
+copyright = '2019, LaunchCode'
 author = 'LaunchCode'
 
 # The short X.Y version
@@ -75,7 +75,9 @@ language = None
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', 'docs']
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'fruity'
+# use this site to preview different languages / themes http://pygments.org/demo/
+# TODO: fix the background color for code snippets (comments hard to read)
+pygments_style = 'paraiso-dark'
 
 
 # -- Options for HTML output -------------------------------------------------
