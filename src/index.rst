@@ -128,8 +128,6 @@ Week 13
 * Week 13 - Days 1-4: Final work on Zika Projects
 * Week 13 - Day 5: Project Presentation and Graduation
 
-
-
 Installations
 -------------
 
@@ -147,3 +145,12 @@ Configurations
   :maxdepth: 1
 
   configurations/*/index
+
+Reference Guides
+----------------
+
+.. toctree::
+  :glob:
+  :maxdepth: 1
+
+  reference-guides/*/index
