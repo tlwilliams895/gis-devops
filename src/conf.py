@@ -111,6 +111,7 @@ default_theme_options = {
     #],
     'navbar_links': [
       ("Installations", "/installations/index"),
+      ("Reference Guides", "/reference-guides/index"),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
@@ -169,7 +170,7 @@ html_static_path = ['_static']
 #
 html_sidebars = {
     '**': ['localtoc.html'],
-    'index': [],
+    'index': ['localtoc.html'],
     'search': [],
     'about': [],
     'objectives': []
