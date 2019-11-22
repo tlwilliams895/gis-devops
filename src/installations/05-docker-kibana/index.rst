@@ -3,7 +3,7 @@
 .. _docker-kibana:
 
 ===========================
-Docker Installation: Kibana
+Installation: Docker Kibana
 ===========================
 
 Installation Steps

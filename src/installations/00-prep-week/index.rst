@@ -3,7 +3,7 @@
 .. _prep-week-installation:
 
 ====================================
-Tooling Installation & Configuration
+Installation: Essential Tooling & Configuration
 ====================================
 
 Before we begin learning we have to establish a common technological ground across all our machines. It’s important for everyone to have **parity** across machines so that nobody is left behind or delayed by inconsistent behaviors during lectures and project building.

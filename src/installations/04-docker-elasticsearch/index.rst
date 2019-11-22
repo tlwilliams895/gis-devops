@@ -3,7 +3,7 @@
 .. _docker-elasticsearch:
 
 ==================================
-Docker Installation: Elasticsearch
+Installation: Docker Elasticsearch
 ==================================
 
 Installation Steps: Mac

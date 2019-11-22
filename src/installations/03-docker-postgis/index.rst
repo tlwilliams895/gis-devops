@@ -3,7 +3,7 @@
 .. _docker-postgis:
 
 ============================
-Docker Installation: PostGIS
+Installation: Docker PostGIS
 ============================
 
 Installation Steps: Mac

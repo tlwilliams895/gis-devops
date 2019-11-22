@@ -54,7 +54,7 @@ source_suffix = ['.rst', '.md']
 source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
 
 html_copy_source = True
-html_show_sourcelink = True
+html_show_sourcelink = False
 highlight_language = 'none'
 html_show_copyright = False
 html_show_sphinx = False
@@ -109,7 +109,9 @@ default_theme_options = {
     # an arbitrary url.
     #'navbar_links': [ ('classes', 'www.google.com')
     #],
-    'navbar_links': [],
+    'navbar_links': [
+      ("Installations", "/installations/index"),
+    ],
 
     # Render the next and previous page links in navbar. (Default: true)
     'navbar_sidebarrel': False,
