@@ -1,3 +1,7 @@
+:orphan:
+
+.. _installations:
+
 ===================
 Installation Guides
 ===================
