@@ -9,14 +9,15 @@ Project Week2 Setup: Spring, Git, GitLab, PostGIS, & IntelliJ
 Before we can begin working on the requirements for this week, we will need to first setup the tools we will be using throughout this week.
 
 Tasks:
-    - Create Spring Project
-    - Open Project in IntelliJ
-    - Configure Project Dependencies in Gradle
-    - Intialize a New Git Repository
-    - Connect our local git repository to a remote repository on GitLab
-    - Setup PostGIS
-    - Create Databases, and Database users
-    - Configure Spring Data
+
+- Create Spring Project
+- Open Project in IntelliJ
+- Configure Project Dependencies in Gradle
+- Intialize a New Git Repository
+- Connect our local git repository to a remote repository on GitLab
+- Setup PostGIS
+- Create Databases, and Database users
+- Configure Spring Data
 
 Create Spring Project
 ---------------------
@@ -28,20 +29,21 @@ In your browser navigate to `start.spring.io <https://start.spring.io>`_.
 From the Spring Initializr we have some options to create a ready to go spring application!
 
 You will need to select:
-    - Project: *Gradle*
-    - Language: *Java*
-    - Spring Boot: *2.1.X*
-    - Project Metadata Group: *org.launchcode*
-    - Project Metadata Artifact: *zikaDashboard*
-    - Project Metadata Name: *zikaDashboard*
-    - Project Metadata Description: *CDC Zika Dashboard*
-    - Project Metadata Package Name: *org.launchcode.zikaDashboard*
-    - Project Metadata Packaging: *Jar*
-    - Project Metadata Java Version: *8*
-    - Dependencies: *Web*
-    - Dependencies: *Thymeleaf*
-    - Dependencies: *JPA*
-    - Dependencies: *DevTools*
+
+- Project: *Gradle*
+- Language: *Java*
+- Spring Boot: *2.1.X*
+- Project Metadata Group: *org.launchcode*
+- Project Metadata Artifact: *zikaDashboard*
+- Project Metadata Name: *zikaDashboard*
+- Project Metadata Description: *CDC Zika Dashboard*
+- Project Metadata Package Name: *org.launchcode.zikaDashboard*
+- Project Metadata Packaging: *Jar*
+- Project Metadata Java Version: *8*
+- Dependencies: *Web*
+- Dependencies: *Thymeleaf*
+- Dependencies: *JPA*
+- Dependencies: *DevTools*
 
 Double check that you have filled out the information correctly, and then click Generate Project. This will prompt your browser to download a file called zikaDashboard.zip, go ahead and download it, and take notice of where it is downloaded. Most machines default to a Download directory off of your Home directory.
 
@@ -222,7 +224,7 @@ Make Sure it Works
 
 Now that we have configured our project let's run our application. Select ``bootRun`` from the gradle menu, or create a new Gradle runtime with the task ``bootRun``.
 
-.. note::
+.. admonition:: Note
    
    Don't forget you will need to add `environment variables <../../configurations/environment-variables-intellij/>`_ to your runtime configuration!
 
