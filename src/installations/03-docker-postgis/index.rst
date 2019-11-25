@@ -57,7 +57,7 @@ Connect to psql
 
 Now we will want to connect to postgres to make sure it installed correctly. To do this you will need the psql interactive terminal installed on your computer. This comes with every installation of Postgres. You can check that you have this by typing ``$ postgres --version`` to verify postgres is installed on your computer.
 
-If it isn't installed you will want to check out `Postgres Installation <../../installations/postgres/>`_ to install Postgres.
+If it isn't installed you will want to check out :ref:`Postgres Installation <postgres>` to install Postgres.
 
 Once you have Postgres installed on your local computer, and you have created the new "postgres" container we can connect to our "postgres" container by typing ``$ psql -h 127.0.0.1 -p 5432 -U psql_user -d postgres`` into our terminal. This command will drop you into psql.
 

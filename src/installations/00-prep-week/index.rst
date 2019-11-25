@@ -100,6 +100,8 @@ Installing HomeBrew
   Homebrew/homebrew-cask (git revision 43442; last commit 2019-10-23)
 ..
 
+.. _postgres:
+
 Installing PostgreSQL
 ---------------------
 

@@ -136,7 +136,7 @@ Setup PostGIS
 
 We are going to need a PostGIS database. You are more than welcome to use a PostGIS database we used for previous projects.  You will need to ensure the PostGIS container is running, and listening to requests on port 5432.
 
-If you need a refresher on creating PostGIS containers checkout out the `Docker PostGIS installation <../../installations/docker-postgis/>`_ article.
+If you need a refresher on creating PostGIS containers checkout out the :ref:`Docker PostGIS installation <docker-postgis>` article.
 
 Create Databases & Users
 ------------------------
