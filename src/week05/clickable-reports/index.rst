@@ -25,9 +25,7 @@ Look over the `airwaze studio <../../studios/airwaze/>`_ to see how they used th
 Amend script.js
 ---------------
 
-We will have to add a click event handler to our map, which will have to loop through the features contained in the click event, and for each feature we will have to make a request to our new endpoint to get information we can display in our new HTML structure.
-
-Within the click event handler, we will need to loop through any features, and add information about the feature to the empty HTML structure we created above. Using JavaScript template literals is a great way to do this. Our Airwaze studio is an example of how to do this.
+We will have to add a click event handler to our map. Within the click event handler, we will need to iterate over any selected features, and add information about the feature to the empty HTML structure we created above. Using JavaScript template literals is a great way to do this. Our Airwaze studio is an example of how to do this.
 
 Look over the `airwaze studio <../../studios/airwaze/>`_ to see how they created a new onclick event, and how they made calls to the new endpoint.
 
