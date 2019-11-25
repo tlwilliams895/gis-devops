@@ -110,7 +110,7 @@ default_theme_options = {
     #'navbar_links': [ ('classes', 'www.google.com')
     #],
     'navbar_links': [
-      ("Installations", "/installations/index"),
+      ("Installations", "/gis-devops/installations/index"),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)

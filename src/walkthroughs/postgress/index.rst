@@ -15,7 +15,6 @@ Setup
 
 If you are missing any of the three things above please fix them before we continue with the walkthrough.
 
-* :ref:`postgres`
 * :ref:`docker`
 * :ref:`docker-psql`
 
