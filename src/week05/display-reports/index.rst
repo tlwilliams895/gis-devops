@@ -10,7 +10,7 @@ We have an empty interactive map from OSM.
 
 We need to create a new Layer in OpenLayers that will represent our Zika report data.
 
-This will require a fair amount of work, luckily it is primarly things we did in our `Airwaze project <../../studios/airwaze/>`_.
+This will require a fair amount of work, luckily it is primarily things we did in our `Airwaze project <../../studios/airwaze/>`_.
 
 Tasks:
     - Design Report.java class
@@ -41,13 +41,13 @@ Let's consider the journey of our data.
 
 In order to COPY our CSVs into a PostGIS table, the table must exist, and it's columns must match the SQL COPY statement. We have been using Hibernate to create our PostGIS tables for us, Spring scans our project for the @Entity annotation, and automatically creates a table based on the properties of that class. In order to create our table we will first need to design our Report class!
 
-Look over the `provided CSV files <https://gitlab.com/LaunchCodeTraining/zika-data>`_, look for their **shared** columns. These shared columns will be the columns in our table, and we need to create properties on our Report class to match these columns.
+Look over the `provided CSV files <https://gitlab.com/LaunchCodeTraining/zika-data>`_ These  columns will be the columns in our table, and we need to create properties on our Report class to match these columns.
 
 Look at your solution to the `Airwaze Studio <../../studios/airwaze/>`_. Take note of how the ``Airports.csv`` file matches up with the ``models/Airport.java`` file, and how the ``routes.csv`` file matches up with the ``models/Route.java`` file.
 
 .. hint::
 
-   Hibernate uses the `snake case <https://en.wikipedia.org/wiki/Snake_case>`_ naming strategy. You can explicitlly define a Column name by using the Spring Data @Column annotation. Above the property declaration you can include the @Column(name = "columnName") annotation and Hibernate will name the column based on the value mapped to the name variable.
+   Hibernate uses the `snake case <https://en.wikipedia.org/wiki/Snake_case>`_ naming strategy. You can explicitly define a Column name by using the Spring Data @Column annotation. Above the property declaration you can include the @Column(name = "columnName") annotation and Hibernate will name the column based on the value mapped to the name variable.
 
 After you create your Report.java class re-run ``bootRun``, and then check your database. Your report table still won't have any records in it, but you should see a report table with columns that match the properties of your Report class.
 
@@ -62,7 +62,7 @@ We advise creating a ``testReportConstructor()`` method that will create a new `
 
 .. note::
    
-   In most cases people will not test constructors in Java, or any language. An object constructor is code handled by the team responsbile for the programming language itself, and you typically don't test code written by third parties. The purpose of this class is learning, and practice. So we will be creating a test case for our constructor.
+   In most cases people will not test constructors in Java, or any language. An object constructor is code handled by the team responsible for the programming language itself, and you typically don't test code written by third parties. The purpose of this class is learning, and practice. So we will be creating a test case for our constructor.
 
 Populate Report table
 ---------------------
@@ -99,7 +99,7 @@ Create ReportRepository.java
 
 Now that we have data in our database, we need a way to interact with the data from our web application. We can create, and copy records into the database, but we will have to add some additional code to access, or amend the records in the database.
 
-We need to create a ``ReportRepository.java`` class. It is a good idea to store this class inside of it's own folder we recommend using a ``org/launchcode/zikaDashboard/data`` folder. Separating your data Repositories from your models, and controllers is a way to stay organzied, and will help other coders understand your project.
+We need to create a ``ReportRepository.java`` class. It is a good idea to store this class inside of it's own folder we recommend using a ``org/launchcode/zikaDashboard/data`` folder. Separating your data Repositories from your models, and controllers is a way to stay organized, and will help other coders understand your project.
 
 Our new repository class will need to extend JpaRepository. Look at the ``AirportRepository.java`` class from the `airwaze studio <../../studios/airwaze/>`_ for help on setting up this class.
 
@@ -119,7 +119,7 @@ We have a Report class, a report table with records, and a ReportRepository to m
 
 As we have learned from this class the ``@Controller`` annotation allows us to handle HTTP requests, and serve up HTTP responses. We will need a controller, an endpoint, and some logic to get the information from the database, turn it into GeoJSON, and then package it into an HTTP response.
 
-Again, as a good practice we should store all of our controlles, in their own directory called ``controllers/``. Create this new directory, and add a new file called ``ReportController.java``.
+Again, as a good practice we should store all of our controllers, in their own directory called ``controllers/``. Create this new directory, and add a new file called ``ReportController.java``.
 
 In this file you will need to setup a new method handler for an endpoint that will return a GeoJSON representation of our report objects.
 
@@ -130,13 +130,13 @@ Look over the ``AirportController.java`` file from the `Airwaze code base <https
 
 You will note in this file the ``getAirports()`` request handler method is returning a FeatureCollection object. The FeatureCollection is the GeoJSON! Look over both the `FeatureCollection.java <https://gitlab.com/LaunchCodeTraining/airwaze-studio/blob/master/src/main/java/com/launchcode/gisdevops/features/FeatureCollection.java>`_ and `Feature.java <https://gitlab.com/LaunchCodeTraining/airwaze-studio/blob/master/src/main/java/com/launchcode/gisdevops/features/Feature.java>`_ files.
 
-You will need to recreate both of these files in your project in order to return our report data as GeoJSON. A Featue is one record in GeoJSON. A FeatureCollection is multiple Features together, still in GeoJSON.
+You will need to recreate both of these files in your project in order to return our report data as GeoJSON. A Feature is one record in GeoJSON. A FeatureCollection is multiple Features together, still in GeoJSON.
 
 Notice that the Feature, and FeatureCollection classes are using a new annotation we haven't seen yet: ``@JsonSerialize(using = GeometrySerializer.class)``. The JsonSerializer takes our object and converts it into JSON. To convert our GeoINT information we will also need ``GeoJSONSerializer.java``, and ``WktHelper.java``.
 
 All four of these files are how we are converting our Java Report objects into GeoJSON that is usable by JavaScript.
 
-In the handler method you will need to load all of youre reports from the ReportRepository, loop through each report, create a new Feature from each report, and add each Feature to the FeatureCollection, and finally return the FeatureCollection as a part of the HTTP response.
+In the handler method you will need to load all of your reports from the ReportRepository, loop through each report, create a new Feature from each report, and add each Feature to the FeatureCollection, and finally return the FeatureCollection as a part of the HTTP response.
 
 Create ReportControllerTests.java
 ---------------------------------
