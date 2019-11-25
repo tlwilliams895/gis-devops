@@ -2,9 +2,9 @@
 
 .. _week5_clickable-reports:
 
-=========================================
-Project Week2: Zika Reports are Clickable
-=========================================
+==========================================
+Project Week 5: Zika Reports are Clickable
+==========================================
 
 We have a map from OSM, and we are creating a new Layer of Zika reports to geographically represent cases of Zika.
 

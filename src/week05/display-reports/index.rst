@@ -2,9 +2,9 @@
 
 .. _week5_display-reports:
 
-==========================================
-Project Week2: Display Zika Reports on Map
-==========================================
+===========================================
+Project Week 5: Display Zika Reports on Map
+===========================================
 
 We have an empty interactive map from OSM.
 

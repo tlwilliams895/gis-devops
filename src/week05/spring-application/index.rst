@@ -2,9 +2,9 @@
 
 .. _week5_spring-application:
 
-=============================================================
-Project Week2 Setup: Spring, Git, GitLab, PostGIS, & IntelliJ
-=============================================================
+==============================================================
+Project Week 5 Setup: Spring, Git, GitLab, PostGIS, & IntelliJ
+==============================================================
 
 Before we can begin working on the requirements for this week, we will need to first setup the tools we will be using throughout this week.
 

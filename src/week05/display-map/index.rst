@@ -2,9 +2,9 @@
 
 .. _week5_display-map:
 
-=========================================
-Project Week2: Display an Interactive Map
-=========================================
+==========================================
+Project Week 5: Display an Interactive Map
+==========================================
 
 Now that our project is setup our first objective is to display the base map from OSM.
 
