@@ -1,6 +1,6 @@
 :orphan:
 
-.. _week2_spring-application:
+.. _week5_spring-application:
 
 =============================================================
 Project Week2 Setup: Spring, Git, GitLab, PostGIS, & IntelliJ
@@ -239,4 +239,4 @@ Commit
 
 After everything has been configured it would be a good idea to add, commit, and push your work to GitLab.
 
-`Back to week2! <../project/>`_
+Back to :ref:`week5_project`.

@@ -1,6 +1,6 @@
 :orphan:
 
-.. _week2_display-map:
+.. _week5_display-map:
 
 =========================================
 Project Week2: Display an Interactive Map
@@ -100,4 +100,4 @@ Commit!
 
 Finally, commit your work after completing this primary objective!
 
-`Back to week2! <../project/>`_
+Back to :ref:`week5_project`.

@@ -1,6 +1,6 @@
 :orphan:
 
-.. _week2_clickable-reports:
+.. _week5_clickable-reports:
 
 =========================================
 Project Week2: Zika Reports are Clickable
@@ -36,4 +36,4 @@ Commit
 
 After re-running your tests, and visually checking your map, and new click events commit and push your code!
 
-`Back to week2! <../project/>`_
+Back to :ref:`week5_project`.

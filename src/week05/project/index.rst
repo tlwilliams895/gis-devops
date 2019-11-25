@@ -1,4 +1,4 @@
-.. _week2_project:
+.. _week5_project:
 
 ============================================
 Week 5 - Project Week: Zika Mission Control
@@ -60,10 +60,10 @@ You should **complete all primary objectives** before working on any secondary o
 
 For your primary objectives articles have been provided to help you think about what needs to be completed to pass the objective.
 
-0. `Create a Spring application <../spring-application/>`_, setup Git, and GitLab, configure the DB, and prepare IntelliJ.
-1. `Display an interactive map <../display-map/>`_ from OSM in the browser.
-2. `Display Zika reports <../display-reports/>`_ on the map as red circles.
-3. `Clicked Zika reports <../clickable-reports>`_ display more information about the report.
+0. :ref:`Create a Spring application <week5_spring-application>`, setup Git, and GitLab, configure the DB, and prepare IntelliJ.
+1. :ref:`Display an interactive map <week5_display-map>` from OSM in the browser.
+2. :ref:`Display Zika reports <week5_display-reports>` on the map as red circles.
+3. :ref:`Clicked Zika reports <week5_clickable-reports>` display more information about the report.
 
 Secondary Objectives
 ====================

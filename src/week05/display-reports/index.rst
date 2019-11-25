@@ -1,6 +1,6 @@
 :orphan:
 
-.. _week2_display-reports:
+.. _week5_display-reports:
 
 ==========================================
 Project Week2: Display Zika Reports on Map
@@ -168,4 +168,4 @@ Commit
 
 After your tests pass, and you have manually checked your project commit and push your work!
 
-`Back to week2! <../project/>`_
+Back to :ref:`week5_project`.
