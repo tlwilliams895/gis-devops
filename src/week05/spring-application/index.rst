@@ -45,29 +45,29 @@ You will need to select:
 - Dependencies: *JPA*
 - Dependencies: *DevTools*
 
-Double check that you have filled out the information correctly, and then click Generate Project. This will prompt your browser to download a file called zikaDashboard.zip, go ahead and download it, and take notice of where it is downloaded. Most machines default to a Download directory off of your Home directory.
+Double check that you have filled out the information correctly, and then click *Generate*. This will prompt your browser to download a file called ``zikaDashboard.zip``, go ahead and download it, and take notice of where it is downloaded. Most machines default to a Download directory off of your Home directory.
 
-We will want to move the zikaDashboard.zip file to wherever you typically store your projects, and then unzip the file.
+We will want to move the ``zikaDashboard.zip`` file to wherever you typically store your projects, and then unzip the file.
 
-Your command will likely be different, but one example of moving the zikaDashboard.zip file to the projects folder can be completed with the following command.
+Your command will likely be different, but one example of moving the ``zikaDashboard.zip`` file to the projects folder can be completed with the following command.
 
 .. sourcecode:: console
-   :caption: Move & unzip zikaDashboard.zip
+   :caption: Move & unzip ``zikaDashboard.zip``
 
    $ mv /home/paul/Downloads/zikaDashboard.zip /home/paul/projects/
    $ cd /home/paul/projects
    $ unzip zikaDashboard.zip
 
-Upon unzipping the file, we will have a new folder called zikaDashboard. Looking into the folder you will see a familiar project structure for Spring projects.
+Upon unzipping the file, we will have a new folder called ``zikaDashboard``. Looking into the folder you will see a familiar project structure for Spring projects.
 
 Open Project in IntelliJ
 ------------------------
 
 Now that we have a directory with our Spring application in it, let's go ahead and open this project with IntelliJ.
 
-From IntelliJ Open ``build.gradle`` as a new project, make sure use auto-import is selected!
+From IntelliJ Open ``build.gradle`` as a new project. Make sure use auto-import is selected!
 
-After opening your project look around, it should look very familiar to the other projects we have worked on in this class.
+After opening your project look around at the structure. It should look very familiar to the other projects we have worked on in this class.
 
 Configure Project Dependencies
 ------------------------------
@@ -78,7 +78,7 @@ However, we have 2 additional dependencies we will need: a PSQL Driver, and Hibe
 
 Open the ``build.gradle`` file in your new project. You will need to add two things.
 
-First we will have to configure a new buildscript section of this file, that will add our new dependencies to our classpath.
+First we will have to configure a new ``buildscript`` section of this file, that will add our new dependencies to our classpath.
 
 At the top of your file add the following code block.
 
@@ -97,7 +97,7 @@ At the top of your file add the following code block.
 
 Next we will have to add those dependencies to our project.
 
-Towards the bottom of your file you should find a separate dependencies section. It should already have implementation, runtimeOnly, and testImplementation statements, we don't want to change those. 
+Towards the bottom of your file you should find a separate dependencies section. It should already have a few ``implementation``, ``runtimeOnly``, and ``testImplementation`` statements, which should not be changed
 
 We just want to add the following three statements.
 
@@ -115,19 +115,19 @@ After you add these statements you should notice IntelliJ displays a loading sym
 
 You can see these files by looking into the External Libraries directory, and looking for ``Gradle:org.hibernate:hibernate-spatial:5.1.0.FINAL``, and ``Gradle:org.postgresql:postgresql:42.1.4``. They will be among the other dependencies we loaded from the Spring Initializr.
 
-Intialize a New Git Repository
-------------------------------
+Initialize a New Git Repository
+-------------------------------
 
 You may notice that Spring Initializr created a ``.gitignore`` file for you. However, it is not able to initialize a new git directory for you.
 
 You will need to initialize a new git directory with ``$ git init``.
 
-Look over the .gitignore file and determine if there is anything else you may need to add to it.
+Look over the ``.gitignore`` file and determine if there is anything else you may need to add to it.
 
 Connect to a Remote Repository
 ------------------------------
 
-You will want to connect your local git repository to a remote repository. To do this you will need to create a new project on your GitLab account. After doing that you can connect the two from your command line by typing ``$ git remote add origin <url_to_remote_git_repo>``.
+You will want to connect your local Git repository to a remote repository. To do this you will need to create a new project on your GitLab account. After doing that you can connect the two from your command line by typing ``$ git remote add origin <url_to_remote_git_repo>``.
 
 After you connect your local to your remote, you may want to stage, commit, and push. This will synchronize your local, and remote repositories so that your remote repository will contain your starter project.
 
@@ -147,14 +147,14 @@ In order to access the database through the PSQL CLI. You will have to check tha
 
 Once your container is running you can login to the PSQL CLI with ``$ psql -h 127.0.0.1 -U <psql_user> -d postgres``.
 
-You will then need to create 2 databases for our zika project, and 2 users with full access to those databases.
+You will then need to create 2 databases for our zika project, and 2 users with full access to those databases. One user/database will be for running your app locally, while the other will be used for testing. 
 
 Configure Spring Data
 ---------------------
 
 Now that our databases are setup, and we have our users, we can configure Spring Data.
 
-We will need to create, or add to the application.properties file. This file lives in the src/main/resources folder.
+We will need to create, or add to the application.properties file. This file lives in the ``src/main/resources`` folder.
 
 You will want to add this to it:
 
@@ -174,11 +174,11 @@ You will want to add this to it:
 
 .. note::
    
-   The example above is using Environment Variables. If you need help check out the `environment variables <../../configurations/environment-variables-intellij/>`_ article.
+   The example above is using environment variables. If you need help with these, check out the `environment variables <../../configurations/environment-variables-intellij/>`_ article.
 
-Since ``spring.jpa.hibernate.ddl-auto`` is set to ``create`` this will create any Models with the @Entity annotation, and will run the import.sql script at startup.
+Since ``spring.jpa.hibernate.ddl-auto`` is set to ``create`` this will create any Models with the ``@Entity`` annotation, and will run the ``import.sql`` script at startup.
 
-Let's configure the import.sql script. Create a new file in the same location as application.properties and add this to it:
+Let's configure the ``import.sql`` script. Create a new file in the same location as ``application.properties`` and add this to it:
 
 .. sourcecode:: sql
    :caption: import.sql
@@ -217,20 +217,20 @@ Inside that file add this code:
        public Report() {}
    }
 
-The Report class is very empty so far. It just contains an id, and an empty constructor that is required for Hibernate to map records to objects.
+The ``Report`` class is very empty so far. It just contains an ``id``, and an empty constructor that is required for Hibernate to map records to objects.
 
 Make Sure it Works
 ------------------
 
-Now that we have configured our project let's run our application. Select ``bootRun`` from the gradle menu, or create a new Gradle runtime with the task ``bootRun``.
+Now that we have configured our project let's run our application. Select ``bootRun`` from the Gradle menu, or create a new Gradle runtime with the task ``bootRun``.
 
 .. admonition:: Note
    
-   Don't forget you will need to add `environment variables <../../configurations/environment-variables-intellij/>`_ to your runtime configuration!
+   Don't forget that you will need to add `environment variables <../../configurations/environment-variables-intellij/>`_ to your runtime configuration!
 
-If you don't get any errors you should see the tomcat logs, if you scroll up in the logs you can see that Spring Data ran your import.sql script, and it created a new report table in the database.
+If you don't get any errors you should see the Tomcat logs, if you scroll up in the logs you can see that Spring Data ran your ``import.sql`` script, and it created a new report table in the database.
 
-It would be a good idea to login to the PSQL CLI and make sure the report table was created successfully. The table should exist, but only have one column called id, and it won't have any records yet.
+It would be a good idea to login to the PSQL CLI and make sure the report table was created successfully. The table should exist, but only have one column called ``id``, and it won't have any records yet.
 
 If you get errors in your log, or don't see the report table, read over these instructions again, talk to your fellow classmates, and ask the instructor for help.
 

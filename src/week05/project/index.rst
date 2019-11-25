@@ -33,23 +33,23 @@ Following are the requirements from our stakeholders, and our tech team.
 Stakeholder Requirements
 ------------------------
 
-- Zika Reports, that are currently stored in CSV files, need to be stored in a Relational Database.
+- Zika Reports, that are currently stored in CSV files, need to be stored in a relational database.
 - Zika Reports need to be geographically displayed on an interactive map.
-- Zika Reports are clickable, upon clicking a report more information about that report is displayed.
+- Zika Reports are clickable: upon clicking a report more information about that report is displayed.
 
 Technical Requirements
 ----------------------
 
 - Version Control: Code base is managed with Git, and a remote repository is hosted on GitLab.
 - TDD: Tests are to be written before features are implemented.
-- Unit Testing: All Java Models needed to be tested.
-- Integration Testing: All Spring Controllers, and JpaRepositories need to be tested.
+- Unit Testing: All Java models need to be tested.
+- Integration Testing: All Spring controllers, and ``JpaRepositories`` need to be tested.
 - Datastore: PSQL/PostGIS need to be used as the primary data store for the Zika reports.
 - Backend: Java and Spring will be used to handle the HTTP Requests, serve the HTTP Responses.
 - Backend: Java, Spring Data, JPA, and Hibernate will be used to interact with the database.
-- Frontend: HTML, CSS, Javascript, AJAX, and jQuery should be used to work with the zika report data.
+- Frontend: HTML, CSS, Javascript, AJAX, and jQuery should be used to work with the Zika report data.
 - Frontend: OpenLayers should be used to load an interactive map from OSM.
-- Frontend: Zika reports should be loaded onto the OpenLayers map as a new Feature Layer.
+- Frontend: Zika reports should be loaded onto the OpenLayers map as a new feature layer.
 
 There are many ways we could go about building this project, but we must follow the provided requirements.
 
@@ -58,9 +58,9 @@ Primary Objectives
 
 You should **complete all primary objectives** before working on any secondary objectives.
 
-For your primary objectives articles have been provided to help you think about what needs to be completed to pass the objective.
+For your primary objectives, articles have been provided to help you think about what needs to be completed to complete the objective.
 
-0. :ref:`Create a Spring application <week5_spring-application>`, setup Git, and GitLab, configure the DB, and prepare IntelliJ.
+0. :ref:`Create a Spring application <week5_spring-application>`, setup Git, and GitLab, configure the database, and prepare IntelliJ.
 1. :ref:`Display an interactive map <week5_display-map>` from OSM in the browser.
 2. :ref:`Display Zika reports <week5_display-reports>` on the map as red circles.
 3. :ref:`Clicked Zika reports <week5_clickable-reports>` display more information about the report.
@@ -70,12 +70,12 @@ Secondary Objectives
 
 For your secondary objectives no guidance will be given to you. You will have to think about what needs to be completed to pass the objective.
 
-- Zika reports change color based on the sevirity of the outbreak.
-- Zika reports change size based on the sevirity of the outbreak.
+- Zika reports change color based on the severity of the outbreak.
+- Zika reports change size based on the severity of the outbreak.
 - Duplicate city/state/country names are not displayed if more than one report is selected.
 - Sensitive Database information has not been committed to our version control software.
 - Database is secure from SQL injection.
-- Add coordinate information to CSV files that are missing latitude, and longitude.
+- Add coordinate information to CSV files that are missing latitude and longitude.
 
 Turning in Your Work
 ====================
@@ -83,7 +83,7 @@ Turning in Your Work
 Code Review
 -----------
 
-Let your instructor know When you complete the primary objectives. The instructor will need a link to your GitLab repo, and they will peform a code review, and leave you feedback.
+Let your instructor know When you complete the primary objectives. The instructor will need a link to your GitLab repo, and they will perform a code review, and leave you feedback.
 
 Objective Checklist
 -------------------
@@ -93,7 +93,7 @@ As you work through the objectives for this week, keep track of them on your Che
 Presentation
 ------------
 
-Friday afternoon, everyone will present their project to the class. This presentation is meant to be a celebration of your hard work throughout the week, and as a chance for you to share, and learn from the other students in the class.
+Friday afternoon everyone will present their project to the class. This presentation is meant to be a celebration of your hard work throughout the week, and as a chance for you to share, and learn from the other students in the class.
 
 At the end of this course, during your graduation ceremony you will be expected to present your final project to the attendees. Every project week we will have a presentation as a way for you to practice for this final presentation.
 
@@ -103,16 +103,17 @@ Check Your Knowledge
 We covered a lot of ground this week. 
 
 To reinforce your understanding of the concepts answer these questions to yourself:
-    - When did we have to make changes to a controller file?
-    - When did we have to make changes to a repository file?
-    - When did we have to make changes to the index.html file?
-    - When did we have to make changes to the script.js file?
-    - When did we have to make changes to our test files?
-    - How does our application communicate with the database?
-    - Our data starts as various CSV files. How is that data transformed throughout our project?
-    - How does our application convert a Java Object to GeoJSON?
-    - How do we create a new layer in OpenLayers?
-    - How do we add that layer to our map from OSM?
+
+- When did we have to make changes to a controller file?
+- When did we have to make changes to a repository file?
+- When did we have to make changes to the index.html file?
+- When did we have to make changes to the script.js file?
+- When did we have to make changes to our test files?
+- How does our application communicate with the database?
+- Our data starts as various CSV files. How is that data transformed throughout our project?
+- How does our application convert a Java Object to GeoJSON?
+- How do we create a new layer in OpenLayers?
+- How do we add that layer to our map from OSM?
 
 Bonus Resources
 ===============
@@ -124,4 +125,4 @@ Bonus Resources
 
 .. note::
 
-  Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively).
+   Remember that both jQuery and OpenLayers will silently fail if they are not given valid JSON and valid GeoJSON (respectively).
