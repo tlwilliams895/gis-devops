@@ -285,6 +285,16 @@ ItemRestController
 
 In order to get Spring to add new documents to our index, we will have to use our new ItemDocumentRepository class. For now let's add this functionality inside of our ItemRestController.
 
+The changes we are about to make to our post mapping handler will utilize ItemDocumentRepository so let's @Autowire it into our ItemRestController file first.
+
+Towards the top of your class where you have autowired your ItemRepository add:
+
+.. code-block:: java
+
+   @Autowired
+   private ItemDocumentRepository itemDocumentRepository
+
+
 Update the post mapping in your ItemRestController like this:
 
 .. code-block:: java
