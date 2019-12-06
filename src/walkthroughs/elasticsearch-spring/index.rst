@@ -39,7 +39,11 @@ From this file we can see the spring boot version of this project is 2.1.1. That
 Amend build.gradle
 ------------------
 
-Going back to our ``build.gradle`` file we need to add a plugin ``apply plugin: 'io.spring.dependency-management'``.
+Going back to our ``build.gradle`` file we need to add a plugin:
+
+.. code-block:: groovy
+
+   apply plugin: 'io.spring.dependency-management
 
 .. image:: /_static/images/spring-elasticsearch/spring-dependency-management.png
 
@@ -58,7 +62,12 @@ If you have a ``bootRun{}`` section towards the bottom of your file delete it. T
 
 Let's add the dependencies Spring data will need to work with Elasticsearch.
 
-We will be adding ``compile('org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE')`` and ``compile('net.java.dev.jna:jna')`` to the dependency section of our ``build.gradle`` file.
+We will be adding the following dependencies to the dependency section of our ``build.gradle`` file.
+
+.. code-block:: groovy
+
+   compile('org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE')
+   compile('net.java.dev.jna:jna')
 
 .. image:: /_static/images/spring-elasticsearch/springdata-elasticsearch-dependencies.png
 
@@ -152,7 +161,9 @@ Now we will want to add some code to this file.
 .. code-block:: java
    
    //imports
-   ...
+   import org.springframework.beans.factory.annotation.Value;
+   import org.springframework.stereotype.Component;
+   
    @Component
    public class EsConfig {
 
@@ -208,32 +219,39 @@ Create a new package, ``org.launchcode.launchcart.models.es``, and add the follo
 .. code-block:: java
 
     /*
-     * /src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java
-     */
-    @Document(indexName = "#{esConfig.indexName}", type = "items")
-    public class ItemDocument {
+    * /src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java
+    */
 
-        @Id
-        @GeneratedValue(strategy= GenerationType.AUTO)
-        private String id;
+   import org.springframework.data.elasticsearch.annotations.Document;
 
-        private Integer itemUid;
-        private String name;
-        private double price;
-        private boolean newItem;
-        private String description;
+   import javax.persistence.GeneratedValue;
+   import javax.persistence.GenerationType;
+   import javax.persistence.Id;
 
-        public ItemDocument() {}
+   @Document(indexName = "#{esConfig.indexName}", type = "items")
+   public class ItemDocument {
 
-        public ItemDocument(Item item) {
-            this.itemUid = item.getUid();
-            this.name = item.getName();
-            this.price = item.getPrice();
-            this.newItem = item.isNewItem();
-            this.description = item.getDescription();
-        }
+       @Id
+       @GeneratedValue(strategy= GenerationType.AUTO)
+       private String id;
 
-        // Getters and setters omitted
+       private Integer itemUid;
+       private String name;
+       private double price;
+       private boolean newItem;
+       private String description;
+
+       public ItemDocument() {}
+
+       public ItemDocument(Item item) {
+           this.itemUid = item.getUid();
+           this.name = item.getName();
+           this.price = item.getPrice();
+           this.newItem = item.isNewItem();
+           this.description = item.getDescription();
+       }
+
+       // Getters and setters omitted
 
     }
 
@@ -258,6 +276,10 @@ Also add a new repository, which extends ``ElasticsearchRepository``:
     /*
      * src/main/java/org/launchcode/launchcart/data/ItemDocumentRepository.java
      */
+   import org.elasticsearch.index.query.QueryBuilder;
+   import org.launchcode.launchcart.models.ItemDocument;
+   import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+
     public interface ItemDocumentRepository 
         extends ElasticsearchRepository<ItemDocument, String> {
 
@@ -285,6 +307,16 @@ ItemRestController
 
 In order to get Spring to add new documents to our index, we will have to use our new ItemDocumentRepository class. For now let's add this functionality inside of our ItemRestController.
 
+The changes we are about to make to our post mapping handler will utilize ItemDocumentRepository so let's @Autowire it into our ItemRestController file first.
+
+Towards the top of your class where you have autowired your ItemRepository add:
+
+.. code-block:: java
+
+   @Autowired
+   private ItemDocumentRepository itemDocumentRepository;
+
+
 Update the post mapping in your ItemRestController like this:
 
 .. code-block:: java
@@ -292,10 +324,10 @@ Update the post mapping in your ItemRestController like this:
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)
    public Item postItem(@RequestBody Item item) {
-       item = itemRepository.save(item);
-       ItemDocument itemDocument = new ItemDocument(item);
+       Item postItem = itemRepository.save(item);
+       ItemDocument itemDocument = new ItemDocument(postItem);
        itemDocumentRepository.save(itemDocument);
-       return itemRepository.save(item);
+       return postItem;
    }
 
 We have amended our PostMapping so that when it saves a new Item to our ItemRepository it also saves an ItemDocument to our ItemDocumentRepository.
@@ -306,6 +338,20 @@ ItemRestControllerTests
 To test this new functionality out let's write a new test in our ItemRestControllerTests file to make sure our post saves a new ItemDocument to Elasticsearch.
 
 You will have to Autowire an ItemDocumentRepository into your ItemRestControllerTests file first, and then we can add a new test.
+
+Towards the top of your Test class add:
+
+.. code-block:: java
+
+   // imports to look out for!!!
+
+   import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+   import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+   
+   ...
+
+   @Autowired
+   private ItemDocumentRepository itemDocumentRepository;
 
 Add the following to your ItemRestControllerTests file: 
 
@@ -338,30 +384,45 @@ Create ``ItemDocumentController`` and implement the ``search`` method/endpoint.
 
 .. code-block:: java
 
-    /*
-     * src/main/java/org/launchcode/launchcart/controllers/es/ItemDocumentController.java
-     */
-    @RestController
-    @RequestMapping(value = "/api/items")
-    public class ItemDocumentController {
+   /*
+   * src/main/java/org/launchcode/launchcart/controllers/es/ItemDocumentController.java
+   */
 
-        @Autowired
-        private ItemDocumentRepository itemDocumentRepository;
+   import org.elasticsearch.index.query.FuzzyQueryBuilder;
+   import org.elasticsearch.index.query.QueryBuilders;
+   import org.launchcode.launchcart.data.ItemDocumentRepository;
+   import org.launchcode.launchcart.models.ItemDocument;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   import org.springframework.web.bind.annotation.RequestParam;
+   import org.springframework.web.bind.annotation.RestController;
 
-        @GetMapping(value = "search")
-        public List<ItemDocument> search(@RequestParam String q) {
-            FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("name", q);
-            List<ItemDocument> results = new ArrayList<>();
-            Iterator<ItemDocument> iterator = itemDocumentRepository.search(fuzzyQueryBuilder).iterator();
+   import java.util.ArrayList;
+   import java.util.Iterator;
+   import java.util.List;
 
-            while(iterator.hasNext()) {
-                results.add(iterator.next());
-            }
+   @RestController
+   @RequestMapping(value = "/api/items")
+   public class ItemDocumentController {
 
-            return results;
-        }
+       @Autowired
+       private ItemDocumentRepository itemDocumentRepository;
 
-    }
+       @GetMapping(value = "search")
+       public List<ItemDocument> search(@RequestParam String q) {
+           FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("name", q);
+           List<ItemDocument> results = new ArrayList<>();
+           Iterator<ItemDocument> iterator = itemDocumentRepository.search(fuzzyQueryBuilder).iterator();
+
+           while(iterator.hasNext()) {
+               results.add(iterator.next());
+           }
+
+           return results;
+       }
+
+   }
 
 Spring is unable to serialize (i.e. turn into XML or JSON) an ``Iterable`` object, so we must copy each of the results into a new ``List``. If we expect large results sets, we should use a paginated approach that only returns segments of the result set.
 
@@ -377,6 +438,20 @@ Create a new test file named ``ItemDocumentControllerTests`` and add the followi
     /*
      * In src/test/java/org/launchcode/launchcart/ItemDocumentControllerTests.java
      /*
+
+    // imports
+    import org.junit.Test;
+    import org.junit.runner.RunWith;
+    import org.launchcode.launchcart.models.Item;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.test.context.junit4.SpringRunner;
+    import org.springframework.test.web.servlet.MockMvc;
+
+    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+    import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+    import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
     @RunWith(SpringRunner.class)
     @IntegrationTestConfig
     public class ItemDocumentControllerTests extends AbstractBaseRestIntegrationTest {
@@ -384,8 +459,12 @@ Create a new test file named ``ItemDocumentControllerTests`` and add the followi
         @Autowired
         private MockMvc mockMvc;
 
+        @Autowired
+        private ItemDocumentRepository itemDocumentRepository;
+
         @Test
         public void testFuzzySearch() throws Exception {
+            itemDocumentRepository.deleteAll();
             Item item = new Item("Test Item Again", 42);
             String json = json(item);
             mockMvc.perform(post("/api/items/")
@@ -419,6 +498,17 @@ After creating ``Esutil.java`` add the following code:
     /*
      * src/main/java/org/launchcode/launchcart/util/EsUtil.java
      */
+
+    import org.launchcode.launchcart.data.ItemDocumentRepository;
+    import org.launchcode.launchcart.data.ItemRepository;
+    import org.launchcode.launchcart.models.Item;
+    import org.launchcode.launchcart.models.ItemDocument;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Component;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
     @Component
     public class EsUtil {
 
@@ -448,6 +538,15 @@ After creating your EsController file add the following code:
     /*
      * src/main/java/org/launchcode/launchcart/controllers/es/EsController.java
      */
+
+    import org.launchcode.launchcart.util.EsUtil;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RestController;
+
     @RestController
     @RequestMapping(value = "/api/es")
     public class EsController {
