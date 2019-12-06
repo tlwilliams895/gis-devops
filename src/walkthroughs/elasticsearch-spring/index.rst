@@ -276,6 +276,10 @@ Also add a new repository, which extends ``ElasticsearchRepository``:
     /*
      * src/main/java/org/launchcode/launchcart/data/ItemDocumentRepository.java
      */
+   import org.elasticsearch.index.query.QueryBuilder;
+   import org.launchcode.launchcart.models.ItemDocument;
+   import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+
     public interface ItemDocumentRepository 
         extends ElasticsearchRepository<ItemDocument, String> {
 
