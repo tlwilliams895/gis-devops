@@ -292,7 +292,7 @@ Towards the top of your class where you have autowired your ItemRepository add:
 .. code-block:: java
 
    @Autowired
-   private ItemDocumentRepository itemDocumentRepository
+   private ItemDocumentRepository itemDocumentRepository;
 
 
 Update the post mapping in your ItemRestController like this:
@@ -316,6 +316,13 @@ ItemRestControllerTests
 To test this new functionality out let's write a new test in our ItemRestControllerTests file to make sure our post saves a new ItemDocument to Elasticsearch.
 
 You will have to Autowire an ItemDocumentRepository into your ItemRestControllerTests file first, and then we can add a new test.
+
+Towards the top of your Test class add:
+
+.. code-block:: java
+
+   @Autowired
+   private ItemDocumentRepository itemDocumentRepository;
 
 Add the following to your ItemRestControllerTests file: 
 
