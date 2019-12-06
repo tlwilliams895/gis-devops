@@ -292,10 +292,10 @@ Update the post mapping in your ItemRestController like this:
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)
    public Item postItem(@RequestBody Item item) {
-       item = itemRepository.save(item);
-       ItemDocument itemDocument = new ItemDocument(item);
+       Item postItem = itemRepository.save(item);
+       ItemDocument itemDocument = new ItemDocument(postItem);
        itemDocumentRepository.save(itemDocument);
-       return itemRepository.save(item);
+       return postItem;
    }
 
 We have amended our PostMapping so that when it saves a new Item to our ItemRepository it also saves an ItemDocument to our ItemDocumentRepository.
