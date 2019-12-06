@@ -58,7 +58,11 @@ If you have a ``bootRun{}`` section towards the bottom of your file delete it. T
 
 Let's add the dependencies Spring data will need to work with Elasticsearch.
 
-We will be adding ``compile('org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE')`` and ``compile('net.java.dev.jna:jna')`` to the dependency section of our ``build.gradle`` file.
+We will be adding the following dependencies to the dependency section of our ``build.gradle`` file.
+.. code-block:: groovy
+
+   compile('org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE')
+   compile('net.java.dev.jna:jna')
 
 .. image:: /_static/images/spring-elasticsearch/springdata-elasticsearch-dependencies.png
 
