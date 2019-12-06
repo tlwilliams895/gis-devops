@@ -161,7 +161,9 @@ Now we will want to add some code to this file.
 .. code-block:: java
    
    //imports
-   ...
+   import org.springframework.beans.factory.annotation.Value;
+   import org.springframework.stereotype.Component;
+   
    @Component
    public class EsConfig {
 
