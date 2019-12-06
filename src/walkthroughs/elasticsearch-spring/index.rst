@@ -39,7 +39,11 @@ From this file we can see the spring boot version of this project is 2.1.1. That
 Amend build.gradle
 ------------------
 
-Going back to our ``build.gradle`` file we need to add a plugin ``apply plugin: 'io.spring.dependency-management'``.
+Going back to our ``build.gradle`` file we need to add a plugin:
+
+.. code-block:: groovy
+
+   apply plugin: 'io.spring.dependency-management
 
 .. image:: /_static/images/spring-elasticsearch/spring-dependency-management.png
 
