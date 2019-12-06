@@ -498,6 +498,17 @@ After creating ``Esutil.java`` add the following code:
     /*
      * src/main/java/org/launchcode/launchcart/util/EsUtil.java
      */
+
+    import org.launchcode.launchcart.data.ItemDocumentRepository;
+    import org.launchcode.launchcart.data.ItemRepository;
+    import org.launchcode.launchcart.models.Item;
+    import org.launchcode.launchcart.models.ItemDocument;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Component;
+
+    import java.util.ArrayList;
+    import java.util.List;
+
     @Component
     public class EsUtil {
 
@@ -527,6 +538,15 @@ After creating your EsController file add the following code:
     /*
      * src/main/java/org/launchcode/launchcart/controllers/es/EsController.java
      */
+
+    import org.launchcode.launchcart.util.EsUtil;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RestController;
+
     @RestController
     @RequestMapping(value = "/api/es")
     public class EsController {
