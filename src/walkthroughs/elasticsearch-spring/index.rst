@@ -438,6 +438,20 @@ Create a new test file named ``ItemDocumentControllerTests`` and add the followi
     /*
      * In src/test/java/org/launchcode/launchcart/ItemDocumentControllerTests.java
      /*
+
+    // imports
+    import org.junit.Test;
+    import org.junit.runner.RunWith;
+    import org.launchcode.launchcart.models.Item;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.test.context.junit4.SpringRunner;
+    import org.springframework.test.web.servlet.MockMvc;
+
+    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+    import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+    import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+    import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
     @RunWith(SpringRunner.class)
     @IntegrationTestConfig
     public class ItemDocumentControllerTests extends AbstractBaseRestIntegrationTest {
