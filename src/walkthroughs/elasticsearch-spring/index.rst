@@ -384,30 +384,45 @@ Create ``ItemDocumentController`` and implement the ``search`` method/endpoint.
 
 .. code-block:: java
 
-    /*
-     * src/main/java/org/launchcode/launchcart/controllers/es/ItemDocumentController.java
-     */
-    @RestController
-    @RequestMapping(value = "/api/items")
-    public class ItemDocumentController {
+   /*
+   * src/main/java/org/launchcode/launchcart/controllers/es/ItemDocumentController.java
+   */
 
-        @Autowired
-        private ItemDocumentRepository itemDocumentRepository;
+   import org.elasticsearch.index.query.FuzzyQueryBuilder;
+   import org.elasticsearch.index.query.QueryBuilders;
+   import org.launchcode.launchcart.data.ItemDocumentRepository;
+   import org.launchcode.launchcart.models.ItemDocument;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   import org.springframework.web.bind.annotation.RequestParam;
+   import org.springframework.web.bind.annotation.RestController;
 
-        @GetMapping(value = "search")
-        public List<ItemDocument> search(@RequestParam String q) {
-            FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("name", q);
-            List<ItemDocument> results = new ArrayList<>();
-            Iterator<ItemDocument> iterator = itemDocumentRepository.search(fuzzyQueryBuilder).iterator();
+   import java.util.ArrayList;
+   import java.util.Iterator;
+   import java.util.List;
 
-            while(iterator.hasNext()) {
-                results.add(iterator.next());
-            }
+   @RestController
+   @RequestMapping(value = "/api/items")
+   public class ItemDocumentController {
 
-            return results;
-        }
+       @Autowired
+       private ItemDocumentRepository itemDocumentRepository;
 
-    }
+       @GetMapping(value = "search")
+       public List<ItemDocument> search(@RequestParam String q) {
+           FuzzyQueryBuilder fuzzyQueryBuilder = QueryBuilders.fuzzyQuery("name", q);
+           List<ItemDocument> results = new ArrayList<>();
+           Iterator<ItemDocument> iterator = itemDocumentRepository.search(fuzzyQueryBuilder).iterator();
+
+           while(iterator.hasNext()) {
+               results.add(iterator.next());
+           }
+
+           return results;
+       }
+
+   }
 
 Spring is unable to serialize (i.e. turn into XML or JSON) an ``Iterable`` object, so we must copy each of the results into a new ``List``. If we expect large results sets, we should use a paginated approach that only returns segments of the result set.
 
