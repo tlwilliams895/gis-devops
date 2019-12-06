@@ -343,6 +343,13 @@ Towards the top of your Test class add:
 
 .. code-block:: java
 
+   // imports to look out for!!!
+
+   import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+   import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+   
+   ...
+
    @Autowired
    private ItemDocumentRepository itemDocumentRepository;
 
