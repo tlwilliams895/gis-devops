@@ -45,7 +45,7 @@ Going back to our ``build.gradle`` file we need to add a plugin ``apply plugin: 
 
 If you have a ``bootRun{}`` section towards the bottom of your file delete it. That's a holdover from an older version of gradle.
 
-.. code-block::: groovy
+.. code-block:: groovy
 
    bootRun {
        // addResources = true
@@ -73,7 +73,7 @@ We will be setting the Elasticsearch transport client port, the Elasticsearch cl
 
 Add the following code snippet to the bottom of your ``application.properties`` file.
 
-.. code-block::: console
+.. code-block:: console
    :caption: application.properties
 
     spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
@@ -114,7 +114,7 @@ application.properties
 
 Add the following code snippet to the bottom of your ``application.properties`` file.
 
-.. code-block::: console
+.. code-block:: console
    :caption: application.properties
 
    # Elasticsearch Config
@@ -124,7 +124,7 @@ Add the following code snippet to the bottom of your ``application.properties`` 
 
 You will also want to add this to your ``application-test.properties`` file.
 
-.. code-block::: console
+.. code-block:: console
    :caption: application-test.properties
 
    # Elasticsearch Config
@@ -149,7 +149,7 @@ Create a new file at the root of your project called ``EsConfig.java``.
 
 Now we will want to add some code to this file.
 
-.. code-block::: java
+.. code-block:: java
    
    //imports
    ...
