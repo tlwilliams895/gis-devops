@@ -45,7 +45,7 @@ Going back to our ``build.gradle`` file we need to add a plugin ``apply plugin: 
 
 If you have a ``bootRun{}`` section towards the bottom of your file delete it. That's a holdover from an older version of gradle.
 
-.. sourcecode:: groovy
+.. code-block::: groovy
 
    bootRun {
        // addResources = true
@@ -73,7 +73,7 @@ We will be setting the Elasticsearch transport client port, the Elasticsearch cl
 
 Add the following code snippet to the bottom of your ``application.properties`` file.
 
-.. sourcecode:: console
+.. code-block::: console
    :caption: application.properties
 
     spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
@@ -114,7 +114,7 @@ application.properties
 
 Add the following code snippet to the bottom of your ``application.properties`` file.
 
-.. sourcecode:: console
+.. code-block::: console
    :caption: application.properties
 
    # Elasticsearch Config
@@ -124,7 +124,7 @@ Add the following code snippet to the bottom of your ``application.properties`` 
 
 You will also want to add this to your ``application-test.properties`` file.
 
-.. sourcecode:: console
+.. code-block::: console
    :caption: application-test.properties
 
    # Elasticsearch Config
@@ -149,7 +149,7 @@ Create a new file at the root of your project called ``EsConfig.java``.
 
 Now we will want to add some code to this file.
 
-.. sourcecode:: java
+.. code-block::: java
    
    //imports
    ...
@@ -180,7 +180,7 @@ With the additions to our ``application.properties`` file, and our ``EsConfig`` 
 
 You will notice we have some new additions near the bottom of the logs.
 
-.. sourcecode:java
+.. code-block::java
 
    Adding transport node : 127.0.0.1:9300
 
@@ -287,7 +287,7 @@ In order to get Spring to add new documents to our index, we will have to use ou
 
 Update the post mapping in your ItemRestController like this:
 
-.. sourcecode: java
+.. code-block:: java
 
    @PostMapping
    @ResponseStatus(HttpStatus.CREATED)
@@ -309,7 +309,7 @@ You will have to Autowire an ItemDocumentRepository into your ItemRestController
 
 Add the following to your ItemRestControllerTests file: 
 
-.. sourcecode: java
+.. code-block:: java
 
    @Test
    public void testPostCreatesItemDocument() throws Exception {
