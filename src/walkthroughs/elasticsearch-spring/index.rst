@@ -219,32 +219,39 @@ Create a new package, ``org.launchcode.launchcart.models.es``, and add the follo
 .. code-block:: java
 
     /*
-     * /src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java
-     */
-    @Document(indexName = "#{esConfig.indexName}", type = "items")
-    public class ItemDocument {
+    * /src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java
+    */
 
-        @Id
-        @GeneratedValue(strategy= GenerationType.AUTO)
-        private String id;
+   import org.springframework.data.elasticsearch.annotations.Document;
 
-        private Integer itemUid;
-        private String name;
-        private double price;
-        private boolean newItem;
-        private String description;
+   import javax.persistence.GeneratedValue;
+   import javax.persistence.GenerationType;
+   import javax.persistence.Id;
 
-        public ItemDocument() {}
+   @Document(indexName = "#{esConfig.indexName}", type = "items")
+   public class ItemDocument {
 
-        public ItemDocument(Item item) {
-            this.itemUid = item.getUid();
-            this.name = item.getName();
-            this.price = item.getPrice();
-            this.newItem = item.isNewItem();
-            this.description = item.getDescription();
-        }
+       @Id
+       @GeneratedValue(strategy= GenerationType.AUTO)
+       private String id;
 
-        // Getters and setters omitted
+       private Integer itemUid;
+       private String name;
+       private double price;
+       private boolean newItem;
+       private String description;
+
+       public ItemDocument() {}
+
+       public ItemDocument(Item item) {
+           this.itemUid = item.getUid();
+           this.name = item.getName();
+           this.price = item.getPrice();
+           this.newItem = item.isNewItem();
+           this.description = item.getDescription();
+       }
+
+       // Getters and setters omitted
 
     }
 
