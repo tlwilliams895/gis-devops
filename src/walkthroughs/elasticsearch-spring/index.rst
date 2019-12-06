@@ -459,8 +459,12 @@ Create a new test file named ``ItemDocumentControllerTests`` and add the followi
         @Autowired
         private MockMvc mockMvc;
 
+        @Autowired
+        private ItemDocumentRepository itemDocumentRepository;
+
         @Test
         public void testFuzzySearch() throws Exception {
+            itemDocumentRepository.deleteAll();
             Item item = new Item("Test Item Again", 42);
             String json = json(item);
             mockMvc.perform(post("/api/items/")
