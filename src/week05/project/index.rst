@@ -77,6 +77,19 @@ For your secondary objectives no guidance will be given to you. You will have to
 - Database is secure from SQL injection.
 - Add coordinate information to CSV files that are missing latitude and longitude.
 
+Bonus Missions
+==============
+
+If you finish all objectives above, here are some additional features to consider. These are roughly listed in order from easiest to hardest. Feel free to pick what seems interesting to you, rather than starting from the top of the list. These are all independent of one another. 
+
+- Remove dependence on jQuery
+- Display report info in a popup (with OpenLayers) instead of a pane or sidebar
+- Exclude features with 0 cases reported 
+- In a new container (e.g. a sidebar) display a summary of report data by country, sorted from most cases to least 
+- "Animate" reports displayed by adding them to the map one-by-one on page load
+- Add a select box to filter down to a specific country or region 
+- Add the ability to display reported cases within a given numerical range 
+
 Turning in Your Work
 ====================
 
@@ -106,7 +119,7 @@ To reinforce your understanding of the concepts answer these questions to yourse
 
 - When did we have to make changes to a controller file?
 - When did we have to make changes to a repository file?
-- When did we have to make changes to the index.html file?
+- When did we have to make changes to the ``index.html`` file?
 - When did we have to make changes to the script.js file?
 - When did we have to make changes to our test files?
 - How does our application communicate with the database?
