@@ -6,238 +6,128 @@
 Certificates
 ============
 
-In this walkthrough, we will be looking at how a servers use certificates to validate their identity.
+In this walkthrough, we will be looking at how we can use certificates to verify our identity with a server.
 
-Spring Security
-===============
+Try Without Certificate
+=======================
 
-For this walkthrough, we will be using `Spring Security <https://docs.spring.io/spring-security/site/docs/4.2.8.RELEASE/reference/htmlsingle/>`_ to secure our application.  Spring Security will enable us to use username/password, client certificates, and attach a certificate to our server.
+We have hosted an application `here <https://ec2-52-53-180-16.us-west-1.compute.amazonaws.com/user>`_.
 
-Setup
-=====
+Clicking that link takes you to the website over https using port 443, however we don't recognize their Certificate Authority, and we don't have a personal certificate to identify ourselves. We will need to add both of these to our browser in order to access this web application and move past this screen:
 
-1. Check out the `Server Certificate Repo <https://gitlab.com/LaunchCodeTraining/x509-certificate-starter>`_ from Gitlab
-2. Review the starter code
+.. image:: /_static/images/certificates/restricted-access.png
 
-   1. ``UserController`` that checks the certificate of the user
-   2.  A properties file that defines the ``jks``, the ``truststore``, and other configuration for SSL.
-   3.  A Makefile in ``src/main/resources/certs`` that contains commands to simplify the process of creating certificates.
+We have two things to add to our browser to bypass this issue and to use this web application:
+  #. Add the Certificate Authority
+  #. Add our Personal Identification
 
-Simple Security With Spring
+Add the Certificate Authority
+=============================
+
+We first need to add the Certificate Authority to our browser.
+
+The Certificate Authority certificate will be generated on the server that controls the web application. There are many publicly recognized Certificate Authorities, for the most part these Certificate Authorities are automatically added to your browser when you visit a website. However, this web application is using a private Certificate Authority to control and manage the access of this web application. We will need to contact the owner of the Certificate Authority to access the Certificate Authority certificate.
+
+Since this is a web app, and Certificate Authority controlled by LaunchCode as a part of this class we created a Certificate Authority certificate named ``ca.crt`` in the s3 bucket: ``s3://launchcode-gisdevops-cert-authority/certs/``.
+
+You can view the file with the following command: ``aws s3 ls s3://launchcode-gisdevops-cert-authority/certs/``.
+
+.. image:: /_static/images/certificates/check-s3-bucket.png
+
+You will notice two files: ``ca.crt`` that is the Certificate Authority certificate that will need to be added to our trusted Certificate Authorities, and we have ``student-cert.p12`` this is our identification certificate. Depending on the web applications needs to monitor or control access you may be issued a specific to you certificate. In this case to keep things simple we will all be using the same certificate which defines our role a student in the GIS DevOps class.
+
+Go ahead and cp both of these files to your local machine: ``aws s3 cp --recursive s3://launchcode-gisdevops-cert-authority/certs ./certs`` this command will copy over both files to a folder named ``certs/`` off of your current location.
+
+.. image:: /_static/images/certificates/copy-from-s3-bucket.png
+
+Now that we have the files we can add them to our browser. Let's add the Certificate Authority certificate first.
+
+Our examples will use Firefox as the browser, however the process for adding a Certificate Authority and a personal identification certificate should be similar across all major browsers.
+
+In Firefox I need to access the browser ``Preferences``, also commonly marked as ``Settings``. The page should look something like this:
+
+.. image:: /_static/images/certificates/preferences.png
+
+From you here you want to select ``Privacy & Security`` which will take you to a page that looks like this:
+
+.. image:: /_static/images/certificates/privacy-and-security.png
+
+At the bottom of this page you will find the ``Certificates`` section:
+
+.. image:: /_static/images/certificates/firefox-certificates.png
+
+Click the ``View Certificates...`` button which will lead to a pop up window like this:
+
+.. image:: /_static/images/certificates/certificate-manager.png
+
+While writing this walkthrough my browser defaulted to showing the ``Authorities`` tab, which coincidentally is where we need to add our Certificate Authority certificate ``ca.crt``.
+
+Click the ``Import...`` button to import the Certificate Authority certificate we downloaded earlier. From here select the ``ca.crt`` at the location you downloaded it to.
+
+.. image:: /_static/images/certificates/add-ca.png
+
+Click ``Open`` and another box will ask you what this Certificate Authority can do in your browser. Make sure to select ``Trust this CA to identify websites.``
+
+.. image:: /_static/images/certificates/identify-websites.png
+
+Finally click ``OK``. You can also View this certificate if you want as well. The window asked specifically if we want to trust ``The LaunchCode Foundation Certificate Authority``, and should have added an entry to your ``Authorities`` tab. It should look something like this:
+
+.. image:: /_static/images/certificates/launchcode-foundation-ca.png
+
+That's it we have added the new Certificate Authority certificate! Next step is to add our personal identification certificate.
+
+Add Personal Identification
 ===========================
 
-1. In your browser go to http://localhost:8080/user
-2. You should see a login prompt
+We downloaded an additional file earlier that will need to be added so that we can properly identify ourselves with the Certificate Authority we just added. Just like the previous step this was done for us by the Sys Admin, or owner of the server that controls the Certificate Authority we are trying to access.
 
-   * This prompt is created by the browser as part of `Basic Access Authentication <https://en.wikipedia.org/wiki/Basic_access_authentication>`_
+Open the ``Certificate Manager`` again, and this time navigate to the ``Your Certificates`` tab.
 
-3. `Basic Access Authentication <https://en.wikipedia.org/wiki/Basic_access_authentication>`_ is enabled because Spring Security is included in the ``gradle`` file
+.. image:: /_static/images/certificates/your-certificates.png
 
-Set and Use Username/Password
------------------------------
-1. Create a **Run Configuration** that will run the ``bootRun`` task
-2. In **Run Configuration**, add the below **Environment Variables** and values
+As you can see my certificates for this browser are currently empty. I want to add my personal identification certificate that we downloaded earlier from S3 here. Again click ``Import`` this time from the ``Your Certificates`` tab. Select the other file the .p12 file and click ``Open``.
 
-   * ``APP-USERNAME`` = adminUser
-   * ``APP-PASSWORD`` = changeit
-   * For now ignore the other commented out values in ``application.properties``
+.. image:: /_static/images/certificates/add-personal-identification-cert.png
 
-3. Run ``bootRun`` task via **Run Configuration** menu
-4. Go to http://localhost:8080/user
-5. Enter the username/password you have stored in **Run Configuration**
+When the personal identification certificate was create it was encrypted with a password, in order to add this personal identification certificate we will need to provide that password. This is again information we would need to get from the Sys admin, or server owner.
 
-Basic Access Auth Login Form
-----------------------------
-.. image:: /_static/images/basic-access-auth-login.png
+.. image:: /_static/images/certificates/encryption-password.png
 
-Login Success
--------------
-.. image:: /_static/images/basic-login-success.png
+We encrypted this certificate with the password: ``launchcode`` so enter that in the prompt. Upon completion you should see your newly added certificate:
 
-HTTPS Certificates with Spring Security
-=======================================
-`Basic Access Authentication <https://en.wikipedia.org/wiki/Basic_access_authentication>`_ is not secure by itself, it should be used with HTTPS. We want to add HTTPS to our web application using Spring Security.
+.. image:: /_static/images/certificates/student-cert.png
 
-Enable HTTPS in Applicaiton Properties
---------------------------------------
-There are specific properties in ``application.properties`` that configure Spring Security and Tomcat server settings. `More information on Spring Security Users <https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-security.html>`_
+That's it we just added our personal identification certificate.
 
-These are the properties that enable HTTPS (SSL)::
+Try it Out
+==========
 
-    server.ssl.key-store=src/main/resources/certs/keystore.jks
-    server.ssl.key-store-password=${CERT-PASSWORD}
-    server.ssl.key-alias=localhost
-    server.ssl.key-password=${CERT-PASSWORD}
-    server.ssl.enabled=true
-    server.port=8443
+Let's navigate back to the link we looked at `earlier <https://ec2-52-53-180-16.us-west-1.compute.amazonaws.com/user>`_.
 
-.. note::
+.. hint::
 
-   Port 8443 is the alternate SSL port. The default SSL port is 443
+   You may need to close your browser and reopen it, or you can open a private browser to completely refresh the cache. ``Ctrl+Shift+r`` may work as well. Try these out if you don't see the alert about identifying yourself.
 
-.. warning::
+Before we even see the page we get an alert:
 
-    If you run ``bootRun`` before creating certs for HTTPS, you will see this error: ``The Tomcat connector configured to listen on port 8443 failed to start. The port may already be in use or the connector may be misconfigured.``
+.. image:: /_static/images/certificates/identify-yourself.png
 
-Configure Intellij Run Configurations
--------------------------------------
-1. Add ``CERT-PASSWORD`` and it's value to **Environment Variables** in **Run Configurations**
+The website is asking us to identify ourselves via a personal identification cert, the cert we just added should be found in the drop down box. Select that cert and click ``OK``.
 
-   * ``CERT-PASSWORD`` = The password you used to create keystore and certificate in previous section
-   * You will use this password value for all ``PASSWORD=`` commands below
+Now we see the webapp! We have successfully added a certificate authority, and a personal identification certificate and can access the web app.
 
-Create HTTPS Certificate
-------------------------
-
-After checking out the example project, you will need to generate the cryptographic components required for Spring Boot to host a certificate.
-
-A ``jks`` also known as a ``Java Key Store`` will need to be generated.  Since we will be using a self-signed certificate, this ``jks`` file will act as our local Certificate Authority.  Run the following command (be sure to use a secure password!):
-
-Create Keystore (keystork.jks)
-------------------------------
-::
-
-    $ make create-keystore PASSWORD=changeit
-    $ # Generate a certificate authority (CA)
-    keytool -genkey -alias ca -ext BC=ca:true \
-            -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-            -validity 3650 -dname 'CN=LaunchCode CA,OU=launchcode.org,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
-            -keystore keystore.jks -storepass changeit
+.. image:: /_static/images/certificates/webapp.png
 
 
-By doing an ``ls``, you should now see that you ``keystore.jks`` file in your directory.
+Why is the webapp asking us to login if we have gone through the hassle of adding the certificate authority? The Certificate Authority allows us to use HTTPS, TLS/SSL encryption and port 443, instead of the un-encrypted protcol HTTP and port 80. This has nothing to do with the web app itself, but the underlying infrastructure. We are now using a more secure port, and encryption for our web traffic.
 
-Create Certificate (localhost.crt)
-----------------------------------
-Next you will create a certificate for you local development environment. Run the following command:::
+The web app still may need it's own authentication, and authorization which is why we are seeing the login page. This webapp doesn't do anything, but if you'd like to login you can use the credentials username: ``launchcode-devops`` and password: ``launchcode`` which will take you to the last screen:
 
-    $ make add-host HOSTNAME=localhost PASSWORD=changeit
+.. image:: /_static/images/certificates/login.png
 
-Running ``ls`` will show that there are now two additional files in your director: ``localhost.csr`` and ``localhost.cst``.
+Optional
+========
 
-Create Truststore (ca.crt)
---------------------------
-Next, you will need to create a ``truststore``.  The ``truststore`` is where all trusted certificates are located.  It is essentially the ``known_hosts`` for certificates.
+From previous cohorts we have learned that you won't be asked to create your own Certificate Authorities very often, but will need to install certificates into your browsers regularly to access various servers.
 
-::
-
-    $ make create-truststore PASSWORD=changeit
-    # Export certificate authority
-    keytool -export -alias ca -file ca.crt -rfc \
-            -keystore keystore.jks -storepass changeit
-    Certificate stored in file <ca.crt>
-    # Import certificate authority into a new truststore
-    keytool -import -trustcacerts -noprompt -alias ca -file ca.crt \
-            -keystore truststore.jks -storepass changeit
-    Certificate was added to keystore
-
-
-Running ``ls`` will show that two more files have been added to your directory: ``ca.crt`` and ``truststore.jks``.
-
-Connection is Not Secure
-------------------------
-Let's try out our app and see what happens.
-
-1. Uncomment all properties in ``application.properties``
-2. Set all values in **Run Configurations**
-3. Run or ReRun ``bootRun`` task
-4. Go to ``https://localhost:8443/`` in your browser
-5. You should see this or something like it depending on your browser
-
-.. image:: /_static/images/insecure-connection.png
-
-Add Certificate Authority to the Browser (ca.crt)
--------------------------------------------------
-
-Upon running the app, navigate to https://localhost:8443.  Notice that the app is now running on ``https``.  This says that all traffic going over the write is encrypted.  The only question is "Do you trust the person that you are talking to?".
-
-The first thing you will notice is that your browser doesn't recognize the certificate from the server. Anytime there is a bad certificate on a server, your browser will freak out.  Let's fix that.
-
-Add ``ca.crt`` as a CA to your browser
-
-
-Client Certificates
-===================
-
-Spring Security can be configured to authenticate users using client certificates.
-
-Enable Certificate Authentication in Spring Security
-----------------------------------------------------
-Add these properties to ``application.properties`` to enable client authentication user certificates::
-
-    server.ssl.trust-store=src/main/resources/certs/truststore.jks
-    server.ssl.trust-store-password=${CERT-PASSWORD}
-    server.ssl.client-auth=need
-
-Update UserController Class
----------------------------
-::
-TODO
-
-Update CertsApplication Class
------------------------------
-::
-TODO
-
-Add CNUserDetailService Class
------------------------------
-::
-TODO
-
-Try it Out Before Creating Client Certificate
----------------------------------------------
-Show image of 403 error
-
-Create and Add Client Certificate to Keystore (janet.crt)
----------------------------------------------------------
-Next, you will create a client certificate and add it to the truststore.
-
-::
-
-    $ make add-client CLIENTNAME=janet PASSWORD=changeit
-    //output
-    keytool -genkey -alias janet \
-            -keyalg RSA -keysize 4096 -sigalg SHA512withRSA -keypass changeit \
-            -validity 3650 -dname 'CN=janet,OU=launchcode.com,O=LaunchCode,L=Saint Louis,ST=Missouri,C=CC' \
-            -keystore truststore.jks -storepass changeit
-    # Generate a host certificate signing request
-    keytool -certreq -alias janet -ext BC=ca:true \
-            -keyalg RSA -keysize 4096 -sigalg SHA512withRSA \
-            -validity 3650 -file "janet.csr" \
-            -keystore truststore.jks -storepass changeit
-    # Generate signed certificate with the certificate authority
-    keytool -gencert -alias ca \
-            -validity 3650 -sigalg SHA512withRSA \
-            -infile "janet.csr" -outfile "janet.crt" -rfc \
-            -keystore keystore.jks -storepass changeit
-    # Import signed certificate into the truststore
-    keytool -import -trustcacerts -alias janet \
-            -file "janet.crt" \
-            -keystore truststore.jks -storepass changeit
-    Certificate reply was installed in keystore
-    # Export private certificate for importing into a browser
-    keytool -importkeystore -srcalias janet \
-            -srckeystore truststore.jks -srcstorepass changeit \
-            -destkeystore "janet.p12" -deststorepass changeit \
-            -deststoretype PKCS12
-
-Add Client Certificate to the Browser
--------------------------------------
-Your browser needs to be configured to use a certificate to authenticate you when visiting certain sites.
-
-TODO: instructions and images
-
-
-Summary of Client Authentication
---------------------------------
-A lot just happened, let's review.
-
-* First, it needs to create a key for your user. A key is created and placed in the ``keystore.jks``.
-
-* Second, a signing requrest ``.csr`` file was generated based on the key.  This is what is used to aske the Certificate Authority to sign your certificate.
-
-* Third, the signing requrest ``.csr`` is passed to the Certificate Authority and a signed certificate is passed back as the ``janet.crt``.
-
-* Fourth, the ``janet.crt`` file is stored in the ``truststore.jks``.
-
-* Fifth and finally, the ``janet.crt`` file needs to be exported so that it can be included in the browser.  The result is a ``janet.p12`` file that can be given to the user and used to authenticate against an X509 server.
+However, if you'd like to learn more about how we created this checkout creating a :ref:`walkthrough-certificate-authority`.
