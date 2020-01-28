@@ -21,6 +21,11 @@ Resources
 
 * `A Primer on Public-key Encryption <https://www.theatlantic.com/magazine/archive/2002/09/a-primer-on-public-key-encryption/302574/>`_
 
+* Great series on cryptography and using the OpenSSL CLI `part 1 <https://opensource.com/article/19/6/cryptography-basics-openssl-part-1>`_ and `part 2 <https://opensource.com/article/19/6/cryptography-basics-openssl-part-2>`_
+
+* `TLS Handshake step-by-step visual tool (as detailed as it is awesome) <https://tls.ulfheim.net/>`_
+
+
 Retro
 =====
 
