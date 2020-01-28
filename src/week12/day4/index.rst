@@ -1,8 +1,8 @@
 .. _week9_day4:
 
-=======================
-Week 12 - Day 4: OAuth2
-=======================
+==========================
+Week 12 - Day 4: OAuth 2.0
+==========================
 
 Learning objectives for this module :ref:`week09-day4-objectives`
 
@@ -10,6 +10,11 @@ Lesson
 ======
 
 * `OAuth2 Slides <https://education.launchcode.org/gis-devops-slides/week9/oauth2.html#1>`_
+
+Walkthrough
+===========
+
+* :ref:`oauth2`
 
 Resources
 =========
