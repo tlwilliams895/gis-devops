@@ -1,10 +1,10 @@
 :orphan:
 
-.. _walkthrough-certificates:
+.. _walkthrough-certificate-authority:
 
-============
-Certificates
-============
+=====================
+Certificate Authority
+=====================
 
 In this walkthrough, we will be looking at how a servers use certificates to validate their identity.
 

@@ -14,7 +14,7 @@ Lesson Content
 Walkthrough
 ===========
 
-* Server-side :ref:`walkthrough-certificates`
+* :ref:`client-certificates`
 
 Resources
 =========
