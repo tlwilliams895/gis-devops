@@ -14,7 +14,7 @@ Lesson Content
 Walkthrough
 ===========
 
-* Client Certificate Authentication :ref:`using-client-certs`
+* :ref:`client-certificates`
 
 Resources
 =========

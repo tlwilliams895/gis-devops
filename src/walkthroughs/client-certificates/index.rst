@@ -1,10 +1,10 @@
 :orphan:
 
-.. _using-client-certs:
+.. _client-certificates:
 
-============
-Certificates
-============
+===================
+Client Certificates
+===================
 
 In this walkthrough, we will be looking at how we can use Client Certificates to authenticate with a server.
 
