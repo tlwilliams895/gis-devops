@@ -1,54 +1,52 @@
 :orphan:
 
-.. _walkthrough-certificates:
+.. _using-client-cert:
 
 ============
 Certificates
 ============
 
-In this walkthrough, we will be looking at how we can use certificates to verify our identity with a server.
+In this walkthrough, we will be looking at how we can use Client Certificates to authenticate with a server.
 
 Try Without Certificate
 =======================
 
 We have hosted an application `here <https://ec2-52-53-180-16.us-west-1.compute.amazonaws.com/user>`_.
 
-Clicking that link takes you to the website over https using port 443, however we don't recognize their Certificate Authority, and we don't have a personal certificate to identify ourselves. We will need to add both of these to our browser in order to access this web application and move past this screen:
+Clicking that link takes you to the site over HTTPS, however our browser doesn't recognize the Certificate Authority that signed the server's certificate. Because the server's certificate has been signed by an unrecognized Certificate Authority it will display a warning that we are dealing with a (currently) untrusted server. Their Certificate Authority [CA] is self-signed meaning it does not have a CA chain that resolves to one of the trusted CAs in our browser's whitelist. The browser will only accept their server certificate once we add their self-signed CA certificate to its whitelist.
+
+After we register their CA cert our browser will allow the server to authenticate itself using its certificate. In the most common TLS, One-Way TLS, only the server is required to present its certificate to form an encrypted connection. However, some servers also require a Client Certificate to authenticate any client trying to connect to it. When both the server and client are required to present certificates we call this Mutual Authentication or Two-Way TLS. 
+
+In order to form a TLS encrypted (HTTPS) connection with our web app both the server and client (you) must authenticate themselves with their respective certificates. As a final step we will need to add our own Client Certificate, signed by their CA, to our browser and present it whenever we want to access the site. 
 
 .. image:: /_static/images/certificates/restricted-access.png
 
-We have two things to add to our browser to bypass this issue and to use this web application:
-  #. Add the Certificate Authority
-  #. Add our Personal Identification
+We have two things to add to our browser to bypass these issues and use this web application:
+  #. Add the server's self-signed CA certificate to our browser's CA whitelist
+  #. Add our Client Certificate (signed by their CA)
 
-Add the Certificate Authority
-=============================
+Whitelist the Self-Signed CA Certificate
+===============================================
 
-We first need to add the Certificate Authority to our browser.
+We first need to add the Certificate Authority certificate to our browser.
 
-The Certificate Authority certificate will be generated on the server that controls the web application. There are many publicly recognized Certificate Authorities, for the most part these Certificate Authorities are automatically added to your browser when you visit a website. However, this web application is using a private Certificate Authority to control and manage the access of this web application. We will need to contact the owner of the Certificate Authority to access the Certificate Authority certificate.
+The Certificate Authority certificate will be generated and self-signed on the server that controls the web application. There are many publicly trusted root Certificate Authorities that browsers come pre-installed with in their whitelist. When working with a self-signing CA you must contact them to get its CA certificate and install it manually in your browser.
 
-Since this is a web app, and Certificate Authority controlled by LaunchCode as a part of this class we created a Certificate Authority certificate named ``ca.crt`` in the s3 bucket: ``s3://launchcode-gisdevops-cert-authority/certs/``.
+This sample web app and the Certificate Authority are controlled by LaunchCode. To simplify gaining access to the CA certificate we have shared it as a file named ``ca.crt`` in the following s3 bucket: ``s3://launchcode-gisdevops-cert-authority/certs/``. This bucket also contains the Client Certificate we will be using in the next step.
 
-You can view the file with the following command: ``aws s3 ls s3://launchcode-gisdevops-cert-authority/certs/``.
+You can view the shared certificates with the following command: ``aws s3 ls s3://launchcode-gisdevops-cert-authority/certs/``.
 
 .. image:: /_static/images/certificates/check-s3-bucket.png
 
-You will notice two files: ``ca.crt`` that is the Certificate Authority certificate that will need to be added to our trusted Certificate Authorities, and we have ``student-cert.p12`` this is our identification certificate. Depending on the web applications needs to monitor or control access you may be issued a specific to you certificate. In this case to keep things simple we will all be using the same certificate which defines our role a student in the GIS DevOps class.
-
-Go ahead and cp both of these files to your local machine: ``aws s3 cp --recursive s3://launchcode-gisdevops-cert-authority/certs ./certs`` this command will copy over both files to a folder named ``certs/`` off of your current location.
+Go ahead and cp both of these files to your local machine: ``aws s3 cp --recursive s3://launchcode-gisdevops-cert-authority/certs/ ~/Downloads/certs`` this command will copy over both files to a folder named ``certs/`` in your ``Downloads/`` directory for easy access.
 
 .. image:: /_static/images/certificates/copy-from-s3-bucket.png
 
-Now that we have the files we can add them to our browser. Let's add the Certificate Authority certificate first.
+Now that we have the certificates locally we can add them to our browser. Let's add the CA certificate first.
 
-Our examples will use Firefox as the browser, however the process for adding a Certificate Authority and a personal identification certificate should be similar across all major browsers.
+Our examples will use Firefox as the browser, however the process for adding a Certificate Authority and a Client Certificate should be similar across all major browsers.
 
-In Firefox I need to access the browser ``Preferences``, also commonly marked as ``Settings``. The page should look something like this:
-
-.. image:: /_static/images/certificates/preferences.png
-
-From you here you want to select ``Privacy & Security`` which will take you to a page that looks like this:
+We will need to enter the Firefox ``Privacy & Security`` preferences console. You can access this page manually or by entering ``about:preferences#privacy`` into the URL bar. This will take you to a page that looks like this:
 
 .. image:: /_static/images/certificates/privacy-and-security.png
 
@@ -62,7 +60,7 @@ Click the ``View Certificates...`` button which will lead to a pop up window lik
 
 While writing this walkthrough my browser defaulted to showing the ``Authorities`` tab, which coincidentally is where we need to add our Certificate Authority certificate ``ca.crt``.
 
-Click the ``Import...`` button to import the Certificate Authority certificate we downloaded earlier. From here select the ``ca.crt`` at the location you downloaded it to.
+Click the ``Import...`` button to import the Certificate Authority certificate we downloaded earlier. From here navigate to your ``Downloads/certs`` folder and select the ``ca.crt`` file.
 
 .. image:: /_static/images/certificates/add-ca.png
 
@@ -70,26 +68,32 @@ Click ``Open`` and another box will ask you what this Certificate Authority can 
 
 .. image:: /_static/images/certificates/identify-websites.png
 
-Finally click ``OK``. You can also View this certificate if you want as well. The window asked specifically if we want to trust ``The LaunchCode Foundation Certificate Authority``, and should have added an entry to your ``Authorities`` tab. It should look something like this:
+Finally click ``OK``. The window asked specifically if we want to trust ``The LaunchCode Foundation Certificate Authority``, and should have added an entry to your ``Authorities`` tab. It should look something like this:
 
 .. image:: /_static/images/certificates/launchcode-foundation-ca.png
 
-That's it we have added the new Certificate Authority certificate! Next step is to add our personal identification certificate.
+.. note::
 
-Add Personal Identification
-===========================
+  You can click on the CA entry to view the certificate details
 
-We downloaded an additional file earlier that will need to be added so that we can properly identify ourselves with the Certificate Authority we just added. Just like the previous step this was done for us by the Sys Admin, or owner of the server that controls the Certificate Authority we are trying to access.
+That's it we have added the new Certificate Authority certificate! In the next step we will add our Client Certificate.
 
-Open the ``Certificate Manager`` again, and this time navigate to the ``Your Certificates`` tab.
+Add Client Certificate
+======================
+
+We downloaded an additional file, a Client Certificate, earlier that will also need to be added to the browser. We will use this certificate to enable Two-Way TLS. Just like in the previous step you would normally be required to contact the CA and request your Client Certificate. To keep things simple, we will all be using the same certificate which defines the general role of a student in the GIS DevOps class.
+
+In the real world you may encounter a sytem that requires granular control over the clients that can access its services. In these cases Client Certificates are issued on a per-client basis to grant uniquely identifiable access. This allows for clients to be individually monitored and their access to be revoked as necessary. 
+
+In Firefox open the ``Certificate Manager`` again, and this time navigate to the ``Your Certificates`` tab.
 
 .. image:: /_static/images/certificates/your-certificates.png
 
-As you can see my certificates for this browser are currently empty. I want to add my personal identification certificate that we downloaded earlier from S3 here. Again click ``Import`` this time from the ``Your Certificates`` tab. Select the other file the .p12 file and click ``Open``.
+As you can see my certificates for this browser are currently empty. I want to add my personal identification certificate that we downloaded earlier from S3 here. Again click ``Import``. Select the ``student-cert.p12`` certificate file under ``Downloads/certs`` and click ``Open``.
 
 .. image:: /_static/images/certificates/add-personal-identification-cert.png
 
-When the personal identification certificate was create it was encrypted with a password, in order to add this personal identification certificate we will need to provide that password. This is again information we would need to get from the Sys admin, or server owner.
+When the Client Certificate was created it was encrypted with a password to prevent unauthorized usage. In order to install this certificate we will need to provide that password. This is again information that would come from the Certificate Authority that issued the Client Certificate.
 
 .. image:: /_static/images/certificates/encryption-password.png
 
@@ -97,7 +101,7 @@ We encrypted this certificate with the password: ``launchcode`` so enter that in
 
 .. image:: /_static/images/certificates/student-cert.png
 
-That's it we just added our personal identification certificate.
+That's it we just added our Client Certificate!
 
 Try it Out
 ==========
@@ -108,26 +112,26 @@ Let's navigate back to the link we looked at `earlier <https://ec2-52-53-180-16.
 
    You may need to close your browser and reopen it, or you can open a private browser to completely refresh the cache. ``Ctrl+Shift+r`` may work as well. Try these out if you don't see the alert about identifying yourself.
 
-Before we even see the page we get an alert:
+Behind the scenes the server is the first to send its certificate. Because our browser now recognizes the CA that signed the server's certificate it accepts it without presenting the warning message that we saw earlier. The server then issues a request for us to present our Client Certificate. Once we send our Client Certificate the Mutual Authentication handshake is completed to form a secure connection.
 
 .. image:: /_static/images/certificates/identify-yourself.png
 
-The website is asking us to identify ourselves via a personal identification cert, the cert we just added should be found in the drop down box. Select that cert and click ``OK``.
+This prompt has a dropdown to support users that have many Client Certificates. The cert we just added should be found as an option in the drop down box. Select that cert and click ``OK``.
 
-Now we see the webapp! We have successfully added a certificate authority, and a personal identification certificate and can access the web app.
+Now we see the webapp!
 
 .. image:: /_static/images/certificates/webapp.png
 
+Multi-Factor Authentication
+===========================
 
-Why is the webapp asking us to login if we have gone through the hassle of adding the certificate authority? The Certificate Authority allows us to use HTTPS, TLS/SSL encryption and port 443, instead of the un-encrypted protcol HTTP and port 80. This has nothing to do with the web app itself, but the underlying infrastructure. We are now using a more secure port, and encryption for our web traffic.
+Why is the webapp asking us to login if we have already authenticated ourselves using the Client Certificate? This is an example of a multi-factor authentication strategy. The Client Certificate serves to authenticate and form the secure connection with the server. The Client Certificate is an example of an Ownership Factor of authentication. The login view presents a second, Knowledge, factor of authentication. Using two-factor authentication hardens the security of a system by removing a single point of failure. An attacker would need to gain access to both the certificate (Owned factor) and credentials (Known factor) to infiltrate the system.
 
-The web app still may need it's own authentication, and authorization which is why we are seeing the login page. This webapp doesn't do anything, but if you'd like to login you can use the credentials username: ``launchcode-devops`` and password: ``launchcode`` which will take you to the last screen:
+To access the protected ``/user`` route you can enter the following credentials (Knowledge factor). The username: ``launchcode-devops`` and password: ``launchcode`` which will authorize you to access the final view!
 
 .. image:: /_static/images/certificates/login.png
 
 Optional
 ========
 
-From previous cohorts we have learned that you won't be asked to create your own Certificate Authorities very often, but will need to install certificates into your browsers regularly to access various servers.
-
-However, if you'd like to learn more about how we created this checkout creating a :ref:`walkthrough-certificate-authority`.
+If you would like to see how a Certificate Authority works behind the scenes you can view the source code at `the GitHub repo <https://github.com/LaunchCodeEducation/cert-authority>`_
