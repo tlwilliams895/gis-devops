@@ -1,6 +1,6 @@
 :orphan:
 
-.. _using-client-cert:
+.. _using-client-certs:
 
 ============
 Certificates
@@ -19,7 +19,7 @@ After we register their CA cert our browser will allow the server to authenticat
 
 In order to form a TLS encrypted (HTTPS) connection with our web app both the server and client (you) must authenticate themselves with their respective certificates. As a final step we will need to add our own Client Certificate, signed by their CA, to our browser and present it whenever we want to access the site. 
 
-.. image:: /_static/images/certificates/restricted-access.png
+.. image:: /_static/images/using-client-certs/restricted-access.png
 
 We have two things to add to our browser to bypass these issues and use this web application:
   #. Add the server's self-signed CA certificate to our browser's CA whitelist
@@ -36,11 +36,11 @@ This sample web app and the Certificate Authority are controlled by LaunchCode. 
 
 You can view the shared certificates with the following command: ``aws s3 ls s3://launchcode-gisdevops-cert-authority/certs/``.
 
-.. image:: /_static/images/certificates/check-s3-bucket.png
+.. image:: /_static/images/using-client-certs/check-s3-bucket.png
 
 Go ahead and cp both of these files to your local machine: ``aws s3 cp --recursive s3://launchcode-gisdevops-cert-authority/certs/ ~/Downloads/certs`` this command will copy over both files to a folder named ``certs/`` in your ``Downloads/`` directory for easy access.
 
-.. image:: /_static/images/certificates/copy-from-s3-bucket.png
+.. image:: /_static/images/using-client-certs/copy-from-s3-bucket.png
 
 Now that we have the certificates locally we can add them to our browser. Let's add the CA certificate first.
 
@@ -48,29 +48,29 @@ Our examples will use Firefox as the browser, however the process for adding a C
 
 We will need to enter the Firefox ``Privacy & Security`` preferences console. You can access this page manually or by entering ``about:preferences#privacy`` into the URL bar. This will take you to a page that looks like this:
 
-.. image:: /_static/images/certificates/privacy-and-security.png
+.. image:: /_static/images/using-client-certs/privacy-and-security.png
 
 At the bottom of this page you will find the ``Certificates`` section:
 
-.. image:: /_static/images/certificates/firefox-certificates.png
+.. image:: /_static/images/using-client-certs/firefox-certificates.png
 
 Click the ``View Certificates...`` button which will lead to a pop up window like this:
 
-.. image:: /_static/images/certificates/certificate-manager.png
+.. image:: /_static/images/using-client-certs/certificate-manager.png
 
 While writing this walkthrough my browser defaulted to showing the ``Authorities`` tab, which coincidentally is where we need to add our Certificate Authority certificate ``ca.crt``.
 
 Click the ``Import...`` button to import the Certificate Authority certificate we downloaded earlier. From here navigate to your ``Downloads/certs`` folder and select the ``ca.crt`` file.
 
-.. image:: /_static/images/certificates/add-ca.png
+.. image:: /_static/images/using-client-certs/add-ca.png
 
 Click ``Open`` and another box will ask you what this Certificate Authority can do in your browser. Make sure to select ``Trust this CA to identify websites.``
 
-.. image:: /_static/images/certificates/identify-websites.png
+.. image:: /_static/images/using-client-certs/identify-websites.png
 
 Finally click ``OK``. The window asked specifically if we want to trust ``The LaunchCode Foundation Certificate Authority``, and should have added an entry to your ``Authorities`` tab. It should look something like this:
 
-.. image:: /_static/images/certificates/launchcode-foundation-ca.png
+.. image:: /_static/images/using-client-certs/launchcode-foundation-ca.png
 
 .. note::
 
@@ -87,19 +87,19 @@ In the real world you may encounter a sytem that requires granular control over 
 
 In Firefox open the ``Certificate Manager`` again, and this time navigate to the ``Your Certificates`` tab.
 
-.. image:: /_static/images/certificates/your-certificates.png
+.. image:: /_static/images/using-client-certs/your-certificates.png
 
 As you can see my certificates for this browser are currently empty. I want to add my personal identification certificate that we downloaded earlier from S3 here. Again click ``Import``. Select the ``student-cert.p12`` certificate file under ``Downloads/certs`` and click ``Open``.
 
-.. image:: /_static/images/certificates/add-personal-identification-cert.png
+.. image:: /_static/images/using-client-certs/add-personal-identification-cert.png
 
 When the Client Certificate was created it was encrypted with a password to prevent unauthorized usage. In order to install this certificate we will need to provide that password. This is again information that would come from the Certificate Authority that issued the Client Certificate.
 
-.. image:: /_static/images/certificates/encryption-password.png
+.. image:: /_static/images/using-client-certs/encryption-password.png
 
 We encrypted this certificate with the password: ``launchcode`` so enter that in the prompt. Upon completion you should see your newly added certificate:
 
-.. image:: /_static/images/certificates/student-cert.png
+.. image:: /_static/images/using-client-certs/student-cert.png
 
 That's it we just added our Client Certificate!
 
@@ -114,13 +114,13 @@ Let's navigate back to the link we looked at `earlier <https://ec2-52-53-180-16.
 
 Behind the scenes the server is the first to send its certificate. Because our browser now recognizes the CA that signed the server's certificate it accepts it without presenting the warning message that we saw earlier. The server then issues a request for us to present our Client Certificate. Once we send our Client Certificate the Mutual Authentication handshake is completed to form a secure connection.
 
-.. image:: /_static/images/certificates/identify-yourself.png
+.. image:: /_static/images/using-client-certs/identify-yourself.png
 
 This prompt has a dropdown to support users that have many Client Certificates. The cert we just added should be found as an option in the drop down box. Select that cert and click ``OK``.
 
 Now we see the webapp!
 
-.. image:: /_static/images/certificates/webapp.png
+.. image:: /_static/images/using-client-certs/webapp.png
 
 Multi-Factor Authentication
 ===========================
@@ -129,7 +129,7 @@ Why is the webapp asking us to login if we have already authenticated ourselves 
 
 To access the protected ``/user`` route you can enter the following credentials (Knowledge factor). The username: ``launchcode-devops`` and password: ``launchcode`` which will authorize you to access the final view!
 
-.. image:: /_static/images/certificates/login.png
+.. image:: /_static/images/using-client-certs/login.png
 
 Optional
 ========
