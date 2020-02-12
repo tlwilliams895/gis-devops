@@ -4,7 +4,7 @@
 Learning Objectives
 ===================
 
-Week 1
+Week 4
 ======
 
 .. _week01-day1-objectives:
@@ -78,7 +78,7 @@ Day 5
 
 .. _week02-objectives:
 
-Week 2
+Week 5
 ======
 
 Utilize the skills learned in week 1 to build a Spring Boot application that uses OpenLayers to display geospatial data on a map. Deliver an app with the the following features:
@@ -87,7 +87,7 @@ Utilize the skills learned in week 1 to build a Spring Boot application that use
 - Display Zika infection data on a map using OpenLayers.
 - Display information about each indvidual feature.
 
-Week 3
+Week 6
 ======
 
 .. _week03-day1-objectives:
@@ -163,14 +163,14 @@ Day 5
 - Understand and use ES2015 additions: `let`, `const`, template strings, arrow functions, default parameter values
 - Understand and use Webpack to build static client-side applications
 
-Week 4
+Week 7
 ======
 
 - Use the REST, Elasticsearch, and JavaScript skills obtained in week 3 within a student-built application.
 
 .. _week05-day1-objectives:
 
-Week 5
+Week 8
 ======
 
 Day 1
@@ -247,15 +247,15 @@ Day 5
 
 .. _week06-objectives:
 
-Week 6
+Week 9
 ======
 
 - Use the AWS skills learned in the previous week to deploy a cloud-hosted, scalable application to AWS
 
 .. _week07-objectives:
 
-Week 7
-======
+Week 10
+=======
 
 <aside class="aside-note" markdown="1">
 GeoServer training is delivered by Boundless.
@@ -337,13 +337,13 @@ PG104 PostGIS Analysis
 
 .. _week08-objectives:
 
-Week 8
-======
+Week 11
+=======
 
 - Use the skills learned in the previous week to integrate GeoServer with a Spring Boot + OpenLayers application, both locally and on AWS
 
-Week 9
-======
+Week 12
+=======
 
 .. _week09-day-1-2-objectives:
 
@@ -408,3 +408,6 @@ Day 5
 - Understand the role that a certificate authority plays in determining trust.
 - Configure the browser to add new trusted certificates.
 - Configure the browser to add client-side access certificates.
+
+Week 13
+=======
