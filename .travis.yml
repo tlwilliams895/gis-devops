@@ -7,7 +7,6 @@ if: type = push AND branch = master
 
 install: # install dependencies (cached)
   - pip install -r requirements.txt
-  - pip install --upgrade git+https://github.com/LaunchCodeEducation/sphinx-bootstrap-theme.git@master
 
 script:
   - ./build -c # run clean build
@@ -19,3 +18,4 @@ deploy:
   local_dir: gh-pages # the directory to deploy to GH pages
   target_branch: gh-pages # branch to push to
   github_token: $GITHUB_ACCESS_TOKEN # access token with repo:public scope
+  
