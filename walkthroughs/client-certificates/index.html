@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Client Certificates &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Walkthrough: Intro to Docker" href="../docker/index.html" />
+    <link rel="prev" title="Certificate Authority" href="../certificate-authority/index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/installations/index.html">Installations</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Welcome, Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Terminal, Shell, Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Shell, Git, SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: SQL, HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: HTTP, Docker</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day1/index.html">Week 2 - Day 1: HTML, CSS, Browser DevTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day2/index.html">Week 2 - Day 2: HTML/CSS Template, JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day3/index.html">Week 2 - Day 3: Programming Fundamentals, JavaScript, DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day4/index.html">Week 2 - Day 4: JS, DOM, Promises, AJAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day5/index.html">Week 2 - Day 5: Promises, AJAX, HTTP</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: Java, OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2: Spring Boot, Controllers, Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Models, ORM (Hibernate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: Persistence, ORM Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: Review</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day1/index.html">Week 4 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day2/index.html">Week 4 - Day 2: Security, Test-driven development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day3/index.html">Week 4 - Day 3: Integration testing, dependency injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day4/index.html">Week 4 - Day 4: Postgres, Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day5/index.html">Week 4 - Day 5: AJAX, Open Layers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/project/index.html">Week 5 - Project Week: Zika Mission Control</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day1/index.html">Week 6 - Day 1: RESTful web services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day2/index.html">Week 6 - Day 2: Swagger REST framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day3/index.html">Week 6 - Day 3: Intro to Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day4/index.html">Week 6 - Day 4: More Elasticsearch, Integrating ES with Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day5/index.html">Week 6 - Day 5: ES2015, ESLint, OpenLayers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week07/project/index.html">Week 7 - Project Week: Zika Mission Control Part 2</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day1/index.html">Week 8 - Day 1: Intro to DevOps/AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day2/index.html">Week 8 - Day 2: More with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day3/index.html">Week 8 - Day 3: 12 Factor Apps and Auto Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day4/index.html">Week 8 - Day 4: Gradle, Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day5/index.html">Week 8 - Day 5: Sonarqube</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/project/index.html">Week 9 - Project Week: Zika Mission Control Part 3</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week11/project/index.html">Week 11 - Project Week: Zika Mission Control Part 4</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day3/index.html">Week 12 - Day 3: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day4/index.html">Week 12 - Day 4: OAuth 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day5/index.html">Week 12 - Day 5: Certificates</a></li>
+</ol>
+<ol class="current">
+<li class="toctree-l1"><a class="reference internal" href="../aws-intro/index.html">Walkthrough: Intro to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws-rds-vpc/index.html">Walkthrough: Introduction to Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificate-authority/index.html">Certificate Authority</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Client Certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Walkthrough: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch-spring/index.html">Walkthrough: Elasticsearch in Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch/index.html">Walkthrough: Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch2/index.html">Walkthrough: Elasticsearch Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eslint-airwaze/index.html">Walkthrough: ESLint Airwaze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gitLab/index.html">Walkthrough: Git and Gitlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradle/index.html">Walkthrough: Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hashing-salting/index.html">Walkthrough: Hashing and Salting Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jenkins/index.html">Walkthrough: CI/CD With Jenkins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launchcart-rest/index.html">Walkthrough: LaunchCart REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oauth2/index.html">Visual OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openlayers/index.html">Walkthrough: OpenLayers and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postgress/index.html">Walkthrough: PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sonarqube/index.html">Walkthrough: Sonarqube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa-hibernate/index.html">Walkthrough: Cars Demo - Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-integration-testing/index.html">Walkthrough: Spring Integration Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../swagger/index.html">Walkthrough: SwaggerUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tdd/index.html">Walkthrough: TDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unit-tests/index.html">Walkthrough: Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading-spring-boot/index.html">Walkthrough: Upgrading to Spring Boot 2.x</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/00-prep-week/index.html">Installation: Essential Tooling &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/01-docker/index.html">Installation: Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/02-docker-psql/index.html">Installation: Docker PSQL Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/03-docker-postgis/index.html">Installation: Docker PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/04-docker-elasticsearch/index.html">Installation: Docker Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/05-docker-kibana/index.html">Installation: Docker Kibana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/06-docker-jenkins/index.html">Installation: Docker Jenkins</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/00-intellij/index.html">Configuration: IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/01-runtime-configurations/index.html">Configuration: IntelliJ - Runtime Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/02-environment-variables-intellij/index.html">Configuration: Environment Variables - IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/04-spring-elasticsearch/index.html">Configuration: Spring &amp; Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/05-spring-postgres/index.html">Configuration: Spring &amp; Postgres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/06-vscode-eslint/index.html">Configuration: Visual Studio Code - ESLint</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/docker/index.html">Docker</a></li>
+</ol>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Client Certificates</a><ul>
+<li><a class="reference internal" href="#try-without-certificate">Try Without Certificate</a></li>
+<li><a class="reference internal" href="#whitelist-the-self-signed-ca-certificate">Whitelist the Self-Signed CA Certificate</a></li>
+<li><a class="reference internal" href="#add-client-certificate">Add Client Certificate</a></li>
+<li><a class="reference internal" href="#try-it-out">Try it Out</a></li>
+<li><a class="reference internal" href="#multi-factor-authentication">Multi-Factor Authentication</a></li>
+<li><a class="reference internal" href="#optional">Optional</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="client-certificates">
+<span id="id1"></span><h1>Client Certificates<a class="headerlink" href="#client-certificates" title="Permalink to this headline">¶</a></h1>
+<p>In this walkthrough, we will be looking at how we can use Client Certificates to authenticate with a server.</p>
+<div class="section" id="try-without-certificate">
+<h2>Try Without Certificate<a class="headerlink" href="#try-without-certificate" title="Permalink to this headline">¶</a></h2>
+<p>We have hosted an application <a class="reference external" href="https://ec2-52-53-180-16.us-west-1.compute.amazonaws.com/user" target="_blank">here<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
+<p>Clicking that link takes you to the site over HTTPS, however our browser doesn’t recognize the Certificate Authority that signed the server’s certificate. Because the server’s certificate has been signed by an unrecognized Certificate Authority it will display a warning that we are dealing with a (currently) untrusted server. Their Certificate Authority [CA] is self-signed meaning it does not have a CA chain that resolves to one of the trusted CAs in our browser’s whitelist. The browser will only accept their server certificate once we add their self-signed CA certificate to its whitelist.</p>
+<p>After we register their CA cert our browser will allow the server to authenticate itself using its certificate. In the most common TLS, One-Way TLS, only the server is required to present its certificate to form an encrypted connection. However, some servers also require a Client Certificate to authenticate any client trying to connect to it. When both the server and client are required to present certificates we call this Mutual Authentication or Two-Way TLS.</p>
+<p>In order to form a TLS encrypted (HTTPS) connection with our web app both the server and client (you) must authenticate themselves with their respective certificates. As a final step we will need to add our own Client Certificate, signed by their CA, to our browser and present it whenever we want to access the site.</p>
+<img alt="../../_images/restricted-access.png" src="../../_images/restricted-access.png" />
+<dl class="docutils">
+<dt>We have two things to add to our browser to bypass these issues and use this web application:</dt>
+<dd><ol class="first last arabic simple">
+<li>Add the server’s self-signed CA certificate to our browser’s CA whitelist</li>
+<li>Add our Client Certificate (signed by their CA)</li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="whitelist-the-self-signed-ca-certificate">
+<h2>Whitelist the Self-Signed CA Certificate<a class="headerlink" href="#whitelist-the-self-signed-ca-certificate" title="Permalink to this headline">¶</a></h2>
+<p>We first need to add the Certificate Authority certificate to our browser.</p>
+<p>The Certificate Authority certificate will be generated and self-signed on the server that controls the web application. There are many publicly trusted root Certificate Authorities that browsers come pre-installed with in their whitelist. When working with a self-signing CA you must contact them to get its CA certificate and install it manually in your browser.</p>
+<p>This sample web app and the Certificate Authority are controlled by LaunchCode. To simplify gaining access to the CA certificate we have shared it as a file named <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> in the following s3 bucket: <code class="docutils literal notranslate"><span class="pre">s3://launchcode-gisdevops-cert-authority/certs/</span></code>. This bucket also contains the Client Certificate we will be using in the next step.</p>
+<p>You can view the shared certificates with the following command: <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span> <span class="pre">s3://launchcode-gisdevops-cert-authority/certs/</span></code>.</p>
+<img alt="../../_images/check-s3-bucket.png" src="../../_images/check-s3-bucket.png" />
+<p>Go ahead and cp both of these files to your local machine: <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">cp</span> <span class="pre">--recursive</span> <span class="pre">s3://launchcode-gisdevops-cert-authority/certs/</span> <span class="pre">~/Downloads/certs</span></code> this command will copy over both files to a folder named <code class="docutils literal notranslate"><span class="pre">certs/</span></code> in your <code class="docutils literal notranslate"><span class="pre">Downloads/</span></code> directory for easy access.</p>
+<img alt="../../_images/copy-from-s3-bucket.png" src="../../_images/copy-from-s3-bucket.png" />
+<p>Now that we have the certificates locally we can add them to our browser. Let’s add the CA certificate first.</p>
+<p>Our examples will use Firefox as the browser, however the process for adding a Certificate Authority and a Client Certificate should be similar across all major browsers.</p>
+<p>We will need to enter the Firefox <code class="docutils literal notranslate"><span class="pre">Privacy</span> <span class="pre">&amp;</span> <span class="pre">Security</span></code> preferences console. You can access this page manually or by entering <code class="docutils literal notranslate"><span class="pre">about:preferences#privacy</span></code> into the URL bar. This will take you to a page that looks like this:</p>
+<img alt="../../_images/privacy-and-security.png" src="../../_images/privacy-and-security.png" />
+<p>At the bottom of this page you will find the <code class="docutils literal notranslate"><span class="pre">Certificates</span></code> section:</p>
+<img alt="../../_images/firefox-certificates.png" src="../../_images/firefox-certificates.png" />
+<p>Click the <code class="docutils literal notranslate"><span class="pre">View</span> <span class="pre">Certificates...</span></code> button which will lead to a pop up window like this:</p>
+<img alt="../../_images/certificate-manager.png" src="../../_images/certificate-manager.png" />
+<p>While writing this walkthrough my browser defaulted to showing the <code class="docutils literal notranslate"><span class="pre">Authorities</span></code> tab, which coincidentally is where we need to add our Certificate Authority certificate <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code>.</p>
+<p>Click the <code class="docutils literal notranslate"><span class="pre">Import...</span></code> button to import the Certificate Authority certificate we downloaded earlier. From here navigate to your <code class="docutils literal notranslate"><span class="pre">Downloads/certs</span></code> folder and select the <code class="docutils literal notranslate"><span class="pre">ca.crt</span></code> file.</p>
+<img alt="../../_images/add-ca.png" src="../../_images/add-ca.png" />
+<p>Click <code class="docutils literal notranslate"><span class="pre">Open</span></code> and another box will ask you what this Certificate Authority can do in your browser. Make sure to select <code class="docutils literal notranslate"><span class="pre">Trust</span> <span class="pre">this</span> <span class="pre">CA</span> <span class="pre">to</span> <span class="pre">identify</span> <span class="pre">websites.</span></code></p>
+<img alt="../../_images/identify-websites.png" src="../../_images/identify-websites.png" />
+<p>Finally click <code class="docutils literal notranslate"><span class="pre">OK</span></code>. The window asked specifically if we want to trust <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">LaunchCode</span> <span class="pre">Foundation</span> <span class="pre">Certificate</span> <span class="pre">Authority</span></code>, and should have added an entry to your <code class="docutils literal notranslate"><span class="pre">Authorities</span></code> tab. It should look something like this:</p>
+<img alt="../../_images/launchcode-foundation-ca.png" src="../../_images/launchcode-foundation-ca.png" />
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">You can click on the CA entry to view the certificate details</p>
+</div>
+<p>That’s it we have added the new Certificate Authority certificate! In the next step we will add our Client Certificate.</p>
+</div>
+<div class="section" id="add-client-certificate">
+<h2>Add Client Certificate<a class="headerlink" href="#add-client-certificate" title="Permalink to this headline">¶</a></h2>
+<p>We downloaded an additional file, a Client Certificate, earlier that will also need to be added to the browser. We will use this certificate to enable Two-Way TLS. Just like in the previous step you would normally be required to contact the CA and request your Client Certificate. To keep things simple, we will all be using the same certificate which defines the general role of a student in the GIS DevOps class.</p>
+<p>In the real world you may encounter a sytem that requires granular control over the clients that can access its services. In these cases Client Certificates are issued on a per-client basis to grant uniquely identifiable access. This allows for clients to be individually monitored and their access to be revoked as necessary.</p>
+<p>In Firefox open the <code class="docutils literal notranslate"><span class="pre">Certificate</span> <span class="pre">Manager</span></code> again, and this time navigate to the <code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">Certificates</span></code> tab.</p>
+<img alt="../../_images/your-certificates.png" src="../../_images/your-certificates.png" />
+<p>As you can see my certificates for this browser are currently empty. I want to add my personal identification certificate that we downloaded earlier from S3 here. Again click <code class="docutils literal notranslate"><span class="pre">Import</span></code>. Select the <code class="docutils literal notranslate"><span class="pre">student-cert.p12</span></code> certificate file under <code class="docutils literal notranslate"><span class="pre">Downloads/certs</span></code> and click <code class="docutils literal notranslate"><span class="pre">Open</span></code>.</p>
+<img alt="../../_images/add-personal-identification-cert.png" src="../../_images/add-personal-identification-cert.png" />
+<p>When the Client Certificate was created it was encrypted with a password to prevent unauthorized usage. In order to install this certificate we will need to provide that password. This is again information that would come from the Certificate Authority that issued the Client Certificate.</p>
+<img alt="../../_images/encryption-password.png" src="../../_images/encryption-password.png" />
+<p>We encrypted this certificate with the password: <code class="docutils literal notranslate"><span class="pre">launchcode</span></code> so enter that in the prompt. Upon completion you should see your newly added certificate:</p>
+<img alt="../../_images/student-cert.png" src="../../_images/student-cert.png" />
+<p>That’s it we just added our Client Certificate!</p>
+</div>
+<div class="section" id="try-it-out">
+<h2>Try it Out<a class="headerlink" href="#try-it-out" title="Permalink to this headline">¶</a></h2>
+<p>Let’s navigate back to the link we looked at <a class="reference external" href="https://ec2-52-53-180-16.us-west-1.compute.amazonaws.com/user" target="_blank">earlier<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">You may need to close your browser and reopen it, or you can open a private browser to completely refresh the cache. <code class="docutils literal notranslate"><span class="pre">Ctrl+Shift+r</span></code> may work as well. Try these out if you don’t see the alert about identifying yourself.</p>
+</div>
+<p>Behind the scenes the server is the first to send its certificate. Because our browser now recognizes the CA that signed the server’s certificate it accepts it without presenting the warning message that we saw earlier. The server then issues a request for us to present our Client Certificate. Once we send our Client Certificate the Mutual Authentication handshake is completed to form a secure connection.</p>
+<img alt="../../_images/identify-yourself.png" src="../../_images/identify-yourself.png" />
+<p>This prompt has a dropdown to support users that have many Client Certificates. The cert we just added should be found as an option in the drop down box. Select that cert and click <code class="docutils literal notranslate"><span class="pre">OK</span></code>.</p>
+<p>Now we see the webapp!</p>
+<img alt="../../_images/webapp.png" src="../../_images/webapp.png" />
+</div>
+<div class="section" id="multi-factor-authentication">
+<h2>Multi-Factor Authentication<a class="headerlink" href="#multi-factor-authentication" title="Permalink to this headline">¶</a></h2>
+<p>Why is the webapp asking us to login if we have already authenticated ourselves using the Client Certificate? This is an example of a multi-factor authentication strategy. The Client Certificate serves to authenticate and form the secure connection with the server. The Client Certificate is an example of an Ownership Factor of authentication. The login view presents a second, Knowledge, factor of authentication. Using two-factor authentication hardens the security of a system by removing a single point of failure. An attacker would need to gain access to both the certificate (Owned factor) and credentials (Known factor) to infiltrate the system.</p>
+<p>To access the protected <code class="docutils literal notranslate"><span class="pre">/user</span></code> route you can enter the following credentials (Knowledge factor). The username: <code class="docutils literal notranslate"><span class="pre">launchcode-devops</span></code> and password: <code class="docutils literal notranslate"><span class="pre">launchcode</span></code> which will authorize you to access the final view!</p>
+<img alt="../../_images/login.png" src="../../_images/login.png" />
+</div>
+<div class="section" id="optional">
+<h2>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h2>
+<p>If you would like to see how a Certificate Authority works behind the scenes you can view the source code at <a class="reference external" href="https://github.com/LaunchCodeEducation/cert-authority" target="_blank">the GitHub repo<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

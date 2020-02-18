@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Walkthrough: Intro to AWS &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Walkthrough: Introduction to Amazon Web Services" href="../aws-rds-vpc/index.html" />
+    <link rel="prev" title="Week 12 - Day 5: Certificates" href="../../week12/day5/index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/installations/index.html">Installations</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Welcome, Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Terminal, Shell, Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Shell, Git, SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: SQL, HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: HTTP, Docker</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day1/index.html">Week 2 - Day 1: HTML, CSS, Browser DevTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day2/index.html">Week 2 - Day 2: HTML/CSS Template, JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day3/index.html">Week 2 - Day 3: Programming Fundamentals, JavaScript, DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day4/index.html">Week 2 - Day 4: JS, DOM, Promises, AJAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day5/index.html">Week 2 - Day 5: Promises, AJAX, HTTP</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: Java, OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2: Spring Boot, Controllers, Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Models, ORM (Hibernate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: Persistence, ORM Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: Review</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day1/index.html">Week 4 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day2/index.html">Week 4 - Day 2: Security, Test-driven development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day3/index.html">Week 4 - Day 3: Integration testing, dependency injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day4/index.html">Week 4 - Day 4: Postgres, Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day5/index.html">Week 4 - Day 5: AJAX, Open Layers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/project/index.html">Week 5 - Project Week: Zika Mission Control</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day1/index.html">Week 6 - Day 1: RESTful web services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day2/index.html">Week 6 - Day 2: Swagger REST framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day3/index.html">Week 6 - Day 3: Intro to Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day4/index.html">Week 6 - Day 4: More Elasticsearch, Integrating ES with Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day5/index.html">Week 6 - Day 5: ES2015, ESLint, OpenLayers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week07/project/index.html">Week 7 - Project Week: Zika Mission Control Part 2</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day1/index.html">Week 8 - Day 1: Intro to DevOps/AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day2/index.html">Week 8 - Day 2: More with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day3/index.html">Week 8 - Day 3: 12 Factor Apps and Auto Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day4/index.html">Week 8 - Day 4: Gradle, Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day5/index.html">Week 8 - Day 5: Sonarqube</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/project/index.html">Week 9 - Project Week: Zika Mission Control Part 3</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week11/project/index.html">Week 11 - Project Week: Zika Mission Control Part 4</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day3/index.html">Week 12 - Day 3: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day4/index.html">Week 12 - Day 4: OAuth 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day5/index.html">Week 12 - Day 5: Certificates</a></li>
+</ol>
+<ol class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Walkthrough: Intro to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws-rds-vpc/index.html">Walkthrough: Introduction to Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificate-authority/index.html">Certificate Authority</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client-certificates/index.html">Client Certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Walkthrough: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch-spring/index.html">Walkthrough: Elasticsearch in Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch/index.html">Walkthrough: Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch2/index.html">Walkthrough: Elasticsearch Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eslint-airwaze/index.html">Walkthrough: ESLint Airwaze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gitLab/index.html">Walkthrough: Git and Gitlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradle/index.html">Walkthrough: Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hashing-salting/index.html">Walkthrough: Hashing and Salting Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jenkins/index.html">Walkthrough: CI/CD With Jenkins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launchcart-rest/index.html">Walkthrough: LaunchCart REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oauth2/index.html">Visual OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openlayers/index.html">Walkthrough: OpenLayers and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postgress/index.html">Walkthrough: PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sonarqube/index.html">Walkthrough: Sonarqube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa-hibernate/index.html">Walkthrough: Cars Demo - Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-integration-testing/index.html">Walkthrough: Spring Integration Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../swagger/index.html">Walkthrough: SwaggerUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tdd/index.html">Walkthrough: TDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unit-tests/index.html">Walkthrough: Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading-spring-boot/index.html">Walkthrough: Upgrading to Spring Boot 2.x</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/00-prep-week/index.html">Installation: Essential Tooling &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/01-docker/index.html">Installation: Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/02-docker-psql/index.html">Installation: Docker PSQL Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/03-docker-postgis/index.html">Installation: Docker PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/04-docker-elasticsearch/index.html">Installation: Docker Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/05-docker-kibana/index.html">Installation: Docker Kibana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/06-docker-jenkins/index.html">Installation: Docker Jenkins</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/00-intellij/index.html">Configuration: IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/01-runtime-configurations/index.html">Configuration: IntelliJ - Runtime Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/02-environment-variables-intellij/index.html">Configuration: Environment Variables - IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/04-spring-elasticsearch/index.html">Configuration: Spring &amp; Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/05-spring-postgres/index.html">Configuration: Spring &amp; Postgres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/06-vscode-eslint/index.html">Configuration: Visual Studio Code - ESLint</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/docker/index.html">Docker</a></li>
+</ol>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Walkthrough: Intro to AWS</a><ul>
+<li><a class="reference internal" href="#log-in-to-aws-console">Log in to AWS Console</a></li>
+<li><a class="reference internal" href="#look-around-aws-console">Look Around AWS Console</a><ul>
+<li><a class="reference internal" href="#top-menu">Top Menu</a></li>
+<li><a class="reference internal" href="#regions">Regions</a></li>
+<li><a class="reference internal" href="#aws-regions">AWS Regions</a></li>
+<li><a class="reference internal" href="#services-search-bar-and-menu">Services Search Bar and Menu</a></li>
+<li><a class="reference internal" href="#what-is-ec2">What is EC2?</a></li>
+<li><a class="reference internal" href="#aws-services">AWS Services</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#secure-your-aws-account">Secure Your AWS Account</a><ul>
+<li><a class="reference internal" href="#add-two-factor-authentication">Add Two Factor Authentication</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="walkthrough-intro-to-aws">
+<span id="aws-intro-walkthrough"></span><h1>Walkthrough: Intro to AWS<a class="headerlink" href="#walkthrough-intro-to-aws" title="Permalink to this headline">¶</a></h1>
+<p>We will walkthrough getting signed into AWS console and then have a look around</p>
+<div class="section" id="log-in-to-aws-console">
+<h2>Log in to AWS Console<a class="headerlink" href="#log-in-to-aws-console" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>You should have received a aws console login link in your email</li>
+<li>Please login to the AWS Console using that link</li>
+</ul>
+</div>
+<div class="section" id="look-around-aws-console">
+<h2>Look Around AWS Console<a class="headerlink" href="#look-around-aws-console" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="top-menu">
+<h3>Top Menu<a class="headerlink" href="#top-menu" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Services Menu for finding available AWS services (top left)</li>
+<li>Has drop down menu for your account (top right)</li>
+<li>Has drop down menu for the current Region (top right)</li>
+<li>Support Menu for getting help or finding docs (top right)</li>
+</ul>
+</div>
+<div class="section" id="regions">
+<h3>Regions<a class="headerlink" href="#regions" title="Permalink to this headline">¶</a></h3>
+<p>Regions are seperate geographic locations where you can deploy AWS services. <strong>Everything in the AWS UI is based off of
+Region</strong>, so if you don’t see a instance you created you are probably in the wrong Region. More about Regions and Availability Zones <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html" target="_blank">https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
+</div>
+<div class="section" id="aws-regions">
+<h3>AWS Regions<a class="headerlink" href="#aws-regions" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><img alt="../../_images/regions.png" src="../../_images/regions.png" />
+</div></blockquote>
+</div>
+<div class="section" id="services-search-bar-and-menu">
+<h3>Services Search Bar and Menu<a class="headerlink" href="#services-search-bar-and-menu" title="Permalink to this headline">¶</a></h3>
+<p>This is where AWS can get a little overwhelming because there are so many services available. We are only to look at a
+few in the class.  On your own time, please read about all the new terms/tools you see listed here. You may want to use
+them some day. Our focus today is <code class="docutils literal notranslate"><span class="pre">EC2</span></code>.</p>
+</div>
+<div class="section" id="what-is-ec2">
+<h3>What is EC2?<a class="headerlink" href="#what-is-ec2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>EC2 = Elastic Cloud Compute<ul>
+<li><strong>NOTE:</strong> This use of Elastic != ElasticSearch</li>
+<li>EC2 and ElasticSearch are two different things</li>
+<li>We will eventually install and run ElasticSearch on an EC2 server</li>
+</ul>
+</li>
+<li>EC2 is a virtual server you can configure, run, login to, restart, shut down, and destroy<ul>
+<li>You can install and run anything you want on the servers you create</li>
+<li>The only limitation is the amount of money you want to pay Amazon for running the servers $$$</li>
+</ul>
+</li>
+<li>EC2 servers run in Amazon’s AWS cloud</li>
+</ul>
+</div>
+<div class="section" id="aws-services">
+<h3>AWS Services<a class="headerlink" href="#aws-services" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><img alt="../../_images/services.png" src="../../_images/services.png" />
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="secure-your-aws-account">
+<h2>Secure Your AWS Account<a class="headerlink" href="#secure-your-aws-account" title="Permalink to this headline">¶</a></h2>
+<p>We want to make sure our AWS accounts are secure. To do that we are going to setup Two Factor Authentication. AWS is a very powerful tool and we want to make sure our accounts are only used by us.</p>
+<div class="section" id="add-two-factor-authentication">
+<h3>Add Two Factor Authentication<a class="headerlink" href="#add-two-factor-authentication" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Go to <strong>IAM</strong> via <strong>Services</strong></li>
+<li>Click <strong>Users</strong></li>
+<li>Click your username</li>
+<li>Click <strong>Security credentials</strong> tab</li>
+<li>Click the pencil for <strong>Assigned MFA device</strong></li>
+<li>Download an Authenticator such as Google Authenticator on your phone</li>
+<li>Open the Authenticator app on your phone</li>
+<li>Now connect your AWS Account to the Authenticator app by entering informatin provided by AWS<ul>
+<li>You can use the provided barcode</li>
+<li>Or you can enter the provided informatin</li>
+</ul>
+</li>
+<li>Next enter a key from your Auth app into AWS and then wait for it to expire and enter the next key that appears</li>
+<li>Next log out and see if works. Fingers crossed. Don’t worry your instructor can unlock you account if needed.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

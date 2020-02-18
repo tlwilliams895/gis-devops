@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Walkthrough: CI/CD With Jenkins &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Walkthrough: LaunchCart REST" href="../launchcart-rest/index.html" />
+    <link rel="prev" title="Walkthrough: Hashing and Salting Passwords" href="../hashing-salting/index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/installations/index.html">Installations</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Welcome, Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Terminal, Shell, Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Shell, Git, SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: SQL, HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: HTTP, Docker</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day1/index.html">Week 2 - Day 1: HTML, CSS, Browser DevTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day2/index.html">Week 2 - Day 2: HTML/CSS Template, JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day3/index.html">Week 2 - Day 3: Programming Fundamentals, JavaScript, DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day4/index.html">Week 2 - Day 4: JS, DOM, Promises, AJAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day5/index.html">Week 2 - Day 5: Promises, AJAX, HTTP</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: Java, OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2: Spring Boot, Controllers, Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Models, ORM (Hibernate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: Persistence, ORM Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: Review</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day1/index.html">Week 4 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day2/index.html">Week 4 - Day 2: Security, Test-driven development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day3/index.html">Week 4 - Day 3: Integration testing, dependency injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day4/index.html">Week 4 - Day 4: Postgres, Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day5/index.html">Week 4 - Day 5: AJAX, Open Layers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/project/index.html">Week 5 - Project Week: Zika Mission Control</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day1/index.html">Week 6 - Day 1: RESTful web services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day2/index.html">Week 6 - Day 2: Swagger REST framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day3/index.html">Week 6 - Day 3: Intro to Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day4/index.html">Week 6 - Day 4: More Elasticsearch, Integrating ES with Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day5/index.html">Week 6 - Day 5: ES2015, ESLint, OpenLayers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week07/project/index.html">Week 7 - Project Week: Zika Mission Control Part 2</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day1/index.html">Week 8 - Day 1: Intro to DevOps/AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day2/index.html">Week 8 - Day 2: More with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day3/index.html">Week 8 - Day 3: 12 Factor Apps and Auto Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day4/index.html">Week 8 - Day 4: Gradle, Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day5/index.html">Week 8 - Day 5: Sonarqube</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/project/index.html">Week 9 - Project Week: Zika Mission Control Part 3</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week11/project/index.html">Week 11 - Project Week: Zika Mission Control Part 4</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day3/index.html">Week 12 - Day 3: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day4/index.html">Week 12 - Day 4: OAuth 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day5/index.html">Week 12 - Day 5: Certificates</a></li>
+</ol>
+<ol class="current">
+<li class="toctree-l1"><a class="reference internal" href="../aws-intro/index.html">Walkthrough: Intro to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws-rds-vpc/index.html">Walkthrough: Introduction to Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificate-authority/index.html">Certificate Authority</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client-certificates/index.html">Client Certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Walkthrough: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch-spring/index.html">Walkthrough: Elasticsearch in Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch/index.html">Walkthrough: Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch2/index.html">Walkthrough: Elasticsearch Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eslint-airwaze/index.html">Walkthrough: ESLint Airwaze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gitLab/index.html">Walkthrough: Git and Gitlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradle/index.html">Walkthrough: Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hashing-salting/index.html">Walkthrough: Hashing and Salting Passwords</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Walkthrough: CI/CD With Jenkins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launchcart-rest/index.html">Walkthrough: LaunchCart REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oauth2/index.html">Visual OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openlayers/index.html">Walkthrough: OpenLayers and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postgress/index.html">Walkthrough: PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sonarqube/index.html">Walkthrough: Sonarqube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa-hibernate/index.html">Walkthrough: Cars Demo - Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-integration-testing/index.html">Walkthrough: Spring Integration Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../swagger/index.html">Walkthrough: SwaggerUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tdd/index.html">Walkthrough: TDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unit-tests/index.html">Walkthrough: Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading-spring-boot/index.html">Walkthrough: Upgrading to Spring Boot 2.x</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/00-prep-week/index.html">Installation: Essential Tooling &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/01-docker/index.html">Installation: Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/02-docker-psql/index.html">Installation: Docker PSQL Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/03-docker-postgis/index.html">Installation: Docker PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/04-docker-elasticsearch/index.html">Installation: Docker Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/05-docker-kibana/index.html">Installation: Docker Kibana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/06-docker-jenkins/index.html">Installation: Docker Jenkins</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/00-intellij/index.html">Configuration: IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/01-runtime-configurations/index.html">Configuration: IntelliJ - Runtime Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/02-environment-variables-intellij/index.html">Configuration: Environment Variables - IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/04-spring-elasticsearch/index.html">Configuration: Spring &amp; Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/05-spring-postgres/index.html">Configuration: Spring &amp; Postgres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/06-vscode-eslint/index.html">Configuration: Visual Studio Code - ESLint</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/docker/index.html">Docker</a></li>
+</ol>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Walkthrough: CI/CD With Jenkins</a><ul>
+<li><a class="reference internal" href="#setup">Setup</a></li>
+<li><a class="reference internal" href="#our-continous-integration-delivery-goals">Our Continous Integration &amp; Delivery Goals</a></li>
+<li><a class="reference internal" href="#install-and-configure-jenkins">Install and Configure Jenkins</a></li>
+<li><a class="reference internal" href="#install-plugin-parameterized-trigger">Install Plugin - Parameterized Trigger</a></li>
+<li><a class="reference internal" href="#create-empty-projects">Create Empty Projects</a></li>
+<li><a class="reference internal" href="#build-airwaze-compile">Build Airwaze Compile</a></li>
+<li><a class="reference internal" href="#link-projects-together">Link Projects Together</a></li>
+<li><a class="reference internal" href="#configure-airwaze-compile">Configure Airwaze Compile</a></li>
+<li><a class="reference internal" href="#configure-airwaze-test">Configure Airwaze Test</a></li>
+<li><a class="reference internal" href="#configure-airwaze-createjar">Configure Airwaze CreateJar</a></li>
+<li><a class="reference internal" href="#configure-airwaze-deliver">Configure Airwaze Deliver</a><ul>
+<li><a class="reference internal" href="#check-that-the-aws-cli-is-configured">Check that the AWS CLI Is Configured</a></li>
+<li><a class="reference internal" href="#create-an-s3-bucket">Create an S3 bucket</a></li>
+<li><a class="reference internal" href="#id1">Configure <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="walkthrough-ci-cd-with-jenkins">
+<span id="walkthrough-jenkins"></span><h1>Walkthrough: CI/CD With Jenkins<a class="headerlink" href="#walkthrough-ci-cd-with-jenkins" title="Permalink to this headline">¶</a></h1>
+<p>Follow along with the instructor as we configure Jenkins.</p>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>For this example we will be using the same project. Fork and Clone <a class="reference external" href="https://gitlab.com/LaunchCodeTraining/airwaze-jenkins" target="_blank">this repository<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
+<p>For this to work your Airwaze tests need to pass.</p>
+<ul class="simple">
+<li>Open your Airwaze project and run the tests</li>
+<li>If they don’t pass, then fix them ;)</li>
+</ul>
+</div>
+<div class="section" id="our-continous-integration-delivery-goals">
+<h2>Our Continous Integration &amp; Delivery Goals<a class="headerlink" href="#our-continous-integration-delivery-goals" title="Permalink to this headline">¶</a></h2>
+<p>After a branch/story is merged into our <code class="docutils literal notranslate"><span class="pre">master</span></code> branch. We want…</p>
+<ol class="arabic simple">
+<li>Make sure the master branch still compiles after the merge</li>
+<li>Make sure the tests still pass</li>
+<li>Create a <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file</li>
+<li>Deliver the <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file to expedite deployment</li>
+</ol>
+<p>To accomplish these goals we will need to…</p>
+<ol class="arabic simple">
+<li>Install &amp; Configure Jenkins</li>
+<li>Create a Jenkins user</li>
+<li>Install Plugin</li>
+<li>Create Empty Projects</li>
+<li>Build Airwaze Compile</li>
+<li>Link Projects Together</li>
+<li>Configure Airwaze Compile</li>
+<li>Configure Airwaze Test</li>
+<li>Configure Airwaze CreateJar</li>
+<li>Configure Airwaze Deliver</li>
+</ol>
+</div>
+<div class="section" id="install-and-configure-jenkins">
+<h2>Install and Configure Jenkins<a class="headerlink" href="#install-and-configure-jenkins" title="Permalink to this headline">¶</a></h2>
+<p>To install and configure Jenkins check out the <a class="reference internal" href="../../installations/06-docker-jenkins/index.html#docker-jenkins"><span class="std std-ref">Installation: Docker Jenkins</span></a> article.</p>
+</div>
+<div class="section" id="install-plugin-parameterized-trigger">
+<h2>Install Plugin - Parameterized Trigger<a class="headerlink" href="#install-plugin-parameterized-trigger" title="Permalink to this headline">¶</a></h2>
+<p>Before we get started in creating our Jenkins Projects we are going to install the <code class="docutils literal notranslate"><span class="pre">Parameterized</span> <span class="pre">Trigger</span></code> plugin. This plugin will allow us to link Jenkins Projects together (trigger), and have all the projects share the same workspace (parameters).</p>
+<p>On the left hand side of the Jenkins Home page you should see a button labeled <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">Jenkins</span></code> click it now. You should see the Manage Jenkins page that looks something like this:</p>
+<blockquote>
+<div><img alt="../../_images/manage-jenkins.png" src="../../_images/manage-jenkins.png" />
+</div></blockquote>
+<p>Click the Manage Plugins button (it looks like a loose puzzle piece).</p>
+<p>That should take you to this page:</p>
+<blockquote>
+<div><img alt="../../_images/plugin-manager.png" src="../../_images/plugin-manager.png" />
+</div></blockquote>
+<p>Select the <code class="docutils literal notranslate"><span class="pre">Available</span></code> tab and then use the <code class="docutils literal notranslate"><span class="pre">Filter</span></code> box to search for <code class="docutils literal notranslate"><span class="pre">Parameterized</span> <span class="pre">Trigger</span></code> which should look like this:</p>
+<blockquote>
+<div><img alt="../../_images/search-parameterized-trigger.png" src="../../_images/search-parameterized-trigger.png" />
+</div></blockquote>
+<p>Select the checkbox for this plugin and click the <code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">without</span> <span class="pre">restart</span></code> button. This will take you to a new page and may take a couple of minutes to completely install.</p>
+<p>After the plugin is installed completely return to the Jenkins Home Page, by clicking the Jenkins Icon in the top left of your browser.</p>
+</div>
+<div class="section" id="create-empty-projects">
+<h2>Create Empty Projects<a class="headerlink" href="#create-empty-projects" title="Permalink to this headline">¶</a></h2>
+<p>We need to create 4 projects in Jenkins, for now we just want to name them and save them.</p>
+<p>The projects we want to create are:
+- Airwaze Compile
+- Airwaze Test
+- Airwaze CreateJar
+- Airwaze Deliver</p>
+<p>For each project:
+- Click New Item
+- Enter in the Project Name
+- Click Freestyle Project
+- Click OK
+- On the configure project screen click Save</p>
+<p>Following is a walkthrough for the first project Airwaze Compile. You will need to do this four times for all of the projects we need for this pipeline.</p>
+<p>From the Jenkins Homepage click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Item</span></code> on the menu on the left side of your screen. This will take you to a page like this:</p>
+<blockquote>
+<div><img alt="../../_images/new-item.png" src="../../_images/new-item.png" />
+</div></blockquote>
+<p>Put in the Item name: <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code>, click <code class="docutils literal notranslate"><span class="pre">Freestyle</span> <span class="pre">project</span></code>, and then click the OK button. This should take you to the Configure Project screen:</p>
+<blockquote>
+<div><img alt="../../_images/configure-new-item.png" src="../../_images/configure-new-item.png" />
+</div></blockquote>
+<p>For now we aren’t going to configure anything, so just click the Save button.</p>
+<p>Repeat the Create new Item steps for all four of our projects: Airwaze Compile, Airwaze Test, Airwaze CreateJar, and Airwaze Deliver and then return to the Jenkins Homepage which should look like this:</p>
+<blockquote>
+<div><img alt="../../_images/empty-items.png" src="../../_images/empty-items.png" />
+</div></blockquote>
+</div>
+<div class="section" id="build-airwaze-compile">
+<h2>Build Airwaze Compile<a class="headerlink" href="#build-airwaze-compile" title="Permalink to this headline">¶</a></h2>
+<p>To familiarize ourselves with how Jenkins works let’s try building one of our projects. We haven’t added any actions to our project yet, but Jenkins will still run it for us. From your Jenkins dashboard click on your <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> project. This takes you to the homepage for this specific project and looks like:</p>
+<blockquote>
+<div><img alt="../../_images/project-homepage.png" src="../../_images/project-homepage.png" />
+</div></blockquote>
+<p>From here click on the <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Now</span></code> button on the left-hand menu. This will schedule a build that should start immediately. You should see that your build history has changed and now has one build in it like the following image:</p>
+<blockquote>
+<div><img alt="../../_images/build-history.png" src="../../_images/build-history.png" />
+</div></blockquote>
+<p>Let’s click on that build (it should be a link) and look at the page for this specific build:</p>
+<blockquote>
+<div><img alt="../../_images/build-page.png" src="../../_images/build-page.png" />
+</div></blockquote>
+<p>From here click on <code class="docutils literal notranslate"><span class="pre">Console</span> <span class="pre">Output</span></code> so we can see what came out of the terminal when this build was run in our Jenkins Container:</p>
+<blockquote>
+<div><img alt="../../_images/console-output.png" src="../../_images/console-output.png" />
+</div></blockquote>
+<p>The Console Output is pretty sparse, which makes sense we haven’t told Jenkins to do anything for us in this build yet! The output is just letting us know where this project’s workspace is, and that this build was successful. The workspace is where all of the files for this project would live. Any built artifacts, or .jar files, test results, etc.</p>
+<p>However, we don’t want to manually trigger all of these individual projects manually. In the next section we will add some configurations to our existing projects so they will automatically build when a previous project was successful.</p>
+</div>
+<div class="section" id="link-projects-together">
+<h2>Link Projects Together<a class="headerlink" href="#link-projects-together" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>We know the order of our projects:</dt>
+<dd><ol class="first last arabic simple">
+<li>Airwaze Compile</li>
+<li>Airwaze Test</li>
+<li>Airwaze CreateJar</li>
+<li>Airwaze Deliver</li>
+</ol>
+</dd>
+</dl>
+<p>So let’s use the parameterized trigger plugin we installed earlier to run our projects in this order. Navigate to the <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> homepage and click <code class="docutils literal notranslate"><span class="pre">Configure</span></code> which should take you back to the project configuration screen:</p>
+<blockquote>
+<div><img alt="../../_images/configure-new-item.png" src="../../_images/configure-new-item.png" />
+</div></blockquote>
+<p>From here we want to add a <code class="docutils literal notranslate"><span class="pre">Post</span> <span class="pre">build</span> <span class="pre">Action</span></code> so click the tab or scroll towards the bottom of this page until you see:</p>
+<blockquote>
+<div><img alt="../../_images/post-build-action.png" src="../../_images/post-build-action.png" />
+</div></blockquote>
+<p>Click the drop-down menu and select <code class="docutils literal notranslate"><span class="pre">Trigger</span> <span class="pre">parameterized</span> <span class="pre">build</span> <span class="pre">on</span> <span class="pre">other</span> <span class="pre">projects</span></code>:</p>
+<blockquote>
+<div><img alt="../../_images/trigger-parameterized-build.png" src="../../_images/trigger-parameterized-build.png" />
+</div></blockquote>
+<p>This will create a new section in which you will need to enter the next project to build <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code>, and then you will have to add two parameters using the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Parameters</span></code> drop-down box: <code class="docutils literal notranslate"><span class="pre">build</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">node</span></code> and <code class="docutils literal notranslate"><span class="pre">Predefined</span> <span class="pre">parameters</span></code>. In the Predefined parameters section add: <code class="docutils literal notranslate"><span class="pre">AIRWAZE_WORKSPACE=${WORKSPACE}</span></code> and click the <code class="docutils literal notranslate"><span class="pre">Save</span></code> button.</p>
+<blockquote>
+<div><img alt="../../_images/post-build-action-2.png" src="../../_images/post-build-action-2.png" />
+</div></blockquote>
+<p>We have told Jenkins that when the <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> project is successful that it should automatically schedule and run <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code>. We have instructed Jenkins to run the next project on the same node, and that we will be passing it one parameter. The parameter key is <code class="docutils literal notranslate"><span class="pre">AIRWAZE_WORKSPACE</span></code> and the value is <code class="docutils literal notranslate"><span class="pre">${WORKSPACE}</span></code>. This is how we share the same workspace between the two projects.</p>
+<p>Our workspace is what contains our built artifacts, and all of the files of our project. We want this to be used by all projects so that we don’t have to keep pulling these files into each individual project.</p>
+<p>Now we will need to configure our <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code> project to receive this parameter, and to use the workspace that is being passed in. Open the <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code> project, and click configure:</p>
+<blockquote>
+<div><img alt="../../_images/configure-general.png" src="../../_images/configure-general.png" />
+</div></blockquote>
+<p>In the <code class="docutils literal notranslate"><span class="pre">General</span></code> section we need to select the <code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">project</span> <span class="pre">is</span> <span class="pre">parameterized</span></code> checkbox and we need to add a new <code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">Parameter</span></code> from the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">Parameter</span></code> drop-down menu. In the <code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">Parameter</span></code> section add <code class="docutils literal notranslate"><span class="pre">AIRWAZE_WORKSPACE</span></code> to the Name field. This is our way of letting this project know the previous project will be passing in one parameter, and we should name it AIRWAZE_WORKSPACE.</p>
+<p>We now need to configure a custom workspace for this project. At the bottom of the <code class="docutils literal notranslate"><span class="pre">General</span></code> section you should see a button labeled <code class="docutils literal notranslate"><span class="pre">Advanced</span></code> click that button to see more options including <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">custom</span> <span class="pre">workspace</span></code>. Check the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">custom</span> <span class="pre">workspace</span></code> checkbox and enter <code class="docutils literal notranslate"><span class="pre">${AIRWAZE_WORKSPACE}</span></code> we are using the parameter passed in from the previous section here:</p>
+<blockquote>
+<div><img alt="../../_images/custom-workspace.png" src="../../_images/custom-workspace.png" />
+</div></blockquote>
+<p>Double check that you have selected <code class="docutils literal notranslate"><span class="pre">This</span> <span class="pre">project</span> <span class="pre">is</span> <span class="pre">parameterized</span></code>, you added the new <code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">Parameter</span></code> that represents our workspace, and added the <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">custom</span> <span class="pre">workspace</span></code> and set it’s directory to the parameter that was passed in and click <code class="docutils literal notranslate"><span class="pre">Save</span></code>.</p>
+<p>Let’s try it out to make sure it worked. Navigate to your <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> project, and click <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">now</span></code>. When it’s completed it should automatically fire your next project <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code>.</p>
+<dl class="docutils">
+<dt>Now we will need to add the conditions to continue passing the workspace and triggering the next builds. Using the steps we followed above you will need to:</dt>
+<dd><ul class="first last simple">
+<li>Add a post build action to <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code></li>
+<li>Add parameters, and custom workspace to <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code></li>
+<li>Add a post build action to <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code></li>
+<li>Add parameters, and custom workspace to <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code></li>
+</ul>
+</dd>
+</dl>
+<p>After making the additional amendments to <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code>, <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code>, and <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code> build <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> and watch Jenkins run through all four of our projects. Your dashboard should look like this:</p>
+<blockquote>
+<div><img alt="../../_images/all-projects-build.png" src="../../_images/all-projects-build.png" />
+</div></blockquote>
+<p>Now that all of our projects are in an automated pipeline let’s start adding some actual build actions to our projects!</p>
+</div>
+<div class="section" id="configure-airwaze-compile">
+<h2>Configure Airwaze Compile<a class="headerlink" href="#configure-airwaze-compile" title="Permalink to this headline">¶</a></h2>
+<p>Our first project is to compile our code. In order to do this we will first need to get our code into the hands of Jenkins. We will do this within our first project <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code>. Go to the Configure project screen for <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> and select the <code class="docutils literal notranslate"><span class="pre">Source</span> <span class="pre">Code</span> <span class="pre">Management</span></code> header, or scroll to that section:</p>
+<blockquote>
+<div><img alt="../../_images/source-control.png" src="../../_images/source-control.png" />
+</div></blockquote>
+<p>Select <code class="docutils literal notranslate"><span class="pre">Git</span></code>. From here you will need to provide the URL to your git repository, and which branch for it to pull from. It should looks something like this:</p>
+<blockquote>
+<div><img alt="../../_images/source-control-completed.png" src="../../_images/source-control-completed.png" />
+</div></blockquote>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">If you are attempting to pull from a private git repository you will have to give Jenkins the proper credentials. In GitLab the easiest way is to create a <code class="docutils literal notranslate"><span class="pre">Deploy</span> <span class="pre">Token</span></code> and paste the token information into the credentials section of the repository. You can find <code class="docutils literal notranslate"><span class="pre">Deploy</span> <span class="pre">Tokens</span></code> under <code class="docutils literal notranslate"><span class="pre">Settings-&gt;Repository</span></code> from the GitLab web interface.</p>
+</div>
+<p>This will give this Jenkins project the ability to pull from your Git repository and to store the files it pulls into it’s workspace. Let’s try it out!</p>
+<p>Click Save, and then build now.</p>
+<p>After the build finishes click on <code class="docutils literal notranslate"><span class="pre">Workspace</span></code>. You should notice now that it pulled all your files from Git:</p>
+<blockquote>
+<div><img alt="../../_images/workspace-from-git.png" src="../../_images/workspace-from-git.png" />
+</div></blockquote>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">You may also want to checkout the <code class="docutils literal notranslate"><span class="pre">Console</span> <span class="pre">Output</span></code> for this specific build, it is showing us the output from the actual commands run by Jenkins. You will probably see some information about Git connecting to and pulling down files from the referenced Git URL.</p>
+</div>
+<p>Now that we have the files from GitLab we can compile them! We will do that with a Gradle Task. Configure <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> one last time. This time navigate to the <code class="docutils literal notranslate"><span class="pre">Build</span></code> section and <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">a</span> <span class="pre">build</span> <span class="pre">step</span></code> which <code class="docutils literal notranslate"><span class="pre">Invoke</span> <span class="pre">Gradle</span> <span class="pre">script</span></code>:</p>
+<blockquote>
+<div><img alt="../../_images/invoke-gradle-compile.png" src="../../_images/invoke-gradle-compile.png" />
+</div></blockquote>
+<p>We want to select <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Gradle</span> <span class="pre">Wrapper</span></code>, and then we need to include the gradle tasks we want to run. Let’s run <code class="docutils literal notranslate"><span class="pre">clean</span></code> and <code class="docutils literal notranslate"><span class="pre">compileJava</span></code>.</p>
+<p>Now the Jenkins project <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> will pull down our code from GitLab, run the Gradle tasks <code class="docutils literal notranslate"><span class="pre">clean</span></code> and <code class="docutils literal notranslate"><span class="pre">compileJava</span></code> and if all three of those things are successful it will trigger the next Jenkins project <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code>.</p>
+<p>Run this project again and make sure it is still successful letting us know the code that was pulled from GitLab was compiled successfully.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">After running <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Now</span></code> again checkout the <code class="docutils literal notranslate"><span class="pre">Console</span> <span class="pre">Output</span></code> of this Jenkins project Build. We now see some familiar Gradle messages about running tasks and if they were successful or not. The <code class="docutils literal notranslate"><span class="pre">Console</span> <span class="pre">Output</span></code> is a very beneficial tool for troubleshooting your Jenkins projects.</p>
+</div>
+</div>
+<div class="section" id="configure-airwaze-test">
+<h2>Configure Airwaze Test<a class="headerlink" href="#configure-airwaze-test" title="Permalink to this headline">¶</a></h2>
+<p>In our pipe we have pulled down our code from GitLab, and we have successfully compiled it. Since we are sharing one workspace between all of our Jenkins Projects we simply need to run a Gradle <code class="docutils literal notranslate"><span class="pre">test</span></code> script to verify all of our tests pass.</p>
+<p>Before we re-configure <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code> by invoking a <code class="docutils literal notranslate"><span class="pre">test</span></code> gradle script, let’s make sure we understand the dependencies of our tests. Looking at <code class="docutils literal notranslate"><span class="pre">airwaze-jenkins/src/test/resources/application-test.properties</span></code>:</p>
+<blockquote>
+<div><img alt="../../_images/application-test-properties.png" src="../../_images/application-test-properties.png" />
+</div></blockquote>
+<p>We can see that we are connecting to a Test DB using some environment variables. We will need to make sure we provide Jenkins the proper environment variables. We will also have to make sure our Gradle <code class="docutils literal notranslate"><span class="pre">test</span></code> task has access to the environment variables.</p>
+<p>Let’s also take a look at <code class="docutils literal notranslate"><span class="pre">airwaze-jenkins/build.gradle</span></code>:</p>
+<blockquote>
+<div><img alt="../../_images/build-gradle.png" src="../../_images/build-gradle.png" />
+</div></blockquote>
+<p>Whoever wrote this file provided us with a new Gradle task named <code class="docutils literal notranslate"><span class="pre">jenkinsTest</span></code>. This task simply loads in some environment variables in a new way and then calls the Gradle <code class="docutils literal notranslate"><span class="pre">test</span></code> task. Now when <code class="docutils literal notranslate"><span class="pre">jenkinsTest</span></code> is run it will first set the environment variables from the server via the listed properties. This is how we will pass environment variables inside of our Jenkins Project to our Gradle <code class="docutils literal notranslate"><span class="pre">test</span></code> task.</p>
+<p>Let’s create that task now. <code class="docutils literal notranslate"><span class="pre">Configure</span></code> your <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code> project. Go to the <code class="docutils literal notranslate"><span class="pre">Build</span></code> section and click <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">build</span> <span class="pre">step</span></code> and click <code class="docutils literal notranslate"><span class="pre">Invoke</span> <span class="pre">Gradle</span> <span class="pre">script</span></code>.</p>
+<p>From here we want to select the Gradle Wrapper, and run the Gradle Task available to us in the build.gradle file named <code class="docutils literal notranslate"><span class="pre">jenkinsTest</span></code>:</p>
+<blockquote>
+<div><img alt="../../_images/invoke-gradle-jenkins-test.png" src="../../_images/invoke-gradle-jenkins-test.png" />
+</div></blockquote>
+<p>We need to add the environment variables to this Jenkins build step so that it can pass them to Gradle. Click <code class="docutils literal notranslate"><span class="pre">Advanced</span></code> scroll down to <code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">Properties</span></code> and add:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">test_db_user</span><span class="o">=</span><span class="n">airwaze_test_user</span>
+<span class="n">test_db_pass</span><span class="o">=</span><span class="n">airwazepass</span>
+<span class="n">test_db_name</span><span class="o">=</span><span class="n">airwaze_test</span>
+<span class="n">test_db_port</span><span class="o">=</span><span class="mi">5432</span>
+<span class="n">test_db_host</span><span class="o">=</span><span class="mf">172.17.0.2</span>
+</pre></div>
+</div>
+<p>Hold up! Why are we not using <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> as the address of our database? Because Jenkins lives in it’s own Docker Container. To our Jenkins container 127.0.0.1 refers to the Jenkins container. We need to provide the internal IP address of our airwaze database. You can find this by running <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">[name_of_airwaze_database_container]</span></code>:</p>
+<p>Note the output when I run <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">inspect</span> <span class="pre">postgis-airwaze</span></code>:</p>
+<blockquote>
+<div><img alt="../../_images/docker-inspect.png" src="../../_images/docker-inspect.png" />
+</div></blockquote>
+<p>So in my case I need to use <code class="docutils literal notranslate"><span class="pre">172.17.0.2</span></code> as the address of my test database.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">You can read more about how this, and other networking mechanisms, work in the <a class="reference internal" href="../../notes/docker/networking.html#docker-networking"><span class="std std-ref">Networking Between Containers</span></a> article.</p>
+</div>
+<p>In the end my Jenkins Build Action looks like this:</p>
+<blockquote>
+<div><img alt="../../_images/invoke-gradle-jenkins-test-final.png" src="../../_images/invoke-gradle-jenkins-test-final.png" />
+</div></blockquote>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Note the difference between what we gave Jenkins (test_db_user) and what is an environment variable in Gradle (TEST_DB_USER). You could use the same case however we chose to write one in upper case, and one in lower case to help illustrate where they are being used.</p>
+</div>
+<p>Finally Let’s save this Jenkins project, and run <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Now</span></code> on our <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> project to see if <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Test</span></code> passes.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">If your tests fail look at the <code class="docutils literal notranslate"><span class="pre">Console</span> <span class="pre">Output</span></code> to figure out what is going on. Double check this section to ensure you’ve set the fields properly, and compare what you have with fellow students, and the instructor.</p>
+</div>
+</div>
+<div class="section" id="configure-airwaze-createjar">
+<h2>Configure Airwaze CreateJar<a class="headerlink" href="#configure-airwaze-createjar" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have compiled our code, and passed all of our tests, let’s create a <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file that can be deployed on a server.</p>
+<p>These steps may be familiar <code class="docutils literal notranslate"><span class="pre">Configure</span></code> your <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code> project. Select, or scroll down to the <code class="docutils literal notranslate"><span class="pre">Build</span></code> section. <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">build</span> <span class="pre">step</span></code> and <code class="docutils literal notranslate"><span class="pre">Invoke</span> <span class="pre">Gradle</span> <span class="pre">script</span></code>, select <code class="docutils literal notranslate"><span class="pre">Use</span> <span class="pre">Gradle</span> <span class="pre">Wrapper</span></code> and enter <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code> as our Gradle task:</p>
+<blockquote>
+<div><img alt="../../_images/create-jar.png" src="../../_images/create-jar.png" />
+</div></blockquote>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">We are currently using Gradle 4.4 for this Airwaze project. However, you may be using a completely different version of Gradle which has renamed some tasks. <code class="docutils literal notranslate"><span class="pre">bootRepackage</span></code> may not be available to you. In newer versions of Gradle it has been renamed <code class="docutils literal notranslate"><span class="pre">bootJar</span></code>.</p>
+</div>
+<p>If you look in the current workspace of <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">CreateJar</span></code>, or either of the other projects we have configured you will notice we don’t have a <code class="docutils literal notranslate"><span class="pre">build/libs/</span></code> directory, after we run this task we should.</p>
+<p>That’s all we need to do for this Jenkins project. So let’s kick the whole pipe off by running <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Now</span></code> on <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code>.</p>
+<p>If it worked successfully you should now find a <code class="docutils literal notranslate"><span class="pre">build/libs/app.jar</span></code> file that was created by this project. Thanks Jenkins!</p>
+</div>
+<div class="section" id="configure-airwaze-deliver">
+<h2>Configure Airwaze Deliver<a class="headerlink" href="#configure-airwaze-deliver" title="Permalink to this headline">¶</a></h2>
+<p>Our final step for today will be delivering our newly minted <code class="docutils literal notranslate"><span class="pre">build/libs/app.jar</span></code> file to an AWS S3 bucket that can be incorporated in our deployment process.</p>
+<p>Before we can deliver this new file to an S3 bucket we will need to create an S3 bucket, and we should probably check that our Jenkins container has the AWSCLI, and the proper credentials.</p>
+<div class="section" id="check-that-the-aws-cli-is-configured">
+<h3>Check that the AWS CLI Is Configured<a class="headerlink" href="#check-that-the-aws-cli-is-configured" title="Permalink to this headline">¶</a></h3>
+<p>You can confirm the AWS CLI in the container is working by entering the following command:</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker exec jenkins aws s3 ls
+
+# expected output is the list of buckets
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">If this command doesn’t work you likely missed the <a class="reference internal" href="../../installations/06-docker-jenkins/index.html#docker-jenkins-setup-aws"><span class="std std-ref">Seting Up the AWS CLI in the Jenkins Container</span></a> section.</p>
+</div>
+</div>
+<div class="section" id="create-an-s3-bucket">
+<h3>Create an S3 bucket<a class="headerlink" href="#create-an-s3-bucket" title="Permalink to this headline">¶</a></h3>
+<p>Once you have AWS credentials and the AWSCLI you can create a new bucket with:</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 mb s3://launchcode-devops-airwaze-&lt;your name&gt;
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last"><em>Every</em> S3 bucket has to have a unique URL. If the bucket name is taken due to a common name just add a digit to the end (or something else you won’t forget).</p>
+</div>
+<p>We will use this bucket to deliver our <code class="docutils literal notranslate"><span class="pre">.jar</span></code> file after it has been packaged.</p>
+</div>
+<div class="section" id="id1">
+<h3>Configure <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Now that we know our Jenkins container has its AWS CLI set up we can have it execute a shell script for us. <code class="docutils literal notranslate"><span class="pre">Configure</span></code> your <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Deliver</span></code> project. Scroll down, or select <code class="docutils literal notranslate"><span class="pre">Build</span></code>, <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">build</span> <span class="pre">step</span></code> <code class="docutils literal notranslate"><span class="pre">Execute</span> <span class="pre">shell</span></code> and paste in:</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span>aws s3 cp build/libs/app.jar s3://launchcode-devops-airwaze-&lt;your name&gt;
+</pre></div>
+</div>
+<img alt="../../_images/airwaze-deliver.png" src="../../_images/airwaze-deliver.png" />
+<p>Finally, build your <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> project again. After all four of our projects have run you can list the contents of the bucket to see the <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> file was delivered successfully.</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span>$ aws s3 ls s3://launchcode-devops-airwaze-&lt;your name&gt;
+</pre></div>
+</div>
+<img alt="../../_images/jar-in-s3.png" src="../../_images/jar-in-s3.png" />
+</div>
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>Our Jenkins pipeline only takes us through Delivery, but doesn’t automatically Deploy our <code class="docutils literal notranslate"><span class="pre">jar</span></code> file. Looking into AWS Code PipeLine could help us take this pipe all the way to deployment…</p>
+<dl class="docutils">
+<dt>Other ideas to implement:</dt>
+<dd><ol class="first last arabic simple">
+<li>Trigger <code class="docutils literal notranslate"><span class="pre">Airwaze</span> <span class="pre">Compile</span></code> on GitLab merge to your forked repo</li>
+<li>CI/CD for your Zika Client</li>
+<li>Try setting up a pipeline with the same stages using a different tool (GitLabCI, Travis, etc)</li>
+</ol>
+</dd>
+</dl>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

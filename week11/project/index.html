@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Week 11 - Project Week: Zika Mission Control Part 4 &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Week 12 - Day 3: Intro to Docker" href="../../week12/day3/index.html" />
+    <link rel="prev" title="Week 9 - Project Week: Zika Mission Control Part 3" href="../../week09/project/index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/installations/index.html">Installations</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Welcome, Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Terminal, Shell, Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Shell, Git, SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: SQL, HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: HTTP, Docker</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day1/index.html">Week 2 - Day 1: HTML, CSS, Browser DevTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day2/index.html">Week 2 - Day 2: HTML/CSS Template, JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day3/index.html">Week 2 - Day 3: Programming Fundamentals, JavaScript, DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day4/index.html">Week 2 - Day 4: JS, DOM, Promises, AJAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day5/index.html">Week 2 - Day 5: Promises, AJAX, HTTP</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: Java, OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2: Spring Boot, Controllers, Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Models, ORM (Hibernate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: Persistence, ORM Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: Review</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day1/index.html">Week 4 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day2/index.html">Week 4 - Day 2: Security, Test-driven development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day3/index.html">Week 4 - Day 3: Integration testing, dependency injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day4/index.html">Week 4 - Day 4: Postgres, Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day5/index.html">Week 4 - Day 5: AJAX, Open Layers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/project/index.html">Week 5 - Project Week: Zika Mission Control</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day1/index.html">Week 6 - Day 1: RESTful web services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day2/index.html">Week 6 - Day 2: Swagger REST framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day3/index.html">Week 6 - Day 3: Intro to Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day4/index.html">Week 6 - Day 4: More Elasticsearch, Integrating ES with Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day5/index.html">Week 6 - Day 5: ES2015, ESLint, OpenLayers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week07/project/index.html">Week 7 - Project Week: Zika Mission Control Part 2</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day1/index.html">Week 8 - Day 1: Intro to DevOps/AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day2/index.html">Week 8 - Day 2: More with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day3/index.html">Week 8 - Day 3: 12 Factor Apps and Auto Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day4/index.html">Week 8 - Day 4: Gradle, Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day5/index.html">Week 8 - Day 5: Sonarqube</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/project/index.html">Week 9 - Project Week: Zika Mission Control Part 3</a></li>
+</ol>
+<ol class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Week 11 - Project Week: Zika Mission Control Part 4</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day3/index.html">Week 12 - Day 3: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day4/index.html">Week 12 - Day 4: OAuth 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day5/index.html">Week 12 - Day 5: Certificates</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/aws-intro/index.html">Walkthrough: Intro to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/aws-rds-vpc/index.html">Walkthrough: Introduction to Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/certificate-authority/index.html">Certificate Authority</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/client-certificates/index.html">Client Certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/docker/index.html">Walkthrough: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch-spring/index.html">Walkthrough: Elasticsearch in Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch/index.html">Walkthrough: Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch2/index.html">Walkthrough: Elasticsearch Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/eslint-airwaze/index.html">Walkthrough: ESLint Airwaze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/gitLab/index.html">Walkthrough: Git and Gitlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/gradle/index.html">Walkthrough: Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/hashing-salting/index.html">Walkthrough: Hashing and Salting Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/jenkins/index.html">Walkthrough: CI/CD With Jenkins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/launchcart-rest/index.html">Walkthrough: LaunchCart REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/oauth2/index.html">Visual OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/openlayers/index.html">Walkthrough: OpenLayers and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/postgress/index.html">Walkthrough: PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/sonarqube/index.html">Walkthrough: Sonarqube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/spring-data-jpa-hibernate/index.html">Walkthrough: Cars Demo - Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/spring-integration-testing/index.html">Walkthrough: Spring Integration Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/swagger/index.html">Walkthrough: SwaggerUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/tdd/index.html">Walkthrough: TDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/unit-tests/index.html">Walkthrough: Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/upgrading-spring-boot/index.html">Walkthrough: Upgrading to Spring Boot 2.x</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/00-prep-week/index.html">Installation: Essential Tooling &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/01-docker/index.html">Installation: Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/02-docker-psql/index.html">Installation: Docker PSQL Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/03-docker-postgis/index.html">Installation: Docker PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/04-docker-elasticsearch/index.html">Installation: Docker Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/05-docker-kibana/index.html">Installation: Docker Kibana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/06-docker-jenkins/index.html">Installation: Docker Jenkins</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/00-intellij/index.html">Configuration: IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/01-runtime-configurations/index.html">Configuration: IntelliJ - Runtime Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/02-environment-variables-intellij/index.html">Configuration: Environment Variables - IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/04-spring-elasticsearch/index.html">Configuration: Spring &amp; Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/05-spring-postgres/index.html">Configuration: Spring &amp; Postgres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/06-vscode-eslint/index.html">Configuration: Visual Studio Code - ESLint</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/docker/index.html">Docker</a></li>
+</ol>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Week 11 - Project Week: Zika Mission Control Part 4</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+<li><a class="reference internal" href="#setup">Setup</a><ul>
+<li><a class="reference internal" href="#cross-origin-resource-sharing">Cross Origin Resource Sharing</a></li>
+<li><a class="reference internal" href="#database-and-layer-setup">Database and Layer Setup</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#integrating-geoserver">Integrating GeoServer</a><ul>
+<li><a class="reference internal" href="#managing-geoserver-configuration-data">Managing Geoserver Configuration Data</a></li>
+<li><a class="reference internal" href="#start-geoserver">Start Geoserver</a></li>
+<li><a class="reference internal" href="#create-a-zika-workspace">Create a Zika Workspace</a></li>
+<li><a class="reference internal" href="#configure-a-postgis-data-store">Configure a PostGIS Data Store</a></li>
+<li><a class="reference internal" href="#create-a-view-layer">Create a View Layer</a></li>
+<li><a class="reference internal" href="#updating-openlayers-code">Updating OpenLayers Code</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#deploying-geoserver">Deploying GeoServer</a></li>
+<li><a class="reference internal" href="#bonus-missions">Bonus Missions</a><ul>
+<li><a class="reference internal" href="#docker-compose-deployment">Docker Compose Deployment</a></li>
+<li><a class="reference internal" href="#geoserver-elasticsearch-integration">Geoserver Elasticsearch Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="week-11-project-week-zika-mission-control-part-4">
+<span id="week8-project"></span><h1>Week 11 - Project Week: Zika Mission Control Part 4<a class="headerlink" href="#week-11-project-week-zika-mission-control-part-4" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="../../_static/images/zika_mission_briefing_4.pdf" target="_blank">Read Mission Briefing 4<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
+<p>You will be adding GeoServer to your local and deployed application. This will require several steps, including setting up a GeoServer instance, connecting it to a PostGIS store, and creating a new layer from existing data.</p>
+<p>After you have this new system fully set up, you’ll be able to add additional layers in GeoServer or use public Geoserver services to display through OpenLayers.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Configure Geoserver to expose Postgis report feature data through a WFS endpoint.</li>
+<li>Implement the ability for users to request and display the WFS data in the client.</li>
+<li>Discover and incorporate additional layers in the client using public WMS data sources (like elevation, population, temperature).</li>
+<li>Integrate Geoserver into your AWS deployment infrastructure.</li>
+</ol>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>The first step in this project week is to download and configure Geoserver. Geoserver can be installed using a VM or a Docker container. In the past week we learned how to run Geoserver in a VM. For this project week we will use a Docker container. Given the popularity of Geoserver there are many public images available to choose from. A user by the name of <cite>kartoza</cite> is heavily involved in the Docker scene for GIS related tooling. They have created a Geoserver image that is both heavily customizable and, as always with Docker, lightweight and portable!</p>
+<p>The image we will use can be found at <code class="docutils literal notranslate"><span class="pre">kartoza/geoserver</span></code> which includes a Geoserver application served by an underlying Tomcat server. There are many tags available for this image for using different versions and configurations of Geoserver. However, we will be using the <code class="docutils literal notranslate"><span class="pre">2.15.2</span></code> tag due to its built-in support for Cross Origin Resource Sharing [CORS].</p>
+<div class="section" id="cross-origin-resource-sharing">
+<h3>Cross Origin Resource Sharing<a class="headerlink" href="#cross-origin-resource-sharing" title="Permalink to this headline">¶</a></h3>
+<p>Recall that CORS headers are required for resources (data) to be shared across origins when accessed through the browser. When a site rendered in the browser requests data from the same server the HTML/CSS/JS originates from we say these are requests to the same origin. However, when the client content is served from one origin (server) and requests data from another origin this is considered <cite>cross-origin</cite>. All modern browsers enforce the <cite>Same Origin Policy</cite> for improving the security by defaulting to rejection of any requests sent to different origins. CORS headers sent by the requested server allow this policy to be “relaxed” by communicating rules about what requests should be allowed.</p>
+<p>In our current deployment we implemented CORS support in the Zika API in order for the browser to allow our front-end client (hosted at its own origin in an S3 bucket) to request API data served from a different origin (hosted in an EC2 instance). In the same way, our Geoserver will need to be configured to allow CORS in order for the WFS data to be received and displayed in the browser.</p>
+<p>We could configure the CORS headers ourselves by modifying the Tomcat configuration files. But this is a tedious and delicate process that requires digging into and editing XML. Because it is increasingly common for a Geoserver to be hosted separately from clients that consume its data Kartoza has created an image that is pre-configured to set the headers for us!</p>
+<p>This is a relatively large image so you can begin downloading it while completing the next sections by using the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker pull kartoza/geoserver:2.15.2
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">Don’t run the container after it has been pulled until you have completed the following sections.</p>
+</div>
+</div>
+<div class="section" id="database-and-layer-setup">
+<h3>Database and Layer Setup<a class="headerlink" href="#database-and-layer-setup" title="Permalink to this headline">¶</a></h3>
+<p>Before we start up and configure the Geoserver we will prepare our database to provide data in a format Geoserver recognizes. We will be creating some SQL views that pull in data from different tables that we want to be available as features. These views will then be used by Geoserver to generate queryable layers available through its exposed services.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">SQL views are stored commands for creating table-like structures that are built at runtime instead of being persisted as a traditional table. In this way you can aggregate and reshape data from existing tables without having duplicated storage.</p>
+</div>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">psql</span></code> tool connect to your PostGIS database then create two views:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">cases_by_location_and_date</span> <span class="k">AS</span>
+  <span class="k">SELECT</span>
+    <span class="n">location_id</span><span class="p">,</span>
+    <span class="n">report_date</span><span class="p">,</span>
+    <span class="k">sum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">AS</span> <span class="n">cases</span>
+  <span class="k">FROM</span> <span class="n">reports</span>
+  <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">location_id</span><span class="p">,</span> <span class="n">report_date</span>
+<span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">VIEW</span> <span class="n">locations_with_cases_by_date</span> <span class="k">AS</span>
+  <span class="k">SELECT</span> <span class="n">locations</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">country</span><span class="p">,</span> <span class="k">state</span><span class="p">,</span> <span class="n">report_date</span><span class="p">,</span> <span class="n">cases</span><span class="p">,</span> <span class="n">geometry</span>
+  <span class="k">FROM</span> <span class="n">locations</span>
+  <span class="k">INNER</span> <span class="k">JOIN</span> <span class="n">cases_by_location_and_date</span>
+    <span class="k">ON</span> <span class="n">cases_by_location_and_date</span><span class="p">.</span><span class="n">location_id</span> <span class="o">=</span> <span class="n">locations</span><span class="p">.</span><span class="n">id</span>
+<span class="p">;</span>
+</pre></div>
+</div>
+<p>You are free to create any other views you would like using these examples as a template. Try querying from them to see how they work. They will be automatically detected by Geoserver once connected to the Postgis store. Views can then be published for use in the various Geoserver services such as the WFS project requirement.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Don’t forget to create these views in your cloud database when you are ready to deploy the Geoserver! If you are using a containerized database instead of an RDS you can replace the existing database container image with the <code class="docutils literal notranslate"><span class="pre">launchcodedevops/zika:geoserver</span></code> image which includes both the associated data and the two views from above.</p>
+</div>
+</div>
+</div>
+<div class="section" id="integrating-geoserver">
+<h2>Integrating GeoServer<a class="headerlink" href="#integrating-geoserver" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="managing-geoserver-configuration-data">
+<h3>Managing Geoserver Configuration Data<a class="headerlink" href="#managing-geoserver-configuration-data" title="Permalink to this headline">¶</a></h3>
+<p>Recall in your Geoserver training that before we can begin consuming data we first need to configure the workspace, data store, layers and services we want it to expose. Each of these configurations are persisted by writing to files located in an installation directory called <code class="docutils literal notranslate"><span class="pre">data_dir/</span></code>. The location of this directory depends on how it was installed. In our containerized Geoserver its default location is <code class="docutils literal notranslate"><span class="pre">/opt/geoserver/data_dir</span></code>.</p>
+<p>Although we will first configure Geoserver locally eventually our goal is to deploy it into our AWS cloud. We are presented with two options to choose from before beginning the configuration. Either save the local configuration, upload it to S3 and apply it in the deployed container or reconfigure the server from scratch once deployed.</p>
+<p>The former approach involves mounting a host directory into the container as a <code class="docutils literal notranslate"><span class="pre">bind</span> <span class="pre">mount</span></code> so that data is written to the host (our local machine) instead of the container. The latter approach is simpler but will require more time during deployment. In both cases we will need to update the Postgis database connection details to point at our deployed database host.</p>
+<p>If we choose to save a copy of the configuration we can use the <code class="docutils literal notranslate"><span class="pre">-v</span></code> volume option in the run command for the container. Bind mounting a volume is simply connecting a host machine directory to a container directory. Much in the same way that we use the <code class="docutils literal notranslate"><span class="pre">-p</span></code> option to “publish a port” which is just binding a host port to the container process’ port.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-p &lt;host port&gt;:&lt;container port&gt;
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">If you would like to read more about bind mount volumes the <a class="reference external" href="https://docs.docker.com/v17.09/engine/admin/volumes/bind-mounts/" target="_blank">Docker bind mount documentation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> is a well-written resource.</p>
+</div>
+<p>The general form for mounting a volume through a run command is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-v &lt;/host/directory/path&gt;:&lt;container/directory/path&gt;:&lt;<span class="nb">bind</span> options&gt;
+</pre></div>
+</div>
+<p>As an example if we wanted to mount the host directory <code class="docutils literal notranslate"><span class="pre">~/geoserver/data</span></code> to the container’s configuration directory <code class="docutils literal notranslate"><span class="pre">/opt/geoserver/data_dir</span></code> with <code class="docutils literal notranslate"><span class="pre">rw</span></code> or <cite>read-write</cite> ability we would use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>-v ~/geoserver/data:/opt/geoserver/data_dir:rw
+</pre></div>
+</div>
+<p>Now when the container is started all of the configuration data will be written to the bind-mounted volume on the host at <code class="docutils literal notranslate"><span class="pre">~/geoserver/data</span></code>. Later when we deploy the Geoserver we can upload this directory and mount it to the deployed container to save time having to reconfigure it!</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">While this shortcut will save you from having to reconfigure the entire server during deployment <strong>you will still need to update the Postgis data store connection details to point at the EC2 (or RDS) database in your VPC.</strong></p>
+</div>
+</div>
+<div class="section" id="start-geoserver">
+<h3>Start Geoserver<a class="headerlink" href="#start-geoserver" title="Permalink to this headline">¶</a></h3>
+<p>Once the image has been pulled we can run the container using the following command. If you choose to bind mount a volume don’t forget to include that option in the <code class="docutils literal notranslate"><span class="pre">run</span></code> command.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker run -d -p <span class="m">8081</span>:8080 --name zika-geoserver kartoza/geoserver:2.15.2
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-a-zika-workspace">
+<h3>Create a Zika Workspace<a class="headerlink" href="#create-a-zika-workspace" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: <code class="docutils literal notranslate"><span class="pre">zika</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">namespace</span> <span class="pre">URI</span></code>: <code class="docutils literal notranslate"><span class="pre">https://zika.devops.launchcode.org</span></code></p>
+<p>you do not need to check either of the boxes (default, isolated)</p>
+</div></blockquote>
+</div>
+<div class="section" id="configure-a-postgis-data-store">
+<h3>Configure a PostGIS Data Store<a class="headerlink" href="#configure-a-postgis-data-store" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Create a PostGIS data store using the Zika PostGIS database credentials. If you are running the <code class="docutils literal notranslate"><span class="pre">launchcodedevops/zika</span></code> database container then the following credentials can be used:<ul>
+<li>name: <code class="docutils literal notranslate"><span class="pre">zika</span></code></li>
+<li>host: <code class="docutils literal notranslate"><span class="pre">localhost</span></code></li>
+<li>port: <code class="docutils literal notranslate"><span class="pre">5432</span></code></li>
+<li>username: <code class="docutils literal notranslate"><span class="pre">zika_user</span></code></li>
+<li>password: <code class="docutils literal notranslate"><span class="pre">zika</span></code></li>
+</ul>
+</li>
+</ul>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">When deploying the Geoserver you will need to update the <code class="docutils literal notranslate"><span class="pre">host</span></code> parameter to point at your PostGIS EC2 instance IP or RDS endpoint.</p>
+</div>
+</div>
+<div class="section" id="create-a-view-layer">
+<h3>Create a View Layer<a class="headerlink" href="#create-a-view-layer" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Create a new layer from the <code class="docutils literal notranslate"><span class="pre">locations_with_cases_by_date</span></code> view<ul>
+<li>Make sure Native and Declared SRS are set to <strong>EPSG:4326</strong></li>
+<li>For Native Bounding Box, click on <strong>Compute from data</strong></li>
+<li>For Lat/Lon Bounding Box, click on <strong>Compute from native bounds</strong></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="updating-openlayers-code">
+<h3>Updating OpenLayers Code<a class="headerlink" href="#updating-openlayers-code" title="Permalink to this headline">¶</a></h3>
+<p>Following the <a class="reference external" href="https://openlayers.org/en/latest/examples/vector-wfs-getfeature.html" target="_blank">OpenLayers example<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> for querying <code class="docutils literal notranslate"><span class="pre">GetFeature</span></code>, update your OpenLayers code to query GeoServer to get locations with report totals by date. You’ll need to use the <code class="docutils literal notranslate"><span class="pre">ol.format.filter.equalTo</span></code> filter.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Take a look at the many filters available. Get creative with the search tool you create for WFS requests!</p>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">For the geometries in your layer to be rendered properly on the map, the spatial reference systems (SRS) must match the base layer of the map. <strong>If they do not your features can be distorted or silently fail which can be extremely challenging and frustrating to debug.</strong> The Open Street Maps (OSM) base layer we have been using has the SRS <code class="docutils literal notranslate"><span class="pre">EPSG:3857</span></code> while our PostGIS data has a default SRS of <code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code>. You can control the SRS that is used to generate the returned features by setting the <code class="docutils literal notranslate"><span class="pre">srsName</span></code> parameter when creating the get feature request in OpenLayers.</p>
+</div>
+</div>
+</div>
+<div class="section" id="deploying-geoserver">
+<h2>Deploying GeoServer<a class="headerlink" href="#deploying-geoserver" title="Permalink to this headline">¶</a></h2>
+<p>Introduce a new instance to your cloud deployment that will run the Geoserver. This instance should run the Geoserver container much like the Elasticsearch and PostGIS instances.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">If you chose to store the Geoserver configuration data you can upload it to an S3 bucket then copy it into the instance during deployment. Once copied into the instance just mount it into the container when issuing the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span></code> command.</p>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Always try to script as much as possible in the <code class="docutils literal notranslate"><span class="pre">user</span> <span class="pre">data</span></code> section of the EC2 instance configuration. Production deployments rarely, if ever, involve any setup done through SSH.</p>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Be mindful when sizing your EC2 instance. Like Elasticsearch the Geoserver container consumes quite a bit if memory (around <code class="docutils literal notranslate"><span class="pre">1.75GB</span></code> during usage) so smaller instance types will not be suitable.</p>
+</div>
+</div>
+<div class="section" id="bonus-missions">
+<h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Only consider these bonus missions <strong>after completing all the core requirements for this project week.</strong></p>
+</div>
+<div class="section" id="docker-compose-deployment">
+<h3>Docker Compose Deployment<a class="headerlink" href="#docker-compose-deployment" title="Permalink to this headline">¶</a></h3>
+<p>If you want to gain more advanced practice with Docker you can also consider using <code class="docutils literal notranslate"><span class="pre">docker-compose</span></code> to deploy everything within a single EC2 instance. This approach creates a back-end <cite>stack</cite> which runs the primary Zika API and Geoserver services along with the backing services of the PostGIS and Elasticsearch databases. Your VPC will be simplified by only requiring a single instance. Once you have it working you can safely remove the previous EC2 instances.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">This is a rather involved bonus mission and you will likely need help from your instructor. Start by creating the <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> file and testing it out locally to make sure it works as expected. The good news is once it works on your machine it will work just the same in an EC2 instance!</p>
+</div>
+<p>You will want to refer to the <a class="reference external" href="https://docs.docker.com/compose/compose-file/" target="_blank">docker-compose file reference<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> along with the practice project covered in the prep weeks to develop your compose file. Remember that writing a compose file is like writing a script for running several containers at once. Think about the options you use when running each container manually with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">...</span></code> then translate those into service definitions.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">It is easy to get overwhelmed with all of the compose directives listed in the reference. Stick with version <code class="docutils literal notranslate"><span class="pre">3+</span></code> and only refer to directives for options you actually need instead of reading it from top to bottom.</p>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Gradually build up the compose file to make debugging easier. Start by writing one service. Then add another service one at a time while testing in between to make sure the stack is working. Once you understand how to configure a service you will find the others are intuitive to add.</p>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">In order to run the stack you will need to use a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> for creating an up-to-date Zika API image. This way the built image will always be up to date according to the latest <code class="docutils literal notranslate"><span class="pre">app.jar</span></code> file sent to the instance (manually or via pipeline)</p>
+</div>
+<div class="highlight-Dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span> <span class="s">launchcodedevops/openjdk8-jre</span>
+
+<span class="c"># expects app.jar to be in the same directory as this Dockerfile</span>
+<span class="k">COPY</span> app.jar app.jar
+
+<span class="k">CMD</span> <span class="p">[</span> <span class="s2">&quot;java&quot;</span><span class="p">,</span> <span class="s2">&quot;-jar&quot;</span><span class="p">,</span> <span class="s2">&quot;app.jar&quot;</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">You should bundle all of the files needed for the stack: <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">.env</span></code>, <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> (for the API) and the geoserver data (if you want to use a saved configuration). Create a <code class="docutils literal notranslate"><span class="pre">compose</span></code> directory in your Zika API repo to hold all of these files and add them to version control. You can then upload the directory to an S3 bucket to make it easy to copy into the host EC2 instance.</p>
+</div>
+<p>You can use the following commands to test and manage the compose stack:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># issue these from within the directory with the docker-compose.yml file</span>
+
+<span class="c1"># test the compose file for errors - if no errors are found the file contents will be printed</span>
+$ docker-compose config
+
+<span class="c1"># start up the stack in detached mode</span>
+$ docker-compose up -d
+
+<span class="c1"># shut down the stack</span>
+$ docker-compose down
+
+<span class="c1"># view stack containers</span>
+$ docker-compose ps
+
+<span class="c1"># view memory usage of all containers in the stack</span>
+<span class="c1"># thanks to https://github.com/docker/compose/issues/1197#issuecomment-405207016</span>
+$ docker-compose ps -q <span class="p">|</span> xargs docker stats
+</pre></div>
+</div>
+</div>
+<div class="section" id="geoserver-elasticsearch-integration">
+<h3>Geoserver Elasticsearch Integration<a class="headerlink" href="#geoserver-elasticsearch-integration" title="Permalink to this headline">¶</a></h3>
+<p>Check out the <a class="reference external" href="https://github.com/ngageoint/elasticgeo" target="_blank">ElasticGeo Plugin<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>. It is an Elasticsearch plugin that allows you to integrate Elasticsearch into GeoServer. The great thing is that you can do Elasticsearch queries directly through GeoServer via WFS calls. Here are the setup instructions and instructions on how to make the calls: <a class="reference external" href="https://github.com/ngageoint/elasticgeo/blob/master/gs-web-elasticsearch/doc/index.rst" target="_blank">ElasticGeo Instructions<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

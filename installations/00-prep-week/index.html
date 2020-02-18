@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installation: Essential Tooling &amp; Configuration &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Installation: Docker" href="../01-docker/index.html" />
+    <link rel="prev" title="Walkthrough: Upgrading to Spring Boot 2.x" href="../../walkthroughs/upgrading-spring-boot/index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/installations/index.html">Installations</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Welcome, Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Terminal, Shell, Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Shell, Git, SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: SQL, HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: HTTP, Docker</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day1/index.html">Week 2 - Day 1: HTML, CSS, Browser DevTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day2/index.html">Week 2 - Day 2: HTML/CSS Template, JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day3/index.html">Week 2 - Day 3: Programming Fundamentals, JavaScript, DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day4/index.html">Week 2 - Day 4: JS, DOM, Promises, AJAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day5/index.html">Week 2 - Day 5: Promises, AJAX, HTTP</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: Java, OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2: Spring Boot, Controllers, Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Models, ORM (Hibernate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: Persistence, ORM Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: Review</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day1/index.html">Week 4 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day2/index.html">Week 4 - Day 2: Security, Test-driven development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day3/index.html">Week 4 - Day 3: Integration testing, dependency injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day4/index.html">Week 4 - Day 4: Postgres, Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day5/index.html">Week 4 - Day 5: AJAX, Open Layers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/project/index.html">Week 5 - Project Week: Zika Mission Control</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day1/index.html">Week 6 - Day 1: RESTful web services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day2/index.html">Week 6 - Day 2: Swagger REST framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day3/index.html">Week 6 - Day 3: Intro to Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day4/index.html">Week 6 - Day 4: More Elasticsearch, Integrating ES with Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day5/index.html">Week 6 - Day 5: ES2015, ESLint, OpenLayers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week07/project/index.html">Week 7 - Project Week: Zika Mission Control Part 2</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day1/index.html">Week 8 - Day 1: Intro to DevOps/AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day2/index.html">Week 8 - Day 2: More with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day3/index.html">Week 8 - Day 3: 12 Factor Apps and Auto Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day4/index.html">Week 8 - Day 4: Gradle, Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day5/index.html">Week 8 - Day 5: Sonarqube</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/project/index.html">Week 9 - Project Week: Zika Mission Control Part 3</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week11/project/index.html">Week 11 - Project Week: Zika Mission Control Part 4</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day3/index.html">Week 12 - Day 3: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day4/index.html">Week 12 - Day 4: OAuth 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day5/index.html">Week 12 - Day 5: Certificates</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/aws-intro/index.html">Walkthrough: Intro to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/aws-rds-vpc/index.html">Walkthrough: Introduction to Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/certificate-authority/index.html">Certificate Authority</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/client-certificates/index.html">Client Certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/docker/index.html">Walkthrough: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch-spring/index.html">Walkthrough: Elasticsearch in Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch/index.html">Walkthrough: Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch2/index.html">Walkthrough: Elasticsearch Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/eslint-airwaze/index.html">Walkthrough: ESLint Airwaze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/gitLab/index.html">Walkthrough: Git and Gitlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/gradle/index.html">Walkthrough: Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/hashing-salting/index.html">Walkthrough: Hashing and Salting Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/jenkins/index.html">Walkthrough: CI/CD With Jenkins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/launchcart-rest/index.html">Walkthrough: LaunchCart REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/oauth2/index.html">Visual OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/openlayers/index.html">Walkthrough: OpenLayers and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/postgress/index.html">Walkthrough: PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/sonarqube/index.html">Walkthrough: Sonarqube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/spring-data-jpa-hibernate/index.html">Walkthrough: Cars Demo - Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/spring-integration-testing/index.html">Walkthrough: Spring Integration Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/swagger/index.html">Walkthrough: SwaggerUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/tdd/index.html">Walkthrough: TDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/unit-tests/index.html">Walkthrough: Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/upgrading-spring-boot/index.html">Walkthrough: Upgrading to Spring Boot 2.x</a></li>
+</ol>
+<ol class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation: Essential Tooling &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-docker/index.html">Installation: Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-docker-psql/index.html">Installation: Docker PSQL Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-docker-postgis/index.html">Installation: Docker PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-docker-elasticsearch/index.html">Installation: Docker Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-docker-kibana/index.html">Installation: Docker Kibana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-docker-jenkins/index.html">Installation: Docker Jenkins</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/00-intellij/index.html">Configuration: IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/01-runtime-configurations/index.html">Configuration: IntelliJ - Runtime Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/02-environment-variables-intellij/index.html">Configuration: Environment Variables - IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/04-spring-elasticsearch/index.html">Configuration: Spring &amp; Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/05-spring-postgres/index.html">Configuration: Spring &amp; Postgres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/06-vscode-eslint/index.html">Configuration: Visual Studio Code - ESLint</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/docker/index.html">Docker</a></li>
+</ol>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Installation: Essential Tooling &amp; Configuration</a><ul>
+<li><a class="reference internal" href="#tools-of-the-trade">Tools of the Trade</a></li>
+<li><a class="reference internal" href="#installing-homebrew">Installing HomeBrew</a></li>
+<li><a class="reference internal" href="#installing-postgresql">Installing PostgreSQL</a></li>
+<li><a class="reference internal" href="#installing-python-3-x">Installing Python 3.X</a></li>
+<li><a class="reference internal" href="#installing-docker-for-mac">Installing Docker for Mac</a></li>
+<li><a class="reference internal" href="#installing-jdk-8">Installing JDK 8</a></li>
+<li><a class="reference internal" href="#installing-intellij">Installing IntelliJ</a></li>
+<li><a class="reference internal" href="#installing-nodejs">Installing NodeJS</a></li>
+<li><a class="reference internal" href="#installing-vscode">Installing VSCode</a></li>
+<li><a class="reference internal" href="#congratulations">Congratulations!</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="installation-essential-tooling-configuration">
+<span id="prep-week-installation"></span><h1>Installation: Essential Tooling &amp; Configuration<a class="headerlink" href="#installation-essential-tooling-configuration" title="Permalink to this headline">¶</a></h1>
+<p>Before we begin learning we have to establish a common technological ground across all our machines. It’s important for everyone to have <strong>parity</strong> across machines so that nobody is left behind or delayed by inconsistent behaviors during lectures and project building.</p>
+<p>In these instructions we will install and configure the many different tools used throughout the course. Most of these tools will not be used until several weeks from now. But they are important to install, configure, and test so that any incompatibilities can be discovered and resolved sooner rather than later.</p>
+<p>Do not worry about feeling overwhelmed during these steps. Take your time and follow the directions step-by-step as your instructor guides you. Do not be embarassed to ask questions at any time if you are confused or want more information.</p>
+<blockquote>
+<div><p><strong>Do not skip ahead or rush on any section or step</strong></p>
+<p>Rushing will likely result in mistakes that delay the entire class</p>
+<p>Follow the instructor as they go through each installation and configuration</p>
+</div></blockquote>
+<p>You will be exposed to a lot of new technologies and techniques during this process. You do not need to memorize or fully understand what is being done (but there are a lot of notes and comments for those that do). We will be exploring these tools in greater detail later when they are used in the course. By going through the process early you will be prepared to focus on learning rather than configuring and debugging.</p>
+<div class="section" id="tools-of-the-trade">
+<h2>Tools of the Trade<a class="headerlink" href="#tools-of-the-trade" title="Permalink to this headline">¶</a></h2>
+<p>Below you will find a brief overview of each of the tools. Exploring these technologies from a high level will build a foundation for understanding them later in the course when they are used.</p>
+<ul class="simple">
+<li><strong>HomeBrew: a package manager for OSX (Mac) developer tools</strong><ul>
+<li>Installing system-wide tools is often a tedious process of downloading, unpacking, installing and configuring</li>
+<li>HomeBrew makes this process easy and consistent for nearly all packages that you would need on your Mac</li>
+<li>If you are familiar with Linux this is similar to the <code class="docutils literal notranslate"><span class="pre">yum</span></code> (RedHat based), <code class="docutils literal notranslate"><span class="pre">apt/apt-get</span></code> (Debian based) or <code class="docutils literal notranslate"><span class="pre">pacman</span></code> (Arch based) package managers</li>
+</ul>
+</li>
+<li><strong>PostgreSQL: A database management system (DBMS) for relational data</strong><ul>
+<li>Includes the core DBMS and the <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI tool</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">psql</span></code> CLI tool allows us to connect to and manage databases using its SQL REPL interface</li>
+<li>It can also be used to execute SQL commands directly from the command line</li>
+</ul>
+</li>
+<li><strong>Python 3.X: the latest version of Python</strong><ul>
+<li>OSX comes pre-installed with a system version of Python 2.7 (2.X) that it uses for internal operations</li>
+<li>Python 2 is a legacy version of Python that was replaced by Python 3</li>
+<li>For the examples in this course we will be using modern Python libraries that require a 3.x version to execute</li>
+<li>We will install the latest (3.X) version of Python alongside the system version so they can both be used for their respective cases</li>
+</ul>
+</li>
+<li><strong>Docker For Mac: a set of tools for working with Docker containers</strong><ul>
+<li>Docker Machine: a Linux virtual machine that runs the Docker Engine</li>
+<li>Docker Engine: the program used to provision and manage Docker containers running on a Docker Machine</li>
+<li>Docker CLI: the command line program used issue commands to the Docker Engine</li>
+</ul>
+</li>
+<li><strong>JDK 8: the Java Development Kit (version 8) includes all of the tools we need to write and execute Java code on our machine</strong><ul>
+<li>The Java standard library, debugger and compiler for writing Java code known as the “development kit”</li>
+<li>The JRE (Java Runtime Environment) is the set of tools we need to actually execute Java after it’s been compiled</li>
+<li>The JVM (Java Virtual Machine) is the “write once, run anywhere” tool that actually executes the byte code that Java gets compiled to</li>
+</ul>
+</li>
+<li><strong>JetBrains IntelliJ IDEA: the IDE (Integrated Development Environment) we will use to write Java code</strong><ul>
+<li>An IDE differs from a TE (text editor) in that it includes many additional tools and features</li>
+<li>Every IDE is designed for development in a specific language (sometimes with additional, but often limited, support for multiple languages)</li>
+<li>IDEs are “heavier” in consuming resources (CPU/RAM) because they have to support so many more features</li>
+<li>In exchange for the higher consumption they are better at handling large code bases, have integrated debugging, and other conveniences</li>
+</ul>
+</li>
+<li><strong>Node[JS]: Node is a JavaScript runtime for executing JavaScript outside of the browser</strong><ul>
+<li>Node is a runtime that includes a CLI tool we can use to execute JavaScript code or as a REPL shell (like the Bash or Python shell)</li>
+<li>It is considered “headless” in that it runs outside of the browser</li>
+<li>It shares all of the JavaScript standard library besides those APIs that are browser based (like <code class="docutils literal notranslate"><span class="pre">window</span></code> and <code class="docutils literal notranslate"><span class="pre">document</span></code>) while adding some that would not be accessible by the browser (like <code class="docutils literal notranslate"><span class="pre">http</span></code> and <code class="docutils literal notranslate"><span class="pre">fs</span></code> for file system access)</li>
+<li>It comes with the Node Package Manager (NPM) which we will use to search and install packages (libraries and frameworks) for JavaScript</li>
+</ul>
+</li>
+<li><strong>Visual Studio Code: the TE (text/code editor) we will use to write client-side code like HTML, CSS and JavaScript</strong><ul>
+<li>A lightweight text / code editor</li>
+<li>Using free extensions it can be customized to rival the capabilities of a full-blown IDE (without any bloat from unused features)</li>
+<li>It shines as a code editor for working with JavaScript due to the large community of JavaScript developers that use and develop extensions for it</li>
+<li><em>Interesting bit: VSC is actually written in JavaScript using a cross-platoform desktop framework called Electron!</em></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="installing-homebrew">
+<h2>Installing HomeBrew<a class="headerlink" href="#installing-homebrew" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Installing HomeBrew is as easy as using it</li>
+<li>Enter the following command in your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> then accept all defaults while following the instructions</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ /usr/bin/ruby -e <span class="s2">&quot;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Confirm the installation was successful by entering</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew --version
+
+<span class="c1"># expect the following output (2.X.X, minor versions and commits are arbitrary)</span>
+Homebrew <span class="m">2</span>.1.15
+Homebrew/homebrew-core <span class="o">(</span>git revision 66ea9<span class="p">;</span> last commit <span class="m">2019</span>-10-22<span class="o">)</span>
+Homebrew/homebrew-cask <span class="o">(</span>git revision <span class="m">43442</span><span class="p">;</span> last commit <span class="m">2019</span>-10-23<span class="o">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-postgresql">
+<span id="postgres"></span><h2>Installing PostgreSQL<a class="headerlink" href="#installing-postgresql" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Now that we have installed HomeBrew the installation of PostgreSQL will be a breeze</li>
+<li>Enter the following into your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew install postgresql
+</pre></div>
+</div>
+<ul class="simple">
+<li>Confirm the installation was successful by entering</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ which psql
+
+<span class="c1"># should output the following path</span>
+/usr/local/bin/psql
+
+$ psql --version
+
+<span class="c1"># should output the following, the versions may be different</span>
+psql <span class="o">(</span>PostgreSQL<span class="o">)</span> <span class="m">10</span>.1
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-python-3-x">
+<h2>Installing Python 3.X<a class="headerlink" href="#installing-python-3-x" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>We will install the 3.X version of Python using HomeBrew as well</li>
+<li>Enter the following command in your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ brew install python
+</pre></div>
+</div>
+<ul class="simple">
+<li>Enter the following commands in your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> to confirm the installation was successful</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ which python
+
+<span class="c1"># should output</span>
+/usr/local/bin/python3
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-docker-for-mac">
+<h2>Installing Docker for Mac<a class="headerlink" href="#installing-docker-for-mac" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>First you need to create a Docker Hub account (like GitHub but for Docker)<ul>
+<li><a class="reference external" href="https://hub.docker.com/signup" target="_blank">Sign up for Docker Hub<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+</ul>
+</li>
+<li>Next <a class="reference external" href="https://hub.docker.com/?overlay=onboarding" target="_blank">install Docker for Mac<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and follow the instructional walkthrough</li>
+<li>Go to your desktop and right click the disk image of the installer to remove it<ul>
+<li>You can discard the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file at this point</li>
+</ul>
+</li>
+<li>Confirm the installation was successful by opening the Docker app<ul>
+<li>You can find it under Finder (file explorer) &gt; Applications &gt; Docker or through Spotlight</li>
+</ul>
+</li>
+<li>When Docker is first opened you will have to do some initial configuration<ul>
+<li>On the <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">Desktop</span> <span class="pre">needs</span> <span class="pre">privileged</span> <span class="pre">access</span></code> prompt select <code class="docutils literal notranslate"><span class="pre">OK</span></code> and enter your password</li>
+<li>Next enter your Docker Hub credentials to log in</li>
+</ul>
+</li>
+<li>Now select the Docker icon in your status bar<ul>
+<li>Click <code class="docutils literal notranslate"><span class="pre">Preferences</span></code></li>
+<li>Click the <code class="docutils literal notranslate"><span class="pre">Advanced</span></code> tab</li>
+<li>for <code class="docutils literal notranslate"><span class="pre">CPUs</span></code> ensure at least <code class="docutils literal notranslate"><span class="pre">3</span></code> cores are allocated</li>
+<li>for <code class="docutils literal notranslate"><span class="pre">Memory</span></code> ensure at least <code class="docutils literal notranslate"><span class="pre">5GiB</span></code> are allocated</li>
+<li>for <code class="docutils literal notranslate"><span class="pre">Swap</span></code> ensure at least <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">GiB</span></code> are allocated</li>
+</ul>
+</li>
+<li>Confirm that Docker is available on your machine by entering the following command in your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ docker --version
+
+<span class="c1"># expect the following output, the minor and build details are arbitrary</span>
+Docker version <span class="m">19</span>.XX.X, build X
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-jdk-8">
+<h2>Installing JDK 8<a class="headerlink" href="#installing-jdk-8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Download the <a class="reference external" href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">JDK 8 installer from Oracle<i class="fas fa-external-link-alt" aria-hidden="true"></i></a><ul>
+<li>Select the Mac OSX x64 version (about halfway down the list)</li>
+</ul>
+</li>
+<li>Open (double click) the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file to display the installer application</li>
+<li>Open (double click) the <code class="docutils literal notranslate"><span class="pre">.pkg</span></code> icon that appears to run the installer<ul>
+<li>Follow all instructions during installation and accept all the defaults</li>
+<li>If you are confused at any point call over your instructor or refer to the <a class="reference external" href="https://docs.oracle.com/javase/8/docs/technotes/guides/install/mac_jdk.html" target="_blank">JDK 8 Installation for OS X documentation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+</ul>
+</li>
+<li>Go to your desktop and right click the disk image of the installer to unmount it<ul>
+<li>You can also discard the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file from your downloads folder at this point</li>
+</ul>
+</li>
+<li>Open your terminal application<ul>
+<li>This can be found from the Finder (file explorer) &gt; Applications &gt; Utilities &gt; Terminal</li>
+<li>Or by pulling up Spotlight using the hotkey <code class="docutils literal notranslate"><span class="pre">CMD+SPACE</span></code> and searching for <code class="docutils literal notranslate"><span class="pre">Terminal</span></code></li>
+<li>Once opened in your dock right click the icon and select <code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">&gt;</span> <span class="pre">keep</span></code> in dock for easy access later</li>
+</ul>
+</li>
+<li>Enter the following commands to confirm the installation was successful<ul>
+<li>If your outputs do not match the expected outputs call over your instructor so they can sort you out</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<div><p><strong>Note:</strong> the <code class="docutils literal notranslate"><span class="pre">$</span></code> is a common symbol used in documentation to denote a command entered into the terminal (command line instruction)</p>
+<p>The actual command to enter is what comes after the <code class="docutils literal notranslate"><span class="pre">$</span></code> character</p>
+<p>Each line that begins with a <code class="docutils literal notranslate"><span class="pre">$</span></code> denotes a single (distinct) command to enter</p>
+<p>Lines beginning with <code class="docutils literal notranslate"><span class="pre">#</span></code> are comments</p>
+<p>Lines beginning with neither <code class="docutils literal notranslate"><span class="pre">$</span></code> nor <code class="docutils literal notranslate"><span class="pre">#</span></code> are outputs from the previous command</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ which java
+
+<span class="c1"># should output the following</span>
+/usr/bin/java
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ java -version
+
+<span class="c1"># expect the following output, the minor version is arbitrary</span>
+java version <span class="s2">&quot;1.8.X&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-intellij">
+<h2>Installing IntelliJ<a class="headerlink" href="#installing-intellij" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Installs the Intellij IDEA CE (Community Edition) Java IDE</li>
+<li><a class="reference external" href="https://www.jetbrains.com/idea/download/#section=mac" target="_blank">Download the IntelliJ installer<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li>Open (double click) the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file</li>
+<li>Drag the Intellij IDEA icon into your Applications folder</li>
+<li>Go to your desktop and right click the disk image of the installer to remove it<ul>
+<li>You can discard the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file at this point</li>
+</ul>
+</li>
+<li>Confirm the installation was successful by opening the Intellij IDEA app<ul>
+<li>You can find it under Finder (file explorer) &gt; Applications &gt; Intellij IDEA CE</li>
+<li>Once opened right click the icon in your dock and select <code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">&gt;</span> <span class="pre">keep</span> <span class="pre">in</span> <span class="pre">dock</span></code> for easy access later</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="installing-nodejs">
+<h2>Installing NodeJS<a class="headerlink" href="#installing-nodejs" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>NodeJS can be installed directly or through a tool called NVM</li>
+<li>NVM (Node Version Manager) is a virtual environment manager for NodeJS</li>
+<li>We will use NVM rather than the direct install for a cleaner management of globally installed packages (packages that are available system-wide)</li>
+<li>Before installing NVM we have to confirm or create our shell profile files.<ul>
+<li>These are known as “shell profile configuration files”</li>
+<li>We will explore these files in greater detail later in the course</li>
+<li>For now we just need to ensure that they exist as NVM utilizes them during its installation and configuration process</li>
+</ul>
+</li>
+<li>In your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> enter the following commands:</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># echo is a command used to &quot;echo&quot; or print out a string to the console</span>
+<span class="c1"># $SHELL is an environment variable in your system that holds the path to your active shell program</span>
+<span class="c1"># here we are saying &quot;print out the path to my active shell&quot;</span>
+
+$ <span class="nb">echo</span> <span class="nv">$SHELL</span>
+
+<span class="c1"># should output</span>
+/bin/bash
+</pre></div>
+</div>
+<blockquote>
+<div><p>If it outputs <code class="docutils literal notranslate"><span class="pre">/bin/zsh</span></code> then you are using the ZShell</p>
+<p>You can follow the same steps but replace anything that says <code class="docutils literal notranslate"><span class="pre">bash</span></code> with <code class="docutils literal notranslate"><span class="pre">zsh</span></code></p>
+<p>Now enter the following command:</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># the cat command can be used to display the contents of a file</span>
+
+<span class="c1"># if the file is empty you will see a blank output</span>
+<span class="c1"># if the file has contents you will see them as the output</span>
+<span class="c1"># if the file doesn&#39;t exist you will receive an error output</span>
+
+<span class="c1"># this command will display the contents of the .bashrc file in your home (~) directory</span>
+
+<span class="c1"># if you are on ZShell enter cat ~/.zshrc</span>
+$ cat ~/.bashrc
+</pre></div>
+</div>
+<blockquote>
+<div><p>if you do not receive an error then the file exists and you can skip the next step</p>
+<p>if you get the following output: <code class="docutils literal notranslate"><span class="pre">cat:</span> <span class="pre">.bashrc:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code> then enter the following command:</p>
+</div></blockquote>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># touch is a command used to create new files</span>
+<span class="c1"># this command will create the .bashrc file in your home (~) directory</span>
+
+<span class="c1"># if you are on ZShell enter touch ~/.zshrc</span>
+$ touch ~/.bashrc
+</pre></div>
+</div>
+<blockquote>
+<div><p>reissue the previous <code class="docutils literal notranslate"><span class="pre">cat</span></code> command to confirm it was created.</p>
+<p>you can press the up arrow in your terminal to find a previously entered command.</p>
+<p>you will receive a blank output since the file was just created</p>
+<p>if you receive an error ask your instructor to sort you out</p>
+</div></blockquote>
+<ul class="simple">
+<li>Now we have confirmed or created the file needed for the NVM installation</li>
+<li>Enter the following command into your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> to download and run the NVM installer</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># curl is a CLI tool for making network requests</span>
+<span class="c1"># here it is used to download the installer script</span>
+<span class="c1"># the script is then piped (|) to the bash interpreter for execution</span>
+
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh <span class="p">|</span> bash
+</pre></div>
+</div>
+<ul class="simple">
+<li>Confirm that the installation and configuration were succesful<ul>
+<li>In your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code> enter the following command</li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ nvm --version
+
+<span class="c1"># expect the following output, the version may be different</span>
+<span class="m">0</span>.35.0
+</pre></div>
+</div>
+<blockquote>
+<div>If you receive an error call over your instructor to sort you out</div></blockquote>
+<ul class="simple">
+<li>Next we will install the NodeJS version we will be using in this course and setting it as our default system version<ul>
+<li>Enter the following command in your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># the --lts flag instructs NVM to install the latest long term support version</span>
+
+$ nvm install --lts
+
+<span class="c1"># expect the following output, the versions may change as the LTS version changes</span>
+
+Installing latest LTS version.
+Downloading and installing node v12.13.0...
+Downloading https://nodejs.org/dist/v12.13.0/node-v12.13.0-darwin-x64.tar.xz...
+<span class="c1">######################################################################## 100.0%</span>
+Computing checksum with shasum -a <span class="m">256</span>
+Checksums matched!
+Now using node v12.13.0 <span class="o">(</span>npm v6.12.0<span class="o">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>You can now confirm that both <code class="docutils literal notranslate"><span class="pre">node</span></code> and <code class="docutils literal notranslate"><span class="pre">npm</span></code> are working by checking their versions<ul>
+<li>Enter the following commands in your <code class="docutils literal notranslate"><span class="pre">Terminal</span></code></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ node --version
+
+<span class="c1"># expect the following output, the version is arbitrary and may change as LTS version changes</span>
+v12.13.0
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm --version
+
+<span class="c1"># expect the following output, the version is arbitrary and depends on the current Node LTS</span>
+<span class="m">6</span>.12.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-vscode">
+<h2>Installing VSCode<a class="headerlink" href="#installing-vscode" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Installs the VSC (Visual Studio Code) text/code editor</li>
+<li><a class="reference external" href="https://code.visualstudio.com/docs/setup/mac" target="_blank">Download the VSC installer<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li>Open (double click) the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file</li>
+<li>Drag the Visual Studio Code icon into your Applications folder</li>
+<li>Go to your desktop and right click the disk image of the installer to remove it<ul>
+<li>You can discard the <code class="docutils literal notranslate"><span class="pre">.dmg</span></code> file at this point</li>
+</ul>
+</li>
+<li>Confirm the installation was successful by opening the VSC app<ul>
+<li>You can find it under Finder (file explorer) &gt; Applications &gt; Code</li>
+<li>Once opened right click the icon in your dock and select <code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">&gt;</span> <span class="pre">keep</span> <span class="pre">in</span> <span class="pre">dock</span></code> for easy access later</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="congratulations">
+<h2>Congratulations!<a class="headerlink" href="#congratulations" title="Permalink to this headline">¶</a></h2>
+<p>You made it through the installation and configuration. Most of the tedious and frustrating aspects of the course are now behind you. From this point forward you can focus on learning how to use these technologies to build solutions instead of tearing your hair out!</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Installation: Docker Jenkins &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Configuration: IntelliJ" href="../../configurations/00-intellij/index.html" />
+    <link rel="prev" title="Installation: Docker Kibana" href="../05-docker-kibana/index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/installations/index.html">Installations</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Welcome, Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Terminal, Shell, Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Shell, Git, SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: SQL, HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: HTTP, Docker</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day1/index.html">Week 2 - Day 1: HTML, CSS, Browser DevTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day2/index.html">Week 2 - Day 2: HTML/CSS Template, JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day3/index.html">Week 2 - Day 3: Programming Fundamentals, JavaScript, DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day4/index.html">Week 2 - Day 4: JS, DOM, Promises, AJAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day5/index.html">Week 2 - Day 5: Promises, AJAX, HTTP</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: Java, OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2: Spring Boot, Controllers, Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Models, ORM (Hibernate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: Persistence, ORM Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: Review</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day1/index.html">Week 4 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day2/index.html">Week 4 - Day 2: Security, Test-driven development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day3/index.html">Week 4 - Day 3: Integration testing, dependency injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day4/index.html">Week 4 - Day 4: Postgres, Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day5/index.html">Week 4 - Day 5: AJAX, Open Layers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/project/index.html">Week 5 - Project Week: Zika Mission Control</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day1/index.html">Week 6 - Day 1: RESTful web services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day2/index.html">Week 6 - Day 2: Swagger REST framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day3/index.html">Week 6 - Day 3: Intro to Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day4/index.html">Week 6 - Day 4: More Elasticsearch, Integrating ES with Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day5/index.html">Week 6 - Day 5: ES2015, ESLint, OpenLayers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week07/project/index.html">Week 7 - Project Week: Zika Mission Control Part 2</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day1/index.html">Week 8 - Day 1: Intro to DevOps/AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day2/index.html">Week 8 - Day 2: More with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day3/index.html">Week 8 - Day 3: 12 Factor Apps and Auto Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day4/index.html">Week 8 - Day 4: Gradle, Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day5/index.html">Week 8 - Day 5: Sonarqube</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/project/index.html">Week 9 - Project Week: Zika Mission Control Part 3</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week11/project/index.html">Week 11 - Project Week: Zika Mission Control Part 4</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day3/index.html">Week 12 - Day 3: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day4/index.html">Week 12 - Day 4: OAuth 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day5/index.html">Week 12 - Day 5: Certificates</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/aws-intro/index.html">Walkthrough: Intro to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/aws-rds-vpc/index.html">Walkthrough: Introduction to Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/certificate-authority/index.html">Certificate Authority</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/client-certificates/index.html">Client Certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/docker/index.html">Walkthrough: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch-spring/index.html">Walkthrough: Elasticsearch in Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch/index.html">Walkthrough: Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/elasticsearch2/index.html">Walkthrough: Elasticsearch Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/eslint-airwaze/index.html">Walkthrough: ESLint Airwaze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/gitLab/index.html">Walkthrough: Git and Gitlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/gradle/index.html">Walkthrough: Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/hashing-salting/index.html">Walkthrough: Hashing and Salting Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/jenkins/index.html">Walkthrough: CI/CD With Jenkins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/launchcart-rest/index.html">Walkthrough: LaunchCart REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/oauth2/index.html">Visual OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/openlayers/index.html">Walkthrough: OpenLayers and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/postgress/index.html">Walkthrough: PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/sonarqube/index.html">Walkthrough: Sonarqube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/spring-data-jpa-hibernate/index.html">Walkthrough: Cars Demo - Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/spring-integration-testing/index.html">Walkthrough: Spring Integration Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/swagger/index.html">Walkthrough: SwaggerUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/tdd/index.html">Walkthrough: TDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/unit-tests/index.html">Walkthrough: Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../walkthroughs/upgrading-spring-boot/index.html">Walkthrough: Upgrading to Spring Boot 2.x</a></li>
+</ol>
+<ol class="current">
+<li class="toctree-l1"><a class="reference internal" href="../00-prep-week/index.html">Installation: Essential Tooling &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-docker/index.html">Installation: Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-docker-psql/index.html">Installation: Docker PSQL Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-docker-postgis/index.html">Installation: Docker PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-docker-elasticsearch/index.html">Installation: Docker Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-docker-kibana/index.html">Installation: Docker Kibana</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation: Docker Jenkins</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/00-intellij/index.html">Configuration: IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/01-runtime-configurations/index.html">Configuration: IntelliJ - Runtime Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/02-environment-variables-intellij/index.html">Configuration: Environment Variables - IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/04-spring-elasticsearch/index.html">Configuration: Spring &amp; Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/05-spring-postgres/index.html">Configuration: Spring &amp; Postgres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/06-vscode-eslint/index.html">Configuration: Visual Studio Code - ESLint</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/docker/index.html">Docker</a></li>
+</ol>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Installation: Docker Jenkins</a><ul>
+<li><a class="reference internal" href="#installation-steps">Installation Steps</a></li>
+<li><a class="reference internal" href="#running-a-jenkins-container">Running A Jenkins Container</a><ul>
+<li><a class="reference internal" href="#container-volumes">Container Volumes</a></li>
+<li><a class="reference internal" href="#check-that-everything-worked">Check That Everything Worked</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#jenkins-first-time-setup">Jenkins First Time Setup</a></li>
+<li><a class="reference internal" href="#seting-up-the-aws-cli-in-the-jenkins-container">Seting Up the AWS CLI in the Jenkins Container</a><ul>
+<li><a class="reference internal" href="#using-env-files">Using Env Files</a></li>
+<li><a class="reference internal" href="#setting-up-the-aws-env-file">Setting Up the AWS Env File</a></li>
+<li><a class="reference internal" href="#id1">Check That Everything Worked</a></li>
+<li><a class="reference internal" href="#testing-the-aws-cli">Testing the AWS CLI</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="installation-docker-jenkins">
+<span id="docker-jenkins"></span><h1>Installation: Docker Jenkins<a class="headerlink" href="#installation-docker-jenkins" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installation-steps">
+<h2>Installation Steps<a class="headerlink" href="#installation-steps" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Run a new Jenkins container using a persisted volume</li>
+<li>Jenkins first time setup</li>
+<li>Configuring the AWS CLI inside the Jenkins container</li>
+<li>Connect other containers to the Jenkins container</li>
+</ol>
+</div>
+<div class="section" id="running-a-jenkins-container">
+<h2>Running A Jenkins Container<a class="headerlink" href="#running-a-jenkins-container" title="Permalink to this headline">¶</a></h2>
+<p>Docker makes creating new containers really easy, we simply need to provide a name for our container bind the correct ports, and include the image we want to run in our container.</p>
+<p>We have created a Jenkins container Image that includes the AWS CLI pre-installed. Like the other custom images used in this class it can be found under the <code class="docutils literal notranslate"><span class="pre">launchcodedevops</span></code> Docker Hub organization.</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker run -d --name jenkins -p 7070:8080 -v jenkins_home:/var/jenkins_home launchcodedevops/jenkins-awscli
+</pre></div>
+</div>
+<p>Although you have seen many docker run commands so far this one has a few options that may confuse you. The first difference is that we have <em>published</em> the host machine port <code class="docutils literal notranslate"><span class="pre">7070</span></code> to the container port <code class="docutils literal notranslate"><span class="pre">8080</span></code> – the default port Jenkins listens on. For consistency we usually publish the same host and container port. But in this case we use a different host port to avoid conflict with port <code class="docutils literal notranslate"><span class="pre">8080</span></code> that our Spring applications run on by default.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">The general form for <em>publishing</em> a port is <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">&lt;host</span> <span class="pre">port&gt;:&lt;container</span> <span class="pre">port&gt;</span></code>. This lets you define the host machine port independent of the container process port. Often container processes listen on common ports like <code class="docutils literal notranslate"><span class="pre">8080</span></code>. By varying the host port you can avoid port conflicts on the host machine or when running many containers that listen on the same port.</p>
+</div>
+<p>The second difference is the use of the <code class="docutils literal notranslate"><span class="pre">-v</span></code> or <em>volume</em> option. This option instructs Docker to create a persistent volume named <code class="docutils literal notranslate"><span class="pre">jenkins_home</span></code> and mount it to the container’s directory <code class="docutils literal notranslate"><span class="pre">/var/jenkins_home</span></code>.</p>
+<p>Recall that a core tenant of using Docker containers is to treat them as disposable or <em>ephemeral</em>. This is what gives Docker containers their unprecedented portability and scalability. In the next step we will configure our Jenkins container to prepare it for setting up a pipeline. During this step all of the settings are saved to the container’s <code class="docutils literal notranslate"><span class="pre">/var/jenkins_home</span></code> directory.</p>
+<p>If we dispose of the container we would also be disposing of all the settings it wrote internally to the configuration directory. It would be frustrating to have to re-configure Jenkins from scratch every time we recreate the container! And what if we wanted to run our container on a different machine, like a remote EC2 instance?</p>
+<p>Wouldn’t it be better if we could save those configuration files for reuse and portability while still having the freedom to create and destroy the container as needed?</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">By default all data written in a container exists in its internal file system layer. <strong>This data only exists for the lifetime of the container on the host machine that created it.</strong></p>
+</div>
+<div class="section" id="container-volumes">
+<h3>Container Volumes<a class="headerlink" href="#container-volumes" title="Permalink to this headline">¶</a></h3>
+<p>While a container itself should be disposable that doesn’t mean that all of the data inside of it needs to be discarded with it. For cases where the data a container uses needs to be <em>persisted</em> beyond its lifetime we can mount external volumes into a directory in the container.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">Think of a volume like an external drive that can be attached and unattached from containers.</p>
+</div>
+<p>From the container’s perspective it is writing to a directory in its file system. But because that directory is mounted from an external volume it will be persisted even after the container is destroyed.</p>
+<p>In the same way we can mount an existing volume to any new containers we create. Once again the container sees just another directory in its file system. But its contents will have been provided from the external volume. In our case we can persist our Jenkins settings in a volume then mount it into any new Jenkins containers we create so we don’t have to re-configure them every time!</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">There are many different types of mounts that can be used in a container. In this context we chose to use a <code class="docutils literal notranslate"><span class="pre">named</span> <span class="pre">volume</span> <span class="pre">mount</span></code> that the Docker Engine will manage for us. You can read more about the different storage options and their use cases in the <a class="reference external" href="https://docs.docker.com/storage/" target="_blank">storage documentation section<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
+</div>
+</div>
+<div class="section" id="check-that-everything-worked">
+<h3>Check That Everything Worked<a class="headerlink" href="#check-that-everything-worked" title="Permalink to this headline">¶</a></h3>
+<p>After issuing the <code class="docutils literal notranslate"><span class="pre">run</span></code> command you can run a few more commands to investigate what was created:</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># check that the container named &#39;jenkins&#39; is up and running
+$ docker ps
+
+# see the &#39;jenkins_home&#39; named volume created by the run command
+$ docker volume ls
+
+# inspect the container configuration (warning there is a LOT in here!)
+$ docker inspect jenkins
+
+# you can use grep to skip to the Mounts section of the configuration
+# the -A 11 option means print 11 lines after the matched term (Mounts)
+$ docker inspect jenkins | grep Mounts -A 11
+
+# gives the following output
+# you can see that the named volume &#39;jenkins_home&#39; has been mounted to &#39;/var/jenkins_home&#39;
+&quot;Mounts&quot;: [
+    {
+        &quot;Type&quot;: &quot;volume&quot;,
+        &quot;Name&quot;: &quot;jenkins_home&quot;,
+        # this is the directory where the volume exists on the Linux host (VM in Docker for Mac)
+        &quot;Source&quot;: &quot;/var/lib/docker/volumes/jenkins_home/_data&quot;,
+        # this is the directory where the volume is mounted in the container
+        &quot;Destination&quot;: &quot;/var/jenkins_home&quot;,
+        &quot;Driver&quot;: &quot;local&quot;,
+        &quot;Mode&quot;: &quot;z&quot;,
+        &quot;RW&quot;: true,
+        &quot;Propagation&quot;: &quot;&quot;
+    }
+],
+</pre></div>
+</div>
+<p>After checking that everything was set up correctly you can navigate to <a class="reference external" href="http://localhost:7070" target="_blank">http://localhost:7070<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> in your browser to begin configuring Jenkins.</p>
+</div>
+</div>
+<div class="section" id="jenkins-first-time-setup">
+<h2>Jenkins First Time Setup<a class="headerlink" href="#jenkins-first-time-setup" title="Permalink to this headline">¶</a></h2>
+<p>The first time you start an empty Jenkins server you will need to unlock it with an admin password.</p>
+<img alt="../../_images/unlock-jenkins.png" src="../../_images/unlock-jenkins.png" />
+<p>This password can be found at <code class="docutils literal notranslate"><span class="pre">/var/jenkins_home/secrets/initialAdminPassword</span></code> <em>within the container</em>. There are many ways we can access this value but the simplest is to have the container do the work for us! We can have the container print out the contents using the <code class="docutils literal notranslate"><span class="pre">exec</span></code> command.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">general form: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">&lt;container</span> <span class="pre">name</span> <span class="pre">/</span> <span class="pre">ID&gt;</span> <span class="pre">[...command]</span></code>. The <code class="docutils literal notranslate"><span class="pre">exec</span></code> command instructs a container to <em>execute</em> the command string provided after the container name. The <code class="docutils literal notranslate"><span class="pre">stdout</span></code> of the command will be displayed on the host machine. You can read more about the <a class="reference external" href="https://docs.docker.com/engine/reference/commandline/exec/" target="_blank">exec command and its many uses here<i class="fas fa-external-link-alt" aria-hidden="true"></i></a>.</p>
+</div>
+<p>Enter the following command to instruct the container to <code class="docutils literal notranslate"><span class="pre">cat</span></code> the contents of password file:</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+</pre></div>
+</div>
+<p>Copy and enter the password into the Unlock Jenkins page at <a class="reference external" href="http://localhost:7070" target="_blank">http://localhost:7070<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> then click <code class="docutils literal notranslate"><span class="pre">Continue</span></code>. On the next page select <code class="docutils literal notranslate"><span class="pre">Install</span> <span class="pre">suggested</span> <span class="pre">plugins</span></code> and give it a few minutes to install everything Jenkins needs.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">Do not continue to the following section until all of the plugins have finished installing. Now is a good time to take a break for some coffee or fresh air.</p>
+</div>
+<p>After the plugins have been installed you will be prompted with the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Admin</span> <span class="pre">User</span></code> form.</p>
+<img alt="../../_images/jenkins-create-admin.png" src="../../_images/jenkins-create-admin.png" />
+<p>In order to make debugging easier we will all use the same credentials:</p>
+<ul class="simple">
+<li><strong>username</strong>: <code class="docutils literal notranslate"><span class="pre">launchcode</span></code></li>
+<li><strong>password</strong>: <code class="docutils literal notranslate"><span class="pre">launchcode</span></code></li>
+</ul>
+<p>You will then be asked about the <code class="docutils literal notranslate"><span class="pre">Jenkins</span> <span class="pre">URL</span></code>. For now we will leave this with the default value of <code class="docutils literal notranslate"><span class="pre">http://localhost:7070/</span></code>. Select <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">and</span> <span class="pre">Continue</span></code>.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">In the future if you deploy Jenkins to the cloud don’t forget to update this setting to reference the <code class="docutils literal notranslate"><span class="pre">Public</span> <span class="pre">DNS</span> <span class="pre">Name</span></code> of your instance running the Jenkins container. This can be found in the sidebar under <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">Jenkins</span> <span class="pre">&gt;</span> <span class="pre">Configure</span> <span class="pre">System</span> <span class="pre">&gt;</span> <span class="pre">Jenkins</span> <span class="pre">Location</span> <span class="pre">&gt;</span> <span class="pre">Jenkins</span> <span class="pre">URL</span></code>.</p>
+</div>
+</div>
+<div class="section" id="seting-up-the-aws-cli-in-the-jenkins-container">
+<span id="docker-jenkins-setup-aws"></span><h2>Seting Up the AWS CLI in the Jenkins Container<a class="headerlink" href="#seting-up-the-aws-cli-in-the-jenkins-container" title="Permalink to this headline">¶</a></h2>
+<p>In some cases you need to load environment variables for Jenkins to use in its pipeline stages. For example, you will likely need to load your AWS credentials in order to deliver and deploy to AWS resources. Recall that you can use the <code class="docutils literal notranslate"><span class="pre">-e</span> <span class="pre">VAR=value</span></code> option when running a container to provide environment variables to it. However, <strong>all values passed this way will be exposed in your shell history</strong>.</p>
+<div class="section" id="using-env-files">
+<h3>Using Env Files<a class="headerlink" href="#using-env-files" title="Permalink to this headline">¶</a></h3>
+<p>For scenarios where you want to protect sensitive values you can use another option, <code class="docutils literal notranslate"><span class="pre">--env-file</span> <span class="pre">/path/to/env-file</span></code>. This option lets you load environment variables from a file rather than listing them individually in the run command. The shell history will only show a path to a file rather than exposing the values themselves.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">Using the <code class="docutils literal notranslate"><span class="pre">--env-file</span></code> option can also be useful when you have many environment variables to pass to a container that become unmanageable to list individually.</p>
+</div>
+<p>If you want to run the Jenkins container and provide AWS credentials you should use an <code class="docutils literal notranslate"><span class="pre">env</span></code> file. This way the AWS environment variables can be loaded without exposing the sensitive credentials in your shell history.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">The env file itself can be named anything you’d like. The common convention is to use the <code class="docutils literal notranslate"><span class="pre">.list</span></code> file extension.</p>
+</div>
+<p>While an environment file’s name and extension are arbitary <strong>the format used to define the variables is not</strong>. Environment variables must use the common <code class="docutils literal notranslate"><span class="pre">VARIABLE_NAME=value</span></code> [shell] format.</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># comments are preceeded with the hashtag character
+# each env var is declared on its own line
+MY_ENV_VAR=somevalue
+NEXT_VAR=othervalue
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-exclamation-triangle" aria-hidden="true"></i>Warning</p>
+<p class="last">There can be no spaces between the <code class="docutils literal notranslate"><span class="pre">VARIABLE_NAME</span></code> the <code class="docutils literal notranslate"><span class="pre">=</span></code> sign or the <code class="docutils literal notranslate"><span class="pre">value</span></code>!</p>
+</div>
+</div>
+<div class="section" id="setting-up-the-aws-env-file">
+<h3>Setting Up the AWS Env File<a class="headerlink" href="#setting-up-the-aws-env-file" title="Permalink to this headline">¶</a></h3>
+<p>Your AWS CLI credentials can be found on your AWS Account page (if permitted by your organization owner). If you have already set up the AWS CLI locally you can view the credentials and configuration settings in the default <code class="docutils literal notranslate"><span class="pre">~/.aws/credentials</span></code> and <code class="docutils literal notranslate"><span class="pre">~/.aws/config</span></code> files.</p>
+<p>After you have located your credentials create an env file. You should create this file in the <code class="docutils literal notranslate"><span class="pre">~/.aws</span></code> directory to keep it in a well-known location so it is not misplaced. First create the file then paste in the template below with your values.</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># create and open the file for editing
+
+# in VSCode
+$ code ~/.aws/jenkins.list
+
+# in VIM
+$ vim ~/.aws/jenkins.list
+</pre></div>
+</div>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># paste this into ~/.aws/jenkins.list with the values of your variables
+AWS_DEFAULT_REGION=
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+</pre></div>
+</div>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># confirm it was created and saved properly
+# make sure there are no spaces after the &#39;=&#39;!
+$ cat ~/.aws/jenkins.list
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">We could simplify this by copying the entire <code class="docutils literal notranslate"><span class="pre">~/.aws</span></code> directory into the container. But this is risky as it would copy over <strong>ALL</strong> of the AWS profiles which may include credentials that have nothing to do with this course. In practice the <strong>safest</strong> way to go about this is to create an IAM service role (for use within AWS) or JenkinsUser account (for use outside AWS) that have restricted policies for resource access. But this section is already pretty complex and your student AWS accounts are restricted in our AWS organization so we will take a shortcut in the name of brevity.</p>
+</div>
+<p>Because <strong>environment variables cannot be set in a running container</strong> they must be provided during container creation. This means we will need to stop and remove our Jenkins container. Normally doing so would mean we lose all of the configuration data. But because we used a <strong>volume</strong> this is of no concern to us! We will stop and remove the container then re-create it with the volume and environment file:</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># stop and remove the container
+$ docker stop jenkins &amp;&amp; docker rm jenkins
+
+# you can see the volume exists even after the container is removed
+$ docker volume ls | grep jenkins_home
+
+# create the container again, this time adding the env-file option
+$ docker run -d --name jenkins -p 7070:8080 --env-file ~/.aws/jenkins.list -v jenkins_home:/var/jenkins_home launchcodedevops/jenkins-awscli
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Check That Everything Worked<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>You can confirm that the volume mounting worked by navigating back to <a class="reference external" href="http://localhost:7070" target="_blank">http://localhost:7070<i class="fas fa-external-link-alt" aria-hidden="true"></i></a> and seeing the first-time setup page is not presented. Instead you should see the user login page. You can log in using the <code class="docutils literal notranslate"><span class="pre">launchcode</span></code> / <code class="docutils literal notranslate"><span class="pre">launchcode</span></code> username and password we set earlier.</p>
+<img alt="../../_images/jenkins-login-screen.png" src="../../_images/jenkins-login-screen.png" />
+<p>Next let’s confirm that the AWS credentials were loaded by the env file. We can check by having the container print out its environment using <code class="docutils literal notranslate"><span class="pre">exec</span></code>:</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span>$ docker exec jenkins env | grep AWS
+
+# expected output
+AWS_DEFAULT_REGION=us-east-1
+AWS_ACCESS_KEY_ID=XXX
+AWS_SECRET_ACCESS_KEY=YYY
+</pre></div>
+</div>
+</div>
+<div class="section" id="testing-the-aws-cli">
+<h3>Testing the AWS CLI<a class="headerlink" href="#testing-the-aws-cli" title="Permalink to this headline">¶</a></h3>
+<p>Now let’s do a final test by running the AWS CLI from <strong>within the container</strong>. We will use <code class="docutils literal notranslate"><span class="pre">exec</span></code> again with some additional options.</p>
+<p>This time we will pass the <code class="docutils literal notranslate"><span class="pre">-it</span></code> options to enter <code class="docutils literal notranslate"><span class="pre">-i</span></code> interactive mode and <code class="docutils literal notranslate"><span class="pre">-t</span></code> to attach the container to our terminal. By issuing the <code class="docutils literal notranslate"><span class="pre">bash</span></code> command we are instructing the container to execute the bash shell. Combined with the <code class="docutils literal notranslate"><span class="pre">-it</span></code> options this means our terminal will be binded to the bash session executed in the container.</p>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Attaching to the shell session of a container is the functional equivalent of SSH-ing into a remote machine. Depending on which shell the container has installed you will adjust the shell command issued in <code class="docutils literal notranslate"><span class="pre">exec</span></code>. In lean containers, that have minimal installed programs, bash may not be insalled. You can usually use at least the original <code class="docutils literal notranslate"><span class="pre">sh</span></code> shell (before it was the <strong>B</strong> orn <strong>A</strong> gain <strong>SH</strong> ell)!</p>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-lightbulb" aria-hidden="true"></i>Tip</p>
+<p class="last">When you are done working inside the container you can use <code class="docutils literal notranslate"><span class="pre">exit</span></code> to get back to the host machine shell.</p>
+</div>
+<p>Before we enter the container we will list our S3 buckets on the host machine. That way once we are in the container we can issue the same command and confirm that the AWS CLI has been configured properly.</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># issued from the host machine for comparison
+$ aws s3 ls
+</pre></div>
+</div>
+<p>Once we are in the container we will command AWS to list the S3 buckets for the credentialed account. We expect to see the same output we saw on our host machine.</p>
+<div class="code bash highlight-none notranslate"><div class="highlight"><pre><span></span># attach the container&#39;s bash shell to your terminal
+$ docker exec -it jenkins bash
+
+# the terminal will now be attached to the container&#39;s shell session as root
+
+# now check the AWS CLI is working within the container
+$ aws s3 ls
+
+# expect the same list of buckets as were listed on our host machine
+
+# exit the container shell to return to your host shell
+$ exit
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">For the clever toads out there, yes, you could have used <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">jenkins</span> <span class="pre">aws</span> <span class="pre">s3</span> <span class="pre">ls</span></code> and gotten the same result. But then you wouldn’t have learned how to enter a container! Like using SSH, entering a container is a rare occurence. But it is useful to know for the times when debugging means getting inside for a look around.</p>
+</div>
+<p>Everything is ready to go! You can return to the <a class="reference internal" href="../../walkthroughs/jenkins/index.html#walkthrough-jenkins"><span class="std std-ref">Walkthrough: CI/CD With Jenkins</span></a> page now.</p>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

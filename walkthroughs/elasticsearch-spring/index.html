@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Walkthrough: Elasticsearch in Spring &#8212; LaunchCode: GIS DevOps  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/fa/css/all.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/launchcode.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Walkthrough: Elasticsearch" href="../elasticsearch/index.html" />
+    <link rel="prev" title="Walkthrough: Intro to Docker" href="../docker/index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html"><span><img src="../../_static/lc-ed-logo.png" alt="LaunchCode logo"></span>
+          GIS DevOps</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="/installations/index.html">Installations</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Pages <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day1/index.html">Week 1 - Day 1: Welcome, Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day2/index.html">Week 1 - Day 2: Terminal, Shell, Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day3/index.html">Week 1 - Day 3: Shell, Git, SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day4/index.html">Week 1 - Day 4: SQL, HTTP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week01/day5/index.html">Week 1 - Day 5: HTTP, Docker</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day1/index.html">Week 2 - Day 1: HTML, CSS, Browser DevTools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day2/index.html">Week 2 - Day 2: HTML/CSS Template, JavaScript Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day3/index.html">Week 2 - Day 3: Programming Fundamentals, JavaScript, DOM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day4/index.html">Week 2 - Day 4: JS, DOM, Promises, AJAX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week02/day5/index.html">Week 2 - Day 5: Promises, AJAX, HTTP</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day1/index.html">Week 3 - Day 1: Java, OOP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day2/index.html">Week 3 - Day 2: Spring Boot, Controllers, Routes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day3/index.html">Week 3 - Day 3: Models, ORM (Hibernate)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day4/index.html">Week 3 - Day 4: Persistence, ORM Relationships</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week03/day5/index.html">Week 3 - Day 5: Review</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day1/index.html">Week 4 - Day 1: Git, GitLab, IntelliJ, Refactoring, Unit Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day2/index.html">Week 4 - Day 2: Security, Test-driven development</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day3/index.html">Week 4 - Day 3: Integration testing, dependency injection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day4/index.html">Week 4 - Day 4: Postgres, Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week04/day5/index.html">Week 4 - Day 5: AJAX, Open Layers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week05/project/index.html">Week 5 - Project Week: Zika Mission Control</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day1/index.html">Week 6 - Day 1: RESTful web services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day2/index.html">Week 6 - Day 2: Swagger REST framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day3/index.html">Week 6 - Day 3: Intro to Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day4/index.html">Week 6 - Day 4: More Elasticsearch, Integrating ES with Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week06/day5/index.html">Week 6 - Day 5: ES2015, ESLint, OpenLayers</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week07/project/index.html">Week 7 - Project Week: Zika Mission Control Part 2</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day1/index.html">Week 8 - Day 1: Intro to DevOps/AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day2/index.html">Week 8 - Day 2: More with AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day3/index.html">Week 8 - Day 3: 12 Factor Apps and Auto Scaling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day4/index.html">Week 8 - Day 4: Gradle, Continuous Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week08/day5/index.html">Week 8 - Day 5: Sonarqube</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week09/project/index.html">Week 9 - Project Week: Zika Mission Control Part 3</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week11/project/index.html">Week 11 - Project Week: Zika Mission Control Part 4</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day3/index.html">Week 12 - Day 3: Intro to Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day4/index.html">Week 12 - Day 4: OAuth 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../week12/day5/index.html">Week 12 - Day 5: Certificates</a></li>
+</ol>
+<ol class="current">
+<li class="toctree-l1"><a class="reference internal" href="../aws-intro/index.html">Walkthrough: Intro to AWS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../aws-rds-vpc/index.html">Walkthrough: Introduction to Amazon Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../certificate-authority/index.html">Certificate Authority</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../client-certificates/index.html">Client Certificates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../docker/index.html">Walkthrough: Intro to Docker</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Walkthrough: Elasticsearch in Spring</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch/index.html">Walkthrough: Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../elasticsearch2/index.html">Walkthrough: Elasticsearch Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../eslint-airwaze/index.html">Walkthrough: ESLint Airwaze</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gitLab/index.html">Walkthrough: Git and Gitlab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gradle/index.html">Walkthrough: Gradle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../hashing-salting/index.html">Walkthrough: Hashing and Salting Passwords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jenkins/index.html">Walkthrough: CI/CD With Jenkins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../launchcart-rest/index.html">Walkthrough: LaunchCart REST</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../oauth2/index.html">Visual OAuth</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../openlayers/index.html">Walkthrough: OpenLayers and jQuery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../postgress/index.html">Walkthrough: PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sonarqube/index.html">Walkthrough: Sonarqube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-data-jpa-hibernate/index.html">Walkthrough: Cars Demo - Spring Data, JPA, Hibernate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spring-integration-testing/index.html">Walkthrough: Spring Integration Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../swagger/index.html">Walkthrough: SwaggerUI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tdd/index.html">Walkthrough: TDD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../unit-tests/index.html">Walkthrough: Unit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../upgrading-spring-boot/index.html">Walkthrough: Upgrading to Spring Boot 2.x</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/00-prep-week/index.html">Installation: Essential Tooling &amp; Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/01-docker/index.html">Installation: Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/02-docker-psql/index.html">Installation: Docker PSQL Container</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/03-docker-postgis/index.html">Installation: Docker PostGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/04-docker-elasticsearch/index.html">Installation: Docker Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/05-docker-kibana/index.html">Installation: Docker Kibana</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installations/06-docker-jenkins/index.html">Installation: Docker Jenkins</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/00-intellij/index.html">Configuration: IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/01-runtime-configurations/index.html">Configuration: IntelliJ - Runtime Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/02-environment-variables-intellij/index.html">Configuration: Environment Variables - IntelliJ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/04-spring-elasticsearch/index.html">Configuration: Spring &amp; Elasticsearch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/05-spring-postgres/index.html">Configuration: Spring &amp; Postgres</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configurations/06-vscode-eslint/index.html">Configuration: Visual Studio Code - ESLint</a></li>
+</ol>
+<ol>
+<li class="toctree-l1"><a class="reference internal" href="../../notes/docker/index.html">Docker</a></li>
+</ol>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+    <label for="q" class="searchLabel">Search</label>
+    <input type="text" name="q" class="form-control" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Walkthrough: Elasticsearch in Spring</a><ul>
+<li><a class="reference internal" href="#update-tools">Update Tools</a><ul>
+<li><a class="reference internal" href="#update-gradle">Update Gradle</a></li>
+<li><a class="reference internal" href="#update-springboot">Update SpringBoot</a></li>
+<li><a class="reference internal" href="#amend-build-gradle">Amend build.gradle</a></li>
+<li><a class="reference internal" href="#amend-application-properties">Amend application.properties</a></li>
+<li><a class="reference internal" href="#sync-gradle">Sync Gradle</a></li>
+<li><a class="reference internal" href="#bootrun">bootRun</a></li>
+<li><a class="reference internal" href="#refactor-methods">Refactor Methods</a></li>
+<li><a class="reference internal" href="#id1">bootRun</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#spring-elasticsearch-connection">Spring Elasticsearch Connection</a><ul>
+<li><a class="reference internal" href="#application-properties">application.properties</a></li>
+<li><a class="reference internal" href="#esconfig-java">EsConfig.java</a></li>
+<li><a class="reference internal" href="#id2">bootRun</a></li>
+<li><a class="reference internal" href="#check-cluster">Check cluster</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#create-index-from-spring">Create Index from Spring</a><ul>
+<li><a class="reference internal" href="#itemdocument">ItemDocument</a></li>
+<li><a class="reference internal" href="#itemdocumentrepository">ItemDocumentRepository</a></li>
+<li><a class="reference internal" href="#id3">bootRun</a></li>
+<li><a class="reference internal" href="#id4">Check cluster</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#post-to-elasticsearch">Post to Elasticsearch</a><ul>
+<li><a class="reference internal" href="#itemrestcontroller">ItemRestController</a></li>
+<li><a class="reference internal" href="#itemrestcontrollertests">ItemRestControllerTests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fuzzy-search">Fuzzy Search</a><ul>
+<li><a class="reference internal" href="#itemdocumentcontroller">ItemDocumentController</a></li>
+<li><a class="reference internal" href="#itemdocumentcontrollertests">ItemDocumentControllerTests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#seed-elasticsearch-from-spring">Seed Elasticsearch from Spring</a><ul>
+<li><a class="reference internal" href="#esutil">EsUtil</a></li>
+<li><a class="reference internal" href="#escontroller">EsController</a></li>
+<li><a class="reference internal" href="#bootrun-and-seed">bootRun and Seed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#your-tasks">Your Tasks</a></li>
+<li><a class="reference internal" href="#bonus-missions">Bonus Missions</a></li>
+<li><a class="reference internal" href="#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="walkthrough-elasticsearch-in-spring">
+<span id="walkthrough-elasticsearch-spring"></span><h1>Walkthrough: Elasticsearch in Spring<a class="headerlink" href="#walkthrough-elasticsearch-in-spring" title="Permalink to this headline">¶</a></h1>
+<p>We’ll walk through the steps to integrate Elasticsearch with Spring, using the Launchcart application.</p>
+<p>The goal is to enable fuzzy searching for items via LaunchCart’s REST API. This will require:</p>
+<ol class="arabic simple">
+<li>Configuring the application to work with Elasticsearch.</li>
+<li>Creating a Java representation of the item documents we want to store in Elasticsearch.</li>
+<li>Creating a REST endpoint that conducts a fuzzy search for item documents.</li>
+</ol>
+<div class="section" id="update-tools">
+<h2>Update Tools<a class="headerlink" href="#update-tools" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="update-gradle">
+<h3>Update Gradle<a class="headerlink" href="#update-gradle" title="Permalink to this headline">¶</a></h3>
+<p>We will need to use Gradle version 4.4. We can check the Gradle version by checking out our <code class="docutils literal notranslate"><span class="pre">/gradle/wrapper/gradle-wrapper.properties</span></code> file.</p>
+<img alt="../../_images/gradle-version.png" src="../../_images/gradle-version.png" />
+<p>From this file we can see the gradle version for this project is 4.4. That’s what we want!</p>
+</div>
+<div class="section" id="update-springboot">
+<h3>Update SpringBoot<a class="headerlink" href="#update-springboot" title="Permalink to this headline">¶</a></h3>
+<p>We can check our version of Springboot by looking into our projects <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file.</p>
+<img alt="../../_images/spring-boot-version.png" src="../../_images/spring-boot-version.png" />
+<p>From this file we can see the spring boot version of this project is 2.1.1. That’s what we want!</p>
+</div>
+<div class="section" id="amend-build-gradle">
+<h3>Amend build.gradle<a class="headerlink" href="#amend-build-gradle" title="Permalink to this headline">¶</a></h3>
+<p>Going back to our <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file we need to add a plugin:</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span>apply plugin: &#39;io.spring.dependency-management
+</pre></div>
+</div>
+<img alt="../../_images/spring-dependency-management.png" src="../../_images/spring-dependency-management.png" />
+<p>If you have a <code class="docutils literal notranslate"><span class="pre">bootRun{}</span></code> section towards the bottom of your file delete it. That’s a holdover from an older version of gradle.</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">bootRun</span> <span class="o">{</span>
+    <span class="c1">// addResources = true</span>
+    <span class="n">sourceResources</span> <span class="n">sourceSets</span><span class="o">.</span><span class="na">main</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">You may not have done much up to this point, since we have been using these versions so far throughout this class. However, it’s a good idea to check the versions of the software you use. You will need to know which versions work together, and you are responsible for knowing about security vulnerabilties in specific versions of the software you use in your projects!</p>
+</div>
+<p>Let’s add the dependencies Spring data will need to work with Elasticsearch.</p>
+<p>We will be adding the following dependencies to the dependency section of our <code class="docutils literal notranslate"><span class="pre">build.gradle</span></code> file.</p>
+<div class="highlight-groovy notranslate"><div class="highlight"><pre><span></span><span class="n">compile</span><span class="o">(</span><span class="s1">&#39;org.springframework.data:spring-data-elasticsearch:3.1.3.RELEASE&#39;</span><span class="o">)</span>
+<span class="n">compile</span><span class="o">(</span><span class="s1">&#39;net.java.dev.jna:jna&#39;</span><span class="o">)</span>
+</pre></div>
+</div>
+<img alt="../../_images/springdata-elasticsearch-dependencies.png" src="../../_images/springdata-elasticsearch-dependencies.png" />
+</div>
+<div class="section" id="amend-application-properties">
+<h3>Amend application.properties<a class="headerlink" href="#amend-application-properties" title="Permalink to this headline">¶</a></h3>
+<p>Now that we have the correct versions of Elasticsearch, Springdata, and Gradle we need to configure Springdata so that it knows where, and how to communicate with Elasticsearch.</p>
+<p>We have used <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> to configure various aspects of our project, and this is also where the variables of our configuration will live for Elasticsearch.</p>
+<p>We will be setting the Elasticsearch transport client port, the Elasticsearch cluster URL, the Elasticsearch cluster’s index name.</p>
+<p>Add the following code snippet to the bottom of your <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file.</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">application.properties</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go"> spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sync-gradle">
+<h3>Sync Gradle<a class="headerlink" href="#sync-gradle" title="Permalink to this headline">¶</a></h3>
+<p>Your IntelliJ may have already started pulling in the updated libraries. However, you can force this by click the refresh button in the gradle menu.</p>
+</div>
+<div class="section" id="bootrun">
+<h3>bootRun<a class="headerlink" href="#bootrun" title="Permalink to this headline">¶</a></h3>
+<p>After all of the libraries have loaded run your project with bootRun.</p>
+<p>It may not run, because you may have methods that need to be updated.</p>
+</div>
+<div class="section" id="refactor-methods">
+<h3>Refactor Methods<a class="headerlink" href="#refactor-methods" title="Permalink to this headline">¶</a></h3>
+<p>You might have multiple instances of <code class="docutils literal notranslate"><span class="pre">findOne(id)</span></code> throughout your code. We will need to update these to <code class="docutils literal notranslate"><span class="pre">getOne(id)</span></code>.</p>
+<p>Similarly any instances of <code class="docutils literal notranslate"><span class="pre">delete(id)</span></code> will need to be updated to <code class="docutils literal notranslate"><span class="pre">deleteById(id)</span></code>.</p>
+<p>Look through your code to replace these.</p>
+</div>
+<div class="section" id="id1">
+<h3>bootRun<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>After replacing all methods that need updating, re-run your project with bootRun.</p>
+<p>You will know everything was done correctly when your project is running again.</p>
+</div>
+</div>
+<div class="section" id="spring-elasticsearch-connection">
+<h2>Spring Elasticsearch Connection<a class="headerlink" href="#spring-elasticsearch-connection" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="application-properties">
+<h3>application.properties<a class="headerlink" href="#application-properties" title="Permalink to this headline">¶</a></h3>
+<p>Add the following code snippet to the bottom of your <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">application.properties</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Elasticsearch Config
+<span class="go">spring.data.elasticsearch.cluster-nodes=127.0.0.1:9300</span>
+<span class="go">spring.data.elasticsearch.cluster-name=elasticsearch</span>
+<span class="go">es.index-name=launchcart</span>
+</pre></div>
+</div>
+</div>
+<p>You will also want to add this to your <code class="docutils literal notranslate"><span class="pre">application-test.properties</span></code> file.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">application-test.properties</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Elasticsearch Config
+<span class="go">spring.data.elasticsearch.cluster-nodes=127.0.0.1:9300</span>
+<span class="go">spring.data.elasticsearch.cluster-name=elasticsearch</span>
+<span class="go">es.index-name=launchcart</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">It would be a good idea to use environment variables for your Elasticsearch information. So that your elasticsearch information won’t be posted to Gitlab, and to make this project easier to deploy in the future. You can use environment variables by using tokens that look like this: <code class="docutils literal notranslate"><span class="pre">${ES_CLUSTER_URL}:${ES_CLUSTER_PORT}</span></code>. You would then need to add the environment variable to your runtime configuration.</p>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">Based on the versions of PSQL, and Spring data you are using you may get a mysterious error when running your project for the first time. The error message will stop your application from running, and will mention something about Clob, or ClobContext issues. If you run into this issue, you need to add <code class="docutils literal notranslate"><span class="pre">spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true</span></code> to your application.properties, and application-test.properties files.</p>
+</div>
+</div>
+<div class="section" id="esconfig-java">
+<h3>EsConfig.java<a class="headerlink" href="#esconfig-java" title="Permalink to this headline">¶</a></h3>
+<p>Create a new file at the root of your project called <code class="docutils literal notranslate"><span class="pre">EsConfig.java</span></code>.</p>
+<img alt="../../_images/es-configuration-java.png" src="../../_images/es-configuration-java.png" />
+<p>Now we will want to add some code to this file.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">//imports</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Value</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="p">;</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsConfig</span> <span class="p">{</span>
+
+    <span class="nd">@Value</span><span class="p">(</span><span class="s">&quot;${es.index-name}&quot;</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">indexName</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">getIndexName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">indexName</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setIndexName</span><span class="p">(</span><span class="n">String</span> <span class="n">indexName</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">indexName</span> <span class="o">=</span> <span class="n">indexName</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The &#64;Value annotation tells Spring to read the es.index-name property from the properties file and store it in the field indexName.</p>
+<p>The &#64;Component annotation tells Spring that this class is a bean that it should create and manage. The end result of setting up this class is that we can use Spring’s Expression Language to dynamically insert the value of the indexName field in our code with the syntax #{esConfig.indexName}.</p>
+</div>
+<div class="section" id="id2">
+<h3>bootRun<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>With the additions to our <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file, and our <code class="docutils literal notranslate"><span class="pre">EsConfig</span></code> file we have connected our Spring application to our Elasticsearch cluster. Re-run bootRun and check out the Tomcat logs.</p>
+<p>You will notice we have some new additions near the bottom of the logs.</p>
+<p>Our application is aware of the IP address and the port we configured in our <code class="docutils literal notranslate"><span class="pre">application.properties</span></code> file.</p>
+</div>
+<div class="section" id="check-cluster">
+<h3>Check cluster<a class="headerlink" href="#check-cluster" title="Permalink to this headline">¶</a></h3>
+<p>You should try querying your cluster.</p>
+<p><code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">127.0.0.1:9200/_cat/indices</span></code></p>
+<p>We don’t have any new launchcart indices yet, but we will soon. We still need to have spring create our index.</p>
+</div>
+</div>
+<div class="section" id="create-index-from-spring">
+<h2>Create Index from Spring<a class="headerlink" href="#create-index-from-spring" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="itemdocument">
+<h3>ItemDocument<a class="headerlink" href="#itemdocument" title="Permalink to this headline">¶</a></h3>
+<p>We need to create a new model class to represent the documents that we’ll be storing in ES, along with a corresponding repository.</p>
+<p>Create a new package, <code class="docutils literal notranslate"><span class="pre">org.launchcode.launchcart.models.es</span></code>, and add the following class:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="cm">/*</span>
+<span class="cm"> * /src/main/java/org/launchcode/launchcart/models/es/ItemDocument.java</span>
+<span class="cm"> */</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.data.elasticsearch.annotations.Document</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.GenerationType</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">javax.persistence.Id</span><span class="p">;</span>
+
+<span class="nd">@Document</span><span class="p">(</span><span class="n">indexName</span> <span class="o">=</span> <span class="s">&quot;#{esConfig.indexName}&quot;</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&quot;items&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemDocument</span> <span class="p">{</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="o">=</span> <span class="n">GenerationType</span><span class="p">.</span><span class="na">AUTO</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">id</span><span class="p">;</span>
+
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">itemUid</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">double</span> <span class="n">price</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">newItem</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">description</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="nf">ItemDocument</span><span class="p">()</span> <span class="p">{}</span>
+
+    <span class="kd">public</span> <span class="nf">ItemDocument</span><span class="p">(</span><span class="n">Item</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">itemUid</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="na">getUid</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="na">getName</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">price</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="na">getPrice</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">newItem</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="na">isNewItem</span><span class="p">();</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">description</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="na">getDescription</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Getters and setters omitted</span>
+
+ <span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition">
+<p class="first admonition-title"><i class="fas fa-sticky-note" aria-hidden="true"></i>Note</p>
+<p class="last">The <code class="docutils literal notranslate"><span class="pre">&#64;Id</span></code> annotation should come from the <code class="docutils literal notranslate"><span class="pre">javax.persistence</span></code> package, so be sure to select the correct import.</p>
+</div>
+<p>Review the fields and constructors for this class to make sure you understand what it represents. Each <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> object will be a “copy” of an <code class="docutils literal notranslate"><span class="pre">Item</span></code> that is suitable for storing in Elasticsearch, and which keeps track of the original item’s ID in the <code class="docutils literal notranslate"><span class="pre">itemUid</span></code> field.</p>
+<p>There are two things to note about the <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> class that make it different from our other persistent model classes.</p>
+<ol class="arabic simple">
+<li>The ID field for the class is of type <code class="docutils literal notranslate"><span class="pre">String</span></code> instead of <code class="docutils literal notranslate"><span class="pre">Integer</span></code>. We do this because Elasticsearch uses hash strings as IDs instead of integers.</li>
+<li>The <code class="docutils literal notranslate"><span class="pre">&#64;Document</span></code> annotation notifies Spring that this class may be stored in Elasticsearch, using the index and type names provided. Notice the index name, <code class="docutils literal notranslate"><span class="pre">#{esConfig.indexName}</span></code>. This uses Spring’s expression language to dynamically insert the value of the <code class="docutils literal notranslate"><span class="pre">indexName</span></code> property of the <code class="docutils literal notranslate"><span class="pre">EsConfig</span></code> bean that we created earlier. Recall that this property is set using the value of <code class="docutils literal notranslate"><span class="pre">es.index-name</span></code> in the properties file, so it will be different for development and test contexts.</li>
+</ol>
+</div>
+<div class="section" id="itemdocumentrepository">
+<h3>ItemDocumentRepository<a class="headerlink" href="#itemdocumentrepository" title="Permalink to this headline">¶</a></h3>
+<p>Also add a new repository, which extends <code class="docutils literal notranslate"><span class="pre">ElasticsearchRepository</span></code>:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="cm">/*</span>
+<span class="cm">  * src/main/java/org/launchcode/launchcart/data/ItemDocumentRepository.java</span>
+<span class="cm">  */</span>
+<span class="kn">import</span> <span class="nn">org.elasticsearch.index.query.QueryBuilder</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.models.ItemDocument</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.data.elasticsearch.repository.ElasticsearchRepository</span><span class="p">;</span>
+
+ <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ItemDocumentRepository</span>
+     <span class="kd">extends</span> <span class="n">ElasticsearchRepository</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="p">,</span> <span class="n">String</span><span class="o">&gt;</span> <span class="p">{</span>
+
+     <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="nf">search</span><span class="p">(</span><span class="n">QueryBuilder</span> <span class="n">queryBuilder</span><span class="p">);</span>
+
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>bootRun<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Let’s run bootRun again.</p>
+</div>
+<div class="section" id="id4">
+<h3>Check cluster<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>After your application is running again, try curling for indices again: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">127.0.0.1:9200/_cat/indices</span></code>.</p>
+<p>We now have a new index named launchcart. Spring created our index for us.</p>
+</div>
+</div>
+<div class="section" id="post-to-elasticsearch">
+<h2>Post to Elasticsearch<a class="headerlink" href="#post-to-elasticsearch" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="itemrestcontroller">
+<h3>ItemRestController<a class="headerlink" href="#itemrestcontroller" title="Permalink to this headline">¶</a></h3>
+<p>In order to get Spring to add new documents to our index, we will have to use our new ItemDocumentRepository class. For now let’s add this functionality inside of our ItemRestController.</p>
+<p>The changes we are about to make to our post mapping handler will utilize ItemDocumentRepository so let’s &#64;Autowire it into our ItemRestController file first.</p>
+<p>Towards the top of your class where you have autowired your ItemRepository add:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Update the post mapping in your ItemRestController like this:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@PostMapping</span>
+<span class="nd">@ResponseStatus</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">CREATED</span><span class="p">)</span>
+<span class="kd">public</span> <span class="n">Item</span> <span class="nf">postItem</span><span class="p">(</span><span class="nd">@RequestBody</span> <span class="n">Item</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Item</span> <span class="n">postItem</span> <span class="o">=</span> <span class="n">itemRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+    <span class="n">ItemDocument</span> <span class="n">itemDocument</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ItemDocument</span><span class="p">(</span><span class="n">postItem</span><span class="p">);</span>
+    <span class="n">itemDocumentRepository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">itemDocument</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">postItem</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We have amended our PostMapping so that when it saves a new Item to our ItemRepository it also saves an ItemDocument to our ItemDocumentRepository.</p>
+</div>
+<div class="section" id="itemrestcontrollertests">
+<h3>ItemRestControllerTests<a class="headerlink" href="#itemrestcontrollertests" title="Permalink to this headline">¶</a></h3>
+<p>To test this new functionality out let’s write a new test in our ItemRestControllerTests file to make sure our post saves a new ItemDocument to Elasticsearch.</p>
+<p>You will have to Autowire an ItemDocumentRepository into your ItemRestControllerTests file first, and then we can add a new test.</p>
+<p>Towards the top of your Test class add:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// imports to look out for!!!</span>
+
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*</span><span class="p">;</span>
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.servlet.result.MockMvcResultMatchers.*</span><span class="p">;</span>
+
+<span class="p">...</span>
+
+<span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Add the following to your ItemRestControllerTests file:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testPostCreatesItemDocument</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="p">{</span>
+    <span class="n">itemDocumentRepository</span><span class="p">.</span><span class="na">deleteAll</span><span class="p">();</span>
+    <span class="n">Item</span> <span class="n">postItem</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="p">(</span><span class="s">&quot;Post test item&quot;</span><span class="p">,</span> <span class="mf">22.00</span><span class="p">);</span>
+    <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">json</span><span class="p">(</span><span class="n">postItem</span><span class="p">);</span>
+    <span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/items&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">content</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+            <span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">contentType</span><span class="p">))</span>
+            <span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">is</span><span class="p">(</span><span class="mi">201</span><span class="p">));</span>
+    <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="n">itemDocuments</span> <span class="o">=</span> <span class="n">itemDocumentRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">().</span><span class="na">iterator</span><span class="p">();</span>
+    <span class="n">Assert</span><span class="p">.</span><span class="na">assertTrue</span><span class="p">(</span><span class="n">itemDocuments</span><span class="p">.</span><span class="na">hasNext</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This test clears out our elasticsearch index first, and then makes a post request to our ItemRestController.</p>
+<p>We then test that our elasticsearch cluster has at least one document in it.</p>
+</div>
+</div>
+<div class="section" id="fuzzy-search">
+<h2>Fuzzy Search<a class="headerlink" href="#fuzzy-search" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="itemdocumentcontroller">
+<h3>ItemDocumentController<a class="headerlink" href="#itemdocumentcontroller" title="Permalink to this headline">¶</a></h3>
+<p>Create <code class="docutils literal notranslate"><span class="pre">ItemDocumentController</span></code> and implement the <code class="docutils literal notranslate"><span class="pre">search</span></code> method/endpoint.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">* src/main/java/org/launchcode/launchcart/controllers/es/ItemDocumentController.java</span>
+<span class="cm">*/</span>
+
+<span class="kn">import</span> <span class="nn">org.elasticsearch.index.query.FuzzyQueryBuilder</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.elasticsearch.index.query.QueryBuilders</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.data.ItemDocumentRepository</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.models.ItemDocument</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.GetMapping</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestParam</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/api/items&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemDocumentController</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="p">;</span>
+
+    <span class="nd">@GetMapping</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;search&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="nf">search</span><span class="p">(</span><span class="nd">@RequestParam</span> <span class="n">String</span> <span class="n">q</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">FuzzyQueryBuilder</span> <span class="n">fuzzyQueryBuilder</span> <span class="o">=</span> <span class="n">QueryBuilders</span><span class="p">.</span><span class="na">fuzzyQuery</span><span class="p">(</span><span class="s">&quot;name&quot;</span><span class="p">,</span> <span class="n">q</span><span class="p">);</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="n">results</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">itemDocumentRepository</span><span class="p">.</span><span class="na">search</span><span class="p">(</span><span class="n">fuzzyQueryBuilder</span><span class="p">).</span><span class="na">iterator</span><span class="p">();</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="n">iterator</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">results</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">iterator</span><span class="p">.</span><span class="na">next</span><span class="p">());</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">results</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Spring is unable to serialize (i.e. turn into XML or JSON) an <code class="docutils literal notranslate"><span class="pre">Iterable</span></code> object, so we must copy each of the results into a new <code class="docutils literal notranslate"><span class="pre">List</span></code>. If we expect large results sets, we should use a paginated approach that only returns segments of the result set.</p>
+</div>
+<div class="section" id="itemdocumentcontrollertests">
+<h3>ItemDocumentControllerTests<a class="headerlink" href="#itemdocumentcontrollertests" title="Permalink to this headline">¶</a></h3>
+<p>Again to test this functionality out, let’s write a new test.</p>
+<p>Create a new test file named <code class="docutils literal notranslate"><span class="pre">ItemDocumentControllerTests</span></code> and add the following code:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="o">/*</span>
+ <span class="o">*</span> <span class="n">In</span> <span class="n">src</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">java</span><span class="o">/</span><span class="n">org</span><span class="o">/</span><span class="n">launchcode</span><span class="o">/</span><span class="n">launchcart</span><span class="o">/</span><span class="n">ItemDocumentControllerTests</span><span class="p">.</span><span class="na">java</span>
+ <span class="o">/*</span>
+
+<span class="c1">// imports</span>
+<span class="kn">import</span> <span class="nn">org.junit.Test</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.junit.runner.RunWith</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.models.Item</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.context.junit4.SpringRunner</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.test.web.servlet.MockMvc</span><span class="p">;</span>
+
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get</span><span class="p">;</span>
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post</span><span class="p">;</span>
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.servlet.result.MockMvcResultHandlers.print</span><span class="p">;</span>
+<span class="kn">import static</span> <span class="nn">org.springframework.test.web.servlet.result.MockMvcResultMatchers.*</span><span class="p">;</span>
+
+<span class="nd">@RunWith</span><span class="p">(</span><span class="n">SpringRunner</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+<span class="nd">@IntegrationTestConfig</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ItemDocumentControllerTests</span> <span class="kd">extends</span> <span class="n">AbstractBaseRestIntegrationTest</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">MockMvc</span> <span class="n">mockMvc</span><span class="p">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="p">;</span>
+
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">testFuzzySearch</span><span class="p">()</span> <span class="kd">throws</span> <span class="n">Exception</span> <span class="p">{</span>
+        <span class="n">itemDocumentRepository</span><span class="p">.</span><span class="na">deleteAll</span><span class="p">();</span>
+        <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="p">(</span><span class="s">&quot;Test Item Again&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">);</span>
+        <span class="n">String</span> <span class="n">json</span> <span class="o">=</span> <span class="n">json</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
+        <span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">post</span><span class="p">(</span><span class="s">&quot;/api/items/&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">content</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+                <span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">contentType</span><span class="p">));</span>
+        <span class="n">mockMvc</span><span class="p">.</span><span class="na">perform</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="s">&quot;/api/items/search?q={term}&quot;</span><span class="p">,</span> <span class="s">&quot;agan&quot;</span><span class="p">))</span>
+                <span class="p">.</span><span class="na">andDo</span><span class="p">(</span><span class="n">print</span><span class="p">())</span>
+                <span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">status</span><span class="p">().</span><span class="na">isOk</span><span class="p">())</span>
+                <span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">content</span><span class="p">().</span><span class="na">contentType</span><span class="p">(</span><span class="n">contentType</span><span class="p">))</span>
+                <span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">jsonPath</span><span class="p">(</span><span class="s">&quot;$.length()&quot;</span><span class="p">).</span><span class="na">value</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+                <span class="p">.</span><span class="na">andExpect</span><span class="p">(</span><span class="n">jsonPath</span><span class="p">(</span><span class="s">&quot;$[0].name&quot;</span><span class="p">).</span><span class="na">value</span><span class="p">(</span><span class="n">item</span><span class="p">.</span><span class="na">getName</span><span class="p">()));</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="seed-elasticsearch-from-spring">
+<h2>Seed Elasticsearch from Spring<a class="headerlink" href="#seed-elasticsearch-from-spring" title="Permalink to this headline">¶</a></h2>
+<p>In this section we will be learning how to seed our elasticsearch cluster from the data that currently exists in our database.</p>
+<p>You will need to create two new files <code class="docutils literal notranslate"><span class="pre">EsUtil.java</span></code> and <code class="docutils literal notranslate"><span class="pre">EsController.java</span></code>. We recommend creating a new package off the root of your project named utils for your <code class="docutils literal notranslate"><span class="pre">EsUtil.java</span></code> file. Your <code class="docutils literal notranslate"><span class="pre">EsController.java</span></code> file can be created in your controllers directory.</p>
+<div class="section" id="esutil">
+<h3>EsUtil<a class="headerlink" href="#esutil" title="Permalink to this headline">¶</a></h3>
+<p>After creating <code class="docutils literal notranslate"><span class="pre">Esutil.java</span></code> add the following code:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * src/main/java/org/launchcode/launchcart/util/EsUtil.java</span>
+<span class="cm"> */</span>
+
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.data.ItemDocumentRepository</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.data.ItemRepository</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.models.Item</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.models.ItemDocument</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="p">;</span>
+
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="p">;</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsUtil</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ItemRepository</span> <span class="n">itemRepository</span><span class="p">;</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">ItemDocumentRepository</span> <span class="n">itemDocumentRepository</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">refresh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">itemDocumentRepository</span><span class="p">.</span><span class="na">deleteAll</span><span class="p">();</span>
+        <span class="n">List</span><span class="o">&lt;</span><span class="n">ItemDocument</span><span class="o">&gt;</span> <span class="n">itemDocuments</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">Item</span> <span class="n">item</span> <span class="p">:</span> <span class="n">itemRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">itemDocuments</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">ItemDocument</span><span class="p">(</span><span class="n">item</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="n">itemDocumentRepository</span><span class="p">.</span><span class="na">saveAll</span><span class="p">(</span><span class="n">itemDocuments</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="escontroller">
+<h3>EsController<a class="headerlink" href="#escontroller" title="Permalink to this headline">¶</a></h3>
+<p>After creating your EsController file add the following code:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm"> * src/main/java/org/launchcode/launchcart/controllers/es/EsController.java</span>
+<span class="cm"> */</span>
+
+<span class="kn">import</span> <span class="nn">org.launchcode.launchcart.util.EsUtil</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.HttpStatus</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.http.ResponseEntity</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.PostMapping</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="p">;</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/api/es&quot;</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">EsController</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="n">EsUtil</span> <span class="n">esUtil</span><span class="p">;</span>
+
+    <span class="nd">@PostMapping</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">&quot;/refresh&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="n">ResponseEntity</span> <span class="nf">refresh</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">esUtil</span><span class="p">.</span><span class="na">refresh</span><span class="p">();</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">ResponseEntity</span><span class="p">(</span><span class="s">&quot;Refreshed Elasticsearch index\n&quot;</span><span class="p">,</span> <span class="n">HttpStatus</span><span class="p">.</span><span class="na">OK</span><span class="p">);</span>
+
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="bootrun-and-seed">
+<h3>bootRun and Seed<a class="headerlink" href="#bootrun-and-seed" title="Permalink to this headline">¶</a></h3>
+<p>After creating these files go ahead and run your project with bootRun.</p>
+<p>When your project is running create a few new items from the web portal.</p>
+<p>After creating the items so they exist in the database fire off a curl request: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-XPOST</span> <span class="pre">127.0.0.1:8080/api/es/refresh</span></code>.</p>
+<p>This will hit our controller class, which calls the EsUtil class which will delete our current index, and rebuild it from the items in our database.</p>
+<p>This will come in handy with your Zika projects next week.</p>
+</div>
+</div>
+<div class="section" id="your-tasks">
+<h2>Your Tasks<a class="headerlink" href="#your-tasks" title="Permalink to this headline">¶</a></h2>
+<p>On your own, study the code above and make sure you understand each of the components, referring to the linked resources below as necessary. When you come across something that isn’t clear, talk through it with another student or with an instrutor.</p>
+</div>
+<div class="section" id="bonus-missions">
+<h2>Bonus Missions<a class="headerlink" href="#bonus-missions" title="Permalink to this headline">¶</a></h2>
+<p>We looked at how to push a new item to Elasticsearch when creating it via the REST API. There are still several tasks that can be immediately carried out to fully integrate ES with the application. Try one more more of the following:</p>
+<ul class="simple">
+<li>We are currently creating and saving a new <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> whenever a new <code class="docutils literal notranslate"><span class="pre">Item</span></code> is created, however, we are not updating or deleting an <code class="docutils literal notranslate"><span class="pre">ItemDocument</span></code> when the corresponding <code class="docutils literal notranslate"><span class="pre">Item</span></code> is updated or deleted. Add the code to do this.</li>
+<li>Add a search view that displays results of a fuzzy search. This may be done either by an AJAX request to <code class="docutils literal notranslate"><span class="pre">ItemDocumentRepository.search</span></code>, or by creating a new controller method that passes fuzzy search results into a template.</li>
+</ul>
+</div>
+<div class="section" id="resources">
+<h2>Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-tutorial" target="_blank">Spring Data Elasticsearch<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://docs.spring.io/spring-data/elasticsearch/docs/current/api/org/springframework/data/elasticsearch/repository/ElasticsearchRepository.html" target="_blank">ElasticsearchRepository<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://www.elastic.co/guide/en/elasticsearch/client/java-api/6.2/transport-client.html" target="_blank">TransportClient<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="https://static.javadoc.io/org.elasticsearch/elasticsearch/2.4.0/org/elasticsearch/index/query/QueryBuilders.html" target="_blank">QueryBuilders<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-data-elasticsearch-queries" target="_blank">Spring Data Elasticsearch Queries<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+<li><a class="reference external" href="http://www.baeldung.com/spring-value-annotation" target="_blank">The &#64;Value annotation<i class="fas fa-external-link-alt" aria-hidden="true"></i></a></li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+      
+    </p>
+    <p>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
