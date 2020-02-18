@@ -1,15 +1,18 @@
-.. _week1_day2:
+.. _week-code-quality_day2:
 
-=================================================
-Week 4 - Day 2: Security, Test-driven development
-=================================================
+===========================================
+Automated Testing & Test Driven Development
+===========================================
 
-Learning objectives for this module :ref:`week01-day2-objectives`
+Learning objectives for this module :ref:`week-code-quality-day2-objectives`
 
 Lesson Content
 --------------
 
-- `Security Slides <https://education.launchcode.org/gis-devops-slides/security/security.html#1>`_
+.. 
+  TODO: consider a better location for security content
+  - `Security Slides <https://education.launchcode.org/gis-devops-slides/security/security.html#1>`_
+
 - `TDD Slides <https://education.launchcode.org/gis-devops-slides/week1/day2.html#1>`_
 
 Walkthrough

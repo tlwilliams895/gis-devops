@@ -1,71 +1,102 @@
-.. _week1_day5:
+.. _week-code-quality_day5:
 
-=================================
-Week 4 - Day 5: AJAX, Open Layers
-=================================
+============================================
+Modular Programming & ES6 JavaScript Modules
+============================================
 
-Learning objectives for this module :ref:`week01-day5-objectives`
+Learning objectives for this module :ref:`week-code-quality-day5-objectives`
 
 Lesson Content
 --------------
 
-* `HTTP <https://education.launchcode.org/gis-devops-slides/week1/day5_http.html#1>`_
-* `Intro to APIS and OpenLayers3 <https://education.launchcode.org/gis-devops-slides/week1/day5_apis.html#1>`_
+- TODO: modular code and using ES6 modules slides
+
+.. content can be ported from https://github.com/LaunchCodeEducation/openlayers-vanilla-client
+
+.. 
+  TODO: move to w1d3
+  * `HTTP <https://education.launchcode.org/gis-devops-slides/week1/day5_http.html#1>`_
 
 Walkthrough
 -----------
 
-OpenLayers and jQuery Example :ref:`walkthrough-openlayers`
+TODO: forking / cloning and setup walkthrough of client starter code 
 
-Studio
-------
+.. 
+  should this be a studio or walkthrough?
+  content can be ported from https://github.com/LaunchCodeEducation/openlayers-vanilla-client
 
-Complete the Airwaze studio :ref:`airwaze-studio`
+.. 
+  TODO: studio / walkthrough on using modules? ideas:
+  refactoring large script file into modules
+  use examples from the repo
 
 Retro
 -----
 
 Now that we have completed an instruction week, let's have a brief retro.
 
+.. 
+  TODO: should we move these to the Objectives page under a Week X Topics header? 
+
 Topics
 
-* Git
-* GitLab
-* IntelliJ
-* Java project structure
-* Unit testing & JUnit
-* Security Culture
-* Security tools
-* TDD
-* Red-Green-Refactor
-* Integration testing
-* MVC
-* Dependency injection in Spring Boot
-* Spring component annotations (@Controller, @Repository, @Autowired)
-* PosgtreSQL & psql CLI
-* SELECT, INSERT, UPDATE, DELETE
-* Relational Databases
-* Database Schemas
-* Configure a database in Spring Boot using application.properties
-* Spring Data, JPA, & Hibernate
-* HTTP requests, and responses
-* Types of HTTP requests (GET, POST, PUT, HEAD, DELETE)
-* JSON
-* cURL
-* API
-* GeoJSON
-* Geometry types
-* OpenLayers
-* AJAX
+- Dependency managers
+- Build tools
+- Coding styles
+- Code linting
+- Automated testing
+- TDD
+- Unit and integration tests
+- Back-end GeoInt tools
+- Openlayers
+- Modular JavaScript
 
 You will be required to work with these next week in your project week. We don't expect you to know all of them now, but you should feel comfortable working with them next week.
+
+.. 
+  TODO: project overview slides
+  should this be in its own linked document?
+  visual diagram and demo of final project
+  project git branching and gitlab merge request submission process 
 
 What went well this week? (Which topics did you enjoy, or feel comfortable with?)
 
 What do you need to focus on next week? (Which topics did you struggle with?)
 
+.. 
+  TODO: move / distribute in prep weeks
+  Topics
+  * Git
+  * GitLab
+  * IntelliJ
+  * Java project structure
+  * Unit testing & JUnit
+  * Security Culture
+  * Security tools
+  * TDD
+  * Red-Green-Refactor
+  * Integration testing
+  * MVC
+  * Dependency injection in Spring Boot
+  * Spring component annotations (@Controller, @Repository, @Autowired)
+  * PosgtreSQL & psql CLI
+  * SELECT, INSERT, UPDATE, DELETE
+  * Relational Databases
+  * Database Schemas
+  * Configure a database in Spring Boot using application.properties
+  * Spring Data, JPA, & Hibernate
+  * HTTP requests, and responses
+  * Types of HTTP requests (GET, POST, PUT, HEAD, DELETE)
+  * JSON
+  * cURL
+  * API
+  * GeoJSON
+  * Geometry types
+  * OpenLayers
+  * AJAX
+
 Additional Resources
 --------------------
-* `GeoJSON <https://macwright.org/2015/03/23/geojson-second-bite>`_
-* `Open Layers Docs <https://openlayers.org/en/latest/apidoc/>`_
-* `Open Layers Examples <https://openlayers.org/en/latest/examples/>`_
+
+- TODO: modular code and ES6 module resources
