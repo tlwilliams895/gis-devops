@@ -1,4 +1,4 @@
-.. _week8_project:
+.. _week-aws-advanced:
 
 ===================================================
 Week 11 - Project Week: Zika Mission Control Part 4

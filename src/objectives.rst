@@ -555,7 +555,81 @@ PG104 PostGIS Analysis
 Week 11
 =======
 
-- Use the skills learned in the previous week to integrate GeoServer with a Spring Boot + OpenLayers application, both locally and on AWS
+Day 1
+-----
+
+Conceptual
+^^^^^^^^^^
+
+- What is an AWS availability zone?
+- What is a VPC?
+- What is a subnet?
+- What is the difference between a public and private subnet?
+- What is a security group?
+- How can you open up a security group to one specific IP address?
+- How can you open up a security group to a range of IP addresses?
+- What is RDS?
+- What makes an RDS subnet group different than a VPC subnet?
+- Why must an RDS subnet group be spread across at least two availability zones?
+
+
+Practical
+^^^^^^^^^
+
+- In an AWS region create a VPC with public, and private subnets
+- Create RDS subnet groups from VPC private subnets
+- Create an RDS using a subnet group
+- Configure security groups so the RDS is accessible to AWS resources on the VPC
+- Ability to access private RDS from inside an EC2 on the greater VPC
+- Migrate data from a PSQL container into an RDS
+
+.. _week-aws-advanced-day1-objectives:
+
+Day 2
+-----
+
+Zika Project work day
+
+.. _week-aws-advanced-day2-objectives:
+
+Day 3
+-----
+
+Conceptual
+^^^^^^^^^^
+
+- What is a golden image?
+- What is an IAM policy?
+- How can you use an IAM policy from an AWS resource?
+- What is an auto scaling group (ASG)?
+- What is an elastic load balancer (ELB)?
+- What is a cloud formation script (CF)?
+
+Practical
+^^^^^^^^^
+
+- Ability to create a golden image from an existing EC2
+- Ability to create an auto scaling group on a private subnet
+- Attach an IAM policy to an EC2, and ASG
+- Configure, and control the settings of an auto scaling group
+- Create and configure a public elastic load balancer to route traffic to internal EC2s
+- Utilize cloud formation script to automate infrastructure creation and management
+
+.. _week-aws-advanced-day3-objectives:
+
+Day 4
+-----
+
+Project work day.
+
+.. _week-aws-advanced-day4-objectives:
+
+Day 5
+-----
+
+Project work day.
+
+.. _week-aws-advanced-day5-objectives:
 
 Week 12
 =======
