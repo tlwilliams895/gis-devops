@@ -2,9 +2,9 @@
 
 .. _walkthrough-docker:
 
-=========================
-An Introduction to Docker
-=========================
+============================
+Walkthrough: Intro to Docker
+============================
 
 Follow along with the instructor as you explore Docker and configure a basic Flask application.
 

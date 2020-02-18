@@ -2,9 +2,9 @@
 
 .. _walkthrough-gradle:
 
-==================
-Gradle Walkthrough
-==================
+===================
+Walkthrough: Gradle
+===================
 
 In this activity, we'll create and customize a simple Gradle Java project using only the command line.
 

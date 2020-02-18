@@ -288,6 +288,11 @@ pre {
     background-color: #354a5f;
     margin: 0;
 }
+/* only way to get .. code:: blocks to have a margin */
+div.highlight {
+  background: none;
+  margin: 20px;
+}
 
 div.highlight-js,
 div.highlight-none,
