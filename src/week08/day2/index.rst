@@ -1,10 +1,10 @@
-.. _week5_day2:
+.. _week-data-backing-transfer-day2:
 
 =============================
 Week 8 - Day 2: More with AWS
 =============================
 
-Learning objectives for this module :ref:`week05-day2-objectives`
+Learning objectives for this module :ref:`week-data-backing-transfer-day2-objectives`
 
 Lesson Content
 ==============

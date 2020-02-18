@@ -1,10 +1,10 @@
-.. _week5_day1:
+.. _week-data-backing-transfer-:
 
 ===================================
 Week 8 - Day 1: Intro to DevOps/AWS
 ===================================
 
-Learning objectives for this module :ref:`week05-day1-objectives`
+Learning objectives for this module :ref:`week-data-backing-transfer-day1-objectives`
 
 Lesson Content
 ==============

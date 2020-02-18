@@ -251,29 +251,13 @@ Day 2
 
 Day 3
 -----
-- Describe the use cases for Elasticsearch (ES)
-- Understand how NoSQL databases structure data, in contrast to relational databases
-- Describe the representation of data in ES as indexes of documents with fields
-- Describe the high-level architecture of ES as being based on a cluster with nodes and shards
-- Describe how ES is fault-tolerant
-- Know when ES should be used beyond the primary data store for an application
-- Use curl to query the search API of an index
-- Write filter queries
-- Understand query and filter context, and how each affects a result set
-- Describe how analyzers are used for full text queries
-- Describe how boost and highlighting can customize result sets
-- Use pagination of result sets
-- Describe and use fuzzy queries, geo queries, and aggregations
+
 
 .. _week03-day4-objectives:
 
 Day 4
 -----
 
-- Understand how parent/child relationships are represented, and how this contrasts with such relationships in relational databases
-- Describe and configure document mappings, and know the causes of and preventions for mapping explosion
-- Describe the purpose and procedure for reindexing
-- Integrate Elasticsearch into a Spring Boot application
 
 .. _week03-day5-objectives:
 
@@ -298,17 +282,123 @@ Week 7
 Week 8
 ======
 
+.. _week-data-backing-transfer-day1-objectives:
+
 Day 1
 -----
 
-- Use and configure SSH to access remote machines
-- Manage Unix file permissions for owners and groups
-- Manage Unix processes
-- Configure systemd daemon processes to run on startup
-- Use logs to troubleshoot applications
-- Awareness of Security Misconfigation vulnerability and how to prevent it
+Conceptual
+^^^^^^^^^^
 
-.. _week05-day2-objectives:
+- What is an ORM?
+- What is Hibernate?
+- How does an ORM protect you from SQL injection?
+- What is the JPA?
+- What is Spring Data?
+- How do Hibernate, JPA, and Spring Data differ?
+- How do Hibernate, JPA, and Spring Data overlap?
+
+
+Practical
+^^^^^^^^^
+
+- Add Hibernate, Spring Data, and JPA dependencies to a Spring project
+- Configure Hibernate to communicate with a PSQL data store
+- Map stored records to Java objects via ``JPARepository`` interfaces
+- Utilize CRUD functionality from mapped objects via JPA provided methods
+- Bind customized JPA methods using JPQL
+
+.. _week-data-backing-transfer-day2-objectives:
+
+Day 2
+-----
+
+Conceptual
+^^^^^^^^^^
+
+- What is REST?
+- What protocol does REST utilize?
+- What is a resource?
+- How are resources referenced in REST?
+- What are the four HTTP methods commonly used in RESTful APIs?
+- What is a data format?
+- What are the data formats used most commonly with REST?
+- How are HTTP status codes used in REST?
+
+Practical
+^^^^^^^^^
+
+- Utilize ``@RestController`` to define a controller as a RESTful endpoint
+- Define Spring Controllers to handle various HTTP requests
+- Serve HTTP responses that contain a payload of the requested resource
+- Override standard HTTP Response status code with ``org.springframework.http.HttpStatus;``
+- Serialize POJO to JSON
+
+.. _week-data-backing-transfer-day3-objectives:
+
+Day 3
+-----
+
+Conceptual
+^^^^^^^^^^
+
+- Identify the difference between Swagger toolset and the Open API Specification
+- Explain the difference between authentication and authorization
+- At a high level, explain how authentication and authorization work for APIs
+- Explain HATEOAS from the perspective of the data returned by a REST service
+- Explain the four levels of the REST maturity model
+
+Practical
+^^^^^^^^^
+
+- Integrate SwaggerUI into a project
+- Compose Swagger YAML files to define the endpoints, responses, and schema of an API
+- Use `$ref` to reference reuseable definitions
+- Generate Swagger docs for a RESTful service in Spring
+
+.. _week-data-backing-transfer-day4-objectives:
+
+Day 4
+-----
+
+Conceptual
+^^^^^^^^^^
+
+- Describe the use cases for Elasticsearch (ES)
+- Understand how NoSQL databases structure data, in contrast to relational databases
+- Describe the representation of data in ES as indexes of documents with fields
+- Describe the high-level architecture of ES as being based on a cluster with nodes and shards
+- Describe how ES is fault-tolerant
+- Know when ES should be used beyond the primary data store for an application
+- Understand query and filter context, and how each affects a result set
+- Describe how analyzers are used for full text queries
+- Describe how boost and highlighting can customize result sets
+- Describe and use fuzzy queries, geo queries, and aggregations
+
+Practical
+^^^^^^^^^
+
+- Use curl to CRUD indices, and documents into a ES cluster
+- Use curl to query the search API of an index
+- Write filter queries
+- Use pagination of result sets
+
+.. _week-data-backing-transfer-day5-objectives:
+
+Day 5
+-----
+
+Conceptual
+^^^^^^^^^^
+
+- Understand how parent/child relationships are represented, and how this contrasts with such relationships in relational databases
+- Describe and configure document mappings, and know the causes of and preventions for mapping explosion
+- Describe the purpose and procedure for reindexing
+
+Practical
+^^^^^^^^^
+
+- Integrate Elasticsearch into a Spring Boot application
 
 Day 2
 -----

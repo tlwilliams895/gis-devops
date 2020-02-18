@@ -1,10 +1,10 @@
-.. _week5_day5:
+.. _week-data-backing-transfer-day5:
 
 =========================
 Week 8 - Day 5: Sonarqube
 =========================
 
-Learning objectives for this module :ref:`week05-day5-objectives`
+Learning objectives for this module :ref:`week-data-backing-transfer-day5-objectives`
 
 Lesson Content
 ==============

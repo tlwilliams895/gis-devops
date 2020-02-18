@@ -1,10 +1,10 @@
-.. _week5_day4:
+.. _week-data-backing-transfer-day4:
 
 ==============================================
 Week 8 - Day 4: Gradle, Continuous Integration
 ==============================================
 
-Learning objectives for this module :ref:`week05-day4-objectives`
+Learning objectives for this module :ref:`week-data-backing-transfer-day4-objectives`
 
 
 Lesson Content

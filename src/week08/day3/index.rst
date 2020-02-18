@@ -1,10 +1,10 @@
-.. _week5_day3:
+.. _week-data-backing-transfer-day3:
 
 ===============================================
 Week 8 - Day 3: 12 Factor Apps and Auto Scaling
 ===============================================
 
-Learning objectives for this module :ref:`week05-day3-objectives`
+Learning objectives for this module :ref:`week-data-backing-transfer-day3-objectives`
 
 Lesson Content
 ==============
