@@ -75,16 +75,18 @@ src/projects/
 ### dir structure
 * each week is its own file that is composed as needed (see below)
 * moving weeks around is as simple as changing the file name and the theme title
+
 ```sh
 src/weeks/
-  week-##.rst <-- composable week doc (one for eachw week)
+  week-##.rst <-- composable week doc (one for each week)
 ```
 
 ## week doc structure
 * allows for each week to be composed of topics and / or project days
 * moving around the content of each week is as simple as changing the ref and theme title
 * these docs are easy to change and become the sources of truth for the cohort’s schedule
-* the root toctree goes to a depth of 2 to show both the week theme and nested day themes under it
+* the root `src/index.rst` toctree uses globs for the `src/weeks/` dir and goes to a depth of 2 to show both the week theme and nested day themes under it
+
 ```sh
 ====================
 Week ##: Theme Title
@@ -93,8 +95,12 @@ Week ##: Theme Title
 Day #: Day Theme Title
 ======================
 
-- :ref:\` ref-to-topic-doc\` 
-- multiple refs for shorter / related topics
+days are composed by referencing topics, projects, or project objectives as needed
+
+- :ref:`topic-name_index` 
+- :ref:`project-theme_index`
+- :ref:`project-theme_objective-name`
+- :ref:`project-theme_objective-collection_index`
 
 (repeat for each day)
 ```
