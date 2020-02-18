@@ -129,6 +129,14 @@ Week 13
 * Week 13 - Day 5: Project Presentation and Graduation
 
 
+Walkthroughs
+------------
+
+.. toctree::
+  :glob:
+  :maxdepth: 1
+
+  walkthroughs/*/index
 
 Installations
 -------------
@@ -147,3 +155,12 @@ Configurations
   :maxdepth: 1
 
   configurations/*/index
+
+Notes
+-----
+
+.. toctree::
+  :glob:
+  :maxdepth: 1
+
+  notes/*/index
