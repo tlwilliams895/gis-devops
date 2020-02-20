@@ -4,6 +4,9 @@
 Week 06: Planet Federal Tools
 =============================
 
+Days 1-5: Planet Federal Instruction
+------------------------------------
+
 This week you will work with a Planet Federal instructor to learn about various Planet Federal tools.
 
 - Geoserver
