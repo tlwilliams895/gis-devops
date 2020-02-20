@@ -6,13 +6,13 @@ Week 12: Misc DevOps & Vendors
 
 - :ref:`projects-zika-api_project`
 
-Day 1: ESRI
------------
+Day 1: ESRI Instruction
+-----------------------
 
 ESRI will have a day to show us various ESRI tools that are a part of the geo-spatial toolkit.
 
-Day 2: Pivotal
---------------
+Day 2: Pivotal Instruction
+--------------------------
 
 Pivotal will have a day to show us Pivotal Cloud Foundry as an alternative to AWS.
 
