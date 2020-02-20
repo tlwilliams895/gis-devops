@@ -2,6 +2,7 @@
   TODO: slack, firefox, google accounts for sheets and forms
   VSCode extensions / auto save / other configs
   IntelliJ plugins / config
+  Postman
 
 :orphan:
 
