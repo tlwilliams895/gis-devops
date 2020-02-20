@@ -11,17 +11,14 @@ Certificates
 Lesson Content
 ==============
 
+TODO: move certs lecture content here
 - 
 
 Walkthrough
 ===========
 
+TODO: move certs walkthrough here
 - :ref:`certificates_walkthrough`
-
-Studio
-======
-
-- :ref:`certificates_studio`
 
 Resources
 =========
