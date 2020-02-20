@@ -1,12 +1,10 @@
 :orphan:
 
-.. _walkthrough-gitLab:
+.. _git_walkthrough:
 
-====================================
+===========================
 Walkthrough: Git and Gitlab
-====================================
-
-
+===========================
 
 Follow along with the instructor as we review Git and Gitlab.
 
@@ -17,9 +15,6 @@ Setup
 
 * You will need a Gitlab account (don't worry it's free)
 * Go to `gitlab.com <http://gitlab.com and login>`_
-
-Follow Along as we...
----------------------
 
 Part 1 - Instructor Steps
 -------------------------
@@ -53,39 +48,3 @@ Part 2
 9. Run git status in terminal
 10. Run git add roster.txt to mark the conflict as resolved
 11. After resolving your conflicts you can push your changes to origin
-
-.. _git-reference:
-
-Git Reference
--------------
-
-Switch to an Existing Branch
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-#. ``git fetch`` to make sure you have an updated list of branches
-#. ``git branch -a`` show a list of all existing branches
-#. ``git checkout BRANCH-NAME`` will checkout the branch BRANCH-NAME
-
-Create a New Branch
-^^^^^^^^^^^^^^^^^^^
-
-#. ``git status`` to make sure you are on the branch you want to make a branch from
-#. ``git checkout -b NEW-BRANCH-NAME`` creates branch NEW-BRANCH-NAME and switches to it
-
-Commit and Push
-^^^^^^^^^^^^^^^
-
-How to commit and push your changes to a remote repo.
-
-#. ``git status`` to review branch and files that have changed
-#. ``git add .`` stage your changes
-#. ``git commit -m "a short message about what you changed"``
-#. ``git push`` push commit to remote repo
-
-Other Helpful Commands
-^^^^^^^^^^^^^^^^^^^^^^
-
-* ``git log`` see list of commits on your current branch
-* ``git pull`` pull in the latest changes for your current branch from origin
-* ``git fetch`` make your local repo aware of any new changes on origin
-* ``git reset --hard`` WARNING!! Removes all local changes that have NOT been committed 

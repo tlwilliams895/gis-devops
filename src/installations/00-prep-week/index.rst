@@ -1,6 +1,11 @@
+.. 
+  TODO: slack, firefox, google accounts for sheets and forms
+  VSCode extensions / auto save / other configs
+  IntelliJ plugins / config
+
 :orphan:
 
-.. _prep-week-installation:
+.. _installation_tooling:
 
 ===============================================
 Installation: Essential Tooling & Configuration
@@ -11,6 +16,9 @@ Before we begin learning we have to establish a common technological ground acro
 In these instructions we will install and configure the many different tools used throughout the course. Most of these tools will not be used until several weeks from now. But they are important to install, configure, and test so that any incompatibilities can be discovered and resolved sooner rather than later.
 
 Do not worry about feeling overwhelmed during these steps. Take your time and follow the directions step-by-step as your instructor guides you. Do not be embarassed to ask questions at any time if you are confused or want more information. 
+
+.. 
+  TODO: reconsider this - let students choose to do on their own or with guidance?
 
   **Do not skip ahead or rush on any section or step**
 
@@ -99,6 +107,9 @@ Installing HomeBrew
   Homebrew/homebrew-core (git revision 66ea9; last commit 2019-10-22)
   Homebrew/homebrew-cask (git revision 43442; last commit 2019-10-23)
 ..
+
+.. 
+  TODO: remove - using docker
 
 .. _postgres:
 

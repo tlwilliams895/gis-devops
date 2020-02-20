@@ -40,7 +40,7 @@ Refactor to Use Hibernate (Keep Existing Functionality)
     * Did you autowire your new ``JpaRepositories`` into your controller files, and test files?
     * Did you update ``IntegrationTestConfig.java``?
     * Did you update ``LaunchCartApplicationTests.java``?
-4. Commit your changes (For help see :ref:`git-reference`)
+4. Commit your changes (For help see :ref:`git_commands`)
 
 .. hint::
 
@@ -71,7 +71,7 @@ Let's do a little manual (eye) testing as well.
     </div>
 
 - Run the app (bootRun, make sure you have environment variables) and ensure the New Item form submits, and that the chosen value is properly set in the database.
-- Commit your changes (For help see :ref:`git-reference`)
+- Commit your changes (For help see :ref:`git_commands`)
 
 
 
@@ -109,5 +109,5 @@ Turning In Your Work
 
 If you don't complete each of the tasks, turn in as much as you have completed by the end of the day.
 
-* Commit and push your work to GitLab (For help see :ref:`git-reference`)
+* Commit and push your work to GitLab (For help see :ref:`git_commands`)
 * Create a Merge Request and have the teacher and classmates review your changes
