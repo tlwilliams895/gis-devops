@@ -1,7 +1,7 @@
 .. _week-04:
 
 =====================================
-Week 4: Code Quality Automation & GIS
+Week 04: Code Quality Automation & GIS
 =====================================
 
 Day 1: Build Tools & Linting

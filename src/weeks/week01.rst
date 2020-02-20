@@ -1,7 +1,7 @@
 .. _week-01:
 
 =====================
-Week 1: Tooling & Ops
+Week 01: Tooling & Ops
 =====================
 
 Day 1: Introduction, Installations, and Shell Basics
