@@ -36,3 +36,9 @@ Practical
 - How do you define a Spring controller as a REST Controller?
 - How do you override an HTTP status response in Spring?
 - How do you return JSON in Spring?
+- What is the URL to access one specific resource?
+- What is the URL to access all resources of a specific type?
+- What HTTP request would be sent to get one existing resource? 
+- What HTTP request would be sent to create a new resource?
+- What HTTP request would be sent to change an existing resource?
+- What HTTP request would be sent to delete an existing resource?
