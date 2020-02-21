@@ -25,3 +25,13 @@ Day 1: CI/CD
 ------------
 
 :ref:`ci-cd_index`
+
+Day 2: Jenkins
+--------------
+
+:ref:`jenkins_index`
+
+Day 3: AWS EC2
+--------------
+
+:ref:`aws-ec2_index`
