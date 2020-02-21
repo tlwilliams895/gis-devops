@@ -6,6 +6,7 @@
 Elasticsearch in Spring
 =======================
 
+TODO: splint this into elasticsearch-advanced and elasticsearch-spring the objectives cover elasticsearch-advanced, and nothing about elasticsearch spring integration.
 :ref:`elasticsearch-spring_objectives` for this module
 
 Lesson Content
