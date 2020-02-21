@@ -111,7 +111,8 @@ default_theme_options = {
     #'navbar_links': [ ('classes', 'www.google.com')
     #],
     'navbar_links': [
-      ("Installations", "/installations/index"),
+      ("Topics", "/topics/index"),
+      ("Commands Reference", "/topics/commands")
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
@@ -125,7 +126,7 @@ default_theme_options = {
 
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
-    'globaltoc_depth': 1,
+    'globaltoc_depth': 2,
 
     # Include hidden TOCs in Site navbar?
     #
