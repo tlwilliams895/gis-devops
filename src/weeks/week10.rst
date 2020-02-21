@@ -35,3 +35,8 @@ Day 3: AWS EC2
 --------------
 
 :ref:`aws-ec2_index`
+
+Day 4-5: Project Deploy Zika to AWS EC2
+---------------------------------------
+
+:ref:`projects-zika-aws-ec2_project`
