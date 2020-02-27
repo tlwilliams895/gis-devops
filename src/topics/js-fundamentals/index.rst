@@ -16,11 +16,14 @@
     executing scripts locally with node
     fundamental syntax
     callbacks
-    array and string methods
+    common array and string methods
   STUDIO: array and string method practice
     examples from
       https://gist.github.com/the-vampiire/5090080c3909c217d5ca361fd2e31777#practice-challenges
-    aggregate relevant exercises from https://education.launchcode.org/intro-to-professional-web-dev/
+    string exercises
+      https://education.launchcode.org/intro-to-professional-web-dev/chapters/strings/exercises.html
+    array exercises
+      https://education.launchcode.org/intro-to-professional-web-dev/chapters/arrays/exercises.html
 
 :orphan:
 

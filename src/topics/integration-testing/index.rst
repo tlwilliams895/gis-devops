@@ -1,3 +1,8 @@
+..  
+  SLIDES:
+  OBJECTIVES: merge with objectives.rst
+  
+
 :orphan:
 
 .. _integration-testing_index:
@@ -11,19 +16,17 @@ Integration Testing
 Lesson Content
 ==============
 
-- TODO: move over integration testing lecture slides
+- 
 
 Walkthrough
 ===========
 
 - :ref:`integration-testing_walkthrough`
-- TODO: move over integration testing Walkthrough
 
 Studio
 ======
 
 - :ref:`integration-testing_studio`
-- TODO: move over integration testing studio
 
 Resources
 =========

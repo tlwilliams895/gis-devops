@@ -30,7 +30,6 @@ Conceptual
 - What goes on in a merge request?
 - What is a merge conflict?
 - What causes merge conflicts?
-- What does a merge conflict look like and how do you resolve it?
 
 Practical
 ---------
@@ -43,3 +42,4 @@ Practical
 - How do you create a new remote repo?
 - How do you connect a local repo to a remote repo?
 - How do you create a merge request?
+- How to resolve merge conflicts

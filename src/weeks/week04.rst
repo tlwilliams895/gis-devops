@@ -24,7 +24,7 @@ Day 4: GeoINT & OpenLayers
 --------------------------
 
 - :ref:`geoint-overview_index`
-- :ref:`openlayers-basic_index`
+- :ref:`openlayers_index`
 
 Day 5: ES6 Modules & OpenLayers continued
 -----------------------------------------

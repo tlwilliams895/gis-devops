@@ -1,5 +1,6 @@
 .. 
-  TODO: slides, walkthrough / studio exercises?
+  SLIDES:
+  WALKTHROUGH: fundamental CLI commands (walk through all of the practical objectives)
 
 :orphan:
 
@@ -20,11 +21,6 @@ Walkthrough
 ===========
 
 - :ref:`shell_walkthrough`
-
-Studio
-======
-
-- :ref:`shell_studio`
 
 Resources
 =========

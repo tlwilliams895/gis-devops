@@ -1,8 +1,9 @@
 .. 
-  TODO: slides, resources
-  walkthrough: use emmet in vscode to generate HTML boilerplate and elements
-  studio:
-    how to use live server and the python simple http server
+  SLIDES:
+  WALKTHROUGH:
+    how to use live server in VSC
+    the python simple http server from CLI and container
+  STUDIO:
     create and serve a basic html doc (header, bullet points, links, images)
 
 :orphan:

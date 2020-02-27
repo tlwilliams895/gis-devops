@@ -1,5 +1,9 @@
 .. 
-  TODO: slides, walkthrough using curl and dev tools
+  SLIDES:
+  WALKTHROUGH: 
+    show devtools network tab for inspecting requests/responses
+    show using Postman
+    show using curl
 
 :orphan:
 

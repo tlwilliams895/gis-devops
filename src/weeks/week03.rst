@@ -19,7 +19,7 @@ Day 2: Introduction to Spring & Spring Boot
 Day 3: PostgreSQL & Introduction to ORMs
 ----------------------------------------
 
-- :ref:`postgresql_index` 
+- :ref:`sql-postgresql_index` 
 - :ref:`orms_index` 
  
 Day 4: Spring Data & Hibernate
@@ -31,6 +31,10 @@ Day 5: Complete Fullstack TODO App in Spring
 --------------------------------------------
 
 - Review of concepts
+
+.. 
+  PROJECT: write project file for TODO Persistent
+
 - Complete the TODO rewrite using Spring, Hibernate, and PostgreSQL
 - Conceptual overview of deploying the TODO application
  

@@ -1,3 +1,7 @@
+..  
+  SLIDES:
+  OBJECTIVES:
+
 :orphan:
 
 .. _jenkins_index:
@@ -18,12 +22,6 @@ Walkthrough
 
 TODO: move jenkins walkthrough here
 - :ref:`jenkins_walkthrough`
-
-Studio
-======
-
-TODO: move jenkins studio here
-- :ref:`jenkins_studio`
 
 Resources
 =========

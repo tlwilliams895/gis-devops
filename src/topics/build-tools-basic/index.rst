@@ -1,3 +1,8 @@
+.. 
+  SLIDES:
+  STUDIO: NPM
+  WALKTHROUGH: NPM
+
 :orphan:
 
 .. _build-tools-basic_index:

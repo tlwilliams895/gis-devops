@@ -60,4 +60,7 @@ Studio
 Resources
 =========
 
+.. 
+  TODO: any more resources?
+
 - `Martin Fowler Multi-Layer Web Applications <https://martinfowler.com/bliki/PresentationDomainDataLayering.html>`_

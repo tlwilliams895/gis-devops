@@ -1,3 +1,6 @@
+.. 
+  SLIDES:
+
 :orphan:
 
 .. _elasticsearch-basics_index:
@@ -11,19 +14,17 @@ Elasticsearch
 Lesson Content
 ==============
 
-- TODO: move elasticsearch basics lecture content here
+-
 
 Walkthrough
 ===========
 
 - :ref:`elasticsearch-basics_walkthrough`
-- TODO: move elasticsearch studio walkthrough here
 
 Studio
 ======
 
 - :ref:`elasticsearch-basics_studio`
-- TODO: move elasticsearch basics studio here
 
 Resources
 =========

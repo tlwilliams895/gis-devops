@@ -1,16 +1,18 @@
 .. 
-  TODO:
-  slides: cover answers to objectives
-  walkthrough: diagnosing and resolving CORS issues
+  SLIDES: cover answers to objectives
+  WALKTHROUGH: diagnosing and resolving CORS issues
     sample client served from a container
     sample API codebase
     use branches to separate CORS resolution headers
-      POST request
-      content-type header (application/json)
-      credentials
+      origin not allowed
+      method not allowed: POST request
+      headers not allowed: content-type header (application/json)
     dev tools console to view CORS warnings
     update API (manually or branch switching) to allow origins / headers / methods
-  syntax: sample syntax for node/express and java/spring
+  COMMANDS: sample syntax for node/express and java/spring
+    node/express: CORS middleware
+    java/spring: CrossOrigin annotation
+    using env variables
 
 :orphan:
 

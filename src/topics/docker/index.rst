@@ -1,8 +1,6 @@
 .. 
-  TODO: slides, rewrite walkthrough, any ideas for studio?
-  add another walkthrough of just going through the basics, move walkthrough to studio?
-  there will be overlap with the ops/virtualization topic but thats ok
-    each topic should be atomic, repetition is beneficial to learning
+  SLIDES:
+  WALKTHROUGH: rewrite flask/redis to express/redis
 
 :orphan:
 

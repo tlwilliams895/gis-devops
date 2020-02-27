@@ -2,7 +2,6 @@
 
 .. _http_walkthrough:
 
-==
-
-==
-
+======================================
+Making Requests & Inspecting Responses
+======================================

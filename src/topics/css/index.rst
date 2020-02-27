@@ -1,12 +1,11 @@
 .. 
-  TODO:
-  slides
+  SLIDES:
     high level overview
     focus on the importance of selectors with JS in the DOM
-  walkthrough:
+  WALKTHROUGH:
     write inline, embedded and external CSS 
     use browser dev tools to view CSS rules and precedence
-  studio: extend the HTML studio to add styles
+  STUDIO: extend the HTML studio to add styles
 
 :orphan:
 

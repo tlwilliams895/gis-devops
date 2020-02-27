@@ -1,3 +1,8 @@
+.. 
+  SLIDES:
+  WALKTHROUGH: walkthroughs/client-certificates
+  OBJECTIVES:
+
 :orphan:
 
 .. _certificates_index:

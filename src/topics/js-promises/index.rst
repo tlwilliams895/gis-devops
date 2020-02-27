@@ -1,8 +1,10 @@
 .. 
-  TODO:
-  slides: replace with watching and discussing this video https://www.youtube.com/watch?v=gB-OmN1egV8
-  walkthrough
+  SLIDES: watching and discussing objectives + this video https://www.youtube.com/watch?v=gB-OmN1egV8
+  WALKTHROUGH:
     create Promise objects
+      show that they are just objects
+      have internal state
+      have methods
     use then and catch
     use async/await
     chain promises
@@ -20,7 +22,7 @@ Asynchronous JavaScript & Promises
 Lesson Content
 ==============
 
-- `Tyler McGinnis' History of Async JavaScript <https://www.youtube.com/watch?v=gB-OmN1egV8>`_
+- 
 
 Walkthrough
 ===========

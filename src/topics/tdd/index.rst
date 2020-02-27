@@ -1,3 +1,8 @@
+.. 
+  SLIDES:
+  OBJECTIVES: mix
+  
+
 :orphan:
 
 .. _tdd_index:
@@ -11,19 +16,17 @@ Test Driven Development
 Lesson Content
 ==============
 
-- TODO: move TDD lecture content here
+- 
 
 Walkthrough
 ===========
 
-- :ref:`tdd_walkthrough`
-TODO: move TDD walkthrough here
+- :ref:`tdd_walkthrough-java`
 
 Studio
 ======
 
-- :ref:`tdd_studio`
-TODO: move TDD studio here
+- :ref:`tdd_studio-java`
 
 Resources
 =========

@@ -1,3 +1,8 @@
+..  
+  FUTURE: split into spring-data (JPA, JDBC) and orms-hibernate
+  SLIDES:
+
+
 :orphan:
 
 .. _spring-data-hibernate_index:
@@ -17,13 +22,11 @@ Walkthrough
 ===========
 
 - :ref:`spring-data-hibernate_walkthrough`
-- TODO: move current spring data and hibernate walkthrough here (launchcart i want to say)
 
 Studio
 ======
 
 - :ref:`spring-data-hibernate_studio`
-- TODO: move current spring data and hibernate walkthrough here
 
 Resources
 =========

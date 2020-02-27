@@ -48,4 +48,3 @@ Practical
 - How can you delete a file?
 - How can you delete an empty directory?
 - How can you delete a non-empty directory?
-

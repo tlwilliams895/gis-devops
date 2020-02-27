@@ -1,6 +1,6 @@
 .. 
-  TODO: slides and resources
-
+  SLIDES:
+  
 :orphan:
 
 .. _devops_index:

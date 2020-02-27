@@ -3,6 +3,6 @@
 .. _js-dom_walkthrough:
 
 ==========================
-Events & Crud With the DOM
+Events & CRUD With the DOM
 ==========================
 

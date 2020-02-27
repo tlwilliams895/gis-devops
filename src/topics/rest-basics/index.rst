@@ -1,3 +1,8 @@
+.. 
+  SLIDES:
+  RESOURCES:
+
+
 :orphan:
 
 .. _rest-basics_index:

@@ -156,4 +156,4 @@ Conclusion
 
 We have configured our Spring project to work with Elasticsearch. Moving forward from here will be different for each project. You will more than likely need to create Document models, Document Elasticsearch Repositories, Controllers, and possibly a Utilty file to reindex your Elasticsearch index.
 
-See the :ref:`walkthrough-elasticsearch-spring` to see an example of how to use Elasticsearch within a Spring project.
+See the :ref:`spring-elasticsearch_walkthrough` to see an example of how to use Elasticsearch within a Spring project.

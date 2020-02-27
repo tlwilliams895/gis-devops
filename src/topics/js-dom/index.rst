@@ -1,18 +1,20 @@
 .. 
-  TODO:
-  slides
+  SLIDES:
     DOM overview
     CRUD and DOM operations
     querySelector[All] (releation to CSS selectors)
     DOM events
     event handlers / callbacks
-  walkthrough: DOM CRUD live examples
+  WALKTHROUGH: DOM CRUD live examples
     create elements
     select (read) elements using querySelector[All]
+      iterating over NodeList as Array
     update (append) element children
     delete (remove) elements
     simple button click event and handler
-  studio: extend the HTML / CSS studio to add JS interactivity
+  STUDIO: extend the HTML / CSS studio to add JS interactivity
+    use 2 CRUD operations
+    use 2 events
 
 :orphan:
 

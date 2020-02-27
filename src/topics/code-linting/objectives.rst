@@ -10,7 +10,7 @@ Conceptual
 ----------
 
 - What is a style guide?
-- What is lint?
+- What is code lint?
 - What is a linter?
 - What is ESLint?
 - What is Checkstyle?

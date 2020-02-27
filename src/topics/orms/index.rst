@@ -1,3 +1,7 @@
+.. 
+  SLIDES:
+  OBJECTIVES:
+
 :orphan:
 
 .. _orms_index:
@@ -12,16 +16,6 @@ Lesson Content
 ==============
 
 - 
-
-Walkthrough
-===========
-
-- :ref:`orms_walkthrough`
-
-Studio
-======
-
-- :ref:`orms_studio`
 
 Resources
 =========

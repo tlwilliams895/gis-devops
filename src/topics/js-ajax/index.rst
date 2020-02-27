@@ -1,6 +1,5 @@
 .. 
-  TODO:
-  slides
+  SLIDES:
     synchronous vs asynchronous programming
     importance of asynchronous network requests (especially in the browser)
     overview of legacy XMLHTTPRequest (for comparison to fetch)
@@ -9,9 +8,11 @@
     gotchas with JSON and JSOs
     fetch API
     gotchas with fetch (converting JSON, status codes and rejection)
-  walkthrough: exercises from LC101 
-  studio:
-    consume the TODO API (containerized) to build a front-end client
+  WALKTHROUGH: exercises from LC101 
+  STUDIO:
+    consume the TODO API (containerized)
+    provide endpoint specs
+    student build a front-end client
     (good preview and lead in to the next day on web APIs and building their own)
 
 :orphan:

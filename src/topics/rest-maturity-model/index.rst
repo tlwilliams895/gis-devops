@@ -1,3 +1,8 @@
+.. 
+  FUTURE:
+    adapt abstract concepts with multiple studios / walkthroughs
+      use a studios/ dir to have implementation examples in different contexts or languages
+
 :orphan:
 
 .. _rest-maturity-model_index:

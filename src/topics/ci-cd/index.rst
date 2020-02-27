@@ -1,3 +1,6 @@
+.. 
+  SLIDES:
+  
 :orphan:
 
 .. _ci-cd_index:
@@ -19,16 +22,6 @@ Lesson Content
 
 - `12 Factor Apps <https://education.launchcode.org/gis-devops-slides/week5/12-factor.html>`_
 - `CI/CD <https://education.launchcode.org/gis-devops-slides/week5/ci.html>`_
-
-Walkthrough
-===========
-
-- :ref:`ci-cd_walkthrough-jenkins`
-
-Studio
-======
-
-- :ref:`ci-cd_studio-pipelines` 
 
 Resources
 =========

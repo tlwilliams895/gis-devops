@@ -35,8 +35,6 @@ Conceptual
 Practical
 ---------
 
-- How to make a HTTP request using ``curl``
-- How to view detailed response information using ``curl``
-- How to configure the method, headers, and body of a request using ``curl`` options
 - How to view HTTP/network requests in the browser using dev tools
-- How to copy network requests from the browser to ``curl``
+- How to make request and inspect responses using Postman
+- How to make HTTP requests using ``curl``

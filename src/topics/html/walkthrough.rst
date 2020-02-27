@@ -2,7 +2,6 @@
 
 .. _html_walkthrough:
 
-=======================
-Use Emmet to Write HTML
-=======================
-
+==============================
+Serving HTML Documents Locally
+==============================

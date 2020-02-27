@@ -11,6 +11,7 @@ Conceptual
 
 - What is synchronous programming?
 - What is asynchronous programming?
+- What mechanism does JavaScript use for asynchronous programming on its single thread?
 - What does AJAX stand for?
 - Why is it important for JavaScript to make network requests asynchronously?
 - What is JSON?

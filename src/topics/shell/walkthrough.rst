@@ -2,7 +2,7 @@
 
 .. _shell_walkthrough:
 
-==============
-Bash Exercises
-==============
+=====================
+Bash CLI Fundamentals
+=====================
 

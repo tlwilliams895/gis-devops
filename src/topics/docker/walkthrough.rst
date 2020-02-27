@@ -10,7 +10,7 @@ Build a Containerized Counter App
   TODO: rewrite in node / express
   should we split docker and docker-compose into separate docker (advanced) topics?
     docker basic can deal with Dockerfiles and CLI fundamentals
-    docker compose can deal with with networking, multiple containers and othe advanced bits
+    docker compose can deal with with networking, multiple containers and other advanced bits
 
 ============================
 Walkthrough: Intro to Docker
